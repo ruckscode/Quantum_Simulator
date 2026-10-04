@@ -454,7 +454,8 @@ class QuantumSimulator:
             if sim.measurement_results:
                 last = sim.measurement_results[-1]
             else:
-                outcome = int(np.argmax(sim.get_probabilities()))
+                probabilities = sim.get_probabilities()
+                outcome = int(sim.rng.choice(self.dim, p=probabilities))
                 last = f"{outcome:0{self.n}b}"
             counts[last] = counts.get(last, 0) + 1
 

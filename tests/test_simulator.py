@@ -57,6 +57,37 @@ def test_run_shots_counts():
     assert set(counts) <= {"0", "1"}
 
 
+def test_run_shots_hadamard_samples_both_outcomes():
+    counts = QuantumSimulator(1).run_shots([("h", 0)], shots=1000, seed=7)
+    assert set(counts) == {"0", "1"}
+
+
+def test_run_shots_x_returns_only_one():
+    counts = QuantumSimulator(1).run_shots([("x", 0)], shots=1000, seed=7)
+    assert counts == {"1": 1000}
+
+
+def test_run_shots_bell_state_samples_only_correlated_outcomes():
+    counts = QuantumSimulator(2).run_shots(
+        [("h", 0), ("cx", 0, 1)], shots=1000, seed=7
+    )
+    assert set(counts) == {"00", "11"}
+
+
+def test_run_shots_same_seed_produces_identical_counts():
+    circuit = [("h", 0)]
+    first = QuantumSimulator(1).run_shots(circuit, shots=1000, seed=17)
+    second = QuantumSimulator(1).run_shots(circuit, shots=1000, seed=17)
+    assert first == second
+
+
+def test_run_shots_different_seeds_can_produce_different_counts():
+    circuit = [("h", 0)]
+    first = QuantumSimulator(1).run_shots(circuit, shots=1000, seed=17)
+    second = QuantumSimulator(1).run_shots(circuit, shots=1000, seed=18)
+    assert first != second
+
+
 def test_barrier_is_noop():
     sim = QuantumSimulator(2)
     before = sim.state.copy()
