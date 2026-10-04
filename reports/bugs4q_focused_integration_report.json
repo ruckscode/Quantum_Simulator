@@ -1,0 +1,3991 @@
+{
+  "benchmark": "Bugs4Q",
+  "cases": [
+    {
+      "case_number": 8,
+      "case_id": "Bugs4Q-8",
+      "execution_status": "COMPLETED",
+      "bugs4q_metadata": {
+        "case_number": 8,
+        "bug_type": "Output Wrong",
+        "source_url": "https://github.com/Qiskit/qiskit-terra/issues/5580",
+        "buggy_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/8/buggy_8.py",
+        "fixed_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/8/fixed_8.py",
+        "modify_file": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/8/modify_8.txt",
+        "test_references": [
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/8/test_b8.py",
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/8/test_f8.py"
+        ],
+        "source_level_mutation": "8,9c8,9\n< circ.crz(pi/2,2,0)\n< circ.crz(pi/4,2,1)\n---\n> circ.crz(pi/2,0,1)\n> circ.crz(pi/4,0,2)\n"
+      },
+      "reference_fixed_circuit": [
+        [
+          "crz",
+          0,
+          2,
+          1.5707963267948966
+        ],
+        [
+          "crz",
+          0,
+          3,
+          0.7853981633974483
+        ]
+      ],
+      "buggy_circuit": [
+        [
+          "crz",
+          3,
+          0,
+          1.5707963267948966
+        ],
+        [
+          "crz",
+          3,
+          2,
+          0.7853981633974483
+        ]
+      ],
+      "expected_distribution": {
+        "0000": 1.0
+      },
+      "observed_distribution": {
+        "0000": 1.0
+      },
+      "behavioral_comparison": {
+        "expected_distribution": {
+          "0000": 1.0
+        },
+        "observed_distribution": {
+          "0000": 1.0
+        },
+        "total_variation_distance": 0.0,
+        "hellinger_distance": 0.0,
+        "js_divergence": 0.0,
+        "threshold": 0.05,
+        "finite_shot_guard": 0.05,
+        "shots": 1024,
+        "anomaly_detected": false,
+        "reason": "No statistically meaningful anomaly detected",
+        "message": "Observed distribution differs by TVD=0.000000, which is within the configured threshold=0.050000."
+      },
+      "system_diagnosis": {
+        "category": "NO_ANOMALY",
+        "summary": "No statistically meaningful execution anomaly was detected.",
+        "anomaly_detected": false,
+        "evidence": [
+          "Observed distribution differs by TVD=0.000000, which is within the configured threshold=0.050000.",
+          "Step 0: expected cx(0, 2)() but observed cx(3, 0)()",
+          "Mismatch score = 0.25",
+          "Step 1: expected rz(2,)(-0.7853981633974483,) but observed rz(0,)(-0.7853981633974483,)",
+          "Mismatch score = 0.25",
+          "Step 2: expected cx(0, 2)() but observed cx(3, 0)()",
+          "Mismatch score = 0.25",
+          "Step 3: expected rz(2,)(0.7853981633974483,) but observed rz(0,)(0.7853981633974483,)",
+          "Mismatch score = 0.25",
+          "Step 4: expected cx(0, 3)() but observed cx(3, 2)()",
+          "Mismatch score = 0.25",
+          "Step 5: expected rz(3,)(-0.39269908169872414,) but observed rz(2,)(-0.39269908169872414,)",
+          "Mismatch score = 0.25",
+          "Step 6: expected cx(0, 3)() but observed cx(3, 2)()",
+          "Mismatch score = 0.25",
+          "Step 7: expected rz(3,)(0.39269908169872414,) but observed rz(2,)(0.39269908169872414,)",
+          "Mismatch score = 0.25",
+          "Hardware calibration information was not provided."
+        ]
+      },
+      "program_localization_candidates": [
+        {
+          "index": 0,
+          "operation": "cx",
+          "qubits": [
+            3,
+            0
+          ],
+          "expected_signature": [
+            "cx",
+            [
+              0,
+              2
+            ],
+            []
+          ],
+          "actual_signature": [
+            "cx",
+            [
+              3,
+              0
+            ],
+            []
+          ],
+          "score": 0.25,
+          "reason": "Target qubits differ from expected circuit",
+          "evidence": [
+            "Step 0: expected cx(0, 2)() but observed cx(3, 0)()",
+            "Mismatch score = 0.25"
+          ]
+        },
+        {
+          "index": 1,
+          "operation": "rz",
+          "qubits": [
+            0
+          ],
+          "expected_signature": [
+            "rz",
+            [
+              2
+            ],
+            [
+              -0.7853981633974483
+            ]
+          ],
+          "actual_signature": [
+            "rz",
+            [
+              0
+            ],
+            [
+              -0.7853981633974483
+            ]
+          ],
+          "score": 0.25,
+          "reason": "Target qubits differ from expected circuit",
+          "evidence": [
+            "Step 1: expected rz(2,)(-0.7853981633974483,) but observed rz(0,)(-0.7853981633974483,)",
+            "Mismatch score = 0.25"
+          ]
+        },
+        {
+          "index": 2,
+          "operation": "cx",
+          "qubits": [
+            3,
+            0
+          ],
+          "expected_signature": [
+            "cx",
+            [
+              0,
+              2
+            ],
+            []
+          ],
+          "actual_signature": [
+            "cx",
+            [
+              3,
+              0
+            ],
+            []
+          ],
+          "score": 0.25,
+          "reason": "Target qubits differ from expected circuit",
+          "evidence": [
+            "Step 2: expected cx(0, 2)() but observed cx(3, 0)()",
+            "Mismatch score = 0.25"
+          ]
+        },
+        {
+          "index": 3,
+          "operation": "rz",
+          "qubits": [
+            0
+          ],
+          "expected_signature": [
+            "rz",
+            [
+              2
+            ],
+            [
+              0.7853981633974483
+            ]
+          ],
+          "actual_signature": [
+            "rz",
+            [
+              0
+            ],
+            [
+              0.7853981633974483
+            ]
+          ],
+          "score": 0.25,
+          "reason": "Target qubits differ from expected circuit",
+          "evidence": [
+            "Step 3: expected rz(2,)(0.7853981633974483,) but observed rz(0,)(0.7853981633974483,)",
+            "Mismatch score = 0.25"
+          ]
+        },
+        {
+          "index": 4,
+          "operation": "cx",
+          "qubits": [
+            3,
+            2
+          ],
+          "expected_signature": [
+            "cx",
+            [
+              0,
+              3
+            ],
+            []
+          ],
+          "actual_signature": [
+            "cx",
+            [
+              3,
+              2
+            ],
+            []
+          ],
+          "score": 0.25,
+          "reason": "Target qubits differ from expected circuit",
+          "evidence": [
+            "Step 4: expected cx(0, 3)() but observed cx(3, 2)()",
+            "Mismatch score = 0.25"
+          ]
+        },
+        {
+          "index": 5,
+          "operation": "rz",
+          "qubits": [
+            2
+          ],
+          "expected_signature": [
+            "rz",
+            [
+              3
+            ],
+            [
+              -0.39269908169872414
+            ]
+          ],
+          "actual_signature": [
+            "rz",
+            [
+              2
+            ],
+            [
+              -0.39269908169872414
+            ]
+          ],
+          "score": 0.25,
+          "reason": "Target qubits differ from expected circuit",
+          "evidence": [
+            "Step 5: expected rz(3,)(-0.39269908169872414,) but observed rz(2,)(-0.39269908169872414,)",
+            "Mismatch score = 0.25"
+          ]
+        },
+        {
+          "index": 6,
+          "operation": "cx",
+          "qubits": [
+            3,
+            2
+          ],
+          "expected_signature": [
+            "cx",
+            [
+              0,
+              3
+            ],
+            []
+          ],
+          "actual_signature": [
+            "cx",
+            [
+              3,
+              2
+            ],
+            []
+          ],
+          "score": 0.25,
+          "reason": "Target qubits differ from expected circuit",
+          "evidence": [
+            "Step 6: expected cx(0, 3)() but observed cx(3, 2)()",
+            "Mismatch score = 0.25"
+          ]
+        },
+        {
+          "index": 7,
+          "operation": "rz",
+          "qubits": [
+            2
+          ],
+          "expected_signature": [
+            "rz",
+            [
+              3
+            ],
+            [
+              0.39269908169872414
+            ]
+          ],
+          "actual_signature": [
+            "rz",
+            [
+              2
+            ],
+            [
+              0.39269908169872414
+            ]
+          ],
+          "score": 0.25,
+          "reason": "Target qubits differ from expected circuit",
+          "evidence": [
+            "Step 7: expected rz(3,)(0.39269908169872414,) but observed rz(2,)(0.39269908169872414,)",
+            "Mismatch score = 0.25"
+          ]
+        }
+      ],
+      "localization_evidence": {
+        "status": "AVAILABLE",
+        "note": "The current localizer compares translated gate operations and preserves measured qubits plus expected and observed classical-bit destinations.",
+        "candidates": [
+          {
+            "index": 0,
+            "operation": "cx",
+            "qubits": [
+              3,
+              0
+            ],
+            "expected_signature": [
+              "cx",
+              [
+                0,
+                2
+              ],
+              []
+            ],
+            "actual_signature": [
+              "cx",
+              [
+                3,
+                0
+              ],
+              []
+            ],
+            "score": 0.25,
+            "reason": "Target qubits differ from expected circuit",
+            "evidence": [
+              "Step 0: expected cx(0, 2)() but observed cx(3, 0)()",
+              "Mismatch score = 0.25"
+            ]
+          },
+          {
+            "index": 1,
+            "operation": "rz",
+            "qubits": [
+              0
+            ],
+            "expected_signature": [
+              "rz",
+              [
+                2
+              ],
+              [
+                -0.7853981633974483
+              ]
+            ],
+            "actual_signature": [
+              "rz",
+              [
+                0
+              ],
+              [
+                -0.7853981633974483
+              ]
+            ],
+            "score": 0.25,
+            "reason": "Target qubits differ from expected circuit",
+            "evidence": [
+              "Step 1: expected rz(2,)(-0.7853981633974483,) but observed rz(0,)(-0.7853981633974483,)",
+              "Mismatch score = 0.25"
+            ]
+          },
+          {
+            "index": 2,
+            "operation": "cx",
+            "qubits": [
+              3,
+              0
+            ],
+            "expected_signature": [
+              "cx",
+              [
+                0,
+                2
+              ],
+              []
+            ],
+            "actual_signature": [
+              "cx",
+              [
+                3,
+                0
+              ],
+              []
+            ],
+            "score": 0.25,
+            "reason": "Target qubits differ from expected circuit",
+            "evidence": [
+              "Step 2: expected cx(0, 2)() but observed cx(3, 0)()",
+              "Mismatch score = 0.25"
+            ]
+          },
+          {
+            "index": 3,
+            "operation": "rz",
+            "qubits": [
+              0
+            ],
+            "expected_signature": [
+              "rz",
+              [
+                2
+              ],
+              [
+                0.7853981633974483
+              ]
+            ],
+            "actual_signature": [
+              "rz",
+              [
+                0
+              ],
+              [
+                0.7853981633974483
+              ]
+            ],
+            "score": 0.25,
+            "reason": "Target qubits differ from expected circuit",
+            "evidence": [
+              "Step 3: expected rz(2,)(0.7853981633974483,) but observed rz(0,)(0.7853981633974483,)",
+              "Mismatch score = 0.25"
+            ]
+          },
+          {
+            "index": 4,
+            "operation": "cx",
+            "qubits": [
+              3,
+              2
+            ],
+            "expected_signature": [
+              "cx",
+              [
+                0,
+                3
+              ],
+              []
+            ],
+            "actual_signature": [
+              "cx",
+              [
+                3,
+                2
+              ],
+              []
+            ],
+            "score": 0.25,
+            "reason": "Target qubits differ from expected circuit",
+            "evidence": [
+              "Step 4: expected cx(0, 3)() but observed cx(3, 2)()",
+              "Mismatch score = 0.25"
+            ]
+          },
+          {
+            "index": 5,
+            "operation": "rz",
+            "qubits": [
+              2
+            ],
+            "expected_signature": [
+              "rz",
+              [
+                3
+              ],
+              [
+                -0.39269908169872414
+              ]
+            ],
+            "actual_signature": [
+              "rz",
+              [
+                2
+              ],
+              [
+                -0.39269908169872414
+              ]
+            ],
+            "score": 0.25,
+            "reason": "Target qubits differ from expected circuit",
+            "evidence": [
+              "Step 5: expected rz(3,)(-0.39269908169872414,) but observed rz(2,)(-0.39269908169872414,)",
+              "Mismatch score = 0.25"
+            ]
+          },
+          {
+            "index": 6,
+            "operation": "cx",
+            "qubits": [
+              3,
+              2
+            ],
+            "expected_signature": [
+              "cx",
+              [
+                0,
+                3
+              ],
+              []
+            ],
+            "actual_signature": [
+              "cx",
+              [
+                3,
+                2
+              ],
+              []
+            ],
+            "score": 0.25,
+            "reason": "Target qubits differ from expected circuit",
+            "evidence": [
+              "Step 6: expected cx(0, 3)() but observed cx(3, 2)()",
+              "Mismatch score = 0.25"
+            ]
+          },
+          {
+            "index": 7,
+            "operation": "rz",
+            "qubits": [
+              2
+            ],
+            "expected_signature": [
+              "rz",
+              [
+                3
+              ],
+              [
+                0.39269908169872414
+              ]
+            ],
+            "actual_signature": [
+              "rz",
+              [
+                2
+              ],
+              [
+                0.39269908169872414
+              ]
+            ],
+            "score": 0.25,
+            "reason": "Target qubits differ from expected circuit",
+            "evidence": [
+              "Step 7: expected rz(3,)(0.39269908169872414,) but observed rz(2,)(0.39269908169872414,)",
+              "Mismatch score = 0.25"
+            ]
+          }
+        ],
+        "expected_measurements": [],
+        "observed_measurements": []
+      },
+      "ground_truth": {
+        "available": false,
+        "status": "MISSING",
+        "source": null,
+        "note": "Bugs4Q bug-type metadata is preserved separately and is not system-diagnosis ground truth."
+      },
+      "limitations": [
+        "Only source operations needed for the selected circuit behavior were extracted; Python/Qiskit wrapper behavior was not modeled.",
+        "No benchmark accuracy or diagnosis agreement metric is calculated.",
+        "Reported measurement strings use simulator qubit-index ordering; Qiskit classical count-string display ordering may differ.",
+        "The source-level CRZ mutation is represented through an internal supported expansion; any internal CX candidate is an implementation-level localization result and must not be described as the original source-level CRZ operation.",
+        "For this source input, the CRZ controls remain in |0>, so case 8's observed output distributions are equal even though the operation operands differ.",
+        "CRZ is retained in the report; execution uses QuantumSimulator.apply_gate matrix support because run_circuit does not dispatch CRZ reliably."
+      ]
+    },
+    {
+      "case_number": 12,
+      "case_id": "Bugs4Q-12",
+      "execution_status": "COMPLETED",
+      "bugs4q_metadata": {
+        "case_number": 12,
+        "bug_type": "Output Wrong",
+        "source_url": "https://github.com/Qiskit/qiskit-terra/issues/6571",
+        "buggy_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/12/buggy_12.py",
+        "fixed_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/12/fixed_12.py",
+        "modify_file": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/12/modify_12.txt",
+        "test_references": [
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/12/test_b12.py",
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/12/test_f12.py"
+        ],
+        "source_level_mutation": "6c6\n< qc.measure_all()\n---\n> qc.measure(qc.qubits, qc.clbits)\n"
+      },
+      "reference_fixed_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "measure",
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "buggy_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "measure",
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "expected_distribution": {
+        "00": 0.265625,
+        "01": 0.265625,
+        "10": 0.2255859375,
+        "11": 0.2431640625
+      },
+      "observed_distribution": {
+        "00": 0.25390625,
+        "01": 0.2666015625,
+        "10": 0.240234375,
+        "11": 0.2392578125
+      },
+      "behavioral_comparison": {
+        "expected_distribution": {
+          "00": 0.265625,
+          "01": 0.265625,
+          "10": 0.2255859375,
+          "11": 0.2431640625
+        },
+        "observed_distribution": {
+          "00": 0.25390625,
+          "01": 0.2666015625,
+          "10": 0.240234375,
+          "11": 0.2392578125
+        },
+        "total_variation_distance": 0.015625,
+        "hellinger_distance": 0.013770846886891092,
+        "js_divergence": 0.00018962388114858615,
+        "threshold": 0.05,
+        "finite_shot_guard": 0.05,
+        "shots": 1024,
+        "anomaly_detected": false,
+        "reason": "No statistically meaningful anomaly detected",
+        "message": "Observed distribution differs by TVD=0.015625, which is within the configured threshold=0.050000."
+      },
+      "system_diagnosis": {
+        "category": "NO_ANOMALY",
+        "summary": "No statistically meaningful execution anomaly was detected.",
+        "anomaly_detected": false,
+        "evidence": [
+          "Observed distribution differs by TVD=0.015625, which is within the configured threshold=0.050000.",
+          "Final distribution difference TVD=0.000000 is within threshold=0.050000.",
+          "Hardware calibration information was not provided."
+        ]
+      },
+      "program_localization_candidates": [],
+      "localization_evidence": {
+        "status": "AVAILABLE",
+        "note": "The current localizer compares translated gate operations and preserves measured qubits plus expected and observed classical-bit destinations.",
+        "candidates": [],
+        "expected_measurements": [
+          {
+            "measured_qubits": [
+              0,
+              1
+            ],
+            "classical_destinations": [
+              0,
+              1
+            ]
+          }
+        ],
+        "observed_measurements": [
+          {
+            "measured_qubits": [
+              0,
+              1
+            ],
+            "classical_destinations": [
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "ground_truth": {
+        "available": false,
+        "status": "MISSING",
+        "source": null,
+        "note": "Bugs4Q bug-type metadata is preserved separately and is not system-diagnosis ground truth."
+      },
+      "limitations": [
+        "Only source operations needed for the selected circuit behavior were extracted; Python/Qiskit wrapper behavior was not modeled.",
+        "No benchmark accuracy or diagnosis agreement metric is calculated.",
+        "Reported measurement strings use simulator qubit-index ordering; Qiskit classical count-string display ordering may differ."
+      ]
+    },
+    {
+      "case_number": 17,
+      "case_id": "Bugs4Q-17",
+      "execution_status": "COMPLETED",
+      "bugs4q_metadata": {
+        "case_number": 17,
+        "bug_type": "output Wtong",
+        "source_url": "https://github.com/Qiskit/qiskit-aer/issues/664",
+        "buggy_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/17/buggy_17.py",
+        "fixed_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/17/fixed_17.py",
+        "modify_file": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/17/modify_17.txt",
+        "test_references": [
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/17/test_b17.py",
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/17/test_f17.py"
+        ],
+        "source_level_mutation": "8c9\n< qc.measure([1, 0, 2], [1, 0, 2])\n---\n> qc.measure([1, 0, 2], [0, 1, 2])\n"
+      },
+      "reference_fixed_circuit": [
+        [
+          "x",
+          0
+        ],
+        [
+          "measure",
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      ],
+      "buggy_circuit": [
+        [
+          "x",
+          0
+        ],
+        [
+          "measure",
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            2
+          ]
+        ]
+      ],
+      "expected_distribution": {
+        "001": 0.0,
+        "010": 1.0
+      },
+      "observed_distribution": {
+        "001": 1.0,
+        "010": 0.0
+      },
+      "behavioral_comparison": {
+        "expected_distribution": {
+          "001": 0.0,
+          "010": 1.0
+        },
+        "observed_distribution": {
+          "001": 1.0,
+          "010": 0.0
+        },
+        "total_variation_distance": 1.0,
+        "hellinger_distance": 1.0,
+        "js_divergence": 0.6931471805599453,
+        "threshold": 0.05,
+        "finite_shot_guard": 0.05,
+        "shots": 1024,
+        "anomaly_detected": true,
+        "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+        "message": "Observed distribution differs from expected distribution by TVD=1.000000, which exceeds threshold=0.050000."
+      },
+      "system_diagnosis": {
+        "category": "PROGRAM_FAULT",
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence.",
+        "anomaly_detected": true,
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=1.000000, which exceeds threshold=0.050000.",
+          "Step 1: expected measure(1, 0, 2)(0, 1, 2) but observed measure(1, 0, 2)(1, 0, 2)",
+          "Mismatch score = 0.25",
+          "Hardware calibration information was not provided."
+        ]
+      },
+      "program_localization_candidates": [
+        {
+          "index": 1,
+          "operation": "measure",
+          "qubits": [
+            1,
+            0,
+            2
+          ],
+          "expected_signature": [
+            "measure",
+            [
+              1,
+              0,
+              2
+            ],
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "actual_signature": [
+            "measure",
+            [
+              1,
+              0,
+              2
+            ],
+            [
+              1,
+              0,
+              2
+            ]
+          ],
+          "score": 0.25,
+          "reason": "Parameter values differ from expected circuit",
+          "evidence": [
+            "Step 1: expected measure(1, 0, 2)(0, 1, 2) but observed measure(1, 0, 2)(1, 0, 2)",
+            "Mismatch score = 0.25"
+          ]
+        }
+      ],
+      "localization_evidence": {
+        "status": "AVAILABLE",
+        "note": "The current localizer compares translated gate operations and preserves measured qubits plus expected and observed classical-bit destinations.",
+        "candidates": [
+          {
+            "index": 1,
+            "operation": "measure",
+            "qubits": [
+              1,
+              0,
+              2
+            ],
+            "expected_signature": [
+              "measure",
+              [
+                1,
+                0,
+                2
+              ],
+              [
+                0,
+                1,
+                2
+              ]
+            ],
+            "actual_signature": [
+              "measure",
+              [
+                1,
+                0,
+                2
+              ],
+              [
+                1,
+                0,
+                2
+              ]
+            ],
+            "score": 0.25,
+            "reason": "Parameter values differ from expected circuit",
+            "evidence": [
+              "Step 1: expected measure(1, 0, 2)(0, 1, 2) but observed measure(1, 0, 2)(1, 0, 2)",
+              "Mismatch score = 0.25"
+            ]
+          }
+        ],
+        "expected_measurements": [
+          {
+            "measured_qubits": [
+              1,
+              0,
+              2
+            ],
+            "classical_destinations": [
+              0,
+              1,
+              2
+            ]
+          }
+        ],
+        "observed_measurements": [
+          {
+            "measured_qubits": [
+              1,
+              0,
+              2
+            ],
+            "classical_destinations": [
+              1,
+              0,
+              2
+            ]
+          }
+        ]
+      },
+      "ground_truth": {
+        "available": false,
+        "status": "MISSING",
+        "source": null,
+        "note": "Bugs4Q bug-type metadata is preserved separately and is not system-diagnosis ground truth."
+      },
+      "limitations": [
+        "Only source operations needed for the selected circuit behavior were extracted; Python/Qiskit wrapper behavior was not modeled.",
+        "No benchmark accuracy or diagnosis agreement metric is calculated.",
+        "Reported measurement strings use simulator qubit-index ordering; Qiskit classical count-string display ordering may differ."
+      ]
+    },
+    {
+      "case_number": 25,
+      "case_id": "Bugs4Q-25",
+      "execution_status": "COMPLETED",
+      "bugs4q_metadata": {
+        "case_number": 25,
+        "bug_type": "Label convention is reversed(|011>&|110>)",
+        "source_url": "https://stackoverflow.com/questions/63283443/my-qiskit-codes-output-differ-from-the-lecturer-ryan-o-donnell",
+        "buggy_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/25/buggy_25.py",
+        "fixed_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/25/fixed_25.py",
+        "modify_file": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/25/modify_25.txt",
+        "test_references": [
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/25/test_b25.py",
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/25/test_f25.py"
+        ],
+        "source_level_mutation": "1,28c1,27\n< \n< from qiskit import QuantumCircuit, assemble\n< from qiskit import Aer, execute\n< from qiskit.tools.visualization import plot_histogram\n< bit = 3\n< bit_lst = list(range(bit))\n< circuit = QuantumCircuit(bit, bit)\n< circuit.reset(0)\n< circuit.reset(1)\n< circuit.reset(2)\n< circuit.x(0)\n< circuit.x(1)    \n< circuit.ccx(0,1,2)\n< circuit.barrier()\n< circuit.measure(bit_lst,bit_lst)\n< circuit.draw(output='mpl')\n< backend = Aer.get_backend('statevector_simulator')\n< statevector=backend.run(assemble(circuit)).result().get_statevector()\n< print(statevector)\n< backend = Aer.get_backend('qasm_simulator')\n< counts1=backend.run(assemble(circuit)).result().get_counts()\n< print(counts1)\n< \n< \n< with open('result.txt', 'a') as f:\n<     print(f'011 - {statevector} - {counts1}', file=f)\n< \n< plot_histogram([counts1], legend=['Simulator'])\n---\n> \n> from qiskit import QuantumCircuit, assemble\n> from qiskit import Aer, execute\n> from qiskit.tools.visualization import plot_histogram\n> bit = 3\n> bit_lst = list(range(bit))\n> circuit = QuantumCircuit(bit, bit)\n> circuit.reset(0)\n> circuit.reset(1)\n> circuit.reset(2)\n> circuit.x(0)\n> circuit.x(1)    \n> circuit.ccx(2,1,0)\n> circuit.barrier()\n> circuit.measure(bit_lst,bit_lst)\n> circuit.draw(output='mpl')\n> backend = Aer.get_backend('statevector_simulator')\n> statevector=backend.run(assemble(circuit)).result().get_statevector()\n> print(statevector)\n> backend = Aer.get_backend('qasm_simulator')\n> counts1=backend.run(assemble(circuit)).result().get_counts()\n> print(counts1)\n> \n> with open('result.txt', 'a') as f:\n>     print(f'011 - {statevector} - {counts1}', file=f)\n> \n> plot_histogram([counts1], legend=['Simulator'])\n"
+      },
+      "reference_fixed_circuit": [
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "ccx",
+          2,
+          1,
+          0
+        ],
+        [
+          "barrier"
+        ],
+        [
+          "measure",
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      ],
+      "buggy_circuit": [
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          2
+        ],
+        [
+          "barrier"
+        ],
+        [
+          "measure",
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      ],
+      "expected_distribution": {
+        "011": 1.0,
+        "111": 0.0
+      },
+      "observed_distribution": {
+        "011": 0.0,
+        "111": 1.0
+      },
+      "behavioral_comparison": {
+        "expected_distribution": {
+          "011": 1.0,
+          "111": 0.0
+        },
+        "observed_distribution": {
+          "011": 0.0,
+          "111": 1.0
+        },
+        "total_variation_distance": 1.0,
+        "hellinger_distance": 1.0,
+        "js_divergence": 0.6931471805599453,
+        "threshold": 0.05,
+        "finite_shot_guard": 0.05,
+        "shots": 1024,
+        "anomaly_detected": true,
+        "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+        "message": "Observed distribution differs from expected distribution by TVD=1.000000, which exceeds threshold=0.050000."
+      },
+      "system_diagnosis": {
+        "category": "PROGRAM_FAULT",
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence.",
+        "anomaly_detected": true,
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=1.000000, which exceeds threshold=0.050000.",
+          "Step 5: expected ccx(2, 1, 0)() but observed ccx(0, 1, 2)()",
+          "Mismatch score = 0.25",
+          "Hardware calibration information was not provided."
+        ]
+      },
+      "program_localization_candidates": [
+        {
+          "index": 5,
+          "operation": "ccx",
+          "qubits": [
+            0,
+            1,
+            2
+          ],
+          "expected_signature": [
+            "ccx",
+            [
+              2,
+              1,
+              0
+            ],
+            []
+          ],
+          "actual_signature": [
+            "ccx",
+            [
+              0,
+              1,
+              2
+            ],
+            []
+          ],
+          "score": 0.25,
+          "reason": "Target qubits differ from expected circuit",
+          "evidence": [
+            "Step 5: expected ccx(2, 1, 0)() but observed ccx(0, 1, 2)()",
+            "Mismatch score = 0.25"
+          ]
+        }
+      ],
+      "localization_evidence": {
+        "status": "AVAILABLE",
+        "note": "The current localizer compares translated gate operations and preserves measured qubits plus expected and observed classical-bit destinations.",
+        "candidates": [
+          {
+            "index": 5,
+            "operation": "ccx",
+            "qubits": [
+              0,
+              1,
+              2
+            ],
+            "expected_signature": [
+              "ccx",
+              [
+                2,
+                1,
+                0
+              ],
+              []
+            ],
+            "actual_signature": [
+              "ccx",
+              [
+                0,
+                1,
+                2
+              ],
+              []
+            ],
+            "score": 0.25,
+            "reason": "Target qubits differ from expected circuit",
+            "evidence": [
+              "Step 5: expected ccx(2, 1, 0)() but observed ccx(0, 1, 2)()",
+              "Mismatch score = 0.25"
+            ]
+          }
+        ],
+        "expected_measurements": [
+          {
+            "measured_qubits": [
+              0,
+              1,
+              2
+            ],
+            "classical_destinations": [
+              0,
+              1,
+              2
+            ]
+          }
+        ],
+        "observed_measurements": [
+          {
+            "measured_qubits": [
+              0,
+              1,
+              2
+            ],
+            "classical_destinations": [
+              0,
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "ground_truth": {
+        "available": false,
+        "status": "MISSING",
+        "source": null,
+        "note": "Bugs4Q bug-type metadata is preserved separately and is not system-diagnosis ground truth."
+      },
+      "limitations": [
+        "Only source operations needed for the selected circuit behavior were extracted; Python/Qiskit wrapper behavior was not modeled.",
+        "No benchmark accuracy or diagnosis agreement metric is calculated.",
+        "Reported measurement strings use simulator qubit-index ordering; Qiskit classical count-string display ordering may differ."
+      ]
+    },
+    {
+      "case_number": 26,
+      "case_id": "Bugs4Q-26",
+      "execution_status": "COMPLETED",
+      "bugs4q_metadata": {
+        "case_number": 26,
+        "bug_type": "Wrong operation with GATE",
+        "source_url": "https://stackoverflow.com/questions/62661255/2-entangle-qubit-gives-all-states-with-25",
+        "buggy_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/26/buggy_26.py",
+        "fixed_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/26/fixed_26.py",
+        "modify_file": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/26/modify_26.txt",
+        "test_references": [
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/26/test_b26.py",
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/26/test_f26.py"
+        ],
+        "source_level_mutation": "6c6\n< circuit.h(1)\n---\n> circuit.x(1)\n"
+      },
+      "reference_fixed_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "measure",
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "buggy_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "measure",
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "expected_distribution": {
+        "00": 0.0,
+        "01": 0.53125,
+        "10": 0.46875,
+        "11": 0.0
+      },
+      "observed_distribution": {
+        "00": 0.25390625,
+        "01": 0.2666015625,
+        "10": 0.240234375,
+        "11": 0.2392578125
+      },
+      "behavioral_comparison": {
+        "expected_distribution": {
+          "00": 0.0,
+          "01": 0.53125,
+          "10": 0.46875,
+          "11": 0.0
+        },
+        "observed_distribution": {
+          "00": 0.25390625,
+          "01": 0.2666015625,
+          "10": 0.240234375,
+          "11": 0.2392578125
+        },
+        "total_variation_distance": 0.4931640625,
+        "hellinger_distance": 0.5367361464220924,
+        "js_divergence": 0.2120312756888483,
+        "threshold": 0.05,
+        "finite_shot_guard": 0.05,
+        "shots": 1024,
+        "anomaly_detected": true,
+        "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+        "message": "Observed distribution differs from expected distribution by TVD=0.493164, which exceeds threshold=0.050000."
+      },
+      "system_diagnosis": {
+        "category": "PROGRAM_FAULT",
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence.",
+        "anomaly_detected": true,
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.493164, which exceeds threshold=0.050000.",
+          "Step 1: expected x(1,)() but observed h(1,)()",
+          "Mismatch score = 0.50",
+          "Hardware calibration information was not provided."
+        ]
+      },
+      "program_localization_candidates": [
+        {
+          "index": 1,
+          "operation": "h",
+          "qubits": [
+            1
+          ],
+          "expected_signature": [
+            "x",
+            [
+              1
+            ],
+            []
+          ],
+          "actual_signature": [
+            "h",
+            [
+              1
+            ],
+            []
+          ],
+          "score": 0.5,
+          "reason": "Gate operation differs from expected circuit",
+          "evidence": [
+            "Step 1: expected x(1,)() but observed h(1,)()",
+            "Mismatch score = 0.50"
+          ]
+        }
+      ],
+      "localization_evidence": {
+        "status": "AVAILABLE",
+        "note": "The current localizer compares translated gate operations and preserves measured qubits plus expected and observed classical-bit destinations.",
+        "candidates": [
+          {
+            "index": 1,
+            "operation": "h",
+            "qubits": [
+              1
+            ],
+            "expected_signature": [
+              "x",
+              [
+                1
+              ],
+              []
+            ],
+            "actual_signature": [
+              "h",
+              [
+                1
+              ],
+              []
+            ],
+            "score": 0.5,
+            "reason": "Gate operation differs from expected circuit",
+            "evidence": [
+              "Step 1: expected x(1,)() but observed h(1,)()",
+              "Mismatch score = 0.50"
+            ]
+          }
+        ],
+        "expected_measurements": [
+          {
+            "measured_qubits": [
+              0,
+              1
+            ],
+            "classical_destinations": [
+              0,
+              1
+            ]
+          }
+        ],
+        "observed_measurements": [
+          {
+            "measured_qubits": [
+              0,
+              1
+            ],
+            "classical_destinations": [
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "ground_truth": {
+        "available": false,
+        "status": "MISSING",
+        "source": null,
+        "note": "Bugs4Q bug-type metadata is preserved separately and is not system-diagnosis ground truth."
+      },
+      "limitations": [
+        "Only source operations needed for the selected circuit behavior were extracted; Python/Qiskit wrapper behavior was not modeled.",
+        "No benchmark accuracy or diagnosis agreement metric is calculated.",
+        "Reported measurement strings use simulator qubit-index ordering; Qiskit classical count-string display ordering may differ."
+      ]
+    },
+    {
+      "case_number": 30,
+      "case_id": "Bugs4Q-30",
+      "execution_status": "COMPLETED",
+      "bugs4q_metadata": {
+        "case_number": 30,
+        "bug_type": "Output Wrong",
+        "source_url": "https://quantumcomputing.stackexchange.com/questions/5959/grovers-algorithm-returns-skewed-probability-distribution",
+        "buggy_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/30/buggy_30.py",
+        "fixed_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/30/fixed_30.py",
+        "modify_file": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/30/modify_30.txt",
+        "test_references": [
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/30/test_b30.py",
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/30/test_f30.py"
+        ],
+        "source_level_mutation": "23d22\n<     circuit.x( search_register[2] )\n25c24\n<     # Encode S0 * S1\n---\n> # Encode S0 * S1\n28c27\n<     # Encode oracle ((S0 * S1) + (S1 * !S2 * S3))\n---\n> # Encode oracle ((S0 * S1) + (S1 * !S2 * S3))\n31d29\n<     circuit.x(ancillaries)\n34,35c32,37\n<     # Reset ancillaries to be used later\n<     circuit.reset(ancillaries)\n---\n> # Return ancillaries to 0s so they can be used later\n>     circuit.x(ancillaries)\n>     circuit.ccx( search_register[0], search_register[1], ancillaries[2] )\n>     circuit.ccx( search_register[3], ancillaries[0], ancillaries[1] )\n>     circuit.ccx( search_register[1], search_register[2], ancillaries[0] )\n>     circuit.x( search_register[2] )\n37c39\n<     # Do rotation about the average\n---\n> # Do rotation about the average\n44a47,50\n> \n> # Return ancillaries to 0s for use later\n>     circuit.ccx( search_register[2], ancillaries[0], ancillaries[1] )\n>     circuit.ccx( search_register[0], search_register[1], ancillaries[0] )\n47c53\n<     # Reset ancillaries for use later\n---\n> # Reset ancillaries for use later\n"
+      },
+      "reference_fixed_circuit": [
+        [
+          "x",
+          4
+        ],
+        [
+          "h",
+          4
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "ccx",
+          1,
+          2,
+          5
+        ],
+        [
+          "ccx",
+          3,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          7
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "ccx",
+          6,
+          7,
+          4
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          7
+        ],
+        [
+          "ccx",
+          3,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          1,
+          2,
+          5
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          5
+        ],
+        [
+          "ccx",
+          2,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          3,
+          6,
+          4
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "ccx",
+          2,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          5
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "reset",
+          5
+        ],
+        [
+          "reset",
+          6
+        ],
+        [
+          "reset",
+          7
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "ccx",
+          1,
+          2,
+          5
+        ],
+        [
+          "ccx",
+          3,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          7
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "ccx",
+          6,
+          7,
+          4
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          7
+        ],
+        [
+          "ccx",
+          3,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          1,
+          2,
+          5
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          5
+        ],
+        [
+          "ccx",
+          2,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          3,
+          6,
+          4
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "ccx",
+          2,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          5
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "reset",
+          5
+        ],
+        [
+          "reset",
+          6
+        ],
+        [
+          "reset",
+          7
+        ],
+        [
+          "measure",
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ]
+      ],
+      "buggy_circuit": [
+        [
+          "x",
+          4
+        ],
+        [
+          "h",
+          4
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "ccx",
+          1,
+          2,
+          5
+        ],
+        [
+          "ccx",
+          3,
+          5,
+          6
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          7
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "ccx",
+          6,
+          7,
+          4
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "reset",
+          5
+        ],
+        [
+          "reset",
+          6
+        ],
+        [
+          "reset",
+          7
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          5
+        ],
+        [
+          "ccx",
+          2,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          3,
+          6,
+          4
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "reset",
+          5
+        ],
+        [
+          "reset",
+          6
+        ],
+        [
+          "reset",
+          7
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "ccx",
+          1,
+          2,
+          5
+        ],
+        [
+          "ccx",
+          3,
+          5,
+          6
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          7
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "ccx",
+          6,
+          7,
+          4
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "reset",
+          5
+        ],
+        [
+          "reset",
+          6
+        ],
+        [
+          "reset",
+          7
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          5
+        ],
+        [
+          "ccx",
+          2,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          3,
+          6,
+          4
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "reset",
+          5
+        ],
+        [
+          "reset",
+          6
+        ],
+        [
+          "reset",
+          7
+        ],
+        [
+          "measure",
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ]
+      ],
+      "expected_distribution": {
+        "0000": 1.0,
+        "0001": 0.0,
+        "0010": 0.0,
+        "0011": 0.0,
+        "0100": 0.0,
+        "0101": 0.0,
+        "0110": 0.0,
+        "0111": 0.0,
+        "1000": 0.0,
+        "1001": 0.0,
+        "1010": 0.0,
+        "1011": 0.0,
+        "1100": 0.0,
+        "1101": 0.0,
+        "1110": 0.0,
+        "1111": 0.0
+      },
+      "observed_distribution": {
+        "0000": 0.1181640625,
+        "0001": 0.099609375,
+        "0010": 0.1142578125,
+        "0011": 0.0908203125,
+        "0100": 0.0078125,
+        "0101": 0.0078125,
+        "0110": 0.005859375,
+        "0111": 0.076171875,
+        "1000": 0.0966796875,
+        "1001": 0.1083984375,
+        "1010": 0.0859375,
+        "1011": 0.10546875,
+        "1100": 0.0078125,
+        "1101": 0.0087890625,
+        "1110": 0.0048828125,
+        "1111": 0.0615234375
+      },
+      "behavioral_comparison": {
+        "expected_distribution": {
+          "0000": 1.0,
+          "0001": 0.0,
+          "0010": 0.0,
+          "0011": 0.0,
+          "0100": 0.0,
+          "0101": 0.0,
+          "0110": 0.0,
+          "0111": 0.0,
+          "1000": 0.0,
+          "1001": 0.0,
+          "1010": 0.0,
+          "1011": 0.0,
+          "1100": 0.0,
+          "1101": 0.0,
+          "1110": 0.0,
+          "1111": 0.0
+        },
+        "observed_distribution": {
+          "0000": 0.1181640625,
+          "0001": 0.099609375,
+          "0010": 0.1142578125,
+          "0011": 0.0908203125,
+          "0100": 0.0078125,
+          "0101": 0.0078125,
+          "0110": 0.005859375,
+          "0111": 0.076171875,
+          "1000": 0.0966796875,
+          "1001": 0.1083984375,
+          "1010": 0.0859375,
+          "1011": 0.10546875,
+          "1100": 0.0078125,
+          "1101": 0.0087890625,
+          "1110": 0.0048828125,
+          "1111": 0.0615234375
+        },
+        "total_variation_distance": 0.8818359375,
+        "hellinger_distance": 0.8100925873009825,
+        "js_divergence": 0.5045239779937325,
+        "threshold": 0.05,
+        "finite_shot_guard": 0.05,
+        "shots": 1024,
+        "anomaly_detected": true,
+        "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+        "message": "Observed distribution differs from expected distribution by TVD=0.881836, which exceeds threshold=0.050000."
+      },
+      "system_diagnosis": {
+        "category": "PROGRAM_FAULT",
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence.",
+        "anomaly_detected": true,
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.881836, which exceeds threshold=0.050000.",
+          "Step 9: inserted x on qubits (2,) without corresponding expected operation.",
+          "Step 14: expected x on qubits (4,) but it was not executed.",
+          "Step 38: expected ccx on qubits (2, 5, 6) but it was not executed.",
+          "Step 39: expected ccx on qubits (0, 1, 5) but it was not executed.",
+          "Step 48: inserted x on qubits (2,) without corresponding expected operation.",
+          "Step 55: expected x on qubits (4,) but it was not executed.",
+          "Step 79: expected ccx on qubits (2, 5, 6) but it was not executed.",
+          "Step 80: expected ccx on qubits (0, 1, 5) but it was not executed.",
+          "Step 18: expected ccx(0, 1, 7)() but observed x(4,)()",
+          "Mismatch score = 0.75",
+          "Step 19: expected ccx(3, 5, 6)() but observed reset(5,)()",
+          "Mismatch score = 0.75",
+          "Step 20: expected ccx(1, 2, 5)() but observed reset(6,)()",
+          "Mismatch score = 0.75",
+          "Step 21: expected x(2,)() but observed reset(7,)()",
+          "Mismatch score = 0.75",
+          "Step 57: expected ccx(0, 1, 7)() but observed x(4,)()",
+          "Mismatch score = 0.75",
+          "Step 58: expected ccx(3, 5, 6)() but observed reset(5,)()",
+          "Mismatch score = 0.75",
+          "Step 59: expected ccx(1, 2, 5)() but observed reset(6,)()",
+          "Mismatch score = 0.75",
+          "Step 60: expected x(2,)() but observed reset(7,)()",
+          "Mismatch score = 0.75",
+          "Hardware calibration information was not provided."
+        ]
+      },
+      "program_localization_candidates": [
+        {
+          "index": 9,
+          "operation": "x",
+          "qubits": [
+            2
+          ],
+          "expected_signature": null,
+          "actual_signature": [
+            "x",
+            [
+              2
+            ],
+            []
+          ],
+          "score": 1.0,
+          "reason": "Inserted operation relative to expected circuit",
+          "evidence": [
+            "Step 9: inserted x on qubits (2,) without corresponding expected operation."
+          ]
+        },
+        {
+          "index": 14,
+          "operation": "x",
+          "qubits": [
+            4
+          ],
+          "expected_signature": [
+            "x",
+            [
+              4
+            ],
+            []
+          ],
+          "actual_signature": null,
+          "score": 1.0,
+          "reason": "Expected operation missing in observed circuit",
+          "evidence": [
+            "Step 14: expected x on qubits (4,) but it was not executed."
+          ]
+        },
+        {
+          "index": 38,
+          "operation": "ccx",
+          "qubits": [
+            2,
+            5,
+            6
+          ],
+          "expected_signature": [
+            "ccx",
+            [
+              2,
+              5,
+              6
+            ],
+            []
+          ],
+          "actual_signature": null,
+          "score": 1.0,
+          "reason": "Expected operation missing in observed circuit",
+          "evidence": [
+            "Step 38: expected ccx on qubits (2, 5, 6) but it was not executed."
+          ]
+        },
+        {
+          "index": 39,
+          "operation": "ccx",
+          "qubits": [
+            0,
+            1,
+            5
+          ],
+          "expected_signature": [
+            "ccx",
+            [
+              0,
+              1,
+              5
+            ],
+            []
+          ],
+          "actual_signature": null,
+          "score": 1.0,
+          "reason": "Expected operation missing in observed circuit",
+          "evidence": [
+            "Step 39: expected ccx on qubits (0, 1, 5) but it was not executed."
+          ]
+        },
+        {
+          "index": 48,
+          "operation": "x",
+          "qubits": [
+            2
+          ],
+          "expected_signature": null,
+          "actual_signature": [
+            "x",
+            [
+              2
+            ],
+            []
+          ],
+          "score": 1.0,
+          "reason": "Inserted operation relative to expected circuit",
+          "evidence": [
+            "Step 48: inserted x on qubits (2,) without corresponding expected operation."
+          ]
+        },
+        {
+          "index": 55,
+          "operation": "x",
+          "qubits": [
+            4
+          ],
+          "expected_signature": [
+            "x",
+            [
+              4
+            ],
+            []
+          ],
+          "actual_signature": null,
+          "score": 1.0,
+          "reason": "Expected operation missing in observed circuit",
+          "evidence": [
+            "Step 55: expected x on qubits (4,) but it was not executed."
+          ]
+        },
+        {
+          "index": 79,
+          "operation": "ccx",
+          "qubits": [
+            2,
+            5,
+            6
+          ],
+          "expected_signature": [
+            "ccx",
+            [
+              2,
+              5,
+              6
+            ],
+            []
+          ],
+          "actual_signature": null,
+          "score": 1.0,
+          "reason": "Expected operation missing in observed circuit",
+          "evidence": [
+            "Step 79: expected ccx on qubits (2, 5, 6) but it was not executed."
+          ]
+        },
+        {
+          "index": 80,
+          "operation": "ccx",
+          "qubits": [
+            0,
+            1,
+            5
+          ],
+          "expected_signature": [
+            "ccx",
+            [
+              0,
+              1,
+              5
+            ],
+            []
+          ],
+          "actual_signature": null,
+          "score": 1.0,
+          "reason": "Expected operation missing in observed circuit",
+          "evidence": [
+            "Step 80: expected ccx on qubits (0, 1, 5) but it was not executed."
+          ]
+        },
+        {
+          "index": 18,
+          "operation": "x",
+          "qubits": [
+            4
+          ],
+          "expected_signature": [
+            "ccx",
+            [
+              0,
+              1,
+              7
+            ],
+            []
+          ],
+          "actual_signature": [
+            "x",
+            [
+              4
+            ],
+            []
+          ],
+          "score": 0.75,
+          "reason": "Gate operation differs from expected circuit",
+          "evidence": [
+            "Step 18: expected ccx(0, 1, 7)() but observed x(4,)()",
+            "Mismatch score = 0.75"
+          ]
+        },
+        {
+          "index": 19,
+          "operation": "reset",
+          "qubits": [
+            5
+          ],
+          "expected_signature": [
+            "ccx",
+            [
+              3,
+              5,
+              6
+            ],
+            []
+          ],
+          "actual_signature": [
+            "reset",
+            [
+              5
+            ],
+            []
+          ],
+          "score": 0.75,
+          "reason": "Gate operation differs from expected circuit",
+          "evidence": [
+            "Step 19: expected ccx(3, 5, 6)() but observed reset(5,)()",
+            "Mismatch score = 0.75"
+          ]
+        },
+        {
+          "index": 20,
+          "operation": "reset",
+          "qubits": [
+            6
+          ],
+          "expected_signature": [
+            "ccx",
+            [
+              1,
+              2,
+              5
+            ],
+            []
+          ],
+          "actual_signature": [
+            "reset",
+            [
+              6
+            ],
+            []
+          ],
+          "score": 0.75,
+          "reason": "Gate operation differs from expected circuit",
+          "evidence": [
+            "Step 20: expected ccx(1, 2, 5)() but observed reset(6,)()",
+            "Mismatch score = 0.75"
+          ]
+        },
+        {
+          "index": 21,
+          "operation": "reset",
+          "qubits": [
+            7
+          ],
+          "expected_signature": [
+            "x",
+            [
+              2
+            ],
+            []
+          ],
+          "actual_signature": [
+            "reset",
+            [
+              7
+            ],
+            []
+          ],
+          "score": 0.75,
+          "reason": "Gate operation differs from expected circuit",
+          "evidence": [
+            "Step 21: expected x(2,)() but observed reset(7,)()",
+            "Mismatch score = 0.75"
+          ]
+        },
+        {
+          "index": 57,
+          "operation": "x",
+          "qubits": [
+            4
+          ],
+          "expected_signature": [
+            "ccx",
+            [
+              0,
+              1,
+              7
+            ],
+            []
+          ],
+          "actual_signature": [
+            "x",
+            [
+              4
+            ],
+            []
+          ],
+          "score": 0.75,
+          "reason": "Gate operation differs from expected circuit",
+          "evidence": [
+            "Step 57: expected ccx(0, 1, 7)() but observed x(4,)()",
+            "Mismatch score = 0.75"
+          ]
+        },
+        {
+          "index": 58,
+          "operation": "reset",
+          "qubits": [
+            5
+          ],
+          "expected_signature": [
+            "ccx",
+            [
+              3,
+              5,
+              6
+            ],
+            []
+          ],
+          "actual_signature": [
+            "reset",
+            [
+              5
+            ],
+            []
+          ],
+          "score": 0.75,
+          "reason": "Gate operation differs from expected circuit",
+          "evidence": [
+            "Step 58: expected ccx(3, 5, 6)() but observed reset(5,)()",
+            "Mismatch score = 0.75"
+          ]
+        },
+        {
+          "index": 59,
+          "operation": "reset",
+          "qubits": [
+            6
+          ],
+          "expected_signature": [
+            "ccx",
+            [
+              1,
+              2,
+              5
+            ],
+            []
+          ],
+          "actual_signature": [
+            "reset",
+            [
+              6
+            ],
+            []
+          ],
+          "score": 0.75,
+          "reason": "Gate operation differs from expected circuit",
+          "evidence": [
+            "Step 59: expected ccx(1, 2, 5)() but observed reset(6,)()",
+            "Mismatch score = 0.75"
+          ]
+        },
+        {
+          "index": 60,
+          "operation": "reset",
+          "qubits": [
+            7
+          ],
+          "expected_signature": [
+            "x",
+            [
+              2
+            ],
+            []
+          ],
+          "actual_signature": [
+            "reset",
+            [
+              7
+            ],
+            []
+          ],
+          "score": 0.75,
+          "reason": "Gate operation differs from expected circuit",
+          "evidence": [
+            "Step 60: expected x(2,)() but observed reset(7,)()",
+            "Mismatch score = 0.75"
+          ]
+        }
+      ],
+      "localization_evidence": {
+        "status": "AVAILABLE",
+        "note": "The current localizer compares translated gate operations and preserves measured qubits plus expected and observed classical-bit destinations.",
+        "candidates": [
+          {
+            "index": 9,
+            "operation": "x",
+            "qubits": [
+              2
+            ],
+            "expected_signature": null,
+            "actual_signature": [
+              "x",
+              [
+                2
+              ],
+              []
+            ],
+            "score": 1.0,
+            "reason": "Inserted operation relative to expected circuit",
+            "evidence": [
+              "Step 9: inserted x on qubits (2,) without corresponding expected operation."
+            ]
+          },
+          {
+            "index": 14,
+            "operation": "x",
+            "qubits": [
+              4
+            ],
+            "expected_signature": [
+              "x",
+              [
+                4
+              ],
+              []
+            ],
+            "actual_signature": null,
+            "score": 1.0,
+            "reason": "Expected operation missing in observed circuit",
+            "evidence": [
+              "Step 14: expected x on qubits (4,) but it was not executed."
+            ]
+          },
+          {
+            "index": 38,
+            "operation": "ccx",
+            "qubits": [
+              2,
+              5,
+              6
+            ],
+            "expected_signature": [
+              "ccx",
+              [
+                2,
+                5,
+                6
+              ],
+              []
+            ],
+            "actual_signature": null,
+            "score": 1.0,
+            "reason": "Expected operation missing in observed circuit",
+            "evidence": [
+              "Step 38: expected ccx on qubits (2, 5, 6) but it was not executed."
+            ]
+          },
+          {
+            "index": 39,
+            "operation": "ccx",
+            "qubits": [
+              0,
+              1,
+              5
+            ],
+            "expected_signature": [
+              "ccx",
+              [
+                0,
+                1,
+                5
+              ],
+              []
+            ],
+            "actual_signature": null,
+            "score": 1.0,
+            "reason": "Expected operation missing in observed circuit",
+            "evidence": [
+              "Step 39: expected ccx on qubits (0, 1, 5) but it was not executed."
+            ]
+          },
+          {
+            "index": 48,
+            "operation": "x",
+            "qubits": [
+              2
+            ],
+            "expected_signature": null,
+            "actual_signature": [
+              "x",
+              [
+                2
+              ],
+              []
+            ],
+            "score": 1.0,
+            "reason": "Inserted operation relative to expected circuit",
+            "evidence": [
+              "Step 48: inserted x on qubits (2,) without corresponding expected operation."
+            ]
+          },
+          {
+            "index": 55,
+            "operation": "x",
+            "qubits": [
+              4
+            ],
+            "expected_signature": [
+              "x",
+              [
+                4
+              ],
+              []
+            ],
+            "actual_signature": null,
+            "score": 1.0,
+            "reason": "Expected operation missing in observed circuit",
+            "evidence": [
+              "Step 55: expected x on qubits (4,) but it was not executed."
+            ]
+          },
+          {
+            "index": 79,
+            "operation": "ccx",
+            "qubits": [
+              2,
+              5,
+              6
+            ],
+            "expected_signature": [
+              "ccx",
+              [
+                2,
+                5,
+                6
+              ],
+              []
+            ],
+            "actual_signature": null,
+            "score": 1.0,
+            "reason": "Expected operation missing in observed circuit",
+            "evidence": [
+              "Step 79: expected ccx on qubits (2, 5, 6) but it was not executed."
+            ]
+          },
+          {
+            "index": 80,
+            "operation": "ccx",
+            "qubits": [
+              0,
+              1,
+              5
+            ],
+            "expected_signature": [
+              "ccx",
+              [
+                0,
+                1,
+                5
+              ],
+              []
+            ],
+            "actual_signature": null,
+            "score": 1.0,
+            "reason": "Expected operation missing in observed circuit",
+            "evidence": [
+              "Step 80: expected ccx on qubits (0, 1, 5) but it was not executed."
+            ]
+          },
+          {
+            "index": 18,
+            "operation": "x",
+            "qubits": [
+              4
+            ],
+            "expected_signature": [
+              "ccx",
+              [
+                0,
+                1,
+                7
+              ],
+              []
+            ],
+            "actual_signature": [
+              "x",
+              [
+                4
+              ],
+              []
+            ],
+            "score": 0.75,
+            "reason": "Gate operation differs from expected circuit",
+            "evidence": [
+              "Step 18: expected ccx(0, 1, 7)() but observed x(4,)()",
+              "Mismatch score = 0.75"
+            ]
+          },
+          {
+            "index": 19,
+            "operation": "reset",
+            "qubits": [
+              5
+            ],
+            "expected_signature": [
+              "ccx",
+              [
+                3,
+                5,
+                6
+              ],
+              []
+            ],
+            "actual_signature": [
+              "reset",
+              [
+                5
+              ],
+              []
+            ],
+            "score": 0.75,
+            "reason": "Gate operation differs from expected circuit",
+            "evidence": [
+              "Step 19: expected ccx(3, 5, 6)() but observed reset(5,)()",
+              "Mismatch score = 0.75"
+            ]
+          },
+          {
+            "index": 20,
+            "operation": "reset",
+            "qubits": [
+              6
+            ],
+            "expected_signature": [
+              "ccx",
+              [
+                1,
+                2,
+                5
+              ],
+              []
+            ],
+            "actual_signature": [
+              "reset",
+              [
+                6
+              ],
+              []
+            ],
+            "score": 0.75,
+            "reason": "Gate operation differs from expected circuit",
+            "evidence": [
+              "Step 20: expected ccx(1, 2, 5)() but observed reset(6,)()",
+              "Mismatch score = 0.75"
+            ]
+          },
+          {
+            "index": 21,
+            "operation": "reset",
+            "qubits": [
+              7
+            ],
+            "expected_signature": [
+              "x",
+              [
+                2
+              ],
+              []
+            ],
+            "actual_signature": [
+              "reset",
+              [
+                7
+              ],
+              []
+            ],
+            "score": 0.75,
+            "reason": "Gate operation differs from expected circuit",
+            "evidence": [
+              "Step 21: expected x(2,)() but observed reset(7,)()",
+              "Mismatch score = 0.75"
+            ]
+          },
+          {
+            "index": 57,
+            "operation": "x",
+            "qubits": [
+              4
+            ],
+            "expected_signature": [
+              "ccx",
+              [
+                0,
+                1,
+                7
+              ],
+              []
+            ],
+            "actual_signature": [
+              "x",
+              [
+                4
+              ],
+              []
+            ],
+            "score": 0.75,
+            "reason": "Gate operation differs from expected circuit",
+            "evidence": [
+              "Step 57: expected ccx(0, 1, 7)() but observed x(4,)()",
+              "Mismatch score = 0.75"
+            ]
+          },
+          {
+            "index": 58,
+            "operation": "reset",
+            "qubits": [
+              5
+            ],
+            "expected_signature": [
+              "ccx",
+              [
+                3,
+                5,
+                6
+              ],
+              []
+            ],
+            "actual_signature": [
+              "reset",
+              [
+                5
+              ],
+              []
+            ],
+            "score": 0.75,
+            "reason": "Gate operation differs from expected circuit",
+            "evidence": [
+              "Step 58: expected ccx(3, 5, 6)() but observed reset(5,)()",
+              "Mismatch score = 0.75"
+            ]
+          },
+          {
+            "index": 59,
+            "operation": "reset",
+            "qubits": [
+              6
+            ],
+            "expected_signature": [
+              "ccx",
+              [
+                1,
+                2,
+                5
+              ],
+              []
+            ],
+            "actual_signature": [
+              "reset",
+              [
+                6
+              ],
+              []
+            ],
+            "score": 0.75,
+            "reason": "Gate operation differs from expected circuit",
+            "evidence": [
+              "Step 59: expected ccx(1, 2, 5)() but observed reset(6,)()",
+              "Mismatch score = 0.75"
+            ]
+          },
+          {
+            "index": 60,
+            "operation": "reset",
+            "qubits": [
+              7
+            ],
+            "expected_signature": [
+              "x",
+              [
+                2
+              ],
+              []
+            ],
+            "actual_signature": [
+              "reset",
+              [
+                7
+              ],
+              []
+            ],
+            "score": 0.75,
+            "reason": "Gate operation differs from expected circuit",
+            "evidence": [
+              "Step 60: expected x(2,)() but observed reset(7,)()",
+              "Mismatch score = 0.75"
+            ]
+          }
+        ],
+        "expected_measurements": [
+          {
+            "measured_qubits": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "classical_destinations": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        ],
+        "observed_measurements": [
+          {
+            "measured_qubits": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "classical_destinations": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        ]
+      },
+      "ground_truth": {
+        "available": false,
+        "status": "MISSING",
+        "source": null,
+        "note": "Bugs4Q bug-type metadata is preserved separately and is not system-diagnosis ground truth."
+      },
+      "limitations": [
+        "Only source operations needed for the selected circuit behavior were extracted; Python/Qiskit wrapper behavior was not modeled.",
+        "No benchmark accuracy or diagnosis agreement metric is calculated.",
+        "Reported measurement strings use simulator qubit-index ordering; Qiskit classical count-string display ordering may differ.",
+        "The X(2) candidate is one genuine component of a broader multi-operation mutation and must not be described as the complete mutation.",
+        "Reset uses the existing simulator's ideal reset implementation."
+      ]
+    },
+    {
+      "case_number": 31,
+      "case_id": "Bugs4Q-31",
+      "execution_status": "COMPLETED",
+      "bugs4q_metadata": {
+        "case_number": 31,
+        "bug_type": "Output Wrong",
+        "source_url": "https://quantumcomputing.stackexchange.com/questions/8893/why-is-the-order-reversed-on-measurement",
+        "buggy_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/31/buggy_31.py",
+        "fixed_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/31/fixed_31.py",
+        "modify_file": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/31/modify_31.txt",
+        "test_references": [
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/31/test_b31.py",
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/31/test_f31.py"
+        ],
+        "source_level_mutation": "21c21\n< circuit.measure([0,1,2], [0,1,2])\n---\n> circuit.measure([0,1,2], [2,1,0])\n"
+      },
+      "reference_fixed_circuit": [
+        [
+          "x",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "measure",
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            0
+          ]
+        ]
+      ],
+      "buggy_circuit": [
+        [
+          "x",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "measure",
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      ],
+      "expected_distribution": {
+        "011": 0.0,
+        "110": 1.0
+      },
+      "observed_distribution": {
+        "011": 1.0,
+        "110": 0.0
+      },
+      "behavioral_comparison": {
+        "expected_distribution": {
+          "011": 0.0,
+          "110": 1.0
+        },
+        "observed_distribution": {
+          "011": 1.0,
+          "110": 0.0
+        },
+        "total_variation_distance": 1.0,
+        "hellinger_distance": 1.0,
+        "js_divergence": 0.6931471805599453,
+        "threshold": 0.05,
+        "finite_shot_guard": 0.05,
+        "shots": 1024,
+        "anomaly_detected": true,
+        "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+        "message": "Observed distribution differs from expected distribution by TVD=1.000000, which exceeds threshold=0.050000."
+      },
+      "system_diagnosis": {
+        "category": "PROGRAM_FAULT",
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence.",
+        "anomaly_detected": true,
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=1.000000, which exceeds threshold=0.050000.",
+          "Step 2: expected measure(0, 1, 2)(2, 1, 0) but observed measure(0, 1, 2)(0, 1, 2)",
+          "Mismatch score = 0.25",
+          "Hardware calibration information was not provided."
+        ]
+      },
+      "program_localization_candidates": [
+        {
+          "index": 2,
+          "operation": "measure",
+          "qubits": [
+            0,
+            1,
+            2
+          ],
+          "expected_signature": [
+            "measure",
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              2,
+              1,
+              0
+            ]
+          ],
+          "actual_signature": [
+            "measure",
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "score": 0.25,
+          "reason": "Parameter values differ from expected circuit",
+          "evidence": [
+            "Step 2: expected measure(0, 1, 2)(2, 1, 0) but observed measure(0, 1, 2)(0, 1, 2)",
+            "Mismatch score = 0.25"
+          ]
+        }
+      ],
+      "localization_evidence": {
+        "status": "AVAILABLE",
+        "note": "The current localizer compares translated gate operations and preserves measured qubits plus expected and observed classical-bit destinations.",
+        "candidates": [
+          {
+            "index": 2,
+            "operation": "measure",
+            "qubits": [
+              0,
+              1,
+              2
+            ],
+            "expected_signature": [
+              "measure",
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                0
+              ]
+            ],
+            "actual_signature": [
+              "measure",
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                0,
+                1,
+                2
+              ]
+            ],
+            "score": 0.25,
+            "reason": "Parameter values differ from expected circuit",
+            "evidence": [
+              "Step 2: expected measure(0, 1, 2)(2, 1, 0) but observed measure(0, 1, 2)(0, 1, 2)",
+              "Mismatch score = 0.25"
+            ]
+          }
+        ],
+        "expected_measurements": [
+          {
+            "measured_qubits": [
+              0,
+              1,
+              2
+            ],
+            "classical_destinations": [
+              2,
+              1,
+              0
+            ]
+          }
+        ],
+        "observed_measurements": [
+          {
+            "measured_qubits": [
+              0,
+              1,
+              2
+            ],
+            "classical_destinations": [
+              0,
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "ground_truth": {
+        "available": false,
+        "status": "MISSING",
+        "source": null,
+        "note": "Bugs4Q bug-type metadata is preserved separately and is not system-diagnosis ground truth."
+      },
+      "limitations": [
+        "Only source operations needed for the selected circuit behavior were extracted; Python/Qiskit wrapper behavior was not modeled.",
+        "No benchmark accuracy or diagnosis agreement metric is calculated.",
+        "Reported measurement strings use simulator qubit-index ordering; Qiskit classical count-string display ordering may differ."
+      ]
+    },
+    {
+      "case_number": 39,
+      "case_id": "Bugs4Q-39",
+      "execution_status": "COMPLETED",
+      "bugs4q_metadata": {
+        "case_number": 39,
+        "bug_type": "Output Wrong",
+        "source_url": "https://quantumcomputing.stackexchange.com/questions/18448/how-to-perform-a-plot-histogram-for-a-circuit",
+        "buggy_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/39/buggy_39.py",
+        "fixed_source": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/39/fixed_39.py",
+        "modify_file": "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/39/modify_39.txt",
+        "test_references": [
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/39/test_b39.py",
+          "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/39/test_f39.py"
+        ],
+        "source_level_mutation": "3a4,5\n> for i in range(4):\n>     qc.h(i)\n17c19\n< plot_histogram(count) \n\\ No newline at end of file\n---\n> plot_histogram(count)\n\\ No newline at end of file\n"
+      },
+      "reference_fixed_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "cx",
+          3,
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "ccx",
+          3,
+          2,
+          1
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "cx",
+          3,
+          2
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ]
+      ],
+      "buggy_circuit": [
+        [
+          "cx",
+          3,
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "ccx",
+          3,
+          2,
+          1
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "cx",
+          3,
+          2
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ]
+      ],
+      "expected_distribution": {
+        "0000": 0.0712890625,
+        "0001": 0.0576171875,
+        "0010": 0.064453125,
+        "0011": 0.072265625,
+        "0100": 0.0712890625,
+        "0101": 0.0693359375,
+        "0110": 0.0693359375,
+        "0111": 0.0556640625,
+        "1000": 0.05078125,
+        "1001": 0.060546875,
+        "1010": 0.0595703125,
+        "1011": 0.0546875,
+        "1100": 0.0576171875,
+        "1101": 0.0498046875,
+        "1110": 0.072265625,
+        "1111": 0.0634765625
+      },
+      "observed_distribution": {
+        "0000": 1.0,
+        "0001": 0.0,
+        "0010": 0.0,
+        "0011": 0.0,
+        "0100": 0.0,
+        "0101": 0.0,
+        "0110": 0.0,
+        "0111": 0.0,
+        "1000": 0.0,
+        "1001": 0.0,
+        "1010": 0.0,
+        "1011": 0.0,
+        "1100": 0.0,
+        "1101": 0.0,
+        "1110": 0.0,
+        "1111": 0.0
+      },
+      "behavioral_comparison": {
+        "expected_distribution": {
+          "0000": 0.0712890625,
+          "0001": 0.0576171875,
+          "0010": 0.064453125,
+          "0011": 0.072265625,
+          "0100": 0.0712890625,
+          "0101": 0.0693359375,
+          "0110": 0.0693359375,
+          "0111": 0.0556640625,
+          "1000": 0.05078125,
+          "1001": 0.060546875,
+          "1010": 0.0595703125,
+          "1011": 0.0546875,
+          "1100": 0.0576171875,
+          "1101": 0.0498046875,
+          "1110": 0.072265625,
+          "1111": 0.0634765625
+        },
+        "observed_distribution": {
+          "0000": 1.0,
+          "0001": 0.0,
+          "0010": 0.0,
+          "0011": 0.0,
+          "0100": 0.0,
+          "0101": 0.0,
+          "0110": 0.0,
+          "0111": 0.0,
+          "1000": 0.0,
+          "1001": 0.0,
+          "1010": 0.0,
+          "1011": 0.0,
+          "1100": 0.0,
+          "1101": 0.0,
+          "1110": 0.0,
+          "1111": 0.0
+        },
+        "total_variation_distance": 0.9287109375,
+        "hellinger_distance": 0.8561541233672983,
+        "js_divergence": 0.5621236284191957,
+        "threshold": 0.05,
+        "finite_shot_guard": 0.05,
+        "shots": 1024,
+        "anomaly_detected": true,
+        "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+        "message": "Observed distribution differs from expected distribution by TVD=0.928711, which exceeds threshold=0.050000."
+      },
+      "system_diagnosis": {
+        "category": "PROGRAM_FAULT",
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence.",
+        "anomaly_detected": true,
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.928711, which exceeds threshold=0.050000.",
+          "Step 0: expected h on qubits (0,) but it was not executed.",
+          "Step 1: expected h on qubits (1,) but it was not executed.",
+          "Step 2: expected h on qubits (2,) but it was not executed.",
+          "Step 3: expected h on qubits (3,) but it was not executed.",
+          "Hardware calibration information was not provided."
+        ]
+      },
+      "program_localization_candidates": [
+        {
+          "index": 0,
+          "operation": "h",
+          "qubits": [
+            0
+          ],
+          "expected_signature": [
+            "h",
+            [
+              0
+            ],
+            []
+          ],
+          "actual_signature": null,
+          "score": 1.0,
+          "reason": "Expected operation missing in observed circuit",
+          "evidence": [
+            "Step 0: expected h on qubits (0,) but it was not executed."
+          ]
+        },
+        {
+          "index": 1,
+          "operation": "h",
+          "qubits": [
+            1
+          ],
+          "expected_signature": [
+            "h",
+            [
+              1
+            ],
+            []
+          ],
+          "actual_signature": null,
+          "score": 1.0,
+          "reason": "Expected operation missing in observed circuit",
+          "evidence": [
+            "Step 1: expected h on qubits (1,) but it was not executed."
+          ]
+        },
+        {
+          "index": 2,
+          "operation": "h",
+          "qubits": [
+            2
+          ],
+          "expected_signature": [
+            "h",
+            [
+              2
+            ],
+            []
+          ],
+          "actual_signature": null,
+          "score": 1.0,
+          "reason": "Expected operation missing in observed circuit",
+          "evidence": [
+            "Step 2: expected h on qubits (2,) but it was not executed."
+          ]
+        },
+        {
+          "index": 3,
+          "operation": "h",
+          "qubits": [
+            3
+          ],
+          "expected_signature": [
+            "h",
+            [
+              3
+            ],
+            []
+          ],
+          "actual_signature": null,
+          "score": 1.0,
+          "reason": "Expected operation missing in observed circuit",
+          "evidence": [
+            "Step 3: expected h on qubits (3,) but it was not executed."
+          ]
+        }
+      ],
+      "localization_evidence": {
+        "status": "AVAILABLE",
+        "note": "The current localizer compares translated gate operations and preserves measured qubits plus expected and observed classical-bit destinations.",
+        "candidates": [
+          {
+            "index": 0,
+            "operation": "h",
+            "qubits": [
+              0
+            ],
+            "expected_signature": [
+              "h",
+              [
+                0
+              ],
+              []
+            ],
+            "actual_signature": null,
+            "score": 1.0,
+            "reason": "Expected operation missing in observed circuit",
+            "evidence": [
+              "Step 0: expected h on qubits (0,) but it was not executed."
+            ]
+          },
+          {
+            "index": 1,
+            "operation": "h",
+            "qubits": [
+              1
+            ],
+            "expected_signature": [
+              "h",
+              [
+                1
+              ],
+              []
+            ],
+            "actual_signature": null,
+            "score": 1.0,
+            "reason": "Expected operation missing in observed circuit",
+            "evidence": [
+              "Step 1: expected h on qubits (1,) but it was not executed."
+            ]
+          },
+          {
+            "index": 2,
+            "operation": "h",
+            "qubits": [
+              2
+            ],
+            "expected_signature": [
+              "h",
+              [
+                2
+              ],
+              []
+            ],
+            "actual_signature": null,
+            "score": 1.0,
+            "reason": "Expected operation missing in observed circuit",
+            "evidence": [
+              "Step 2: expected h on qubits (2,) but it was not executed."
+            ]
+          },
+          {
+            "index": 3,
+            "operation": "h",
+            "qubits": [
+              3
+            ],
+            "expected_signature": [
+              "h",
+              [
+                3
+              ],
+              []
+            ],
+            "actual_signature": null,
+            "score": 1.0,
+            "reason": "Expected operation missing in observed circuit",
+            "evidence": [
+              "Step 3: expected h on qubits (3,) but it was not executed."
+            ]
+          }
+        ],
+        "expected_measurements": [
+          {
+            "measured_qubits": [
+              0
+            ],
+            "classical_destinations": [
+              0
+            ]
+          },
+          {
+            "measured_qubits": [
+              1
+            ],
+            "classical_destinations": [
+              1
+            ]
+          },
+          {
+            "measured_qubits": [
+              2
+            ],
+            "classical_destinations": [
+              2
+            ]
+          },
+          {
+            "measured_qubits": [
+              3
+            ],
+            "classical_destinations": [
+              3
+            ]
+          }
+        ],
+        "observed_measurements": [
+          {
+            "measured_qubits": [
+              0
+            ],
+            "classical_destinations": [
+              0
+            ]
+          },
+          {
+            "measured_qubits": [
+              1
+            ],
+            "classical_destinations": [
+              1
+            ]
+          },
+          {
+            "measured_qubits": [
+              2
+            ],
+            "classical_destinations": [
+              2
+            ]
+          },
+          {
+            "measured_qubits": [
+              3
+            ],
+            "classical_destinations": [
+              3
+            ]
+          }
+        ]
+      },
+      "ground_truth": {
+        "available": false,
+        "status": "MISSING",
+        "source": null,
+        "note": "Bugs4Q bug-type metadata is preserved separately and is not system-diagnosis ground truth."
+      },
+      "limitations": [
+        "Only source operations needed for the selected circuit behavior were extracted; Python/Qiskit wrapper behavior was not modeled.",
+        "No benchmark accuracy or diagnosis agreement metric is calculated.",
+        "Reported measurement strings use simulator qubit-index ordering; Qiskit classical count-string display ordering may differ."
+      ]
+    }
+  ]
+}

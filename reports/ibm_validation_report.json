@@ -1,0 +1,142 @@
+{
+  "access": {
+    "credential_source": null,
+    "credentials_detected": false,
+    "qiskit_available": false,
+    "reason": "Required package(s) not installed: qiskit, qiskit-ibm-runtime",
+    "runtime_available": false,
+    "status": "BLOCKED"
+  },
+  "anomaly": {
+    "detected": false,
+    "finite_shot_guard": 0.05,
+    "message": "Observed distribution differs by TVD=0.000000, which is within the configured threshold=0.050000.",
+    "reason": "No statistically meaningful anomaly detected",
+    "threshold": 0.05,
+    "total_variation_distance": 0.0
+  },
+  "backend": "offline-fixture",
+  "backend_discovery": {
+    "access": {
+      "credential_source": null,
+      "credentials_detected": false,
+      "qiskit_available": false,
+      "reason": "Required package(s) not installed: qiskit, qiskit-ibm-runtime",
+      "runtime_available": false,
+      "status": "BLOCKED"
+    },
+    "backends": [],
+    "discovery_source": "IBM_RUNTIME",
+    "error": "Required package(s) not installed: qiskit, qiskit-ibm-runtime",
+    "status": "BLOCKED"
+  },
+  "calibration_retrieval_status": "OFFLINE_FIXTURE",
+  "calibration_snapshot": {
+    "backend_name": "offline-fixture",
+    "backend_status": {
+      "operational": null,
+      "pending_jobs": null,
+      "status_msg": "offline deterministic fixture"
+    },
+    "capture_source": "OFFLINE_FIXTURE",
+    "coupling_map": [],
+    "errors": [],
+    "gates": [],
+    "n_qubits": 1,
+    "qubits": {
+      "0": {
+        "readout_error": 0.0,
+        "t1": 1000000.0,
+        "t1_unit": "microseconds (model fixture)",
+        "t2": 1000000.0,
+        "t2_unit": "microseconds (model fixture)"
+      }
+    },
+    "retrieval_status": "OFFLINE_FIXTURE",
+    "timestamp": "2026-10-03T09:29:29+00:00",
+    "unavailable_fields": []
+  },
+  "conversion_info": {
+    "error": "Qiskit conversion/transpilation was not run in offline mode.",
+    "errors": [],
+    "gate_mappings": [],
+    "num_qubits": 1,
+    "operations": [
+      {
+        "classical_bits": [],
+        "name": "h",
+        "parameters": [],
+        "qubits": [
+          0
+        ]
+      },
+      {
+        "classical_bits": [],
+        "name": "measure",
+        "parameters": [],
+        "qubits": [
+          0
+        ]
+      }
+    ],
+    "status": "OFFLINE_PLAN_ONLY",
+    "unsupported_operations": []
+  },
+  "diagnosis": {
+    "anomaly_detected": false,
+    "category": "NO_ANOMALY",
+    "evidence": [
+      "Observed distribution differs by TVD=0.000000, which is within the configured threshold=0.050000.",
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000.",
+      "No qubit, edge, or gate calibration metric crossed the threshold=0.0500.",
+      "No gate calibration entry is available for h on qubits (0,)."
+    ],
+    "missing_evidence": [
+      "No gate calibration entry is available for h on qubits (0,)."
+    ],
+    "summary": "No statistically meaningful execution anomaly was detected."
+  },
+  "errors": [],
+  "execution_origin": "OFFLINE_FIXTURE",
+  "execution_status": "OFFLINE_TESTED",
+  "execution_timestamp": "2026-10-03T09:29:29+00:00",
+  "hardware_candidates": [],
+  "ideal_distribution": {
+    "0": 0.5,
+    "1": 0.5
+  },
+  "implementation_status": "IMPLEMENTED",
+  "job_id": null,
+  "metrics": {
+    "accuracy": null,
+    "f1": null,
+    "precision": null,
+    "reason": "No independent IBM execution ground truth was provided.",
+    "recall": null
+  },
+  "observed_counts": {
+    "0": 512,
+    "1": 512
+  },
+  "observed_distribution": {
+    "0": 0.5,
+    "1": 0.5
+  },
+  "offline_status": "OFFLINE_TESTED",
+  "overall_status": "OFFLINE_TESTED",
+  "phase_statuses": {
+    "BLOCKED": "BLOCKED",
+    "FAILED": "NOT_FAILED",
+    "IMPLEMENTED": "IMPLEMENTED",
+    "OFFLINE_TESTED": "OFFLINE_TESTED",
+    "REAL_IBM_EXECUTED": "NOT_EXECUTED"
+  },
+  "program_candidates": [],
+  "real_hardware_executed": false,
+  "real_ibm_status": "BLOCKED",
+  "shots": 1024,
+  "transpilation_info": {
+    "reason": "Offline fixtures are not IBM backend executions.",
+    "status": "NOT_RUN_OFFLINE"
+  }
+}

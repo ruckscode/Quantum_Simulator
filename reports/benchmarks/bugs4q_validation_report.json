@@ -1,0 +1,34 @@
+{
+  "benchmark": "Bugs4Q",
+  "case_level_results": [],
+  "cases_discovered": 0,
+  "dataset_file_parse_failures": 0,
+  "dataset_found": false,
+  "dataset_issues": [
+    {
+      "reason": "No Bugs4Q dataset files were found.",
+      "source_file": ".",
+      "status": "MISSING_DATASET"
+    }
+  ],
+  "dataset_root": ".",
+  "discovered_files": [],
+  "execution_or_parsing_failures": 0,
+  "metrics": {
+    "aggregate_accuracy": null,
+    "aggregate_f1": null,
+    "aggregate_precision": null,
+    "aggregate_recall": null,
+    "category_matches": [],
+    "scope": "case-level only; no aggregate benchmark metrics"
+  },
+  "notes": [
+    "Synthetic validation fixtures are not Bugs4Q cases.",
+    "Only explicitly independent, reliable, non-conflicting references are eligible for case-level category comparison.",
+    "No diagnosis is forced for unsupported cases or cases with uncertain references."
+  ],
+  "reliable_ground_truth_cases": 0,
+  "supported": 0,
+  "uncertain_or_conflicting_ground_truth_cases": 0,
+  "unsupported": 0
+}

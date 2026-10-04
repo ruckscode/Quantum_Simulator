@@ -1,0 +1,18 @@
+{
+  "experiment_name": "healthy_seeded_local",
+  "validation_label": "SYNTHETIC_VALIDATION",
+  "description": "Healthy one-qubit Hadamard with seeded local simulator observations.",
+  "num_qubits": 1,
+  "shots": 512,
+  "random_seed": 1729,
+  "anomaly_threshold": 0.05,
+  "backend_name": null,
+  "circuit": [["h", 0], ["measure", 0]],
+  "observed_circuit": [["h", 0], ["measure", 0]],
+  "hardware_parameters": {
+    "coupling_map": [],
+    "qubits": {"0": {"t1": 1000000.0, "t2": 1000000.0, "readout_error": 0.0}}
+  },
+  "noise_parameters": null,
+  "observed_counts": null
+}

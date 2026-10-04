@@ -1,0 +1,95 @@
+{
+  "benchmark_reports": {
+    "Bugs4Q": "bugs4q_validation_report.json",
+    "QMutBench": "qmutbench_validation_report.json"
+  },
+  "benchmark_summary": {
+    "Bugs4Q": {
+      "cases": 0,
+      "metrics": {
+        "aggregate_accuracy": null,
+        "aggregate_f1": null,
+        "aggregate_precision": null,
+        "aggregate_recall": null,
+        "category_matches": [],
+        "scope": "Independent benchmark/reference-data availability only; focused real-source integration is reported separately."
+      },
+      "parsing_failures": 0,
+      "reliable_ground_truth": 0,
+      "status": "INDEPENDENT REFERENCE DATA UNAVAILABLE; FOCUSED REAL-SOURCE INTEGRATION COMPLETED",
+      "supported": 0,
+      "uncertain": 0,
+      "unsupported": 0,
+      "focused_real_source_integration": {
+        "cases": 8,
+        "case_numbers": [
+          8,
+          12,
+          17,
+          25,
+          26,
+          30,
+          31,
+          39
+        ],
+        "represented": 8,
+        "executed": 8,
+        "unsupported": 0,
+        "diagnoses": {
+          "NO_ANOMALY": 3,
+          "PROGRAM_FAULT": 5
+        },
+        "metrics": {
+          "accuracy": null,
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "localization_accuracy": null,
+          "scope": "Focused real-source integration only; no benchmark metrics claimed."
+        }
+      }
+    },
+    "QMutBench": {
+      "cases": 12,
+      "dataset_type": "REAL_DATA",
+      "metrics": {
+        "accuracy": null,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "mutation_score": null,
+        "eligible_cases": 0,
+        "reason": "No benchmark accuracy, precision, recall, F1, or mutation-score claims are made."
+      },
+      "parsing_failures": 0,
+      "reliable_ground_truth": 0,
+      "status": "PILOT EVALUATED; 1 UNSUPPORTED CASE",
+      "supported": 11,
+      "uncertain": 0,
+      "unsupported": 1,
+      "paired_cases": 12,
+      "executed": 11,
+      "diagnosed": 11,
+      "diagnoses": {
+        "PROGRAM_FAULT": 11
+      }
+    }
+  },
+  "combined_metrics": {
+    "accuracy": null,
+    "f1": null,
+    "precision": null,
+    "reason": "Benchmark ground-truth definitions are not presumed compatible; metrics remain benchmark-specific.",
+    "recall": null
+  },
+  "dataset_root": ".",
+  "errors": [],
+  "notes": [
+    "Bugs4Q and QMutBench are evaluated and reported independently.",
+    "Synthetic test fixtures are not benchmark cases or ground truth.",
+    "Mutation metadata is external benchmark context and is not supplied to the diagnosis engine as a label.",
+    "Bugs4Q focused real-source integration (8 selected source cases) is distinct from independent Bugs4Q benchmark/reference-data availability.",
+    "QMutBench pilot reports paired execution and diagnosis counts; no benchmark accuracy, precision, recall, F1, or mutation-score claims are made."
+  ],
+  "report_name": "Independent Multi-Benchmark Validation Summary"
+}

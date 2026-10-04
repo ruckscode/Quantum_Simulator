@@ -1,0 +1,859 @@
+{
+  "all_passed": true,
+  "bugs4q_dataset_used": false,
+  "failed": 0,
+  "generated_at": "2026-10-03T09:34:54+00:00",
+  "note": "Controlled scenarios demonstrate pipeline behavior; they are not Bugs4Q ground truth or IBM hardware results.",
+  "offline": true,
+  "passed": 5,
+  "real_ibm_execution": false,
+  "report_name": "Quantum Diagnostic System Offline Demo",
+  "scenario_count": 5,
+  "scenarios": [
+    {
+      "actual_category": "NO_ANOMALY",
+      "case_id": "demo_healthy_circuit",
+      "diagnosis": {
+        "anomaly_detected": false,
+        "category": "NO_ANOMALY",
+        "evidence": [
+          "Observed distribution differs by TVD=0.000000, which is within the configured threshold=0.050000.",
+          "Final distribution difference TVD=0.000000 is within threshold=0.050000.",
+          "No qubit, edge, or gate calibration metric crossed the threshold=0.0500.",
+          "No gate calibration entry is available for h on qubits (0,)."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": {
+          "anomaly_metric": 0.0,
+          "candidates": [],
+          "evidence": [
+            "No qubit, edge, or gate calibration metric crossed the threshold=0.0500."
+          ],
+          "summary": "No hardware fault candidates exceeded the configured threshold.",
+          "threshold": 0.05
+        },
+        "missing_evidence": [
+          "No gate calibration entry is available for h on qubits (0,)."
+        ],
+        "program_evidence_candidates": [],
+        "program_result": {
+          "anomaly_metric": 0.0,
+          "candidates": [],
+          "evidence": [
+            "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+          ],
+          "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": false,
+          "expected_distribution": {
+            "0": 0.5,
+            "1": 0.5
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.0,
+          "js_divergence": 0.0,
+          "message": "Observed distribution differs by TVD=0.000000, which is within the configured threshold=0.050000.",
+          "observed_distribution": {
+            "0": 0.5,
+            "1": 0.5
+          },
+          "reason": "No statistically meaningful anomaly detected",
+          "shots": 1000,
+          "threshold": 0.05,
+          "total_variation_distance": 0.0
+        },
+        "summary": "No statistically meaningful execution anomaly was detected."
+      },
+      "errors": [],
+      "execution_metadata": {
+        "counts": {
+          "0": 500,
+          "1": 500
+        },
+        "execution_kind": "offline controlled validation; no IBM backend used",
+        "expected_circuit": [
+          [
+            "h",
+            0
+          ]
+        ],
+        "ideal_distribution": {
+          "0": 0.5,
+          "1": 0.5
+        },
+        "observed_circuit": [
+          [
+            "h",
+            0
+          ]
+        ],
+        "observed_distribution": {
+          "0": 0.5,
+          "1": 0.5
+        },
+        "observed_source": "deterministic controlled observation fixture",
+        "shots": 1000,
+        "simulator_seed": 1729
+      },
+      "expected_category": "NO_ANOMALY",
+      "hardware_evidence": {
+        "candidates": [],
+        "evidence": [
+          "No qubit, edge, or gate calibration metric crossed the threshold=0.0500."
+        ],
+        "summary": "No hardware fault candidates exceeded the configured threshold."
+      },
+      "pass": true,
+      "program_evidence": {
+        "candidates": [],
+        "evidence": [
+          "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+        ],
+        "summary": "No program-level fault was localized; the circuit behavior remains within threshold."
+      },
+      "scenario_name": "HEALTHY CIRCUIT",
+      "statistical_evidence": {
+        "anomaly_detected": false,
+        "expected_distribution": {
+          "0": 0.5,
+          "1": 0.5
+        },
+        "finite_shot_guard": 0.05,
+        "hellinger_distance": 0.0,
+        "js_divergence": 0.0,
+        "message": "Observed distribution differs by TVD=0.000000, which is within the configured threshold=0.050000.",
+        "observed_distribution": {
+          "0": 0.5,
+          "1": 0.5
+        },
+        "reason": "No statistically meaningful anomaly detected",
+        "shots": 1000,
+        "threshold": 0.05,
+        "total_variation_distance": 0.0
+      },
+      "validation_source": "controlled offline demo"
+    },
+    {
+      "actual_category": "PROGRAM_FAULT",
+      "case_id": "demo_program_fault",
+      "diagnosis": {
+        "anomaly_detected": true,
+        "category": "PROGRAM_FAULT",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+          "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+          "Mismatch score = 0.50",
+          "No qubit, edge, or gate calibration metric crossed the threshold=0.0500.",
+          "No gate calibration entry is available for h on qubits (0,)."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [],
+          "evidence": [
+            "No qubit, edge, or gate calibration metric crossed the threshold=0.0500."
+          ],
+          "summary": "No hardware fault candidates exceeded the configured threshold.",
+          "threshold": 0.05
+        },
+        "missing_evidence": [
+          "No gate calibration entry is available for h on qubits (0,)."
+        ],
+        "program_evidence_candidates": [
+          {
+            "actual_signature": [
+              "h",
+              [],
+              [
+                0.0
+              ]
+            ],
+            "evidence": [
+              "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+              "Mismatch score = 0.50"
+            ],
+            "expected_signature": [
+              "x",
+              [],
+              [
+                0.0
+              ]
+            ],
+            "index": 0,
+            "operation": "h",
+            "qubits": [],
+            "reason": "Gate operation differs from expected circuit",
+            "score": 0.5
+          }
+        ],
+        "program_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [
+            {
+              "actual_signature": [
+                "h",
+                [],
+                [
+                  0.0
+                ]
+              ],
+              "evidence": [
+                "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+                "Mismatch score = 0.50"
+              ],
+              "expected_signature": [
+                "x",
+                [],
+                [
+                  0.0
+                ]
+              ],
+              "index": 0,
+              "operation": "h",
+              "qubits": [],
+              "reason": "Gate operation differs from expected circuit",
+              "score": 0.5
+            }
+          ],
+          "evidence": [
+            "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+            "Mismatch score = 0.50"
+          ],
+          "summary": "Program fault localization identified the following likely offending operation(s): step 0 (h)",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "0": 0.0,
+            "1": 1.0
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.541196100146197,
+          "js_divergence": 0.21576155433883565,
+          "message": "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "0": 0.5,
+            "1": 0.5
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1000,
+          "threshold": 0.05,
+          "total_variation_distance": 0.5
+        },
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+      },
+      "errors": [],
+      "execution_metadata": {
+        "counts": {
+          "0": 500,
+          "1": 500
+        },
+        "execution_kind": "offline controlled validation; no IBM backend used",
+        "expected_circuit": [
+          [
+            "x",
+            0
+          ]
+        ],
+        "ideal_distribution": {
+          "0": 0.0,
+          "1": 1.0
+        },
+        "observed_circuit": [
+          [
+            "h",
+            0
+          ]
+        ],
+        "observed_distribution": {
+          "0": 0.5,
+          "1": 0.5
+        },
+        "observed_source": "QuantumSimulator statevector probabilities for the observed program",
+        "shots": 1000,
+        "simulator_seed": 1729
+      },
+      "expected_category": "PROGRAM_FAULT",
+      "hardware_evidence": {
+        "candidates": [],
+        "evidence": [
+          "No qubit, edge, or gate calibration metric crossed the threshold=0.0500."
+        ],
+        "summary": "No hardware fault candidates exceeded the configured threshold."
+      },
+      "pass": true,
+      "program_evidence": {
+        "candidates": [
+          {
+            "actual_signature": [
+              "h",
+              [],
+              [
+                0.0
+              ]
+            ],
+            "evidence": [
+              "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+              "Mismatch score = 0.50"
+            ],
+            "expected_signature": [
+              "x",
+              [],
+              [
+                0.0
+              ]
+            ],
+            "index": 0,
+            "operation": "h",
+            "qubits": [],
+            "reason": "Gate operation differs from expected circuit",
+            "score": 0.5
+          }
+        ],
+        "evidence": [
+          "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+          "Mismatch score = 0.50"
+        ],
+        "summary": "Program fault localization identified the following likely offending operation(s): step 0 (h)"
+      },
+      "scenario_name": "PROGRAM-LEVEL FAULT",
+      "statistical_evidence": {
+        "anomaly_detected": true,
+        "expected_distribution": {
+          "0": 0.0,
+          "1": 1.0
+        },
+        "finite_shot_guard": 0.05,
+        "hellinger_distance": 0.541196100146197,
+        "js_divergence": 0.21576155433883565,
+        "message": "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+        "observed_distribution": {
+          "0": 0.5,
+          "1": 0.5
+        },
+        "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+        "shots": 1000,
+        "threshold": 0.05,
+        "total_variation_distance": 0.5
+      },
+      "validation_source": "controlled offline demo"
+    },
+    {
+      "actual_category": "HARDWARE_ANOMALY",
+      "case_id": "demo_hardware_anomaly",
+      "diagnosis": {
+        "anomaly_detected": true,
+        "category": "HARDWARE_ANOMALY",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.400000, which exceeds threshold=0.050000.",
+          "Final distribution difference TVD=0.000000 is within threshold=0.050000.",
+          "Qubit 0 readout error is elevated at 0.4000.",
+          "No gate calibration entry is available for x on qubits (0,)."
+        ],
+        "hardware_evidence_candidates": [
+          {
+            "component": 0,
+            "component_type": "qubit",
+            "evidence": [
+              "Qubit 0 readout error is elevated at 0.4000."
+            ],
+            "reason": "Qubit 0 shows hardware degradation: readout_error=0.4000",
+            "score": 1.6
+          }
+        ],
+        "hardware_result": {
+          "anomaly_metric": 0.0,
+          "candidates": [
+            {
+              "component": 0,
+              "component_type": "qubit",
+              "evidence": [
+                "Qubit 0 readout error is elevated at 0.4000."
+              ],
+              "reason": "Qubit 0 shows hardware degradation: readout_error=0.4000",
+              "score": 1.6
+            }
+          ],
+          "evidence": [
+            "Qubit 0 readout error is elevated at 0.4000."
+          ],
+          "summary": "Likely hardware component(s): qubit 0",
+          "threshold": 0.05
+        },
+        "missing_evidence": [
+          "No gate calibration entry is available for x on qubits (0,)."
+        ],
+        "program_evidence_candidates": [],
+        "program_result": {
+          "anomaly_metric": 0.0,
+          "candidates": [],
+          "evidence": [
+            "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+          ],
+          "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "0": 0.0,
+            "1": 1.0
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.47476660661688985,
+          "js_divergence": 0.1638965900335596,
+          "message": "Observed distribution differs from expected distribution by TVD=0.400000, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "0": 0.4,
+            "1": 0.6
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1000,
+          "threshold": 0.05,
+          "total_variation_distance": 0.4
+        },
+        "summary": "An execution anomaly is accompanied by relevant hardware calibration evidence."
+      },
+      "errors": [],
+      "execution_metadata": {
+        "counts": {
+          "0": 400,
+          "1": 600
+        },
+        "execution_kind": "offline controlled validation; no IBM backend used",
+        "expected_circuit": [
+          [
+            "x",
+            0
+          ],
+          [
+            "measure",
+            0
+          ]
+        ],
+        "ideal_distribution": {
+          "0": 0.0,
+          "1": 1.0
+        },
+        "observed_circuit": [
+          [
+            "x",
+            0
+          ],
+          [
+            "measure",
+            0
+          ]
+        ],
+        "observed_distribution": {
+          "0": 0.4,
+          "1": 0.6
+        },
+        "observed_source": "deterministic controlled observation fixture; not hardware execution",
+        "shots": 1000,
+        "simulator_seed": 1729
+      },
+      "expected_category": "HARDWARE_ANOMALY",
+      "hardware_evidence": {
+        "candidates": [
+          {
+            "component": 0,
+            "component_type": "qubit",
+            "evidence": [
+              "Qubit 0 readout error is elevated at 0.4000."
+            ],
+            "reason": "Qubit 0 shows hardware degradation: readout_error=0.4000",
+            "score": 1.6
+          }
+        ],
+        "evidence": [
+          "Qubit 0 readout error is elevated at 0.4000."
+        ],
+        "summary": "Likely hardware component(s): qubit 0"
+      },
+      "pass": true,
+      "program_evidence": {
+        "candidates": [],
+        "evidence": [
+          "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+        ],
+        "summary": "No program-level fault was localized; the circuit behavior remains within threshold."
+      },
+      "scenario_name": "HARDWARE-LEVEL ANOMALY",
+      "statistical_evidence": {
+        "anomaly_detected": true,
+        "expected_distribution": {
+          "0": 0.0,
+          "1": 1.0
+        },
+        "finite_shot_guard": 0.05,
+        "hellinger_distance": 0.47476660661688985,
+        "js_divergence": 0.1638965900335596,
+        "message": "Observed distribution differs from expected distribution by TVD=0.400000, which exceeds threshold=0.050000.",
+        "observed_distribution": {
+          "0": 0.4,
+          "1": 0.6
+        },
+        "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+        "shots": 1000,
+        "threshold": 0.05,
+        "total_variation_distance": 0.4
+      },
+      "validation_source": "controlled offline demo"
+    },
+    {
+      "actual_category": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+      "case_id": "demo_ambiguous",
+      "diagnosis": {
+        "anomaly_detected": true,
+        "category": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+          "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+          "Mismatch score = 0.50",
+          "Qubit 0 readout error is elevated at 0.4000.",
+          "No gate calibration entry is available for h on qubits (0,)."
+        ],
+        "hardware_evidence_candidates": [
+          {
+            "component": 0,
+            "component_type": "qubit",
+            "evidence": [
+              "Qubit 0 readout error is elevated at 0.4000."
+            ],
+            "reason": "Qubit 0 shows hardware degradation: readout_error=0.4000",
+            "score": 1.6
+          }
+        ],
+        "hardware_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [
+            {
+              "component": 0,
+              "component_type": "qubit",
+              "evidence": [
+                "Qubit 0 readout error is elevated at 0.4000."
+              ],
+              "reason": "Qubit 0 shows hardware degradation: readout_error=0.4000",
+              "score": 1.6
+            }
+          ],
+          "evidence": [
+            "Qubit 0 readout error is elevated at 0.4000."
+          ],
+          "summary": "Likely hardware component(s): qubit 0",
+          "threshold": 0.05
+        },
+        "missing_evidence": [
+          "No gate calibration entry is available for h on qubits (0,)."
+        ],
+        "program_evidence_candidates": [
+          {
+            "actual_signature": [
+              "h",
+              [],
+              [
+                0.0
+              ]
+            ],
+            "evidence": [
+              "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+              "Mismatch score = 0.50"
+            ],
+            "expected_signature": [
+              "x",
+              [],
+              [
+                0.0
+              ]
+            ],
+            "index": 0,
+            "operation": "h",
+            "qubits": [],
+            "reason": "Gate operation differs from expected circuit",
+            "score": 0.5
+          }
+        ],
+        "program_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [
+            {
+              "actual_signature": [
+                "h",
+                [],
+                [
+                  0.0
+                ]
+              ],
+              "evidence": [
+                "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+                "Mismatch score = 0.50"
+              ],
+              "expected_signature": [
+                "x",
+                [],
+                [
+                  0.0
+                ]
+              ],
+              "index": 0,
+              "operation": "h",
+              "qubits": [],
+              "reason": "Gate operation differs from expected circuit",
+              "score": 0.5
+            }
+          ],
+          "evidence": [
+            "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+            "Mismatch score = 0.50"
+          ],
+          "summary": "Program fault localization identified the following likely offending operation(s): step 0 (h)",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "0": 0.0,
+            "1": 1.0
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.541196100146197,
+          "js_divergence": 0.21576155433883565,
+          "message": "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "0": 0.5,
+            "1": 0.5
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1000,
+          "threshold": 0.05,
+          "total_variation_distance": 0.5
+        },
+        "summary": "Both program-level and calibration-backed hardware evidence are present; neither cause is isolated."
+      },
+      "errors": [],
+      "execution_metadata": {
+        "counts": {
+          "0": 500,
+          "1": 500
+        },
+        "execution_kind": "offline controlled validation; no IBM backend used",
+        "expected_circuit": [
+          [
+            "x",
+            0
+          ]
+        ],
+        "ideal_distribution": {
+          "0": 0.0,
+          "1": 1.0
+        },
+        "observed_circuit": [
+          [
+            "h",
+            0
+          ]
+        ],
+        "observed_distribution": {
+          "0": 0.5,
+          "1": 0.5
+        },
+        "observed_source": "QuantumSimulator statevector probabilities for the observed program",
+        "shots": 1000,
+        "simulator_seed": 1729
+      },
+      "expected_category": "AMBIGUOUS",
+      "hardware_evidence": {
+        "candidates": [
+          {
+            "component": 0,
+            "component_type": "qubit",
+            "evidence": [
+              "Qubit 0 readout error is elevated at 0.4000."
+            ],
+            "reason": "Qubit 0 shows hardware degradation: readout_error=0.4000",
+            "score": 1.6
+          }
+        ],
+        "evidence": [
+          "Qubit 0 readout error is elevated at 0.4000."
+        ],
+        "summary": "Likely hardware component(s): qubit 0"
+      },
+      "pass": true,
+      "program_evidence": {
+        "candidates": [
+          {
+            "actual_signature": [
+              "h",
+              [],
+              [
+                0.0
+              ]
+            ],
+            "evidence": [
+              "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+              "Mismatch score = 0.50"
+            ],
+            "expected_signature": [
+              "x",
+              [],
+              [
+                0.0
+              ]
+            ],
+            "index": 0,
+            "operation": "h",
+            "qubits": [],
+            "reason": "Gate operation differs from expected circuit",
+            "score": 0.5
+          }
+        ],
+        "evidence": [
+          "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+          "Mismatch score = 0.50"
+        ],
+        "summary": "Program fault localization identified the following likely offending operation(s): step 0 (h)"
+      },
+      "scenario_name": "AMBIGUOUS CASE",
+      "statistical_evidence": {
+        "anomaly_detected": true,
+        "expected_distribution": {
+          "0": 0.0,
+          "1": 1.0
+        },
+        "finite_shot_guard": 0.05,
+        "hellinger_distance": 0.541196100146197,
+        "js_divergence": 0.21576155433883565,
+        "message": "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+        "observed_distribution": {
+          "0": 0.5,
+          "1": 0.5
+        },
+        "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+        "shots": 1000,
+        "threshold": 0.05,
+        "total_variation_distance": 0.5
+      },
+      "validation_source": "controlled offline demo"
+    },
+    {
+      "actual_category": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+      "case_id": "demo_insufficient_evidence",
+      "diagnosis": {
+        "anomaly_detected": true,
+        "category": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+          "Final distribution difference TVD=0.000000 is within threshold=0.050000.",
+          "Hardware calibration information was not provided."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": null,
+        "missing_evidence": [
+          "Hardware calibration information was not provided."
+        ],
+        "program_evidence_candidates": [],
+        "program_result": {
+          "anomaly_metric": 0.0,
+          "candidates": [],
+          "evidence": [
+            "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+          ],
+          "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "0": 0.5,
+            "1": 0.5
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.541196100146197,
+          "js_divergence": 0.21576155433883565,
+          "message": "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "0": 1.0,
+            "1": 0.0
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1000,
+          "threshold": 0.05,
+          "total_variation_distance": 0.5
+        },
+        "summary": "An execution anomaly was detected, but available evidence does not isolate a program or hardware cause."
+      },
+      "errors": [],
+      "execution_metadata": {
+        "counts": {
+          "0": 1000,
+          "1": 0
+        },
+        "execution_kind": "offline controlled validation; no IBM backend used",
+        "expected_circuit": [
+          [
+            "h",
+            0
+          ]
+        ],
+        "ideal_distribution": {
+          "0": 0.5,
+          "1": 0.5
+        },
+        "observed_circuit": [
+          [
+            "h",
+            0
+          ]
+        ],
+        "observed_distribution": {
+          "0": 1.0,
+          "1": 0.0
+        },
+        "observed_source": "deterministic controlled observation fixture; hardware calibration unavailable",
+        "shots": 1000,
+        "simulator_seed": 1729
+      },
+      "expected_category": "INSUFFICIENT_EVIDENCE",
+      "hardware_evidence": {
+        "candidates": [],
+        "evidence": [],
+        "summary": null
+      },
+      "pass": true,
+      "program_evidence": {
+        "candidates": [],
+        "evidence": [
+          "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+        ],
+        "summary": "No program-level fault was localized; the circuit behavior remains within threshold."
+      },
+      "scenario_name": "INSUFFICIENT-EVIDENCE CASE",
+      "statistical_evidence": {
+        "anomaly_detected": true,
+        "expected_distribution": {
+          "0": 0.5,
+          "1": 0.5
+        },
+        "finite_shot_guard": 0.05,
+        "hellinger_distance": 0.541196100146197,
+        "js_divergence": 0.21576155433883565,
+        "message": "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+        "observed_distribution": {
+          "0": 1.0,
+          "1": 0.0
+        },
+        "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+        "shots": 1000,
+        "threshold": 0.05,
+        "total_variation_distance": 0.5
+      },
+      "validation_source": "controlled offline demo"
+    }
+  ],
+  "synthetic_validation_cases": true
+}

@@ -1,0 +1,51 @@
+{
+  "project": "Quantum Diagnostic System",
+  "phase_status": {
+    "A": {"status": "COMPLETE"},
+    "B": {"status": "COMPLETE"},
+    "C": {"status": "COMPLETE"},
+    "D": {"status": "COMPLETE"},
+    "E": {"status": "COMPLETE"},
+    "F": {"status": "COMPLETE"},
+    "G": {"status": "COMPLETE"},
+    "H": {"status": "COMPLETE"},
+    "I": {
+      "status": "PARTIAL",
+      "dataset_available": false,
+      "note": "Actual Bugs4Q dataset/reference files are not present."
+    },
+    "J": {
+      "status": "PARTIAL",
+      "qiskit_available": false,
+      "qiskit_ibm_runtime_available": false,
+      "credentials_detected": false,
+      "backend_discovery": false,
+      "real_ibm_execution": false,
+      "note": "Adapter is implemented and offline-tested; live access is unavailable."
+    },
+    "K": {
+      "status": "COMPLETE",
+      "demo_scenarios": 5,
+      "demo_scenarios_passed": 5,
+      "demo_scenarios_failed": 0
+    }
+  },
+  "verification": {
+    "full_test_command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
+    "full_test_total": 89,
+    "full_test_passed": 89,
+    "full_test_failed": 0,
+    "demo_command": ".\\.venv\\Scripts\\python.exe demo.py",
+    "demo_passed": 5,
+    "demo_failed": 0,
+    "json_cli_valid": true,
+    "phase_i_remains_partial": true,
+    "phase_j_remains_partial": true
+  },
+  "limitations": [
+    "Demo observation data are controlled offline fixtures or simulator distributions, not hardware measurements.",
+    "Synthetic validation scenarios are not Bugs4Q benchmark ground truth.",
+    "No IBM hardware execution or IBM calibration retrieval was performed.",
+    "No benchmark accuracy, precision, recall, or F1 is claimed."
+  ]
+}

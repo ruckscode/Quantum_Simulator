@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Quantum Diagnostic Experiment Result",
+  "description": "Local experiment output with complete nested diagnosis and evidence. Synthetic observation fixtures are not hardware or benchmark results.",
+  "type": "object",
+  "required": [
+    "status",
+    "experiment_metadata",
+    "configuration",
+    "circuit",
+    "ideal_distribution",
+    "ideal_statevector_distribution",
+    "simulator_observed_counts",
+    "observed_counts",
+    "observed_distribution",
+    "anomaly",
+    "diagnosis",
+    "program_evidence",
+    "hardware_evidence",
+    "execution_metadata",
+    "reproducibility",
+    "errors"
+  ],
+  "properties": {
+    "status": {"type": "string", "enum": ["COMPLETED", "FAILED"]},
+    "experiment_metadata": {
+      "type": "object",
+      "required": ["experiment_name", "validation_label", "backend_name", "created_at"],
+      "properties": {
+        "experiment_name": {"type": "string"},
+        "validation_label": {"const": "SYNTHETIC_VALIDATION"},
+        "backend_name": {"type": ["string", "null"]},
+        "created_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": true
+    },
+    "configuration": {"type": "object"},
+    "circuit": {
+      "type": "object",
+      "required": ["ideal", "observed"],
+      "properties": {
+        "ideal": {"type": "array"},
+        "observed": {"type": "array"}
+      }
+    },
+    "ideal_distribution": {"$ref": "#/$defs/distribution"},
+    "ideal_statevector_distribution": {"$ref": "#/$defs/distribution"},
+    "simulator_observed_counts": {"type": ["object", "null"], "additionalProperties": {"type": "integer", "minimum": 0}},
+    "observed_counts": {"type": ["object", "null"], "additionalProperties": {"type": "integer", "minimum": 0}},
+    "observed_distribution": {"$ref": "#/$defs/distribution"},
+    "anomaly": {"type": ["object", "null"], "description": "Full DistributionComparisonResult returned by the existing statistics layer."},
+    "diagnosis": {"type": ["object", "null"], "description": "Full DiagnosisResult including nested statistics and localization results."},
+    "program_evidence": {"type": ["object", "null"], "description": "Full FaultLocalizationResult."},
+    "hardware_evidence": {"type": ["object", "null"], "description": "Full HardwareFaultLocalizationResult."},
+    "execution_metadata": {"type": "object"},
+    "reproducibility": {
+      "type": "object",
+      "required": ["random_seed", "simulator_version", "fingerprint", "fingerprint_excludes"],
+      "properties": {
+        "random_seed": {"type": "integer", "minimum": 0},
+        "simulator_version": {"type": "string"},
+        "fingerprint": {"type": "string"},
+        "fingerprint_excludes": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "errors": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "distribution": {
+      "type": ["object", "null"],
+      "additionalProperties": {"type": "number", "minimum": 0}
+    }
+  },
+  "additionalProperties": true
+}

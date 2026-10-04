@@ -1,0 +1,287 @@
+{
+  "anomaly": {
+    "anomaly_detected": true,
+    "expected_distribution": {
+      "0": 0.0,
+      "1": 1.0
+    },
+    "finite_shot_guard": 0.05,
+    "hellinger_distance": 0.5513886602445205,
+    "js_divergence": 0.22442699284125117,
+    "message": "Observed distribution differs from expected distribution by TVD=0.515625, which exceeds threshold=0.050000.",
+    "observed_distribution": {
+      "0": 0.515625,
+      "1": 0.484375
+    },
+    "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+    "shots": 512,
+    "threshold": 0.05,
+    "total_variation_distance": 0.515625
+  },
+  "circuit": {
+    "ideal": [
+      [
+        "x",
+        0
+      ],
+      [
+        "measure",
+        0
+      ]
+    ],
+    "observed": [
+      [
+        "h",
+        0
+      ],
+      [
+        "measure",
+        0
+      ]
+    ]
+  },
+  "configuration": {
+    "anomaly_threshold": 0.05,
+    "backend_name": null,
+    "circuit": [
+      [
+        "x",
+        0
+      ],
+      [
+        "measure",
+        0
+      ]
+    ],
+    "description": "Expected X is replaced by H; both expected and observed circuits run locally with the same seed.",
+    "experiment_name": "program_fault_seeded_local",
+    "hardware_parameters": {
+      "coupling_map": [],
+      "qubits": {
+        "0": {
+          "readout_error": 0.0,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        }
+      }
+    },
+    "noise_parameters": null,
+    "num_qubits": 1,
+    "observed_circuit": [
+      [
+        "h",
+        0
+      ],
+      [
+        "measure",
+        0
+      ]
+    ],
+    "observed_counts": null,
+    "random_seed": 1729,
+    "shots": 512,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "diagnosis": {
+    "anomaly_detected": true,
+    "category": "PROGRAM_FAULT",
+    "evidence": [
+      "Observed distribution differs from expected distribution by TVD=0.515625, which exceeds threshold=0.050000.",
+      "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+      "Mismatch score = 0.50",
+      "No qubit, edge, or gate calibration metric crossed the threshold=0.0500.",
+      "No gate calibration entry is available for h on qubits (0,)."
+    ],
+    "hardware_evidence_candidates": [],
+    "hardware_result": {
+      "anomaly_metric": 0.5,
+      "candidates": [],
+      "evidence": [
+        "No qubit, edge, or gate calibration metric crossed the threshold=0.0500."
+      ],
+      "summary": "No hardware fault candidates exceeded the configured threshold.",
+      "threshold": 0.05
+    },
+    "missing_evidence": [
+      "No gate calibration entry is available for h on qubits (0,)."
+    ],
+    "program_evidence_candidates": [
+      {
+        "actual_signature": [
+          "h",
+          [],
+          [
+            0.0
+          ]
+        ],
+        "evidence": [
+          "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+          "Mismatch score = 0.50"
+        ],
+        "expected_signature": [
+          "x",
+          [],
+          [
+            0.0
+          ]
+        ],
+        "index": 0,
+        "operation": "h",
+        "qubits": [],
+        "reason": "Gate operation differs from expected circuit",
+        "score": 0.5
+      }
+    ],
+    "program_result": {
+      "anomaly_metric": 0.5,
+      "candidates": [
+        {
+          "actual_signature": [
+            "h",
+            [],
+            [
+              0.0
+            ]
+          ],
+          "evidence": [
+            "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+            "Mismatch score = 0.50"
+          ],
+          "expected_signature": [
+            "x",
+            [],
+            [
+              0.0
+            ]
+          ],
+          "index": 0,
+          "operation": "h",
+          "qubits": [],
+          "reason": "Gate operation differs from expected circuit",
+          "score": 0.5
+        }
+      ],
+      "evidence": [
+        "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+        "Mismatch score = 0.50"
+      ],
+      "summary": "Program fault localization identified the following likely offending operation(s): step 0 (h)",
+      "threshold": 0.05
+    },
+    "statistics_result": {
+      "anomaly_detected": true,
+      "expected_distribution": {
+        "0": 0.0,
+        "1": 1.0
+      },
+      "finite_shot_guard": 0.05,
+      "hellinger_distance": 0.5513886602445205,
+      "js_divergence": 0.22442699284125117,
+      "message": "Observed distribution differs from expected distribution by TVD=0.515625, which exceeds threshold=0.050000.",
+      "observed_distribution": {
+        "0": 0.515625,
+        "1": 0.484375
+      },
+      "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+      "shots": 512,
+      "threshold": 0.05,
+      "total_variation_distance": 0.515625
+    },
+    "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+  },
+  "errors": [],
+  "execution_metadata": {
+    "backend_api_used": false,
+    "execution_kind": "SYNTHETIC_VALIDATION",
+    "execution_target": "LOCAL_SIMULATOR",
+    "generated_at": "2026-10-03T09:50:04+00:00",
+    "noise_parameters_applied": false,
+    "numpy_version": "2.5.3",
+    "observation_source": "SEEDED_LOCAL_SIMULATOR_SHOTS",
+    "python_version": "3.12.10",
+    "random_seed": 1729,
+    "shots": 512
+  },
+  "experiment_metadata": {
+    "backend_name": null,
+    "created_at": "2026-10-03T09:50:04+00:00",
+    "experiment_name": "program_fault_seeded_local",
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "hardware_evidence": {
+    "anomaly_metric": 0.5,
+    "candidates": [],
+    "evidence": [
+      "No qubit, edge, or gate calibration metric crossed the threshold=0.0500."
+    ],
+    "summary": "No hardware fault candidates exceeded the configured threshold.",
+    "threshold": 0.05
+  },
+  "ideal_distribution": {
+    "0": 0.0,
+    "1": 1.0
+  },
+  "ideal_statevector_distribution": {
+    "0": 0.0,
+    "1": 1.0
+  },
+  "observed_counts": {
+    "0": 264,
+    "1": 248
+  },
+  "observed_distribution": {
+    "0": 0.515625,
+    "1": 0.484375
+  },
+  "program_evidence": {
+    "anomaly_metric": 0.5,
+    "candidates": [
+      {
+        "actual_signature": [
+          "h",
+          [],
+          [
+            0.0
+          ]
+        ],
+        "evidence": [
+          "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+          "Mismatch score = 0.50"
+        ],
+        "expected_signature": [
+          "x",
+          [],
+          [
+            0.0
+          ]
+        ],
+        "index": 0,
+        "operation": "h",
+        "qubits": [],
+        "reason": "Gate operation differs from expected circuit",
+        "score": 0.5
+      }
+    ],
+    "evidence": [
+      "Step 0: expected x()(0.0,) but observed h()(0.0,)",
+      "Mismatch score = 0.50"
+    ],
+    "summary": "Program fault localization identified the following likely offending operation(s): step 0 (h)",
+    "threshold": 0.05
+  },
+  "reproducibility": {
+    "deterministic_localizer_measurements": "measurement operations mapped to barriers for localization only",
+    "fingerprint": "18c6d6582b6b8c81b24a9e196b72667b7d606d94c4809cd56e05113c594b948d",
+    "fingerprint_excludes": [
+      "execution_metadata.generated_at",
+      "reproducibility.fingerprint"
+    ],
+    "random_seed": 1729,
+    "simulator_version": "project-statevector-current"
+  },
+  "simulator_observed_counts": {
+    "0": 264,
+    "1": 248
+  },
+  "status": "COMPLETED"
+}
