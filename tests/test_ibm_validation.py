@@ -1,5 +1,6 @@
 from types import SimpleNamespace
 import importlib.util
+import sys
 
 import pytest
 
@@ -44,12 +45,87 @@ class BackendServiceFixture:
 
 
 def test_backend_discovery_parses_injected_offline_fixture_without_claiming_live_discovery():
-    result = discover_ibm_backends(service=BackendServiceFixture())
+    result = discover_ibm_backends(service=BackendServiceFixture(), token="fixture-token")
 
     assert result["status"] == "PARSED_INJECTED_SERVICE"
     assert result["discovery_source"] == "INJECTED_SERVICE_FIXTURE"
     assert result["backends"] == [{"name": "offline-fixture-backend", "num_qubits": 2, "operational": True}]
-    assert result["access"]["status"] == "BLOCKED"
+    assert result["access"]["status"] == "ACCESS_CONFIGURED"
+
+
+def test_discovery_uses_explicit_runtime_credentials(monkeypatch):
+    import ibm_validation
+
+    calls = {}
+
+    class RuntimeServiceFixture:
+        def __init__(self, **kwargs):
+            calls.update(kwargs)
+
+        def backends(self):
+            return [BackendFixture()]
+
+    monkeypatch.setitem(sys.modules, "qiskit_ibm_runtime", SimpleNamespace(QiskitRuntimeService=RuntimeServiceFixture))
+    monkeypatch.setattr(ibm_validation, "_explicit_credential_access_status", lambda token: ibm_validation.IBMAccessStatus("ACCESS_CONFIGURED", True, True, True, "explicit token"))
+
+    result = discover_ibm_backends(token="user-token", instance="user/instance", channel="ibm_quantum_platform")
+
+    assert calls == {"channel": "ibm_quantum_platform", "token": "user-token", "instance": "user/instance"}
+    assert result["status"] == "DISCOVERED"
+
+
+@pytest.mark.parametrize("token", ["", "   ", None])
+def test_discovery_blocks_missing_token_without_constructing_runtime(monkeypatch, token):
+    import ibm_validation
+
+    def forbidden(**kwargs):
+        pytest.fail("Runtime service must not be constructed without an explicit token")
+
+    monkeypatch.setitem(sys.modules, "qiskit_ibm_runtime", SimpleNamespace(QiskitRuntimeService=forbidden))
+    monkeypatch.setattr(ibm_validation, "_explicit_credential_access_status", lambda value: ibm_validation.IBMAccessStatus("BLOCKED", True, True, False, None, "token required"))
+
+    result = discover_ibm_backends(token=token)
+
+    assert result["status"] == "BLOCKED"
+
+
+def test_execute_passes_explicit_credentials_without_saved_account_fallback(monkeypatch):
+    import ibm_validation
+
+    calls = {}
+
+    class RuntimeServiceFixture:
+        def __init__(self, **kwargs):
+            calls.update(kwargs)
+
+        def backend(self, name):
+            calls["backend_name"] = name
+            raise RuntimeError("stop after authenticated backend selection")
+
+    monkeypatch.setitem(sys.modules, "qiskit_ibm_runtime", SimpleNamespace(QiskitRuntimeService=RuntimeServiceFixture))
+    monkeypatch.setattr(ibm_validation, "_explicit_credential_access_status", lambda token: ibm_validation.IBMAccessStatus("ACCESS_CONFIGURED", True, True, True, "explicit token"))
+    monkeypatch.setattr(ibm_validation, "build_circuit_plan", lambda circuit: ibm_validation.CircuitPlan(1, []))
+    monkeypatch.setattr(ibm_validation, "ideal_distribution", lambda circuit, width: {"0": 1.0})
+    monkeypatch.setattr(ibm_validation, "convert_to_qiskit_circuit", lambda circuit: ibm_validation.CircuitConversionResult("CONVERTED", object(), ibm_validation.CircuitPlan(1, [])))
+    monkeypatch.setattr(ibm_validation, "check_ibm_access_status", lambda: pytest.fail("must not inspect saved account credentials"))
+
+    result = execute_on_ibm_backend([("x", 0)], backend_name="user-backend", token="user-token", instance="user/instance")
+
+    assert calls == {"channel": "ibm_quantum_platform", "token": "user-token", "instance": "user/instance", "backend_name": "user-backend"}
+    assert result.overall_status == "FAILED"
+    assert "Backend selection failed" in result.errors[0]
+
+
+def test_execute_blocks_empty_token_without_runtime_service(monkeypatch):
+    import ibm_validation
+
+    monkeypatch.setattr(ibm_validation, "_explicit_credential_access_status", lambda token: ibm_validation.IBMAccessStatus("BLOCKED", True, True, False, None, "token required"))
+    monkeypatch.setitem(sys.modules, "qiskit_ibm_runtime", SimpleNamespace(QiskitRuntimeService=lambda **kwargs: pytest.fail("must not authenticate")))
+
+    result = execute_on_ibm_backend([("x", 0)], backend_name="user-backend", token="")
+
+    assert result.overall_status == "BLOCKED"
+    assert result.real_hardware_executed is False
 
 
 def test_calibration_conversion_includes_backend_qubit_gate_and_edge_data():
@@ -163,7 +239,7 @@ def test_offline_execution_uses_deterministic_fixture_and_never_claims_ibm():
     assert first.real_hardware_executed is False
     assert first.observed_counts == second.observed_counts
     assert first.diagnosis == second.diagnosis
-    assert first_data["real_ibm_status"] == "BLOCKED"
+    assert first_data["real_ibm_status"] == "NOT_EXECUTED"
     assert first_data["calibration_snapshot"]["capture_source"] == "OFFLINE_FIXTURE"
     assert first_data["metrics"]["accuracy"] is None
 
@@ -171,7 +247,7 @@ def test_offline_execution_uses_deterministic_fixture_and_never_claims_ibm():
 def test_real_access_detection_and_execution_block_without_dependencies_or_credentials():
     access = check_ibm_access_status()
     if not access.qiskit_available or not access.runtime_available or not access.credentials_detected:
-        result = execute_on_ibm_backend([("x", 0)], backend_name="user-selected", shots=16)
+        result = execute_on_ibm_backend([("x", 0)], backend_name="user-selected", token="", shots=16)
         assert result.overall_status == "BLOCKED"
         assert result.real_hardware_executed is False
         assert result.job_id is None

@@ -182,7 +182,14 @@ def _parse_operation(item: Any) -> NormalizedOperation:
             classical_bits = tuple(_checked_index(value, "classical bit") for value in operands[1]) if len(operands) > 1 else ()
         else:
             qubits = (_checked_index(operands[0], "qubit"),)
-            classical_bits = (_checked_index(operands[1], "classical bit"),) if len(operands) > 1 else ()
+            if len(operands) > 1:
+                classical_operand = operands[1]
+                if isinstance(classical_operand, (list, tuple)):
+                    classical_bits = tuple(_checked_index(value, "classical bit") for value in classical_operand)
+                else:
+                    classical_bits = (_checked_index(classical_operand, "classical bit"),)
+            else:
+                classical_bits = ()
         if len(operands) > 2:
             raise ValueError("measure accepts qubits and optional classical bits")
         return NormalizedOperation(name, qubits, (), classical_bits)
@@ -617,25 +624,44 @@ def capture_backend_calibration(backend: Any, *, capture_source: str = "IBM_BACK
     )
 
 
-def _runtime_service(channel: str = "ibm_quantum_platform") -> Any:
+def _runtime_service(token: str, instance: str | None = None, channel: str = "ibm_quantum_platform") -> Any:
     from qiskit_ibm_runtime import QiskitRuntimeService
 
-    token = next((os.environ[name] for name in ("QISKIT_IBM_TOKEN", "IBM_QUANTUM_TOKEN", "QISKIT_IBM_API_KEY") if os.environ.get(name)), None)
-    instance = next((os.environ[name] for name in ("QISKIT_IBM_INSTANCE", "IBM_QUANTUM_INSTANCE") if os.environ.get(name)), None)
-    kwargs: dict[str, Any] = {"channel": channel}
-    if token:
-        kwargs["token"] = token
+    kwargs: dict[str, Any] = {"channel": channel, "token": token}
     if instance:
         kwargs["instance"] = instance
     return QiskitRuntimeService(**kwargs)
 
 
-def discover_ibm_backends(service: Any | None = None, *, channel: str = "ibm_quantum_platform") -> dict[str, Any]:
-    access = check_ibm_access_status()
+def _explicit_credential_access_status(token: str | None) -> IBMAccessStatus:
+    qiskit_available = importlib.util.find_spec("qiskit") is not None
+    runtime_available = importlib.util.find_spec("qiskit_ibm_runtime") is not None
+    if not qiskit_available or not runtime_available:
+        missing = [name for name, available in (("qiskit", qiskit_available), ("qiskit-ibm-runtime", runtime_available)) if not available]
+        return IBMAccessStatus("BLOCKED", qiskit_available, runtime_available, bool(token), "explicit token" if token else None, f"Required package(s) not installed: {', '.join(missing)}")
+    if not isinstance(token, str) or not token.strip():
+        return IBMAccessStatus("BLOCKED", True, True, False, None, "An explicit IBM Quantum token is required for live IBM operations.")
+    return IBMAccessStatus("ACCESS_CONFIGURED", True, True, True, "explicit token")
+
+
+def _environment_runtime_service(channel: str) -> Any:
+    """Legacy CLI-only service creation using the user's configured environment."""
+    token = next((os.environ[name] for name in ("QISKIT_IBM_TOKEN", "IBM_QUANTUM_TOKEN", "QISKIT_IBM_API_KEY") if os.environ.get(name)), None)
+    instance = next((os.environ[name] for name in ("QISKIT_IBM_INSTANCE", "IBM_QUANTUM_INSTANCE") if os.environ.get(name)), None)
+    if token:
+        return _runtime_service(token, instance, channel)
+    from qiskit_ibm_runtime import QiskitRuntimeService
+    return QiskitRuntimeService(channel=channel)
+
+
+def discover_ibm_backends(service: Any | None = None, *, token: str, instance: str | None = None, channel: str = "ibm_quantum_platform") -> dict[str, Any]:
+    access = _explicit_credential_access_status(token)
+    if not isinstance(token, str) or not token.strip():
+        return {"status": "BLOCKED", "discovery_source": "IBM_RUNTIME", "backends": [], "access": access.to_dict(), "error": access.reason}
     if service is None and access.status != "ACCESS_CONFIGURED":
         return {"status": "BLOCKED", "discovery_source": "IBM_RUNTIME", "backends": [], "access": access.to_dict(), "error": access.reason}
     try:
-        runtime_service = service if service is not None else _runtime_service(channel)
+        runtime_service = service if service is not None else _runtime_service(token, instance, channel)
         backends = runtime_service.backends()
         found = []
         for backend in backends:
@@ -951,10 +977,10 @@ def _job_identifier(job: Any) -> str | None:
     return str(value) if value is not None else None
 
 
-def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, shots: int = 1024, channel: str = "ibm_quantum_platform", optimization_level: int = 1) -> IBMValidationResult:
+def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: str, instance: str | None = None, shots: int = 1024, channel: str = "ibm_quantum_platform", optimization_level: int = 1) -> IBMValidationResult:
     """Transpile and submit a circuit only when runtime dependencies and credentials exist."""
 
-    access = check_ibm_access_status()
+    access = _explicit_credential_access_status(token)
     plan = build_circuit_plan(circuit)
     if not plan.supported:
         conversion = CircuitConversionResult(
@@ -964,7 +990,7 @@ def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, shots: 
             error="; ".join([*plan.errors, *(item["reason"] for item in plan.unsupported_operations)]),
         )
         return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, conversion=conversion, errors=[conversion.error or "Circuit is unsupported"])
-    if access.status != "ACCESS_CONFIGURED":
+    if not isinstance(token, str) or not token.strip() or access.status != "ACCESS_CONFIGURED":
         return _make_result(status="BLOCKED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, errors=[access.reason or "IBM access is not configured"])
     if not isinstance(shots, int) or shots <= 0:
         return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=0, access=access, errors=["shots must be a positive integer"])
@@ -980,7 +1006,7 @@ def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, shots: 
         return _make_result(status=status, origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, conversion=conversion, errors=[conversion.error or "Circuit conversion failed"])
 
     try:
-        service = _runtime_service(channel)
+        service = _runtime_service(token, instance, channel)
         backend = service.backend(backend_name)
     except Exception as exc:
         return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, conversion=conversion, errors=[f"Backend selection failed: {type(exc).__name__}: {exc}"])
@@ -1062,7 +1088,14 @@ def main() -> int:
     args = parser.parse_args()
 
     if args.list_backends:
-        discovery = discover_ibm_backends(channel=args.channel)
+        # Preserve the legacy CLI behavior: --list-backends may use the configured
+        # environment or saved Qiskit account. The public Python API never does.
+        try:
+            cli_service = _environment_runtime_service(args.channel)
+            discovery = discover_ibm_backends(service=cli_service, token="cli-configured")
+        except Exception as exc:
+            access = check_ibm_access_status()
+            discovery = {"status": "FAILED", "discovery_source": "IBM_RUNTIME", "backends": [], "access": access.to_dict(), "error": f"{type(exc).__name__}: {exc}"}
         result = run_offline_validation(shots=args.shots)
         report = build_ibm_validation_report(result, discovery)
     elif args.offline:

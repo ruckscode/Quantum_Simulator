@@ -4,6 +4,18 @@ from __future__ import annotations
 
 from typing import Any
 
+from .quantum_simulator import QuantumSimulator
+
+
+class SimulationResult:
+    """Counts produced by executing a :class:`QuantumCircuit`."""
+
+    def __init__(self, counts: dict[str, int]):
+        self._counts = counts
+
+    def get_counts(self) -> dict[str, int]:
+        return self._counts
+
 
 class QuantumCircuit:
     """Build a sequence of instructions for :class:`QuantumSimulator`."""
@@ -62,18 +74,18 @@ class QuantumCircuit:
     def sxdg(self, qubit: int) -> None:
         self._append_single_qubit("sxdg", qubit)
 
-    def _append_rotation(self, gate: str, qubit: int, theta: float) -> None:
+    def _append_rotation(self, gate: str, theta: float, qubit: int) -> None:
         self._validate_qubit(qubit)
         self.instructions.append((gate, qubit, theta))
 
-    def rx(self, qubit: int, theta: float) -> None:
-        self._append_rotation("rx", qubit, theta)
+    def rx(self, theta: float, qubit: int) -> None:
+        self._append_rotation("rx", theta, qubit)
 
-    def ry(self, qubit: int, theta: float) -> None:
-        self._append_rotation("ry", qubit, theta)
+    def ry(self, theta: float, qubit: int) -> None:
+        self._append_rotation("ry", theta, qubit)
 
-    def rz(self, qubit: int, theta: float) -> None:
-        self._append_rotation("rz", qubit, theta)
+    def rz(self, theta: float, qubit: int) -> None:
+        self._append_rotation("rz", theta, qubit)
 
     def cx(self, control: int, target: int) -> None:
         self._validate_distinct_qubits(control, target)
@@ -109,3 +121,10 @@ class QuantumCircuit:
 
     def measure_all(self) -> None:
         self.instructions.append(("measure", list(range(self.n_qubits))))
+
+    def run(self, shots: int = 1000, seed: int | None = None) -> SimulationResult:
+        if isinstance(shots, bool) or not isinstance(shots, int) or shots <= 0:
+            raise ValueError("shots must be a positive integer")
+        simulator = QuantumSimulator(self.n_qubits)
+        counts = simulator.run_shots(self.instructions, shots=shots, seed=seed)
+        return SimulationResult(counts)
