@@ -1,0 +1,297 @@
+buggy_circuit,case_id,circuit_extracted,diagnosed,errors,evaluation_note,executable,execution_status,fault_category,gate_type,ground_truth_category,ground_truth_location,ground_truth_status,mutation_type,num_qubits,predicted_category,predicted_location,reference_fixed_circuit,source_level_mutation,source_loaded,status,translated,unsupported_reason
+,Bugs4Q-1,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,unsupported_source_construct: non-default controlled-gate options require explicit control-state semantics
+,Bugs4Q-2,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,out_of_scope: no concrete QuantumCircuit construction found
+"[[""x"", 0]]",Bugs4Q-3,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,1,NO_ANOMALY,,"[[""x"", 0]]","19c19,20
+< tomo = ProcessTomography(
+---
+> # or       tomo = ProcessTomography(circuit=circ)
+> tomo = ProcessTomography(                   
+23c24
+<     preparation_basis=PauliMeasurementBasis(),
+---
+>     preparation_basis=PauliPreparationBasis(),
+",True,OK,True,
+"[[""x"", 0], [""x"", 0]]",Bugs4Q-4,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Simulation Failed,,,,BUG_TYPE_METADATA_ONLY,source_mutation,8,NO_ANOMALY,,"[[""x"", 0], [""x"", 0]]","12c13,14
+< job = backend.run(adder)
+---
+> transpiled_adder = transpile(adder, backend)
+> job = backend.run(transpiled_adder)
+",True,OK,True,
+"[[""measure"", [0], [0]]]",Bugs4Q-5,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,1,NO_ANOMALY,,"[[""measure"", [0], [0]]]","2c2
+< #backend = Aer.get_backend('qasm_simulator_py')
+---
+> 
+9,10c9
+< qc = QuantumCircuit()
+< qc.from_qasm_str(qasm)
+---
+> qc = QuantumCircuit.from_qasm_str(qasm)
+",True,OK,True,
+,Bugs4Q-6,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,unsupported_source_construct: append requires a circuit representation not supported by the translator
+,Bugs4Q-7,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,unsupported_source_construct: append requires a circuit representation not supported by the translator
+"[[""crz"", 3, 0, 1.5707963267948966], [""crz"", 3, 2, 0.7853981633974483]]",Bugs4Q-8,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,4,NO_ANOMALY,,"[[""crz"", 0, 2, 1.5707963267948966], [""crz"", 0, 3, 0.7853981633974483]]","8,9c8,9
+< circ.crz(pi/2,2,0)
+< circ.crz(pi/4,2,1)
+---
+> circ.crz(pi/2,0,1)
+> circ.crz(pi/4,0,2)
+",True,OK,True,
+,Bugs4Q-9,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Wrong Command,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,out_of_scope: no concrete QuantumCircuit construction found
+"[[""u1"", 0, 0.24]]",Bugs4Q-10,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,1,NO_ANOMALY,,"[[""u1"", 0, 0.24]]","4c4,5
+< print(qc.decompose())
+---
+> transpile(qc, basis_gates=['u1', 'u2', 'u3', 'cx'])
+> print(qc)
+",True,OK,True,
+,Bugs4Q-11,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,out_of_scope: no concrete QuantumCircuit construction found
+"[[""h"", 0], [""h"", 1], [""measure"", [0, 1], [0, 1]]]",Bugs4Q-12,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,2,NO_ANOMALY,,"[[""h"", 0], [""h"", 1], [""measure"", [0, 1], [0, 1]]]","6c6
+< qc.measure_all()
+---
+> qc.measure(qc.qubits, qc.clbits)
+",True,OK,True,
+,Bugs4Q-13,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,unsupported_source_construct: append requires a circuit representation not supported by the translator
+"[[""h"", 1], [""sdg"", 1], [""cz"", 0, 1], [""h"", 1]]",Bugs4Q-14,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,2,NO_ANOMALY,,"[[""h"", 1], [""sdg"", 1], [""cz"", 0, 1], [""h"", 1]]","5c5
+< 
+---
+> from qiskit.opflow.expectations import PauliExpectation
+16a16
+> exp_val = PauliExpectation().convert(exp_val).reduce()
+21,22c21
+< print('Qasm ', CircuitSampler(QuantumInstance(Aer.get_backend('qasm_simulator'),
+<                                shots=100000)).convert(exp_val).eval())  # = 0 (up to shot noise)
+---
+> print('Qasm ', CircuitSampler(QuantumInstance(Aer.get_backend('qasm_simulator'), shots=100000)).convert(PauliExpectation().convert(exp_val).reduce()).eval()) 
+",True,OK,True,
+,Bugs4Q-15,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,out_of_scope: no concrete QuantumCircuit construction found
+"[[""h"", 0], [""cx"", 0, 1], [""cx"", 1, 2], [""cx"", 2, 3], [""cx"", 3, 4], [""barrier"", 0, 1, 2, 3, 4], [""measure"", [0, 1, 2, 3, 4], [0, 1, 2, 3, 4]]]",Bugs4Q-16,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,5,NO_ANOMALY,,"[[""h"", 0], [""cx"", 0, 1], [""cx"", 1, 2], [""cx"", 2, 3], [""cx"", 3, 4], [""barrier"", 0, 1, 2, 3, 4]]","13d12
+< ghz.measure(qr,cr)
+",True,OK,True,
+"[[""x"", 0], [""measure"", [1, 0, 2], [1, 0, 2]]]",Bugs4Q-17,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,output Wtong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,3,PROGRAM_FAULT,,"[[""x"", 0], [""measure"", [1, 0, 2], [0, 1, 2]]]","8c9
+< qc.measure([1, 0, 2], [1, 0, 2])
+---
+> qc.measure([1, 0, 2], [0, 1, 2])
+",True,OK,True,
+"[[""h"", 0], [""cx"", 0, 1], [""measure"", [0, 1], [0, 1]]]",Bugs4Q-18,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,2,NO_ANOMALY,,"[[""h"", 0], [""cx"", 0, 1], [""measure"", [0, 1], [0, 1]]]","1,4d0
+< import unittest
+< from qiskit import *
+< 
+< class Test(unittest.TestCase):
+6,22c2
+<     
+<     def test_b18(self):
+<         try:
+<             if __name__ == ""__main__"":
+<                 backend = Aer.get_backend('statevector_simulator')
+<                 qc = QuantumCircuit(2, 2)
+<                 qc = QuantumCircuit(2, 2)
+<                 qc.h(0)
+<                 qc.cx(0, 1)
+<                 qc.measure([0,1], [0,1])
+<                 result = execute(qc, backend, 100).result()
+<                 print(result.get_counts(qc))
+<         except TypeError as e:
+<             self.assertEqual(type(e), TypeError)
+<            
+<         else:
+<             self.fail('TypeError not raised')
+---
+> from qiskit import *
+24,25c4,12
+< if __name__ == '__main__':
+<     unittest.main()
+---
+> if __name__ == ""__main__"":
+>     backend = Aer.get_backend('statevector_simulator')
+>     qc = QuantumCircuit(2, 2)
+>     qc = QuantumCircuit(2, 2)
+>     qc.h(0)
+>     qc.cx(0, 1)
+>     qc.measure([0,1], [0,1])
+>     result = execute(qc, backend, 100).result()
+>     print(result.get_counts(qc))
+",True,OK,True,
+"[[""h"", 0], [""cx"", 0, 1]]",Bugs4Q-19,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED, Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,2,NO_ANOMALY,,"[[""h"", 0], [""cx"", 0, 1]]","11,14c10,11
+< qi.Operator.from_label('HI')
+< 
+< # error at this line
+< qi.Operator.from_label('CX')
+---
+> qi.Operator.from_label('H') 
+> qi.Operator.from_label('X')
+",True,OK,True,
+,Bugs4Q-20,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,out_of_scope: no concrete QuantumCircuit construction found
+,Bugs4Q-21,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,out_of_scope: classical conditional execution is not represented by this simulator
+,Bugs4Q-22,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Unfamiliar with API,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,out_of_scope: no concrete QuantumCircuit construction found
+,Bugs4Q-23,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Figure problem,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,out_of_scope_or_unsupported: no supported circuit operations were extractable
+,Bugs4Q-24,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Name conflict/TypeError,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,"unsupported register expression Call(func=Name(id='qr', ctx=Load()), args=[Constant(value=0)], keywords=[])"
+"[[""reset"", 0], [""reset"", 1], [""reset"", 2], [""x"", 0], [""x"", 1], [""ccx"", 0, 1, 2], [""barrier""], [""measure"", [0, 1, 2], [0, 1, 2]]]",Bugs4Q-25,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Label convention is reversed(|011>&|110>),,,,BUG_TYPE_METADATA_ONLY,source_mutation,3,PROGRAM_FAULT,,"[[""reset"", 0], [""reset"", 1], [""reset"", 2], [""x"", 0], [""x"", 1], [""ccx"", 2, 1, 0], [""barrier""], [""measure"", [0, 1, 2], [0, 1, 2]]]","1,28c1,27
+< 
+< from qiskit import QuantumCircuit, assemble
+< from qiskit import Aer, execute
+< from qiskit.tools.visualization import plot_histogram
+< bit = 3
+< bit_lst = list(range(bit))
+< circuit = QuantumCircuit(bit, bit)
+< circuit.reset(0)
+< circuit.reset(1)
+< circuit.reset(2)
+< circuit.x(0)
+< circuit.x(1)    
+< circuit.ccx(0,1,2)
+< circuit.barrier()
+< circuit.measure(bit_lst,bit_lst)
+< circuit.draw(output='mpl')
+< backend = Aer.get_backend('statevector_simulator')
+< statevector=backend.run(assemble(circuit)).result().get_statevector()
+< print(statevector)
+< backend = Aer.get_backend('qasm_simulator')
+< counts1=backend.run(assemble(circuit)).result().get_counts()
+< print(counts1)
+< 
+< 
+< with open('result.txt', 'a') as f:
+<     print(f'011 - {statevector} - {counts1}', file=f)
+< 
+< plot_histogram([counts1], legend=['Simulator'])
+---
+> 
+> from qiskit import QuantumCircuit, assemble
+> from qiskit import Aer, execute
+> from qiskit.tools.visualization import plot_histogram
+> bit = 3
+> bit_lst = list(range(bit))
+> circuit = QuantumCircuit(bit, bit)
+> circuit.reset(0)
+> circuit.reset(1)
+> circuit.reset(2)
+> circuit.x(0)
+> circuit.x(1)    
+> circuit.ccx(2,1,0)
+> circuit.barrier()
+> circuit.measure(bit_lst,bit_lst)
+> circuit.draw(output='mpl')
+> backend = Aer.get_backend('statevector_simulator')
+> statevector=backend.run(assemble(circuit)).result().get_statevector()
+> print(statevector)
+> backend = Aer.get_backend('qasm_simulator')
+> counts1=backend.run(assemble(circuit)).result().get_counts()
+> print(counts1)
+> 
+> with open('result.txt', 'a') as f:
+>     print(f'011 - {statevector} - {counts1}', file=f)
+> 
+> plot_histogram([counts1], legend=['Simulator'])
+",True,OK,True,
+"[[""h"", 0], [""h"", 1], [""cx"", 0, 1], [""measure"", [0, 1], [0, 1]]]",Bugs4Q-26,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Wrong operation with GATE,,,,BUG_TYPE_METADATA_ONLY,source_mutation,2,PROGRAM_FAULT,,"[[""h"", 0], [""x"", 1], [""cx"", 0, 1], [""measure"", [0, 1], [0, 1]]]","6c6
+< circuit.h(1)
+---
+> circuit.x(1)
+",True,OK,True,
+,Bugs4Q-27,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,QFT operation*,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,unsupported_source_construct: helper IQFT needs safe circuit-body expansion
+,Bugs4Q-28,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,unsupported_source_construct: iden requires a circuit representation not supported by the translator
+,Bugs4Q-29,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,unsupported_source_construct: helper build_state_vector needs safe circuit-body expansion
+"[[""x"", 4], [""h"", 4], [""h"", 0], [""h"", 1], [""h"", 2], [""h"", 3], [""x"", 2], [""ccx"", 1, 2, 5], [""ccx"", 3, 5, 6], [""x"", 2], [""ccx"", 0, 1, 7], [""x"", 5], [""x"", 6], [""x"", 7], [""ccx"", 6, 7, 4], [""x"", 5], [""x"", 6], [""x"", 7], [""x"", 4], [""reset"", 5], [""reset"", 6], [""reset"", 7], [""h"", 0], [""h"", 1], [""h"", 2], [""h"", 3], [""x"", 0], [""x"", 1], [""x"", 2], [""x"", 3], [""ccx"", 0, 1, 5], [""ccx"", 2, 5, 6], [""ccx"", 3, 6, 4], [""x"", 0], [""x"", 1], [""x"", 2], [""x"", 3], [""x"", 4], [""h"", 0], [""h"", 1], [""h"", 2], [""h"", 3], [""reset"", 5], [""reset"", 6], [""reset"", 7], [""x"", 2], [""ccx"", 1, 2, 5], [""ccx"", 3, 5, 6], [""x"", 2], [""ccx"", 0, 1, 7], [""x"", 5], [""x"", 6], [""x"", 7], [""ccx"", 6, 7, 4], [""x"", 5], [""x"", 6], [""x"", 7], [""x"", 4], [""reset"", 5], [""reset"", 6], [""reset"", 7], [""h"", 0], [""h"", 1], [""h"", 2], [""h"", 3], [""x"", 0], [""x"", 1], [""x"", 2], [""x"", 3], [""ccx"", 0, 1, 5], [""ccx"", 2, 5, 6], [""ccx"", 3, 6, 4], [""x"", 0], [""x"", 1], [""x"", 2], [""x"", 3], [""x"", 4], [""h"", 0], [""h"", 1], [""h"", 2], [""h"", 3], [""reset"", 5], [""reset"", 6], [""reset"", 7], [""measure"", [0, 1, 2, 3], [0, 1, 2, 3]]]",Bugs4Q-30,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,4,PROGRAM_FAULT,,"[[""x"", 4], [""h"", 4], [""h"", 0], [""h"", 1], [""h"", 2], [""h"", 3], [""x"", 2], [""ccx"", 1, 2, 5], [""ccx"", 3, 5, 6], [""ccx"", 0, 1, 7], [""x"", 5], [""x"", 6], [""x"", 7], [""ccx"", 6, 7, 4], [""x"", 4], [""x"", 5], [""x"", 6], [""x"", 7], [""ccx"", 0, 1, 7], [""ccx"", 3, 5, 6], [""ccx"", 1, 2, 5], [""x"", 2], [""h"", 0], [""h"", 1], [""h"", 2], [""h"", 3], [""x"", 0], [""x"", 1], [""x"", 2], [""x"", 3], [""ccx"", 0, 1, 5], [""ccx"", 2, 5, 6], [""ccx"", 3, 6, 4], [""x"", 0], [""x"", 1], [""x"", 2], [""x"", 3], [""x"", 4], [""ccx"", 2, 5, 6], [""ccx"", 0, 1, 5], [""h"", 0], [""h"", 1], [""h"", 2], [""h"", 3], [""reset"", 5], [""reset"", 6], [""reset"", 7], [""x"", 2], [""ccx"", 1, 2, 5], [""ccx"", 3, 5, 6], [""ccx"", 0, 1, 7], [""x"", 5], [""x"", 6], [""x"", 7], [""ccx"", 6, 7, 4], [""x"", 4], [""x"", 5], [""x"", 6], [""x"", 7], [""ccx"", 0, 1, 7], [""ccx"", 3, 5, 6], [""ccx"", 1, 2, 5], [""x"", 2], [""h"", 0], [""h"", 1], [""h"", 2], [""h"", 3], [""x"", 0], [""x"", 1], [""x"", 2], [""x"", 3], [""ccx"", 0, 1, 5], [""ccx"", 2, 5, 6], [""ccx"", 3, 6, 4], [""x"", 0], [""x"", 1], [""x"", 2], [""x"", 3], [""x"", 4], [""ccx"", 2, 5, 6], [""ccx"", 0, 1, 5], [""h"", 0], [""h"", 1], [""h"", 2], [""h"", 3], [""reset"", 5], [""reset"", 6], [""reset"", 7], [""measure"", [0, 1, 2, 3], [0, 1, 2, 3]]]","23d22
+<     circuit.x( search_register[2] )
+25c24
+<     # Encode S0 * S1
+---
+> # Encode S0 * S1
+28c27
+<     # Encode oracle ((S0 * S1) + (S1 * !S2 * S3))
+---
+> # Encode oracle ((S0 * S1) + (S1 * !S2 * S3))
+31d29
+<     circuit.x(ancillaries)
+34,35c32,37
+<     # Reset ancillaries to be used later
+<     circuit.reset(ancillaries)
+---
+> # Return ancillaries to 0s so they can be used later
+>     circuit.x(ancillaries)
+>     circuit.ccx( search_register[0], search_register[1], ancillaries[2] )
+>     circuit.ccx( search_register[3], ancillaries[0], ancillaries[1] )
+>     circuit.ccx( search_register[1], search_register[2], ancillaries[0] )
+>     circuit.x( search_register[2] )
+37c39
+<     # Do rotation about the average
+---
+> # Do rotation about the average
+44a47,50
+> 
+> # Return ancillaries to 0s for use later
+>     circuit.ccx( search_register[2], ancillaries[0], ancillaries[1] )
+>     circuit.ccx( search_register[0], search_register[1], ancillaries[0] )
+47c53
+<     # Reset ancillaries for use later
+---
+> # Reset ancillaries for use later
+",True,OK,True,
+"[[""x"", 0], [""cx"", 0, 1], [""measure"", [0, 1, 2], [0, 1, 2]]]",Bugs4Q-31,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,3,PROGRAM_FAULT,,"[[""x"", 0], [""cx"", 0, 1], [""measure"", [0, 1, 2], [2, 1, 0]]]","21c21
+< circuit.measure([0,1,2], [0,1,2])
+---
+> circuit.measure([0,1,2], [2,1,0])
+",True,OK,True,
+,Bugs4Q-32,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,"unsupported source expression: Call(func=Name(id='len', ctx=Load()), args=[Attribute(value=Name(id='circ', ctx=Load()), attr='qubits', ctx=Load())], keywords=[])"
+,Bugs4Q-33,False,False,"[""invalid syntax (<unknown>, line 10)""]",Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,PARSING_ERROR,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,PARSING_ERROR,False,
+"[[""h"", 0], [""cx"", 0, 1]]",Bugs4Q-34,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,2,NO_ANOMALY,,"[[""h"", 0], [""cx"", 0, 1]]","5c5
+< sv = Statevector.from_label('01')
+---
+> sv = Statevector.from_label('10')
+",True,OK,True,
+,Bugs4Q-35,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,out_of_scope: no concrete QuantumCircuit construction found
+,Bugs4Q-36,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,unsupported_source_construct: wait requires a circuit representation not supported by the translator
+,Bugs4Q-37,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,"unsupported source expression: Call(func=Name(id='len', ctx=Load()), args=[Name(id='transpiled_circs', ctx=Load())], keywords=[])"
+"[[""h"", 0], [""cx"", 0, 1]]",Bugs4Q-38,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,2,NO_ANOMALY,,"[[""h"", 0], [""cnot"", 0, 1]]","2c2,8
+< from qiskit.providers.aer.library import *
+---
+> from qiskit.quantum_info import Statevector
+> qc = QuantumCircuit(2)
+> st0 = Statevector.from_instruction(qc) 
+> qc.h(0)
+> st1 = Statevector.from_instruction(qc)
+> qc.cnot(0, 1)
+> st2 = Statevector.from_instruction(qc)
+4,11c10,22
+< q1 = QuantumCircuit(2)
+< q1.save_statevector() # Save initial state
+< q1.h(0)
+< q1.save_statevector() # Save state after Hadamard
+< q1.cx(0, 1)
+< q1.save_statevector() # Save state after CNOT (also a final state)
+< job = execute(q1, backend=Aer.get_backend('aer_simulator'), shots=1024)
+< statevectors = job.result().get_statevector()
+---
+> print(st0)
+> print(st1)
+> print(st2)
+> 
+> 
+> Statevector([1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j],
+>         dims=(2, 2))
+> Statevector([0.70710678+0.j, 0.70710678+0.j, 0.             +0.j,
+>          0.        +0.j],
+>         dims=(2, 2))
+> Statevector([0.70710678+0.j, 0.        +0.j, 0.        +0.j,
+>          0.70710678+0.j],
+>         dims=(2, 2))
+\ No newline at end of file
+",True,OK,True,
+"[[""cx"", 3, 1], [""cx"", 1, 0], [""cx"", 0, 1], [""ccx"", 3, 2, 1], [""cx"", 1, 2], [""cx"", 3, 2], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]]]",Bugs4Q-39,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Output Wrong,,,,BUG_TYPE_METADATA_ONLY,source_mutation,4,PROGRAM_FAULT,,"[[""h"", 0], [""h"", 1], [""h"", 2], [""h"", 3], [""cx"", 3, 1], [""cx"", 1, 0], [""cx"", 0, 1], [""ccx"", 3, 2, 1], [""cx"", 1, 2], [""cx"", 3, 2], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]]]","3a4,5
+> for i in range(4):
+>     qc.h(i)
+17c19
+< plot_histogram(count) 
+\ No newline at end of file
+---
+> plot_histogram(count)
+\ No newline at end of file
+",True,OK,True,
+,Bugs4Q-40,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,unsupported_source_construct: initialize requires a circuit representation not supported by the translator
+,Bugs4Q-41,False,False,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,False,UNSUPPORTED,Simulation Failed,,,,BUG_TYPE_METADATA_ONLY,source_mutation,0,,,,,True,UNSUPPORTED,False,"unsupported source expression: Name(id='num_qubits', ctx=Load())"
+"[[""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3]]",Bugs4Q-42,True,True,[],Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.,True,COMPLETED,Throw Exceptions,,,,BUG_TYPE_METADATA_ONLY,source_mutation,4,NO_ANOMALY,,"[[""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3], [""x"", 2], [""h"", 0], [""h"", 1], [""u1"", 0, 3.141592653589793], [""u1"", 1, 1.5707963267948966], [""cx"", 1, 2], [""h"", 0], [""cp"", 0, 1, -1.5707963267948966], [""h"", 1], [""x"", 1], [""x"", 1], [""h"", 1], [""cp"", 0, 1, 1.5707963267948966], [""h"", 0], [""cx"", 1, 2], [""u1"", 1, -1.5707963267948966], [""u1"", 0, -3.141592653589793], [""h"", 1], [""h"", 0], [""measure"", [0], [0]], [""measure"", [1], [1]], [""measure"", [2], [2]], [""measure"", [3], [3]], [""reset"", 0], [""reset"", 1], [""reset"", 2], [""reset"", 3]]","61,62c61,62
+<     n0 = n0 + result.get_data(""solve_linear_sys"")['counts']['1000']
+<     n1 = n1 + result.get_data(""solve_linear_sys"")['counts']['1100']
+---
+>     n0 = n0 + result.get_counts()['1000']
+>     n1 = n1 + result.get_counts()['1100']
+",True,OK,True,

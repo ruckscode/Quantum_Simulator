@@ -85,6 +85,17 @@ def test_parses_supported_real_mutant_qasm():
     assert operations[0] == ("ry", 1, 1.5707963267948966)
 
 
+def test_parses_whole_register_measurement(tmp_path):
+    source = tmp_path / "register_measure.qasm"
+    source.write_text(
+        'OPENQASM 2.0; include "qelib1.inc"; qreg q[2]; creg c[2]; measure q -> c;',
+        encoding="utf-8",
+    )
+    operations, width = parse_qasm_file(source)
+    assert width == 2
+    assert operations == [("measure", 0), ("measure", 1)]
+
+
 def test_discovers_pairs_and_executes_supported_real_qasm_mutants():
     dataset = discover_qmutbench_files(QMB_ROOT.parents[1])
 
@@ -93,12 +104,13 @@ def test_discovers_pairs_and_executes_supported_real_qasm_mutants():
     assert all(len(case.source_files) == 2 for case in dataset.cases)
     assert all(case.source_files[0].endswith("ghz_2_qubits.qasm") for case in dataset.cases)
     report = validate_qmutbench_dataset(dataset).to_dict()
-    assert report["executed_cases"] == 11
-    assert report["unsupported_cases"] == 1
-    assert report["diagnosed_cases"] == 11
-    assert sum(case["execution_status"] == "COMPLETED" for case in report["cases"]) == 11
+    assert report["executed_cases"] == 12
+    assert report["unsupported_cases"] == 0
+    assert report["diagnosed_cases"] == 12
+    assert sum(case["execution_status"] == "COMPLETED" for case in report["cases"]) == 12
     assert next(case for case in report["cases"] if case["case_id"] == "ReplaceGate_id_inPositionOfGate_1")["execution_status"] == "COMPLETED"
     assert all(sum(case["original_output"]["counts"].values()) == 1024 for case in report["cases"] if case["execution_status"] == "COMPLETED")
+    assert next(case for case in report["cases"] if case["case_id"] == "AddGate_rxx_inGap_1_")["execution_status"] == "COMPLETED"
 
 
 def _write_qasm_program(path, gate):
@@ -137,16 +149,16 @@ def test_unmatched_mutant_directory_becomes_unsupported_case(tmp_path):
     assert result.execution_status == "NOT_EXECUTED"
 
 
-def test_rxx_mutant_is_unsupported_without_gate_execution():
+def test_rxx_mutant_executes_and_is_diagnosed():
     dataset = discover_qmutbench_files(QMB_ROOT.parents[1])
     case = next(case for case in dataset.cases if "AddGate_rxx" in case.case_id)
     result = validate_qmutbench_case(case)
 
-    assert result.support_status == "UNSUPPORTED"
-    assert result.execution_status == "NOT_EXECUTED"
-    assert result.system_diagnosis is None
-    assert result.original_output is None
-    assert result.mutant_output is None
+    assert result.support_status == "SUPPORTED"
+    assert result.execution_status == "COMPLETED"
+    assert result.system_diagnosis is not None
+    assert result.original_output is not None
+    assert result.mutant_output is not None
 
 
 def test_real_reference_and_supported_mutant_execution_are_recorded():

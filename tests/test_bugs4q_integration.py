@@ -3,12 +3,13 @@ from pathlib import Path
 import pytest
 
 from bugs4q_integration import (
-    INTEGRATED_CASES,
     OFFICIAL_ROOT,
     _extract_source,
     discover_bugs4q_cases,
     run_bugs4q_integration,
 )
+
+SPECIALIZED_CASES = (8, 12, 17, 25, 26, 30, 31, 39)
 
 
 @pytest.fixture(scope="module")
@@ -17,10 +18,10 @@ def integration_report():
 
 
 def test_discovers_only_requested_official_cases():
-    assert tuple(discover_bugs4q_cases()) == (8, 12, 17, 25, 26, 30, 31, 39)
+    assert tuple(discover_bugs4q_cases()) == tuple(range(1, 43))
 
 
-@pytest.mark.parametrize("case_number", INTEGRATED_CASES)
+@pytest.mark.parametrize("case_number", SPECIALIZED_CASES)
 def test_translates_official_sources_and_preserves_measurement_mapping(case_number):
     case_dir = OFFICIAL_ROOT / str(case_number)
     buggy, n_buggy = _extract_source((case_dir / f"buggy_{case_number}.py").read_text(encoding="utf-8"), case_number)
@@ -39,8 +40,8 @@ def test_translates_official_sources_and_preserves_measurement_mapping(case_numb
 
 
 def test_cases_execute_compare_and_keep_evidence_layers_separate(integration_report):
-    assert [case["case_number"] for case in integration_report.cases] == list(INTEGRATED_CASES)
-    for case in integration_report.cases:
+    assert [case["case_number"] for case in integration_report.cases] == list(range(1, 43))
+    for case in (case for case in integration_report.cases if case.get("execution_status") == "COMPLETED"):
         assert case["expected_distribution"]
         assert case["observed_distribution"]
         assert case["behavioral_comparison"]["total_variation_distance"] >= 0
@@ -50,6 +51,17 @@ def test_cases_execute_compare_and_keep_evidence_layers_separate(integration_rep
         assert "bug_type" not in case["system_diagnosis"]
         assert case["ground_truth"]["available"] is False
         assert case["bugs4q_metadata"]["bug_type"]
+
+
+def test_capability_report_keeps_unsupported_and_parse_errors_explicit(integration_report):
+    assert len(integration_report.cases) == 42
+    malformed = next(case for case in integration_report.cases if case["case_number"] == 33)
+    assert malformed["execution_status"] == "PARSING_ERROR"
+    assert malformed["support_status"] == "PARSING_FAILURE"
+    assert malformed["source_loaded"] is True
+    unsupported = next(case for case in integration_report.cases if case["case_number"] == 21)
+    assert unsupported["execution_status"] == "UNSUPPORTED"
+    assert "classical conditional" in unsupported["unsupported_reason"]
 
 
 def test_classical_bit_localization_preserves_both_mappings(integration_report):

@@ -97,3 +97,45 @@ def test_two_qubit_gate(name, operations, expected):
 )
 def test_three_qubit_gate(name, operations, expected):
     assert_probabilities(probabilities(3, operations), expected)
+
+
+def test_rxx_zero_is_identity():
+    from gates import RXX
+    np.testing.assert_allclose(RXX(0), np.eye(4), rtol=0.0, atol=1e-12)
+
+
+def test_rxx_pi_flips_both_bits():
+    sim = QuantumSimulator(2)
+    sim.run_circuit([("rxx", 0, 1, np.pi)])
+    assert_probabilities(sim.get_probabilities(), [0, 0, 0, 1])
+
+
+@pytest.mark.parametrize("theta", [0.23, 0.8, np.pi / 2])
+def test_rxx_state_matches_qiskit_aer_when_available(theta):
+    pytest.importorskip("qiskit_aer")
+    try:
+        from qiskit import QuantumCircuit as AerCircuit, transpile
+        from qiskit_aer import AerSimulator
+    except ImportError:
+        pytest.skip("Qiskit Aer comparison dependencies are unavailable")
+    ours = QuantumSimulator(2)
+    ours.run_circuit([("rxx", 0, 1, theta)])
+    ref = AerCircuit(2)
+    ref.rxx(theta, 0, 1)
+    ref.save_statevector()
+    backend = AerSimulator(method="statevector")
+    expected = backend.run(transpile(ref, backend)).result().get_statevector().data
+    np.testing.assert_allclose(ours.state, expected, rtol=0.0, atol=1e-12)
+
+
+def test_public_quantum_circuit_rxx_and_validation():
+    from quantum_simulator import QuantumCircuit
+    circuit = QuantumCircuit(2)
+    circuit.rxx(np.pi / 3, 0, 1)
+    assert circuit.instructions == [("rxx", 0, 1, np.pi / 3)]
+    with pytest.raises(ValueError):
+        circuit.rxx(0.2, 0, 0)
+    with pytest.raises(ValueError):
+        circuit.rxx(0.2, 0, 2)
+    with pytest.raises((TypeError, ValueError)):
+        circuit.rxx("bad", 0, 1)

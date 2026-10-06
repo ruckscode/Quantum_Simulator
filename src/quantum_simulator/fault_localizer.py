@@ -140,23 +140,11 @@ def _align_operations(expected: Sequence[Any], actual: Sequence[Any]) -> list[tu
 
 
 def _infer_n_qubits(circuit: Sequence[Any]) -> int:
-    max_index = 0
+    max_index = -1
     for instruction in circuit:
-        if isinstance(instruction, dict):
-            qubits = instruction.get("qubits", [])
-            if isinstance(qubits, int):
-                qubits = [qubits]
-            for value in qubits:
-                max_index = max(max_index, int(value))
-            continue
-        if isinstance(instruction, (tuple, list)) and instruction:
-            if str(instruction[0]).lower() == "measure" and len(instruction) > 1 and isinstance(instruction[1], (tuple, list)):
-                for value in instruction[1]:
-                    max_index = max(max_index, int(value))
-                continue
-            for value in instruction[1:]:
-                if isinstance(value, (int, float)) and not isinstance(value, bool):
-                    max_index = max(max_index, int(value))
+        _, qubits, _ = _normalize_operation(instruction)
+        for value in qubits:
+            max_index = max(max_index, int(value))
     return max(1, max_index + 1)
 
 

@@ -329,7 +329,7 @@ class QuantumSimulator:
             gate_failed = False
 
             if hardware_model is not None and op_name not in {"measure", "reset", "barrier"}:
-                if op_name in {"cx", "cnot", "cz", "swap", "ch"}:
+                if op_name in {"cx", "cnot", "cz", "swap", "ch", "rxx", "cp", "crx", "cry", "crz"}:
                     gate_qubits = tuple(int(q) for q in operands[:2])
                 elif op_name in {"ccx", "toffoli", "cswap", "fredkin"}:
                     gate_qubits = tuple(int(q) for q in operands[:3])
@@ -386,7 +386,7 @@ class QuantumSimulator:
                     self._apply_hardware_relaxation(gate_qubits, gate_duration, hardware_model)
                 continue
 
-            if op_name in {"rx", "ry", "rz", "p", "u1", "cp", "crx", "cry", "crz"}:
+            if op_name in {"rx", "ry", "rz", "p", "u1"}:
                 if len(operands) != 2:
                     raise ValueError(f"Gate {op_name!r} expects a qubit and a parameter")
                 qubit = operands[0]
@@ -402,6 +402,22 @@ class QuantumSimulator:
                 qubit = operands[0]
                 params = [float(v) for v in operands[1:]]
                 self.apply_gate(op_name, qubit, *params)
+                if hardware_model is not None:
+                    self._apply_hardware_relaxation(gate_qubits, gate_duration, hardware_model)
+                continue
+
+            if op_name == "rxx":
+                if len(operands) != 3:
+                    raise ValueError("Gate 'rxx' expects two qubit operands and one parameter")
+                self.apply_gate("rxx", [int(operands[0]), int(operands[1])], float(operands[2]))
+                if hardware_model is not None:
+                    self._apply_hardware_relaxation(gate_qubits, gate_duration, hardware_model)
+                continue
+
+            if op_name in {"cp", "crx", "cry", "crz"}:
+                if len(operands) != 3:
+                    raise ValueError(f"Gate {op_name!r} expects two qubit operands and one parameter")
+                self.apply_gate(op_name, [int(operands[0]), int(operands[1])], float(operands[2]))
                 if hardware_model is not None:
                     self._apply_hardware_relaxation(gate_qubits, gate_duration, hardware_model)
                 continue

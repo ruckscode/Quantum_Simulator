@@ -164,6 +164,15 @@ def CRZ(theta):
     return np.diag([1, 1, np.exp(-1j * theta / 2), np.exp(1j * theta / 2)]).astype(complex)
 
 
+def RXX(theta):
+    """Return exp(-i theta/2 (X tensor X)), the two-qubit XX rotation."""
+    c, s = np.cos(theta / 2), -1j * np.sin(theta / 2)
+    return np.array(
+        [[c, 0, 0, s], [0, c, s, 0], [0, s, c, 0], [s, 0, 0, c]],
+        dtype=complex,
+    )
+
+
 # ---------------------------------------------------------------------------
 # Three-qubit gates
 # ---------------------------------------------------------------------------
@@ -235,6 +244,7 @@ GATE_QUBIT_COUNT = {
     "crx": 2,
     "cry": 2,
     "crz": 2,
+    "rxx": 2,
     "ccx": 3,
     "toffoli": 3,
     "cswap": 3,
@@ -253,6 +263,7 @@ PARAMETERIZED_GATES = {
     "crx": CRX,
     "cry": CRY,
     "crz": CRZ,
+    "rxx": RXX,
 }
 
 GATE_REGISTRY = {
@@ -286,6 +297,7 @@ GATE_REGISTRY = {
     "crx": CRX,
     "cry": CRY,
     "crz": CRZ,
+    "rxx": RXX,
     "ccx": CCX,
     "toffoli": CCX,
     "cswap": CSWAP,
@@ -368,6 +380,7 @@ __all__ = [
     "CRX",
     "CRY",
     "CRZ",
+    "RXX",
     "CCX",
     "CSWAP",
     "GATE_REGISTRY",

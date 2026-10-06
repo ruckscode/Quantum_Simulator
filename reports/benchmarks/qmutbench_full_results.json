@@ -1,0 +1,2323 @@
+{
+  "benchmark": "QMutBench",
+  "counts_by_fault_category": {
+    "AddGate": 3,
+    "RemoveGate": 1,
+    "ReplaceGate": 8
+  },
+  "counts_by_gate_type": {
+    "1_": 1,
+    "h_inGap_1_": 1,
+    "h_inPositionOfGate_1": 1,
+    "id_inPositionOfGate_1": 1,
+    "rxx_inGap_1_": 1,
+    "ry_inGap_1_": 1,
+    "rz_inPositionOfGate_1": 1,
+    "s_inPositionOfGate_1": 1,
+    "t_inPositionOfGate_1": 1,
+    "x_inPositionOfGate_1": 1,
+    "y_inPositionOfGate_1": 1,
+    "z_inPositionOfGate_1": 1
+  },
+  "counts_by_mutation_type": {
+    "AddGate": 3,
+    "RemoveGate": 1,
+    "ReplaceGate": 8
+  },
+  "counts_by_num_qubits": {
+    "2": 12
+  },
+  "data_files": [
+    "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\AddGate_h_inGap_1_.qasm",
+    "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\AddGate_rxx_inGap_1_.qasm",
+    "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\AddGate_ry_inGap_1_.qasm",
+    "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\RemoveGate_1_.qasm",
+    "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_h_inPositionOfGate_1.qasm",
+    "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_id_inPositionOfGate_1.qasm",
+    "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_rz_inPositionOfGate_1.qasm",
+    "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_s_inPositionOfGate_1.qasm",
+    "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_t_inPositionOfGate_1.qasm",
+    "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_x_inPositionOfGate_1.qasm",
+    "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_y_inPositionOfGate_1.qasm",
+    "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_z_inPositionOfGate_1.qasm",
+    "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm"
+  ],
+  "diagnosed_cases": 12,
+  "discovered_cases": 12,
+  "error_cases": 0,
+  "executable_cases": 12,
+  "ground_truth_note": "Mutation operator is available; no diagnosis-category ground truth or unambiguous fault location is declared by this corpus. Accuracy is therefore undefined.",
+  "issues": [],
+  "labeled_evaluation_cases": 0,
+  "metrics": {
+    "accuracy": null,
+    "correct_location": 0,
+    "evaluated_cases": 0,
+    "f1": null,
+    "false_negatives": 0,
+    "false_positives": 0,
+    "incorrect_location": 0,
+    "localization_accuracy": null,
+    "localization_evaluated_cases": 0,
+    "precision": null,
+    "recall": null,
+    "true_negatives": 0,
+    "true_positives": 0
+  },
+  "parsed_cases": 12,
+  "records": [
+    {
+      "case_id": "AddGate_h_inGap_1_",
+      "diagnosed": true,
+      "diagnosis_ground_truth_compatible": false,
+      "errors": [],
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "AddGate",
+      "gate_type": "h_inGap_1_",
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "MISSING",
+      "mutant_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "mutation_type": "AddGate",
+      "num_qubits": 2,
+      "parsed": true,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "source_files": [
+        "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+        "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\AddGate_h_inGap_1_.qasm"
+      ],
+      "status": "OK",
+      "support_status": "SUPPORTED",
+      "system_diagnosis": {
+        "anomaly_detected": true,
+        "category": "PROGRAM_FAULT",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "Step 0: inserted h on qubits (1,) without corresponding expected operation.",
+          "Hardware calibration information was not provided."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": null,
+        "missing_evidence": [
+          "Hardware calibration information was not provided."
+        ],
+        "program_evidence_candidates": [
+          {
+            "actual_signature": [
+              "h",
+              [
+                1
+              ],
+              []
+            ],
+            "evidence": [
+              "Step 0: inserted h on qubits (1,) without corresponding expected operation."
+            ],
+            "expected_signature": null,
+            "index": 0,
+            "operation": "h",
+            "qubits": [
+              1
+            ],
+            "reason": "Inserted operation relative to expected circuit",
+            "score": 1.0
+          }
+        ],
+        "program_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [
+            {
+              "actual_signature": [
+                "h",
+                [
+                  1
+                ],
+                []
+              ],
+              "evidence": [
+                "Step 0: inserted h on qubits (1,) without corresponding expected operation."
+              ],
+              "expected_signature": null,
+              "index": 0,
+              "operation": "h",
+              "qubits": [
+                1
+              ],
+              "reason": "Inserted operation relative to expected circuit",
+              "score": 1.0
+            }
+          ],
+          "evidence": [
+            "Step 0: inserted h on qubits (1,) without corresponding expected operation."
+          ],
+          "summary": "Program fault localization identified the following likely offending operation(s): step 0 (h)",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "00": 0.5078125,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.4921875
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.5360880145209729,
+          "js_divergence": 0.21149030503761912,
+          "message": "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "00": 1.0,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.0
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1024,
+          "threshold": 0.05,
+          "total_variation_distance": 0.4921875
+        },
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+      },
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "case_id": "AddGate_rxx_inGap_1_",
+      "diagnosed": true,
+      "diagnosis_ground_truth_compatible": false,
+      "errors": [],
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "AddGate",
+      "gate_type": "rxx_inGap_1_",
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "MISSING",
+      "mutant_circuit": [
+        [
+          "rxx",
+          0,
+          1,
+          3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "mutation_type": "AddGate",
+      "num_qubits": 2,
+      "parsed": true,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "source_files": [
+        "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+        "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\AddGate_rxx_inGap_1_.qasm"
+      ],
+      "status": "OK",
+      "support_status": "SUPPORTED",
+      "system_diagnosis": {
+        "anomaly_detected": true,
+        "category": "PROGRAM_FAULT",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=1.000000, which exceeds threshold=0.050000.",
+          "Step 0: inserted rxx on qubits (0, 1) without corresponding expected operation.",
+          "Hardware calibration information was not provided."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": null,
+        "missing_evidence": [
+          "Hardware calibration information was not provided."
+        ],
+        "program_evidence_candidates": [
+          {
+            "actual_signature": [
+              "rxx",
+              [
+                0,
+                1
+              ],
+              [
+                3.141592653589793
+              ]
+            ],
+            "evidence": [
+              "Step 0: inserted rxx on qubits (0, 1) without corresponding expected operation."
+            ],
+            "expected_signature": null,
+            "index": 0,
+            "operation": "rxx",
+            "qubits": [
+              0,
+              1
+            ],
+            "reason": "Inserted operation relative to expected circuit",
+            "score": 1.0
+          }
+        ],
+        "program_result": {
+          "anomaly_metric": 1.0,
+          "candidates": [
+            {
+              "actual_signature": [
+                "rxx",
+                [
+                  0,
+                  1
+                ],
+                [
+                  3.141592653589793
+                ]
+              ],
+              "evidence": [
+                "Step 0: inserted rxx on qubits (0, 1) without corresponding expected operation."
+              ],
+              "expected_signature": null,
+              "index": 0,
+              "operation": "rxx",
+              "qubits": [
+                0,
+                1
+              ],
+              "reason": "Inserted operation relative to expected circuit",
+              "score": 1.0
+            }
+          ],
+          "evidence": [
+            "Step 0: inserted rxx on qubits (0, 1) without corresponding expected operation."
+          ],
+          "summary": "Program fault localization identified the following likely offending operation(s): step 0 (rxx)",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "00": 0.5078125,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.4921875
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 1.0,
+          "js_divergence": 0.6931471805599453,
+          "message": "Observed distribution differs from expected distribution by TVD=1.000000, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "00": 0.0,
+            "01": 0.5078125,
+            "10": 0.4921875,
+            "11": 0.0
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1024,
+          "threshold": 0.05,
+          "total_variation_distance": 1.0
+        },
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+      },
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "case_id": "AddGate_ry_inGap_1_",
+      "diagnosed": true,
+      "diagnosis_ground_truth_compatible": false,
+      "errors": [],
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "AddGate",
+      "gate_type": "ry_inGap_1_",
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "MISSING",
+      "mutant_circuit": [
+        [
+          "ry",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "mutation_type": "AddGate",
+      "num_qubits": 2,
+      "parsed": true,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "source_files": [
+        "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+        "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\AddGate_ry_inGap_1_.qasm"
+      ],
+      "status": "OK",
+      "support_status": "SUPPORTED",
+      "system_diagnosis": {
+        "anomaly_detected": true,
+        "category": "PROGRAM_FAULT",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "Step 0: inserted ry on qubits (1,) without corresponding expected operation.",
+          "Hardware calibration information was not provided."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": null,
+        "missing_evidence": [
+          "Hardware calibration information was not provided."
+        ],
+        "program_evidence_candidates": [
+          {
+            "actual_signature": [
+              "ry",
+              [
+                1
+              ],
+              [
+                1.5707963267948966
+              ]
+            ],
+            "evidence": [
+              "Step 0: inserted ry on qubits (1,) without corresponding expected operation."
+            ],
+            "expected_signature": null,
+            "index": 0,
+            "operation": "ry",
+            "qubits": [
+              1
+            ],
+            "reason": "Inserted operation relative to expected circuit",
+            "score": 1.0
+          }
+        ],
+        "program_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [
+            {
+              "actual_signature": [
+                "ry",
+                [
+                  1
+                ],
+                [
+                  1.5707963267948966
+                ]
+              ],
+              "evidence": [
+                "Step 0: inserted ry on qubits (1,) without corresponding expected operation."
+              ],
+              "expected_signature": null,
+              "index": 0,
+              "operation": "ry",
+              "qubits": [
+                1
+              ],
+              "reason": "Inserted operation relative to expected circuit",
+              "score": 1.0
+            }
+          ],
+          "evidence": [
+            "Step 0: inserted ry on qubits (1,) without corresponding expected operation."
+          ],
+          "summary": "Program fault localization identified the following likely offending operation(s): step 0 (ry)",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "00": 0.5078125,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.4921875
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.5360880145209729,
+          "js_divergence": 0.21149030503761912,
+          "message": "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "00": 1.0,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.0
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1024,
+          "threshold": 0.05,
+          "total_variation_distance": 0.4921875
+        },
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+      },
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "case_id": "RemoveGate_1_",
+      "diagnosed": true,
+      "diagnosis_ground_truth_compatible": false,
+      "errors": [],
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "RemoveGate",
+      "gate_type": "1_",
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "MISSING",
+      "mutant_circuit": [
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "mutation_type": "RemoveGate",
+      "num_qubits": 2,
+      "parsed": true,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "source_files": [
+        "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+        "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\RemoveGate_1_.qasm"
+      ],
+      "status": "OK",
+      "support_status": "SUPPORTED",
+      "system_diagnosis": {
+        "anomaly_detected": true,
+        "category": "PROGRAM_FAULT",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "Step 0: expected h on qubits (1,) but it was not executed.",
+          "Hardware calibration information was not provided."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": null,
+        "missing_evidence": [
+          "Hardware calibration information was not provided."
+        ],
+        "program_evidence_candidates": [
+          {
+            "actual_signature": null,
+            "evidence": [
+              "Step 0: expected h on qubits (1,) but it was not executed."
+            ],
+            "expected_signature": [
+              "h",
+              [
+                1
+              ],
+              []
+            ],
+            "index": 0,
+            "operation": "h",
+            "qubits": [
+              1
+            ],
+            "reason": "Expected operation missing in observed circuit",
+            "score": 1.0
+          }
+        ],
+        "program_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [
+            {
+              "actual_signature": null,
+              "evidence": [
+                "Step 0: expected h on qubits (1,) but it was not executed."
+              ],
+              "expected_signature": [
+                "h",
+                [
+                  1
+                ],
+                []
+              ],
+              "index": 0,
+              "operation": "h",
+              "qubits": [
+                1
+              ],
+              "reason": "Expected operation missing in observed circuit",
+              "score": 1.0
+            }
+          ],
+          "evidence": [
+            "Step 0: expected h on qubits (1,) but it was not executed."
+          ],
+          "summary": "Program fault localization identified the following likely offending operation(s): step 0 (h)",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "00": 0.5078125,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.4921875
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.5360880145209729,
+          "js_divergence": 0.21149030503761912,
+          "message": "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "00": 1.0,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.0
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1024,
+          "threshold": 0.05,
+          "total_variation_distance": 0.4921875
+        },
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+      },
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "case_id": "ReplaceGate_h_inPositionOfGate_1",
+      "diagnosed": true,
+      "diagnosis_ground_truth_compatible": false,
+      "errors": [],
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "ReplaceGate",
+      "gate_type": "h_inPositionOfGate_1",
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "MISSING",
+      "mutant_circuit": [
+        [
+          "p",
+          1,
+          4.71238898038469
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "mutation_type": "ReplaceGate",
+      "num_qubits": 2,
+      "parsed": true,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "source_files": [
+        "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+        "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_h_inPositionOfGate_1.qasm"
+      ],
+      "status": "OK",
+      "support_status": "SUPPORTED",
+      "system_diagnosis": {
+        "anomaly_detected": true,
+        "category": "PROGRAM_FAULT",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "Step 0: expected h(1,)() but observed p(1,)(4.71238898038469,)",
+          "Mismatch score = 0.75",
+          "Hardware calibration information was not provided."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": null,
+        "missing_evidence": [
+          "Hardware calibration information was not provided."
+        ],
+        "program_evidence_candidates": [
+          {
+            "actual_signature": [
+              "p",
+              [
+                1
+              ],
+              [
+                4.71238898038469
+              ]
+            ],
+            "evidence": [
+              "Step 0: expected h(1,)() but observed p(1,)(4.71238898038469,)",
+              "Mismatch score = 0.75"
+            ],
+            "expected_signature": [
+              "h",
+              [
+                1
+              ],
+              []
+            ],
+            "index": 0,
+            "operation": "p",
+            "qubits": [
+              1
+            ],
+            "reason": "Gate operation differs from expected circuit",
+            "score": 0.75
+          }
+        ],
+        "program_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [
+            {
+              "actual_signature": [
+                "p",
+                [
+                  1
+                ],
+                [
+                  4.71238898038469
+                ]
+              ],
+              "evidence": [
+                "Step 0: expected h(1,)() but observed p(1,)(4.71238898038469,)",
+                "Mismatch score = 0.75"
+              ],
+              "expected_signature": [
+                "h",
+                [
+                  1
+                ],
+                []
+              ],
+              "index": 0,
+              "operation": "p",
+              "qubits": [
+                1
+              ],
+              "reason": "Gate operation differs from expected circuit",
+              "score": 0.75
+            }
+          ],
+          "evidence": [
+            "Step 0: expected h(1,)() but observed p(1,)(4.71238898038469,)",
+            "Mismatch score = 0.75"
+          ],
+          "summary": "Program fault localization identified the following likely offending operation(s): step 0 (p)",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "00": 0.5078125,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.4921875
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.5360880145209729,
+          "js_divergence": 0.21149030503761912,
+          "message": "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "00": 1.0,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.0
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1024,
+          "threshold": 0.05,
+          "total_variation_distance": 0.4921875
+        },
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+      },
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "case_id": "ReplaceGate_id_inPositionOfGate_1",
+      "diagnosed": true,
+      "diagnosis_ground_truth_compatible": false,
+      "errors": [],
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "ReplaceGate",
+      "gate_type": "id_inPositionOfGate_1",
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "MISSING",
+      "mutant_circuit": [
+        [
+          "id",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "mutation_type": "ReplaceGate",
+      "num_qubits": 2,
+      "parsed": true,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "source_files": [
+        "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+        "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_id_inPositionOfGate_1.qasm"
+      ],
+      "status": "OK",
+      "support_status": "SUPPORTED",
+      "system_diagnosis": {
+        "anomaly_detected": true,
+        "category": "PROGRAM_FAULT",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "Step 0: expected h(1,)() but observed id(1,)()",
+          "Mismatch score = 0.50",
+          "Hardware calibration information was not provided."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": null,
+        "missing_evidence": [
+          "Hardware calibration information was not provided."
+        ],
+        "program_evidence_candidates": [
+          {
+            "actual_signature": [
+              "id",
+              [
+                1
+              ],
+              []
+            ],
+            "evidence": [
+              "Step 0: expected h(1,)() but observed id(1,)()",
+              "Mismatch score = 0.50"
+            ],
+            "expected_signature": [
+              "h",
+              [
+                1
+              ],
+              []
+            ],
+            "index": 0,
+            "operation": "id",
+            "qubits": [
+              1
+            ],
+            "reason": "Gate operation differs from expected circuit",
+            "score": 0.5
+          }
+        ],
+        "program_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [
+            {
+              "actual_signature": [
+                "id",
+                [
+                  1
+                ],
+                []
+              ],
+              "evidence": [
+                "Step 0: expected h(1,)() but observed id(1,)()",
+                "Mismatch score = 0.50"
+              ],
+              "expected_signature": [
+                "h",
+                [
+                  1
+                ],
+                []
+              ],
+              "index": 0,
+              "operation": "id",
+              "qubits": [
+                1
+              ],
+              "reason": "Gate operation differs from expected circuit",
+              "score": 0.5
+            }
+          ],
+          "evidence": [
+            "Step 0: expected h(1,)() but observed id(1,)()",
+            "Mismatch score = 0.50"
+          ],
+          "summary": "Program fault localization identified the following likely offending operation(s): step 0 (id)",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "00": 0.5078125,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.4921875
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.5360880145209729,
+          "js_divergence": 0.21149030503761912,
+          "message": "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "00": 1.0,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.0
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1024,
+          "threshold": 0.05,
+          "total_variation_distance": 0.4921875
+        },
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+      },
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "case_id": "ReplaceGate_rz_inPositionOfGate_1",
+      "diagnosed": true,
+      "diagnosis_ground_truth_compatible": false,
+      "errors": [],
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "ReplaceGate",
+      "gate_type": "rz_inPositionOfGate_1",
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "MISSING",
+      "mutant_circuit": [
+        [
+          "rz",
+          1,
+          4.71238898038469
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "mutation_type": "ReplaceGate",
+      "num_qubits": 2,
+      "parsed": true,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "source_files": [
+        "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+        "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_rz_inPositionOfGate_1.qasm"
+      ],
+      "status": "OK",
+      "support_status": "SUPPORTED",
+      "system_diagnosis": {
+        "anomaly_detected": true,
+        "category": "PROGRAM_FAULT",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "Step 0: expected h(1,)() but observed rz(1,)(4.71238898038469,)",
+          "Mismatch score = 0.75",
+          "Hardware calibration information was not provided."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": null,
+        "missing_evidence": [
+          "Hardware calibration information was not provided."
+        ],
+        "program_evidence_candidates": [
+          {
+            "actual_signature": [
+              "rz",
+              [
+                1
+              ],
+              [
+                4.71238898038469
+              ]
+            ],
+            "evidence": [
+              "Step 0: expected h(1,)() but observed rz(1,)(4.71238898038469,)",
+              "Mismatch score = 0.75"
+            ],
+            "expected_signature": [
+              "h",
+              [
+                1
+              ],
+              []
+            ],
+            "index": 0,
+            "operation": "rz",
+            "qubits": [
+              1
+            ],
+            "reason": "Gate operation differs from expected circuit",
+            "score": 0.75
+          }
+        ],
+        "program_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [
+            {
+              "actual_signature": [
+                "rz",
+                [
+                  1
+                ],
+                [
+                  4.71238898038469
+                ]
+              ],
+              "evidence": [
+                "Step 0: expected h(1,)() but observed rz(1,)(4.71238898038469,)",
+                "Mismatch score = 0.75"
+              ],
+              "expected_signature": [
+                "h",
+                [
+                  1
+                ],
+                []
+              ],
+              "index": 0,
+              "operation": "rz",
+              "qubits": [
+                1
+              ],
+              "reason": "Gate operation differs from expected circuit",
+              "score": 0.75
+            }
+          ],
+          "evidence": [
+            "Step 0: expected h(1,)() but observed rz(1,)(4.71238898038469,)",
+            "Mismatch score = 0.75"
+          ],
+          "summary": "Program fault localization identified the following likely offending operation(s): step 0 (rz)",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "00": 0.5078125,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.4921875
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.5360880145209729,
+          "js_divergence": 0.21149030503761912,
+          "message": "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "00": 1.0,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.0
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1024,
+          "threshold": 0.05,
+          "total_variation_distance": 0.4921875
+        },
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+      },
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "case_id": "ReplaceGate_s_inPositionOfGate_1",
+      "diagnosed": true,
+      "diagnosis_ground_truth_compatible": false,
+      "errors": [],
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "ReplaceGate",
+      "gate_type": "s_inPositionOfGate_1",
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "MISSING",
+      "mutant_circuit": [
+        [
+          "s",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "mutation_type": "ReplaceGate",
+      "num_qubits": 2,
+      "parsed": true,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "source_files": [
+        "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+        "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_s_inPositionOfGate_1.qasm"
+      ],
+      "status": "OK",
+      "support_status": "SUPPORTED",
+      "system_diagnosis": {
+        "anomaly_detected": true,
+        "category": "PROGRAM_FAULT",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "Step 0: expected h(1,)() but observed s(1,)()",
+          "Mismatch score = 0.50",
+          "Hardware calibration information was not provided."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": null,
+        "missing_evidence": [
+          "Hardware calibration information was not provided."
+        ],
+        "program_evidence_candidates": [
+          {
+            "actual_signature": [
+              "s",
+              [
+                1
+              ],
+              []
+            ],
+            "evidence": [
+              "Step 0: expected h(1,)() but observed s(1,)()",
+              "Mismatch score = 0.50"
+            ],
+            "expected_signature": [
+              "h",
+              [
+                1
+              ],
+              []
+            ],
+            "index": 0,
+            "operation": "s",
+            "qubits": [
+              1
+            ],
+            "reason": "Gate operation differs from expected circuit",
+            "score": 0.5
+          }
+        ],
+        "program_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [
+            {
+              "actual_signature": [
+                "s",
+                [
+                  1
+                ],
+                []
+              ],
+              "evidence": [
+                "Step 0: expected h(1,)() but observed s(1,)()",
+                "Mismatch score = 0.50"
+              ],
+              "expected_signature": [
+                "h",
+                [
+                  1
+                ],
+                []
+              ],
+              "index": 0,
+              "operation": "s",
+              "qubits": [
+                1
+              ],
+              "reason": "Gate operation differs from expected circuit",
+              "score": 0.5
+            }
+          ],
+          "evidence": [
+            "Step 0: expected h(1,)() but observed s(1,)()",
+            "Mismatch score = 0.50"
+          ],
+          "summary": "Program fault localization identified the following likely offending operation(s): step 0 (s)",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "00": 0.5078125,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.4921875
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.5360880145209729,
+          "js_divergence": 0.21149030503761912,
+          "message": "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "00": 1.0,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.0
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1024,
+          "threshold": 0.05,
+          "total_variation_distance": 0.4921875
+        },
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+      },
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "case_id": "ReplaceGate_t_inPositionOfGate_1",
+      "diagnosed": true,
+      "diagnosis_ground_truth_compatible": false,
+      "errors": [],
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "ReplaceGate",
+      "gate_type": "t_inPositionOfGate_1",
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "MISSING",
+      "mutant_circuit": [
+        [
+          "t",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "mutation_type": "ReplaceGate",
+      "num_qubits": 2,
+      "parsed": true,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "source_files": [
+        "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+        "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_t_inPositionOfGate_1.qasm"
+      ],
+      "status": "OK",
+      "support_status": "SUPPORTED",
+      "system_diagnosis": {
+        "anomaly_detected": true,
+        "category": "PROGRAM_FAULT",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "Step 0: expected h(1,)() but observed t(1,)()",
+          "Mismatch score = 0.50",
+          "Hardware calibration information was not provided."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": null,
+        "missing_evidence": [
+          "Hardware calibration information was not provided."
+        ],
+        "program_evidence_candidates": [
+          {
+            "actual_signature": [
+              "t",
+              [
+                1
+              ],
+              []
+            ],
+            "evidence": [
+              "Step 0: expected h(1,)() but observed t(1,)()",
+              "Mismatch score = 0.50"
+            ],
+            "expected_signature": [
+              "h",
+              [
+                1
+              ],
+              []
+            ],
+            "index": 0,
+            "operation": "t",
+            "qubits": [
+              1
+            ],
+            "reason": "Gate operation differs from expected circuit",
+            "score": 0.5
+          }
+        ],
+        "program_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [
+            {
+              "actual_signature": [
+                "t",
+                [
+                  1
+                ],
+                []
+              ],
+              "evidence": [
+                "Step 0: expected h(1,)() but observed t(1,)()",
+                "Mismatch score = 0.50"
+              ],
+              "expected_signature": [
+                "h",
+                [
+                  1
+                ],
+                []
+              ],
+              "index": 0,
+              "operation": "t",
+              "qubits": [
+                1
+              ],
+              "reason": "Gate operation differs from expected circuit",
+              "score": 0.5
+            }
+          ],
+          "evidence": [
+            "Step 0: expected h(1,)() but observed t(1,)()",
+            "Mismatch score = 0.50"
+          ],
+          "summary": "Program fault localization identified the following likely offending operation(s): step 0 (t)",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "00": 0.5078125,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.4921875
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.5360880145209729,
+          "js_divergence": 0.21149030503761912,
+          "message": "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "00": 1.0,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.0
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1024,
+          "threshold": 0.05,
+          "total_variation_distance": 0.4921875
+        },
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+      },
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "case_id": "ReplaceGate_x_inPositionOfGate_1",
+      "diagnosed": true,
+      "diagnosis_ground_truth_compatible": false,
+      "errors": [],
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "ReplaceGate",
+      "gate_type": "x_inPositionOfGate_1",
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "MISSING",
+      "mutant_circuit": [
+        [
+          "x",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "mutation_type": "ReplaceGate",
+      "num_qubits": 2,
+      "parsed": true,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "source_files": [
+        "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+        "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_x_inPositionOfGate_1.qasm"
+      ],
+      "status": "OK",
+      "support_status": "SUPPORTED",
+      "system_diagnosis": {
+        "anomaly_detected": true,
+        "category": "PROGRAM_FAULT",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.507812, which exceeds threshold=0.050000.",
+          "Step 0: expected h(1,)() but observed x(1,)()",
+          "Mismatch score = 0.50",
+          "Hardware calibration information was not provided."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": null,
+        "missing_evidence": [
+          "Hardware calibration information was not provided."
+        ],
+        "program_evidence_candidates": [
+          {
+            "actual_signature": [
+              "x",
+              [
+                1
+              ],
+              []
+            ],
+            "evidence": [
+              "Step 0: expected h(1,)() but observed x(1,)()",
+              "Mismatch score = 0.50"
+            ],
+            "expected_signature": [
+              "h",
+              [
+                1
+              ],
+              []
+            ],
+            "index": 0,
+            "operation": "x",
+            "qubits": [
+              1
+            ],
+            "reason": "Gate operation differs from expected circuit",
+            "score": 0.5
+          }
+        ],
+        "program_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [
+            {
+              "actual_signature": [
+                "x",
+                [
+                  1
+                ],
+                []
+              ],
+              "evidence": [
+                "Step 0: expected h(1,)() but observed x(1,)()",
+                "Mismatch score = 0.50"
+              ],
+              "expected_signature": [
+                "h",
+                [
+                  1
+                ],
+                []
+              ],
+              "index": 0,
+              "operation": "x",
+              "qubits": [
+                1
+              ],
+              "reason": "Gate operation differs from expected circuit",
+              "score": 0.5
+            }
+          ],
+          "evidence": [
+            "Step 0: expected h(1,)() but observed x(1,)()",
+            "Mismatch score = 0.50"
+          ],
+          "summary": "Program fault localization identified the following likely offending operation(s): step 0 (x)",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "00": 0.5078125,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.4921875
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.5462959271126648,
+          "js_divergence": 0.22007349613600494,
+          "message": "Observed distribution differs from expected distribution by TVD=0.507812, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "00": 0.0,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 1.0
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1024,
+          "threshold": 0.05,
+          "total_variation_distance": 0.5078125
+        },
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+      },
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "case_id": "ReplaceGate_y_inPositionOfGate_1",
+      "diagnosed": true,
+      "diagnosis_ground_truth_compatible": false,
+      "errors": [],
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "ReplaceGate",
+      "gate_type": "y_inPositionOfGate_1",
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "MISSING",
+      "mutant_circuit": [
+        [
+          "y",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "mutation_type": "ReplaceGate",
+      "num_qubits": 2,
+      "parsed": true,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "source_files": [
+        "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+        "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_y_inPositionOfGate_1.qasm"
+      ],
+      "status": "OK",
+      "support_status": "SUPPORTED",
+      "system_diagnosis": {
+        "anomaly_detected": true,
+        "category": "PROGRAM_FAULT",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.507812, which exceeds threshold=0.050000.",
+          "Step 0: expected h(1,)() but observed y(1,)()",
+          "Mismatch score = 0.50",
+          "Hardware calibration information was not provided."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": null,
+        "missing_evidence": [
+          "Hardware calibration information was not provided."
+        ],
+        "program_evidence_candidates": [
+          {
+            "actual_signature": [
+              "y",
+              [
+                1
+              ],
+              []
+            ],
+            "evidence": [
+              "Step 0: expected h(1,)() but observed y(1,)()",
+              "Mismatch score = 0.50"
+            ],
+            "expected_signature": [
+              "h",
+              [
+                1
+              ],
+              []
+            ],
+            "index": 0,
+            "operation": "y",
+            "qubits": [
+              1
+            ],
+            "reason": "Gate operation differs from expected circuit",
+            "score": 0.5
+          }
+        ],
+        "program_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [
+            {
+              "actual_signature": [
+                "y",
+                [
+                  1
+                ],
+                []
+              ],
+              "evidence": [
+                "Step 0: expected h(1,)() but observed y(1,)()",
+                "Mismatch score = 0.50"
+              ],
+              "expected_signature": [
+                "h",
+                [
+                  1
+                ],
+                []
+              ],
+              "index": 0,
+              "operation": "y",
+              "qubits": [
+                1
+              ],
+              "reason": "Gate operation differs from expected circuit",
+              "score": 0.5
+            }
+          ],
+          "evidence": [
+            "Step 0: expected h(1,)() but observed y(1,)()",
+            "Mismatch score = 0.50"
+          ],
+          "summary": "Program fault localization identified the following likely offending operation(s): step 0 (y)",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "00": 0.5078125,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.4921875
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.5462959271126648,
+          "js_divergence": 0.22007349613600494,
+          "message": "Observed distribution differs from expected distribution by TVD=0.507812, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "00": 0.0,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 1.0
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1024,
+          "threshold": 0.05,
+          "total_variation_distance": 0.5078125
+        },
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+      },
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "case_id": "ReplaceGate_z_inPositionOfGate_1",
+      "diagnosed": true,
+      "diagnosis_ground_truth_compatible": false,
+      "errors": [],
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "ReplaceGate",
+      "gate_type": "z_inPositionOfGate_1",
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "MISSING",
+      "mutant_circuit": [
+        [
+          "z",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "mutation_type": "ReplaceGate",
+      "num_qubits": 2,
+      "parsed": true,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "barrier",
+          0,
+          1
+        ],
+        [
+          "measure",
+          0
+        ],
+        [
+          "measure",
+          1
+        ]
+      ],
+      "source_files": [
+        "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+        "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_z_inPositionOfGate_1.qasm"
+      ],
+      "status": "OK",
+      "support_status": "SUPPORTED",
+      "system_diagnosis": {
+        "anomaly_detected": true,
+        "category": "PROGRAM_FAULT",
+        "evidence": [
+          "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "Step 0: expected h(1,)() but observed z(1,)()",
+          "Mismatch score = 0.50",
+          "Hardware calibration information was not provided."
+        ],
+        "hardware_evidence_candidates": [],
+        "hardware_result": null,
+        "missing_evidence": [
+          "Hardware calibration information was not provided."
+        ],
+        "program_evidence_candidates": [
+          {
+            "actual_signature": [
+              "z",
+              [
+                1
+              ],
+              []
+            ],
+            "evidence": [
+              "Step 0: expected h(1,)() but observed z(1,)()",
+              "Mismatch score = 0.50"
+            ],
+            "expected_signature": [
+              "h",
+              [
+                1
+              ],
+              []
+            ],
+            "index": 0,
+            "operation": "z",
+            "qubits": [
+              1
+            ],
+            "reason": "Gate operation differs from expected circuit",
+            "score": 0.5
+          }
+        ],
+        "program_result": {
+          "anomaly_metric": 0.5,
+          "candidates": [
+            {
+              "actual_signature": [
+                "z",
+                [
+                  1
+                ],
+                []
+              ],
+              "evidence": [
+                "Step 0: expected h(1,)() but observed z(1,)()",
+                "Mismatch score = 0.50"
+              ],
+              "expected_signature": [
+                "h",
+                [
+                  1
+                ],
+                []
+              ],
+              "index": 0,
+              "operation": "z",
+              "qubits": [
+                1
+              ],
+              "reason": "Gate operation differs from expected circuit",
+              "score": 0.5
+            }
+          ],
+          "evidence": [
+            "Step 0: expected h(1,)() but observed z(1,)()",
+            "Mismatch score = 0.50"
+          ],
+          "summary": "Program fault localization identified the following likely offending operation(s): step 0 (z)",
+          "threshold": 0.05
+        },
+        "statistics_result": {
+          "anomaly_detected": true,
+          "expected_distribution": {
+            "00": 0.5078125,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.4921875
+          },
+          "finite_shot_guard": 0.05,
+          "hellinger_distance": 0.5360880145209729,
+          "js_divergence": 0.21149030503761912,
+          "message": "Observed distribution differs from expected distribution by TVD=0.492188, which exceeds threshold=0.050000.",
+          "observed_distribution": {
+            "00": 1.0,
+            "01": 0.0,
+            "10": 0.0,
+            "11": 0.0
+          },
+          "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+          "shots": 1024,
+          "threshold": 0.05,
+          "total_variation_distance": 0.4921875
+        },
+        "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+      },
+      "translated": true,
+      "unsupported_reason": null
+    }
+  ],
+  "total_cases": 12,
+  "translated_cases": 12,
+  "unsupported_cases": 0,
+  "unsupported_reason_breakdown": {}
+}

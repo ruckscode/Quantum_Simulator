@@ -34,6 +34,7 @@ EXCLUDED_PARTS = {".venv", ".git", "__pycache__", ".pytest_cache", ".pytest-tmp"
 SINGLE_GATES = {"i", "id", "identity", "x", "y", "z", "h", "s", "sdg", "t", "tdg", "sx", "sxdg"}
 ROTATION_GATES = {"rx", "ry", "rz", "p", "u1"}
 TWO_GATES = {"cx", "cnot", "cz", "swap", "ch"}
+TWO_QUBIT_ROTATIONS = {"rxx"}
 THREE_GATES = {"ccx", "toffoli", "cswap", "fredkin"}
 PARAMETERIZED_ARITY = {"rx": 1, "ry": 1, "rz": 1, "p": 1, "u1": 1, "u2": 2, "u3": 3}
 CONTROLLED_PARAMETER_GATES = {"cp", "crx", "cry", "crz"}
@@ -351,6 +352,15 @@ def parse_qasm_file(path: str | Path) -> tuple[list[tuple[Any, ...]], int]:
             if qname not in qregs or int(qindex) >= qregs[qname][1] or cname not in cregs or int(cindex) >= cregs[cname]:
                 raise QMutBenchParseError(f"{case_id}: measurement references an undeclared register bit")
             operations.append(("measure", qregs[qname][0] + int(qindex)))
+            continue
+
+        measure_registers = re.fullmatch(r"measure\s+([A-Za-z_]\w*)\s*->\s*([A-Za-z_]\w*)", statement, re.I)
+        if measure_registers:
+            qname, cname = measure_registers.groups()
+            if qname not in qregs or cname not in cregs or qregs[qname][1] != cregs[cname]:
+                raise QMutBenchParseError(f"{case_id}: whole-register measurement requires declared registers of equal width")
+            qoffset, qsize = qregs[qname]
+            operations.extend(("measure", qoffset + idx) for idx in range(qsize))
             continue
 
         match = re.fullmatch(r"([A-Za-z_]\w*)(?:\s*\(([^()]*)\))?\s+(.+)", statement)
@@ -686,15 +696,15 @@ def _normalize_instruction(instruction: Any, case_id: str) -> tuple[Any, ...]:
     name = str(instruction[0]).strip().lower()
     if name in CONTROLLED_PARAMETER_GATES:
         raise QMutBenchUnsupportedError(f"{case_id}: simulator does not reliably support {name!r}")
-    if name not in SINGLE_GATES | ROTATION_GATES | {"u2", "u3"} | TWO_GATES | THREE_GATES | {"measure", "reset", "barrier"}:
+    if name not in SINGLE_GATES | ROTATION_GATES | {"u2", "u3"} | TWO_GATES | TWO_QUBIT_ROTATIONS | THREE_GATES | {"measure", "reset", "barrier"}:
         raise QMutBenchUnsupportedError(f"{case_id}: unsupported simulator operation {name!r}")
     operands = list(instruction[1:])
-    parameter_count = PARAMETERIZED_ARITY.get(name, 2 if name == "u2" else 3 if name == "u3" else 0)
+    parameter_count = PARAMETERIZED_ARITY.get(name, 1 if name in TWO_QUBIT_ROTATIONS else 2 if name == "u2" else 3 if name == "u3" else 0)
     if name in SINGLE_GATES:
         qubit_count = 1
     elif name in ROTATION_GATES or name in {"u2", "u3"}:
         qubit_count = 1
-    elif name in TWO_GATES:
+    elif name in TWO_GATES | TWO_QUBIT_ROTATIONS:
         qubit_count = 2
     elif name in THREE_GATES:
         qubit_count = 3
@@ -749,7 +759,7 @@ def _circuit_qubit_count(circuit: Sequence[Sequence[Any]], declared: Any) -> int
         name = str(operation[0]).lower()
         if name in SINGLE_GATES or name in ROTATION_GATES or name in {"u2", "u3", "reset"}:
             qubits = operation[1:2]
-        elif name in TWO_GATES:
+        elif name in TWO_GATES | TWO_QUBIT_ROTATIONS:
             qubits = operation[1:3]
         elif name in THREE_GATES:
             qubits = operation[1:4]
@@ -966,6 +976,8 @@ def _operation_qubits(operation: Sequence[Any]) -> list[int]:
     if name in SINGLE_GATES or name in ROTATION_GATES or name in {"u2", "u3", "reset"}:
         return [int(operation[1])] if len(operation) > 1 else []
     if name in TWO_GATES:
+        return [int(value) for value in operation[1:3]]
+    if name in TWO_QUBIT_ROTATIONS:
         return [int(value) for value in operation[1:3]]
     if name in THREE_GATES:
         return [int(value) for value in operation[1:4]]

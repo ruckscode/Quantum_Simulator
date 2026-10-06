@@ -1,0 +1,5444 @@
+{
+  "benchmark": "Bugs4Q",
+  "counts_by_fault_category": {
+    " Throw Exceptions": 1,
+    "Figure problem": 1,
+    "Label convention is reversed(|011>&|110>)": 1,
+    "Name conflict/TypeError": 1,
+    "Output Wrong": 15,
+    "QFT operation*": 1,
+    "Simulation Failed": 2,
+    "Throw Exceptions": 16,
+    "Unfamiliar with API": 1,
+    "Wrong Command": 1,
+    "Wrong operation with GATE": 1,
+    "output Wtong": 1
+  },
+  "counts_by_gate_type": {},
+  "counts_by_mutation_type": {
+    "source_mutation": 42
+  },
+  "counts_by_num_qubits": {
+    "0": 23,
+    "1": 3,
+    "2": 7,
+    "3": 3,
+    "4": 4,
+    "5": 1,
+    "8": 1
+  },
+  "diagnosed_cases": 19,
+  "discovered_cases": 42,
+  "error_cases": 1,
+  "executable_cases": 19,
+  "ground_truth_note": "The framework records bug-type metadata and source diffs, not DiagnosisCategory labels. No accuracy is computed from execution success or metadata alone.",
+  "labeled_evaluation_cases": 0,
+  "metrics": {
+    "accuracy": null,
+    "correct_location": 0,
+    "evaluated_cases": 0,
+    "f1": null,
+    "false_negatives": 0,
+    "false_positives": 0,
+    "incorrect_location": 0,
+    "localization_accuracy": null,
+    "localization_evaluated_cases": 0,
+    "precision": null,
+    "recall": null,
+    "true_negatives": 0,
+    "true_positives": 0
+  },
+  "parsed_cases": 41,
+  "records": [
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-1",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "unsupported_source_construct: non-default controlled-gate options require explicit control-state semantics"
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-2",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "out_of_scope: no concrete QuantumCircuit construction found"
+    },
+    {
+      "buggy_circuit": [
+        [
+          "x",
+          0
+        ]
+      ],
+      "case_id": "Bugs4Q-3",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 1,
+      "predicted_category": "NO_ANOMALY",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "x",
+          0
+        ]
+      ],
+      "source_level_mutation": "19c19,20\n< tomo = ProcessTomography(\n---\n> # or       tomo = ProcessTomography(circuit=circ)\n> tomo = ProcessTomography(                   \n23c24\n<     preparation_basis=PauliMeasurementBasis(),\n---\n>     preparation_basis=PauliPreparationBasis(),\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": [
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          0
+        ]
+      ],
+      "case_id": "Bugs4Q-4",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Simulation Failed",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 8,
+      "predicted_category": "NO_ANOMALY",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          0
+        ]
+      ],
+      "source_level_mutation": "12c13,14\n< job = backend.run(adder)\n---\n> transpiled_adder = transpile(adder, backend)\n> job = backend.run(transpiled_adder)\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": [
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      ],
+      "case_id": "Bugs4Q-5",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 1,
+      "predicted_category": "NO_ANOMALY",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      ],
+      "source_level_mutation": "2c2\n< #backend = Aer.get_backend('qasm_simulator_py')\n---\n> \n9,10c9\n< qc = QuantumCircuit()\n< qc.from_qasm_str(qasm)\n---\n> qc = QuantumCircuit.from_qasm_str(qasm)\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-6",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "unsupported_source_construct: append requires a circuit representation not supported by the translator"
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-7",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "unsupported_source_construct: append requires a circuit representation not supported by the translator"
+    },
+    {
+      "buggy_circuit": [
+        [
+          "crz",
+          3,
+          0,
+          1.5707963267948966
+        ],
+        [
+          "crz",
+          3,
+          2,
+          0.7853981633974483
+        ]
+      ],
+      "case_id": "Bugs4Q-8",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 4,
+      "predicted_category": "NO_ANOMALY",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "crz",
+          0,
+          2,
+          1.5707963267948966
+        ],
+        [
+          "crz",
+          0,
+          3,
+          0.7853981633974483
+        ]
+      ],
+      "source_level_mutation": "8,9c8,9\n< circ.crz(pi/2,2,0)\n< circ.crz(pi/4,2,1)\n---\n> circ.crz(pi/2,0,1)\n> circ.crz(pi/4,0,2)\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-9",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Wrong Command",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "out_of_scope: no concrete QuantumCircuit construction found"
+    },
+    {
+      "buggy_circuit": [
+        [
+          "u1",
+          0,
+          0.24
+        ]
+      ],
+      "case_id": "Bugs4Q-10",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 1,
+      "predicted_category": "NO_ANOMALY",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "u1",
+          0,
+          0.24
+        ]
+      ],
+      "source_level_mutation": "4c4,5\n< print(qc.decompose())\n---\n> transpile(qc, basis_gates=['u1', 'u2', 'u3', 'cx'])\n> print(qc)\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-11",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "out_of_scope: no concrete QuantumCircuit construction found"
+    },
+    {
+      "buggy_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "measure",
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "case_id": "Bugs4Q-12",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 2,
+      "predicted_category": "NO_ANOMALY",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "measure",
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "source_level_mutation": "6c6\n< qc.measure_all()\n---\n> qc.measure(qc.qubits, qc.clbits)\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-13",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "unsupported_source_construct: append requires a circuit representation not supported by the translator"
+    },
+    {
+      "buggy_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "sdg",
+          1
+        ],
+        [
+          "cz",
+          0,
+          1
+        ],
+        [
+          "h",
+          1
+        ]
+      ],
+      "case_id": "Bugs4Q-14",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 2,
+      "predicted_category": "NO_ANOMALY",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "h",
+          1
+        ],
+        [
+          "sdg",
+          1
+        ],
+        [
+          "cz",
+          0,
+          1
+        ],
+        [
+          "h",
+          1
+        ]
+      ],
+      "source_level_mutation": "5c5\n< \n---\n> from qiskit.opflow.expectations import PauliExpectation\n16a16\n> exp_val = PauliExpectation().convert(exp_val).reduce()\n21,22c21\n< print('Qasm ', CircuitSampler(QuantumInstance(Aer.get_backend('qasm_simulator'),\n<                                shots=100000)).convert(exp_val).eval())  # = 0 (up to shot noise)\n---\n> print('Qasm ', CircuitSampler(QuantumInstance(Aer.get_backend('qasm_simulator'), shots=100000)).convert(PauliExpectation().convert(exp_val).reduce()).eval()) \n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-15",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "out_of_scope: no concrete QuantumCircuit construction found"
+    },
+    {
+      "buggy_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "cx",
+          2,
+          3
+        ],
+        [
+          "cx",
+          3,
+          4
+        ],
+        [
+          "barrier",
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          "measure",
+          [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        ]
+      ],
+      "case_id": "Bugs4Q-16",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 5,
+      "predicted_category": "NO_ANOMALY",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "cx",
+          2,
+          3
+        ],
+        [
+          "cx",
+          3,
+          4
+        ],
+        [
+          "barrier",
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "source_level_mutation": "13d12\n< ghz.measure(qr,cr)\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": [
+        [
+          "x",
+          0
+        ],
+        [
+          "measure",
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            2
+          ]
+        ]
+      ],
+      "case_id": "Bugs4Q-17",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "output Wtong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 3,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "x",
+          0
+        ],
+        [
+          "measure",
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      ],
+      "source_level_mutation": "8c9\n< qc.measure([1, 0, 2], [1, 0, 2])\n---\n> qc.measure([1, 0, 2], [0, 1, 2])\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "measure",
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "case_id": "Bugs4Q-18",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 2,
+      "predicted_category": "NO_ANOMALY",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "measure",
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "source_level_mutation": "1,4d0\n< import unittest\n< from qiskit import *\n< \n< class Test(unittest.TestCase):\n6,22c2\n<     \n<     def test_b18(self):\n<         try:\n<             if __name__ == \"__main__\":\n<                 backend = Aer.get_backend('statevector_simulator')\n<                 qc = QuantumCircuit(2, 2)\n<                 qc = QuantumCircuit(2, 2)\n<                 qc.h(0)\n<                 qc.cx(0, 1)\n<                 qc.measure([0,1], [0,1])\n<                 result = execute(qc, backend, 100).result()\n<                 print(result.get_counts(qc))\n<         except TypeError as e:\n<             self.assertEqual(type(e), TypeError)\n<            \n<         else:\n<             self.fail('TypeError not raised')\n---\n> from qiskit import *\n24,25c4,12\n< if __name__ == '__main__':\n<     unittest.main()\n---\n> if __name__ == \"__main__\":\n>     backend = Aer.get_backend('statevector_simulator')\n>     qc = QuantumCircuit(2, 2)\n>     qc = QuantumCircuit(2, 2)\n>     qc.h(0)\n>     qc.cx(0, 1)\n>     qc.measure([0,1], [0,1])\n>     result = execute(qc, backend, 100).result()\n>     print(result.get_counts(qc))\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ]
+      ],
+      "case_id": "Bugs4Q-19",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": " Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 2,
+      "predicted_category": "NO_ANOMALY",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ]
+      ],
+      "source_level_mutation": "11,14c10,11\n< qi.Operator.from_label('HI')\n< \n< # error at this line\n< qi.Operator.from_label('CX')\n---\n> qi.Operator.from_label('H') \n> qi.Operator.from_label('X')\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-20",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "out_of_scope: no concrete QuantumCircuit construction found"
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-21",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "out_of_scope: classical conditional execution is not represented by this simulator"
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-22",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Unfamiliar with API",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "out_of_scope: no concrete QuantumCircuit construction found"
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-23",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Figure problem",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "out_of_scope_or_unsupported: no supported circuit operations were extractable"
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-24",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Name conflict/TypeError",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "unsupported register expression Call(func=Name(id='qr', ctx=Load()), args=[Constant(value=0)], keywords=[])"
+    },
+    {
+      "buggy_circuit": [
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          2
+        ],
+        [
+          "barrier"
+        ],
+        [
+          "measure",
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      ],
+      "case_id": "Bugs4Q-25",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Label convention is reversed(|011>&|110>)",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 3,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "ccx",
+          2,
+          1,
+          0
+        ],
+        [
+          "barrier"
+        ],
+        [
+          "measure",
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      ],
+      "source_level_mutation": "1,28c1,27\n< \n< from qiskit import QuantumCircuit, assemble\n< from qiskit import Aer, execute\n< from qiskit.tools.visualization import plot_histogram\n< bit = 3\n< bit_lst = list(range(bit))\n< circuit = QuantumCircuit(bit, bit)\n< circuit.reset(0)\n< circuit.reset(1)\n< circuit.reset(2)\n< circuit.x(0)\n< circuit.x(1)    \n< circuit.ccx(0,1,2)\n< circuit.barrier()\n< circuit.measure(bit_lst,bit_lst)\n< circuit.draw(output='mpl')\n< backend = Aer.get_backend('statevector_simulator')\n< statevector=backend.run(assemble(circuit)).result().get_statevector()\n< print(statevector)\n< backend = Aer.get_backend('qasm_simulator')\n< counts1=backend.run(assemble(circuit)).result().get_counts()\n< print(counts1)\n< \n< \n< with open('result.txt', 'a') as f:\n<     print(f'011 - {statevector} - {counts1}', file=f)\n< \n< plot_histogram([counts1], legend=['Simulator'])\n---\n> \n> from qiskit import QuantumCircuit, assemble\n> from qiskit import Aer, execute\n> from qiskit.tools.visualization import plot_histogram\n> bit = 3\n> bit_lst = list(range(bit))\n> circuit = QuantumCircuit(bit, bit)\n> circuit.reset(0)\n> circuit.reset(1)\n> circuit.reset(2)\n> circuit.x(0)\n> circuit.x(1)    \n> circuit.ccx(2,1,0)\n> circuit.barrier()\n> circuit.measure(bit_lst,bit_lst)\n> circuit.draw(output='mpl')\n> backend = Aer.get_backend('statevector_simulator')\n> statevector=backend.run(assemble(circuit)).result().get_statevector()\n> print(statevector)\n> backend = Aer.get_backend('qasm_simulator')\n> counts1=backend.run(assemble(circuit)).result().get_counts()\n> print(counts1)\n> \n> with open('result.txt', 'a') as f:\n>     print(f'011 - {statevector} - {counts1}', file=f)\n> \n> plot_histogram([counts1], legend=['Simulator'])\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "measure",
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "case_id": "Bugs4Q-26",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Wrong operation with GATE",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 2,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "measure",
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "source_level_mutation": "6c6\n< circuit.h(1)\n---\n> circuit.x(1)\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-27",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "QFT operation*",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "unsupported_source_construct: helper IQFT needs safe circuit-body expansion"
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-28",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "unsupported_source_construct: iden requires a circuit representation not supported by the translator"
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-29",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "unsupported_source_construct: helper build_state_vector needs safe circuit-body expansion"
+    },
+    {
+      "buggy_circuit": [
+        [
+          "x",
+          4
+        ],
+        [
+          "h",
+          4
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "ccx",
+          1,
+          2,
+          5
+        ],
+        [
+          "ccx",
+          3,
+          5,
+          6
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          7
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "ccx",
+          6,
+          7,
+          4
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "reset",
+          5
+        ],
+        [
+          "reset",
+          6
+        ],
+        [
+          "reset",
+          7
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          5
+        ],
+        [
+          "ccx",
+          2,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          3,
+          6,
+          4
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "reset",
+          5
+        ],
+        [
+          "reset",
+          6
+        ],
+        [
+          "reset",
+          7
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "ccx",
+          1,
+          2,
+          5
+        ],
+        [
+          "ccx",
+          3,
+          5,
+          6
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          7
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "ccx",
+          6,
+          7,
+          4
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "reset",
+          5
+        ],
+        [
+          "reset",
+          6
+        ],
+        [
+          "reset",
+          7
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          5
+        ],
+        [
+          "ccx",
+          2,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          3,
+          6,
+          4
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "reset",
+          5
+        ],
+        [
+          "reset",
+          6
+        ],
+        [
+          "reset",
+          7
+        ],
+        [
+          "measure",
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ]
+      ],
+      "case_id": "Bugs4Q-30",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 4,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "x",
+          4
+        ],
+        [
+          "h",
+          4
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "ccx",
+          1,
+          2,
+          5
+        ],
+        [
+          "ccx",
+          3,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          7
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "ccx",
+          6,
+          7,
+          4
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          7
+        ],
+        [
+          "ccx",
+          3,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          1,
+          2,
+          5
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          5
+        ],
+        [
+          "ccx",
+          2,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          3,
+          6,
+          4
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "ccx",
+          2,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          5
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "reset",
+          5
+        ],
+        [
+          "reset",
+          6
+        ],
+        [
+          "reset",
+          7
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "ccx",
+          1,
+          2,
+          5
+        ],
+        [
+          "ccx",
+          3,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          7
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "ccx",
+          6,
+          7,
+          4
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "x",
+          5
+        ],
+        [
+          "x",
+          6
+        ],
+        [
+          "x",
+          7
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          7
+        ],
+        [
+          "ccx",
+          3,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          1,
+          2,
+          5
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          5
+        ],
+        [
+          "ccx",
+          2,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          3,
+          6,
+          4
+        ],
+        [
+          "x",
+          0
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "x",
+          3
+        ],
+        [
+          "x",
+          4
+        ],
+        [
+          "ccx",
+          2,
+          5,
+          6
+        ],
+        [
+          "ccx",
+          0,
+          1,
+          5
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "reset",
+          5
+        ],
+        [
+          "reset",
+          6
+        ],
+        [
+          "reset",
+          7
+        ],
+        [
+          "measure",
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ]
+      ],
+      "source_level_mutation": "23d22\n<     circuit.x( search_register[2] )\n25c24\n<     # Encode S0 * S1\n---\n> # Encode S0 * S1\n28c27\n<     # Encode oracle ((S0 * S1) + (S1 * !S2 * S3))\n---\n> # Encode oracle ((S0 * S1) + (S1 * !S2 * S3))\n31d29\n<     circuit.x(ancillaries)\n34,35c32,37\n<     # Reset ancillaries to be used later\n<     circuit.reset(ancillaries)\n---\n> # Return ancillaries to 0s so they can be used later\n>     circuit.x(ancillaries)\n>     circuit.ccx( search_register[0], search_register[1], ancillaries[2] )\n>     circuit.ccx( search_register[3], ancillaries[0], ancillaries[1] )\n>     circuit.ccx( search_register[1], search_register[2], ancillaries[0] )\n>     circuit.x( search_register[2] )\n37c39\n<     # Do rotation about the average\n---\n> # Do rotation about the average\n44a47,50\n> \n> # Return ancillaries to 0s for use later\n>     circuit.ccx( search_register[2], ancillaries[0], ancillaries[1] )\n>     circuit.ccx( search_register[0], search_register[1], ancillaries[0] )\n47c53\n<     # Reset ancillaries for use later\n---\n> # Reset ancillaries for use later\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": [
+        [
+          "x",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "measure",
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      ],
+      "case_id": "Bugs4Q-31",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 3,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "x",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "measure",
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            0
+          ]
+        ]
+      ],
+      "source_level_mutation": "21c21\n< circuit.measure([0,1,2], [0,1,2])\n---\n> circuit.measure([0,1,2], [2,1,0])\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-32",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "unsupported source expression: Call(func=Name(id='len', ctx=Load()), args=[Attribute(value=Name(id='circ', ctx=Load()), attr='qubits', ctx=Load())], keywords=[])"
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-33",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [
+        "invalid syntax (<unknown>, line 10)"
+      ],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "PARSING_ERROR",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "PARSING_ERROR",
+      "translated": false,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ]
+      ],
+      "case_id": "Bugs4Q-34",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 2,
+      "predicted_category": "NO_ANOMALY",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ]
+      ],
+      "source_level_mutation": "5c5\n< sv = Statevector.from_label('01')\n---\n> sv = Statevector.from_label('10')\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-35",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "out_of_scope: no concrete QuantumCircuit construction found"
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-36",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "unsupported_source_construct: wait requires a circuit representation not supported by the translator"
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-37",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "unsupported source expression: Call(func=Name(id='len', ctx=Load()), args=[Name(id='transpiled_circs', ctx=Load())], keywords=[])"
+    },
+    {
+      "buggy_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ]
+      ],
+      "case_id": "Bugs4Q-38",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 2,
+      "predicted_category": "NO_ANOMALY",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "cnot",
+          0,
+          1
+        ]
+      ],
+      "source_level_mutation": "2c2,8\n< from qiskit.providers.aer.library import *\n---\n> from qiskit.quantum_info import Statevector\n> qc = QuantumCircuit(2)\n> st0 = Statevector.from_instruction(qc) \n> qc.h(0)\n> st1 = Statevector.from_instruction(qc)\n> qc.cnot(0, 1)\n> st2 = Statevector.from_instruction(qc)\n4,11c10,22\n< q1 = QuantumCircuit(2)\n< q1.save_statevector() # Save initial state\n< q1.h(0)\n< q1.save_statevector() # Save state after Hadamard\n< q1.cx(0, 1)\n< q1.save_statevector() # Save state after CNOT (also a final state)\n< job = execute(q1, backend=Aer.get_backend('aer_simulator'), shots=1024)\n< statevectors = job.result().get_statevector()\n---\n> print(st0)\n> print(st1)\n> print(st2)\n> \n> \n> Statevector([1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j],\n>         dims=(2, 2))\n> Statevector([0.70710678+0.j, 0.70710678+0.j, 0.             +0.j,\n>          0.        +0.j],\n>         dims=(2, 2))\n> Statevector([0.70710678+0.j, 0.        +0.j, 0.        +0.j,\n>          0.70710678+0.j],\n>         dims=(2, 2))\n\\ No newline at end of file\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": [
+        [
+          "cx",
+          3,
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "ccx",
+          3,
+          2,
+          1
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "cx",
+          3,
+          2
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ]
+      ],
+      "case_id": "Bugs4Q-39",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Output Wrong",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 4,
+      "predicted_category": "PROGRAM_FAULT",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          2
+        ],
+        [
+          "h",
+          3
+        ],
+        [
+          "cx",
+          3,
+          1
+        ],
+        [
+          "cx",
+          1,
+          0
+        ],
+        [
+          "cx",
+          0,
+          1
+        ],
+        [
+          "ccx",
+          3,
+          2,
+          1
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "cx",
+          3,
+          2
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ]
+      ],
+      "source_level_mutation": "3a4,5\n> for i in range(4):\n>     qc.h(i)\n17c19\n< plot_histogram(count) \n\\ No newline at end of file\n---\n> plot_histogram(count)\n\\ No newline at end of file\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-40",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "unsupported_source_construct: initialize requires a circuit representation not supported by the translator"
+    },
+    {
+      "buggy_circuit": null,
+      "case_id": "Bugs4Q-41",
+      "circuit_extracted": false,
+      "diagnosed": false,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": false,
+      "execution_status": "UNSUPPORTED",
+      "fault_category": "Simulation Failed",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 0,
+      "predicted_category": null,
+      "predicted_location": null,
+      "reference_fixed_circuit": null,
+      "source_level_mutation": null,
+      "source_loaded": true,
+      "status": "UNSUPPORTED",
+      "translated": false,
+      "unsupported_reason": "unsupported source expression: Name(id='num_qubits', ctx=Load())"
+    },
+    {
+      "buggy_circuit": [
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ]
+      ],
+      "case_id": "Bugs4Q-42",
+      "circuit_extracted": true,
+      "diagnosed": true,
+      "errors": [],
+      "evaluation_note": "Bug type confirms a bug exists but does not identify a diagnosis category; source-level edit is retained separately.",
+      "executable": true,
+      "execution_status": "COMPLETED",
+      "fault_category": "Throw Exceptions",
+      "gate_type": null,
+      "ground_truth_category": null,
+      "ground_truth_location": null,
+      "ground_truth_status": "BUG_TYPE_METADATA_ONLY",
+      "mutation_type": "source_mutation",
+      "num_qubits": 4,
+      "predicted_category": "NO_ANOMALY",
+      "predicted_location": null,
+      "reference_fixed_circuit": [
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ],
+        [
+          "x",
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "u1",
+          0,
+          3.141592653589793
+        ],
+        [
+          "u1",
+          1,
+          1.5707963267948966
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cp",
+          0,
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "x",
+          1
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "cp",
+          0,
+          1,
+          1.5707963267948966
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "cx",
+          1,
+          2
+        ],
+        [
+          "u1",
+          1,
+          -1.5707963267948966
+        ],
+        [
+          "u1",
+          0,
+          -3.141592653589793
+        ],
+        [
+          "h",
+          1
+        ],
+        [
+          "h",
+          0
+        ],
+        [
+          "measure",
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          "measure",
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          "measure",
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        [
+          "measure",
+          [
+            3
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          "reset",
+          0
+        ],
+        [
+          "reset",
+          1
+        ],
+        [
+          "reset",
+          2
+        ],
+        [
+          "reset",
+          3
+        ]
+      ],
+      "source_level_mutation": "61,62c61,62\n<     n0 = n0 + result.get_data(\"solve_linear_sys\")['counts']['1000']\n<     n1 = n1 + result.get_data(\"solve_linear_sys\")['counts']['1100']\n---\n>     n0 = n0 + result.get_counts()['1000']\n>     n1 = n1 + result.get_counts()['1100']\n",
+      "source_loaded": true,
+      "status": "OK",
+      "translated": true,
+      "unsupported_reason": null
+    }
+  ],
+  "source_pairs_available_cases": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42
+  ],
+  "total_cases": 42,
+  "translated_cases": 19,
+  "unsupported_cases": 22,
+  "unsupported_reason_breakdown": {
+    "out_of_scope: classical conditional execution is not represented by this simulator": 1,
+    "out_of_scope: no concrete QuantumCircuit construction found": 7,
+    "out_of_scope_or_unsupported: no supported circuit operations were extractable": 1,
+    "unsupported register expression Call(func=Name(id='qr', ctx=Load()), args=[Constant(value=0)], keywords=[])": 1,
+    "unsupported source expression: Call(func=Name(id='len', ctx=Load()), args=[Attribute(value=Name(id='circ', ctx=Load()), attr='qubits', ctx=Load())], keywords=[])": 1,
+    "unsupported source expression: Call(func=Name(id='len', ctx=Load()), args=[Name(id='transpiled_circs', ctx=Load())], keywords=[])": 1,
+    "unsupported source expression: Name(id='num_qubits', ctx=Load())": 1,
+    "unsupported_source_construct: append requires a circuit representation not supported by the translator": 3,
+    "unsupported_source_construct: helper IQFT needs safe circuit-body expansion": 1,
+    "unsupported_source_construct: helper build_state_vector needs safe circuit-body expansion": 1,
+    "unsupported_source_construct: iden requires a circuit representation not supported by the translator": 1,
+    "unsupported_source_construct: initialize requires a circuit representation not supported by the translator": 1,
+    "unsupported_source_construct: non-default controlled-gate options require explicit control-state semantics": 1,
+    "unsupported_source_construct: wait requires a circuit representation not supported by the translator": 1
+  }
+}

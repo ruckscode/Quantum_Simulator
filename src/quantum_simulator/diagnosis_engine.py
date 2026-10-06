@@ -308,12 +308,11 @@ def diagnose_execution(
         candidate.reason != "Largest traced deviation without direct operation mismatch"
         for candidate in program_candidates
     )
-    if direct_program_mismatch:
-        # A direct circuit-operation mismatch is independent program evidence.
-        # Keep the statistical result intact, but let this localized fault
-        # contribute to the top-level anomaly classification.
+    if statistics_result is None and direct_program_mismatch:
+        # With no execution distributions, a concrete operation mismatch is
+        # the available anomaly evidence. Never override a supplied statistical
+        # comparison, which remains authoritative when present.
         anomaly_detected = True
-
     evidence: list[str] = []
     if statistics_result is not None:
         evidence.append(statistics_result.message)

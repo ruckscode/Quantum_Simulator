@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from typing import Any
 
 from .quantum_simulator import QuantumSimulator
@@ -86,6 +87,18 @@ class QuantumCircuit:
 
     def rz(self, theta: float, qubit: int) -> None:
         self._append_rotation("rz", theta, qubit)
+
+    def rxx(self, theta: float, qubit1: int, qubit2: int) -> None:
+        self._validate_distinct_qubits(qubit1, qubit2)
+        if isinstance(theta, bool):
+            raise ValueError("RXX angle must be a finite number")
+        try:
+            angle = float(theta)
+        except (TypeError, ValueError) as exc:
+            raise ValueError("RXX angle must be a finite number") from exc
+        if not math.isfinite(angle):
+            raise ValueError("RXX angle must be a finite number")
+        self.instructions.append(("rxx", qubit1, qubit2, angle))
 
     def cx(self, control: int, target: int) -> None:
         self._validate_distinct_qubits(control, target)

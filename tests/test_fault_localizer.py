@@ -1,6 +1,6 @@
 import numpy as np
 
-from quantum_simulator.fault_localizer import DiagnosticTrace, _normalize_operation, localize_program_fault
+from quantum_simulator.fault_localizer import DiagnosticTrace, _infer_n_qubits, _normalize_operation, localize_program_fault
 
 
 def test_normalize_single_qubit_operation_preserves_qubit_index():
@@ -14,6 +14,10 @@ def test_normalize_two_qubit_operation_preserves_both_qubit_indices():
 def test_normalize_parameterized_operations_preserves_qubits_and_parameters():
     assert _normalize_operation(("rx", 2, 0.5)) == ("rx", (2,), (0.5,))
     assert _normalize_operation(("crx", 0, 2, 0.75)) == ("crx", (0, 2), (0.75,))
+
+
+def test_qubit_inference_does_not_count_angles_as_qubits():
+    assert _infer_n_qubits([("cp", 0, 3, 19.6), ("rxx", 1, 2, 0.4)]) == 4
 
 
 def test_normalize_existing_operation_formats():

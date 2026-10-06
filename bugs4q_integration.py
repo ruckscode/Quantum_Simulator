@@ -10,6 +10,7 @@ import ast
 import csv
 import json
 import math
+import tempfile
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Iterable
@@ -21,7 +22,7 @@ from statistics import compare_distributions
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 OFFICIAL_ROOT = PROJECT_ROOT / "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit"
-INTEGRATED_CASES = (8, 12, 17, 25, 26, 30, 31, 39)
+SUPPORTED_SOURCE_GATES = {"h", "x", "y", "z", "s", "sdg", "t", "tdg", "sx", "sxdg", "rx", "ry", "rz", "p", "u1", "u2", "u3", "cx", "cnot", "cz", "swap", "ccx", "toffoli", "crz", "cu1", "rxx", "reset", "barrier", "measure", "measure_all"}
 _SIMPLE_ARITY = {"h": 1, "x": 1, "z": 1, "y": 1, "s": 1, "t": 1, "id": 1,
                  "cx": 2, "cnot": 2, "cz": 2, "swap": 2, "ccx": 3,
                  "reset": 1, "barrier": -1, "crz": 3}
@@ -33,6 +34,17 @@ def _safe_eval(node: ast.AST, names: dict[str, Any] | None = None) -> Any:
         return node.value
     if isinstance(node, ast.Name) and node.id in names:
         return names[node.id]
+    if isinstance(node, ast.Attribute) and isinstance(node.value, ast.Name) and node.value.id == "math" and node.attr == "pi":
+        return math.pi
+    if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id in {"range", "list", "tuple"} and not node.keywords:
+        values = [_safe_eval(arg, names) for arg in node.args]
+        if node.func.id == "range": return range(*values)
+        if len(values) != 1: raise ValueError("safe list/tuple conversion expects one argument")
+        return list(values[0]) if node.func.id == "list" else tuple(values[0])
+    if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "len" and len(node.args) == 1:
+        argument = node.args[0]
+        if isinstance(argument, ast.Attribute) and argument.attr == "qubits" and isinstance(argument.value, ast.Name):
+            return int((names or {}).get("__widths__", {}).get(argument.value.id, 0))
     if isinstance(node, ast.UnaryOp) and isinstance(node.op, (ast.USub, ast.UAdd)):
         value = _safe_eval(node.operand, names)
         return -value if isinstance(node.op, ast.USub) else value
@@ -111,15 +123,24 @@ def _resolve_qubit(node: ast.AST, env: dict[str, Any], layout: dict[str, tuple[i
 def _resolve_register(node: ast.AST, layout: dict[str, tuple[int, ...]], env: dict[str, Any]) -> list[int]:
     if isinstance(node, ast.Name) and node.id in layout:
         return list(layout[node.id])
+    if isinstance(node, ast.Name) and isinstance(env.get(node.id), (list, tuple)):
+        return [int(value) for value in env[node.id]]
     if isinstance(node, ast.Subscript):
         return [_resolve_qubit(node, env, layout)]
     if isinstance(node, (ast.List, ast.Tuple)):
         return [_resolve_qubit(item, env, layout) for item in node.elts]
+    if isinstance(node, (ast.Constant, ast.Name)):
+        return [_resolve_qubit(node, env, layout)]
+    if isinstance(node, ast.Attribute) and node.attr in {"qubits", "clbits"}:
+        key = "__all_qubits__" if node.attr == "qubits" else "__all_clbits__"
+        if key in layout: return list(layout[key])
     raise ValueError(f"unsupported register expression {ast.dump(node, include_attributes=False)}")
 
 
 def _extract_source(source: str, case_number: int) -> tuple[list[tuple[Any, ...]], int]:
     tree = ast.parse(source)
+    if case_number not in (8, 12, 17, 25, 26, 30, 31, 39):
+        return _extract_capability_source(tree)
     if case_number in (12, 17, 31):
         # Preserve Qiskit's explicit qubit-to-classical-bit mapping. Count
         # strings are emitted in descending classical-bit order below.
@@ -230,6 +251,180 @@ def _extract_source(source: str, case_number: int) -> tuple[list[tuple[Any, ...]
     return operations, num_qubits
 
 
+def _extract_capability_source(tree: ast.Module) -> tuple[list[tuple[Any, ...]], int]:
+    """Extract ordinary circuit-building calls without executing source code."""
+    if any(isinstance(node, ast.Attribute) and node.attr == "c_if" for node in ast.walk(tree)):
+        raise ValueError("out_of_scope: classical conditional execution is not represented by this simulator")
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Constant) and isinstance(node.value, str) and node.value.lstrip().upper().startswith("OPENQASM 2.0"):
+            from qmutbench_validation import parse_qasm_file
+            with tempfile.NamedTemporaryFile("w", suffix=".qasm", encoding="utf-8", delete=False) as stream:
+                stream.write(node.value)
+                qasm_path = Path(stream.name)
+            try:
+                qasm_ops, qasm_width = parse_qasm_file(qasm_path)
+                normalized = []
+                for op in qasm_ops:
+                    if op[0] == "measure":
+                        targets = op[1] if len(op) > 1 and isinstance(op[1], (list, tuple)) else [op[1]] if len(op) > 1 else list(range(qasm_width))
+                        normalized.append(("measure", list(targets), list(targets)))
+                    else:
+                        normalized.append(tuple(op))
+                return normalized, qasm_width
+            finally:
+                qasm_path.unlink(missing_ok=True)
+    sizes: dict[str, int] = {}
+    classical_sizes: dict[str, int] = {}
+    static_env: dict[str, Any] = {"pi": math.pi}
+    for stmt in tree.body:
+        if isinstance(stmt, ast.Assign) and len(stmt.targets) == 1 and isinstance(stmt.targets[0], ast.Name):
+            try:
+                static_env[stmt.targets[0].id] = _safe_eval(stmt.value, static_env)
+            except (ValueError, TypeError, ZeroDivisionError):
+                pass
+    known_widths: dict[str, int] = {}
+    known_qregs: dict[str, int] = {}
+    for node in ast.walk(tree):
+        if not isinstance(node, (ast.Assign, ast.AnnAssign)):
+            continue
+        targets = node.targets if isinstance(node, ast.Assign) else [node.target]
+        value = node.value
+        if not isinstance(value, ast.Call) or not isinstance(value.func, ast.Name):
+            continue
+        target = next((item.id for item in targets if isinstance(item, ast.Name)), None)
+        if target is None: continue
+        if value.func.id == "QuantumRegister" and value.args:
+            try: known_qregs[target] = int(_safe_eval(value.args[0], static_env))
+            except (TypeError, ValueError): pass
+        if value.func.id == "QuantumCircuit":
+            if value.args:
+                try: known_widths[target] = int(_safe_eval(value.args[0], static_env))
+                except (TypeError, ValueError): known_widths[target] = sum(known_qregs.get(arg.id, 0) for arg in value.args if isinstance(arg, ast.Name))
+    static_env["__widths__"] = known_widths
+    circuit_widths: dict[str, int] = {}
+    for node in ast.walk(tree):
+        if not isinstance(node, (ast.Assign, ast.AnnAssign)):
+            continue
+        targets = node.targets if isinstance(node, ast.Assign) else [node.target]
+        value = node.value
+        if not isinstance(value, ast.Call):
+            continue
+        constructor = value.func.id if isinstance(value.func, ast.Name) else value.func.attr if isinstance(value.func, ast.Attribute) else None
+        target_names = [target.id for target in targets if isinstance(target, ast.Name)]
+        if constructor in {"QuantumRegister", "ClassicalRegister"} and value.args and target_names:
+            size = int(_safe_eval(value.args[0], static_env))
+            (sizes if constructor == "QuantumRegister" else classical_sizes)[target_names[0]] = size
+        elif constructor == "QuantumCircuit" and target_names:
+            if value.args:
+                try:
+                    circuit_widths[target_names[0]] = int(_safe_eval(value.args[0], static_env))
+                    continue
+                except (ValueError, TypeError):
+                    pass
+            if value.args:
+                circuit_widths[target_names[0]] = sum(sizes.get(arg.id, 0) for arg in value.args if isinstance(arg, ast.Name))
+
+    layouts: dict[str, tuple[int, ...]] = {}
+    num_qubits = max(circuit_widths.values(), default=0)
+    for node in ast.walk(tree):
+        if not isinstance(node, (ast.Assign, ast.AnnAssign)) or not isinstance(node.value, ast.Call):
+            continue
+        if not isinstance(node.value.func, ast.Name) or node.value.func.id != "QuantumCircuit":
+            continue
+        index = 0
+        for arg in node.value.args:
+            if isinstance(arg, ast.Name) and arg.id in sizes:
+                size = sizes[arg.id]
+                layouts[arg.id] = tuple(range(index, index + size))
+                index += size
+        if index:
+            num_qubits = max(num_qubits, index)
+    cl_index = 0
+    for name, size in classical_sizes.items():
+        layouts[name] = tuple(range(cl_index, cl_index + size))
+        cl_index += size
+    layouts["__all_qubits__"] = tuple(range(num_qubits))
+    layouts["__all_clbits__"] = tuple(range(cl_index))
+
+    owners = set(circuit_widths)
+    for node in ast.walk(tree):
+        if isinstance(node, (ast.Assign, ast.AnnAssign)) and isinstance(node.value, ast.BinOp) and isinstance(node.value.op, ast.Add):
+            names = [part.id for part in (node.value.left, node.value.right) if isinstance(part, ast.Name)]
+            if len(names) == 2 and all(name in owners for name in names):
+                targets = node.targets if isinstance(node, ast.Assign) else [node.target]
+                owners.update(target.id for target in targets if isinstance(target, ast.Name))
+    if not owners:
+        raise ValueError("out_of_scope: no concrete QuantumCircuit construction found")
+    helper_names = {node.name for node in ast.walk(tree) if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))}
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id in helper_names and node.args:
+            if isinstance(node.args[0], ast.Name) and node.args[0].id in owners:
+                raise ValueError(f"unsupported_source_construct: helper {node.func.id} needs safe circuit-body expansion")
+    ops: list[tuple[Any, ...]] = []
+    env: dict[str, Any] = dict(static_env)
+    for node, call_env in _calls(tree, env):
+        if not isinstance(node.func, ast.Attribute) or not isinstance(node.func.value, ast.Name):
+            continue
+        owner, method = node.func.value.id, node.func.attr.lower()
+        if owner not in owners or method not in SUPPORTED_SOURCE_GATES:
+            if owner in owners and method in {"append", "compose", "initialize", "unitary", "iden", "wait", "if_else", "c_if", "control"}:
+                raise ValueError(f"unsupported_source_construct: {method} requires a circuit representation not supported by the translator")
+            continue
+        args = node.args
+        if method in {"cx", "cnot", "ccx", "toffoli"} and node.keywords:
+            raise ValueError("unsupported_source_construct: non-default controlled-gate options require explicit control-state semantics")
+        local_env = {**env, **call_env}
+        if method in {"measure_all"}:
+            ops.append(("measure", list(range(num_qubits)), list(range(num_qubits))))
+        elif method == "barrier":
+            qs = _resolve_register(args[0], layouts, local_env) if args else list(range(num_qubits))
+            ops.append(("barrier", *qs))
+        elif method == "reset":
+            qs = _resolve_register(args[0], layouts, local_env)
+            ops.extend(("reset", q) for q in qs)
+        elif method == "measure":
+            if len(args) < 2:
+                raise ValueError("unsupported: measurement without explicit classical mapping")
+            qs = _resolve_register(args[0], layouts, local_env)
+            cs = _resolve_register(args[1], layouts, local_env)
+            if len(qs) != len(cs):
+                raise ValueError("unsupported: measurement register widths differ")
+            ops.append(("measure", qs, cs))
+        elif method in {"rx", "ry", "rz", "p", "u1", "u2", "u3", "crz", "cu1", "rxx"}:
+            if method in {"crz", "cu1", "rxx"}:
+                theta = float(_safe_eval(args[0], local_env))
+                qs = [_resolve_qubit(arg, local_env, layouts) for arg in args[1:3]]
+                if method == "cu1":
+                    ops.append(("cp", *qs, theta))
+                else:
+                    ops.append((method, *qs, theta))
+            else:
+                params = [float(_safe_eval(arg, local_env)) for arg in args[:-1]]
+                qs = _resolve_register(args[-1], layouts, local_env)
+                ops.extend((method, q, *params) for q in qs)
+        else:
+            qs = [_resolve_register(arg, layouts, local_env) for arg in args]
+            if method in {"cx", "cnot", "cz", "swap"}:
+                if len(qs) != 2:
+                    raise ValueError(f"unsupported: {method} requires two operands")
+                width = max(map(len, qs))
+                if any(len(group) not in (1, width) for group in qs):
+                    raise ValueError(f"unsupported: incompatible register widths for {method}")
+                ops.extend((method, qs[0][i if len(qs[0]) > 1 else 0], qs[1][i if len(qs[1]) > 1 else 0]) for i in range(width))
+            else:
+                flat = [q for group in qs for q in group]
+                arity = 3 if method in {"ccx", "toffoli"} else 1
+                if arity == 3 and len(flat) != 3:
+                    raise ValueError(f"unsupported: {method} requires three explicit qubits")
+                if arity == 1:
+                    ops.extend((method, q) for q in flat)
+                else:
+                    ops.append((method, *flat))
+    if not ops:
+        raise ValueError("out_of_scope_or_unsupported: no supported circuit operations were extractable")
+    return ops, num_qubits
+
+
 def _apply_operations(operations: list[tuple[Any, ...]], num_qubits: int, shots: int, seed: int) -> dict[str, int]:
     """Execute once on QuantumSimulator, then sample its measured marginal."""
     import numpy as np
@@ -239,11 +434,13 @@ def _apply_operations(operations: list[tuple[Any, ...]], num_qubits: int, shots:
     for operation in operations:
         name, *args = operation
         if name == "measure":
-            selected.extend(args[0])
-            classical.extend(args[1] if len(args) > 1 else args[0])
-        elif name == "crz":
+            measured = args[0] if isinstance(args[0], (list, tuple)) else [args[0]]
+            destinations = args[1] if len(args) > 1 else measured
+            selected.extend(measured)
+            classical.extend(destinations if isinstance(destinations, (list, tuple)) else [destinations])
+        elif name in {"crz", "cp"}:
             control, target, theta = args
-            sim.apply_gate("crz", [int(control), int(target)], float(theta))
+            sim.apply_gate(name, [int(control), int(target)], float(theta))
         else:
             sim.run_circuit([operation])
     measured = selected if selected else list(range(num_qubits))
@@ -329,7 +526,8 @@ def _case_metadata(case_number: int, case_dir: Path) -> dict[str, Any]:
 
 def discover_bugs4q_cases(root: str | Path = OFFICIAL_ROOT) -> list[int]:
     base = Path(root)
-    return [n for n in INTEGRATED_CASES if all((base / str(n) / filename.format(n=n)).is_file() for filename in ("buggy_{n}.py", "fixed_{n}.py", "info_{n}.csv", "modify_{n}.txt"))]
+    return sorted(int(path.name) for path in base.iterdir() if path.is_dir() and path.name.isdigit()
+                  and (path / f"buggy_{path.name}.py").is_file() and (path / f"fixed_{path.name}.py").is_file())
 
 
 def run_bugs4q_integration(
@@ -341,8 +539,22 @@ def run_bugs4q_integration(
         case_dir = base / str(number)
         buggy_source = (case_dir / f"buggy_{number}.py").read_text(encoding="utf-8-sig")
         fixed_source = (case_dir / f"fixed_{number}.py").read_text(encoding="utf-8-sig")
-        buggy, buggy_n = _extract_source(buggy_source, number)
-        fixed, fixed_n = _extract_source(fixed_source, number)
+        try:
+            buggy, buggy_n = _extract_source(buggy_source, number)
+            fixed, fixed_n = _extract_source(fixed_source, number)
+        except (ValueError, SyntaxError, IndexError, KeyError, TypeError) as exc:
+            metadata = _case_metadata(number, case_dir)
+            malformed = isinstance(exc, SyntaxError)
+            records.append({"case_number": number, "case_id": f"Bugs4Q-{number}",
+                            "execution_status": "PARSING_ERROR" if malformed else "UNSUPPORTED",
+                            "support_status": "PARSING_FAILURE" if malformed else "UNSUPPORTED",
+                            "source_loaded": True, "circuit_extracted": False, "translated": False,
+                            "executable": False, "diagnosed": False,
+                            "unsupported_reason": None if malformed else str(exc),
+                            "errors": [str(exc)] if malformed else [],
+                            "bugs4q_metadata": metadata,
+                            "ground_truth": {"available": False, "status": "BUG_TYPE_METADATA_ONLY"}})
+            continue
         n = max(buggy_n, fixed_n)
         expected_counts = _apply_operations(fixed, n, shots, seed)
         observed_counts = _apply_operations(buggy, n, shots, seed + 1)
@@ -391,6 +603,9 @@ def run_bugs4q_integration(
             "case_number": number,
             "case_id": f"Bugs4Q-{number}",
             "execution_status": "COMPLETED",
+            "support_status": "SUPPORTED", "source_loaded": True,
+            "circuit_extracted": True, "translated": True,
+            "executable": True, "diagnosed": True,
             "bugs4q_metadata": metadata,
             "reference_fixed_circuit": fixed,
             "buggy_circuit": buggy,
