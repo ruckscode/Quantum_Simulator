@@ -94,12 +94,21 @@ def _canonicalize_circuit(circuit: Sequence[Any] | None) -> list[tuple[Any, ...]
         name = str(operation[0]).lower()
         operands = list(operation[1:])
         if name == "measure":
-            if len(operands) > 1 and isinstance(operands[0], (tuple, list)):
-                qubits, classical_bits = operands[:2]
-            elif len(operands) > 1 and isinstance(operands[0], int) and isinstance(operands[1], (tuple, list)):
-                qubits, classical_bits = [operands[0]], operands[1]
+            if not operands:
+                qubits, classical_bits = (), ()
+            elif isinstance(operands[0], (tuple, list)):
+                # measure_all() emits a qubit list without explicit classical
+                # destinations; explicit mappings may provide them as operand 2.
+                qubits = operands[0]
+                classical_bits = operands[1] if len(operands) > 1 else ()
             else:
-                qubits, classical_bits = operands, []
+                # measure(q) and measure(q, [classical_bit]) are both supported.
+                qubits = [operands[0]]
+                classical_bits = operands[1] if len(operands) > 1 else ()
+            if isinstance(qubits, int):
+                qubits = [qubits]
+            if isinstance(classical_bits, int):
+                classical_bits = [classical_bits]
             normalized.append((name, tuple(int(value) for value in qubits), tuple(int(value) for value in classical_bits)))
             continue
         elif name == "reset":

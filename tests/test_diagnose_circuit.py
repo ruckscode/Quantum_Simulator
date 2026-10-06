@@ -1,4 +1,4 @@
-from quantum_simulator import diagnose_circuit
+from quantum_simulator import QuantumCircuit, diagnose_circuit
 from quantum_simulator.diagnosis_engine import DiagnosisCategory
 from quantum_simulator.hardware_model import HardwareModel
 
@@ -27,4 +27,15 @@ def test_diagnose_circuit_without_hardware_compares_ideal_execution():
     result = diagnose_circuit([("h", 0), ("measure", 0, [0])], shots=100, seed=42)
 
     assert result.anomaly_detected is False
+    assert result.category is DiagnosisCategory.NO_ANOMALY
+
+
+def test_diagnose_circuit_accepts_quantum_circuit_measure_all():
+    circuit = QuantumCircuit(2)
+    circuit.h(0)
+    circuit.cx(0, 1)
+    circuit.measure_all()
+
+    result = diagnose_circuit(circuit, shots=1000, seed=42)
+
     assert result.category is DiagnosisCategory.NO_ANOMALY
