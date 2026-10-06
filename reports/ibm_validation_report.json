@@ -1,11 +1,11 @@
 {
   "access": {
-    "credential_source": null,
-    "credentials_detected": false,
-    "qiskit_available": false,
-    "reason": "Required package(s) not installed: qiskit, qiskit-ibm-runtime",
-    "runtime_available": false,
-    "status": "BLOCKED"
+    "credential_source": "IBM_QUANTUM_TOKEN",
+    "credentials_detected": true,
+    "qiskit_available": true,
+    "reason": null,
+    "runtime_available": true,
+    "status": "ACCESS_CONFIGURED"
   },
   "anomaly": {
     "detected": false,
@@ -18,17 +18,17 @@
   "backend": "offline-fixture",
   "backend_discovery": {
     "access": {
-      "credential_source": null,
-      "credentials_detected": false,
-      "qiskit_available": false,
-      "reason": "Required package(s) not installed: qiskit, qiskit-ibm-runtime",
-      "runtime_available": false,
-      "status": "BLOCKED"
+      "credential_source": "IBM_QUANTUM_TOKEN",
+      "credentials_detected": true,
+      "qiskit_available": true,
+      "reason": null,
+      "runtime_available": true,
+      "status": "ACCESS_CONFIGURED"
     },
     "backends": [],
     "discovery_source": "IBM_RUNTIME",
-    "error": "Required package(s) not installed: qiskit, qiskit-ibm-runtime",
-    "status": "BLOCKED"
+    "error": "InvalidAccountError: 'Unable to retrieve instances. Please check that you are using a valid API token.'",
+    "status": "FAILED"
   },
   "calibration_retrieval_status": "OFFLINE_FIXTURE",
   "calibration_snapshot": {
@@ -53,7 +53,7 @@
       }
     },
     "retrieval_status": "OFFLINE_FIXTURE",
-    "timestamp": "2026-10-03T09:29:29+00:00",
+    "timestamp": "2026-10-05T07:43:50+00:00",
     "unavailable_fields": []
   },
   "conversion_info": {
@@ -99,7 +99,7 @@
   "errors": [],
   "execution_origin": "OFFLINE_FIXTURE",
   "execution_status": "OFFLINE_TESTED",
-  "execution_timestamp": "2026-10-03T09:29:29+00:00",
+  "execution_timestamp": "2026-10-05T07:43:50+00:00",
   "hardware_candidates": [],
   "ideal_distribution": {
     "0": 0.5,
@@ -125,7 +125,7 @@
   "offline_status": "OFFLINE_TESTED",
   "overall_status": "OFFLINE_TESTED",
   "phase_statuses": {
-    "BLOCKED": "BLOCKED",
+    "BLOCKED": "NOT_BLOCKED",
     "FAILED": "NOT_FAILED",
     "IMPLEMENTED": "IMPLEMENTED",
     "OFFLINE_TESTED": "OFFLINE_TESTED",
@@ -133,7 +133,7 @@
   },
   "program_candidates": [],
   "real_hardware_executed": false,
-  "real_ibm_status": "BLOCKED",
+  "real_ibm_status": "NOT_EXECUTED",
   "shots": 1024,
   "transpilation_info": {
     "reason": "Offline fixtures are not IBM backend executions.",

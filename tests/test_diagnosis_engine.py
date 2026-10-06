@@ -1,4 +1,8 @@
-from quantum_simulator.diagnosis_engine import DiagnosisCategory, diagnose_execution
+from quantum_simulator.diagnosis_engine import (
+    DiagnosisCategory,
+    diagnose_execution,
+    format_program_fault_diagnosis,
+)
 from quantum_simulator.hardware_model import HardwareModel
 
 
@@ -58,6 +62,31 @@ def test_program_fault_on_healthy_hardware_is_localized_as_program_fault():
     assert result.category is DiagnosisCategory.PROGRAM_FAULT
     assert result.program_result.candidates
     assert not result.hardware_evidence_candidates
+
+
+def test_program_fault_formatter_uses_candidate_details():
+    result = diagnose_execution(
+        expected_distribution=EXPECTED,
+        observed_distribution=ANOMALOUS,
+        expected_circuit=[("x", 0)],
+        observed_circuit=[("h", 0)],
+        hardware_model=HardwareModel(1),
+    )
+
+    assert format_program_fault_diagnosis(result) == (
+        "=== PROGRAM FAULT DETECTED ===\n"
+        "\n"
+        "Fault location : Step 0\n"
+        "Faulty gate    : H(0)\n"
+        "Expected gate  : X(0)\n"
+        "Mismatch score : 0.50\n"
+        "\n"
+        "Reason:\n"
+        "Gate operation differs from expected circuit\n"
+        "\n"
+        "Suggested correction:\n"
+        "Replace H(0) with X(0)"
+    )
 
 
 def test_hardware_degradation_with_correct_program_is_hardware_anomaly():

@@ -20,7 +20,9 @@ def _validate_qubit_index(qubit: int, n_qubits: int | None = None) -> int:
     return qubit
 
 
-def _validate_probability(value: float, name: str) -> float:
+def _validate_probability(value: float | None, name: str) -> float | None:
+    if value is None:
+        return None
     if not isinstance(value, (int, float)):
         raise TypeError(f"{name} must be numeric")
     numeric = float(value)
@@ -29,7 +31,9 @@ def _validate_probability(value: float, name: str) -> float:
     return numeric
 
 
-def _validate_nonnegative(value: float, name: str) -> float:
+def _validate_nonnegative(value: float | None, name: str) -> float | None:
+    if value is None:
+        return None
     if not isinstance(value, (int, float)):
         raise TypeError(f"{name} must be numeric")
     numeric = float(value)
@@ -41,9 +45,9 @@ def _validate_nonnegative(value: float, name: str) -> float:
 @dataclass
 class QubitProperties:
     qubit: int
-    t1: float = 1e6
-    t2: float = 1e6
-    readout_error: float = 0.0
+    t1: float | None = 1e6
+    t2: float | None = 1e6
+    readout_error: float | None = 0.0
     status: str = "available"
     available: bool = True
     metadata: Dict[str, Any] = field(default_factory=dict)
@@ -61,8 +65,8 @@ class QubitProperties:
 class GateProperties:
     gate: str
     qubits: Tuple[int, ...] = ()
-    error: float = 0.0
-    duration: float = 0.0
+    error: float | None = 0.0
+    duration: float | None = 0.0
     supported: bool = True
     metadata: Dict[str, Any] = field(default_factory=dict)
 
@@ -243,15 +247,17 @@ class HardwareModel:
 
     def gate_error(self, gate_name: str, qubits: Sequence[int] | None = None) -> float:
         calib = self.get_gate_calibration(gate_name, qubits=qubits)
-        if not calib:
+        errors = [entry.error for entry in calib if entry.error is not None]
+        if not errors:
             return 0.0
-        return min(entry.error for entry in calib)
+        return min(errors)
 
     def gate_duration(self, gate_name: str, qubits: Sequence[int] | None = None) -> float:
         calib = self.get_gate_calibration(gate_name, qubits=qubits)
-        if not calib:
+        durations = [entry.duration for entry in calib if entry.duration is not None]
+        if not durations:
             return 0.0
-        return min(entry.duration for entry in calib)
+        return min(durations)
 
     def add_edge(
         self,

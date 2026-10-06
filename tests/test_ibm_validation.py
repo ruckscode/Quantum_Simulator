@@ -1,6 +1,8 @@
 from types import SimpleNamespace
 import importlib.util
 import sys
+from datetime import datetime, timezone
+import inspect
 
 import pytest
 
@@ -14,6 +16,8 @@ from ibm_validation import (
     counts_to_probabilities,
     discover_ibm_backends,
     execute_on_ibm_backend,
+    hardware_model_from_ibm_calibration,
+    inspect_ibm_backend_calibration,
     run_offline_validation,
 )
 
@@ -51,6 +55,37 @@ def test_backend_discovery_parses_injected_offline_fixture_without_claiming_live
     assert result["discovery_source"] == "INJECTED_SERVICE_FIXTURE"
     assert result["backends"] == [{"name": "offline-fixture-backend", "num_qubits": 2, "operational": True}]
     assert result["access"]["status"] == "ACCESS_CONFIGURED"
+
+
+def test_ibm_backend_selection_is_explicit_and_injected_service_needs_no_token():
+    import ibm_validation
+
+    assert inspect.signature(execute_on_ibm_backend).parameters["backend_name"].default is inspect.Parameter.empty
+    assert inspect.signature(inspect_ibm_backend_calibration).parameters["backend_name"].default is inspect.Parameter.empty
+
+    result = discover_ibm_backends(service=BackendServiceFixture())
+
+    assert result["status"] == "PARSED_INJECTED_SERVICE"
+    assert result["backends"][0]["name"] == "offline-fixture-backend"
+    assert result["access"]["status"] == "SERVICE_PROVIDED"
+    assert result["access"]["credentials_detected"] is False
+
+
+def test_offline_validation_does_not_require_credentials_or_runtime(monkeypatch):
+    import ibm_validation
+
+    monkeypatch.setattr(
+        ibm_validation,
+        "check_ibm_access_status",
+        lambda: ibm_validation.IBMAccessStatus("BLOCKED", False, False, False, None, "no IBM account"),
+    )
+    monkeypatch.setattr(ibm_validation, "_runtime_service", lambda *args, **kwargs: pytest.fail("offline path must not construct a Runtime service"))
+    monkeypatch.setattr(ibm_validation, "_environment_runtime_service", lambda *args, **kwargs: pytest.fail("offline path must not use configured IBM accounts"))
+
+    result = run_offline_validation([("h", 0), ("measure", 0)], shots=32, seed=7)
+
+    assert result.overall_status == "OFFLINE_TESTED"
+    assert result.real_hardware_executed is False
 
 
 def test_discovery_uses_explicit_runtime_credentials(monkeypatch):
@@ -140,6 +175,74 @@ def test_calibration_conversion_includes_backend_qubit_gate_and_edge_data():
     assert capture.hardware_model.get_qubit_properties(0).t2 == pytest.approx(80.0)
     assert capture.hardware_model.get_gate_calibration("cx", (0, 1))[0].error == 0.01
     assert capture.hardware_model.get_coupling_map() == [(0, 1)]
+
+
+def test_backend_calibration_inspection_uses_snapshot_timestamp_without_live_job():
+    expected_timestamp = datetime(2026, 10, 6, 9, 22, 1, tzinfo=timezone.utc)
+
+    class TimestampBackend(BackendFixture):
+        def properties(self):
+            properties = super().properties()
+            properties.last_update_date = expected_timestamp
+            return properties
+
+    class ServiceFixture:
+        def backend(self, name):
+            assert name == "offline-fixture-backend"
+            return TimestampBackend()
+
+    capture = inspect_ibm_backend_calibration("offline-fixture-backend", service=ServiceFixture())
+
+    assert capture.backend_name == "offline-fixture-backend"
+    assert capture.timestamp == expected_timestamp.isoformat()
+    assert capture.n_qubits == 2
+    assert capture.qubits[0]["readout_error"] == 0.02
+    assert capture.qubits[0]["t1"] == 0.00012
+    assert capture.qubits[0]["t2"] == 0.00008
+    assert capture.gates[0]["error"] == 0.01
+    assert capture.gates[0]["duration"] == 2e-7
+    assert capture.coupling_map == [(0, 1)]
+
+
+def test_ibm_calibration_maps_to_hardware_model_without_filling_missing_values():
+    capture = capture_backend_calibration(BackendFixture())
+    capture.timestamp = "2026-10-06T09:22:01+05:30"
+    capture.coupling_map = [(0, 1)]
+    capture.qubits[1].update(t1=None, t1_unit=None, t2=None, t2_unit=None)
+    capture.gates.append({
+        "gate": "reset",
+        "qubits": [1],
+        "error": None,
+        "error_unit": None,
+        "duration": 0.25,
+        "duration_unit": "s",
+        "supported": True,
+    })
+
+    model = hardware_model_from_ibm_calibration(capture)
+
+    assert model.n_qubits == 2
+    assert model.backend_name == "offline-fixture-backend"
+    assert model.calibration_timestamp == capture.timestamp
+    assert model.get_coupling_map() == [(0, 1)]
+    assert model.get_directional_connectivity(0) == [1]
+    assert model.get_directional_connectivity(1) == []
+    assert model.get_qubit_properties(0).t1 == pytest.approx(120.0)
+    assert model.get_qubit_properties(0).t2 == pytest.approx(80.0)
+    assert model.get_qubit_properties(0).readout_error == 0.02
+    assert model.get_qubit_properties(1).t1 is None
+    assert model.get_qubit_properties(1).t2 is None
+    assert model.get_qubit_properties(1).readout_error == 0.03
+    cx = model.get_gate_calibration("cx", (0, 1))[0]
+    assert cx.error == 0.01
+    assert cx.duration == 2e-7
+    reset = model.get_gate_calibration("reset", (1,))[0]
+    assert reset.error is None
+    assert reset.duration == 0.25
+    snapshot = model.to_calibration_snapshot()
+    assert snapshot.qubits[1]["t1"] is None
+    assert snapshot.qubits[1]["t2"] is None
+    assert snapshot.gates["reset"][0]["error"] is None
 
 
 def test_missing_backend_calibration_fields_are_explicit_nulls():

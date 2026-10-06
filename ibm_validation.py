@@ -431,7 +431,7 @@ def _t_value_in_microseconds(value: float | None, unit: Any) -> float | None:
 @dataclass
 class IBMCalibrationCapture:
     backend_name: str | None
-    timestamp: str
+    timestamp: str | None
     n_qubits: int | None
     coupling_map: list[tuple[int, int]] | None
     backend_status: dict[str, Any] | None
@@ -523,6 +523,13 @@ def capture_backend_calibration(backend: Any, *, capture_source: str = "IBM_BACK
     except Exception as exc:
         properties = None
         errors.append(f"Backend properties retrieval failed: {exc}")
+    calibration_timestamp = getattr(properties, "last_update_date", None)
+    if hasattr(calibration_timestamp, "isoformat"):
+        calibration_timestamp = calibration_timestamp.isoformat()
+    elif calibration_timestamp is not None:
+        calibration_timestamp = str(calibration_timestamp)
+    else:
+        unavailable.append("calibration_timestamp")
 
     try:
         model = HardwareModel(n_qubits, coupling_map=coupling_map, backend_name=str(name or "unknown_backend")) if n_qubits is not None else None
@@ -610,7 +617,7 @@ def capture_backend_calibration(backend: Any, *, capture_source: str = "IBM_BACK
     retrieval_status = "AVAILABLE" if properties is not None and n_qubits is not None else "PARTIAL"
     return IBMCalibrationCapture(
         backend_name=str(name) if name is not None else None,
-        timestamp=utc_timestamp(),
+        timestamp=calibration_timestamp,
         n_qubits=n_qubits,
         coupling_map=coupling_map,
         backend_status=backend_status,
@@ -622,6 +629,64 @@ def capture_backend_calibration(backend: Any, *, capture_source: str = "IBM_BACK
         capture_source=capture_source,
         errors=errors,
     )
+
+
+def inspect_ibm_backend_calibration(
+    backend_name: str,
+    *,
+    service: Any | None = None,
+    channel: str = "ibm_quantum_platform",
+) -> IBMCalibrationCapture:
+    """Retrieve current backend calibration metadata without submitting a job."""
+    runtime_service = service if service is not None else _environment_runtime_service(channel)
+    backend = runtime_service.backend(backend_name)
+    return capture_backend_calibration(backend)
+
+
+def hardware_model_from_ibm_calibration(capture: IBMCalibrationCapture) -> HardwareModel:
+    """Map an IBM calibration capture to the simulator's hardware model."""
+    if not isinstance(capture, IBMCalibrationCapture):
+        raise TypeError("capture must be an IBMCalibrationCapture")
+    if capture.n_qubits is None:
+        raise ValueError("IBM calibration does not provide the backend qubit count")
+    if capture.backend_name is None:
+        raise ValueError("IBM calibration does not provide the backend name")
+
+    model = HardwareModel(
+        capture.n_qubits,
+        coupling_map=capture.coupling_map,
+        backend_name=capture.backend_name,
+        calibration_timestamp=capture.timestamp,
+    )
+    # HardwareModel stores undirected edges for routing and a separate
+    # directional adjacency map. Preserve the backend's directed topology in
+    # that existing adjacency representation.
+    if capture.coupling_map is not None:
+        model._directional_connectivity = {qubit: [] for qubit in range(capture.n_qubits)}
+        for left, right in capture.coupling_map:
+            if right not in model._directional_connectivity[left]:
+                model._directional_connectivity[left].append(right)
+
+    for qubit, calibration in capture.qubits.items():
+        properties = model.get_qubit_properties(int(qubit))
+        properties.t1 = _t_value_in_microseconds(calibration["t1"], calibration.get("t1_unit"))
+        properties.t2 = _t_value_in_microseconds(calibration["t2"], calibration.get("t2_unit"))
+        properties.readout_error = calibration["readout_error"]
+
+    for calibration in capture.gates:
+        model.add_gate_calibration(
+            calibration["gate"],
+            qubits=calibration["qubits"],
+            error=calibration["error"],
+            duration=calibration["duration"],
+            supported=calibration["supported"],
+            error_unit=calibration.get("error_unit"),
+            duration_unit=calibration.get("duration_unit"),
+        )
+    # The HardwareModel constructor uses a local timestamp when passed None;
+    # retain the source value even when the IBM snapshot lacks one.
+    model.calibration_timestamp = capture.timestamp
+    return model
 
 
 def _runtime_service(token: str, instance: str | None = None, channel: str = "ibm_quantum_platform") -> Any:
@@ -654,9 +719,14 @@ def _environment_runtime_service(channel: str) -> Any:
     return QiskitRuntimeService(channel=channel)
 
 
-def discover_ibm_backends(service: Any | None = None, *, token: str, instance: str | None = None, channel: str = "ibm_quantum_platform") -> dict[str, Any]:
-    access = _explicit_credential_access_status(token)
-    if not isinstance(token, str) or not token.strip():
+def discover_ibm_backends(service: Any | None = None, *, token: str | None = None, instance: str | None = None, channel: str = "ibm_quantum_platform") -> dict[str, Any]:
+    if service is None:
+        access = _explicit_credential_access_status(token)
+    elif token:
+        access = _explicit_credential_access_status(token)
+    else:
+        access = IBMAccessStatus("SERVICE_PROVIDED", True, True, False, "provided Runtime service")
+    if service is None and (not isinstance(token, str) or not token.strip()):
         return {"status": "BLOCKED", "discovery_source": "IBM_RUNTIME", "backends": [], "access": access.to_dict(), "error": access.reason}
     if service is None and access.status != "ACCESS_CONFIGURED":
         return {"status": "BLOCKED", "discovery_source": "IBM_RUNTIME", "backends": [], "access": access.to_dict(), "error": access.reason}
@@ -1018,12 +1088,13 @@ def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: 
         return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=capture.backend_name, shots=shots, access=access, calibration=capture, conversion=conversion, transpilation_info=transpilation_info, errors=[transpilation["error"] or "Transpilation failed"])
 
     try:
-        job = backend.run(transpilation["circuit"], shots=shots)
+        from qiskit_ibm_runtime.executor_sampler import Sampler
+
+        sampler = Sampler(mode=backend)
+        job = sampler.run([transpilation["circuit"]], shots=shots)
         job_id = _job_identifier(job)
-        hardware_result = job.result()
-        counts_raw = hardware_result.get_counts(transpilation["circuit"])
-        if isinstance(counts_raw, list):
-            counts_raw = counts_raw[0]
+        sampler_result = job.result()
+        counts_raw = sampler_result[0].data.c.get_counts()
         counts = {str(outcome): int(value) for outcome, value in counts_raw.items()}
     except Exception as exc:
         info = {key: value for key, value in transpilation.items() if key != "circuit"}
@@ -1092,7 +1163,7 @@ def main() -> int:
         # environment or saved Qiskit account. The public Python API never does.
         try:
             cli_service = _environment_runtime_service(args.channel)
-            discovery = discover_ibm_backends(service=cli_service, token="cli-configured")
+            discovery = discover_ibm_backends(service=cli_service)
         except Exception as exc:
             access = check_ibm_access_status()
             discovery = {"status": "FAILED", "discovery_source": "IBM_RUNTIME", "backends": [], "access": access.to_dict(), "error": f"{type(exc).__name__}: {exc}"}
@@ -1128,6 +1199,8 @@ __all__ = [
     "convert_to_qiskit_circuit",
     "discover_ibm_backends",
     "execute_on_ibm_backend",
+    "inspect_ibm_backend_calibration",
+    "hardware_model_from_ibm_calibration",
     "ideal_distribution",
     "run_offline_validation",
     "transpile_for_backend",

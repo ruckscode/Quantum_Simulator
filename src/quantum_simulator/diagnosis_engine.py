@@ -11,6 +11,8 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Mapping, Sequence
 
+import numpy as np
+
 from .fault_localizer import DiagnosticTrace, FaultLocalizationResult, localize_program_fault
 from .hardware_fault_localizer import (
     HardwareCandidate,
@@ -19,6 +21,7 @@ from .hardware_fault_localizer import (
 )
 from .hardware_model import HardwareModel
 from .statistics import DistributionComparisonResult, compare_distributions
+from .quantum_simulator import QuantumSimulator
 from .gates import get_gate_qubit_count
 
 
@@ -334,8 +337,149 @@ def diagnose_execution(
     )
 
 
+def diagnose_circuit(
+    circuit: Sequence[Any] | Any,
+    *,
+    hardware_model: HardwareModel | None = None,
+    shots: int = 1000,
+    seed: int | None = None,
+    threshold: float = 0.05,
+) -> DiagnosisResult:
+    """Run and diagnose a circuit using ideal and optional hardware-aware shots."""
+    if isinstance(shots, bool) or not isinstance(shots, int) or shots <= 0:
+        raise ValueError("shots must be a positive integer")
+    if hardware_model is not None and not isinstance(hardware_model, HardwareModel):
+        raise TypeError("hardware_model must be a HardwareModel instance or None")
+    instructions = getattr(circuit, "instructions", circuit)
+    if not isinstance(instructions, Sequence):
+        raise TypeError("circuit must be a sequence of supported instructions")
+
+    # Normalize through the simulator so tuple and dictionary instructions use
+    # exactly the same operation parsing as execution.
+    probe = QuantumSimulator(1)
+    highest_qubit = -1
+    for instruction in instructions:
+        name, operands = probe._normalize_operation(instruction)
+        qubits = []
+        if name == "measure":
+            if operands:
+                qubits = list(operands[0]) if isinstance(operands[0], (list, tuple)) else [operands[0]]
+        elif name == "barrier":
+            qubits = list(operands)
+        elif name not in {"reset"}:
+            count = 3 if name in {"ccx", "toffoli", "cswap", "fredkin"} else 2 if name in {"cx", "cnot", "cz", "swap", "ch"} else (1 if operands else 0)
+            qubits = list(operands[:count])
+        elif operands:
+            qubits = [operands[0]]
+        if qubits:
+            highest_qubit = max(highest_qubit, *(int(q) for q in qubits))
+    n_qubits = max(highest_qubit + 1, hardware_model.n_qubits if hardware_model else 0)
+    if n_qubits <= 0:
+        raise ValueError("circuit must reference at least one qubit")
+
+    classical_width = 0
+    has_classical_mapping = False
+    for instruction in instructions:
+        name, operands = probe._normalize_operation(instruction)
+        if name == "measure" and len(operands) > 1 and operands[1] is not None:
+            bits = operands[1]
+            bits = list(bits) if isinstance(bits, (list, tuple)) else [bits]
+            if bits:
+                has_classical_mapping = True
+                classical_width = max(classical_width, max(map(int, bits)) + 1)
+
+    def sample(model: HardwareModel | None, stream_seed: int | None) -> dict[str, float]:
+        rng = np.random.default_rng(stream_seed)
+        counts: dict[str, int] = {}
+        for _ in range(shots):
+            simulator = QuantumSimulator(n_qubits, seed=int(rng.integers(0, 2**31 - 1)))
+            results = simulator.run_circuit(instructions, hardware_model=model)
+            if has_classical_mapping:
+                classical = [0] * classical_width
+                for result in results:
+                    if isinstance(result, dict):
+                        for bit, value in result.items():
+                            classical[int(bit)] = int(value)
+                outcome = "".join(str(bit) for bit in reversed(classical))
+            elif simulator.measurement_results:
+                outcome = str(simulator.measurement_results[-1])
+            else:
+                index = int(simulator.rng.choice(simulator.dim, p=simulator.get_probabilities()))
+                outcome = f"{index:0{n_qubits}b}"
+            counts[outcome] = counts.get(outcome, 0) + 1
+        return {key: value / shots for key, value in counts.items()}
+
+    expected = sample(None, seed)
+    observed = expected if hardware_model is None else sample(
+        hardware_model, None if seed is None else seed + 1
+    )
+    all_outcomes = set(expected) | set(observed)
+    expected = {key: expected.get(key, 0.0) for key in all_outcomes}
+    observed = {key: observed.get(key, 0.0) for key in all_outcomes}
+    return diagnose_execution(
+        expected,
+        observed,
+        expected_circuit=instructions,
+        observed_circuit=instructions,
+        hardware_model=hardware_model,
+        threshold=threshold,
+        shots=shots,
+    )
+
+
+def _format_gate_signature(signature: Any | None) -> str | None:
+    if signature is None:
+        return None
+    if isinstance(signature, (tuple, list)) and signature:
+        name = str(signature[0]).upper()
+        qubits = signature[1] if len(signature) > 1 else ()
+        if isinstance(qubits, int):
+            qubits = (qubits,)
+        try:
+            return f"{name}({', '.join(str(qubit) for qubit in qubits)})"
+        except TypeError:
+            return f"{name}"
+    return str(signature).upper()
+
+
+def format_program_fault_diagnosis(result: DiagnosisResult) -> str:
+    """Format the leading localized program fault as readable guidance."""
+    if not isinstance(result, DiagnosisResult):
+        raise TypeError("result must be a DiagnosisResult")
+    candidates = result.program_evidence_candidates
+    if not candidates and result.program_result is not None:
+        candidates = result.program_result.candidates
+    if not candidates:
+        return result.summary
+
+    candidate = candidates[0]
+    actual = _format_gate_signature(candidate.actual_signature)
+    expected = _format_gate_signature(candidate.expected_signature)
+    if actual is None:
+        actual = _format_gate_signature((candidate.operation, candidate.qubits)) or "Unknown"
+    if expected is None:
+        expected = "No operation"
+    lines = [
+        "=== PROGRAM FAULT DETECTED ===",
+        "",
+        f"Fault location : Step {candidate.index}",
+        f"Faulty gate    : {actual}",
+        f"Expected gate  : {expected}",
+        f"Mismatch score : {candidate.score:.2f}",
+        "",
+        "Reason:",
+        candidate.reason,
+        "",
+        "Suggested correction:",
+        f"Replace {actual} with {expected}",
+    ]
+    return "\n".join(lines)
+
+
 __all__ = [
     "DiagnosisCategory",
     "DiagnosisResult",
+    "diagnose_circuit",
     "diagnose_execution",
+    "format_program_fault_diagnosis",
 ]
