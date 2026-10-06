@@ -304,11 +304,23 @@ def diagnose_execution(
         missing_evidence.append("Expected and observed execution distributions were not provided.")
 
     program_candidates = program_result.candidates if program_result is not None else []
+    direct_program_mismatch = any(
+        candidate.reason != "Largest traced deviation without direct operation mismatch"
+        for candidate in program_candidates
+    )
+    if direct_program_mismatch:
+        # A direct circuit-operation mismatch is independent program evidence.
+        # Keep the statistical result intact, but let this localized fault
+        # contribute to the top-level anomaly classification.
+        anomaly_detected = True
+
     evidence: list[str] = []
     if statistics_result is not None:
         evidence.append(statistics_result.message)
     if program_result is not None:
         evidence.extend(program_result.evidence)
+    if direct_program_mismatch:
+        evidence.append("A direct circuit-operation mismatch was localized.")
     if hardware_result is not None:
         evidence.extend(hardware_result.evidence)
     evidence.extend(missing_evidence)

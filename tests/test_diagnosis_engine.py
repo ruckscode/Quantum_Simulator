@@ -64,6 +64,19 @@ def test_program_fault_on_healthy_hardware_is_localized_as_program_fault():
     assert not result.hardware_evidence_candidates
 
 
+def test_direct_circuit_mismatch_is_program_fault_without_distribution_anomaly():
+    result = diagnose_execution(
+        expected_circuit=[("x", 0), ("measure", 0, [0])],
+        observed_circuit=[("h", 0), ("measure", 0, [0])],
+        shots=1000,
+    )
+
+    assert result.category is DiagnosisCategory.PROGRAM_FAULT
+    assert result.anomaly_detected is True
+    assert result.program_result.candidates
+    assert result.program_result.candidates[0].index == 0
+
+
 def test_program_fault_formatter_uses_candidate_details():
     result = diagnose_execution(
         expected_distribution=EXPECTED,
