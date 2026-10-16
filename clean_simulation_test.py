@@ -23,7 +23,7 @@ if str(ROOT / "src") not in sys.path:
 from quantum_simulator import QuantumCircuit, QuantumSimulator, diagnose_circuit
 from quantum_simulator.diagnosis_engine import diagnose_execution
 from quantum_simulator.hardware_model import HardwareModel
-from ibm_validation import check_ibm_access_status, run_offline_validation, ideal_distribution as ibm_ideal_distribution
+from ibm_validation import check_ibm_access_status, run_offline_validation
 
 SHOTS = 2048
 SEED = 20261016
@@ -195,6 +195,10 @@ def build_report() -> dict[str, Any]:
         "ibm_integration": {
             "access_status": access,
             "offline_adapter_status": offline_ibm.get("overall_status", offline_ibm.get("status")),
+            "offline_execution_status": offline_ibm.get("execution_status"),
+            "offline_execution_origin": offline_ibm.get("execution_origin"),
+            "offline_errors": offline_ibm.get("errors", []),
+            "offline_conversion_info": offline_ibm.get("conversion_info", {}),
             "real_ibm_status": offline_ibm.get("real_ibm_status", "NOT_EXECUTED"),
             "real_hardware_executed": bool(offline_ibm.get("real_hardware_executed", False)),
             "note": "This acceptance run never submits an IBM job. A blocked access status is an environment status, not a simulator failure.",
