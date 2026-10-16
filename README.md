@@ -328,3 +328,18 @@ No license declaration or repository URL is provided in the project metadata, so
 ## Current Project Status
 
 The local simulator, diagnosis pipeline, benchmark adapters, offline acceptance script, and Colab presentation notebook are present. The current branch includes a regression fix that excludes generated reports and documentation from Bugs4Q raw-data discovery, plus CI coverage for tests and offline demos. A fresh CI result is still required for the latest commits; benchmark accuracy remains unvalidated until independent, diagnosis-compatible ground truth is available. Real IBM execution remains a separate, explicit final stage.
+
+
+## Simulator-Generated ML Evaluation (Colab)
+
+A separate notebook runs the local simulator to collect observations for normal circuits, known gate-mutation program faults, and simulated readout noise. It trains models with a circuit-family-separated holdout split and exports CSV/JSON metrics plus charts:
+
+[Open Real_Data_ML_Evaluation.ipynb](notebooks/Real_Data_ML_Evaluation.ipynb)
+
+The experiment script is `experiments/simulator_generated_ml_baseline.py`. In an environment with pandas, matplotlib, and scikit-learn installed, run:
+
+```bash
+python experiments/simulator_generated_ml_baseline.py --repetitions 12 --shots 128
+```
+
+This is a **controlled simulator-generated evaluation**, not physical IBM hardware data or official Bugs4Q/QMutBench accuracy. Labels are assigned by the known intervention used to create each scenario. Official benchmark metrics remain unavailable without independent, diagnosis-compatible ground truth.
