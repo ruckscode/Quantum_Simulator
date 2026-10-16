@@ -327,4 +327,4 @@ No license declaration or repository URL is provided in the project metadata, so
 
 ## Current Project Status
 
-The implementation and validation suite are complete. The repository is in finalization and documentation stage.
+The local simulator, diagnosis pipeline, benchmark adapters, offline acceptance script, and Colab presentation notebook are present. The current branch includes a regression fix that excludes generated reports and documentation from Bugs4Q raw-data discovery, plus CI coverage for tests and offline demos. A fresh CI result is still required for the latest commits; benchmark accuracy remains unvalidated until independent, diagnosis-compatible ground truth is available. Real IBM execution remains a separate, explicit final stage.
