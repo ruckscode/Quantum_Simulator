@@ -10,7 +10,7 @@ requires-python = ">=3.10"
 dependencies = ["numpy"]
 
 [project.optional-dependencies]
-dev = ["pytest"]
+dev = ["pytest", "pandas", "matplotlib", "scikit-learn"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,0 +1,39 @@
+name: Quantum Simulator Tests
+
+on:
+  push:
+    branches:
+      - fix/statistics-module-collision
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install project and test dependencies
+        run: python -m pip install --upgrade pip && python -m pip install -e ".[dev]"
+      - name: Run test suite
+        run: python -m pytest -q --import-mode=importlib
+      - name: Run offline acceptance test
+        run: python clean_simulation_test.py
+      - name: Run offline diagnosis demonstration
+        run: python demo.py --output reports/ci_demo_report.json
+      - name: Run bounded independent benchmark audit
+        run: python benchmark_validation.py --root . --report-directory /tmp/quantum-simulator-benchmarks

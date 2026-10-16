@@ -12,6 +12,35 @@ from bugs4q_integration import (
 SPECIALIZED_CASES = (8, 12, 17, 25, 26, 30, 31, 39)
 
 
+def _official_dataset_is_complete() -> bool:
+    """Return whether the external 42-case source dataset is available."""
+    if not OFFICIAL_ROOT.is_dir():
+        return False
+    return all(
+        (OFFICIAL_ROOT / str(number) / filename).is_file()
+        for number in range(1, 43)
+        for filename in (
+            f"buggy_{number}.py",
+            f"fixed_{number}.py",
+            f"modify_{number}.txt",
+        )
+    )
+
+
+# The official Bugs4Q sources are external data and are not bundled in every
+# checkout. Do not fail a clean clone for missing external files; keep all
+# source-backed assertions active whenever the complete dataset is installed.
+pytestmark = pytest.mark.skipif(
+    not _official_dataset_is_complete(),
+    reason=(
+        "Official Bugs4Q source dataset is not installed. "
+        "Place the complete 42-case dataset under "
+        "data/Bugs4Q_official/extracted/Zenodo-Framework/"
+        "Bugs4Q-Framework/qiskit to enable these integration tests."
+    ),
+)
+
+
 @pytest.fixture(scope="module")
 def integration_report():
     return run_bugs4q_integration(shots=128, seed=317)

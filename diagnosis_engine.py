@@ -18,7 +18,7 @@ from hardware_fault_localizer import (
     localize_hardware_fault,
 )
 from hardware_model import HardwareModel
-from statistics import DistributionComparisonResult, compare_distributions
+from quantum_simulator.statistics import DistributionComparisonResult, compare_distributions
 from gates import get_gate_qubit_count
 
 

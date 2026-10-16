@@ -205,7 +205,7 @@ The repository contains an IBM validation report for an offline fixture. It is n
 
 The repository includes separate adapters for Bugs4Q and QMutBench data. They normalize supported dataset inputs, run supported cases through project functionality, and produce benchmark-specific reports. Mutation metadata is not used as a diagnosis label. Benchmark metrics are not claimed without suitable independent, reliable ground truth.
 
-The checked-in QMutBench data contains a small set of QASM source/mutant examples. The Bugs4Q adapter and integration tests are present; external/official dataset material may not be available in every checkout. Synthetic test fixtures and controlled local scenarios are not benchmark ground truth.
+The checked-in QMutBench data contains a small set of QASM source/mutant examples. The Bugs4Q adapter and integration tests are present; external/official dataset material may not be available in every checkout. Synthetic test fixtures and controlled local scenarios are not benchmark ground truth. The official Bugs4Q source-backed integration tests skip with an explicit reason when the complete external 42-case dataset is absent; see [`docs/BUGS4Q_OFFICIAL_DATASET.md`](docs/BUGS4Q_OFFICIAL_DATASET.md) for the expected layout and test behavior.
 
 Run benchmark reporting from the repository root with:
 
@@ -218,6 +218,101 @@ Run benchmark reporting from the repository root with:
 The latest verified full project suite completed with **280 passed** when pytest used a writable repository-local temporary directory. The normal Windows pytest command encountered **20 setup errors** because its default temporary directory was inaccessible; these were environment-only errors. No genuine test failures were found.
 
 The historical benchmark reports record focused Bugs4Q integration for 8 selected cases (3 diagnosed `NO_ANOMALY`, 5 `PROGRAM_FAULT`) and a QMutBench pilot with 12 paired cases (11 executed and diagnosed, 1 unsupported). These counts are integration results, not accuracy or fault-attribution guarantees. The reports do not claim benchmark accuracy, precision, recall, F1, or mutation score.
+
+## Robust ML Evaluation (Controlled Simulator Data)
+
+Run the leakage/stability stress test from the repository root:
+
+```bash
+python experiments/robust_ml_evaluation.py --repetitions 12 --shots 128 --output-dir reports/robust_ml_evaluation
+```
+
+This evaluates Logistic Regression and Random Forest with **leave-one-circuit-family-out** predictions, and compares feature sets with and without total-variation distance (TVD). It writes the generated dataset, out-of-fold metrics, per-class reports, fold metrics, confusion matrices, and a feature-ablation plot. It remains a controlled simulator experiment; it is not official Bugs4Q/QMutBench accuracy or IBM hardware validation.
+
+The ablation matters because TVD is a strong anomaly signal but cannot by itself attribute a deviation to a program defect or hardware fault. Compare results across feature sets rather than selecting the highest score alone.
+
+## Benchmark Label Audit
+
+After obtaining the official datasets, inspect labels and eligibility without silently mapping metadata to diagnosis categories:
+
+```bash
+python experiments/benchmark_label_audit.py --qmutbench-csv /path/to/all_data.csv --bugs4q-root /path/to/Bugs4Q-Framework --output reports/benchmark_label_audit.json
+```
+
+The QMutBench CSV is read in chunks to limit memory use. Its mutation/survival outcomes may support mutation-testing tasks, but do not by themselves establish whether a diagnosis engine correctly attributed a fault to software or hardware. Bugs4Q buggy/fixed files and bug-type metadata are likewise not automatically diagnosis-category labels.
+
+## IBM Access Check Without Submitting a Job
+
+The live IBM CLI now passes a token from `QISKIT_IBM_TOKEN`, `IBM_QUANTUM_TOKEN`, or `QISKIT_IBM_API_KEY`, plus an optional instance from `QISKIT_IBM_INSTANCE` or `IBM_QUANTUM_INSTANCE`. In Colab, load the token from Secrets into the environment without printing it, then run backend discovery:
+
+```bash
+python ibm_validation.py --list-backends --output reports/ibm_access_check.json
+```
+
+This lists accessible backends and does **not** submit a quantum job. A real execution still requires a separate explicit authorization.
+
+## Colab End-to-End Diagnosis Notebook
+
+A guided notebook for a clean Colab checkout, test run, local circuit showcase, controlled program-fault localization, synthetic hardware-anomaly diagnosis, and JSON/CSV report export is available here:
+
+[Open Quantum_Simulator_End_to_End_Diagnosis.ipynb](notebooks/Quantum_Simulator_End_to_End_Diagnosis.ipynb)
+
+The notebook keeps real IBM hardware submission disabled by default. The Bugs4Q discovery step also excludes generated reports and documentation so they cannot be counted as raw dataset cases. Full benchmark execution remains a separate, potentially long-running step; benchmark metrics remain unavailable until independent, diagnosis-compatible ground truth is present.
+
+## Clean Simulation Acceptance Run
+
+For a single, bounded acceptance run that executes a Bell circuit, compares its
+finite-shot distribution with Qiskit when Qiskit is already installed, checks
+the IBM adapter's offline path, and writes a diagnosis report, run:
+
+```bash
+python clean_simulation_test.py
+```
+
+The report is written to `reports/clean_simulation_test_report.json`. The test
+does not install Qiskit, request credentials, connect to IBM, or submit a
+hardware job. If Qiskit is absent, its comparison is explicitly marked
+`NOT_INSTALLED`; IBM access status is reported separately from local
+simulation success. The hardware diagnosis example uses a synthetic
+`HardwareModel` fixture and must not be described as physical-hardware
+evidence. For Qiskit comparison, install the optional Qiskit packages in a
+separate environment only when you explicitly want that comparison.
+
+## Phase 2: IBM Quantum Hardware Integration
+
+The local acceptance run does not submit jobs to IBM hardware. Phase 2 uses
+`ibm_phase2_runner.py`, which is safe by default and only contacts IBM when
+you explicitly request backend discovery or submission.
+
+Check local readiness without networking or job submission:
+
+```bash
+python ibm_phase2_runner.py
+```
+
+Set an IBM token through your environment or notebook secret mechanism using
+`QISKIT_IBM_TOKEN` (also accepts `IBM_QUANTUM_TOKEN` or
+`QISKIT_IBM_API_KEY`). Do not paste the token into source code, a notebook
+cell, or a GitHub issue.
+
+List accessible backends (contacts IBM, but does not submit a job):
+
+```bash
+python ibm_phase2_runner.py --list-backends
+```
+
+After reviewing the exact backend name and confirming that you want to use
+hardware, explicitly submit the two-qubit Bell circuit:
+
+```bash
+python ibm_phase2_runner.py --submit --backend EXACT_BACKEND_NAME --shots 512
+```
+
+The runner writes `reports/ibm_phase2_report.json`. It limits this initial
+hardware run to 1–4096 shots, requires an explicit backend name, records
+calibration/execution/diagnosis data returned by the adapter, and never
+submits a job by default. IBM Runtime dependencies must be installed in the
+environment before a real run; this script does not install them automatically.
 
 ## 16. Project Structure
 
@@ -264,4 +359,19 @@ No license declaration or repository URL is provided in the project metadata, so
 
 ## Current Project Status
 
-The implementation and validation suite are complete. The repository is in finalization and documentation stage.
+The local simulator, diagnosis pipeline, benchmark adapters, offline acceptance script, and Colab presentation notebook are present. The current branch includes a regression fix that excludes generated reports and documentation from Bugs4Q raw-data discovery, plus CI coverage for tests and offline demos. A fresh CI result is still required for the latest commits; benchmark accuracy remains unvalidated until independent, diagnosis-compatible ground truth is available. Real IBM execution remains a separate, explicit final stage.
+
+
+## Simulator-Generated ML Evaluation (Colab)
+
+A separate notebook runs the local simulator to collect observations for normal circuits, known gate-mutation program faults, and simulated readout noise. It trains models with a circuit-family-separated holdout split and exports CSV/JSON metrics plus charts:
+
+[Open Real_Data_ML_Evaluation.ipynb](notebooks/Real_Data_ML_Evaluation.ipynb)
+
+The experiment script is `experiments/simulator_generated_ml_baseline.py`. In an environment with pandas, matplotlib, and scikit-learn installed, run:
+
+```bash
+python experiments/simulator_generated_ml_baseline.py --repetitions 12 --shots 128
+```
+
+This is a **controlled simulator-generated evaluation**, not physical IBM hardware data or official Bugs4Q/QMutBench accuracy. Labels are assigned by the known intervention used to create each scenario. Official benchmark metrics remain unavailable without independent, diagnosis-compatible ground truth.

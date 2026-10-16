@@ -13,7 +13,7 @@ from typing import Any, List, Sequence, TypedDict
 
 from gates import get_gate_qubit_count
 from quantum_simulator import QuantumSimulator
-from statistics import compare_distributions
+from quantum_simulator.statistics import compare_distributions
 
 
 @dataclass

@@ -20,7 +20,7 @@ import numpy as np
 from diagnosis_engine import DiagnosisResult, diagnose_execution
 from hardware_model import HardwareModel
 from quantum_simulator import QuantumSimulator
-from statistics import compare_counts
+from quantum_simulator.statistics import compare_counts
 
 
 REAL_EXECUTION_STATES = {"IMPLEMENTED", "OFFLINE_TESTED", "REAL_IBM_EXECUTED", "BLOCKED", "FAILED"}
@@ -723,9 +723,24 @@ def discover_ibm_backends(service: Any | None = None, *, token: str | None = Non
     if service is None:
         access = _explicit_credential_access_status(token)
     elif token:
-        access = _explicit_credential_access_status(token)
+        # An injected service (including a test fixture) does not need the
+        # optional live-runtime packages to be inspected. Keep this status
+        # scoped to the injected service; it does not prove live IBM access.
+        access = IBMAccessStatus(
+            "ACCESS_CONFIGURED",
+            importlib.util.find_spec("qiskit") is not None,
+            importlib.util.find_spec("qiskit_ibm_runtime") is not None,
+            True,
+            "explicit token for injected service",
+        )
     else:
-        access = IBMAccessStatus("SERVICE_PROVIDED", True, True, False, "provided Runtime service")
+        access = IBMAccessStatus(
+            "SERVICE_PROVIDED",
+            importlib.util.find_spec("qiskit") is not None,
+            importlib.util.find_spec("qiskit_ibm_runtime") is not None,
+            False,
+            "provided Runtime service",
+        )
     if service is None and (not isinstance(token, str) or not token.strip()):
         return {"status": "BLOCKED", "discovery_source": "IBM_RUNTIME", "backends": [], "access": access.to_dict(), "error": access.reason}
     if service is None and access.status != "ACCESS_CONFIGURED":
@@ -831,7 +846,20 @@ class IBMValidationResult:
         return {
             "implementation_status": "IMPLEMENTED",
             "offline_status": "OFFLINE_TESTED" if self.execution_origin == "OFFLINE_FIXTURE" else "NOT_RUN",
-            "real_ibm_status": "REAL_IBM_EXECUTED" if self.real_hardware_executed else ("BLOCKED" if not self.access.get("runtime_available") or not self.access.get("credentials_detected") else "NOT_EXECUTED"),
+            "real_ibm_status": (
+                "REAL_IBM_EXECUTED"
+                if self.real_hardware_executed
+                else (
+                    "NOT_EXECUTED"
+                    if self.execution_origin == "OFFLINE_FIXTURE"
+                    else (
+                        "BLOCKED"
+                        if not self.access.get("runtime_available")
+                        or not self.access.get("credentials_detected")
+                        else "NOT_EXECUTED"
+                    )
+                )
+            ),
             "overall_status": self.overall_status,
             "execution_status": self.execution_status,
             "execution_origin": self.execution_origin,
@@ -1176,7 +1204,24 @@ def main() -> int:
         if not args.backend or not args.circuit:
             parser.error("real execution requires --backend and --circuit; use --offline for local validation")
         circuit_data = json.loads(Path(args.circuit).read_text(encoding="utf-8"))
-        result = execute_on_ibm_backend(circuit_data, backend_name=args.backend, shots=args.shots, channel=args.channel)
+        # Colab and shell users may supply credentials through environment
+        # variables/secrets. Never print or persist the token in the report.
+        token = next(
+            (os.environ[name] for name in ("QISKIT_IBM_TOKEN", "IBM_QUANTUM_TOKEN", "QISKIT_IBM_API_KEY") if os.environ.get(name)),
+            None,
+        )
+        instance = next(
+            (os.environ[name] for name in ("QISKIT_IBM_INSTANCE", "IBM_QUANTUM_INSTANCE") if os.environ.get(name)),
+            None,
+        )
+        result = execute_on_ibm_backend(
+            circuit_data,
+            backend_name=args.backend,
+            token=token or "",
+            instance=instance,
+            shots=args.shots,
+            channel=args.channel,
+        )
         report = build_ibm_validation_report(result)
 
     write_ibm_validation_report(report, args.output)
