@@ -11,6 +11,8 @@ def test_clean_acceptance_report_is_offline_and_reproducible():
     assert sum(report["circuit"]["local_simulator_counts"].values()) == report["shots"]
     assert report["ibm_integration"]["real_hardware_executed"] is False
     assert report["ibm_integration"]["real_ibm_status"] == "NOT_EXECUTED"
+    assert report["ibm_integration"]["offline_adapter_status"] == "OFFLINE_TESTED"
+    assert report["qiskit_comparison"]["comparison_performed"] is True
     assert report["diagnosis"]["program_fault_scenario"]["category"] == "PROGRAM_FAULT"
     assert report["diagnosis"]["hardware_anomaly_scenario"]["category"] == "HARDWARE_ANOMALY"
     assert report["diagnosis"]["hardware_anomaly_scenario"]["scenario_source"].startswith("synthetic")
