@@ -205,7 +205,7 @@ The repository contains an IBM validation report for an offline fixture. It is n
 
 The repository includes separate adapters for Bugs4Q and QMutBench data. They normalize supported dataset inputs, run supported cases through project functionality, and produce benchmark-specific reports. Mutation metadata is not used as a diagnosis label. Benchmark metrics are not claimed without suitable independent, reliable ground truth.
 
-The checked-in QMutBench data contains a small set of QASM source/mutant examples. The Bugs4Q adapter and integration tests are present; external/official dataset material may not be available in every checkout. Synthetic test fixtures and controlled local scenarios are not benchmark ground truth.
+The checked-in QMutBench data contains a small set of QASM source/mutant examples. The Bugs4Q adapter and integration tests are present; external/official dataset material may not be available in every checkout. Synthetic test fixtures and controlled local scenarios are not benchmark ground truth. The official Bugs4Q source-backed integration tests skip with an explicit reason when the complete external 42-case dataset is absent; see [`docs/BUGS4Q_OFFICIAL_DATASET.md`](docs/BUGS4Q_OFFICIAL_DATASET.md) for the expected layout and test behavior.
 
 Run benchmark reporting from the repository root with:
 
