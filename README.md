@@ -219,6 +219,14 @@ The latest verified full project suite completed with **280 passed** when pytest
 
 The historical benchmark reports record focused Bugs4Q integration for 8 selected cases (3 diagnosed `NO_ANOMALY`, 5 `PROGRAM_FAULT`) and a QMutBench pilot with 12 paired cases (11 executed and diagnosed, 1 unsupported). These counts are integration results, not accuracy or fault-attribution guarantees. The reports do not claim benchmark accuracy, precision, recall, F1, or mutation score.
 
+## Colab End-to-End Diagnosis Notebook
+
+A guided notebook for a clean Colab checkout, test run, local circuit showcase, controlled program-fault localization, synthetic hardware-anomaly diagnosis, and JSON/CSV report export is available here:
+
+[Open Quantum_Simulator_End_to_End_Diagnosis.ipynb](notebooks/Quantum_Simulator_End_to_End_Diagnosis.ipynb)
+
+The notebook keeps real IBM hardware submission disabled by default. The Bugs4Q discovery step also excludes generated reports and documentation so they cannot be counted as raw dataset cases. Full benchmark execution remains a separate, potentially long-running step; benchmark metrics remain unavailable until independent, diagnosis-compatible ground truth is present.
+
 ## Clean Simulation Acceptance Run
 
 For a single, bounded acceptance run that executes a Bell circuit, compares its
