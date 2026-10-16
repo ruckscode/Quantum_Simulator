@@ -219,6 +219,25 @@ The latest verified full project suite completed with **280 passed** when pytest
 
 The historical benchmark reports record focused Bugs4Q integration for 8 selected cases (3 diagnosed `NO_ANOMALY`, 5 `PROGRAM_FAULT`) and a QMutBench pilot with 12 paired cases (11 executed and diagnosed, 1 unsupported). These counts are integration results, not accuracy or fault-attribution guarantees. The reports do not claim benchmark accuracy, precision, recall, F1, or mutation score.
 
+## Clean Simulation Acceptance Run
+
+For a single, bounded acceptance run that executes a Bell circuit, compares its
+finite-shot distribution with Qiskit when Qiskit is already installed, checks
+the IBM adapter's offline path, and writes a diagnosis report, run:
+
+```bash
+python clean_simulation_test.py
+```
+
+The report is written to `reports/clean_simulation_test_report.json`. The test
+does not install Qiskit, request credentials, connect to IBM, or submit a
+hardware job. If Qiskit is absent, its comparison is explicitly marked
+`NOT_INSTALLED`; IBM access status is reported separately from local
+simulation success. The hardware diagnosis example uses a synthetic
+`HardwareModel` fixture and must not be described as physical-hardware
+evidence. For Qiskit comparison, install the optional Qiskit packages in a
+separate environment only when you explicitly want that comparison.
+
 ## 16. Project Structure
 
 ```text
