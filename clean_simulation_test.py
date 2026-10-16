@@ -85,12 +85,19 @@ def _qiskit_comparison() -> dict[str, Any]:
             unmeasured = QiskitCircuit(2)
             unmeasured.h(0)
             unmeasured.cx(0, 1)
-            counts = {
-                str(key).replace(" ", ""): int(value)
-                for key, value in Statevector.from_instruction(unmeasured).sample_counts(
-                    shots=SHOTS, seed=SEED
-                ).items()
-            }
+            # Qiskit versions differ: Statevector.sample_counts has not
+            # accepted a seed argument in all supported releases. Use an
+            # explicitly seeded NumPy generator and sample the statevector
+            # probabilities ourselves for cross-version reproducibility.
+            state = Statevector.from_instruction(unmeasured)
+            probabilities = state.probabilities()
+            outcomes = [format(i, "02b") for i in range(len(probabilities))]
+            sampled = __import__("numpy").random.default_rng(SEED).choice(
+                outcomes, size=SHOTS, p=probabilities
+            )
+            counts = {}
+            for key in sampled:
+                counts[str(key)] = counts.get(str(key), 0) + 1
         except Exception as exc:
             return {
                 "status": "FAILED",
