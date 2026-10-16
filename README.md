@@ -231,6 +231,26 @@ This evaluates Logistic Regression and Random Forest with **leave-one-circuit-fa
 
 The ablation matters because TVD is a strong anomaly signal but cannot by itself attribute a deviation to a program defect or hardware fault. Compare results across feature sets rather than selecting the highest score alone.
 
+## Benchmark Label Audit
+
+After obtaining the official datasets, inspect labels and eligibility without silently mapping metadata to diagnosis categories:
+
+```bash
+python experiments/benchmark_label_audit.py --qmutbench-csv /path/to/all_data.csv --bugs4q-root /path/to/Bugs4Q-Framework --output reports/benchmark_label_audit.json
+```
+
+The QMutBench CSV is read in chunks to limit memory use. Its mutation/survival outcomes may support mutation-testing tasks, but do not by themselves establish whether a diagnosis engine correctly attributed a fault to software or hardware. Bugs4Q buggy/fixed files and bug-type metadata are likewise not automatically diagnosis-category labels.
+
+## IBM Access Check Without Submitting a Job
+
+The live IBM CLI now passes a token from `QISKIT_IBM_TOKEN`, `IBM_QUANTUM_TOKEN`, or `QISKIT_IBM_API_KEY`, plus an optional instance from `QISKIT_IBM_INSTANCE` or `IBM_QUANTUM_INSTANCE`. In Colab, load the token from Secrets into the environment without printing it, then run backend discovery:
+
+```bash
+python ibm_validation.py --list-backends --output reports/ibm_access_check.json
+```
+
+This lists accessible backends and does **not** submit a quantum job. A real execution still requires a separate explicit authorization.
+
 ## Colab End-to-End Diagnosis Notebook
 
 A guided notebook for a clean Colab checkout, test run, local circuit showcase, controlled program-fault localization, synthetic hardware-anomaly diagnosis, and JSON/CSV report export is available here:
