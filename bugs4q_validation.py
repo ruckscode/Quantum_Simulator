@@ -190,14 +190,32 @@ def discover_bugs4q_files(root: str | Path) -> tuple[list[Path], list[Path]]:
 
     supported: list[Path] = []
     unsupported: list[Path] = []
+    excluded_directories = {
+        ".venv", ".git", "__pycache__", ".pytest_cache", ".pytest-tmp",
+        "reports", "docs", "notebooks", "site-packages",
+    }
+    report_name_markers = (
+        "bugs4q_validation_report",
+        "bugs4q_focused_integration_report",
+        "bugs4q_full_results",
+        "bugs4q_validation_summary",
+        "combined_validation_report",
+    )
     for path in root_path.rglob("*"):
-        if not path.is_file() or any(part.lower() in {".venv", ".git", "__pycache__", ".pytest_cache"} for part in path.parts):
+        if not path.is_file():
             continue
-        if path.name.lower().startswith("bugs4q_validation_report"):
+        relative_parts = path.relative_to(root_path).parts
+        if any(part.lower() in excluded_directories for part in relative_parts):
+            continue
+        lowered_name = path.name.lower()
+        if any(marker in lowered_name for marker in report_name_markers):
             continue
         if path.suffix.lower() in {".py", ".pyc"}:
             continue
-        if not any("bugs4q" in part.lower() for part in path.parts):
+        # Discover raw benchmark inputs only. A documentation or generated
+        # report file mentioning Bugs4Q is not a dataset case and must not
+        # inflate the case count or be reported as an unsupported data format.
+        if not any("bugs4q" in part.lower() for part in relative_parts):
             continue
         if path.suffix.lower() in SUPPORTED_SUFFIXES:
             supported.append(path)
