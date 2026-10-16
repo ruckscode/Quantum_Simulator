@@ -17,7 +17,7 @@ from typing import Any, Iterable
 
 from diagnosis_engine import diagnose_execution
 from quantum_simulator import QuantumSimulator
-from statistics import compare_distributions
+from quantum_simulator.statistics import compare_distributions
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent
