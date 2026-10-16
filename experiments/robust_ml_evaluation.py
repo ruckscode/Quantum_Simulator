@@ -24,7 +24,10 @@ from sklearn.model_selection import LeaveOneGroupOut
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-from simulator_generated_ml_baseline import LABELS, generate
+try:
+    from simulator_generated_ml_baseline import LABELS, generate
+except ModuleNotFoundError:
+    from experiments.simulator_generated_ml_baseline import LABELS, generate
 
 STRUCTURAL = ["qubits", "depth", "gate_count", "shots"]
 SUMMARY = ["tvd_from_reference", "observed_entropy", "reference_entropy", "distinct_outcomes"]
