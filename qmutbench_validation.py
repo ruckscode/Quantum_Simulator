@@ -25,7 +25,7 @@ from benchmark_validation import BenchmarkAdapter, NormalizedBenchmarkCase
 from diagnosis_engine import DiagnosisCategory, DiagnosisResult, diagnose_execution
 from gates import get_gate
 from quantum_simulator import QuantumSimulator
-from statistics import compare_distributions
+from quantum_simulator.statistics import compare_distributions
 
 
 CASE_SUFFIXES = {".json", ".jsonl", ".ndjson", ".csv"}
