@@ -15,7 +15,7 @@ from ibm_validation import (
     execute_on_ibm_backend,
 )
 from quantum_simulator import QuantumCircuit
-from statistics import compare_distributions
+from quantum_simulator.statistics import compare_distributions
 
 
 SHOTS = 1000
