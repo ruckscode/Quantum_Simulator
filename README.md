@@ -238,6 +238,42 @@ simulation success. The hardware diagnosis example uses a synthetic
 evidence. For Qiskit comparison, install the optional Qiskit packages in a
 separate environment only when you explicitly want that comparison.
 
+## Phase 2: IBM Quantum Hardware Integration
+
+The local acceptance run does not submit jobs to IBM hardware. Phase 2 uses
+`ibm_phase2_runner.py`, which is safe by default and only contacts IBM when
+you explicitly request backend discovery or submission.
+
+Check local readiness without networking or job submission:
+
+```bash
+python ibm_phase2_runner.py
+```
+
+Set an IBM token through your environment or notebook secret mechanism using
+`QISKIT_IBM_TOKEN` (also accepts `IBM_QUANTUM_TOKEN` or
+`QISKIT_IBM_API_KEY`). Do not paste the token into source code, a notebook
+cell, or a GitHub issue.
+
+List accessible backends (contacts IBM, but does not submit a job):
+
+```bash
+python ibm_phase2_runner.py --list-backends
+```
+
+After reviewing the exact backend name and confirming that you want to use
+hardware, explicitly submit the two-qubit Bell circuit:
+
+```bash
+python ibm_phase2_runner.py --submit --backend EXACT_BACKEND_NAME --shots 512
+```
+
+The runner writes `reports/ibm_phase2_report.json`. It limits this initial
+hardware run to 1–4096 shots, requires an explicit backend name, records
+calibration/execution/diagnosis data returned by the adapter, and never
+submits a job by default. IBM Runtime dependencies must be installed in the
+environment before a real run; this script does not install them automatically.
+
 ## 16. Project Structure
 
 ```text
