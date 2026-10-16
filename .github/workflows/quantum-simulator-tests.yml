@@ -35,3 +35,5 @@ jobs:
         run: python clean_simulation_test.py
       - name: Run offline diagnosis demonstration
         run: python demo.py --output reports/ci_demo_report.json
+      - name: Run bounded independent benchmark audit
+        run: python benchmark_validation.py --root . --report-directory /tmp/quantum-simulator-benchmarks
