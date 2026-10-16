@@ -161,11 +161,15 @@ def build_report() -> dict[str, Any]:
     )
 
     access = check_ibm_access_status().to_dict()
-    offline_ibm = run_offline_validation(
+    offline_result = run_offline_validation(
         [("h", 0), ("cx", 0, 1), ("measure", [0, 1])],
         shots=256,
         seed=SEED,
-    ).to_dict()
+    )
+    offline_ibm = offline_result.to_dict()
+    # Keep adapter failure diagnostics visible in the saved report rather
+    # than reducing the integration result to a single status label.
+    offline_ibm["adapter_errors"] = list(getattr(offline_result, "errors", []) or [])
 
     qiskit = _qiskit_comparison()
     report = {
