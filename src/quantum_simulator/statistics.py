@@ -9,7 +9,7 @@ statistical tolerance for finite measurement data.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from math import sqrt
+from math import isfinite, sqrt
 from typing import Mapping, Sequence
 
 import numpy as np
@@ -39,6 +39,8 @@ def _validate_nonnegative_mapping(mapping: Mapping[str, float], name: str) -> di
         if not isinstance(value, (int, float, np.integer, np.floating)):
             raise TypeError(f"{name} values must be numeric; got {type(value).__name__} for key {key!r}")
         numeric = float(value)
+        if not isfinite(numeric):
+            raise ValueError(f"{name} values must be finite; got {numeric} for key {key!r}")
         if numeric < 0:
             raise ValueError(f"{name} values must be non-negative; got {numeric} for key {key!r}")
         normalized[str(key)] = numeric
@@ -65,6 +67,10 @@ def _as_probability_dict(raw: Mapping[str, float] | Sequence[float], label: str)
         values = [float(v) for v in raw]
         if not values:
             raise ValueError(f"{label} must not be empty")
+        if any(not isfinite(value) for value in values):
+            raise ValueError(f"{label} values must be finite")
+        if any(value < 0 for value in values):
+            raise ValueError(f"{label} values must be non-negative")
         total = sum(values)
         if total <= 0:
             raise ValueError(f"{label} must contain a positive total mass")
@@ -122,6 +128,8 @@ def compare_distributions(
     if not isinstance(threshold, (int, float)):
         raise TypeError("threshold must be a numeric value")
     threshold = float(threshold)
+    if not isfinite(threshold):
+        raise ValueError("threshold must be finite")
     if threshold < 0:
         raise ValueError("threshold must be non-negative")
 
@@ -182,9 +190,6 @@ def compare_counts(
     shots: int | None = None,
 ) -> DistributionComparisonResult:
     """Compare two count dictionaries or sequences by normalizing them to distributions."""
-
-    if shots is None:
-        shots = int(sum(float(v) for v in _as_probability_dict(expected_counts, "expected_counts").values()) * 0) if False else None
 
     expected_prob = _as_probability_dict(expected_counts, "expected_counts")
     observed_prob = _as_probability_dict(observed_counts, "observed_counts")

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+from math import isfinite
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 
@@ -24,6 +25,8 @@ def _validate_probability(value: float, name: str) -> float:
     if not isinstance(value, (int, float)):
         raise TypeError(f"{name} must be numeric")
     numeric = float(value)
+    if not isfinite(numeric):
+        raise ValueError(f"{name} must be finite")
     if not 0.0 <= numeric <= 1.0:
         raise ValueError(f"{name} must be in the range [0, 1]")
     return numeric
@@ -33,6 +36,8 @@ def _validate_nonnegative(value: float, name: str) -> float:
     if not isinstance(value, (int, float)):
         raise TypeError(f"{name} must be numeric")
     numeric = float(value)
+    if not isfinite(numeric):
+        raise ValueError(f"{name} must be finite")
     if numeric < 0.0:
         raise ValueError(f"{name} must be non-negative")
     return numeric

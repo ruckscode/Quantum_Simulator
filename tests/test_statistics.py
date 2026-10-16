@@ -54,3 +54,21 @@ def test_invalid_inputs_raise():
         compare_counts({"0": 10}, {"0": 5, "1": 5})
     with pytest.raises(ValueError):
         compare_counts({"0": 10, "1": 10}, {"0": 5, "1": 5}, shots=0)
+
+
+@pytest.mark.parametrize("bad_value", [float("nan"), float("inf"), float("-inf")])
+def test_distribution_mapping_rejects_non_finite_values(bad_value):
+    with pytest.raises(ValueError):
+        compare_distributions({"0": bad_value, "1": 1.0}, {"0": 0.5, "1": 0.5})
+
+
+@pytest.mark.parametrize("bad_value", [-0.1, float("nan"), float("inf"), float("-inf")])
+def test_distribution_sequences_reject_negative_or_non_finite_values(bad_value):
+    with pytest.raises(ValueError):
+        compare_distributions([bad_value, 1.0], [0.5, 0.5])
+
+
+@pytest.mark.parametrize("bad_threshold", [float("nan"), float("inf"), float("-inf")])
+def test_non_finite_threshold_is_rejected(bad_threshold):
+    with pytest.raises(ValueError):
+        compare_distributions([0.5, 0.5], [0.5, 0.5], threshold=bad_threshold)
