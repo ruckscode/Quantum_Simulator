@@ -21,6 +21,30 @@ def test_single_qubit_hadamard_and_x():
     np.testing.assert_allclose(sim.state, np.array([1 / np.sqrt(2), 1 / np.sqrt(2)], dtype=complex), atol=1e-12)
 
 
+@pytest.mark.parametrize("bad_qubit", [1.5, "1", True, False])
+def test_apply_gate_rejects_non_integer_qubit_indices(bad_qubit):
+    sim = QuantumSimulator(2)
+    before = sim.state.copy()
+    with pytest.raises(TypeError):
+        sim.apply_gate("x", bad_qubit)
+    np.testing.assert_array_equal(sim.state, before)
+
+
+@pytest.mark.parametrize("bad_qubits", [[0, 1.5], [0, "1"], [0, True]])
+def test_multi_qubit_gate_rejects_non_integer_qubit_indices(bad_qubits):
+    sim = QuantumSimulator(2)
+    before = sim.state.copy()
+    with pytest.raises(TypeError):
+        sim.apply_gate("cx", bad_qubits)
+    np.testing.assert_array_equal(sim.state, before)
+
+
+def test_apply_gate_accepts_numpy_integer_qubit_indices():
+    sim = QuantumSimulator(2)
+    sim.apply_gate("x", np.int64(1))
+    np.testing.assert_allclose(sim.get_probabilities(), [0, 1, 0, 0], atol=1e-12)
+
+
 @pytest.mark.parametrize("gate_name", ["i", "id", "identity"])
 def test_run_circuit_identity_gate_aliases_are_noops(gate_name):
     sim = QuantumSimulator(1)
