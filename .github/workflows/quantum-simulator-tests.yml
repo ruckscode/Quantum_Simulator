@@ -6,7 +6,7 @@ on:
       - fix/statistics-module-collision
   pull_request:
     branches:
-      - fix/statistics-module-collision
+      - main
   workflow_dispatch:
 
 permissions:
