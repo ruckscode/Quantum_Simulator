@@ -1204,7 +1204,24 @@ def main() -> int:
         if not args.backend or not args.circuit:
             parser.error("real execution requires --backend and --circuit; use --offline for local validation")
         circuit_data = json.loads(Path(args.circuit).read_text(encoding="utf-8"))
-        result = execute_on_ibm_backend(circuit_data, backend_name=args.backend, shots=args.shots, channel=args.channel)
+        # Colab and shell users may supply credentials through environment
+        # variables/secrets. Never print or persist the token in the report.
+        token = next(
+            (os.environ[name] for name in ("QISKIT_IBM_TOKEN", "IBM_QUANTUM_TOKEN", "QISKIT_IBM_API_KEY") if os.environ.get(name)),
+            None,
+        )
+        instance = next(
+            (os.environ[name] for name in ("QISKIT_IBM_INSTANCE", "IBM_QUANTUM_INSTANCE") if os.environ.get(name)),
+            None,
+        )
+        result = execute_on_ibm_backend(
+            circuit_data,
+            backend_name=args.backend,
+            token=token or "",
+            instance=instance,
+            shots=args.shots,
+            channel=args.channel,
+        )
         report = build_ibm_validation_report(result)
 
     write_ibm_validation_report(report, args.output)
