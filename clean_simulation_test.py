@@ -252,6 +252,9 @@ def main() -> int:
         print(f"Qiskit note: {qiskit['note']}")
     print(f"IBM access status: {ibm['access_status']['status']}")
     print(f"IBM offline adapter: {ibm['offline_adapter_status']}")
+    print(f"IBM offline execution status/origin: {ibm.get('offline_execution_status')} / {ibm.get('offline_execution_origin')}")
+    if ibm.get("offline_errors"):
+        print(f"IBM offline errors: {ibm['offline_errors']}")
     print(f"Real IBM hardware executed: {ibm['real_hardware_executed']}")
     print(f"Program-fault diagnosis: {diagnosis['program_fault_scenario']['category']}")
     print(f"Synthetic hardware diagnosis: {diagnosis['hardware_anomaly_scenario']['category']}")
