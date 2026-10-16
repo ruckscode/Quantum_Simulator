@@ -54,15 +54,19 @@ class QuantumSimulator:
         self.rng = np.random.default_rng(seed)
 
     def _validate_qubit(self, qubit: int) -> None:
-        if not isinstance(qubit, int):
-            raise TypeError(f"Qubit index must be int, got {type(qubit).__name__}")
+        # bool is a subclass of int in Python, but True/False are not valid
+        # qubit indices. Accept integer scalar types without coercing floats
+        # or strings, which could silently address the wrong qubit.
+        if isinstance(qubit, (bool, np.bool_)) or not isinstance(qubit, (int, np.integer)):
+            raise TypeError(f"Qubit index must be an integer, got {type(qubit).__name__}")
         if qubit < 0 or qubit >= self.n:
             raise ValueError(f"Qubit index {qubit} out of range for {self.n} qubits")
 
     def _validate_qubits(self, qubits: Sequence[int]) -> List[int]:
-        normalized = [int(q) for q in qubits]
-        for q in normalized:
-            self._validate_qubit(q)
+        normalized: List[int] = []
+        for qubit in qubits:
+            self._validate_qubit(qubit)
+            normalized.append(int(qubit))
         return normalized
 
     def _apply_local_gate(self, gate_matrix: np.ndarray, qubits: Sequence[int]) -> None:
@@ -140,7 +144,7 @@ class QuantumSimulator:
             self._apply_local_gate(matrix, qubits)
             return
 
-        self._validate_qubit(int(qubit))
+        self._validate_qubit(qubit)
         matrix = self._resolve_gate_matrix(str(gate_name), list(params))
         self._apply_local_gate(matrix, [int(qubit)])
 
