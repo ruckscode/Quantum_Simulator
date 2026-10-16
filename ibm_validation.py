@@ -20,7 +20,7 @@ import numpy as np
 from diagnosis_engine import DiagnosisResult, diagnose_execution
 from hardware_model import HardwareModel
 from quantum_simulator import QuantumSimulator
-from statistics import compare_counts
+from quantum_simulator.statistics import compare_counts
 
 
 REAL_EXECUTION_STATES = {"IMPLEMENTED", "OFFLINE_TESTED", "REAL_IBM_EXECUTED", "BLOCKED", "FAILED"}
