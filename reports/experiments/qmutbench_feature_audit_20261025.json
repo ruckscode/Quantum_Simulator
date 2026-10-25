@@ -1,0 +1,179 @@
+{
+  "association_method": "bias-corrected Cramer's V against binary target, computed independently on a fixed random sample of training-side rows within each saved grouped fold; numeric features discretized into training-sample deciles",
+  "association_sample_rows_per_fold": 50000,
+  "dataset_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+  "development_groups": 305,
+  "development_rows": 578117,
+  "excluded_fields": {
+    "Killed": {
+      "predictor_allowed": false,
+      "reason": "WOO and OPO map to detected=1; Survivor maps to 0.",
+      "role": "target"
+    },
+    "Origin_program": {
+      "predictor_allowed": false,
+      "reason": "Origin grouping is held out to prevent sibling-record leakage; identifier could allow memorization.",
+      "role": "group key and diagnostic only"
+    },
+    "Unnamed: 0": {
+      "predictor_allowed": false,
+      "reason": "Not a semantic feature and can encode data ordering.",
+      "role": "row identifier"
+    }
+  },
+  "features": {
+    "Position_int": {
+      "available_at_prediction_time": true,
+      "definition": "Integer mutation-position value parsed into the local CSV. It is available at prediction time, but its scale exceeds gate count on some records; a direct ratio to gates is not assumed valid.",
+      "development_cardinality": 493,
+      "dtype": "int32",
+      "fold_training_target_association_cramers_v": [
+        0.05541166904701111,
+        0.0772003338312831,
+        0.06626923471880125
+      ],
+      "mean_fold_training_target_association_cramers_v": 0.06629374586569849,
+      "missing_rows": 0,
+      "selected_in_current_model": true
+    },
+    "algorithm": {
+      "available_at_prediction_time": true,
+      "definition": "Algorithm family associated with the original circuit.",
+      "development_cardinality": 28,
+      "dtype": "category",
+      "fold_training_target_association_cramers_v": [
+        0.3254319751963566,
+        0.3112744942093404,
+        0.3125578520035466
+      ],
+      "mean_fold_training_target_association_cramers_v": 0.31642144046974785,
+      "missing_rows": 0,
+      "selected_in_current_model": true
+    },
+    "algorithm_group": {
+      "available_at_prediction_time": true,
+      "definition": "QMutBench source grouping of algorithm names; likely redundant with algorithm and not part of the selected schema.",
+      "development_cardinality": 12,
+      "dtype": "category",
+      "fold_training_target_association_cramers_v": [
+        0.2243890830215343,
+        0.22963906071550735,
+        0.2488276515589816
+      ],
+      "mean_fold_training_target_association_cramers_v": 0.23428526509867442,
+      "missing_rows": 0,
+      "selected_in_current_model": false
+    },
+    "dominant_state": {
+      "available_at_prediction_time": true,
+      "definition": "QMutBench source category indicating whether the original circuit has a dominant output state.",
+      "development_cardinality": 2,
+      "dtype": "category",
+      "fold_training_target_association_cramers_v": [
+        0.16677650033856367,
+        0.14541163879524374,
+        0.16811200066195833
+      ],
+      "mean_fold_training_target_association_cramers_v": 0.16010004659858856,
+      "missing_rows": 0,
+      "selected_in_current_model": true
+    },
+    "gate": {
+      "available_at_prediction_time": true,
+      "definition": "Quantum gate named by the mutation metadata.",
+      "development_cardinality": 19,
+      "dtype": "category",
+      "fold_training_target_association_cramers_v": [
+        0.3578864825256692,
+        0.3437167107179831,
+        0.36762355724027623
+      ],
+      "mean_fold_training_target_association_cramers_v": 0.3564089168279762,
+      "missing_rows": 0,
+      "selected_in_current_model": true
+    },
+    "gates": {
+      "available_at_prediction_time": true,
+      "definition": "Original-circuit gate count in the dataset metadata.",
+      "development_cardinality": 144,
+      "dtype": "int32",
+      "fold_training_target_association_cramers_v": [
+        0.14086932366565258,
+        0.14816610176411305,
+        0.12158861121841318
+      ],
+      "mean_fold_training_target_association_cramers_v": 0.13687467888272628,
+      "missing_rows": 0,
+      "selected_in_current_model": true
+    },
+    "operation": {
+      "available_at_prediction_time": true,
+      "definition": "Mutation operator: Add, Remove, or Replace.",
+      "development_cardinality": 3,
+      "dtype": "category",
+      "fold_training_target_association_cramers_v": [
+        0.11635041726436007,
+        0.12193764786351091,
+        0.12177685934355922
+      ],
+      "mean_fold_training_target_association_cramers_v": 0.12002164149047674,
+      "missing_rows": 0,
+      "selected_in_current_model": true
+    },
+    "position": {
+      "available_at_prediction_time": true,
+      "definition": "QMutBench source field documented as Position (Circuit %), stored in ten percentage bands.",
+      "development_cardinality": 10,
+      "dtype": "category",
+      "fold_training_target_association_cramers_v": [
+        0.11245769222534233,
+        0.11796448255734734,
+        0.11687688508364659
+      ],
+      "mean_fold_training_target_association_cramers_v": 0.11576635328877875,
+      "missing_rows": 0,
+      "selected_in_current_model": false
+    },
+    "qubits": {
+      "available_at_prediction_time": true,
+      "definition": "Number of qubits in the original circuit metadata.",
+      "development_cardinality": 29,
+      "dtype": "int16",
+      "fold_training_target_association_cramers_v": [
+        0.12894618436882208,
+        0.13116166270177967,
+        0.1453077750122475
+      ],
+      "mean_fold_training_target_association_cramers_v": 0.13513854069428308,
+      "missing_rows": 0,
+      "selected_in_current_model": true
+    }
+  },
+  "folds": [
+    {
+      "fit_group_sha256": "c44721271930f32f6ca2c2c80fd328545b1b6f1f15cda669856c9fb9f028b32f",
+      "fold": 1,
+      "sample_rows": 50000,
+      "training_groups": 214,
+      "training_rows": 383848
+    },
+    {
+      "fit_group_sha256": "da8374f08e32e58dc3d818cad7acc4d1b93aa7baf1a8473c3223813504dab17e",
+      "fold": 2,
+      "sample_rows": 50000,
+      "training_groups": 204,
+      "training_rows": 386380
+    },
+    {
+      "fit_group_sha256": "4f3e5b50771f426eee7f612ba90aec717af26d8128ec14d8b0183864235fba2c",
+      "fold": 3,
+      "sample_rows": 50000,
+      "training_groups": 192,
+      "training_rows": 386006
+    }
+  ],
+  "historical_frozen_test_accessed": false,
+  "interpretation": "Associations are descriptive, univariate training-partition statistics. They do not establish causality or independent predictive gain; model value is judged by grouped held-fold experiments.",
+  "schema": "qmutbench-feature-audit-v1",
+  "source_documentation": "data/qmutbench_full/README.md describes position as circuit percent and lists operator, gate, algorithm, and qubit metadata."
+}

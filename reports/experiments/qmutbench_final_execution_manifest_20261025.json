@@ -1,0 +1,106 @@
+{
+  "schema": "qmutbench-final-execution-manifest-v1",
+  "starting_state": {
+    "branch": "qmutbench-master-optimization",
+    "commit": "017a6446ff905a27b1e9209b549d28b27766a3ad",
+    "working_tree": "clean"
+  },
+  "provenance": {
+    "dataset": {
+      "path": "data/qmutbench_ingestion/raw/official_all_data_20261015.csv",
+      "sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+      "rows": 723079,
+      "development_rows": 578117,
+      "development_origins": 305,
+      "historical_frozen_rows": 144962,
+      "historical_frozen_origins": 70
+    },
+    "saved_baseline": {
+      "model": "data/qmutbench_ml/master_optimization_v1/best_model.joblib",
+      "model_sha256": "8cd332a309e27ef09cc46c5bf8a8788da35c05aa6ed25ed5de21d26ced076175",
+      "oof": "data/qmutbench_ml/master_optimization_v1/oof_predictions.csv",
+      "oof_sha256": "7d203ac4cd6878a1caaf19eb768bb9a1e4f322b42fc56475cdc603591cc250ce",
+      "oof_rows": 578117,
+      "fold_manifest_verified": true
+    },
+    "full_finalist_oof": {
+      "path": "data/qmutbench_ml/performance_phase_full_v1/predictions/position_fraction_fold*.npz",
+      "sha256": "e2d65a7d33d306d989a88a1f70caf86c88714f03ccef2281008937469eb211b4",
+      "rows": 578117,
+      "origins": 305,
+      "row_and_fold_alignment_with_baseline": true
+    },
+    "selected_model": {
+      "model": "data/qmutbench_ml/position_fraction_v1/best_model.joblib",
+      "model_sha256": "641a18b67448f910ea0126c914e7e5f17bc946a3fa940b0486c045b845f8ee45",
+      "metadata": "data/qmutbench_ml/position_fraction_v1/best_model_metadata.json",
+      "version": "qmutbench-position-fraction-v1",
+      "fit_seconds": 196.0583340000012,
+      "threshold": 0.5
+    }
+  },
+  "completed_phases": {
+    "baseline_and_oof_verification": "complete; baseline checksums and source provenance match; historical test not used",
+    "feature_audit": "complete; zero missingness, cardinalities, fold-training Cramer's V, and leakage/availability notes recorded",
+    "error_analysis": "complete; class errors, confidence errors, origin effects, source categories, numeric bins, and feature combinations compared",
+    "screen_experiments": "complete; 60-tree screen across baseline, algorithm-operation, gate-operation, algorithm-gate, position-bin, and position-fraction variants on the saved folds",
+    "full_finalist_validation": "complete; position-fraction candidate evaluated on all 578,117 development rows with the 100-tree baseline settings and identical folds",
+    "threshold_selection": "complete; nested grouped threshold evaluation for baseline and candidate; fixed 0.5 retained",
+    "final_model_package": "complete; final model fit on all development rows and saved to a new ignored versioned path",
+    "inference_api": "complete; saved derivation from source position band to model position_fraction, schema validation and checksums tested",
+    "documentation": "complete; report, machine-readable results, feature audit, and this manifest created"
+  },
+  "experiment_summary": {
+    "baseline_macro_f1_at_0_5": 0.7548254323725219,
+    "selected_macro_f1_at_0_5": 0.7682307692979792,
+    "macro_f1_delta": 0.013405336925457312,
+    "balanced_accuracy_delta": 0.01326252700292263,
+    "accuracy_delta": 0.013381374358477638,
+    "fold_wins": 3,
+    "nested_macro_f1_delta": 0.012184059215207377,
+    "origins_with_macro_f1_improvement": 248,
+    "origins_total": 305,
+    "target_85_percent_reached": false
+  },
+  "new_tracked_files": [
+    "experiments/qmutbench_feature_audit.py",
+    "experiments/qmutbench_performance_phase.py",
+    "experiments/write_qmutbench_performance_report.py",
+    "tests/test_qmutbench_performance_phase.py",
+    "reports/experiments/qmutbench_feature_audit_20261025.json",
+    "reports/experiments/qmutbench_final_performance_20261025.json",
+    "reports/experiments/qmutbench_final_performance_20261025.md",
+    "reports/experiments/qmutbench_final_execution_manifest_20261025.json",
+    "qmutbench_ml/inference.py",
+    "qmutbench_ml/README.md",
+    "tests/test_qmutbench_inference.py"
+  ],
+  "recovered_or_non_promoted_runs": [
+    "Initial v1 screen stopped on a local augmented-frame lifetime bug; fixed before comparison.",
+    "v2 pilot used representative origins on both training and validation, so it was not comparable to the established feature-screen protocol; its ignored artifacts were preserved and excluded from promotion.",
+    "The first v2 prediction cache used object arrays that could not be loaded with allow_pickle=False; the corrected v3 output uses string arrays and fresh versioned checkpoints.",
+    "The full-finalist CLI initially failed while formatting its output after the model artifact had been saved; the metadata and model hash were independently verified, and the CLI reporting issue was fixed.",
+    "The first metadata path normalization appended a literal escape suffix; metadata was repaired, parsed, and its model checksum revalidated."
+  ],
+  "tests": {
+    "new_feature_and_threshold_tests": "2 passed",
+    "inference_and_derivation_tests": "9 passed",
+    "standard_all_qmutbench_run": "76 passed, 1 existing learning-curve resume test failed because its 450 MiB fit guard skipped synthetic fitting under current available RAM",
+    "isolated_learning_curve_resume_test_with_test_process_only_minimum_memory_override": "1 passed",
+    "all_qmutbench_with_test_process_only_learning_curve_memory_guard_disabled_for_synthetic_tests": "77 passed in 11.03s (final run)",
+    "actual_selected_model_api_smoke": "16 records; predicted classes identical on repeated calls; maximum probability difference 1.11e-16; finite probabilities; saved threshold and version returned",
+    "static_checks": "final report JSON parsed; selected model SHA-256 matched metadata; git diff --check clean; new source whitespace check clean"
+  },
+  "scope_and_limits": [
+    "All model selection used development origins and the existing grouped folds; the historical frozen test was not evaluated.",
+    "Generated models, predictions, and caches remain ignored under data/qmutbench_ml/.",
+    "The full repository test suite was not rerun because it previously slowed around 24%; all QMutBench tests were run.",
+    "No simulator, noise-model, diagnosis, or unrelated research files changed.",
+    "Probability outputs are not claimed to be calibrated confidence."
+  ],
+  "git_checkpoint": {
+    "commit": "pending",
+    "push": "pending",
+    "working_tree_after_checkpoint": "pending"
+  }
+}

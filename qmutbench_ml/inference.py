@@ -31,9 +31,16 @@ class QMutBenchOutcomeModel:
         self.features = tuple(self.metadata.get("feature_schema", ()))
         if not self.features or len(set(self.features)) != len(self.features):
             raise ValueError("Metadata must define a unique, non-empty feature_schema")
+        self.input_features = tuple(self.metadata.get("input_feature_schema", self.features))
+        if not self.input_features or len(set(self.input_features)) != len(self.input_features):
+            raise ValueError("Metadata must define a unique, non-empty input_feature_schema")
+        self.feature_derivations = self.metadata.get("feature_derivations", {})
         prohibited = {"Killed", "Origin_program", "Unnamed: 0", "record_id", "row_index"}
-        if prohibited.intersection(self.features):
+        if prohibited.intersection(self.features) or prohibited.intersection(self.input_features):
             raise ValueError("Feature schema contains a prohibited outcome, group, or row identifier")
+        for target, derivation in self.feature_derivations.items():
+            if target not in self.features or derivation.get("source_column") not in self.input_features:
+                raise ValueError(f"Invalid metadata derivation for feature {target!r}")
         expected_hash = self.metadata.get("model_sha256")
         if not expected_hash:
             raise ValueError("Metadata is missing model_sha256")
@@ -99,11 +106,28 @@ class QMutBenchOutcomeModel:
             raise ValueError("At least one input record is required")
         if "Killed" in frame.columns:
             raise ValueError("Input must not contain target column 'Killed'")
-        missing = sorted(set(self.features) - set(frame.columns))
-        extra = sorted(set(frame.columns) - set(self.features))
+        missing = sorted(set(self.input_features) - set(frame.columns))
+        extra = sorted(set(frame.columns) - set(self.input_features))
         if missing or extra:
             raise ValueError(f"Input schema mismatch; missing={missing}; unexpected={extra}")
-        frame = frame.loc[:, list(self.features)].copy()
+        frame = frame.loc[:, list(self.input_features)].copy()
+        for target, derivation in self.feature_derivations.items():
+            source = derivation["source_column"]
+            mapping = {str(key): float(value) for key, value in derivation["mapping"].items()}
+            if frame[source].isna().any():
+                raise ValueError(f"Derived feature source {source!r} contains missing values")
+            raw = frame[source].astype(str)
+            invalid = sorted(set(raw) - set(mapping))
+            if invalid:
+                raise ValueError(f"Unsupported value(s) for {source!r}: {invalid[:5]}")
+            frame[target] = raw.map(mapping)
+            if source not in self.features:
+                frame = frame.drop(columns=[source])
+        if set(frame.columns) != set(self.features):
+            missing_derived = sorted(set(self.features) - set(frame.columns))
+            unexpected_derived = sorted(set(frame.columns) - set(self.features))
+            raise ValueError(f"Derived feature schema mismatch; missing={missing_derived}; unexpected={unexpected_derived}")
+        frame = frame.loc[:, list(self.features)]
         categorical = set(self._categorical_values)
         numeric = set(self.features) - categorical
         for column in numeric:
