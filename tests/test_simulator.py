@@ -226,3 +226,9 @@ def test_configured_readout_bit_flip_counts_leave_state_probabilities_unchanged(
         counts[result] += 1
         np.testing.assert_allclose(sim.get_probabilities(), [1, 0, 0, 0], atol=1e-12)
     assert counts == {"0": 0, "1": 12}
+
+
+@pytest.mark.parametrize("bad_n_qubits", [True, False])
+def test_constructor_rejects_boolean_qubit_count(bad_n_qubits):
+    with pytest.raises(ValueError, match="positive integer"):
+        QuantumSimulator(bad_n_qubits)
