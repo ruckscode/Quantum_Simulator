@@ -1,0 +1,1500 @@
+{
+  "execution": "experiments.run_experiment.run_experiment",
+  "prior_phase_scenario_sources": [
+    "experiments/fault_isolation_phase1.py::build_scenarios",
+    "experiments/fault_isolation_phase1_4.py::SEEDS"
+  ],
+  "protocol_version": "independent_generalization_phase2_v1",
+  "run_count": 36,
+  "scenario_count": 12,
+  "scenarios": [
+    {
+      "affected_component": null,
+      "circuit_family_id": "phase2_bell_q2_q3",
+      "configuration": {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "h",
+            2
+          ],
+          [
+            "cnot",
+            2,
+            3
+          ],
+          [
+            "measure",
+            [
+              2,
+              3
+            ]
+          ]
+        ],
+        "circuit_family_id": "phase2_bell_q2_q3",
+        "circuit_id": "circuit-77e730d9cdbf1df9",
+        "description": "Phase 2 scenario: healthy four-register Bell preparation and measurement",
+        "experiment_name": "phase2_healthy_bell_q2_q3",
+        "experimental_group_id": "group-32f7cab34454b9fc",
+        "ground_truth_label": "NORMAL",
+        "hardware_affected_component": null,
+        "hardware_condition_id": null,
+        "hardware_parameters": {
+          "coupling_map": [
+            [
+              2,
+              3
+            ]
+          ],
+          "edges": [],
+          "gates": [
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "h",
+              "qubits": [
+                2
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "cx",
+              "qubits": [
+                2,
+                3
+              ]
+            }
+          ],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "3": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": null,
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 20262001,
+        "repetition_index": null,
+        "run_id": null,
+        "shots": 512,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      "expected_category": "NORMAL",
+      "expected_detection": false,
+      "ground_truth_cause": "healthy four-register Bell preparation and measurement",
+      "ground_truth_class": "NORMAL",
+      "localization_targets": [],
+      "novelty_basis": "Four-qubit register with entanglement on q2-q3; Phase 1 used a two-qubit X/measurement structure.",
+      "pair_id": null,
+      "scenario_id": "healthy_bell_q2_q3"
+    },
+    {
+      "affected_component": null,
+      "circuit_family_id": "phase2_rzz_phase_q0_q2",
+      "configuration": {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "ry",
+            0,
+            0.6
+          ],
+          [
+            "rx",
+            2,
+            0.4
+          ],
+          [
+            "rzz",
+            0,
+            2,
+            0.7
+          ],
+          [
+            "h",
+            0
+          ],
+          [
+            "measure",
+            [
+              0,
+              2
+            ]
+          ]
+        ],
+        "circuit_family_id": "phase2_rzz_phase_q0_q2",
+        "circuit_id": "circuit-5e438d349c9f759d",
+        "description": "Phase 2 scenario: healthy rotation and RZZ phase sequence",
+        "experiment_name": "phase2_healthy_rzz_phase_depth",
+        "experimental_group_id": "group-6c6977d3039e6a0e",
+        "ground_truth_label": "NORMAL",
+        "hardware_affected_component": null,
+        "hardware_condition_id": null,
+        "hardware_parameters": {
+          "coupling_map": [
+            [
+              0,
+              2
+            ]
+          ],
+          "edges": [],
+          "gates": [
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "ry",
+              "qubits": [
+                0
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "rx",
+              "qubits": [
+                2
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "rzz",
+              "qubits": [
+                0,
+                2
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "h",
+              "qubits": [
+                0
+              ]
+            }
+          ],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "3": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": null,
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 20262001,
+        "repetition_index": null,
+        "run_id": null,
+        "shots": 512,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      "expected_category": "NORMAL",
+      "expected_detection": false,
+      "ground_truth_cause": "healthy rotation and RZZ phase sequence",
+      "ground_truth_class": "NORMAL",
+      "localization_targets": [],
+      "novelty_basis": "New RX/RY/RZZ sequence, operation depth, and q0-q2 interaction absent from Phases 1/1.3/1.4.",
+      "pair_id": null,
+      "scenario_id": "healthy_rzz_phase_depth"
+    },
+    {
+      "affected_component": "replace RY with RZ at index 2 on q2",
+      "circuit_family_id": "phase2_rotation_readout_q2",
+      "configuration": {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "h",
+            0
+          ],
+          [
+            "x",
+            1
+          ],
+          [
+            "ry",
+            2,
+            3.141592653589793
+          ],
+          [
+            "measure",
+            [
+              0,
+              1,
+              2
+            ]
+          ]
+        ],
+        "circuit_family_id": "phase2_rotation_readout_q2",
+        "circuit_id": "circuit-77c95f59268b9b8d",
+        "description": "Phase 2 scenario: program mutation replaces RY with RZ at operation index 2",
+        "experiment_name": "phase2_program_fault_ry_to_rz_q2",
+        "experimental_group_id": "group-dbae371a6e5c9fe4",
+        "ground_truth_label": "PROGRAM_FAULT",
+        "hardware_affected_component": null,
+        "hardware_condition_id": null,
+        "hardware_parameters": {
+          "coupling_map": [],
+          "edges": [],
+          "gates": [
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "h",
+              "qubits": [
+                0
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "x",
+              "qubits": [
+                1
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "ry",
+              "qubits": [
+                2
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "rz",
+              "qubits": [
+                2
+              ]
+            }
+          ],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "3": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": [
+          [
+            "h",
+            0
+          ],
+          [
+            "x",
+            1
+          ],
+          [
+            "rz",
+            2,
+            3.141592653589793
+          ],
+          [
+            "measure",
+            [
+              0,
+              1,
+              2
+            ]
+          ]
+        ],
+        "observed_counts": null,
+        "program_fault_description": "Predeclared Phase 2 program mutation for program_fault_ry_to_rz_q2.",
+        "program_fault_id": "phase2_program_fault_ry_to_rz_q2_mutation",
+        "program_fault_operation_index": 2,
+        "program_fault_qubits": [
+          2
+        ],
+        "random_seed": 20262001,
+        "repetition_index": null,
+        "run_id": null,
+        "shots": 512,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      "expected_category": "PROGRAM_FAULT",
+      "expected_detection": true,
+      "ground_truth_cause": "program mutation replaces RY with RZ at operation index 2",
+      "ground_truth_class": "PROGRAM_FAULT",
+      "localization_targets": [
+        {
+          "index": 2,
+          "kind": "program"
+        }
+      ],
+      "novelty_basis": "Parameterized single-qubit gate substitution at operation index 2 on q2; Phase 1 removed X at index 0 on q0.",
+      "pair_id": "program_ry_to_rz_vs_q2_readout_inversion",
+      "scenario_id": "program_fault_ry_to_rz_q2"
+    },
+    {
+      "affected_component": "readout q2",
+      "circuit_family_id": "phase2_rotation_readout_q2",
+      "configuration": {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "h",
+            0
+          ],
+          [
+            "x",
+            1
+          ],
+          [
+            "ry",
+            2,
+            3.141592653589793
+          ],
+          [
+            "measure",
+            [
+              0,
+              1,
+              2
+            ]
+          ]
+        ],
+        "circuit_family_id": "phase2_rotation_readout_q2",
+        "circuit_id": "circuit-77c95f59268b9b8d",
+        "description": "Phase 2 scenario: complete readout inversion on q2",
+        "experiment_name": "phase2_hardware_readout_inversion_q2",
+        "experimental_group_id": "group-8a4104784177f182",
+        "ground_truth_label": "HARDWARE_ANOMALY",
+        "hardware_affected_component": "readout q2",
+        "hardware_condition_id": "phase2_hardware_readout_inversion_q2_condition",
+        "hardware_parameters": {
+          "coupling_map": [],
+          "edges": [],
+          "gates": [
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "h",
+              "qubits": [
+                0
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "x",
+              "qubits": [
+                1
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "ry",
+              "qubits": [
+                2
+              ]
+            }
+          ],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 1.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "3": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": null,
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 20262001,
+        "repetition_index": null,
+        "run_id": null,
+        "shots": 512,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      "expected_category": "HARDWARE_ANOMALY",
+      "expected_detection": true,
+      "ground_truth_cause": "complete readout inversion on q2",
+      "ground_truth_class": "HARDWARE_ANOMALY",
+      "localization_targets": [
+        {
+          "component": 2,
+          "component_type": "qubit",
+          "kind": "hardware"
+        }
+      ],
+      "novelty_basis": "New q2 readout location and a maximal readout error; its observed distribution is paired with the RY-to-RZ program fault.",
+      "pair_id": "program_ry_to_rz_vs_q2_readout_inversion",
+      "scenario_id": "hardware_readout_inversion_q2"
+    },
+    {
+      "affected_component": "remove RZZ at index 2 on q0-q2",
+      "circuit_family_id": "phase2_rzz_phase_q0_q2",
+      "configuration": {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "ry",
+            0,
+            0.6
+          ],
+          [
+            "rx",
+            2,
+            0.4
+          ],
+          [
+            "rzz",
+            0,
+            2,
+            0.7
+          ],
+          [
+            "h",
+            0
+          ],
+          [
+            "measure",
+            [
+              0,
+              2
+            ]
+          ]
+        ],
+        "circuit_family_id": "phase2_rzz_phase_q0_q2",
+        "circuit_id": "circuit-5e438d349c9f759d",
+        "description": "Phase 2 scenario: program mutation removes RZZ at operation index 2",
+        "experiment_name": "phase2_program_fault_remove_rzz_q0_q2",
+        "experimental_group_id": "group-0cb8d7fbb280d6aa",
+        "ground_truth_label": "PROGRAM_FAULT",
+        "hardware_affected_component": null,
+        "hardware_condition_id": null,
+        "hardware_parameters": {
+          "coupling_map": [
+            [
+              0,
+              2
+            ]
+          ],
+          "edges": [],
+          "gates": [
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "ry",
+              "qubits": [
+                0
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "rx",
+              "qubits": [
+                2
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "rzz",
+              "qubits": [
+                0,
+                2
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "h",
+              "qubits": [
+                0
+              ]
+            }
+          ],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "3": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": [
+          [
+            "ry",
+            0,
+            0.6
+          ],
+          [
+            "rx",
+            2,
+            0.4
+          ],
+          [
+            "h",
+            0
+          ],
+          [
+            "measure",
+            [
+              0,
+              2
+            ]
+          ]
+        ],
+        "observed_counts": null,
+        "program_fault_description": "Predeclared Phase 2 program mutation for program_fault_remove_rzz_q0_q2.",
+        "program_fault_id": "phase2_program_fault_remove_rzz_q0_q2_mutation",
+        "program_fault_operation_index": 2,
+        "program_fault_qubits": [
+          0,
+          2
+        ],
+        "random_seed": 20262001,
+        "repetition_index": null,
+        "run_id": null,
+        "shots": 512,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      "expected_category": "PROGRAM_FAULT",
+      "expected_detection": true,
+      "ground_truth_cause": "program mutation removes RZZ at operation index 2",
+      "ground_truth_class": "PROGRAM_FAULT",
+      "localization_targets": [
+        {
+          "index": 2,
+          "kind": "program"
+        }
+      ],
+      "novelty_basis": "Two-qubit phase-gate deletion at index 2 in a rotation/entanglement circuit; no prior Phase 1 program fault involved RZZ.",
+      "pair_id": null,
+      "scenario_id": "program_fault_remove_rzz_q0_q2"
+    },
+    {
+      "affected_component": "readout q3",
+      "circuit_family_id": "phase2_cx_q1_q3_readout",
+      "configuration": {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "h",
+            1
+          ],
+          [
+            "cnot",
+            1,
+            3
+          ],
+          [
+            "measure",
+            [
+              1,
+              3
+            ]
+          ]
+        ],
+        "circuit_family_id": "phase2_cx_q1_q3_readout",
+        "circuit_id": "circuit-bdaeb022191a9108",
+        "description": "Phase 2 scenario: readout degradation at q3 with 0.20 error",
+        "experiment_name": "phase2_hardware_readout_q3_moderate",
+        "experimental_group_id": "group-84cdcdac90d37751",
+        "ground_truth_label": "HARDWARE_ANOMALY",
+        "hardware_affected_component": "readout q3",
+        "hardware_condition_id": "phase2_hardware_readout_q3_moderate_condition",
+        "hardware_parameters": {
+          "coupling_map": [
+            [
+              1,
+              3
+            ]
+          ],
+          "edges": [],
+          "gates": [
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "h",
+              "qubits": [
+                1
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "cx",
+              "qubits": [
+                1,
+                3
+              ]
+            }
+          ],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "3": {
+              "readout_error": 0.2,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": null,
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 20262001,
+        "repetition_index": null,
+        "run_id": null,
+        "shots": 512,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      "expected_category": "HARDWARE_ANOMALY",
+      "expected_detection": true,
+      "ground_truth_cause": "readout degradation at q3 with 0.20 error",
+      "ground_truth_class": "HARDWARE_ANOMALY",
+      "localization_targets": [
+        {
+          "component": 3,
+          "component_type": "qubit",
+          "kind": "hardware"
+        }
+      ],
+      "novelty_basis": "New q3 location measured in a q1-q3 entangled circuit; Phase 1 readout faults were q0/q1 at strength 0.40.",
+      "pair_id": null,
+      "scenario_id": "hardware_readout_q3_moderate"
+    },
+    {
+      "affected_component": "readout q3",
+      "circuit_family_id": "phase2_cx_q1_q3_readout",
+      "configuration": {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "h",
+            1
+          ],
+          [
+            "cnot",
+            1,
+            3
+          ],
+          [
+            "measure",
+            [
+              1,
+              3
+            ]
+          ]
+        ],
+        "circuit_family_id": "phase2_cx_q1_q3_readout",
+        "circuit_id": "circuit-bdaeb022191a9108",
+        "description": "Phase 2 scenario: subtle q3 readout degradation near the 0.05 decision threshold",
+        "experiment_name": "phase2_hardware_readout_q3_near_threshold",
+        "experimental_group_id": "group-3cfa99150b692d61",
+        "ground_truth_label": "HARDWARE_ANOMALY",
+        "hardware_affected_component": "readout q3",
+        "hardware_condition_id": "phase2_hardware_readout_q3_near_threshold_condition",
+        "hardware_parameters": {
+          "coupling_map": [
+            [
+              1,
+              3
+            ]
+          ],
+          "edges": [],
+          "gates": [
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "h",
+              "qubits": [
+                1
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "cx",
+              "qubits": [
+                1,
+                3
+              ]
+            }
+          ],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "3": {
+              "readout_error": 0.055,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": null,
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 20262001,
+        "repetition_index": null,
+        "run_id": null,
+        "shots": 512,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      "expected_category": "HARDWARE_ANOMALY",
+      "expected_detection": true,
+      "ground_truth_cause": "subtle q3 readout degradation near the 0.05 decision threshold",
+      "ground_truth_class": "HARDWARE_ANOMALY",
+      "localization_targets": [
+        {
+          "component": 3,
+          "component_type": "qubit",
+          "kind": "hardware"
+        }
+      ],
+      "novelty_basis": "Readout error 0.055 is near the configured 0.05 anomaly threshold and is evaluated across three seeds.",
+      "pair_id": null,
+      "scenario_id": "hardware_readout_q3_near_threshold"
+    },
+    {
+      "affected_component": "readout q3",
+      "circuit_family_id": "phase2_cx_q1_q3_readout",
+      "configuration": {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "h",
+            1
+          ],
+          [
+            "cnot",
+            1,
+            3
+          ],
+          [
+            "measure",
+            [
+              1,
+              3
+            ]
+          ]
+        ],
+        "circuit_family_id": "phase2_cx_q1_q3_readout",
+        "circuit_id": "circuit-bdaeb022191a9108",
+        "description": "Phase 2 scenario: known q3 readout perturbation below the 0.05 calibration-evidence threshold",
+        "experiment_name": "phase2_hardware_readout_q3_subthreshold",
+        "experimental_group_id": "group-38ef5dd3b3366d11",
+        "ground_truth_label": "HARDWARE_ANOMALY",
+        "hardware_affected_component": "readout q3",
+        "hardware_condition_id": "phase2_hardware_readout_q3_subthreshold_condition",
+        "hardware_parameters": {
+          "coupling_map": [
+            [
+              1,
+              3
+            ]
+          ],
+          "edges": [],
+          "gates": [
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "h",
+              "qubits": [
+                1
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "cx",
+              "qubits": [
+                1,
+                3
+              ]
+            }
+          ],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "3": {
+              "readout_error": 0.04,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": null,
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 20262001,
+        "repetition_index": null,
+        "run_id": null,
+        "shots": 512,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      "expected_category": "HARDWARE_ANOMALY",
+      "expected_detection": true,
+      "ground_truth_cause": "known q3 readout perturbation below the 0.05 calibration-evidence threshold",
+      "ground_truth_class": "HARDWARE_ANOMALY",
+      "localization_targets": [
+        {
+          "component": 3,
+          "component_type": "qubit",
+          "kind": "hardware"
+        }
+      ],
+      "novelty_basis": "Readout error 0.04 is below both the nominal detection threshold and localizer readout evidence cutoff; an abstention/miss is informative.",
+      "pair_id": null,
+      "scenario_id": "hardware_readout_q3_subthreshold"
+    },
+    {
+      "affected_component": "RZZ q0-q2",
+      "circuit_family_id": "phase2_rzz_phase_q0_q2",
+      "configuration": {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "ry",
+            0,
+            0.6
+          ],
+          [
+            "rx",
+            2,
+            0.4
+          ],
+          [
+            "rzz",
+            0,
+            2,
+            0.7
+          ],
+          [
+            "h",
+            0
+          ],
+          [
+            "measure",
+            [
+              0,
+              2
+            ]
+          ]
+        ],
+        "circuit_family_id": "phase2_rzz_phase_q0_q2",
+        "circuit_id": "circuit-5e438d349c9f759d",
+        "description": "Phase 2 scenario: RZZ calibration error 0.055 near the decision threshold",
+        "experiment_name": "phase2_hardware_rzz_error_near_threshold",
+        "experimental_group_id": "group-38a466137847ff97",
+        "ground_truth_label": "HARDWARE_ANOMALY",
+        "hardware_affected_component": "RZZ q0-q2",
+        "hardware_condition_id": "phase2_hardware_rzz_error_near_threshold_condition",
+        "hardware_parameters": {
+          "coupling_map": [
+            [
+              0,
+              2
+            ]
+          ],
+          "edges": [],
+          "gates": [
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "ry",
+              "qubits": [
+                0
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "rx",
+              "qubits": [
+                2
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.055,
+              "gate": "rzz",
+              "qubits": [
+                0,
+                2
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "h",
+              "qubits": [
+                0
+              ]
+            }
+          ],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "3": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": null,
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 20262001,
+        "repetition_index": null,
+        "run_id": null,
+        "shots": 512,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      "expected_category": "HARDWARE_ANOMALY",
+      "expected_detection": true,
+      "ground_truth_cause": "RZZ calibration error 0.055 near the decision threshold",
+      "ground_truth_class": "HARDWARE_ANOMALY",
+      "localization_targets": [
+        {
+          "component": [
+            0,
+            2
+          ],
+          "component_type": "gate",
+          "gate": "rzz",
+          "kind": "hardware"
+        }
+      ],
+      "novelty_basis": "Non-Clifford entangling phase gate with a subtle calibrated operation failure probability absent from Phase 1.",
+      "pair_id": null,
+      "scenario_id": "hardware_rzz_error_near_threshold"
+    },
+    {
+      "affected_component": "coupling edge q1-q3",
+      "circuit_family_id": "phase2_cx_edge_q1_q3",
+      "configuration": {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "h",
+            1
+          ],
+          [
+            "cnot",
+            1,
+            3
+          ],
+          [
+            "measure",
+            [
+              1,
+              3
+            ]
+          ]
+        ],
+        "circuit_family_id": "phase2_cx_edge_q1_q3",
+        "circuit_id": "circuit-bdaeb022191a9108",
+        "description": "Phase 2 scenario: CX failure on a new q1-q3 coupling, with matching edge calibration evidence",
+        "experiment_name": "phase2_hardware_cx_coupler_q1_q3",
+        "experimental_group_id": "group-e792b92bc97866f0",
+        "ground_truth_label": "HARDWARE_ANOMALY",
+        "hardware_affected_component": "coupling edge q1-q3",
+        "hardware_condition_id": "phase2_hardware_cx_coupler_q1_q3_condition",
+        "hardware_parameters": {
+          "coupling_map": [
+            [
+              1,
+              3
+            ]
+          ],
+          "edges": [
+            {
+              "duration": 0.1,
+              "error": 0.18,
+              "qubits": [
+                1,
+                3
+              ]
+            }
+          ],
+          "gates": [
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "h",
+              "qubits": [
+                1
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.18,
+              "gate": "cx",
+              "qubits": [
+                1,
+                3
+              ]
+            }
+          ],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "3": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": null,
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 20262001,
+        "repetition_index": null,
+        "run_id": null,
+        "shots": 512,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      "expected_category": "HARDWARE_ANOMALY",
+      "expected_detection": true,
+      "ground_truth_cause": "CX failure on a new q1-q3 coupling, with matching edge calibration evidence",
+      "ground_truth_class": "HARDWARE_ANOMALY",
+      "localization_targets": [
+        {
+          "component": [
+            1,
+            3
+          ],
+          "component_type": "edge",
+          "kind": "hardware"
+        }
+      ],
+      "novelty_basis": "New non-adjacent q1-q3 coupling. The simulator applies the CX gate-error probability; edge metadata supplies the edge localization evidence.",
+      "pair_id": null,
+      "scenario_id": "hardware_cx_coupler_q1_q3"
+    },
+    {
+      "affected_component": "program operation 2 plus readout q2",
+      "circuit_family_id": "phase2_rotation_readout_q2",
+      "configuration": {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "h",
+            0
+          ],
+          [
+            "x",
+            1
+          ],
+          [
+            "ry",
+            2,
+            3.141592653589793
+          ],
+          [
+            "measure",
+            [
+              0,
+              1,
+              2
+            ]
+          ]
+        ],
+        "circuit_family_id": "phase2_rotation_readout_q2",
+        "circuit_id": "circuit-77c95f59268b9b8d",
+        "description": "Phase 2 scenario: RY-to-RZ program mutation combined with q2 readout degradation",
+        "experiment_name": "phase2_overlap_ry_to_rz_plus_readout_q2",
+        "experimental_group_id": null,
+        "ground_truth_label": null,
+        "hardware_affected_component": null,
+        "hardware_condition_id": null,
+        "hardware_parameters": {
+          "coupling_map": [],
+          "edges": [],
+          "gates": [
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "h",
+              "qubits": [
+                0
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "x",
+              "qubits": [
+                1
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "ry",
+              "qubits": [
+                2
+              ]
+            },
+            {
+              "duration": 0.1,
+              "error": 0.0,
+              "gate": "rz",
+              "qubits": [
+                2
+              ]
+            }
+          ],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.2,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "3": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": [
+          [
+            "h",
+            0
+          ],
+          [
+            "x",
+            1
+          ],
+          [
+            "rz",
+            2,
+            3.141592653589793
+          ],
+          [
+            "measure",
+            [
+              0,
+              1,
+              2
+            ]
+          ]
+        ],
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 20262001,
+        "repetition_index": null,
+        "run_id": null,
+        "shots": 512,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      "expected_category": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+      "expected_detection": true,
+      "ground_truth_cause": "RY-to-RZ program mutation combined with q2 readout degradation",
+      "ground_truth_class": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+      "localization_targets": [
+        {
+          "index": 2,
+          "kind": "program"
+        },
+        {
+          "component": 2,
+          "component_type": "qubit",
+          "kind": "hardware"
+        }
+      ],
+      "novelty_basis": "Combined gate-substitution and readout effect; the evidence should preserve both causes and avoid a forced single-cause class.",
+      "pair_id": null,
+      "scenario_id": "overlap_ry_to_rz_plus_readout_q2"
+    },
+    {
+      "affected_component": null,
+      "circuit_family_id": "phase2_unknown_q3_rotation",
+      "configuration": {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "ry",
+            3,
+            1.5707963267948966
+          ],
+          [
+            "measure",
+            [
+              3
+            ]
+          ]
+        ],
+        "circuit_family_id": "phase2_unknown_q3_rotation",
+        "circuit_id": "circuit-f44bbf78c4cf7655",
+        "description": "Phase 2 scenario: observed deviation with no hardware calibration or program mismatch supplied",
+        "experiment_name": "phase2_cause_unknown_phase_observation",
+        "experimental_group_id": null,
+        "ground_truth_label": null,
+        "hardware_affected_component": null,
+        "hardware_condition_id": null,
+        "hardware_parameters": null,
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": null,
+        "observed_counts": {
+          "0": 512
+        },
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 20262001,
+        "repetition_index": null,
+        "run_id": null,
+        "shots": 512,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      "expected_category": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+      "expected_detection": true,
+      "ground_truth_cause": "observed deviation with no hardware calibration or program mismatch supplied",
+      "ground_truth_class": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+      "localization_targets": [],
+      "novelty_basis": "New q3 rotation measurement structure with an explicit observation fixture and causal evidence withheld.",
+      "pair_id": null,
+      "scenario_id": "cause_unknown_phase_observation"
+    }
+  ],
+  "seeds": [
+    20262001,
+    20262002,
+    20262003
+  ],
+  "shots_per_case": 512,
+  "simulator_only": true,
+  "source_provenance": {
+    "git_head": "4ac81ad0e278c6045592a4e1c4df518512b04841",
+    "git_head_available": true,
+    "sha256": {
+      "experiments/fault_isolation_phase1.py": "3aae2940cd42ea50d3efcc23226e5a46d8a506d1443f38718bdc6f485f613d93",
+      "experiments/fault_isolation_phase2.py": "96bb4441d65037816abc98511430d96114968a10db482971aa6dd6bbf1849259",
+      "experiments/run_experiment.py": "7c5b9d9a468caae02beee2ef0253f1c7c07a81dd0fe3a7608b0c4078b972b350",
+      "src/quantum_simulator/diagnosis_engine.py": "787cb8265433d494f42695ed3dfe2f6f659799a4b1c86cfe988364945ef9578e",
+      "src/quantum_simulator/hardware_fault_localizer.py": "ca0fec8d243282ca2ad1b1d1f0cb7e24f909fbcbecd537d116da722081e98686"
+    },
+    "working_tree_dirty": true
+  }
+}

@@ -30,7 +30,19 @@
         "experiment_name": {"type": "string"},
         "validation_label": {"const": "SYNTHETIC_VALIDATION"},
         "backend_name": {"type": ["string", "null"]},
-        "created_at": {"type": "string", "format": "date-time"}
+        "created_at": {"type": "string", "format": "date-time"},
+        "ground_truth_label": {"enum": ["NORMAL", "PROGRAM_FAULT", "HARDWARE_ANOMALY", null]},
+        "circuit_id": {"type": ["string", "null"]},
+        "circuit_family_id": {"type": ["string", "null"]},
+        "program_fault_id": {"type": ["string", "null"]},
+        "hardware_condition_id": {"type": ["string", "null"]},
+        "experimental_group_id": {"type": ["string", "null"]},
+        "run_id": {"type": ["string", "null"]},
+        "repetition_index": {"type": ["integer", "null"], "minimum": 0},
+        "program_fault_description": {"type": ["string", "null"]},
+        "program_fault_operation_index": {"type": ["integer", "null"], "minimum": 0},
+        "program_fault_qubits": {"type": ["array", "null"], "items": {"type": "integer", "minimum": 0}},
+        "hardware_affected_component": {"type": ["string", "null"]}
       },
       "additionalProperties": true
     },
@@ -52,7 +64,13 @@
     "diagnosis": {"type": ["object", "null"], "description": "Full DiagnosisResult including nested statistics and localization results."},
     "program_evidence": {"type": ["object", "null"], "description": "Full FaultLocalizationResult."},
     "hardware_evidence": {"type": ["object", "null"], "description": "Full HardwareFaultLocalizationResult."},
-    "execution_metadata": {"type": "object"},
+    "execution_metadata": {
+      "type": "object",
+      "properties": {
+        "hardware_model_applied": {"type": "boolean"},
+        "noise_parameters_applied": {"type": "boolean"}
+      }
+    },
     "reproducibility": {
       "type": "object",
       "required": ["random_seed", "simulator_version", "fingerprint", "fingerprint_excludes"],

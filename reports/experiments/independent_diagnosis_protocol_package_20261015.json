@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "package_id": "independent-diagnosis-validation-protocol-20261015",
+  "status": "NOT YET APPROVED",
+  "study_status": "BLOCKED",
+  "research_question": "For eligible, independently sampled circuit families in a declared software-triage population, how well do the frozen detection, cause-disposition, localization, and abstention procedures perform under a prespecified observation design?",
+  "target_population": {
+    "status": "REQUIRED INPUT",
+    "definition": "A finite, versioned sampling frame specifying circuit source/release or generator revision, supported operations, structural strata, and eligibility dates/rules.",
+    "current_evidence": "No complete reconciled independent family frame; current inventory has zero proven eligible fresh roots and is truncated."
+  },
+  "intended_use": {
+    "status": "REQUIRED INPUT",
+    "definition": "Specify one operational use and the cost of false positive, false negative, misattribution, localization error, abstention, unsupported input, and execution failure.",
+    "limits": "No deployment or safety-critical use is supported by current evidence."
+  },
+  "independence": {
+    "unit": "circuit family plus complete source/generator lineage",
+    "not_independent_units": [
+      "random seeds",
+      "shots",
+      "mutants",
+      "parameter variants",
+      "repetitions",
+      "templates derived from one recipe root"
+    ],
+    "rule": "Assign all descendants of a family/lineage root to one partition; reject missing ancestry and exact or near-duplicate cross-partition families."
+  },
+  "required_observation_provenance": {
+    "status": "REQUIRED INPUT",
+    "fields": [
+      "generation_id and generator/source revision and hashes",
+      "family_root_id, lineage_root_id, complete ancestor roots and lineage evidence",
+      "canonical circuit hash and circuit/configuration hashes",
+      "reference and submitted artifact hashes",
+      "protocol/preregistration hash",
+      "random seeds and deterministic seed derivation",
+      "shot counts and sampling design",
+      "noise configuration and simulator settings",
+      "Python implementation/version and every relevant library/runtime version",
+      "reproduction command/configuration record hash and immutable observation artifact hash"
+    ]
+  },
+  "truth_and_blinding": {
+    "status": "REQUIRED INPUT",
+    "labels": [
+      "behavioral distribution change/no change",
+      "program fault",
+      "hardware fault",
+      "ambiguous cause",
+      "observationally equivalent causes",
+      "insufficient evidence",
+      "reviewer disagreement"
+    ],
+    "procedure": "Independent reviewers inspect immutable source/intervention and observation evidence while blinded to method outputs and tuning choices. Resolve disagreement under a prespecified rule; retain unresolved cases as such. Keep labels and adjudication-only fields physically/logically separate from observable predictors.",
+    "limits": "Source syntax difference alone is not proof of behavioral causation; simulator-injected hardware scenarios are not physical hardware truth."
+  },
+  "partitions": {
+    "status": "REQUIRED INPUT",
+    "train": "Whole development families for method construction.",
+    "calibration": "Disjoint families for any calibration or threshold selection; do not imply calibration has occurred.",
+    "test": "Untouched, sealed family/lineage-disjoint validation set opened only after protocol, code, thresholds, and analysis are frozen.",
+    "frozen_acceptance": "The existing 45-case acceptance set remains separate, unchanged, and cannot be used for selection."
+  },
+  "endpoints": {
+    "status": "REQUIRED INPUT",
+    "primary": [
+      "healthy-control false-positive rate",
+      "sensitivity by predeclared fault/effect stratum"
+    ],
+    "additional": [
+      "cause-disposition and single-cause attribution accuracy on eligible truth",
+      "source and hardware localization metrics reported separately",
+      "abstention coverage and selective risk",
+      "unsupported and execution-failure rates"
+    ],
+    "uncertainty": "Report family-cluster-aware intervals; shots and descendants are repeated measures, not independent sample size.",
+    "calibration": "If probabilistic outputs are introduced, predeclare calibration metrics and evaluate only on a disjoint calibration set; current outputs are not established calibrated probabilities."
+  },
+  "decision_criteria": {
+    "status": "REQUIRED INPUT; NOT YET APPROVED",
+    "required_before_sampling": [
+      "use-specific acceptable false-positive/false-negative and misattribution costs",
+      "minimum coverage and abstention constraints",
+      "effect/null margins and class-wise performance criteria",
+      "confidence/interval and multiplicity procedures",
+      "unsupported/missing truth decision rules"
+    ],
+    "rule": "Freeze criteria before opening untouched test outcomes; do not derive numeric floors from the frozen 45 cases."
+  },
+  "power_analysis": {
+    "status": "REQUIRED INPUT",
+    "inputs": [
+      "independent family sampling frame and inclusion probabilities",
+      "family-cluster variation/ICC or defensible bounds",
+      "class and effect-stratum prevalence/imbalance",
+      "paired method comparison structure",
+      "planned intervals, multiplicity, abstention and missingness",
+      "minimum meaningful differences and resource ceilings"
+    ],
+    "current_claim": "No defensible numeric power or sample size is available until these inputs are independently established."
+  },
+  "resources_and_recovery": {
+    "status": "REQUIRED INPUT",
+    "limits": "Set maximum family count, circuit executions, shots, runtime, peak memory, storage/output size, and cost before execution.",
+    "stop_rules": [
+      "stop before any reservation exceeds a declared cap",
+      "stop on provenance, lineage, partition, schema, integrity, or runtime failure",
+      "preserve partial checkpoint with exact source/config/runtime identity",
+      "resume only if hashes and frozen settings match"
+    ],
+    "authorization": "A protocol or local validator does not authorize study execution, external services, or hardware."
+  },
+  "gates": {
+    "confirmatory_prerequisites": [
+      "complete lineage-reconciled sampling frame",
+      "independent blinded adjudicators and immutable evidence",
+      "independently reviewed and protocol-bound attestation verified under an external trust policy",
+      "frozen use-specific criteria and family-level power/resource analysis",
+      "provenance-complete family-disjoint partitions",
+      "separate execution authorization"
+    ],
+    "current_disposition": "BLOCKED: external family-frame reconciliation, reviewers/adjudication, external protocol review, acceptance decisions, validated power/resource assumptions, and any study authorization are absent."
+  },
+  "implementation": {
+    "validator": "experiments/diagnosis_evaluation_protocol.py::audit_research_protocol",
+    "focused_tests": "tests/test_diagnosis_evaluation_protocol.py",
+    "boundary": "The validator checks record structure and recorded prerequisites only; it cannot establish truth quality, actual independence, signature authenticity, power, performance, or external validity."
+  },
+  "adjudication_evidence_gate": {
+    "status": "REQUIRED INPUT",
+    "validator": "experiments/diagnosis_evidence_gates.py::validate_independent_adjudication_records",
+    "case_fields": [
+      "stable case_id",
+      "family_root_id and lineage_root_id",
+      "protocol version and frozen protocol SHA-256",
+      "immutable evidence_refs with stable IDs and SHA-256",
+      "execution_ids nested within one family case",
+      "at least two separately recorded judgments with evidence references",
+      "explicit agreement/disagreement disposition and hashed resolution evidence"
+    ],
+    "judgments": [
+      "BEHAVIORAL_PROGRAM_FAULT",
+      "HARDWARE_FAULT",
+      "EQUIVALENT_BEHAVIOR",
+      "NO_BEHAVIORAL_CHANGE",
+      "INSUFFICIENT_EVIDENCE",
+      "UNRESOLVED"
+    ],
+    "privacy": "Use opaque externally issued reviewer tokens; do not store raw reviewer names, email, or usernames. A trusted external attestation binds token, case, protocol hash, blinding, and independence.",
+    "external_trust_requirements": [
+      "case-, protocol-, and adjudicator-token-bound attestation",
+      "independently verified reviewer identity tokenization, independence, and blinding",
+      "separate externally verified blinded resolver attestation for resolved disagreement"
+    ],
+    "prohibited_as_truth": [
+      "simulator labels",
+      "scenario or mutation names",
+      "system/model predictions"
+    ],
+    "independence_unit": "One family plus lineage is at most one independent case; repeated executions remain nested and cannot increase family count.",
+    "trust_boundary": "Self-declared independence/blinding fields are insufficient. The API assumes supplied verified attestations were checked by an external trust-policy verifier; it does not authenticate signatures."
+  },
+  "reconciliation": {
+    "status": "BLOCKED",
+    "report": "reports/experiments/diagnosis_sampling_frame_reconciliation_20261015.json",
+    "utility": "experiments/diagnosis_evidence_gates.py::reconcile_saved_evidence",
+    "observed_counts": {
+      "candidate_root_count": 6,
+      "directly_verified_root_count": 0,
+      "inferred_root_count": 3,
+      "missing_root_count": 0,
+      "conflicting_root_count": 3,
+      "externally_attested_root_count": 0,
+      "recovered_synthetic_family_id_count": 30,
+      "recovered_synthetic_record_count": 270,
+      "eligible_independent_families": 0,
+      "inventory_conflict_count": 6,
+      "exact_duplicate_relationship_count": 1,
+      "all_inventory_exact_duplicate_content_count": 457,
+      "prior_circuit_record_count": 5366,
+      "unknown_lineage_circuit_record_count": 5186,
+      "family_only_without_root_record_count": 1671,
+      "source_declared_possible_root_count": 6,
+      "observed_lineage_root_count": 3,
+      "frame_candidate_count": 0,
+      "ambiguous_family_id_conflict_count": 3,
+      "recovery_rows_missing_recipe_ancestry": 270,
+      "recovery_rows_missing_per_run_source_hash": 270,
+      "recovery_rows_missing_independent_adjudication": true
+    },
+    "current_limit": "Reuses the persisted inventory and recovery table within documented caps; no new filesystem discovery. Inventory remains truncated/incomplete."
+  },
+  "confirmatory_preflight": {
+    "validator": "experiments/diagnosis_evidence_gates.py::audit_confirmatory_study_preflight",
+    "requires": [
+      "externally verified complete inventory and frame attestations bound to exact hashes",
+      "complete per-case generation and execution provenance",
+      "verified independent blinded adjudication for every case",
+      "protocol-bound external reviewer attestation",
+      "use-specific criteria and family-level power/resource assumptions",
+      "exact frame-to-train/calibration/untouched-test lineage alignment"
+    ],
+    "current_status": "BLOCKED; no authentic external attestations or independent adjudications are present."
+  }
+}

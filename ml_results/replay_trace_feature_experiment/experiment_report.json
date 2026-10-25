@@ -1,0 +1,1268 @@
+{
+  "experiment_name": "REPLAY_TRACE_FEATURE_COMPARISON",
+  "replay_dataset": "REPLAY_DERIVED_TRACE_FEATURES",
+  "trace_origin": "REPLAY_DERIVED",
+  "n_records": 270,
+  "class_counts": {
+    "NORMAL": 90,
+    "PROGRAM_FAULT": 90,
+    "HARDWARE_ANOMALY": 90
+  },
+  "group_count": 30,
+  "input_provenance": {
+    "baseline_report_set_sha256": "0a445dfb59d6f42c5caa429dbbab223109e1bfa9a19a056ade0025d678b40eda",
+    "replay_feature_csv_sha256": "10620c3d5b8504a95485689224d5f65f6de7db4f46570faf6d151702872c92f7",
+    "replay_feature_audit_sha256": "cbe6fe15fcba7b55e14b7f792ad3a7c1e57d6e6ae22c51da3e09c710d4c0077d",
+    "trace_implementation_sha256": {
+      "feature_generator": "670c016e2927c05550331aa52d083e3a4d621c2ba64d7446b1399e91c6282efc",
+      "quantum_simulator": "a07be9c304153a389454f699ffaaace8d12d99d430396bcfc1b5c383845406ef"
+    },
+    "baseline_report_sha256_coverage": 270,
+    "embedded_source_hash_coverage": 0,
+    "numpy_version": "2.5.3",
+    "scikit_learn_version": "1.9.1"
+  },
+  "methodology": {
+    "splitter": "StratifiedGroupKFold",
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42,
+    "group_column": "circuit_family_id",
+    "preprocessing": "SimpleImputer(strategy='median'); StandardScaler only for Logistic Regression",
+    "hyperparameter_tuning": false,
+    "models": [
+      "Logistic Regression",
+      "Decision Tree",
+      "Random Forest"
+    ],
+    "metrics": [
+      "accuracy",
+      "macro_f1"
+    ],
+    "mean_std": "mean and sample standard deviation (ddof=1) across the same five folds",
+    "feature_sets": {
+      "OBSERVABLE_ONLY": [
+        "total_variation_distance",
+        "js_divergence",
+        "hellinger_distance",
+        "observed_entropy_bits",
+        "observed_max_probability"
+      ],
+      "OBSERVABLE_PLUS_REPLAY_TRACE": [
+        "total_variation_distance",
+        "js_divergence",
+        "hellinger_distance",
+        "observed_entropy_bits",
+        "observed_max_probability",
+        "trace_max_probability_difference",
+        "trace_mean_probability_difference",
+        "trace_median_probability_difference",
+        "trace_deviation_concentration",
+        "trace_high_deviation_fraction"
+      ]
+    }
+  },
+  "summary": [
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Logistic Regression",
+      "accuracy_mean": 0.562962962962963,
+      "accuracy_std": 0.11233889546743038,
+      "macro_f1_mean": 0.5357955166526596,
+      "macro_f1_std": 0.1332018224889748
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Decision Tree",
+      "accuracy_mean": 0.47037037037037044,
+      "accuracy_std": 0.06085806194501846,
+      "macro_f1_mean": 0.44118293019455807,
+      "macro_f1_std": 0.08097204114350116
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Random Forest",
+      "accuracy_mean": 0.46296296296296297,
+      "accuracy_std": 0.05856069741052554,
+      "macro_f1_mean": 0.44759708890218963,
+      "macro_f1_std": 0.06206543952974487
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Logistic Regression",
+      "accuracy_mean": 0.5740740740740742,
+      "accuracy_std": 0.045360921162651446,
+      "macro_f1_mean": 0.5504254298981085,
+      "macro_f1_std": 0.061651155193669684
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Decision Tree",
+      "accuracy_mean": 0.6222222222222223,
+      "accuracy_std": 0.08343615056347267,
+      "macro_f1_mean": 0.6171536334984324,
+      "macro_f1_std": 0.0879075367787783
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Random Forest",
+      "accuracy_mean": 0.6407407407407408,
+      "accuracy_std": 0.07476529347476427,
+      "macro_f1_mean": 0.6254942277351241,
+      "macro_f1_std": 0.08775031060908274
+    }
+  ],
+  "comparisons": [
+    {
+      "model": "Logistic Regression",
+      "baseline_accuracy_mean": 0.562962962962963,
+      "trace_accuracy_mean": 0.5740740740740742,
+      "delta_accuracy": 0.011111111111111183,
+      "baseline_macro_f1_mean": 0.5357955166526596,
+      "trace_macro_f1_mean": 0.5504254298981085,
+      "delta_macro_f1": 0.014629913245448933,
+      "interpretation": "improves",
+      "materiality_cutoff_absolute_delta": 0.01
+    },
+    {
+      "model": "Decision Tree",
+      "baseline_accuracy_mean": 0.47037037037037044,
+      "trace_accuracy_mean": 0.6222222222222223,
+      "delta_accuracy": 0.1518518518518519,
+      "baseline_macro_f1_mean": 0.44118293019455807,
+      "trace_macro_f1_mean": 0.6171536334984324,
+      "delta_macro_f1": 0.17597070330387438,
+      "interpretation": "improves",
+      "materiality_cutoff_absolute_delta": 0.01
+    },
+    {
+      "model": "Random Forest",
+      "baseline_accuracy_mean": 0.46296296296296297,
+      "trace_accuracy_mean": 0.6407407407407408,
+      "delta_accuracy": 0.17777777777777787,
+      "baseline_macro_f1_mean": 0.44759708890218963,
+      "trace_macro_f1_mean": 0.6254942277351241,
+      "delta_macro_f1": 0.17789713883293445,
+      "interpretation": "improves",
+      "materiality_cutoff_absolute_delta": 0.01
+    }
+  ],
+  "material_change_rule": "Macro-F1 improvement of at least 0.01 with accuracy loss smaller than 0.01; symmetric loss rule for hurt; otherwise no material change.",
+  "majority_baseline": {
+    "folds": [
+      {
+        "fold": 1,
+        "majority_label": "NORMAL",
+        "accuracy": 0.3333333333333333,
+        "macro_f1": 0.16666666666666666
+      },
+      {
+        "fold": 2,
+        "majority_label": "NORMAL",
+        "accuracy": 0.3333333333333333,
+        "macro_f1": 0.16666666666666666
+      },
+      {
+        "fold": 3,
+        "majority_label": "NORMAL",
+        "accuracy": 0.3333333333333333,
+        "macro_f1": 0.16666666666666666
+      },
+      {
+        "fold": 4,
+        "majority_label": "NORMAL",
+        "accuracy": 0.3333333333333333,
+        "macro_f1": 0.16666666666666666
+      },
+      {
+        "fold": 5,
+        "majority_label": "NORMAL",
+        "accuracy": 0.3333333333333333,
+        "macro_f1": 0.16666666666666666
+      }
+    ],
+    "accuracy_mean": 0.3333333333333333,
+    "accuracy_std": 0.0,
+    "macro_f1_mean": 0.16666666666666666,
+    "macro_f1_std": 0.0,
+    "confusion_matrix": [
+      [
+        90,
+        0,
+        0
+      ],
+      [
+        90,
+        0,
+        0
+      ],
+      [
+        90,
+        0,
+        0
+      ]
+    ]
+  },
+  "fold_results": [
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Logistic Regression",
+      "fold": 1,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.7222222222222222,
+      "macro_f1": 0.7171201814058957,
+      "recall_NORMAL": 1.0,
+      "recall_PROGRAM_FAULT": 0.5,
+      "recall_HARDWARE_ANOMALY": 0.6666666666666666
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Logistic Regression",
+      "fold": 2,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.5370370370370371,
+      "macro_f1": 0.49603729603729607,
+      "recall_NORMAL": 1.0,
+      "recall_PROGRAM_FAULT": 0.4444444444444444,
+      "recall_HARDWARE_ANOMALY": 0.16666666666666666
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Logistic Regression",
+      "fold": 3,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.46296296296296297,
+      "macro_f1": 0.4180952380952381,
+      "recall_NORMAL": 0.8888888888888888,
+      "recall_PROGRAM_FAULT": 0.3333333333333333,
+      "recall_HARDWARE_ANOMALY": 0.16666666666666666
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Logistic Regression",
+      "fold": 4,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.6296296296296297,
+      "macro_f1": 0.6296296296296297,
+      "recall_NORMAL": 0.8333333333333334,
+      "recall_PROGRAM_FAULT": 0.5,
+      "recall_HARDWARE_ANOMALY": 0.5555555555555556
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Logistic Regression",
+      "fold": 5,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.46296296296296297,
+      "macro_f1": 0.4180952380952381,
+      "recall_NORMAL": 0.8888888888888888,
+      "recall_PROGRAM_FAULT": 0.3333333333333333,
+      "recall_HARDWARE_ANOMALY": 0.16666666666666666
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Decision Tree",
+      "fold": 1,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.5740740740740741,
+      "macro_f1": 0.5605247465712582,
+      "recall_NORMAL": 0.6666666666666666,
+      "recall_PROGRAM_FAULT": 0.7222222222222222,
+      "recall_HARDWARE_ANOMALY": 0.3333333333333333
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Decision Tree",
+      "fold": 2,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.42592592592592593,
+      "macro_f1": 0.4136904761904762,
+      "recall_NORMAL": 0.6666666666666666,
+      "recall_PROGRAM_FAULT": 0.3333333333333333,
+      "recall_HARDWARE_ANOMALY": 0.2777777777777778
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Decision Tree",
+      "fold": 3,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.42592592592592593,
+      "macro_f1": 0.3357142857142857,
+      "recall_NORMAL": 0.9444444444444444,
+      "recall_PROGRAM_FAULT": 0.3333333333333333,
+      "recall_HARDWARE_ANOMALY": 0.0
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Decision Tree",
+      "fold": 4,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.46296296296296297,
+      "macro_f1": 0.45035945035945035,
+      "recall_NORMAL": 0.7777777777777778,
+      "recall_PROGRAM_FAULT": 0.3333333333333333,
+      "recall_HARDWARE_ANOMALY": 0.2777777777777778
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Decision Tree",
+      "fold": 5,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.46296296296296297,
+      "macro_f1": 0.44562569213732006,
+      "recall_NORMAL": 0.7777777777777778,
+      "recall_PROGRAM_FAULT": 0.3333333333333333,
+      "recall_HARDWARE_ANOMALY": 0.2777777777777778
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Random Forest",
+      "fold": 1,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.48148148148148145,
+      "macro_f1": 0.4813043165984343,
+      "recall_NORMAL": 0.5555555555555556,
+      "recall_PROGRAM_FAULT": 0.5555555555555556,
+      "recall_HARDWARE_ANOMALY": 0.3333333333333333
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Random Forest",
+      "fold": 2,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.5,
+      "macro_f1": 0.4726495726495727,
+      "recall_NORMAL": 0.8333333333333334,
+      "recall_PROGRAM_FAULT": 0.4444444444444444,
+      "recall_HARDWARE_ANOMALY": 0.2222222222222222
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Random Forest",
+      "fold": 3,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.37037037037037035,
+      "macro_f1": 0.35715227422544493,
+      "recall_NORMAL": 0.5,
+      "recall_PROGRAM_FAULT": 0.4444444444444444,
+      "recall_HARDWARE_ANOMALY": 0.16666666666666666
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Random Forest",
+      "fold": 4,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.5185185185185185,
+      "macro_f1": 0.5132514544279251,
+      "recall_NORMAL": 0.6666666666666666,
+      "recall_PROGRAM_FAULT": 0.5555555555555556,
+      "recall_HARDWARE_ANOMALY": 0.3333333333333333
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Random Forest",
+      "fold": 5,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.4444444444444444,
+      "macro_f1": 0.413627826609571,
+      "recall_NORMAL": 0.7777777777777778,
+      "recall_PROGRAM_FAULT": 0.3888888888888889,
+      "recall_HARDWARE_ANOMALY": 0.16666666666666666
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Logistic Regression",
+      "fold": 1,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.5925925925925926,
+      "macro_f1": 0.5690476190476191,
+      "recall_NORMAL": 0.8333333333333334,
+      "recall_PROGRAM_FAULT": 0.6666666666666666,
+      "recall_HARDWARE_ANOMALY": 0.2777777777777778
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Logistic Regression",
+      "fold": 2,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.5185185185185185,
+      "macro_f1": 0.4636127355425601,
+      "recall_NORMAL": 1.0,
+      "recall_PROGRAM_FAULT": 0.4444444444444444,
+      "recall_HARDWARE_ANOMALY": 0.1111111111111111
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Logistic Regression",
+      "fold": 3,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.5370370370370371,
+      "macro_f1": 0.5205278592375366,
+      "recall_NORMAL": 0.8333333333333334,
+      "recall_PROGRAM_FAULT": 0.4444444444444444,
+      "recall_HARDWARE_ANOMALY": 0.3333333333333333
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Logistic Regression",
+      "fold": 4,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.6296296296296297,
+      "macro_f1": 0.6278924327704816,
+      "recall_NORMAL": 0.7222222222222222,
+      "recall_PROGRAM_FAULT": 0.7222222222222222,
+      "recall_HARDWARE_ANOMALY": 0.4444444444444444
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Logistic Regression",
+      "fold": 5,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.5925925925925926,
+      "macro_f1": 0.5710465028923447,
+      "recall_NORMAL": 0.8888888888888888,
+      "recall_PROGRAM_FAULT": 0.5555555555555556,
+      "recall_HARDWARE_ANOMALY": 0.3333333333333333
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Decision Tree",
+      "fold": 1,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.7592592592592593,
+      "macro_f1": 0.7609667083351294,
+      "recall_NORMAL": 0.7222222222222222,
+      "recall_PROGRAM_FAULT": 0.8333333333333334,
+      "recall_HARDWARE_ANOMALY": 0.7222222222222222
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Decision Tree",
+      "fold": 2,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.5555555555555556,
+      "macro_f1": 0.5312305087766195,
+      "recall_NORMAL": 0.7777777777777778,
+      "recall_PROGRAM_FAULT": 0.6666666666666666,
+      "recall_HARDWARE_ANOMALY": 0.2222222222222222
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Decision Tree",
+      "fold": 3,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.6296296296296297,
+      "macro_f1": 0.6193520886615516,
+      "recall_NORMAL": 0.8333333333333334,
+      "recall_PROGRAM_FAULT": 0.6666666666666666,
+      "recall_HARDWARE_ANOMALY": 0.3888888888888889
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Decision Tree",
+      "fold": 4,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.6111111111111112,
+      "macro_f1": 0.6098670098670098,
+      "recall_NORMAL": 0.6666666666666666,
+      "recall_PROGRAM_FAULT": 0.6666666666666666,
+      "recall_HARDWARE_ANOMALY": 0.5
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Decision Tree",
+      "fold": 5,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.5555555555555556,
+      "macro_f1": 0.5643518518518519,
+      "recall_NORMAL": 0.5555555555555556,
+      "recall_PROGRAM_FAULT": 0.6111111111111112,
+      "recall_HARDWARE_ANOMALY": 0.5
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Random Forest",
+      "fold": 1,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.7592592592592593,
+      "macro_f1": 0.7626262626262627,
+      "recall_NORMAL": 0.7777777777777778,
+      "recall_PROGRAM_FAULT": 0.7222222222222222,
+      "recall_HARDWARE_ANOMALY": 0.7777777777777778
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Random Forest",
+      "fold": 2,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.6481481481481481,
+      "macro_f1": 0.6177048260381593,
+      "recall_NORMAL": 0.9444444444444444,
+      "recall_PROGRAM_FAULT": 0.7777777777777778,
+      "recall_HARDWARE_ANOMALY": 0.2222222222222222
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Random Forest",
+      "fold": 3,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.5555555555555556,
+      "macro_f1": 0.5175579491055681,
+      "recall_NORMAL": 0.9444444444444444,
+      "recall_PROGRAM_FAULT": 0.5,
+      "recall_HARDWARE_ANOMALY": 0.2222222222222222
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Random Forest",
+      "fold": 4,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.6111111111111112,
+      "macro_f1": 0.6095354808590102,
+      "recall_NORMAL": 0.6111111111111112,
+      "recall_PROGRAM_FAULT": 0.7222222222222222,
+      "recall_HARDWARE_ANOMALY": 0.5
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Random Forest",
+      "fold": 5,
+      "train_family_count": 24,
+      "validation_family_count": 6,
+      "accuracy": 0.6296296296296297,
+      "macro_f1": 0.62004662004662,
+      "recall_NORMAL": 0.8333333333333334,
+      "recall_PROGRAM_FAULT": 0.6666666666666666,
+      "recall_HARDWARE_ANOMALY": 0.3888888888888889
+    }
+  ],
+  "confusion_matrices": [
+    {
+      "feature_set": "MAJORITY_CLASS_BASELINE",
+      "model": "Majority Class",
+      "matrix": [
+        [
+          90,
+          0,
+          0
+        ],
+        [
+          90,
+          0,
+          0
+        ],
+        [
+          90,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Logistic Regression",
+      "matrix": [
+        [
+          83,
+          0,
+          7
+        ],
+        [
+          34,
+          38,
+          18
+        ],
+        [
+          47,
+          12,
+          31
+        ]
+      ]
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Decision Tree",
+      "matrix": [
+        [
+          69,
+          7,
+          14
+        ],
+        [
+          26,
+          37,
+          27
+        ],
+        [
+          45,
+          24,
+          21
+        ]
+      ]
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Random Forest",
+      "matrix": [
+        [
+          60,
+          10,
+          20
+        ],
+        [
+          25,
+          43,
+          22
+        ],
+        [
+          41,
+          27,
+          22
+        ]
+      ]
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Logistic Regression",
+      "matrix": [
+        [
+          77,
+          10,
+          3
+        ],
+        [
+          19,
+          51,
+          20
+        ],
+        [
+          41,
+          22,
+          27
+        ]
+      ]
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Decision Tree",
+      "matrix": [
+        [
+          64,
+          5,
+          21
+        ],
+        [
+          11,
+          62,
+          17
+        ],
+        [
+          29,
+          19,
+          42
+        ]
+      ]
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Random Forest",
+      "matrix": [
+        [
+          74,
+          6,
+          10
+        ],
+        [
+          8,
+          61,
+          21
+        ],
+        [
+          33,
+          19,
+          38
+        ]
+      ]
+    }
+  ],
+  "per_class_recall": [
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Logistic Regression",
+      "class": "NORMAL",
+      "pooled_oof_recall": 0.9222222222222223,
+      "fold_recall_mean": 0.9222222222222222,
+      "fold_recall_std": 0.07453559924999299,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Logistic Regression",
+      "class": "PROGRAM_FAULT",
+      "pooled_oof_recall": 0.4222222222222222,
+      "fold_recall_mean": 0.4222222222222222,
+      "fold_recall_std": 0.08425417160057279,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Logistic Regression",
+      "class": "HARDWARE_ANOMALY",
+      "pooled_oof_recall": 0.34444444444444444,
+      "fold_recall_mean": 0.34444444444444444,
+      "fold_recall_std": 0.24658156690191274,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Decision Tree",
+      "class": "NORMAL",
+      "pooled_oof_recall": 0.7666666666666667,
+      "fold_recall_mean": 0.7666666666666666,
+      "fold_recall_std": 0.11385500851066221,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Decision Tree",
+      "class": "PROGRAM_FAULT",
+      "pooled_oof_recall": 0.4111111111111111,
+      "fold_recall_mean": 0.4111111111111111,
+      "fold_recall_std": 0.17391639824998364,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Decision Tree",
+      "class": "HARDWARE_ANOMALY",
+      "pooled_oof_recall": 0.23333333333333334,
+      "fold_recall_mean": 0.23333333333333334,
+      "fold_recall_std": 0.13263707095903693,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Random Forest",
+      "class": "NORMAL",
+      "pooled_oof_recall": 0.6666666666666666,
+      "fold_recall_mean": 0.6666666666666666,
+      "fold_recall_std": 0.14163943093313291,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Random Forest",
+      "class": "PROGRAM_FAULT",
+      "pooled_oof_recall": 0.4777777777777778,
+      "fold_recall_mean": 0.47777777777777775,
+      "fold_recall_std": 0.074535599249993,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_ONLY",
+      "model": "Random Forest",
+      "class": "HARDWARE_ANOMALY",
+      "pooled_oof_recall": 0.24444444444444444,
+      "fold_recall_mean": 0.24444444444444446,
+      "fold_recall_std": 0.08425417160057277,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Logistic Regression",
+      "class": "NORMAL",
+      "pooled_oof_recall": 0.8555555555555555,
+      "fold_recall_mean": 0.8555555555555557,
+      "fold_recall_std": 0.10092167846991638,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Logistic Regression",
+      "class": "PROGRAM_FAULT",
+      "pooled_oof_recall": 0.5666666666666667,
+      "fold_recall_mean": 0.5666666666666667,
+      "fold_recall_std": 0.12668615834434868,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Logistic Regression",
+      "class": "HARDWARE_ANOMALY",
+      "pooled_oof_recall": 0.3,
+      "fold_recall_mean": 0.29999999999999993,
+      "fold_recall_std": 0.1217161238900369,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Decision Tree",
+      "class": "NORMAL",
+      "pooled_oof_recall": 0.7111111111111111,
+      "fold_recall_mean": 0.711111111111111,
+      "fold_recall_std": 0.10686324478706304,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Decision Tree",
+      "class": "PROGRAM_FAULT",
+      "pooled_oof_recall": 0.6888888888888889,
+      "fold_recall_mean": 0.6888888888888889,
+      "fold_recall_std": 0.0842541716005728,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Decision Tree",
+      "class": "HARDWARE_ANOMALY",
+      "pooled_oof_recall": 0.4666666666666667,
+      "fold_recall_mean": 0.4666666666666666,
+      "fold_recall_std": 0.18257418583505536,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Random Forest",
+      "class": "NORMAL",
+      "pooled_oof_recall": 0.8222222222222222,
+      "fold_recall_mean": 0.8222222222222223,
+      "fold_recall_std": 0.13833221775543034,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Random Forest",
+      "class": "PROGRAM_FAULT",
+      "pooled_oof_recall": 0.6777777777777778,
+      "fold_recall_mean": 0.6777777777777778,
+      "fold_recall_std": 0.10686324478706304,
+      "support": 90
+    },
+    {
+      "feature_set": "OBSERVABLE_PLUS_REPLAY_TRACE",
+      "model": "Random Forest",
+      "class": "HARDWARE_ANOMALY",
+      "pooled_oof_recall": 0.4222222222222222,
+      "fold_recall_mean": 0.4222222222222222,
+      "fold_recall_std": 0.23107371492317136,
+      "support": 90
+    }
+  ],
+  "per_class_recall_comparison": [
+    {
+      "model": "Logistic Regression",
+      "class": "NORMAL",
+      "observable_only_pooled_oof_recall": 0.9222222222222223,
+      "observable_plus_trace_pooled_oof_recall": 0.8555555555555555,
+      "delta_pooled_oof_recall": -0.06666666666666676
+    },
+    {
+      "model": "Logistic Regression",
+      "class": "PROGRAM_FAULT",
+      "observable_only_pooled_oof_recall": 0.4222222222222222,
+      "observable_plus_trace_pooled_oof_recall": 0.5666666666666667,
+      "delta_pooled_oof_recall": 0.14444444444444443
+    },
+    {
+      "model": "Logistic Regression",
+      "class": "HARDWARE_ANOMALY",
+      "observable_only_pooled_oof_recall": 0.34444444444444444,
+      "observable_plus_trace_pooled_oof_recall": 0.3,
+      "delta_pooled_oof_recall": -0.04444444444444445
+    },
+    {
+      "model": "Decision Tree",
+      "class": "NORMAL",
+      "observable_only_pooled_oof_recall": 0.7666666666666667,
+      "observable_plus_trace_pooled_oof_recall": 0.7111111111111111,
+      "delta_pooled_oof_recall": -0.05555555555555558
+    },
+    {
+      "model": "Decision Tree",
+      "class": "PROGRAM_FAULT",
+      "observable_only_pooled_oof_recall": 0.4111111111111111,
+      "observable_plus_trace_pooled_oof_recall": 0.6888888888888889,
+      "delta_pooled_oof_recall": 0.2777777777777778
+    },
+    {
+      "model": "Decision Tree",
+      "class": "HARDWARE_ANOMALY",
+      "observable_only_pooled_oof_recall": 0.23333333333333334,
+      "observable_plus_trace_pooled_oof_recall": 0.4666666666666667,
+      "delta_pooled_oof_recall": 0.23333333333333334
+    },
+    {
+      "model": "Random Forest",
+      "class": "NORMAL",
+      "observable_only_pooled_oof_recall": 0.6666666666666666,
+      "observable_plus_trace_pooled_oof_recall": 0.8222222222222222,
+      "delta_pooled_oof_recall": 0.15555555555555556
+    },
+    {
+      "model": "Random Forest",
+      "class": "PROGRAM_FAULT",
+      "observable_only_pooled_oof_recall": 0.4777777777777778,
+      "observable_plus_trace_pooled_oof_recall": 0.6777777777777778,
+      "delta_pooled_oof_recall": 0.2
+    },
+    {
+      "model": "Random Forest",
+      "class": "HARDWARE_ANOMALY",
+      "observable_only_pooled_oof_recall": 0.24444444444444444,
+      "observable_plus_trace_pooled_oof_recall": 0.4222222222222222,
+      "delta_pooled_oof_recall": 0.17777777777777778
+    }
+  ],
+  "feature_correlation_audit": {
+    "method": "Pearson correlation over the 270 joined records; computed without labels as inputs",
+    "high_correlation_cutoff_absolute_r": 0.95,
+    "near_duplicate_cutoff_absolute_r": 0.995,
+    "constant_features": [],
+    "correlations": [
+      {
+        "feature_a": "total_variation_distance",
+        "feature_b": "js_divergence",
+        "pearson_r": 0.9443232809111892
+      },
+      {
+        "feature_a": "total_variation_distance",
+        "feature_b": "hellinger_distance",
+        "pearson_r": 0.9895395019689754
+      },
+      {
+        "feature_a": "total_variation_distance",
+        "feature_b": "observed_entropy_bits",
+        "pearson_r": -0.14982983767723942
+      },
+      {
+        "feature_a": "total_variation_distance",
+        "feature_b": "observed_max_probability",
+        "pearson_r": 0.23192465611871557
+      },
+      {
+        "feature_a": "total_variation_distance",
+        "feature_b": "trace_max_probability_difference",
+        "pearson_r": 0.35347921631417933
+      },
+      {
+        "feature_a": "total_variation_distance",
+        "feature_b": "trace_mean_probability_difference",
+        "pearson_r": 0.40097514231951426
+      },
+      {
+        "feature_a": "total_variation_distance",
+        "feature_b": "trace_median_probability_difference",
+        "pearson_r": -0.025122784860234733
+      },
+      {
+        "feature_a": "total_variation_distance",
+        "feature_b": "trace_deviation_concentration",
+        "pearson_r": 0.10221693098220057
+      },
+      {
+        "feature_a": "total_variation_distance",
+        "feature_b": "trace_high_deviation_fraction",
+        "pearson_r": 0.33066057671915366
+      },
+      {
+        "feature_a": "js_divergence",
+        "feature_b": "hellinger_distance",
+        "pearson_r": 0.9686450501821859
+      },
+      {
+        "feature_a": "js_divergence",
+        "feature_b": "observed_entropy_bits",
+        "pearson_r": -0.21354645212214762
+      },
+      {
+        "feature_a": "js_divergence",
+        "feature_b": "observed_max_probability",
+        "pearson_r": 0.2818290496246617
+      },
+      {
+        "feature_a": "js_divergence",
+        "feature_b": "trace_max_probability_difference",
+        "pearson_r": 0.30865815457253143
+      },
+      {
+        "feature_a": "js_divergence",
+        "feature_b": "trace_mean_probability_difference",
+        "pearson_r": 0.37827334874341595
+      },
+      {
+        "feature_a": "js_divergence",
+        "feature_b": "trace_median_probability_difference",
+        "pearson_r": -0.032583542039315544
+      },
+      {
+        "feature_a": "js_divergence",
+        "feature_b": "trace_deviation_concentration",
+        "pearson_r": 0.030815208204290876
+      },
+      {
+        "feature_a": "js_divergence",
+        "feature_b": "trace_high_deviation_fraction",
+        "pearson_r": 0.2793908682372363
+      },
+      {
+        "feature_a": "hellinger_distance",
+        "feature_b": "observed_entropy_bits",
+        "pearson_r": -0.12945768912388386
+      },
+      {
+        "feature_a": "hellinger_distance",
+        "feature_b": "observed_max_probability",
+        "pearson_r": 0.2187247516776677
+      },
+      {
+        "feature_a": "hellinger_distance",
+        "feature_b": "trace_max_probability_difference",
+        "pearson_r": 0.34854901692928014
+      },
+      {
+        "feature_a": "hellinger_distance",
+        "feature_b": "trace_mean_probability_difference",
+        "pearson_r": 0.3864533832585899
+      },
+      {
+        "feature_a": "hellinger_distance",
+        "feature_b": "trace_median_probability_difference",
+        "pearson_r": -0.029669606943483497
+      },
+      {
+        "feature_a": "hellinger_distance",
+        "feature_b": "trace_deviation_concentration",
+        "pearson_r": 0.08989248058519142
+      },
+      {
+        "feature_a": "hellinger_distance",
+        "feature_b": "trace_high_deviation_fraction",
+        "pearson_r": 0.3058483652741748
+      },
+      {
+        "feature_a": "observed_entropy_bits",
+        "feature_b": "observed_max_probability",
+        "pearson_r": -0.9183295967596778
+      },
+      {
+        "feature_a": "observed_entropy_bits",
+        "feature_b": "trace_max_probability_difference",
+        "pearson_r": 0.31188000498371593
+      },
+      {
+        "feature_a": "observed_entropy_bits",
+        "feature_b": "trace_mean_probability_difference",
+        "pearson_r": -0.0978161880449638
+      },
+      {
+        "feature_a": "observed_entropy_bits",
+        "feature_b": "trace_median_probability_difference",
+        "pearson_r": -0.007156738819278053
+      },
+      {
+        "feature_a": "observed_entropy_bits",
+        "feature_b": "trace_deviation_concentration",
+        "pearson_r": 0.390093627853989
+      },
+      {
+        "feature_a": "observed_entropy_bits",
+        "feature_b": "trace_high_deviation_fraction",
+        "pearson_r": -0.07326391651951718
+      },
+      {
+        "feature_a": "observed_max_probability",
+        "feature_b": "trace_max_probability_difference",
+        "pearson_r": -0.26177612966107333
+      },
+      {
+        "feature_a": "observed_max_probability",
+        "feature_b": "trace_mean_probability_difference",
+        "pearson_r": 0.027201311324957716
+      },
+      {
+        "feature_a": "observed_max_probability",
+        "feature_b": "trace_median_probability_difference",
+        "pearson_r": -0.04120788868550783
+      },
+      {
+        "feature_a": "observed_max_probability",
+        "feature_b": "trace_deviation_concentration",
+        "pearson_r": -0.3882851002159051
+      },
+      {
+        "feature_a": "observed_max_probability",
+        "feature_b": "trace_high_deviation_fraction",
+        "pearson_r": 0.006360779461900168
+      },
+      {
+        "feature_a": "trace_max_probability_difference",
+        "feature_b": "trace_mean_probability_difference",
+        "pearson_r": 0.6107063916059661
+      },
+      {
+        "feature_a": "trace_max_probability_difference",
+        "feature_b": "trace_median_probability_difference",
+        "pearson_r": 0.07270541093399768
+      },
+      {
+        "feature_a": "trace_max_probability_difference",
+        "feature_b": "trace_deviation_concentration",
+        "pearson_r": 0.8412058016964721
+      },
+      {
+        "feature_a": "trace_max_probability_difference",
+        "feature_b": "trace_high_deviation_fraction",
+        "pearson_r": 0.4842276999871981
+      },
+      {
+        "feature_a": "trace_mean_probability_difference",
+        "feature_b": "trace_median_probability_difference",
+        "pearson_r": 0.583526931091238
+      },
+      {
+        "feature_a": "trace_mean_probability_difference",
+        "feature_b": "trace_deviation_concentration",
+        "pearson_r": 0.34961976629336555
+      },
+      {
+        "feature_a": "trace_mean_probability_difference",
+        "feature_b": "trace_high_deviation_fraction",
+        "pearson_r": 0.8584510716591927
+      },
+      {
+        "feature_a": "trace_median_probability_difference",
+        "feature_b": "trace_deviation_concentration",
+        "pearson_r": -0.055389381398705216
+      },
+      {
+        "feature_a": "trace_median_probability_difference",
+        "feature_b": "trace_high_deviation_fraction",
+        "pearson_r": 0.5756396149582752
+      },
+      {
+        "feature_a": "trace_deviation_concentration",
+        "feature_b": "trace_high_deviation_fraction",
+        "pearson_r": 0.2871047749312082
+      }
+    ],
+    "high_correlation_pairs": [
+      {
+        "feature_a": "total_variation_distance",
+        "feature_b": "hellinger_distance",
+        "pearson_r": 0.9895395019689754
+      },
+      {
+        "feature_a": "js_divergence",
+        "feature_b": "hellinger_distance",
+        "pearson_r": 0.9686450501821859
+      }
+    ],
+    "near_duplicate_pairs": []
+  },
+  "leakage_audit": {
+    "target_field": "ground_truth_label",
+    "target_used_only_for_y": true,
+    "model_feature_names": {
+      "OBSERVABLE_ONLY": [
+        "total_variation_distance",
+        "js_divergence",
+        "hellinger_distance",
+        "observed_entropy_bits",
+        "observed_max_probability"
+      ],
+      "OBSERVABLE_PLUS_REPLAY_TRACE": [
+        "total_variation_distance",
+        "js_divergence",
+        "hellinger_distance",
+        "observed_entropy_bits",
+        "observed_max_probability",
+        "trace_max_probability_difference",
+        "trace_mean_probability_difference",
+        "trace_median_probability_difference",
+        "trace_deviation_concentration",
+        "trace_high_deviation_fraction"
+      ]
+    },
+    "forbidden_feature_names": [
+      "calibration_readout_error_max",
+      "calibration_t1_min",
+      "calibration_t2_min",
+      "circuit_family_id",
+      "diagnosis",
+      "diagnosis.category",
+      "diagnosis.hardware_evidence_candidates",
+      "diagnosis.program_evidence_candidates",
+      "gate_error",
+      "gate_failed",
+      "gate_mismatch_fraction",
+      "ground_truth_label",
+      "hardware_affected_component",
+      "hardware_condition_id",
+      "position",
+      "program_fault_id",
+      "random_seed",
+      "readout_error",
+      "repetition_index",
+      "run_id",
+      "step",
+      "t1",
+      "t2",
+      "trace_step"
+    ],
+    "metadata_used_only_for_join_or_grouping": [
+      "run_id",
+      "circuit_family_id",
+      "repetition_index",
+      "random_seed"
+    ],
+    "diagnosis_output_used": false,
+    "calibration_fields_used": false,
+    "gate_mismatch_used": false,
+    "trace_position_or_localization_fields_used": false,
+    "replay_origin": "REPLAY_DERIVED",
+    "replay_feature_provenance": "Probability deviations are generated by replaying each stored ideal/observed circuit with stored calibration; no labels or diagnosis fields enter feature computation.",
+    "class_association_eta_squared_descriptive_only": {
+      "total_variation_distance": 0.24236042068289973,
+      "js_divergence": 0.17780103169065478,
+      "hellinger_distance": 0.2171941928729067,
+      "observed_entropy_bits": 0.017602786331346845,
+      "observed_max_probability": 0.028415755045688332,
+      "trace_max_probability_difference": 0.07407990360646227,
+      "trace_mean_probability_difference": 0.06916218327550742,
+      "trace_median_probability_difference": 0.01958909006889241,
+      "trace_deviation_concentration": 0.07084815100491242,
+      "trace_high_deviation_fraction": 0.10797167959003204
+    },
+    "interpretation": "Strong association is a leakage warning to inspect, not proof of direct label leakage. Replay trace values can reflect injected program or hardware effects by design."
+  }
+}

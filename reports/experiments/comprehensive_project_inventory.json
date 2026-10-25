@@ -1,0 +1,127 @@
+{
+  "project": "Quantum_Simulator",
+  "audit_date": "2026-10-14",
+  "audit_scope": "Read-only representative source, test, report, artifact, dataset, and configuration inspection; no tests, simulations, training, benchmarks, hardware jobs, or large processing run.",
+  "workspace_state": {
+    "preexisting_uncommitted_changes": true,
+    "evidence": ["git status --short"],
+    "note": "Large pre-existing source, report, test, data, and output changes were present. No pre-existing file was modified by this audit. Historical results are not assumed to match current source."
+  },
+  "status_vocabulary": ["IMPLEMENTED", "TESTED", "INDEPENDENTLY VALIDATED", "UNVERIFIED", "KNOWN DEFECT/LIMITATION"],
+  "components": [
+    {
+      "id": "public_api_and_circuit_builder",
+      "responsibility": "Package API and user-facing circuit construction/execution.",
+      "paths": ["src/quantum_simulator/__init__.py", "src/quantum_simulator/quantum_circuit.py", "quantum_simulator.py", "tests/test_quantum_circuit.py", "tests/test_local_package_import.py"],
+      "evidence": ["README.md", "tests/test_quantum_circuit.py", "tests/test_local_package_import.py"],
+      "status": {"implemented": true, "tested": "Test sources and historical test claims exist; not rerun against this workspace."},
+      "limitations": ["Top-level compatibility modules coexist with canonical src package and can drift.", "Current package import behavior was not executed during this audit."]
+    },
+    {
+      "id": "gates_and_statevector_execution",
+      "responsibility": "Gate matrices, basis indexing, state evolution, supported operation dispatch.",
+      "paths": ["src/quantum_simulator/gates.py", "src/quantum_simulator/quantum_simulator.py", "tests/test_gates.py", "tests/test_gate_correctness.py", "tests/test_simulator.py"],
+      "evidence": ["Gate and simulator test files exist.", "tests/test_gate_correctness.py contains optional Qiskit Aer comparison code for selected operations.", "README.md describes the state-vector engine."],
+      "status": {"implemented": true, "tested": "Selected tests and historical pass reports exist; no current run.", "independently_validated": "UNVERIFIED for the full supported set; test-source oracle references are not execution evidence."},
+      "limitations": ["Qubit index 0 is represented as the leftmost bit in basis strings; operand-order correctness needs gate-family-by-gate-family oracle checks.", "Dense state-vector memory is exponential: at least 16 * 2^n bytes for complex128 amplitudes.", "Local gate application loops over the full basis and local output rows; no documented resource ceiling or guard was identified."]
+    },
+    {
+      "id": "measurement_sampling_and_rng",
+      "responsibility": "Measurement, collapse, classical readout errors, shot sampling, seed handling.",
+      "paths": ["src/quantum_simulator/quantum_simulator.py", "tests/test_simulator.py", "tests/test_finite_shot_confidence_bounds.py", "tests/test_finite_shot_distribution_calibration.py"],
+      "evidence": ["Simulator tests cover H/Bell sampling and deterministic seed examples.", "Saved experiment and calibration artifacts record seeds and counts."],
+      "status": {"implemented": true, "tested": "Focused test sources and saved runs exist.", "current_mathematical_validity": "KNOWN DEFECT/LIMITATION"},
+      "limitations": ["In measure(), readout-flipped bits are used to select the state-collapse branch; this conflicts with classical readout error semantics and can alter subsequent evolution.", "Finite-shot behavior is not made correct by deterministic seed tests; distributional calibration is separately required.", "run_shots constructs and runs a simulator for each shot, making runtime scale with shots and circuit cost."]
+    },
+    {
+      "id": "reset",
+      "responsibility": "Single-qubit reset operation in state-vector engine.",
+      "paths": ["src/quantum_simulator/quantum_simulator.py", "tests/test_simulator.py"],
+      "evidence": ["reset_qubit source inspected; reset tests are part of simulator suite."],
+      "status": {"implemented": true, "mathematical_validity": "KNOWN DEFECT/LIMITATION", "independent_validation": "UNVERIFIED"},
+      "limitations": ["Implementation removes amplitudes with target bit 1 and renormalizes remaining amplitudes, equivalent to projection/postselection for nonzero branch rather than a general reset channel.", "A reset on an entangled subsystem generally yields a mixed state; pure state-vector representation needs explicit trajectory semantics or density-matrix support."]
+    },
+    {
+      "id": "hardware_model_and_noise",
+      "responsibility": "Calibration data model, gate failure, readout, T1/T2-like evolution, connectivity.",
+      "paths": ["src/quantum_simulator/hardware_model.py", "src/quantum_simulator/quantum_simulator.py", "tests/test_hardware.py", "tests/test_noise_model_validation.py", "tests/test_hardware_fault_localizer.py"],
+      "evidence": ["Hardware/noise test sources.", "Controlled local experiment reports under reports/experiments/controlled_fault_isolation_phase* and independent_generalization_phase2."],
+      "status": {"implemented": true, "tested": "Synthetic local tests and scenario outputs are present.", "independently_validated": "UNVERIFIED against a separate channel implementation or live hardware."},
+      "limitations": ["Gate calibration error is represented as probabilistic gate skipping.", "T1/T2 is a stochastic pure-state trajectory-like approximation, not a general density-matrix/noise-channel engine.", "Calibration defaults/profiles are not physical measurements unless provenance says so.", "Readout collapse issue can affect downstream noise/diagnosis results."]
+    },
+    {
+      "id": "statistics_and_finite_shot_detector",
+      "responsibility": "Distribution metrics, thresholds, confidence/statistical comparisons.",
+      "paths": ["src/quantum_simulator/statistics.py", "statistics.py", "tests/test_statistics.py", "tests/test_finite_shot_distribution_calibration.py", "reports/experiments/finite_shot_distribution_calibration_diagnostic.md", "reports/experiments/finite_shot_blocker_status.json"],
+      "evidence": ["Finite-shot diagnostic report and saved calibration run summaries.", "Permutation comparator code in test_finite_shot_distribution_calibration.py.", "Blocker status dated 2026-10-14 marks proposed 252-family design NO-GO."],
+      "status": {"implemented": true, "tested": "Unit tests and saved calibration data exist; audit did not rerun.", "current_cutoff_quality": "KNOWN DEFECT/LIMITATION"},
+      "limitations": ["Saved diagnostic reports very high false-positive rates for matching controls under TVD > max(configured threshold, 1/sqrt(shots)) at low/moderate shot counts.", "Saved proposal status reports unresolved novelty, condition definition, ground-truth/leakage protocol, and observational equivalence.", "No general calibrated error rates can be inferred from synthetic report tables alone."]
+    },
+    {
+      "id": "trace_and_program_localization",
+      "responsibility": "Operation alignment, direct mismatches, traced state deviations and candidate localization.",
+      "paths": ["src/quantum_simulator/fault_localizer.py", "src/quantum_simulator/quantum_simulator.py", "tests/test_fault_localizer.py", "tests/test_operation_trace_localization_integration.py"],
+      "evidence": ["Localization/trace test modules.", "reports/experiments/phase4_diagnosis_reliability_audit/REPORT.md"],
+      "status": {"implemented": true, "tested": "Tests and controlled local scenarios are reported.", "causal_validity": "UNVERIFIED beyond controlled truth."},
+      "limitations": ["Trace deviations are structural simulator comparisons, not independent causal proof.", "Unsupported operations require visible missing-evidence handling.", "Different causes can be observationally equivalent."]
+    },
+    {
+      "id": "diagnosis_and_abstention",
+      "responsibility": "Anomaly decision, program/hardware evidence combination, reference comparison, ambiguity/abstention.",
+      "paths": ["src/quantum_simulator/diagnosis_engine.py", "src/quantum_simulator/fault_localizer.py", "src/quantum_simulator/hardware_fault_localizer.py", "tests/test_diagnosis_engine.py", "tests/test_reference_diagnosis_validation.py", "tests/test_reference_diagnosis_generalization.py", "tests/test_stage3_controlled_diagnosis_evaluation.py"],
+      "evidence": ["reports/experiments/phase4_diagnosis_reliability_audit/REPORT.md", "reports/experiments/controlled_fault_isolation_phase1/", "reports/experiments/controlled_fault_isolation_phase1_4/", "reports/experiments/independent_generalization_phase2/"],
+      "status": {"implemented": true, "tested": "Many focused tests and local synthetic scenario runs exist.", "real_world_validity": "UNVERIFIED"},
+      "limitations": ["Phase 4 documents calibration-supported HARDWARE_ANOMALY results even when anomaly_detected is false.", "Historical Phase 1.3 report prose is stale relative to its saved JSON.", "One report describes family-concentrated errors and repeated seeds over a small number of families.", "Diagnosis accuracy and localization accuracy are separate outcomes; no physical-device adjudication established."]
+    },
+    {
+      "id": "ml_dataset_training_and_evaluation",
+      "responsibility": "Synthetic dataset construction, feature schemas, labels, group splits, classifiers and metrics.",
+      "paths": ["ml_training.py", "ml_evaluation.py", "experiments/full_dataset.py", "experiments/run_experiment.py", "ml_results/grouped_cv_audit_v2/evaluation_manifest.json", "ml_results/grouped_cv_audit_v2/ML_SIGNAL_QUALITY_AUDIT.md", "ml_results/grouped_cv_audit_v2/PRODUCTION_FIVE_OBSERVABLES__logistic_regression__metrics.json"],
+      "evidence": ["v2 manifest records 270 cases, 30 family groups, 5-fold StratifiedGroupKFold and source fingerprints.", "Saved OOF predictions, fold assignments, schema comparisons, metrics and signal audit."],
+      "status": {"implemented": true, "tested": "Saved evaluation artifacts exist; no model training or evaluation was run in this audit.", "independent_generalization": "UNVERIFIED"},
+      "limitations": ["Five-observable logistic regression saved macro-F1 is 0.540 on generated grouped CV; hardware and program recall are 0.344 and 0.422 in the saved metrics.", "Generated scenarios and intervention labels share one deterministic simulator/generator; family grouping does not prove new-mechanism or hardware generalization.", "Expanded schemas can encode direct program mismatch/calibration scenario shortcuts.", "Probabilities are not evidenced as calibrated deployment probabilities."]
+    },
+    {
+      "id": "ml_runtime_integration",
+      "responsibility": "Injectable classifier contract, observable feature extraction and evidence pipeline handoff.",
+      "paths": ["src/quantum_simulator/ml_diagnosis.py", "src/quantum_simulator/observable_model_adapter.py", "src/quantum_simulator/models/observable_logistic_regression.json", "tests/test_ml_diagnosis_integration.py", "tests/test_observable_model_adapter.py", "reports/ml_diagnosis_integration_report.md", "reports/experiments/independent_generalization_phase5_8_decision_memo/REPORT.md"],
+      "evidence": ["Integration report states real trained backend/artifact was not available/integrated and mock classifiers test architecture only.", "Phase 5.8 memo says proposed new Phase 5 learner artifact requires training/export; execution not authorized by that memo."],
+      "status": {"implemented": "Adapter/integration contract implemented.", "tested": "Mock adapter contract test sources and historical test claims exist.", "production_model": "KNOWN DEFECT/LIMITATION"},
+      "limitations": ["No genuine trained production inference artifact evidenced as connected.", "0.60 confidence threshold is operationally configured, not established as calibrated on an untouched real-world set."]
+    },
+    {
+      "id": "dataset_adapters_and_benchmarks",
+      "responsibility": "Bugs4Q/QMutBench parsing, normalization, evaluation, checkpointing and reporting.",
+      "paths": ["bugs4q_validation.py", "bugs4q_integration.py", "qmutbench_validation.py", "qmutbench_ml_extract.py", "qmutbench_ml_pipeline.py", "benchmark_validation.py", "full_benchmark_runner.py", "data/qmutbench_ml/", "reports/benchmarks/", "tests/test_bugs4q_validation.py", "tests/test_qmutbench_validation.py", "tests/test_full_benchmark_runner_checkpoint.py"],
+      "evidence": ["Saved benchmark JSON/CSV, smoke manifest and dataset inspection reports.", "README.md documents incompatible/unsupported cases and missing reliable benchmark truth."],
+      "status": {"implemented": true, "tested": "Adapter tests and historical integration outputs exist.", "accuracy_validity": "UNVERIFIED"},
+      "limitations": ["Integration/diagnosis rows are not accuracy without reliable independent labels.", "README records conflicting historical QMutBench support snapshots and unresolved checkpoint compatibility for an older artifact.", "Bugs4Q data/reference availability differs by checkout and earlier status reports it incomplete.", "No benchmark or full-scale processing was performed for this audit."]
+    },
+    {
+      "id": "ibm_hardware_integration",
+      "responsibility": "Optional backend discovery, calibration capture/conversion, live execution and result analysis.",
+      "paths": ["ibm_validation.py", "check_ibm.py", "tests/test_ibm_validation.py", "reports/ibm_validation_report.json", "reports/experiments/hardware_validation_phase3_5_live_preflight/"],
+      "evidence": ["README distinguishes offline fixture from live run.", "reports/project_status.json says IBM phase partial, no live execution; offline adapter tested.", "Live preflight artifacts exist."],
+      "status": {"implemented": true, "offline_tested": "Reported", "live_hardware": "UNVERIFIED"},
+      "limitations": ["No live backend/calibration/job evidence reviewed.", "Requires external runtime, credentials, connectivity, explicit backend and authorization.", "No physical-hardware claims supported."]
+    },
+    {
+      "id": "reproducibility_dependencies_and_platform",
+      "responsibility": "Runtime constraints, package metadata, seeds, temp paths, artifacts and source provenance.",
+      "paths": ["pyproject.toml", "README.md", ".gitignore", "reports/reproducibility_report.json", "reports/project_status.json", "project_finalization_audit.md", "ml_results/grouped_cv_audit_v2/evaluation_manifest.json"],
+      "evidence": ["Python >=3.10; NumPy, pandas, scikit-learn required; pytest optional.", "Prior reports document Windows pytest temp permission issues and scikit-learn predictor DLL blocked by Windows Application Control.", "Grouped ML manifest includes source/dataset fingerprints."],
+      "status": {"implemented": "Dependencies and seed/artifact processes exist.", "reproducibility": "UNVERIFIED for current dirty workspace and all result families."},
+      "limitations": ["No exact clean commit/run provenance across all historical reports.", "OneDrive/Windows temp and DLL policy issues are environment-specific risks.", "Large saved artifacts may increase synchronization/storage cost; no checked resource envelope was found."]
+    }
+  ],
+  "known_source_defects": [
+    {"id": "readout_flip_changes_collapse", "path": "src/quantum_simulator/quantum_simulator.py", "symbol": "QuantumSimulator.measure", "evidence": "Readout error flips selected_bits and the mutated bits are used for the state projection. A readout error should affect the classical result, not change the underlying projective outcome used for collapse.", "status": "KNOWN DEFECT/LIMITATION", "next_check": "Analytical |+> measurement with forced readout flip, then apply H or measure again; assert the quantum state follows the sampled pre-flip result."},
+    {"id": "reset_projection_not_channel", "path": "src/quantum_simulator/quantum_simulator.py", "symbol": "QuantumSimulator.reset_qubit", "evidence": "Implementation removes amplitudes where target bit is 1 then normalizes surviving amplitudes. This is projection/postselection for superposition; exact entangled-subsystem reset requires mixed-state output or explicit stochastic trajectory semantics.", "status": "KNOWN DEFECT/LIMITATION", "next_check": "Analytical reset for |1>, |+>, Bell state under declared trajectory/density matrix semantics."}
+  ],
+  "top_risks": [
+    "Simulator measurement/reset semantics may produce mathematically invalid downstream distributions.",
+    "Finite-shot guard, diagnosis attribution and ML features are not validated sufficiently to separate sampling effects from causes.",
+    "Saved synthetic evaluations and stale/conflicting historical artifacts can be mistaken for independent or current validation."
+  ],
+  "inspection_limitations": ["Representative rather than exhaustive file-by-file reading.", "No code execution or test rerun.", "No programmatic artifact integrity/schema validation.", "No web, hardware, or external dataset access."]
+}

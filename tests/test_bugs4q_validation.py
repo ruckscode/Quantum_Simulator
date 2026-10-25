@@ -207,3 +207,27 @@ def test_repository_source_files_are_not_reported_as_dataset_files():
 
     assert all(path.suffix.lower() != ".py" for path in supported + unsupported)
 
+
+def test_discovery_scans_conventional_bugs4q_roots_without_traversing_other_trees(tmp_path, monkeypatch):
+    dataset_root = tmp_path / "data" / "Bugs4Q"
+    dataset_root.mkdir(parents=True)
+    dataset_file = dataset_root / "cases.json"
+    dataset_file.write_text("[]", encoding="utf-8")
+    unrelated = tmp_path / "unrelated" / "Bugs4Q"
+    unrelated.mkdir(parents=True)
+    (unrelated / "must_not_be_scanned.json").write_text("[]", encoding="utf-8")
+
+    original_rglob = Path.rglob
+    scanned_roots = []
+
+    def track_rglob(path, pattern):
+        scanned_roots.append(path)
+        return original_rglob(path, pattern)
+
+    monkeypatch.setattr(Path, "rglob", track_rglob)
+    supported, unsupported = discover_bugs4q_files(tmp_path)
+
+    assert supported == [dataset_file]
+    assert unsupported == []
+    assert scanned_roots == [dataset_root]
+

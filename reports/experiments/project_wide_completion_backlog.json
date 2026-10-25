@@ -1,0 +1,2029 @@
+{
+  "updated_at": "2026-10-15",
+  "schema_version": 1,
+  "scope": "Entire current workspace; historical reports are evidence only when their source/data compatibility is established.",
+  "tasks": [
+    {
+      "id": "P2-8-model-artifact-temporary-file-recovery",
+      "description": "P2 8 model artifact temporary file recovery",
+      "component": "core simulator / stabilization",
+      "files": [],
+      "classification": "validation gap",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "Phase 5 exporter now uses a unique sibling temp, flush/fsync, and existing atomic no-overwrite hard-link publication.",
+        "Synthetic stale-temp recovery regression confirms successful artifact roundtrip and preservation of pre-existing fixed-name temp.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_phase5_model.py tests/test_ml_training_artifacts.py tests/test_observable_model_adapter.py -q --basetemp .pytest-tmp-autostab-ml-atomic-temp",
+        "Outcome: 32 passed in 6.42s."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "Phase 5 exporter now uses a unique sibling temp, flush/fsync, and existing atomic no-overwrite hard-link publication.",
+        "Synthetic stale-temp recovery regression confirms successful artifact roundtrip and preservation of pre-existing fixed-name temp.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_phase5_model.py tests/test_ml_training_artifacts.py tests/test_observable_model_adapter.py -q --basetemp .pytest-tmp-autostab-ml-atomic-temp",
+        "Outcome: 32 passed in 6.42s."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": []
+    },
+    {
+      "id": "P2-7-unsupported-operation-disposition",
+      "description": "P2 7 unsupported operation disposition",
+      "component": "core simulator / stabilization",
+      "files": [],
+      "classification": "validation gap",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "QMutBench unsupported/malformed fixture is not forced into diagnosis: 1 passed in 0.21s.",
+        "Experiment runner unsupported/malformed structured result and QMutBench execution-failure tests: 3 passed in 0.31s."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "QMutBench unsupported/malformed fixture is not forced into diagnosis: 1 passed in 0.21s.",
+        "Experiment runner unsupported/malformed structured result and QMutBench execution-failure tests: 3 passed in 0.31s."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": []
+    },
+    {
+      "id": "P2-6-benchmark-report-write-safety",
+      "description": "P2 6 benchmark report write safety",
+      "component": "core simulator / stabilization",
+      "files": [],
+      "classification": "validation gap",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "Per-benchmark JSON/CSV and combined JSON use flushed/fsynced sibling temporary files and atomic replacement.",
+        "Fixture-only report/checkpoint writer suite: 7 passed in 0.38s.",
+        "Integrated simulator, experiment writer, and benchmark writer/checkpoint tests: 159 passed in 10.85s."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "Per-benchmark JSON/CSV and combined JSON use flushed/fsynced sibling temporary files and atomic replacement.",
+        "Fixture-only report/checkpoint writer suite: 7 passed in 0.38s.",
+        "Integrated simulator, experiment writer, and benchmark writer/checkpoint tests: 159 passed in 10.85s."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": []
+    },
+    {
+      "id": "P2-5-benchmark-checkpoint-interruption-safety",
+      "description": "P2 5 benchmark checkpoint interruption safety",
+      "component": "core simulator / stabilization",
+      "files": [],
+      "classification": "validation gap",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "QMutBench checkpoint writer now flushes/fsyncs a temporary sibling before atomic replacement.",
+        "Fixture-only tests verify complete checkpoint persistence and preserve-old-file behavior under simulated Windows PermissionError.",
+        "Checkpoint suite: 6 passed in 0.44s; integrated core/writer/checkpoint suite: 158 passed in 15.00s."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "QMutBench checkpoint writer now flushes/fsyncs a temporary sibling before atomic replacement.",
+        "Fixture-only tests verify complete checkpoint persistence and preserve-old-file behavior under simulated Windows PermissionError.",
+        "Checkpoint suite: 6 passed in 0.44s; integrated core/writer/checkpoint suite: 158 passed in 15.00s."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": []
+    },
+    {
+      "id": "P2-4-source-fingerprinted-reproducibility-reports",
+      "description": "P2 4 source fingerprinted reproducibility reports",
+      "component": "core simulator / stabilization",
+      "files": [],
+      "classification": "validation gap",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "Batch reproducibility reports now include SHA-256 of pyproject.toml, experiment runner, simulator, gates, diagnosis engine and hardware model.",
+        "Test independently recomputes simulator file hash and verifies persisted manifest and repeated-run match.",
+        "Experiment runner focused: 12 passed in 2.68s; integrated core + experiment runner: 152 passed in 14.49s."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "Batch reproducibility reports now include SHA-256 of pyproject.toml, experiment runner, simulator, gates, diagnosis engine and hardware model.",
+        "Test independently recomputes simulator file hash and verifies persisted manifest and repeated-run match.",
+        "Experiment runner focused: 12 passed in 2.68s; integrated core + experiment runner: 152 passed in 14.49s."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": []
+    },
+    {
+      "id": "P2-3-atomic-experiment-artifact-writes",
+      "description": "P2 3 atomic experiment artifact writes",
+      "component": "core simulator / stabilization",
+      "files": [],
+      "classification": "validation gap",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "Both result and batch reproducibility JSON paths use a flushed/fsynced temporary sibling and atomic replace.",
+        "Tests verify successful complete replacement and preservation/cleanup on simulated PermissionError.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_experiment_runner.py -q --basetemp .pytest-tmp-autostab-atomic-writes",
+        "Outcome: 11 passed in 2.12s.",
+        "Integrated regression after the atomic writer change: 151 passed in 14.15s, including 140 core tests and 11 experiment-runner tests."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "Both result and batch reproducibility JSON paths use a flushed/fsynced temporary sibling and atomic replace.",
+        "Tests verify successful complete replacement and preservation/cleanup on simulated PermissionError.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_experiment_runner.py -q --basetemp .pytest-tmp-autostab-atomic-writes",
+        "Outcome: 11 passed in 2.12s.",
+        "Integrated regression after the atomic writer change: 151 passed in 14.15s, including 140 core tests and 11 experiment-runner tests."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": []
+    },
+    {
+      "id": "P0-7-shot-replay-and-count-validation",
+      "description": "P0 7 shot replay and count validation",
+      "component": "core simulator / stabilization",
+      "files": [],
+      "classification": "defect",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "tests/test_simulator.py: 53 passed in 2.71s, including invalid shot count and list/generator replay equivalence.",
+        "Cohesive core regression: 140 passed in 11.07s."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "tests/test_simulator.py: 53 passed in 2.71s, including invalid shot count and list/generator replay equivalence.",
+        "Cohesive core regression: 140 passed in 11.07s."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": []
+    },
+    {
+      "id": "P0-6-unitarity-and-finite-parameter-guards",
+      "description": "P0 6 unitarity and finite parameter guards",
+      "component": "core simulator / stabilization",
+      "files": [],
+      "classification": "defect",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "tests/test_simulator.py verifies NaN and infinite rotation parameters, non-unitary/non-finite/incorrect-rank custom matrices, and unchanged state after rejection.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_gate_reference_qiskit.py tests/test_gate_correctness.py tests/test_gates.py tests/test_simulator.py tests/test_measurement_reset_semantics.py tests/test_noise_model_validation.py tests/test_noise_channel_reference.py tests/test_local_package_import.py -q --basetemp .pytest-tmp-autostab-final-core-2",
+        "Outcome: 135 passed in 11.25s."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "tests/test_simulator.py verifies NaN and infinite rotation parameters, non-unitary/non-finite/incorrect-rank custom matrices, and unchanged state after rejection.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_gate_reference_qiskit.py tests/test_gate_correctness.py tests/test_gates.py tests/test_simulator.py tests/test_measurement_reset_semantics.py tests/test_noise_model_validation.py tests/test_noise_channel_reference.py tests/test_local_package_import.py -q --basetemp .pytest-tmp-autostab-final-core-2",
+        "Outcome: 135 passed in 11.25s."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": []
+    },
+    {
+      "id": "P0-1-measurement-reset-semantics",
+      "description": "P0 1 measurement reset semantics",
+      "component": "core simulator / stabilization",
+      "files": [],
+      "classification": "defect",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "tests/test_measurement_reset_semantics.py",
+        "tests/test_simulator.py: 34 tests passed in the focused run",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_measurement_reset_semantics.py tests/test_simulator.py -q --basetemp .pytest-tmp-autostab-p0-1-rerun",
+        "Outcome: 37 passed in 1.54s",
+        "Analytical oracle: forced readout error leaves collapse on the sampled physical outcome; reset of Bell state compared with |0><0| tensor I/2 over 1,024 seeded trajectories, absolute tolerance 0.06."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "tests/test_measurement_reset_semantics.py",
+        "tests/test_simulator.py: 34 tests passed in the focused run",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_measurement_reset_semantics.py tests/test_simulator.py -q --basetemp .pytest-tmp-autostab-p0-1-rerun",
+        "Outcome: 37 passed in 1.54s",
+        "Analytical oracle: forced readout error leaves collapse on the sampled physical outcome; reset of Bell state compared with |0><0| tensor I/2 over 1,024 seeded trajectories, absolute tolerance 0.06."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": []
+    },
+    {
+      "id": "P0-2-gate-oracle-and-invariants",
+      "description": "P0 2 gate oracle and invariants",
+      "component": "core simulator / stabilization",
+      "files": [],
+      "classification": "defect",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "tests/test_gate_reference_qiskit.py compares every registered supported gate family over all computational basis states; two operand orders for every 2-qubit gate.",
+        "Reference implementation: Qiskit 2.5.2 Statevector circuit methods; logical qubit 0 mapped to the most significant basis bit.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_gate_reference_qiskit.py tests/test_gate_correctness.py tests/test_gates.py -q --basetemp .pytest-tmp-autostab-p0-2-final",
+        "Outcome: 72 passed in 7.10s; exact statevector tolerance 1e-12.",
+        "Added a seeded circuit-level differential test: 32 random circuits of depth 24 across 1-4 qubits, including parameterized, asymmetric controlled, and 3-qubit gates; all statevectors match Qiskit within 2e-12.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_gate_reference_qiskit.py -q --basetemp .pytest-tmp-autostab-random-circuits",
+        "Outcome: 33 passed in 3.22s.",
+        "Re-ran P0-1 regression after the reset branch optimization: 37 passed in 1.54s."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "tests/test_gate_reference_qiskit.py compares every registered supported gate family over all computational basis states; two operand orders for every 2-qubit gate.",
+        "Reference implementation: Qiskit 2.5.2 Statevector circuit methods; logical qubit 0 mapped to the most significant basis bit.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_gate_reference_qiskit.py tests/test_gate_correctness.py tests/test_gates.py -q --basetemp .pytest-tmp-autostab-p0-2-final",
+        "Outcome: 72 passed in 7.10s; exact statevector tolerance 1e-12.",
+        "Added a seeded circuit-level differential test: 32 random circuits of depth 24 across 1-4 qubits, including parameterized, asymmetric controlled, and 3-qubit gates; all statevectors match Qiskit within 2e-12.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_gate_reference_qiskit.py -q --basetemp .pytest-tmp-autostab-random-circuits",
+        "Outcome: 33 passed in 3.22s.",
+        "Re-ran P0-1 regression after the reset branch optimization: 37 passed in 1.54s."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": []
+    },
+    {
+      "id": "P0-5-input-validation-and-randomized-reference",
+      "description": "P0 5 input validation and randomized reference",
+      "component": "core simulator / stabilization",
+      "files": [],
+      "classification": "defect",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "tests/test_gate_reference_qiskit.py: 32 seeded composed circuits (8 per width, 1-4 qubits, depth 24) compared against Qiskit Statevector within 2e-12.",
+        "Malformed float/string/bool indices and duplicate gate operands are rejected without mutating the state; NumPy integer indices remain accepted.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_gate_reference_qiskit.py tests/test_gate_correctness.py tests/test_gates.py tests/test_simulator.py tests/test_measurement_reset_semantics.py tests/test_noise_model_validation.py tests/test_noise_channel_reference.py tests/test_local_package_import.py -q --basetemp .pytest-tmp-autostab-latest-core",
+        "Outcome: 129 passed in 19.72s."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "tests/test_gate_reference_qiskit.py: 32 seeded composed circuits (8 per width, 1-4 qubits, depth 24) compared against Qiskit Statevector within 2e-12.",
+        "Malformed float/string/bool indices and duplicate gate operands are rejected without mutating the state; NumPy integer indices remain accepted.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_gate_reference_qiskit.py tests/test_gate_correctness.py tests/test_gates.py tests/test_simulator.py tests/test_measurement_reset_semantics.py tests/test_noise_model_validation.py tests/test_noise_channel_reference.py tests/test_local_package_import.py -q --basetemp .pytest-tmp-autostab-latest-core",
+        "Outcome: 129 passed in 19.72s."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": []
+    },
+    {
+      "id": "P0-3-noise-channel-contract",
+      "description": "P0 3 noise channel contract",
+      "component": "core simulator / stabilization",
+      "files": [
+        "src/quantum_simulator/hardware_model.py",
+        "tests/test_hardware.py",
+        "tests/test_noise_model_validation.py",
+        "tests/test_traced_hardware_metadata.py"
+      ],
+      "classification": "validation gap",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Existing channel checks covered Kraus-equivalent behavior, but constructor gate defaults were ignored and non-finite time constants/durations passed validation.",
+      "evidence_and_reproduction": [
+        "tests/test_noise_channel_reference.py checks symmetric readout confusion and T1 amplitude damping against explicitly constructed Kraus operators.",
+        "tests/test_noise_model_validation.py checks T1 endpoints, T2 coherence factor, and gate-skip model behavior.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_noise_channel_reference.py tests/test_noise_model_validation.py -q --basetemp .pytest-tmp-autostab-p0-3",
+        "Outcome: 7 passed in 1.70s; T1 ensemble has 4,096 seeded trajectories; readout finite-shot interval uses a 4-standard-error bound.",
+        "README now names gate error as skip probability, readout as a symmetric reported-bit flip, T1/T2 trajectory semantics, and the absence of depolarizing/arbitrary Kraus channels.",
+        "HardwareModel now rejects NaN/infinite relaxation times and durations; default gate error/duration are validated, applied when no gate-specific calibration exists, and preserved in calibration snapshots.",
+        "Regression coverage verifies default gate skipping, duration-driven relaxation, snapshot roundtrip, and rejection of non-finite T1/T2/duration inputs.",
+        "Focused command: .venv/Scripts/python.exe -m pytest tests/test_noise_model_validation.py tests/test_hardware.py tests/test_simulator.py -q --tb=short --basetemp .t-noise-final; 78 passed in 3.47s."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "tests/test_noise_channel_reference.py checks symmetric readout confusion and T1 amplitude damping against explicitly constructed Kraus operators.",
+        "tests/test_noise_model_validation.py checks T1 endpoints, T2 coherence factor, and gate-skip model behavior.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_noise_channel_reference.py tests/test_noise_model_validation.py -q --basetemp .pytest-tmp-autostab-p0-3",
+        "Outcome: 7 passed in 1.70s; T1 ensemble has 4,096 seeded trajectories; readout finite-shot interval uses a 4-standard-error bound.",
+        "README now names gate error as skip probability, readout as a symmetric reported-bit flip, T1/T2 trajectory semantics, and the absence of depolarizing/arbitrary Kraus channels.",
+        "HardwareModel now rejects NaN/infinite relaxation times and durations; default gate error/duration are validated, applied when no gate-specific calibration exists, and preserved in calibration snapshots.",
+        "Regression coverage verifies default gate skipping, duration-driven relaxation, snapshot roundtrip, and rejection of non-finite T1/T2/duration inputs.",
+        "Focused command: .venv/Scripts/python.exe -m pytest tests/test_noise_model_validation.py tests/test_hardware.py tests/test_simulator.py -q --tb=short --basetemp .t-noise-final; 78 passed in 3.47s.",
+        "Seeded traced-versus-untraced hardware execution parity (including default gate error/duration, T1/T2 and readout noise): tests/test_traced_hardware_metadata.py, 6 passed in 0.82s."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": []
+    },
+    {
+      "id": "P1-3-benchmark-truth-provenance",
+      "description": "P1 3 benchmark truth provenance",
+      "component": "core simulator / stabilization",
+      "files": [
+        "full_benchmark_runner.py",
+        "qmutbench_validation.py",
+        "bugs4q_validation.py",
+        "reports/experiments/benchmark_provenance_static_audit_20261014.json"
+      ],
+      "classification": "validation gap",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "reports/experiments/benchmark_provenance_static_audit_20261014.json maps 54 cases to 150 source-file SHA-256 entries; no source file is missing.",
+        "QMutBench snapshots disagree on one RXX case (11 versus 12 executable); both report 0 metric-eligible cases.",
+        "Bugs4Q snapshots cover different scopes (0 discovered versus 42 official-source cases); the 42-case result has 19 translated/executed and 0 metric-eligible cases.",
+        "Saved full-results checkpoint is a bare array with no schema, runner, source, or runtime fingerprint; compatibility cannot be verified.",
+        "Static provenance audit finds snapshot disagreement and no independent diagnosis-compatible benchmark truth; no accuracy claim is supported.",
+        "reports/experiments/benchmark_provenance_static_audit_20261014.json",
+        "Fresh reconciliation retains the static case/source hash audit; the 12 QMutBench cases remain integration-only, and Bugs4Q bug-type/source metadata does not supply diagnosis-category or independent localization labels."
+      ],
+      "dependencies": [
+        "P1-1 diagnosis review for full closure",
+        "independent diagnosis validity"
+      ],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "blocked",
+      "validation_evidence": [
+        "reports/experiments/benchmark_provenance_static_audit_20261014.json maps 54 cases to 150 source-file SHA-256 entries; no source file is missing.",
+        "QMutBench snapshots disagree on one RXX case (11 versus 12 executable); both report 0 metric-eligible cases.",
+        "Bugs4Q snapshots cover different scopes (0 discovered versus 42 official-source cases); the 42-case result has 19 translated/executed and 0 metric-eligible cases.",
+        "Saved full-results checkpoint is a bare array with no schema, runner, source, or runtime fingerprint; compatibility cannot be verified.",
+        "Static provenance audit finds snapshot disagreement and no independent diagnosis-compatible benchmark truth; no accuracy claim is supported.",
+        "reports/experiments/benchmark_provenance_static_audit_20261014.json"
+      ],
+      "resource_requirements": [
+        "l",
+        "o",
+        "c",
+        "a",
+        " ",
+        "r",
+        "e",
+        "d",
+        "-",
+        "n",
+        "y",
+        "b",
+        "u",
+        "v",
+        "i",
+        "t"
+      ],
+      "approval_dependency": null,
+      "related_tests_and_reports": [],
+      "unresolved": "Need a version-linked authoritative benchmark snapshot and independently adjudicated per-case diagnosis category/localization truth, with lineage/family IDs and annotation protocol. Current QMutBench/Bugs4Q local material supports ingestion/execution only.",
+      "current_blocker_class": "external_versioned_data_and_independent_labels"
+    },
+    {
+      "id": "P2-1-resource-envelope",
+      "description": "P2 1 resource envelope",
+      "component": "core simulator / stabilization",
+      "files": [
+        "src/quantum_simulator/quantum_simulator.py",
+        "reports/experiments/resource_envelope_profile_20261014_rerun.json"
+      ],
+      "classification": "validation gap",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "reports/experiments/resource_envelope_smoke_20261014.json records bounded H/CX profiles at 1, 4, 8, 12, and 14 qubits.",
+        "Python 3.12.10 on Windows; sampled RSS ranged from about 33.0 MiB baseline to 35.9 MiB peak; 14-qubit local gate smoke took 0.189s and state norm error was 2.22e-16.",
+        "psutil reported about 793 MB available memory at the start; WMI memory query was denied, but psutil measurement succeeded.",
+        "README documents 16*2^n bytes per complex128 statevector and the temporary second statevector.",
+        "Added QuantumSimulator.estimate_working_array_bytes: 3 complex128-vector blocks (48 bytes/amplitude) to model state/output/probability arrays, explicitly excluding runtime overhead.",
+        "Optional memory_budget_bytes is checked before state allocation; run_shots propagates it and QuantumCircuit.run exposes it. No default ceiling was introduced.",
+        "Simulator/circuit tests: 106 passed in 4.05s; integrated core + circuit + artifact suite: 213 passed in 16.13s.",
+        "Adaptive 15–18-qubit RSS profile stopped before allocation because available memory was 532,836,352 bytes, below the predeclared 512 MiB floor; stop recorded in reports/experiments/resource_envelope_profile_20261014.json.",
+        "Estimator now checks platform-addressable width before computing an exponential integer; width 59 and 10**12 reject immediately.",
+        "Estimator focused tests: 6 passed in 0.69s; simulator + circuit API suites: 107 passed in 2.92s.",
+        "After memory recovered above the stop floor, adaptive n=15–18 H/CX profile completed; 0.571/0.846/1.463/2.838s, sampled RSS peak 43,757,568 bytes, norm error 2.22e-16; reports/experiments/resource_envelope_profile_20261014_rerun.json.",
+        "15-18q single H/CX smoke completed in 0.571/0.846/1.463/2.838 s; sampled process RSS peak 43,757,568 B; shared host availability fluctuated.",
+        "Bounded follow-up profile at widths 19 and 20 recorded in reports/experiments/resource_envelope_profile_20261014_checkpoint2.json. H(0)+nonadjacent CX, seed 1729, no shots/dataset: elapsed 6.205s and 11.669s; sampled RSS peak 52,260,864 B and 69,079,040 B; norm error 1.11e-16 at both widths.",
+        "Available host memory after width 20 fell to 419,151,872 B, below the 512 MiB predeclared stop floor. No larger profile was attempted.",
+        "Profile remains machine/session-specific and sampled RSS can miss transients; no safe maximum width or portable capacity claim is made."
+      ],
+      "dependencies": [
+        "P0-1",
+        "P0-2",
+        "P0-3"
+      ],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "partial",
+      "validation_evidence": [
+        "reports/experiments/resource_envelope_smoke_20261014.json records bounded H/CX profiles at 1, 4, 8, 12, and 14 qubits.",
+        "Python 3.12.10 on Windows; sampled RSS ranged from about 33.0 MiB baseline to 35.9 MiB peak; 14-qubit local gate smoke took 0.189s and state norm error was 2.22e-16.",
+        "psutil reported about 793 MB available memory at the start; WMI memory query was denied, but psutil measurement succeeded.",
+        "README documents 16*2^n bytes per complex128 statevector and the temporary second statevector.",
+        "Added QuantumSimulator.estimate_working_array_bytes: 3 complex128-vector blocks (48 bytes/amplitude) to model state/output/probability arrays, explicitly excluding runtime overhead.",
+        "Optional memory_budget_bytes is checked before state allocation; run_shots propagates it and QuantumCircuit.run exposes it. No default ceiling was introduced.",
+        "Simulator/circuit tests: 106 passed in 4.05s; integrated core + circuit + artifact suite: 213 passed in 16.13s.",
+        "Adaptive 15–18-qubit RSS profile stopped before allocation because available memory was 532,836,352 bytes, below the predeclared 512 MiB floor; stop recorded in reports/experiments/resource_envelope_profile_20261014.json.",
+        "Estimator now checks platform-addressable width before computing an exponential integer; width 59 and 10**12 reject immediately.",
+        "Estimator focused tests: 6 passed in 0.69s; simulator + circuit API suites: 107 passed in 2.92s.",
+        "After memory recovered above the stop floor, adaptive n=15–18 H/CX profile completed; 0.571/0.846/1.463/2.838s, sampled RSS peak 43,757,568 bytes, norm error 2.22e-16; reports/experiments/resource_envelope_profile_20261014_rerun.json.",
+        "15-18q single H/CX smoke completed in 0.571/0.846/1.463/2.838 s; sampled process RSS peak 43,757,568 B; shared host availability fluctuated.",
+        "Bounded follow-up profile at widths 19 and 20 recorded in reports/experiments/resource_envelope_profile_20261014_checkpoint2.json. H(0)+nonadjacent CX, seed 1729, no shots/dataset: elapsed 6.205s and 11.669s; sampled RSS peak 52,260,864 B and 69,079,040 B; norm error 1.11e-16 at both widths.",
+        "Available host memory after width 20 fell to 419,151,872 B, below the 512 MiB predeclared stop floor. No larger profile was attempted.",
+        "Profile remains machine/session-specific and sampled RSS can miss transients; no safe maximum width or portable capacity claim is made."
+      ],
+      "resource_requirements": [
+        "l",
+        "o",
+        "c",
+        "a",
+        " ",
+        "r",
+        "e",
+        "d",
+        "-",
+        "n",
+        "y",
+        "b",
+        "u",
+        "v",
+        "i",
+        "t"
+      ],
+      "approval_dependency": null,
+      "related_tests_and_reports": [],
+      "unresolved": "A bounded 20-qubit profile is a machine/session observation only; sampled RSS and host memory fluctuate and runtime overhead is excluded from the array estimate. A portable safe maximum and total-process resource cap require a specified target resource envelope.",
+      "current_blocker_class": "waiting_for_target_resource_envelope"
+    },
+    {
+      "id": "P1-2-ml-independent-generalization",
+      "description": "P1 2 ml independent generalization",
+      "component": "core simulator / stabilization",
+      "files": [],
+      "classification": "defect",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "tests/test_ml_evaluation_audit.py tests family balance and grouped feasibility; tests/test_ml_training_artifacts.py checks schema exclusion, family-fold isolation, OOF membership, and report provenance; tests/test_observable_model_adapter.py and test_phase5_model.py passed in the current-tree run (35 total tests passed in 7.52s).",
+        "Current grouped-CV artifacts contain 270 balanced cases across 30 families; 5 outer folds have no family overlap, 270 unique fold assignments, and 4,050 unique case/configuration OOF rows.",
+        "The current dataset fingerprint matches the saved evaluation manifest, but two saved source hashes no longer match current `diagnosis_engine.py` and `quantum_simulator.py` after the core repairs.",
+        "A Phase 5 five-feature JSON artifact exists, created 2026-10-13; it records 330 rows from F1/F2 only and explicitly says probabilities are uncalibrated. `diagnose_with_ml` still defaults to the unavailable backend, and the artifact has no independent holdout/calibration evidence.",
+        "The older integration report predates this artifact and says none exists; the artifact itself is preserved.",
+        "Current-tree family-held-out test completed in 48.10s and failed 7 of 45 frozen detection/classification/abstention expectations; all requested source/hardware localization targets were found.",
+        "Saved grouped-CV metrics are not source-compatible (3/9 source hashes differ), and no current probabilities are calibrated.",
+        "Refreshed source-hash comparison: reports/experiments/ml_source_compatibility_audit_20261014_rerun.json. All three current hashes now verified against live files; no training or grouped-CV rerun. Historical metrics remain source-incompatible.",
+        "Current pipeline audit: 270 historical rows/30 families; 5 group folds with zero family overlap; two identical fixed-pipeline evaluations exactly match saved OOF outputs. Because source hashes are absent from individual rows and labels are synthetic, the results are descriptive only. See ml_current_pipeline_audit_20261014.md."
+      ],
+      "dependencies": [
+        "new independently justified preregistration",
+        "current-source frozen acceptance protocol",
+        "independent labels/holdout"
+      ],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "blocked",
+      "validation_evidence": [
+        "tests/test_ml_evaluation_audit.py tests family balance and grouped feasibility; tests/test_ml_training_artifacts.py checks schema exclusion, family-fold isolation, OOF membership, and report provenance; tests/test_observable_model_adapter.py and test_phase5_model.py passed in the current-tree run (35 total tests passed in 7.52s).",
+        "Current grouped-CV artifacts contain 270 balanced cases across 30 families; 5 outer folds have no family overlap, 270 unique fold assignments, and 4,050 unique case/configuration OOF rows.",
+        "The current dataset fingerprint matches the saved evaluation manifest, but two saved source hashes no longer match current `diagnosis_engine.py` and `quantum_simulator.py` after the core repairs.",
+        "A Phase 5 five-feature JSON artifact exists, created 2026-10-13; it records 330 rows from F1/F2 only and explicitly says probabilities are uncalibrated. `diagnose_with_ml` still defaults to the unavailable backend, and the artifact has no independent holdout/calibration evidence.",
+        "The older integration report predates this artifact and says none exists; the artifact itself is preserved.",
+        "Current-tree family-held-out test completed in 48.10s and failed 7 of 45 frozen detection/classification/abstention expectations; all requested source/hardware localization targets were found.",
+        "Saved grouped-CV metrics are not source-compatible (3/9 source hashes differ), and no current probabilities are calibrated.",
+        "Refreshed source-hash comparison: reports/experiments/ml_source_compatibility_audit_20261014_rerun.json. All three current hashes now verified against live files; no training or grouped-CV rerun. Historical metrics remain source-incompatible.",
+        "2026-10-15 no-fit current-tree validation: strict historical preflight reports zero eligible rows; fallback trainer and observable model exporter both refuse before fit/output. Leakage eligibility and remaining feature roles are documented in reports/experiments/ml_feature_eligibility_20261015.md. This does not rehabilitate historical scores or establish generalization.",
+        "2026-10-15 latest current source fingerprint comparison: seven of nine saved evaluator paths differ from current source; historical reports still lack generator source identity, so score reproducibility is unresolved. No model fit was run; strict preflight remains ready=false with 0 eligible rows. See ml_generalization_recovery_checkpoint_20261015.md."
+      ],
+      "resource_requirements": [
+        "D",
+        "o",
+        " ",
+        "n",
+        "t",
+        "u",
+        "e",
+        "h",
+        "l",
+        "d",
+        "-",
+        "f",
+        "i",
+        "x",
+        "r",
+        "s",
+        ";",
+        "w",
+        "c",
+        "a",
+        "b",
+        "/",
+        "m",
+        "y",
+        "q",
+        "g",
+        "p",
+        "z",
+        "v",
+        "."
+      ],
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "reports/experiments/ml_generalization_recovery_checkpoint_20261015.md",
+        "reports/experiments/ml_historical_record_recovery_20261015.json"
+      ],
+      "unresolved": "Need source-compatible newly generated reports and a blinded independently adjudicated external family holdout, plus predeclared calibration/coverage acceptance; current labels are synthetic construction truth.",
+      "current_blocker_class": "external_independent_family_truth_and_calibration"
+    },
+    {
+      "id": "P2-2-clean-windows-reproducibility",
+      "description": "P2 2 clean windows reproducibility",
+      "component": "core simulator / stabilization",
+      "files": [],
+      "classification": "validation gap",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "Latest cohesive current-tree core command exited 0: 140 passed in 11.07s across gate/Qiskit, simulator, measurement/reset, noise, and local package-import tests.",
+        "The suite includes same-seed identical shot counts and distinct-seed behavior.",
+        "Runtime: Python 3.12.10, Windows; NumPy 2.5.3, pandas 3.0.6, scikit-learn 1.9.1, pytest 9.1.1, Qiskit 2.5.2, Qiskit Aer 0.17.2, psutil 7.2.2.",
+        "No dependency installation or full-suite run occurred."
+      ],
+      "dependencies": [
+        "P0-1",
+        "P0-2",
+        "P2-1 partial"
+      ],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "Latest cohesive current-tree core command exited 0: 140 passed in 11.07s across gate/Qiskit, simulator, measurement/reset, noise, and local package-import tests.",
+        "The suite includes same-seed identical shot counts and distinct-seed behavior.",
+        "Runtime: Python 3.12.10, Windows; NumPy 2.5.3, pandas 3.0.6, scikit-learn 1.9.1, pytest 9.1.1, Qiskit 2.5.2, Qiskit Aer 0.17.2, psutil 7.2.2.",
+        "No dependency installation or full-suite run occurred."
+      ],
+      "resource_requirements": [
+        "l",
+        "o",
+        "c",
+        "a",
+        " ",
+        "r",
+        "e",
+        "d",
+        "-",
+        "n",
+        "y",
+        "b",
+        "u",
+        "v",
+        "i",
+        "t"
+      ],
+      "approval_dependency": null,
+      "related_tests_and_reports": []
+    },
+    {
+      "id": "P3-2-documentation-claims-freeze",
+      "description": "P3 2 documentation claims freeze",
+      "component": "core simulator / stabilization",
+      "files": [],
+      "classification": "validation gap",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Previously completed work retained from the current stabilization journal.",
+      "evidence_and_reproduction": [
+        "README now documents exact supported noise semantics, unsupported general channels, exponential statevector memory, current focused test count, the uncalibrated development model artifact, finite-shot failure, and unresolved benchmark provenance.",
+        "Historical experiment reports and model/dataset artifacts were preserved; this new status and journal record current findings separately.",
+        "No full public claim freeze is possible while diagnosis, ML, resource, clean-environment, and benchmark gates remain partial or blocked."
+      ],
+      "dependencies": [
+        "diagnosis, ML, benchmark, and reproducibility evidence"
+      ],
+      "acceptance_criteria": "Existing targeted evidence remains attributable to its recorded current-tree source state.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "README now documents exact supported noise semantics, unsupported general channels, exponential statevector memory, current focused test count, the uncalibrated development model artifact, finite-shot failure, and unresolved benchmark provenance.",
+        "Historical experiment reports and model/dataset artifacts were preserved; this new status and journal record current findings separately.",
+        "No full public claim freeze is possible while diagnosis, ML, resource, clean-environment, and benchmark gates remain partial or blocked."
+      ],
+      "resource_requirements": [
+        "l",
+        "o",
+        "c",
+        "a",
+        " ",
+        "r",
+        "e",
+        "d",
+        "-",
+        "n",
+        "y",
+        "b",
+        "u",
+        "v",
+        "i",
+        "t"
+      ],
+      "approval_dependency": null,
+      "related_tests_and_reports": []
+    },
+    {
+      "id": "P0-4-finite-shot-calibration",
+      "description": "P0 4 finite shot calibration",
+      "component": "research validation / integration",
+      "files": [],
+      "classification": "research gap",
+      "severity": "critical",
+      "priority": "blocked",
+      "rationale": "Open gate is explicitly retained in the existing project status.",
+      "evidence_and_reproduction": [
+        "Saved calibration results fail 30 of 60 registered decisions; current TVD has extreme low-shot false positives on controls.",
+        "The proposed 252-family study is explicitly NO-GO and execution_authorized=false in finite_shot_blocker_status.json.",
+        "Threshold tuning is excluded by the user instruction; no change to registered criteria or saved evidence is justified."
+      ],
+      "dependencies": [
+        "P0-1-measurement-reset-semantics",
+        "P0-2-gate-oracle-and-invariants"
+      ],
+      "acceptance_criteria": "Close with preregistered, independent evidence, or preserve as an explicit scope limitation/blocker.",
+      "implementation_status": "blocked",
+      "validation_evidence": [
+        "Saved calibration results fail 30 of 60 registered decisions; current TVD has extreme low-shot false positives on controls.",
+        "The proposed 252-family study is explicitly NO-GO and execution_authorized=false in finite_shot_blocker_status.json.",
+        "Threshold tuning is excluded by the user instruction; no change to registered criteria or saved evidence is justified."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": [],
+      "current_blocker_class": "scientific_no_go_pending_new_method_review_and_independent_frame",
+      "unresolved": "The registered candidate failed 30/60 decisions and the proposed 252-family study is explicitly NO-GO. Reopening requires a method that passes development-only controls, independent family sampling and truth, a reviewed frozen protocol with joint power/resource bounds, and separate authorization; frozen thresholds remain unchanged."
+    },
+    {
+      "id": "P1-1-diagnosis-identifiability",
+      "description": "P1 1 diagnosis identifiability",
+      "component": "research validation / integration",
+      "files": [],
+      "classification": "research gap",
+      "severity": "high",
+      "priority": "blocked",
+      "rationale": "Open gate is explicitly retained in the existing project status.",
+      "evidence_and_reproduction": [
+        "The planned diagnosis evaluation requires finite-shot calibration, which the registered negative controls do not support."
+      ],
+      "dependencies": [
+        "P0-1",
+        "P0-2",
+        "P0-3",
+        "P0-4"
+      ],
+      "acceptance_criteria": "Close with preregistered, independent evidence, or preserve as an explicit scope limitation/blocker.",
+      "implementation_status": "blocked",
+      "validation_evidence": [
+        "The planned diagnosis evaluation requires finite-shot calibration, which the registered negative controls do not support."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": [],
+      "current_blocker_class": "cause_unidentifiable_from_output_only_needs_independent_observables",
+      "unresolved": "Output distributions cannot separate causes that induce the same observable distribution. Cause attribution requires independent source evidence or hardware telemetry and adjudicated truth; the proposed study also needs independent review. No shot increase alone resolves this."
+    },
+    {
+      "id": "P3-1-live-hardware-validation",
+      "description": "P3 1 live hardware validation",
+      "component": "research validation / integration",
+      "files": [],
+      "classification": "missing capability",
+      "severity": "medium",
+      "priority": "deferred",
+      "rationale": "Open gate is explicitly retained in the existing project status.",
+      "evidence_and_reproduction": [],
+      "dependencies": [
+        "hardware protocol and explicit authorization"
+      ],
+      "acceptance_criteria": "Close with preregistered, independent evidence, or preserve as an explicit scope limitation/blocker.",
+      "implementation_status": "deferred_with_reason",
+      "validation_evidence": [],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": "Explicit user authorization required before live hardware or paid cloud execution.",
+      "related_tests_and_reports": [],
+      "unresolved": "No exact intended backend is configured. The user must provide the backend name; a read-only preflight requires explicit authorization to use existing credentials. Any job submission needs separate explicit authorization and may require paid quota. No credentials were inspected, and no service contact/job occurred.",
+      "current_blocker_class": "backend_identity_authorization_credentials_and_possible_paid_quota"
+    },
+    {
+      "id": "P2-9-ml-source-compatibility",
+      "description": "Re-establish ML evaluation validity against current source and frozen data; resolve gate_mismatch_fraction confound and calibration/holdout gaps",
+      "component": "ML and dataset pipeline",
+      "files": [
+        "ml_training.py",
+        "ml_evaluation.py",
+        "src/quantum_simulator/ml_diagnosis.py",
+        "ml_results/grouped_cv_audit_v2/evaluation_manifest.json"
+      ],
+      "classification": "research gap",
+      "severity": "high",
+      "priority": "high",
+      "rationale": "The historical 270-row fingerprint matches, but the data manifest has no generation source/runtime map, reports have no per-run source maps or recipe lineage, and the saved evaluation used family-only splits. Production excludes known synthetic shortcuts, but no source-compatible independently adjudicated test set or calibration split exists.",
+      "evidence_and_reproduction": [
+        "reports/experiments/ml_source_compatibility_audit_20261014.json",
+        "Saved 270 rows / 30 families / five family-disjoint folds; three of nine source hashes changed.",
+        "Production five-observable schema excludes gate_mismatch_fraction; WITH_PROGRAM_COMPARISON includes it and documentation calls it a confound.",
+        "Current-source held-out result fails exact expected decisions in 7/45 cases; source-compatible grouped-CV results cannot be claimed.",
+        "Refreshed live hash comparison in reports/experiments/ml_source_compatibility_audit_20261014_rerun.json; original audit retained. run_experiment.py, diagnosis_engine.py and quantum_simulator.py hashes differ from evaluated manifest. The first snapshot had a stale current hash for diagnosis_engine.py; this was an evidence-freshness issue, not a source-code defect.",
+        "Current bounded grouped reevaluation on the preserved 270-row dataset repeated exactly twice and matched historical OOF output, but source-generation provenance is absent and the three saved hashes differ; this is reproducibility evidence only.",
+        "Post-provenance live audit: reports/experiments/ml_source_compatibility_audit_20261014_post_provenance.json; dataset bytes still match, historical rows lack row-level source hashes, and four of nine saved evaluation source hashes now differ (the original three substantive implementation changes plus a later relative-path normalization repair).",
+        "Final audit after future manifest provenance: five of nine saved evaluation source hashes differ; the later ml_evaluation.py and experiments/full_dataset.py changes are path normalization and provenance capture. Current fixed grouped evaluation was rerun twice and exactly matched saved OOF output.",
+        "2026-10-14 evidence-led data foundation audit: reports/experiments/ml_data_foundation_audit_20261014.md reconciles each original six-of-nine mismatch. All six are current-versus-saved file-version differences, but none can be tied to the historical row generator; the historical dataset byte fingerprint still matches.",
+        "Post-lineage current hash refresh: reports/experiments/ml_source_compatibility_audit_20261014_lineage_final.json records seven current differences after the additional lineage-aware source changes; it does not overwrite the earlier six-difference checkpoint.",
+        "Strict current preflight: reports/experiments/ml_data_foundation_preflight_20261014.json returns ready=false, 0 eligible and 270 ineligible; no fit/prediction/export/write occurred. Missing row source hashes, missing manifest generation_provenance, incompatible source map, and missing circuit_lineage_id block reuse."
+      ],
+      "dependencies": [
+        "dataset and label provenance review",
+        "core source freeze"
+      ],
+      "acceptance_criteria": "Current-source grouped-family evaluation, label audit, independent holdout and probability calibration satisfy preregistered criteria; otherwise retain development-only status.",
+      "implementation_status": "blocked",
+      "validation_evidence": [
+        "reports/experiments/ml_source_compatibility_audit_20261014.json",
+        "Saved 270 rows / 30 families / five family-disjoint folds; three of nine source hashes changed.",
+        "Production five-observable schema excludes gate_mismatch_fraction; WITH_PROGRAM_COMPARISON includes it and documentation calls it a confound.",
+        "Current-source held-out result fails exact expected decisions in 7/45 cases; source-compatible grouped-CV results cannot be claimed.",
+        "Refreshed live hash comparison in reports/experiments/ml_source_compatibility_audit_20261014_rerun.json; original audit retained. run_experiment.py, diagnosis_engine.py and quantum_simulator.py hashes differ from evaluated manifest. The first snapshot had a stale current hash for diagnosis_engine.py; this was an evidence-freshness issue, not a source-code defect.",
+        "Final audit `ml_source_compatibility_audit_20261014_final.json`: five of nine source paths differ from the historical manifest; current dataset fingerprint matches. Later IBM metadata edit touches pyproject.toml, which is not one of those nine audited source paths.",
+        "2026-10-15 current-tree source recheck after ML evaluator changes: 7/9 source hashes in the saved grouped-CV manifest differ from live source. Local QMutBench source CSV SHA-256 differs from the source hash recorded by its manifest; that distinct mutant/original corpus is not compatible with three-way diagnosis labels. No historical metric is certified current."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "reports/experiments/ml_generalization_recovery_checkpoint_20261015.md",
+        "reports/experiments/ml_historical_record_recovery_20261015_v2.json"
+      ],
+      "unresolved": "Historical row-producing source cannot be established; six original saved source hashes are mismatched; current snapshot now has seven mismatches after lineage updates. Independent adjudication, a powered lineage-root sampling frame, separate calibration and sealed test groups, preregistered use-specific performance floors, and independent review are still required. No historical scores are certified current or independently generalizable.",
+      "current_blocker_class": "waiting_for_new_provenanced_data_and_independent_labels"
+    },
+    {
+      "id": "P2-2-clean-environment",
+      "description": "Validate install and test behavior in a clean isolated environment without changing system dependencies",
+      "component": "packaging and tests",
+      "files": [
+        "pyproject.toml"
+      ],
+      "classification": "validation gap",
+      "severity": "medium",
+      "priority": "medium",
+      "rationale": "Declared-metadata editable install and routine checks now reproduced in an isolated environment; held-out acceptance remains failed and optional Qiskit oracle tests are absent from declared dependencies.",
+      "evidence_and_reproduction": [
+        "No clean checkout/install or full suite recorded.",
+        "Created isolated environment at .pwb-clean-env-20261014 using Python 3.12.10; installed the project editable with declared dependencies and dev pytest from pyproject.toml. Dependency install required network approval because offline cache lacked setuptools.",
+        "pip check: No broken requirements found; imports for numpy, pandas, scikit-learn, pytest and quantum_simulator succeeded.",
+        "Clean-environment routine suite: .pwb-clean-env-20261014/Scripts/python.exe -m pytest tests -q --tb=short -k \"not bounded_recipe_comparison_120_templates_and_finite_shot_subset and not independent_calibration_fixture_and_permutation_comparison\" --durations=10 --basetemp .pwb-clean-suite-20261014; 604 passed, 1 failed, 4 skipped, 2 deselected in 149.78s. The one failure is the unchanged 7/45 frozen held-out acceptance test.",
+        "Clean collection: 610 tests versus 643 in the primary environment after the forensic regression was added. The 33 absent items are all tests/test_gate_reference_qiskit.py cases; Qiskit is not declared as a runtime/dev dependency and clean installation therefore skips the optional external-oracle differential suite. Four other tests are skipped. Qiskit coverage remains recorded from the primary environment.",
+        "This establishes installability and reproduces the known release blocker under the declared clean environment; it does not establish all tests passing or clean-environment Qiskit oracle coverage.",
+        "Full pip freeze and clean routine test record: reports/experiments/clean_environment_validation_20261014.json.",
+        "The isolated environment was created without the optional oracle extra; after the metadata change it remains unchanged. The 33 missing oracle cases are optional dependency coverage, not loss of core test collection."
+      ],
+      "dependencies": [
+        "resource envelope"
+      ],
+      "acceptance_criteria": "Recreate environment from declared metadata without unapproved dependency installation; full declared checks pass or exact dependency gap documented.",
+      "implementation_status": "partial",
+      "validation_evidence": [
+        "No clean checkout/install or full suite recorded.",
+        "Created isolated environment at .pwb-clean-env-20261014 using Python 3.12.10; installed the project editable with declared dependencies and dev pytest from pyproject.toml. Dependency install required network approval because offline cache lacked setuptools.",
+        "pip check: No broken requirements found; imports for numpy, pandas, scikit-learn, pytest and quantum_simulator succeeded.",
+        "Clean-environment routine suite: .pwb-clean-env-20261014/Scripts/python.exe -m pytest tests -q --tb=short -k \"not bounded_recipe_comparison_120_templates_and_finite_shot_subset and not independent_calibration_fixture_and_permutation_comparison\" --durations=10 --basetemp .pwb-clean-suite-20261014; 604 passed, 1 failed, 4 skipped, 2 deselected in 149.78s. The one failure is the unchanged 7/45 frozen held-out acceptance test.",
+        "Clean collection: 610 tests versus 643 in the primary environment after the forensic regression was added. The 33 absent items are all tests/test_gate_reference_qiskit.py cases; Qiskit is not declared as a runtime/dev dependency and clean installation therefore skips the optional external-oracle differential suite. Four other tests are skipped. Qiskit coverage remains recorded from the primary environment.",
+        "This establishes installability and reproduces the known release blocker under the declared clean environment; it does not establish all tests passing or clean-environment Qiskit oracle coverage.",
+        "Full pip freeze and clean routine test record: reports/experiments/clean_environment_validation_20261014.json.",
+        "Without installing optional packages, existing isolated environment `.pwb-clean-env-20261014`: IBM fixture suite plus IBM/Qiskit metadata contract tests passed 45 in 0.72s. This verifies graceful offline behavior and metadata only, not optional package installation/live access."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "tests/test_gate_reference_qiskit.py",
+        "reports/experiments/autonomous_stabilization_status.json"
+      ],
+      "unresolved": "Clean environment oracle/IBM offline fixture contract passes without installing optional packages; full clean bounded suite still reproduces the frozen held-out failure and optional Qiskit tests skip by design.",
+      "current_blocker_class": "blocked_by_frozen_acceptance_failure"
+    },
+    {
+      "id": "P3-1-live-hardware",
+      "description": "Live backend validation",
+      "component": "IBM integration",
+      "files": [
+        "ibm_validation.py",
+        "check_ibm.py"
+      ],
+      "classification": "missing capability",
+      "severity": "medium",
+      "priority": "deferred",
+      "rationale": "No real hardware evidence is present; real quantum hardware/cloud execution requires explicit authorization and credentials.",
+      "evidence_and_reproduction": [
+        "No real-hardware job authorized or executed."
+      ],
+      "dependencies": [
+        "hardware protocol"
+      ],
+      "acceptance_criteria": "Backend compatibility and results independently verified under authorized hardware protocol; simulator evidence remains labeled separately.",
+      "implementation_status": "deferred_with_reason",
+      "validation_evidence": [
+        "No real-hardware job authorized or executed."
+      ],
+      "resource_requirements": "Paid/credentialed quantum cloud service",
+      "approval_dependency": "Explicit user authorization and backend credentials required.",
+      "related_tests_and_reports": [],
+      "unresolved": "No exact intended backend is configured. The user must provide the backend name; a read-only preflight requires explicit authorization to use existing credentials. Any job submission needs separate explicit authorization and may require paid quota. No credentials were inspected, and no service contact/job occurred.",
+      "current_blocker_class": "backend_identity_authorization_credentials_and_possible_paid_quota"
+    },
+    {
+      "id": "P3-2-claims-freeze",
+      "description": "Reconcile public docs/research claims with current evidence and all release gates",
+      "component": "documentation and research claims",
+      "files": [
+        "README.md",
+        "final_research_report.md",
+        "final_report_review.md"
+      ],
+      "classification": "documentation gap",
+      "severity": "high",
+      "priority": "high",
+      "rationale": "Current README has limitations; historical reports predate current fixes and cannot stand in for final current-tree evidence.",
+      "evidence_and_reproduction": [
+        "Current README records supported noise semantics, simulator resource limits, model development status and benchmark provenance limitations.",
+        "Read-only claim reconciliation of current README, completion report, research report, review and finalization audit: reports/experiments/project_claims_reconciliation_20261014.md.",
+        "README now separates the earlier primary-environment 639-pass checkpoint from the latest isolated clean-environment result and links current completion/claim reconciliation reports.",
+        "Found historical contradiction in project_finalization_audit.md (dated 2026-10-12): it says diagnose_circuit lacks reference_circuit, while current API/README/tests support it; its FINALIZE WITH EXISTING EVIDENCE decision predates current 7/45 held-out failure and source audit. Historical file preserved and explicitly scoped in addendum.",
+        "final_research_report.md evidence cutoff is 2026-10-12; saved ML metrics remain historical and cannot support current-source deployment/generalization claims.",
+        "Broader historical report archive is not fully republished or line-by-line reconciled; task remains partial pending publication-specific archive scope."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Every externally facing claim is linked to compatible evidence and clearly scoped; historical results remain labeled.",
+      "implementation_status": "partial",
+      "validation_evidence": [
+        "Current README records supported noise semantics, simulator resource limits, model development status and benchmark provenance limitations.",
+        "Read-only claim reconciliation of current README, completion report, research report, review and finalization audit: reports/experiments/project_claims_reconciliation_20261014.md.",
+        "README now separates the earlier primary-environment 639-pass checkpoint from the latest isolated clean-environment result and links current completion/claim reconciliation reports.",
+        "Found historical contradiction in project_finalization_audit.md (dated 2026-10-12): it says diagnose_circuit lacks reference_circuit, while current API/README/tests support it; its FINALIZE WITH EXISTING EVIDENCE decision predates current 7/45 held-out failure and source audit. Historical file preserved and explicitly scoped in addendum.",
+        "final_research_report.md evidence cutoff is 2026-10-12; saved ML metrics remain historical and cannot support current-source deployment/generalization claims.",
+        "Broader historical report archive is not fully republished or line-by-line reconciled; task remains partial pending publication-specific archive scope."
+      ],
+      "resource_requirements": "local read-only or bounded validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "reports/experiments/project_claims_reconciliation_20261014.md"
+      ],
+      "unresolved": "Release-facing README, status, completion report and claims reconciliation are current. A publication-specific historical archive review requires a declared publication bundle; archive files remain preserved and labeled historical.",
+      "current_blocker_class": "publication_scope_not_yet_declared"
+    },
+    {
+      "id": "P2-10-project-wide-regression",
+      "description": "Complete bounded project-wide test run and triage current-tree failures",
+      "component": "tests and integrations",
+      "files": [
+        "tests/"
+      ],
+      "classification": "validation gap",
+      "severity": "high",
+      "priority": "high",
+      "rationale": "Historical focused suites passed, but project-wide status is unverified.",
+      "evidence_and_reproduction": [
+        "Full routine suite completed against the current tree: 640 passed, 1 failed, 2 deselected in 206.89s.",
+        "Command used `.venv/Scripts/python.exe -m pytest tests -q --tb=short -k \"not bounded_recipe_comparison_120_templates_and_finite_shot_subset and not independent_calibration_fixture_and_permutation_comparison\" --durations=10 --basetemp .pwb-final2`.",
+        "The one failure is the frozen held-out diagnosis outcome contract (7/45 detection/classification/abstention mismatches). No threshold, label, split, or expected outcome was changed.",
+        "Two fixture tests that run additional finite-shot calibration comparisons were deselected because the registered design is NO-GO and the policy forbids launching unnecessary calibration workload.",
+        "Long OneDrive paths caused earlier temporary setup failures; using the short workspace-local basetemp succeeded.",
+        "Created isolated environment at .pwb-clean-env-20261014 using Python 3.12.10; installed the project editable with declared dependencies and dev pytest from pyproject.toml. Dependency install required network approval because offline cache lacked setuptools.",
+        "pip check: No broken requirements found; imports for numpy, pandas, scikit-learn, pytest and quantum_simulator succeeded.",
+        "Clean-environment routine suite: .pwb-clean-env-20261014/Scripts/python.exe -m pytest tests -q --tb=short -k \"not bounded_recipe_comparison_120_templates_and_finite_shot_subset and not independent_calibration_fixture_and_permutation_comparison\" --durations=10 --basetemp .pwb-clean-suite-20261014; 604 passed, 1 failed, 4 skipped, 2 deselected in 149.78s. The one failure is the unchanged 7/45 frozen held-out acceptance test.",
+        "Clean collection: 610 tests versus 643 in the primary environment after the forensic regression was added. The 33 absent items are all tests/test_gate_reference_qiskit.py cases; Qiskit is not declared as a runtime/dev dependency and clean installation therefore skips the optional external-oracle differential suite. Four other tests are skipped. Qiskit coverage remains recorded from the primary environment.",
+        "This establishes installability and reproduces the known release blocker under the declared clean environment; it does not establish all tests passing or clean-environment Qiskit oracle coverage.",
+        "Fresh `git diff --check` reported no whitespace errors; remaining messages were Git line-ending normalization warnings for modified Windows files."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Routine suite has no unexplained failure; held-out outcome acceptance passes without modifying thresholds/labels, or remains explicitly failed and blocks broad diagnosis claims; calibration comparison exclusions are reviewed only under a new justified protocol.",
+      "implementation_status": "partial",
+      "validation_evidence": [
+        "Final bounded current-tree command: .venv/Scripts/python.exe -m pytest tests -q --tb=short -k \"not bounded_recipe_comparison_120_templates_and_finite_shot_subset and not independent_calibration_fixture_and_permutation_comparison\" --durations=10 --basetemp .pwbH14; 644 passed, 1 known held-out failure, 2 deselected in 154.36s.",
+        "The 1 failure is the unchanged frozen 7/45 held-out diagnosis acceptance test. Two registered campaign-like calibration comparisons remain deselected under NO-GO.",
+        "An initial run with long basetemp had four Windows path-length setup errors; all passed with the short workspace-local basetemp .pwbG14.",
+        "Primary Qiskit oracle: 33 passed; clean-environment combined oracle/core gate run: 37 passed, 4 optional skips.",
+        "Latest future dataset manifest provenance regression included in the final run; the sole failure remains the unchanged 7/45 held-out acceptance test.",
+        "Final full bounded suite: 648 passed, 1 unchanged frozen held-out failure, 2 deselected (651 collected) in 140.45s; seven outcomes still fail 7/45. No thresholds/expectations changed.",
+        "Final rerun after exact runtime provenance guard: 648 passed, one unchanged held-out failure, two deselected in 151.10s (651 collected); same 7/45 cases, no acceptance changes."
+      ],
+      "resource_requirements": "Routine local tests; avoid 120-template and 20-case calibration comparison runs under current NO-GO.",
+      "approval_dependency": "Any separate confirmatory/expensive calibration workload requires an independently justified preregistration and explicit execution authorization.",
+      "related_tests_and_reports": [],
+      "unresolved": "The final suite preserves one frozen 7/45 held-out diagnosis acceptance failure and deselects the two campaign-like NO-GO tests. This remains a release blocker for broad diagnosis claims; no test or criterion was suppressed or modified.",
+      "current_blocker_class": "blocked_by_preserved_frozen_acceptance_failure"
+    },
+    {
+      "id": "P0-8-two-qubit-parameterized-normalization",
+      "description": "Preserve both qubit operands when canonicalizing two-qubit parameterized gate instructions.",
+      "component": "diagnosis and circuit trace normalization",
+      "files": [
+        "src/quantum_simulator/diagnosis_engine.py",
+        "tests/test_diagnosis_engine.py"
+      ],
+      "classification": "defect",
+      "severity": "high",
+      "priority": "completed",
+      "rationale": "Bugs4Q case 42 raised TypeError because cp canonicalization cast the second qubit index to a float parameter.",
+      "evidence_and_reproduction": [
+        "Before fix: pytest tests/test_bugs4q_integration.py -x failed during diagnosis at QuantumSimulator._validate_qubit with Qubit index must be int, got float.",
+        "Canonicalizer previously treated cp/crx/cry/crz as single-qubit parameterized gates; rxx/rzz were not explicitly grouped."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "cp/crx/cry/crz/rxx/rzz retain two integral qubit operands and angle; current Bugs4Q integration completes.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "Regression tests for all six operation names.",
+        "tests/test_diagnosis_engine.py + tests/test_bugs4q_integration.py: 54 passed in 1.84s.",
+        "Integrated selected suite: 78 passed in 19.83s.",
+        "Current-tree focused rerun: .venv/Scripts/python.exe -m pytest tests/test_diagnosis_engine.py tests/test_fault_localizer.py -q --tb=short -k \"canonicalize_two_qubit_parameterized_gates_preserves_both_qubits or normalize_parameterized_operations_preserves_qubits_and_parameters or qubit_inference_does_not_count_angles_as_qubits\"; 8 passed, 59 deselected."
+      ],
+      "resource_requirements": "Bounded local tests",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "tests/test_diagnosis_engine.py",
+        "tests/test_bugs4q_integration.py"
+      ],
+      "unresolved": "No remaining issue in the verified normalization contract."
+    },
+    {
+      "id": "P2-11-bugs4q-discovery-scope",
+      "description": "Avoid recursively walking unrelated repository benchmark trees during Bugs4Q dataset discovery.",
+      "component": "Bugs4Q ingestion",
+      "files": [
+        "bugs4q_validation.py",
+        "tests/test_bugs4q_validation.py"
+      ],
+      "classification": "performance issue",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "Repository-wide rglob traversed large unrelated dataset trees, making ordinary tests and discovery unbounded.",
+      "evidence_and_reproduction": [
+        "Full test run stalled at test_repository_source_files_are_not_reported_as_dataset_files, whose project-root call recursively traversed data/.",
+        "After fix, discovered roots are limited to conventional Bugs4Q-named root children and data children."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Explicit repository-root discovery scans conventional Bugs4Q paths only and ignores unrelated trees; dataset adapter fixture tests pass.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "tests/test_bugs4q_validation.py tests/test_diagnosis_engine.py tests/test_bugs4q_integration.py: 66 passed in 2.37s.",
+        "Current-tree scoped discovery rerun: .venv/Scripts/python.exe -m pytest tests/test_bugs4q_validation.py -q --tb=short -k \"discovery_scans_conventional_bugs4q_roots_without_traversing_other_trees\" --basetemp .b4q; 1 passed, 11 deselected. Default temp root was inaccessible; the workspace-local rerun passed."
+      ],
+      "resource_requirements": "Bounded local tests",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "tests/test_bugs4q_validation.py"
+      ]
+    },
+    {
+      "id": "P2-12-qmutbench-discovery-scope",
+      "description": "Restrict QMutBench discovery to conventional benchmark roots so project-root scans never traverse unrelated/full data trees.",
+      "component": "QMutBench ingestion and dataset discovery",
+      "files": [
+        "qmutbench_validation.py",
+        "tests/test_qmutbench_validation.py"
+      ],
+      "classification": "performance issue",
+      "severity": "high",
+      "priority": "completed",
+      "rationale": "The project-root discovery test used unrestricted rglob and scanned arbitrary trees, including qmutbench_full and potentially the very large mutant corpus, despite processing only 12 expected cases.",
+      "evidence_and_reproduction": [
+        "Observed during bounded project-suite run at tests/test_qmutbench_validation.py::test_discovers_pairs_and_executes_supported_real_qasm_mutants.",
+        "The suite made no progress for more than 45 seconds while the root-wide rglob searched the repository.",
+        "Source inspection confirmed discover_qmutbench_files called root_path.rglob(\"*\") and then separately scanned data/qmutbench."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Project-root discovery visits only conventional data/qmutbench roots; nonstandard small caller fixtures remain supported; full 700k mutant corpus is not traversed implicitly.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "tests/test_qmutbench_validation.py: 24 passed in 10.05s; representative 12-case execution 8.21s. Regression proves qmutbench_full is not traversed.",
+        "Current-tree scoped discovery rerun: .venv/Scripts/python.exe -m pytest tests/test_qmutbench_validation.py -q --tb=short -k \"discovery_scans_conventional_qmutbench_root_only\" --basetemp .bqmb; 1 passed, 23 deselected."
+      ],
+      "resource_requirements": "Bounded local test fixtures only; no full dataset run",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "tests/test_qmutbench_validation.py"
+      ]
+    },
+    {
+      "id": "P1-2-heldout-current-tree-acceptance",
+      "description": "Resolve or explicitly exclude current-tree family-held-out diagnosis outcome mismatches without tuning on held-out data.",
+      "component": "diagnosis calibration and independent generalization",
+      "files": [
+        "tests/test_reference_diagnosis_generalization.py",
+        "tests/fixtures/reference_diagnosis_generalization_cases.json",
+        "src/quantum_simulator/diagnosis_engine.py",
+        "experiments/robustness_evaluation.py"
+      ],
+      "classification": "research gap",
+      "severity": "high",
+      "priority": "P1",
+      "rationale": "Current-source held-out outputs disagree with frozen expectations for 7/45 cases; expected outcomes must not be altered to make the run pass.",
+      "evidence_and_reproduction": [
+        "Broad current-tree suite: tests/test_reference_diagnosis_generalization.py::test_heldout_generalization_outcomes_and_targets failed after 48.10s.",
+        "Three QFT-like program faults at seeds 11/29/47 changed from detection+PROGRAM_FAULT to non-detection+AMBIGUOUS/INSUFFICIENT_EVIDENCE with abstention.",
+        "Ring-cluster correct controls at seeds 11 and 29 changed from NO_ANOMALY to detected/abstain; equivalent mutants at those seeds changed from abstain/non-detection to PROGRAM_FAULT/detection.",
+        "Source and hardware target-localization checks did not mismatch.",
+        "Forensic report: reports/experiments/heldout_diagnosis_root_cause_20261014.json. Exact QFT-like fault TVDs are below .05; ring exact-zero controls exceed the unchanged .0625 guard in finite samples. The failure is methodological/acceptance-assumption evidence, not a repairable implementation bug; original expected values unchanged.",
+        "Forensic regression: tests/test_reference_diagnosis_generalization.py::test_frozen_heldout_mismatches_are_explained_by_distribution_resolution ? 1 passed in 6.62s. Existing frozen acceptance test still fails 7/45."
+      ],
+      "dependencies": [
+        "separately justified calibration/decision protocol",
+        "held-out results remain frozen"
+      ],
+      "acceptance_criteria": "A current-source preregistered method meets unchanged independent family holdout criteria, or the broad diagnosis claim remains no-go.",
+      "implementation_status": "blocked",
+      "validation_evidence": [
+        "No expected labels, thresholds, splits, or historical results changed.",
+        "Forensic report: reports/experiments/heldout_diagnosis_root_cause_20261014.json. Exact QFT-like fault TVDs are below .05; ring exact-zero controls exceed the unchanged .0625 guard in finite samples. The failure is methodological/acceptance-assumption evidence, not a repairable implementation bug; original expected values unchanged.",
+        "Forensic regression: tests/test_reference_diagnosis_generalization.py::test_frozen_heldout_mismatches_are_explained_by_distribution_resolution ? 1 passed in 6.62s. Existing frozen acceptance test still fails 7/45."
+      ],
+      "resource_requirements": "Read-only diagnosis completed; further calibration/threshold design on held-out data is prohibited.",
+      "approval_dependency": "A new confirmatory resource campaign requires a materially different independently justified design and explicit authorization.",
+      "related_tests_and_reports": [
+        "tests/test_reference_diagnosis_generalization.py",
+        "reports/experiments/finite_shot_blocker_status.json",
+        "reports/experiments/finite_shot_identifiability_analysis.md"
+      ],
+      "current_blocker_class": "frozen_acceptance_failure_no_heldout_tuning",
+      "unresolved": "Current release suite preserves the 7/45 frozen mismatch. Root cause is already recorded; no further work is justified absent materially new independent evidence. Acceptance cannot be cleared by tuning on these held-out outcomes."
+    },
+    {
+      "id": "P2-13-current-source-audit-freshness",
+      "description": "Keep read-only source compatibility audit snapshots verifiable against the live tree while preserving the original snapshot.",
+      "component": "ML reproducibility evidence",
+      "files": [
+        "reports/experiments/ml_source_compatibility_audit_20261014.json",
+        "reports/experiments/ml_source_compatibility_audit_20261014_rerun.json"
+      ],
+      "classification": "validation gap",
+      "severity": "medium",
+      "priority": "P1",
+      "rationale": "Live recomputation found the original audit current hash for diagnosis_engine.py no longer matched the live source. Historical snapshot retained unchanged and a dated rerun created.",
+      "evidence_and_reproduction": [
+        "Recomputed SHA-256 for all nine saved manifest source paths against the live repository.",
+        "reports/experiments/ml_source_compatibility_audit_20261014_rerun.json records all live hashes and explicitly preserves the three saved-vs-current mismatches.",
+        "No dataset rewrite, model fit or grouped-CV run."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Each compatibility snapshot has a declared capture date and all recorded current hashes reproduce against the live files at that checkpoint; historical snapshots remain immutable.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "All nine live source SHA-256 values recomputed; all current entries in the rerun snapshot match current files at capture. The original artifact is retained unchanged.",
+        "Clean-environment and forensic regression additions did not change any source file in the nine-path ML source manifest after the refreshed hashes were recorded."
+      ],
+      "resource_requirements": "local read-only hashing",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "reports/experiments/ml_source_compatibility_audit_20261014_rerun.json"
+      ]
+    },
+    {
+      "id": "P1-4-diagnosis-method-feasibility-design",
+      "description": "Define a defensible, separately justified diagnosis validation design and bound what current observations can identify",
+      "component": "diagnosis research methodology",
+      "files": [
+        "reports/experiments/diagnosis_method_feasibility_design_20261014.md",
+        "reports/experiments/finite_shot_identifiability_analysis.md",
+        "reports/experiments/finite_shot_blocker_status.json",
+        "experiments/diagnosis_candidate_methods.py",
+        "tests/test_diagnosis_candidate_methods.py",
+        "experiments/diagnosis_development_study.py",
+        "tests/test_diagnosis_development_study.py",
+        "reports/experiments/diagnosis_development_validation_plan_20261015.json",
+        "experiments/diagnosis_lineage_inventory.py",
+        "reports/experiments/diagnosis_prior_lineage_inventory_20261015.json",
+        "reports/experiments/diagnosis_family_sampling_frame_20261015.json"
+      ],
+      "classification": "methodological limitation and validation gap",
+      "severity": "high",
+      "priority": "high",
+      "rationale": "Output anomaly detection, causal attribution, and localization require separate observables and independent ground truth; the prior registered finite-shot design remains NO-GO.",
+      "evidence_and_reproduction": [
+        "New design memo synthesizes, without rerunning the seven cases, the existing identifiability and finite-shot no-go evidence.",
+        "Output-only attribution is impossible for causes that induce identical observed distributions; a calibrated test can only target a declared distributional null/effect under its sampling assumptions.",
+        "Development evidence audit: the saved finite-shot comparison is a synthetic, single-recipe repeated-template calibration study; its validation outputs have already been inspected and cannot serve as fresh validation. The three-family diagnosis fixture is an engineering fixture, not independent development truth. The frozen 45-case acceptance evidence was excluded.",
+        "Added an isolated development-only pooled-label TVD permutation p-value helper, motivated by recorded low-shot healthy-control false alarms. It is not connected to default diagnosis and was not evaluated on saved campaign outputs in this phase; low-shot subtle-effect sensitivity remains a documented trade-off.",
+        "Focused candidate contract tests: tests/test_diagnosis_candidate_methods.py; 7 passed in 0.74s. No method-performance claim follows.",
+        "Intermediate preflight checkpoint: fail-closed study preflight, deterministic condition-manifest expansion, lineage/fingerprint exclusion and atomic resource reservation checks; candidate/protocol/preflight suite: 34 passed in 0.80s. No circuit or shot data were generated.",
+        "The machine-readable pilot plan is blocked before generation: prior finite-shot outputs lack a complete per-template lineage/fingerprint inventory; controlled-fault artifacts include family IDs without complete ancestry metadata; the 30 nominal full-dataset family IDs map to only six lineage recipe roots; and the proposed finite sampling frame/sampler is not yet materialized or versioned. The clean validation family set cannot currently be certified.",
+        "Final focused suite after descendant-root regression: 35 passed in 0.85s.",
+        "Final bounded repository suite: 695 passed, one unchanged frozen 7/45 failure, zero skipped, two NO-GO campaign tests deselected (698 collected; 187.28s). The first long-basetemp attempt had one additional Windows path-length failure; the isolated recovery test passed with short basetemp and final short-path reruns had no path-length failure.",
+        "No expensive study or calibration workload was executed.",
+        "Materialized conservative scan: 5431 artifacts across experiments, tests/fixtures, reports/experiments; 5366 circuit-like records, 5 exact-content duplicates, 5186 unknown-lineage records. Inventory SHA-256 0338cb2d6ee8fbebb3afa1882cb8457dd4a010461dc1f8a23ff4969dd195ca32. Deterministic frame SHA-256 6a96efd133d1e1f2fb9d19299b3206101499f22083493781afc1a4bc5c841e9a; 0 eligible roots, 8+8 shortfall. Completeness remains uncertified because the scan cannot prove that all retained temporary/external prior artifacts are represented; legacy records also lack per-template roots/fingerprints. No experiment executed.",
+        "Final lineage-aware focused suite: 40 passed in 0.73s. Final bounded repository suite: 700 passed, 1 unchanged frozen held-out failure (7/45), 0 skipped, 2 deselected (703 collected; 228.74s). Inventory records six cross-artifact family/root review flags; these are preserved, not adjudicated by inference. No generation or experiment budget use.",
+        "After adding hash-bound independent inventory attestation requirements, final focused suite: 41 passed in 0.85s. Final bounded repository suite: 701 passed, 1 unchanged frozen 7/45 failure, 0 skipped, 2 deselected (704 collected; 223.99s).",
+        "Final inventory includes discovered retained output roots under explicit 20,000-file/128-MiB and 25-MiB per-file caps. It scanned 20,000 artifacts across 108 roots (124,638,914 bytes), skipped five oversized files, and is marked truncated/incomplete. Three roots were observed in saved rows; six possible roots are declared by the full_dataset.py modulo-six recipe expression, but only three were observed. The frame still has zero eligible roots. Final focused suite 46 passed in 0.62s; final broad suite 706 passed, one frozen 7/45 failure, 0 skipped, 2 deselected (709 collected; 248.38s).",
+        "Final exact-tree suite rerun after all lineage scanner/root table/resource cap changes: 706 passed, 1 unchanged frozen 7/45 failure, 0 skipped, 2 deselected (709 collected; 217.46s). Focused suite remained 46 passed in 0.62s."
+      ],
+      "dependencies": [
+        "development-only method passes predeclared controls",
+        "family-level sampling frame and independent truth",
+        "independent protocol/power/resource review",
+        "separate authorization before pilot or campaign"
+      ],
+      "acceptance_criteria": "A method and protocol independently reviewed against unchanged acceptance criteria, with family-level power, multiplicity, abstention, truth independence and resources established; no tuning against sealed holdout.",
+      "implementation_status": "partial",
+      "validation_evidence": [
+        "reports/experiments/diagnosis_method_feasibility_design_20261014.md",
+        "Independent-review readiness addendum specifies a versioned family frame, source lineage clustering, sampling/inclusion dispositions, truth independence, competing explanations, endpoint separation, conditional power assumptions, and explicit review/stop requirements. No frame, adjudicators, reviewers, or authorization exists; study remains no-go.",
+        "experiments/diagnosis_lineage_inventory.py",
+        "reports/experiments/diagnosis_prior_lineage_inventory_20261015.json",
+        "reports/experiments/diagnosis_family_sampling_frame_20261015.json",
+        "Focused diagnosis suite: 40 passed in 0.73s. Bounded repository suite: 699 passed, one frozen 7/45 failure, 0 skipped, 2 deselected (702 collected; 165.26s).",
+        "40 passed in 0.73s focused; 700 passed, 1 frozen failure, 0 skipped, 2 deselected (703 collected).",
+        "41 focused tests passed; broad bounded suite 701 passed, 1 frozen failure, 0 skipped, 2 deselected (704 collected).",
+        "Final exact-tree focused: 46 passed; broad: 706 passed, 1 frozen failure, 0 skipped, 2 deselected (709 collected).",
+        "Final exact-tree broad rerun: 706 passed, 1 frozen failure, 0 skipped, 2 deselected (709 collected)."
+      ],
+      "unresolved": "The inventory and deterministic frame are design artifacts only. No independent completeness certification exists; zero roots qualify. New source-linked families, missing legacy ancestry/fingerprints, independent review and separate authorization remain prerequisites.",
+      "current_blocker_class": "waiting_for_independent_review_and_external_truth_frame",
+      "related_tests_and_reports": [
+        "reports/experiments/diagnosis_method_feasibility_design_20261014.md",
+        "reports/experiments/finite_shot_joint_power_analysis.md",
+        "reports/experiments/finite_shot_publication_readiness_review.md",
+        "experiments/diagnosis_candidate_methods.py",
+        "tests/test_diagnosis_candidate_methods.py",
+        "experiments/diagnosis_development_study.py",
+        "tests/test_diagnosis_development_study.py",
+        "reports/experiments/diagnosis_development_validation_plan_20261015.json"
+      ]
+    },
+    {
+      "id": "P2-15-per-run-source-provenance",
+      "description": "Persist scoped source fingerprints with future experiment rows and dataset manifests; define historical compatibility limits",
+      "component": "experiment data provenance",
+      "files": [
+        "experiments/run_experiment.py",
+        "experiments/full_dataset.py",
+        "tests/test_experiment_runner.py",
+        "tests/test_full_dataset_provenance.py",
+        "reports/experiments/ml_current_pipeline_audit_20261014.md"
+      ],
+      "classification": "provenance defect",
+      "severity": "high",
+      "priority": "high",
+      "rationale": "Historical individual rows and their dataset manifest do not identify the source tree that generated their features and labels.",
+      "evidence_and_reproduction": [
+        "Future individual ExperimentResult rows include scoped SHA-256 source fingerprints covering pyproject, config, dataset generator, runner and simulator/diagnosis/gate/hardware files.",
+        "Future full-dataset manifests now include this source map plus Python/NumPy runtime identity; regression constructs a bounded one-family manifest with a stub runner and verifies persisted provenance.",
+        "Historical 270-report rows and dataset manifest were not rewritten; the source tree that generated them cannot be established.",
+        "Lineage metadata is now carried by future generated reports; the six recipe roots are deterministic in experiments/full_dataset.py. Historical reports remain untouched and lack both source hashes and lineage identity."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "New dataset manifests preserve row source maps plus generator/config/runtime identity, and any current-source ML evaluation references those exact records and independent labels.",
+      "implementation_status": "partial",
+      "validation_evidence": [
+        "tests/test_experiment_runner.py plus tests/test_full_dataset_provenance.py passed in focused runs; final project suite rerun pending.",
+        "Bounded current regression after provenance and lineage changes: python -m pytest tests/test_ml_preflight.py tests/test_full_dataset_provenance.py tests/test_experiment_runner.py tests/test_ml_evaluation_audit.py -q --tb=short --basetemp .pytest-tmp-ml-data-foundation-final; 28 passed in 5.30s.",
+        "Latest rerun including report metadata lineage assertion: 28 passed in 5.35s, tests/test_ml_preflight.py tests/test_full_dataset_provenance.py tests/test_experiment_runner.py tests/test_ml_evaluation_audit.py.",
+        "Final focused rerun including a regression that circuit_lineage_id cannot enter the feature matrix: 29 passed in 5.17s.",
+        "Expanded future source fingerprint includes runtime transitive statistics/localization/package entry and root import dependencies; focused suite 29 passed in 5.88s."
+      ],
+      "unresolved": "Historical 270 reports cannot be reconstructed or assigned reliable source/recipe provenance from their generic simulator_version; a new provenance-compatible dataset and independent truth remain required for current-source evaluation.",
+      "current_blocker_class": "historical_rows_cannot_be_reconstructed_new_rows_only"
+    },
+    {
+      "id": "P2-16-qiskit-optional-oracle-contract",
+      "description": "Declare and document Qiskit gate-oracle tests as an optional integration with an explicit install/test path",
+      "component": "dependency and validation strategy",
+      "files": [
+        "pyproject.toml",
+        "README.md",
+        "tests/test_gate_reference_qiskit.py"
+      ],
+      "classification": "dependency contract and validation gap",
+      "severity": "medium",
+      "priority": "high",
+      "rationale": "The gate oracle module intentionally import-skips without Qiskit, but project metadata previously had no explicit way to request this independent validation dependency.",
+      "evidence_and_reproduction": [
+        "Added project extra oracle = [qiskit>=2.5,<3], leaving core/runtime and ordinary dev dependencies unchanged.",
+        "README documents the explicit `.[dev,oracle]` install and oracle test command, and the no-Qiskit import-skip behavior.",
+        "TOML metadata check confirmed dev=['pytest'] and oracle=['qiskit>=2.5,<3']; Qiskit 2.5.2 was already installed in the primary environment; oracle suite passed 33 tests.",
+        "A Python 3.12 metadata regression asserts Qiskit remains outside runtime dependencies and the oracle extra is exactly qiskit>=2.5,<3; clean environment gate/oracle combo: 37 passed, 4 skipped."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Optional oracle dependency is discoverable and documented; with it installed, the differential suite runs; without it the core remains installable and oracle tests skip cleanly.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        ".venv/Scripts/python.exe -m pytest tests/test_gate_reference_qiskit.py -q --basetemp .pytest-tmp-qiskit-optional-20261014: 33 passed in 2.56s.",
+        "Read-only TOML check: {'dev': ['pytest'], 'oracle': ['qiskit']}; existing primary environment Qiskit 2.5.2.",
+        "README documents `python -m pip install -e \".[oracle]\"` and the oracle suite; combined clean-environment gate/oracle run: 37 passed, 4 optional skips."
+      ],
+      "unresolved": "The pre-existing clean environment was not modified; optional Qiskit differential tests are skipped there by design. The primary environment runs them."
+    },
+    {
+      "id": "P2-17-relative-ml-report-paths",
+      "description": "Make ML dataset loading and preflight robust to relative report directory paths",
+      "component": "ML data pipeline",
+      "files": [
+        "ml_evaluation.py",
+        "tests/test_ml_evaluation_audit.py"
+      ],
+      "classification": "implementation defect",
+      "severity": "low",
+      "priority": "completed",
+      "rationale": "A valid relative report directory raised ValueError when load_dataset converted its path relative to the absolute repository root.",
+      "evidence_and_reproduction": [
+        "Before fix: run_preflight(report_dir=Path('reports/experiments/full_dataset'), ...) raised ValueError because report_dir traversal yielded relative paths but report_path was made relative to absolute ROOT.",
+        "load_dataset now resolves the input root and emits repository-relative report_path values for in-repository rows, absolute paths for external roots.",
+        "Regression: tests/test_ml_evaluation_audit.py::test_load_dataset_accepts_relative_report_directory."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Relative and absolute inputs to load_dataset/preflight both load eligible reports without path exceptions or unintended writes.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        ".venv/Scripts/python.exe -m pytest tests/test_ml_evaluation_audit.py tests/test_ml_preflight.py -q --basetemp .pytest-tmp-ml-path-fix-20261014: 8 passed in 3.38s.",
+        "Read-only preflight with absolute input: ready structural-only, 270 eligible, 30 families, five folds, zero family overlap, no writes or fitting; output directory was not created."
+      ],
+      "unresolved": "Readiness remains structural; row source provenance, independent labels, calibration and external generalization are not established."
+    },
+    {
+      "id": "P2-18-future-dataset-manifest-provenance",
+      "description": "Add source/runtime provenance to newly generated full-dataset manifests and preserve compatibility limits for historical data",
+      "component": "ML dataset generation",
+      "files": [
+        "experiments/full_dataset.py",
+        "experiments/run_experiment.py",
+        "tests/test_full_dataset_provenance.py"
+      ],
+      "classification": "provenance validation gap",
+      "severity": "high",
+      "priority": "high",
+      "rationale": "Per-row hashes alone do not preserve the dataset generator/runtime identity at the dataset manifest level.",
+      "evidence_and_reproduction": [
+        "The generator adds a scoped source_sha256 map and Python/NumPy versions to future dataset_manifest.json files.",
+        "A bounded one-family test stubs run_experiment, does not simulate circuits, and verifies the persisted manifest provenance.",
+        "Future generation also records deterministic circuit_lineage_id recipe roots in each family manifest entry and report configuration; see reports/experiments/ml_data_foundation_audit_20261014.md."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Future generated dataset manifests identify their generator, declared source hashes and runtime; individual reports retain matching run-time source hashes; historical datasets are not retroactively certified.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "tests/test_full_dataset_provenance.py: 2 passed in 0.34s; final complete suite pending.",
+        "Current future-dataset manifest provenance regression passes; historical 270-row manifest remains unchanged and lacks generation identity.",
+        "Acceptance is limited to future generated manifests and expressly excludes retroactive certification. Current regression verifies scoped source SHA-256 and Python/NumPy identity persist without simulation; historical data limitation is separately tracked under ML compatibility.",
+        "The bounded one-family generator fixture checks recipe lineage metadata alongside source/runtime manifest provenance; covered by the 28-passed focused regression command recorded under P2-15.",
+        "Expanded future source fingerprint includes runtime transitive statistics/localization/package entry and root import dependencies; focused suite 29 passed in 5.88s."
+      ],
+      "unresolved": "Historical 270-row manifest/report set remains untraceable; current strict training preflight rejects it. This is a preserved historical evidence limitation, not a missing future-manifest implementation.",
+      "current_blocker_class": "historical_evidence_limitation"
+    },
+    {
+      "id": "P2-19-ibm-adapter-offline-readiness",
+      "description": "Make optional IBM adapter prerequisites explicit and verify layout/calibration safety locally",
+      "component": "optional IBM hardware integration",
+      "files": [
+        "ibm_validation.py",
+        "pyproject.toml",
+        "README.md",
+        "tests/test_ibm_validation.py"
+      ],
+      "classification": "integration safety and dependency contract",
+      "severity": "high",
+      "priority": "completed",
+      "rationale": "Prior readiness audit identified physical-layout and calibration-age blockers; current code has fixture-tested guards, but optional installation/test instructions were implicit.",
+      "evidence_and_reproduction": [
+        "Current adapter maps logical plans to a validated physical layout and blocks missing, invalid, or unresolved routing layouts before submission.",
+        "Current adapter enforces timezone-aware calibration freshness (default 900 seconds) before submission.",
+        "tests/test_ibm_validation.py: 43 passed in 2.26s; injected/offline fixtures only, no IBM contact.",
+        "pyproject.toml exposes an isolated `ibm` extra; README describes install and offline test commands.",
+        "reports/experiments/hardware_adapter_local_readiness_20261014.md"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "IBM-specific dependencies remain optional; absent dependencies fail in a structured blocked state; local layout/freshness checks are fixture-tested; no live hardware claim is made.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        ".venv/Scripts/python.exe -m pytest tests/test_ibm_validation.py -q --tb=short --basetemp .pwb-ibm-final: 43 passed in 2.26s.",
+        "Metadata contract regression asserts IBM Runtime is absent from core dependencies and pinned only in the optional IBM extra."
+      ],
+      "resource_requirements": "bounded local fixture tests",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "reports/experiments/hardware_adapter_local_readiness_20261014.md"
+      ],
+      "unresolved": "Live validation requires an explicitly selected backend, user authorization, and configured credentials; no backend is currently selected."
+    },
+    {
+      "id": "P2-20-ml-provenance-fail-closed",
+      "description": "Block ML fitting on missing/incompatible provenance and require lineage-safe outer folds",
+      "component": "ML data pipeline and reproducibility",
+      "files": [
+        "experiment_config.py",
+        "experiments/full_dataset.py",
+        "experiments/run_experiment.py",
+        "ml_evaluation.py",
+        "ml_training.py",
+        "tests/test_ml_preflight.py"
+      ],
+      "classification": "data integrity and fail-closed validation defect",
+      "severity": "high",
+      "priority": "completed",
+      "rationale": "The pre-existing structural preflight checked feature and family-fold integrity but reported historical rows ready despite absent generation hashes, permitting training to proceed without source compatibility evidence.",
+      "evidence_and_reproduction": [
+        "ML loader now carries per-report source hashes into audit rows.",
+        "Preflight validates dataset manifest generation_provenance, SHA-256 map, recorded Python/NumPy runtime, equality with current generator sources, and equality of every report source map with the manifest.",
+        "Training entry point refuses before fitting/prediction/export/training-output writes when preflight blockers exist.",
+        "Regression covers missing manifest provenance, missing per-row hashes, report/manifest mismatch, stale generator hashes, and no training-load/no-fit behavior after the preflight reports failure; the actual preflight reads rows for validation.",
+        "Current historical dataset preflight: 270 reports structurally present, but ready=false with 3 explicit provenance blockers; no fit, prediction, export, or writes. Evidence: reports/experiments/ml_provenance_preflight_20261014.json.",
+        "Focused ML and IBM suite after source changes: 72 passed in 4.69s; subsequent expanded focused ML suite: 28 passed in 3.02s.",
+        "Preflight now requires circuit_lineage_id in every eligible row and uses it as the outer grouping unit; independent families sharing a lineage may not cross folds. Historical source rows without lineage are rejected before fitting."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Undocumented, stale, or internally inconsistent dataset provenance blocks the standard ML training entry point before fitting; matching synthetic fixtures pass structural and provenance checks without claiming independent truth.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        ".venv/Scripts/python.exe -m pytest tests/test_ml_preflight.py tests/test_ml_evaluation_audit.py tests/test_full_dataset_provenance.py tests/test_ml_training_artifacts.py: 28 passed in 3.02s before final stale-hash regression; expanded combined ML/IBM run: 72 passed in 4.69s.",
+        "Direct current training entry point returned exit code 2 before reading rows/fitting; preflight-only JSON artifact records three missing/stale provenance blockers.",
+        "Final current-source strict preflight regenerated after loader hardening: ready=false for the historical dataset with the same three provenance blockers; no fitting/prediction/export/writes. Source compatibility remains six of nine changed hashes.",
+        "Expanded ML source/provenance tests including runtime version mismatch rejection: 29 passed in 7.05s.",
+        "Current focused provenance/lineage regression: 28 passed in 5.30s; direct preflight-only current-tree check returns ready=false, 0 eligible and 270 ineligible, with fitting/prediction/export/write all false. Evidence: reports/experiments/ml_data_foundation_preflight_20261014.json.",
+        "Latest rerun including report metadata lineage assertion: 28 passed in 5.35s, tests/test_ml_preflight.py tests/test_full_dataset_provenance.py tests/test_experiment_runner.py tests/test_ml_evaluation_audit.py.",
+        "Final focused rerun including a regression that circuit_lineage_id cannot enter the feature matrix: 29 passed in 5.17s.",
+        "Expanded future source fingerprint includes runtime transitive statistics/localization/package entry and root import dependencies; focused suite 29 passed in 5.88s.",
+        "2026-10-15 current-tree fit-entry-point audit: ml_fallback_training.main and experiments/export_observable_model.export_model now both call strict run_preflight and stop before loading training features/fitting/writing on failure; regression tests prove fail-closed behavior. Historical dataset preflight remains ready=false with 0 eligible of 270 rows.",
+        "2026-10-15 recovery/generalization milestone: row-level table confirms every historical report has no per-run source map or recipe ancestry; zero rows remain eligible. Current source recheck remains seven of nine saved evaluator hashes different, including the updated ML evaluator implementation; no saved score was reproduced."
+      ],
+      "resource_requirements": "bounded local tests and read-only metadata validation",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "reports/experiments/ml_data_foundation_audit_20261014.md",
+        "reports/experiments/ml_data_foundation_preflight_20261014.json",
+        "reports/experiments/ml_feature_eligibility_20261015.md",
+        "reports/experiments/ml_generalization_recovery_checkpoint_20261015.md",
+        "reports/experiments/ml_historical_record_recovery_20261015.json",
+        "reports/experiments/ml_provenance_preflight_20261014.json",
+        "reports/experiments/ml_source_compatibility_audit_20261014_lineage_final.json",
+        "reports/experiments/ml_source_compatibility_audit_20261014_release_final.json",
+        "tests/test_ml_fallback.py",
+        "tests/test_ml_training_artifacts.py"
+      ],
+      "unresolved": "Historical dataset remains ineligible for fitting because its 270 rows lack per-run hashes and circuit lineage, and its manifest lacks generation provenance. Independent truth and a separate calibration/test study remain outside this engineering guard."
+    },
+    {
+      "id": "P2-22-ml-lineage-safe-splitting",
+      "description": "Persist generator recipe lineage and prevent related circuit families from crossing ML validation folds",
+      "component": "ML data integrity and evaluation splitting",
+      "files": [
+        "experiment_config.py",
+        "experiments/full_dataset.py",
+        "experiments/run_experiment.py",
+        "ml_evaluation.py",
+        "ml_training.py",
+        "tests/test_full_dataset_provenance.py",
+        "tests/test_experiment_runner.py",
+        "tests/test_ml_evaluation_audit.py",
+        "tests/test_ml_preflight.py",
+        "README.md"
+      ],
+      "classification": "data leakage defect",
+      "severity": "high",
+      "priority": "completed",
+      "rationale": "Family-only grouping allowed recurring deterministic design-recipe siblings to appear on both sides of a fold. The historical artifacts omit a broader lineage key.",
+      "evidence_and_reproduction": [
+        "Current generator has a six-recipe design cycle; the exploratory pairwise scan found 51/435 reference circuit pairs with sequence similarity >=0.8 (descriptive screen only; no acceptance threshold inferred).",
+        "Future generator records circuit_lineage_id design_recipe_01..06 in row metadata and dataset manifest. Preflight and outer fold validation use lineage roots and fail if any root appears on both sides.",
+        "Historical rows with missing lineage are made ineligible; they are not retrospectively assigned lineage.",
+        "python -m pytest tests/test_ml_preflight.py tests/test_full_dataset_provenance.py tests/test_experiment_runner.py tests/test_ml_evaluation_audit.py -q --tb=short --basetemp .pytest-tmp-ml-data-foundation-final: 28 passed in 5.30s.",
+        "Latest future run provenance scope was expanded to all directly and transitively relevant import/feature/diagnosis files; this improves source identity and does not retroactively change historical data."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Future rows have a nonempty recipe lineage identity; split code groups on that root; all conditions, repetitions, mutants and related families sharing a root remain in one fold; missing lineage blocks fitting.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "reports/experiments/ml_data_foundation_audit_20261014.md",
+        "reports/experiments/ml_data_foundation_preflight_20261014.json",
+        "28 focused provenance/lineage regression tests passed; no model fitting or regeneration.",
+        "Latest rerun including report metadata lineage assertion: 28 passed in 5.35s, tests/test_ml_preflight.py tests/test_full_dataset_provenance.py tests/test_experiment_runner.py tests/test_ml_evaluation_audit.py.",
+        "Final focused rerun including a regression that circuit_lineage_id cannot enter the feature matrix: 29 passed in 5.17s.",
+        "Expanded future source fingerprint includes runtime transitive statistics/localization/package entry and root import dependencies; focused suite 29 passed in 5.88s."
+      ],
+      "resource_requirements": "bounded local unit tests only",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "tests/test_ml_preflight.py",
+        "tests/test_full_dataset_provenance.py",
+        "tests/test_experiment_runner.py",
+        "tests/test_ml_evaluation_audit.py",
+        "reports/experiments/ml_data_foundation_audit_20261014.md"
+      ],
+      "unresolved": "Historical 270-row data omit recipe lineage and remain blocked. Six lineages are insufficient for the proposed independent train/calibration/test claims; new diverse independent families and a power-reviewed sampling frame are required."
+    },
+    {
+      "id": "P2-23-ml-pilot-provenance-leakage-controls",
+      "description": "Build bounded reproducible ML data pilot with separated labels, full provenance, lineage partitioning and fail-closed independent-truth gate",
+      "component": "ML data generation, provenance, leakage controls, validation preparation",
+      "files": [
+        "experiments/export_observable_model.py",
+        "experiments/ml_data_pilot.py",
+        "ml_fallback_training.py",
+        "ml_training.py",
+        "reports/experiments/ml_data_foundation_pilot_20261014_final/",
+        "reports/experiments/ml_feature_eligibility_20261015.md",
+        "reports/experiments/ml_independent_evaluation_protocol_20261014.md",
+        "tests/test_ml_data_pilot.py",
+        "tests/test_ml_fallback.py",
+        "tests/test_ml_training_artifacts.py"
+      ],
+      "classification": "data-integrity engineering and validation preparation",
+      "severity": "high",
+      "priority": "completed",
+      "rationale": "A tiny pilot was needed to verify future data-generation and leakage controls without using historical unverifiable rows, training, full regeneration, or expensive evaluation.",
+      "evidence_and_reproduction": [
+        "The pilot has 9 simulator-derived observations from 3 circuit families and 3 distinct recipe lineages, one 32-shot repetition for each of NORMAL, PROGRAM_FAULT, HARDWARE_ANOMALY per family. Each lineage is assigned intact to one development/calibration/untouched-test bucket only as a partition-integrity smoke check; these 3 roots are not statistically adequate evaluation partitions.",
+        "Manifest captures generator/executor/extractor/validator source hashes, Git HEAD and tracked-worktree status digest, full configuration records and digest, Python implementation/build/version, NumPy, OS/platform, per-run seeds, circuit/family/lineage IDs, artifact hashes, per-run source maps, raw-report digests and deterministic fingerprints.",
+        "Predictors and synthetic scenario labels are separate files; raw diagnostic reports are explicitly internal-only. gate_mismatch_fraction, configured calibration proxies, labels, identifiers and diagnosis-only fields are excluded from predictors. Synthetic labels have 0 independent adjudications and attribution remains unresolved.",
+        "Validator confirms provenance/structure and reports fit_eligible=false; require_fit_eligible() refuses before model fitting while independent labels are absent. Nonempty destination overwrite is rejected.",
+        ".venv/Scripts/python.exe -m pytest tests/test_ml_data_pilot.py tests/test_ml_training_artifacts.py tests/test_ml_preflight.py tests/test_full_dataset_provenance.py tests/test_experiment_runner.py tests/test_ml_evaluation_audit.py -q --tb=short --basetemp .pytest-tmp-ml-pilot-lineage-git-final: 54 passed in 35.52s.",
+        ".venv/Scripts/python.exe -m pytest tests -q --tb=short -k \"not bounded_recipe_comparison_120_templates_and_finite_shot_subset and not independent_calibration_fixture_and_permutation_comparison\" --durations=10 --basetemp .pwb17: 659 passed, 1 unchanged frozen held-out diagnosis failure, 2 deselected (662 collected) in 192.07s.",
+        "System Python bounded full suite: 623 passed, the same sole held-out failure, 4 skipped, 2 deselected. Earlier intermediate long temp path caused a Windows path-length failure; final short-root project-environment rerun passed that recovery test.",
+        ".venv/Scripts/python.exe -m pytest tests/test_ml_data_pilot.py tests/test_ml_training_artifacts.py tests/test_ml_preflight.py tests/test_full_dataset_provenance.py tests/test_experiment_runner.py tests/test_ml_evaluation_audit.py -q --tb=short --basetemp .pytest-tmp-ml-pilot-protocol-final: 55 passed in 39.77s; includes stale configuration and tampered internal report regressions.",
+        ".venv/Scripts/python.exe -m pytest tests -q --tb=short -k \"not bounded_recipe_comparison_120_templates_and_finite_shot_subset and not independent_calibration_fixture_and_permutation_comparison\" --durations=10 --basetemp .pwb18: 660 passed, 1 unchanged frozen held-out failure, 2 deselected (663 collected) in 185.31s."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Deterministic bounded regeneration in fresh directories; exact source/config/runtime/seed/lineage and artifact identity; no-overwrite behavior; observations and labels separated; schema/leakage/duplicate/lineage checks; ambiguous/missing states preserved; source/runtime/schema mismatch rejected; independent truth absence blocks model fitting.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "reports/experiments/ml_data_foundation_pilot_20261014_final/pilot_manifest.json",
+        "reports/experiments/ml_source_compatibility_audit_20261014_pilot_final.json",
+        "reports/experiments/ml_data_foundation_preflight_20261014_pilot_final.json",
+        "reports/experiments/ml_independent_evaluation_protocol_20261014.md",
+        "reports/experiments/ml_data_foundation_audit_20261014.md",
+        "54 focused pilot/provenance/lineage/artifact tests passed; final bounded project run has only the frozen 7/45 diagnosis acceptance failure.",
+        "Exact-current-tree bounded suite: 660 passed, one frozen held-out failure, 2 deselected (663 collected); focused provenance/pilot regression: 55 passed.",
+        "2026-10-15 feature eligibility audit documents the production five-output-observable schema, secondary calibration-only features, and gate_mismatch_fraction as diagnostic leakage ablation only. New regression rejects gate_mismatch_fraction in unreviewed feature schemas. Focused suite: 40 passed in 50.33s; bounded suite: 709 passed, 1 frozen 7/45 failure, 0 skipped, 2 deselected (712 collected; 217.11s).",
+        "2026-10-15 recovery/generalization milestone: row-level table confirms every historical report has no per-run source map or recipe ancestry; zero rows remain eligible. Current source recheck remains seven of nine saved evaluator hashes different, including the updated ML evaluator implementation; no saved score was reproduced."
+      ],
+      "resource_requirements": "9 local simulator runs at 32 shots; bounded local pytest only",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "reports/experiments/ml_data_foundation_pilot_20261014_final/",
+        "reports/experiments/ml_feature_eligibility_20261015.md",
+        "reports/experiments/ml_generalization_recovery_checkpoint_20261015.md",
+        "reports/experiments/ml_historical_record_recovery_20261015.json",
+        "reports/experiments/ml_independent_evaluation_protocol_20261014.md",
+        "tests/test_ml_data_pilot.py",
+        "tests/test_ml_fallback.py",
+        "tests/test_ml_preflight.py",
+        "tests/test_ml_training_artifacts.py"
+      ],
+      "unresolved": "Synthetic construction labels are not independent truth. Independent family sampling frame, blinded adjudicators, class prevalence and cluster/ICC inputs, use-specific acceptance limits, resource cap and independent protocol review are unavailable. No ML fit, generalization, calibration, deployment, benchmark or hardware claim is supported."
+    },
+    {
+      "id": "P2-24-diagnosis-protocol-record-contract",
+      "description": "Fail-closed schema and partition checks for an independent diagnosis evaluation contract.",
+      "component": "research validation / diagnosis evaluation",
+      "files": [
+        "experiments/diagnosis_evaluation_protocol.py",
+        "tests/test_diagnosis_evaluation_protocol.py",
+        "reports/experiments/diagnosis_method_feasibility_design_20261014.md",
+        "reports/experiments/independent_diagnosis_protocol_package_20261015.json"
+      ],
+      "classification": "validation gap",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "A reviewable protocol needs machine checks for observable/adjudicator separation, family isolation, explicit ambiguous labels, and provenance before an independent dataset exists.",
+      "evidence_and_reproduction": [
+        "The validator keeps observable inputs separate from adjudicator-only truth, rejects hidden labels/internal-state fields, checks sample-count totals and required provenance, blocks family/lineage crossing and exact duplicate family fingerprints, and reports missing confirmatory prerequisites without claiming scientific validity.",
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_diagnosis_evaluation_protocol.py tests/test_ml_data_pilot.py tests/test_ml_training_artifacts.py -q --tb=short --basetemp .pytest-tmp-diagnosis-protocol-final2-20261015",
+        "Intermediate outcome: 46 passed in 34.01s across the new protocol contract and existing ML pilot/lineage/artifact guards.",
+        "Initial authoring run: 40 passed, 3 failed in 36.53s due to three incorrect test-message assertions; assertions were corrected and the focused rerun passed.",
+        "Final endpoint-separation rerun: .venv/Scripts/python.exe -m pytest tests/test_diagnosis_evaluation_protocol.py tests/test_ml_data_pilot.py tests/test_ml_training_artifacts.py -q --tb=short --basetemp .pytest-tmp-diagnosis-protocol-final3-20261015; 47 passed in 35.93s.",
+        "Extended experiments/diagnosis_evaluation_protocol.py to require per-case generation ID, source revision, lineage ancestry, circuit/configuration hashes, seed, noise configuration, runtime versions, and reproduction-record hash before confirmatory readiness can be recorded.",
+        "Protocol-declared APPROVED strings and review IDs no longer satisfy independent review. The caller must supply a protocol-bound attestation from an external verifier; the local validator does not authenticate reviewer signatures or certify independence.",
+        "Added machine-readable protocol package reports/experiments/independent_diagnosis_protocol_package_20261015.json, explicitly marking missing sampling frame, truth, reviewer, criteria, power/resource assumptions, and authorization as REQUIRED INPUT / NOT YET APPROVED / BLOCKED.",
+        "Focused protocol/candidate/development-contract suite: 54 passed in 0.82s (2026-10-15). No study data, shots, model fits, or hardware jobs.",
+        "Final bounded repository run: 730 passed, 1 failed, 0 skipped, 2 deselected (733 collected; 222.36s) using .pt2; only failure is the unchanged frozen 7/45 diagnosis acceptance. A preceding longer-basetemp run had an additional Windows path-length failure in the recovery test; isolated short-basetemp rerun passed 1/1."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Structural controls reject missing/incompatible observation provenance and self-attested review approval; protocol content clearly separates local record validation from actual external review, truth quality, study authorization, and scientific validity.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "Command: .venv/Scripts/python.exe -m pytest tests/test_diagnosis_evaluation_protocol.py tests/test_ml_data_pilot.py tests/test_ml_training_artifacts.py -q --tb=short --basetemp .pytest-tmp-diagnosis-protocol-final2-20261015",
+        "Intermediate outcome: 46 passed in 34.01s.",
+        "No full study, detector fit, dependency installation, hardware access, or simulator-method change.",
+        "Final focused rerun after separately gating single-cause attribution and preserving ambiguous/equivalent cases for disposition/abstention: 47 passed in 35.93s.",
+        "Extended experiments/diagnosis_evaluation_protocol.py to require per-case generation ID, source revision, lineage ancestry, circuit/configuration hashes, seed, noise configuration, runtime versions, and reproduction-record hash before confirmatory readiness can be recorded.",
+        "Protocol-declared APPROVED strings and review IDs no longer satisfy independent review. The caller must supply a protocol-bound attestation from an external verifier; the local validator does not authenticate reviewer signatures or certify independence.",
+        "Added machine-readable protocol package reports/experiments/independent_diagnosis_protocol_package_20261015.json, explicitly marking missing sampling frame, truth, reviewer, criteria, power/resource assumptions, and authorization as REQUIRED INPUT / NOT YET APPROVED / BLOCKED.",
+        "Focused protocol/candidate/development-contract suite: 54 passed in 0.82s (2026-10-15). No study data, shots, model fits, or hardware jobs.",
+        "Final bounded repository run: 730 passed, 1 failed, 0 skipped, 2 deselected (733 collected; 222.36s) using .pt2; only failure is the unchanged frozen 7/45 diagnosis acceptance. A preceding longer-basetemp run had an additional Windows path-length failure in the recovery test; isolated short-basetemp rerun passed 1/1."
+      ],
+      "resource_requirements": "bounded local tests only",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "tests/test_diagnosis_evaluation_protocol.py",
+        "reports/experiments/diagnosis_method_feasibility_design_20261014.md",
+        "reports/experiments/independent_diagnosis_protocol_package_20261015.json"
+      ],
+      "unresolved": "An external trust-policy verifier must validate a real protocol-bound reviewer attestation. Independent frame reconciliation, blinded adjudicators, frozen use-specific criteria, family-level power/resource assumptions, and separate execution authorization remain unavailable."
+    },
+    {
+      "id": "P2-25-ml-historical-record-provenance-recovery",
+      "description": "Produce a bounded row-level recovery table that separates directly preserved historical metadata from missing generator provenance and adjudication.",
+      "component": "ML data integrity and historical evidence",
+      "files": [
+        "experiments/ml_provenance_recovery.py",
+        "reports/experiments/ml_generalization_recovery_checkpoint_20261015.md",
+        "reports/experiments/ml_historical_record_recovery_20261015.json",
+        "reports/experiments/ml_historical_record_recovery_20261015_v2.json",
+        "tests/test_ml_provenance_recovery.py"
+      ],
+      "classification": "provenance recovery and eligibility evidence",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "The aggregate preflight did not enumerate row-level recoverable fields or explain whether seeds/configurations could recover exact historical generator ancestry.",
+      "evidence_and_reproduction": [
+        "Bounded direct-field audit reconciles all 270 run JSON reports to the manifest (3,765,323 report bytes; 270 unique run IDs; 30 nominal families; 90 rows/class).",
+        "Per-row saved report SHA-256 and canonical hashes of saved configuration/circuit fields establish only current saved-byte integrity; they are explicitly not treated as generator provenance.",
+        "Every row lacks per-run source SHA-256 and circuit recipe ancestry; manifest lacks generation_provenance; independent adjudications=0 and real hardware rows=0.",
+        "Recovery table rebuild matches all 270 current records exactly. tests/test_ml_provenance_recovery.py: 3 focused tests passed; the broader ML-focused suite passed 41 tests."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Row-level table reports known/missing fields and source evidence; current-file hashes are distinguished from historical generator provenance; caps and manifest/report count mismatches fail closed; no row is promoted to scientific eligibility by inference.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "reports/experiments/ml_historical_record_recovery_20261015.json",
+        "reports/experiments/ml_generalization_recovery_checkpoint_20261015.md",
+        "Exact record-table rebuild comparison: 270/270 records identical.",
+        "Recovery table schema v2 adds per-field recorded/inferred/missing/computed status and was written as a new file, preserving the earlier table. Exact rebuild check matches the saved v2 artifact and all 270 rows."
+      ],
+      "resource_requirements": "3.77 MB historical reports read under a 64 MiB cap; no fitting.",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "tests/test_ml_provenance_recovery.py",
+        "reports/experiments/ml_data_foundation_preflight_20261015.json",
+        "reports/experiments/ml_source_compatibility_audit_20261015.json"
+      ],
+      "unresolved": "All historical rows remain ineligible for training, model selection, calibration and held-out evaluation; source versions cannot be inferred from current code."
+    },
+    {
+      "id": "P2-26-ml-family-evaluation-and-comparison-guards",
+      "description": "Advance leakage-safe ML evaluation infrastructure with registered feature schemas, three-way family splits, fixed baselines, cluster uncertainty, and non-overwriting outputs.",
+      "component": "ML evaluation, split integrity and reproducibility",
+      "files": [
+        "ml_results/grouped_cv_audit_v1/",
+        "ml_results/grouped_cv_audit_v2/",
+        "ml_training.py",
+        "reports/experiments/ml_generalization_recovery_checkpoint_20261015.md",
+        "reports/experiments/ml_historical_record_recovery_20261015_v2.json",
+        "tests/test_ml_training_artifacts.py"
+      ],
+      "classification": "evaluation integrity and resource-safety improvement",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "The existing fixed grouped-CV comparison lacked dummy baselines, a three-way train/calibration/test structural validator, family-cluster intervals, and strict inference schema registration for the circuit-comparison ablation.",
+      "evidence_and_reproduction": [
+        "Primary matrix defaults to the five registered output observables; calibration and circuit-comparison ablations must be selected by exact registered schema name; label/post-outcome fields remain forbidden.",
+        "Comparison catalog includes majority/stratified dummy baselines, Logistic Regression, fixed scaled Linear SVM, Decision Tree and Random Forest. Random Forest and permutation-importance worker count is capped at one; no hyperparameter selection is performed.",
+        "Three-way partition utility rejects missing/duplicated/invalid row assignment, invalid labels/IDs, exact circuit fingerprints across independent roots, and family/lineage crossover.",
+        "Deterministic lineage-cluster bootstrap reports percentile intervals for accuracy and, only where all requested replicates support every class, macro-F1, balanced accuracy and per-class precision/recall/F1.",
+        "Evaluation manifests declare synthetic-only label origin and explicitly deny independent-generalization and real-hardware claims. New output path is v3 and refuses nonempty destinations before loading/fitting; v1/v2 evidence is preserved.",
+        "Focused recovery/evaluation/preflight/fallback suite: 41 passed in 10.52s. Final bounded repository suite: 719 passed, 1 unchanged frozen 7/45 failure, 0 skipped, 2 deselected (722 collected; 216.10s)."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Small software fixtures verify feature schema, partition/family/lineage separation, deterministic cluster bootstrap, class-support withholding, model catalog, resource worker caps, synthetic evidence scope, and output preservation; no ineligible production data is fitted.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "tests/test_ml_training_artifacts.py",
+        "reports/experiments/ml_generalization_recovery_checkpoint_20261015.md",
+        "Final bounded suite result recorded in current_tree_routine_suite.",
+        "Final bounded repository rerun after all changes: 719 passed, the sole failure remains frozen diagnosis acceptance (7/45), 0 skipped, 2 deselected (722 collected; 219.00s)."
+      ],
+      "resource_requirements": "bounded fixture tests and test suite only; no model fit on project dataset.",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "tests/test_ml_training_artifacts.py",
+        "tests/test_ml_preflight.py",
+        "reports/experiments/ml_feature_eligibility_20261015.md"
+      ],
+      "unresolved": "No primary performance or family-level scientific uncertainty estimate is available until eligible independent families and labels are supplied. The cluster bootstrap helper does not provide power or sample-size evidence."
+    },
+    {
+      "id": "P1-4-ml-independent-adjudication-ingestion",
+      "description": "Define and implement the fail-closed ingestion boundary that joins separately adjudicated truth to provenance-complete observable records without importing synthetic scenario labels.",
+      "component": "ML data ingestion and independent truth",
+      "files": [
+        "ml_evaluation.py",
+        "ml_training.py",
+        "experiments/diagnosis_evaluation_protocol.py",
+        "reports/experiments/ml_generalization_recovery_checkpoint_20261015.md"
+      ],
+      "classification": "research-to-engineering integration gap",
+      "severity": "high",
+      "priority": "blocked",
+      "rationale": "The current loader/preflight intentionally accepts only controlled synthetic validation metadata. No separate independently adjudicated label source exists locally, and marking labels independent based on a self-declared manifest would overstate truth independence.",
+      "evidence_and_reproduction": [
+        "Current strict preflight requires validation_label=SYNTHETIC_VALIDATION and simulator execution metadata; the ML loader reads scenario-construction labels from simulator reports.",
+        "The diagnosis evaluation protocol keeps observation fields separate from adjudicator-only labels but is not integrated as an independent-label source for ML fitting.",
+        "The historical 270-row reports and nine-row pilot contain zero independent adjudications; QMutBench is a separate mutant/original task with a local-versus-manifest source CSV hash mismatch."
+      ],
+      "dependencies": [
+        "independent reviewers define and approve adjudication record schema and blinding/evidence rules",
+        "provenance-complete independent observation dataset with family/recipe roots and stable observation fingerprints"
+      ],
+      "acceptance_criteria": "Separate truth records are joined by immutable observation identity; adjudication provenance and disagreements are explicit; truth never enters predictor features; synthetic, independently adjudicated simulator, and real-hardware scopes remain distinct; missing/conflicting source data fail closed before fitting.",
+      "implementation_status": "blocked",
+      "validation_evidence": [
+        "Current loader/preflight is synthetic-only and blocks absent/incomplete provenance; no independent labels were found locally.",
+        "Design and exact missing fields are recorded in reports/experiments/ml_generalization_recovery_checkpoint_20261015.md."
+      ],
+      "resource_requirements": "schema review and bounded fixture tests after protocol and example records are supplied",
+      "approval_dependency": "Independent adjudication protocol and reviewer approval; no external truth source currently available.",
+      "related_tests_and_reports": [
+        "tests/test_diagnosis_evaluation_protocol.py",
+        "tests/test_ml_preflight.py",
+        "reports/experiments/ml_generalization_recovery_checkpoint_20261015.md"
+      ],
+      "unresolved": "No integration code can be scientifically validated until the external adjudication protocol, fields, and independent example labels are specified; do not relabel synthetic outputs as independent."
+    },
+    {
+      "id": "P2-27-equivalent-program-diff-abstention",
+      "description": "Keep syntactic source localization separate from behavioral program-fault attribution when observed outputs match.",
+      "component": "diagnosis decision path and ML diagnosis integration",
+      "files": [
+        "src/quantum_simulator/diagnosis_engine.py",
+        "src/quantum_simulator/ml_diagnosis.py",
+        "ml_training.py",
+        "tests/test_diagnosis_engine.py",
+        "tests/test_ml_diagnosis_integration.py",
+        "tests/test_ml_training_artifacts.py"
+      ],
+      "classification": "diagnosis correctness and evaluation integrity",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "An independently available equivalence fixture established that the direct diagnosis_execution path and ML caller could promote source-operation difference despite an unchanged observed distribution; the CV entry point also validated folds only after fitting while building outputs.",
+      "evidence_and_reproduction": [
+        "Changed direct diagnosis execution to retain program-localization candidates but abstain on behavioral attribution when observed distributions match; mixed evidence remains ambiguous.",
+        "ML integration now does not convert a program classifier output plus syntactic diff into a behavioral fault when the diagnosis reports no distribution anomaly. The uncalibrated backend is still unavailable by default; no confidence calibration claim is made.",
+        "Main grouped evaluation now validates all outer family/lineage folds before constructing estimators or fitting. Regression supplies a deliberately family-leaking split and proves rejection before model construction.",
+        "Focused command: .venv/Scripts/python.exe -m pytest tests/test_diagnosis_engine.py tests/test_ml_diagnosis_integration.py tests/test_ml_training_artifacts.py tests/test_ml_preflight.py tests/test_ml_fallback.py -q --tb=short --basetemp .pytest-tmp-ml-diagnosis-final4",
+        "Focused result: 92 passed in 13.72s.",
+        "Bounded suite: 722 passed, 1 failed, 0 skipped, 2 deselected (725 collected; 224.68s). The sole failure remains the unchanged frozen 45-case diagnosis acceptance, whose 7/45 outcomes still disagree; no thresholds or expectations changed.",
+        "Final-tree focused rerun after explicit uncalibrated-probability manifest guard: 92 passed in 16.89s. Final bounded suite: 722 passed, one frozen 7/45 failure, 0 skipped, 2 deselected (725 collected; 221.49s)."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Equivalent source-level circuit differences with unchanged output distributions retain localization evidence and abstain on behavioral cause; family/lineage-crossing evaluation folds fail before any estimator is constructed or fitted.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "tests/test_diagnosis_engine.py::test_execution_api_does_not_promote_syntactic_diff_to_behavioral_fault",
+        "tests/test_ml_diagnosis_integration.py::test_program_prediction_abstains_when_source_diff_has_no_observed_effect",
+        "tests/test_ml_training_artifacts.py::test_main_rejects_family_leaking_outer_fold_before_building_models",
+        "Focused suite passed 92 tests; full bounded suite passed 722 and retained the single frozen 7/45 acceptance failure.",
+        "Final-tree validation: focused 92 passed; bounded suite 722 passed with only the unchanged frozen diagnosis acceptance failing 7/45."
+      ],
+      "resource_requirements": "bounded local unit and repository tests only; no eligible ML data required",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "reports/experiments/heldout_diagnosis_root_cause_20261014.json",
+        "reports/experiments/diagnosis_method_feasibility_design_20261014.md",
+        "reports/experiments/ml_feature_eligibility_20261015.md"
+      ],
+      "unresolved": "The unchanged finite-shot and held-out acceptance gates remain failed; the fix establishes conservative behavior for identical observed distributions and is not an accuracy or research-validity result."
+    },
+    {
+      "id": "P2-28-diagnosis-evidence-reconciliation",
+      "description": "Build deterministic, resource-bounded reconciliation of persisted diagnosis lineage and recovery evidence.",
+      "component": "diagnosis research provenance",
+      "files": [
+        "experiments/diagnosis_evidence_gates.py",
+        "tests/test_diagnosis_evidence_gates.py",
+        "reports/experiments/diagnosis_sampling_frame_reconciliation_20261015.json"
+      ],
+      "classification": "provenance validation gap",
+      "severity": "high",
+      "priority": "completed",
+      "rationale": "The persisted frame and inventory contain incomplete, conflicting lineage evidence and need an evidence-linked disposition without a new unbounded scan.",
+      "evidence_and_reproduction": [
+        "Utility consumes existing inventory/frame/recovery manifests; it performs no new discovery and enforces existing file/count/byte caps.",
+        "The deterministic report links candidate roots and recovered family rows to captured/current evidence hashes, distinguishes direct/inferred/missing/conflicting/externally attested status, and never promotes inferred evidence.",
+        "Report: reports/experiments/diagnosis_sampling_frame_reconciliation_20261015.json; 6 candidate roots, 3 conflicted, 3 source-inferred, 30 nominal recovered family IDs / 270 rows, zero eligible independent families.",
+        "Focused suite: tests/test_diagnosis_evidence_gates.py tests/test_diagnosis_development_study.py tests/test_diagnosis_evaluation_protocol.py; 64 passed in 3.32s.",
+        "Final bounded repository suite: 747 passed, 1 failed, 0 skipped, 2 deselected (750 collected; 226.33s); sole failure is the unchanged frozen diagnosis acceptance at 7/45. The two finite-shot NO-GO tests remain deselected."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Deterministic evidence-linked report; current-byte changes, unknown lineage, duplicates, conflicts, scan incompleteness and absent external attestation remain visible; no unsupported family is eligible.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "Determinism regression compares complete report objects.",
+        "Synthetic contract test proves a complete directly evidenced family can be eligible only with externally verified inventory/frame inputs; stale generator hash is rejected.",
+        "Current persisted report records zero eligible independent families.",
+        "Final bounded repository suite: 747 passed, 1 failed, 0 skipped, 2 deselected (750 collected; 226.33s); sole failure is the unchanged frozen diagnosis acceptance at 7/45. The two finite-shot NO-GO tests remain deselected."
+      ],
+      "resource_requirements": "bounded read-only validation; reuses persisted inventory; <=20,000 referenced evidence files, <=128 MiB evidence bytes, <=1,000 recovery rows, <=64 MiB recovery report bytes, <=25 MiB per file",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "tests/test_diagnosis_evidence_gates.py",
+        "tests/test_diagnosis_development_study.py",
+        "reports/experiments/diagnosis_sampling_frame_reconciliation_20261015.json"
+      ],
+      "unresolved": "External inventory completeness/source-lineage reconciliation and fresh independent families are absent; the current inventory remains truncated and its frame is empty."
+    },
+    {
+      "id": "P2-29-independent-adjudication-preflight-gate",
+      "description": "Define privacy-aware blinded adjudication evidence and connect all external evidence gates to confirmatory study preflight.",
+      "component": "diagnosis research validation",
+      "files": [
+        "experiments/diagnosis_evidence_gates.py",
+        "experiments/diagnosis_development_study.py",
+        "experiments/diagnosis_evaluation_protocol.py",
+        "tests/test_diagnosis_evidence_gates.py",
+        "tests/test_diagnosis_evaluation_protocol.py"
+      ],
+      "classification": "fail-closed research validation contract",
+      "severity": "high",
+      "priority": "completed",
+      "rationale": "The earlier record contract was not sufficient to prevent self-asserted adjudicator independence or to tie the selected family frame to the three confirmatory partitions.",
+      "evidence_and_reproduction": [
+        "Added version/hash-bound case records with immutable evidence references, opaque adjudicator tokens, separate blinded judgments, explicit program/hardware/equivalence/no-change/insufficient/unresolved dispositions, and evidence-backed disagreement resolution.",
+        "Self-declared reviewer independence/blinding, simulator labels, scenario/mutation names, system predictions, raw reviewer identities, duplicate executions, repeated family roots, and frame-to-partition lineage mismatch are rejected or block readiness.",
+        "Each per-case protocol provenance record now requires source/generation/lineage/configuration/seed/noise/runtime/reproduction and explicit execution provenance.",
+        "audit_confirmatory_study_preflight requires externally verified inventory/frame/review/adjudicator attestations plus complete use criteria/power/resource protocol inputs; the current supplied state remains BLOCKED.",
+        "Focused suite: 64 passed in 3.32s; no external attestation/adjudication was created.",
+        "Final bounded repository suite: 747 passed, 1 failed, 0 skipped, 2 deselected (750 collected; 226.33s); sole failure is the unchanged frozen diagnosis acceptance at 7/45. The two finite-shot NO-GO tests remain deselected."
+      ],
+      "dependencies": [
+        "external identity/blinding/independence trust verifier",
+        "complete reconciled family frame",
+        "independent blinded adjudication records",
+        "protocol-bound external review",
+        "use-specific criteria and family-level power/resource assumptions"
+      ],
+      "acceptance_criteria": "Preflight is ready only when every hash-bound external evidence gate passes, all required cases have independently adjudicated evidence, and exact family roots map to train/calibration/test without overlap.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "Tests cover missing evidence, conflicting/unresolved and resolved judgments, invalid protocol binding, self-attested independence, raw identities, synthetic labels, repeated family executions, provenance mismatch, and train/calibration/test frame mapping.",
+        "The existing independent protocol tests continue to verify exact family/lineage partition separation and externally verified protocol review.",
+        "No external review or confirmatory study was performed.",
+        "Final bounded repository suite: 747 passed, 1 failed, 0 skipped, 2 deselected (750 collected; 226.33s); sole failure is the unchanged frozen diagnosis acceptance at 7/45. The two finite-shot NO-GO tests remain deselected."
+      ],
+      "resource_requirements": "bounded local validator tests only",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "tests/test_diagnosis_evidence_gates.py",
+        "tests/test_diagnosis_evaluation_protocol.py",
+        "reports/experiments/independent_diagnosis_protocol_package_20261015.json"
+      ],
+      "unresolved": "Local validators cannot authenticate signatures or verify the external trust service. Real reviewer attestations, blinded adjudication, complete families, and execution authorization are absent."
+    },
+    {
+      "id": "P2-30-hash-bound-conflict-review-ledger",
+      "description": "Provide resumable, evidence-linked review records for individual provenance conflicts without auto-resolving lineage.",
+      "component": "diagnosis research provenance reconciliation",
+      "files": [
+        "experiments/diagnosis_evidence_gates.py",
+        "tests/test_diagnosis_evidence_gates.py"
+      ],
+      "classification": "fail-closed evidence review tooling",
+      "severity": "high",
+      "priority": "completed",
+      "rationale": "The reconciliation report exposed conflicts but had no safe way to carry individual custodian reviews into a deterministic rerun.",
+      "evidence_and_reproduction": [
+        "Added a conflict ledger keyed by SHA-256 of the exact inventory conflict; entries require an opaque reviewer token, rationale, and stable SHA-256 evidence references.",
+        "Stale/unknown and duplicate conflict reviews are rejected. Local classifications remain reviewer assessments; conflicts stay unresolved, and EXTERNALLY_ATTESTED requires a matching externally verified attestation at the trust boundary.",
+        "CLI accepts an optional review JSON with --reviews and still refuses to overwrite outputs.",
+        "Focused command: .venv/Scripts/python.exe -m pytest tests/test_diagnosis_evidence_gates.py -q --tb=short --basetemp .pytest-tmp-conflict-review-ledger; 21 passed in 2.78s.",
+        "Bounded suite: .venv/Scripts/python.exe -m pytest tests -q --tb=short -k \"not bounded_recipe_comparison_120_templates_and_finite_shot_subset and not independent_calibration_fixture_and_permutation_comparison\" --basetemp .t4; 752 passed, 1 unchanged frozen 7/45 failure, 0 skipped, 2 deselected (755 collected; 232.80s)."
+      ],
+      "dependencies": [
+        "independent evidence custodian",
+        "external trust verifier for any externally attested classification"
+      ],
+      "acceptance_criteria": "Reviews are deterministic and bound to exact conflicts; missing/stale evidence cannot be promoted, duplicate content remains non-independent, and no reviewer note alone resolves source lineage.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "Focused conflict review gate tests pass, including stale IDs, malformed evidence, duplicate reviews, deterministic resume, and external-attestation boundary.",
+        "The bounded suite retains only the known frozen diagnosis acceptance failure; the two registered finite-shot NO-GO tests remain deselected."
+      ],
+      "resource_requirements": "bounded local validation only",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "tests/test_diagnosis_evidence_gates.py",
+        "reports/experiments/diagnosis_sampling_frame_reconciliation_20261015.json"
+      ],
+      "unresolved": "The current inventory remains incomplete/truncated and no external reconciliation, attestation, or independent family is available."
+    },
+    {
+      "id": "P0-9-distribution-input-integrity",
+      "description": "Reject invalid probability/count inputs and normalize finite observations without overflow before diagnosis.",
+      "component": "statistics and diagnosis observation boundary",
+      "files": [
+        "src/quantum_simulator/statistics.py",
+        "tests/test_statistics.py",
+        "tests/test_diagnosis_engine.py"
+      ],
+      "classification": "correctness defect",
+      "severity": "high",
+      "priority": "completed",
+      "rationale": "NaN distribution values could propagate NaN metrics, for which the anomaly comparison returned false; sequence values were not checked for negativity or non-finiteness.",
+      "evidence_and_reproduction": [
+        "Mappings and sequences now reject negative, Boolean, and non-finite values; threshold/shot inputs reject invalid values; ambiguous stringified outcome keys and multidimensional arrays fail closed.",
+        "Stable max-scaled normalization handles very large finite values without overflow.",
+        "Regression confirms a NaN observed distribution cannot produce a no-anomaly diagnosis.",
+        "Focused command: .venv/Scripts/python.exe -m pytest tests/test_statistics.py tests/test_noise_model_validation.py tests/test_hardware.py tests/test_simulator.py tests/test_diagnosis_engine.py tests/test_ml_diagnosis_integration.py -q --tb=short --basetemp .t6; 149 passed in 4.45s."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Invalid or numerically unsafe observations raise explicit validation errors; valid finite nonnegative observations produce finite normalized distributions and deterministic comparison results.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "Focused statistics/simulator/noise/diagnosis/ML-boundary suite: 149 passed in 4.45s.",
+        "Final bounded repository suite retains the known frozen diagnosis mismatch only; both registered finite-shot NO-GO tests remain deselected."
+      ],
+      "resource_requirements": "small deterministic local tests only",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "tests/test_statistics.py",
+        "tests/test_diagnosis_engine.py",
+        "tests/test_ml_diagnosis_integration.py"
+      ],
+      "unresolved": "No new scientific accuracy, calibration, or hardware validity claim follows from input-validation tests."
+    },
+    {
+      "id": "P0-10-generic-calibration-provenance-and-age-policy",
+      "description": "Separate generic calibration acquisition provenance from snapshot creation time and gate causal use on caller-supplied freshness policies.",
+      "component": "hardware model and integrated diagnosis",
+      "files": [
+        "src/quantum_simulator/hardware_model.py",
+        "src/quantum_simulator/diagnosis_engine.py",
+        "tests/test_hardware.py",
+        "tests/test_diagnosis_engine.py",
+        "README.md"
+      ],
+      "classification": "correctness contract",
+      "severity": "medium",
+      "priority": "completed",
+      "rationale": "The generic model previously populated missing acquisition timestamps with current time, conflating age with construction/snapshot time; diagnosis had no explicit freshness policy boundary.",
+      "evidence_and_reproduction": [
+        "Snapshots now preserve timestamp provenance separately from created_at and support JSON-compatible to_dict/from_dict roundtrips.",
+        "Freshness helper recognizes reported, synthetic, and unknown provenance; requires timezone-aware timestamps and only returns FRESH/STALE under an explicit positive max-age policy.",
+        "Generic diagnosis excludes reported calibration candidates from causal attribution when an explicit age policy does not establish freshness; synthetic-config remains a simulator fixture. IBM preflight remains separate.",
+        "Focused command: .venv/Scripts/python.exe -m pytest tests/test_hardware.py tests/test_diagnosis_engine.py tests/test_ibm_validation.py -q --tb=short --basetemp .tcfocus; 109 passed in 2.74s.",
+        "Final bounded command: .venv/Scripts/python.exe -m pytest tests -q --tb=short -k \"not bounded_recipe_comparison_120_templates_and_finite_shot_subset and not independent_calibration_fixture_and_permutation_comparison\" --basetemp .tcp3; 794 passed, 1 unchanged frozen failure, 0 skipped, 2 deselected (797 collected; 227.40s)."
+      ],
+      "dependencies": [],
+      "acceptance_criteria": "Acquisition time, provenance, and snapshot creation time are distinct; freshness is caller-policy-specific; unknown, stale, invalid, timezone-ambiguous, and future reported timestamps cannot support current hardware attribution; synthetic configuration remains explicit.",
+      "implementation_status": "verified",
+      "validation_evidence": [
+        "Focused suite: 109 passed.",
+        "Final short-path bounded suite: 794 passed, one unchanged frozen 7/45 diagnosis failure, zero skipped, two finite-shot NO-GO tests deselected."
+      ],
+      "resource_requirements": "small deterministic local tests only",
+      "approval_dependency": null,
+      "related_tests_and_reports": [
+        "tests/test_hardware.py",
+        "tests/test_diagnosis_engine.py",
+        "tests/test_ibm_validation.py",
+        "README.md"
+      ],
+      "unresolved": "Reported timestamps are not independently authenticated; the generic model has no universal maximum-age policy and makes no physical-hardware validity claim."
+    }
+  ],
+  "status_vocabulary": [
+    "discovered",
+    "ready",
+    "in_progress",
+    "blocked",
+    "implemented",
+    "verified",
+    "rejected_with_evidence",
+    "deferred_with_reason"
+  ],
+  "notes": [
+    "Existing modifications and generated artifacts were preserved.",
+    "No full QMutBench campaign, expensive training, dependency installation, or real-hardware job was initiated.",
+    "2026-10-14: Added a forensic root-cause record for the seven held-out diagnosis mismatches and refreshed the ML live-source hash snapshot without overwriting the earlier audit. No held-out criteria, thresholds, labels or splits changed.",
+    "2026-10-14: Clean Python 3.12.10 editable install succeeded after approved dependency download. Routine suite reproduced the unchanged held-out failure; optional Qiskit oracle suite is not in declared dependencies and is a documented clean-env coverage gap.",
+    "2026-10-14: Current README and completion claims reconciled; older finalization/research documents retain historical date/source state, including a stale API statement and premature finalize verdict. See project_claims_reconciliation_20261014.md.",
+    "2026-10-14 continuation: diagnosis feasibility design, ML row-level source provenance defect, and Qiskit optional-oracle dependency contract were added. The registered no-go and held-out acceptance failure remain unchanged; final suite rerun pending.",
+    "2026-10-14 continuation: fixed and tested relative report-directory handling discovered by bounded ML preflight; live evaluation source compatibility now records this fourth source delta separately from the three prior implementation differences.",
+    "Final short-path repository regression after all source/test changes: 642 passed, one frozen held-out acceptance failure, two calibration campaign comparisons deselected. Long Windows pytest basetemp path caused four temporary-directory failures in an earlier run; rerun with short path resolved them.",
+    "2026-10-14 final review discovered that the full-dataset generator manifest also lacked source/runtime identity. Future manifests now record a scoped hash map and Python/NumPy versions; historical manifest/data remain untouched. Final short-path repository suite after this change: 644 passed, one frozen held-out failure, two deselected (647 collected).",
+    "Final run after dataset manifest provenance code and tests: 644 passed, one unchanged held-out acceptance failure, two registered finite-shot comparisons deselected in 154.36s; collected 647 items. This supersedes earlier 642-pass checkpoint. All code changes are included.",
+    "2026-10-14 final release review: reconciled the prior hardware readiness report with current layout/freshness fixture guards; added explicit optional IBM extra/install/test instructions and one verified backlog task. Live backend name and authorization remain external prerequisites.",
+    "Final bounded current-tree run after IBM dependency/test documentation: 645 passed, 1 frozen held-out failure, 2 deselected (648 collected). The additional pass is the IBM optional-extra metadata test. Final result supersedes prior 644/647 checkpoint.",
+    "Final backlog reconciliation found and fixed an ML fail-open gap: preflight now requires current generator, manifest, and row source provenance; historical dataset fails closed. P2-18 is verified against its future-only acceptance; historical incompatibility remains tracked in P2-9/P2-15. Added P2-20 for the verified guard.",
+    "Latest release-final full bounded suite after ML fail-closed provenance checks: 648 passed, one frozen held-out acceptance failure, two deselected (651 collected, 140.45s). The exact source audit records six of nine saved evaluation hashes changed. Future-only manifest task P2-18 is verified; P2-20 closes the training preflight fail-open defect.",
+    "Final rerun supersedes previous 140.45-second duration: same 648 passed, 1 frozen held-out failure, 2 deselected; 651 collected in 151.10s after exact Python/NumPy runtime check.",
+    "2026-10-14 ML foundation continuation: source-hash history was reconciled, the current synthetic recipe-lineage leakage risk was closed for future data, and old rows without provenance/lineage remain blocked. See ml_data_foundation_audit_20261014.md. Historical dataset and saved evaluation artifacts are unchanged.",
+    "2026-10-15 post-pilot blocker closure: reconciled summary counts against all 39 task records (25 verified, 6 partial, 6 blocked, 2 deferred); the stale top-level verified count of 24 is corrected. Post-pilot focused integration suite: 344 passed. Existing v3 nine-run pilot manifest revalidated as provenance/structure-valid and fitting-ineligible. Fresh bounded repository run: 660 passed, one unchanged frozen 7/45 diagnosis acceptance failure, two NO-GO finite-shot tests deselected (663 collected, 179.93s). No new diagnosis forensic investigation, criteria change, fitting, full benchmark, dependency install, or hardware job.",
+    "2026-10-15 final evidence closure: performed the requested single bounded repository run; 660 passed, 1 frozen 7/45 held-out failure, 0 skipped, 2 NO-GO finite-shot tests deselected (663 collected; 168.65s). Reconciled stale current-tree counts/hash references in the completion report and claim table. Backlog task records, summary, checkpoint and status reconcile at 39 total: 25 verified, 6 partial, 6 blocked, 2 deferred. No new local defect was demonstrated.",
+    "2026-10-15 research milestone: added P2-24, a verified standard-library contract validator and focused tests for blinded observable/adjudicator records, exact family/lineage split isolation, explicit ambiguity, count consistency, provenance and confirmatory blockers. Focused suite: 46 passed in 34.01s after correcting three test assertion messages from an initial 40-passed/3-failed authoring run. No detector implementation or frozen acceptance changed; no full study or post-addition full repository suite was run.",
+    "Final protocol validator rerun after adding a distinct single_cause_attribution endpoint: 47 passed in 35.93s. Ambiguous/equivalent test cases remain eligible for disposition/abstention outcomes and cannot satisfy a required single-cause endpoint.",
+    "2026-10-15 ML evaluation and diagnosis milestone: added a narrowly scoped abstention fix for source-only differences without observed behavioral change and moved family/lineage fold validation ahead of estimator construction. Focused suite 92 passed; bounded suite 722 passed, 1 frozen 7/45 diagnosis failure, 0 skipped and 2 NO-GO tests deselected (725 collected). No ML fitting, study, installation, benchmark campaign, or hardware execution.",
+    "2026-10-15: Individual inventory conflicts can now carry hash-bound custodian notes across reruns; external verification is still required for externally attested status and no conflict is auto-resolved.",
+    "2026-10-15 simulator correctness milestone: finite calibration times/durations and observation distributions now fail closed on invalid numerics; hardware gate defaults now apply consistently and survive snapshot roundtrip. No research claim changed."
+  ],
+  "current_tree_routine_suite": {
+    "date": "2026-10-15",
+    "collected": 797,
+    "passed": 794,
+    "failed": 1,
+    "skipped": 0,
+    "deselected": 2,
+    "duration_seconds": 227.4,
+    "command": ".venv/Scripts/python.exe -m pytest tests -q --tb=short -k \"not bounded_recipe_comparison_120_templates_and_finite_shot_subset and not independent_calibration_fixture_and_permutation_comparison\" --basetemp .tcp3",
+    "failure": "tests/test_reference_diagnosis_generalization.py::test_heldout_generalization_outcomes_and_targets (unchanged frozen 7/45 diagnosis acceptance failure)",
+    "preserved_acceptance": "No expected result, threshold, label or criterion changed. The two registered finite-shot NO-GO tests remain deselected.",
+    "scope_note": "Final bounded short-path run after generic calibration provenance/freshness contract, explicit unknown-provenance diagnosis guard, and snapshot JSON roundtrip tests. Focused hardware/diagnosis/IBM preflight suite: 109 passed. The earlier long basetemp attempt failed an unrelated Windows temp-path setup test; short-path run had no such setup failure. Both finite-shot NO-GO tests remained deselected; frozen expectations and threshold were untouched."
+  },
+  "clean_environment_validation": {
+    "python": "3.12.10",
+    "install_command": ".pwb-clean-env-20261014/Scripts/python.exe -m pip install -e \".[dev]\"",
+    "pip_check": "No broken requirements found",
+    "suite_result": "604 passed, 1 failed, 4 skipped, 2 deselected in 149.78s",
+    "known_failure": "tests/test_reference_diagnosis_generalization.py::test_heldout_generalization_outcomes_and_targets",
+    "optional_dependency_gap": "The environment was created without the optional oracle extra before it was declared; its no-Qiskit skip behavior is expected. Combined clean gate/oracle subset passed 37 tests with 4 optional skips; environment was not changed."
+  },
+  "resource_profile_followup": {
+    "artifact": "reports/experiments/resource_envelope_profile_20261014_checkpoint2.json",
+    "widths": [
+      19,
+      20
+    ],
+    "stop_reason": "Available memory fell below the 512 MiB stop floor after width 20; no larger width was run."
+  },
+  "status_counts": {
+    "verified": 34,
+    "partial": 6,
+    "blocked": 7,
+    "deferred_with_reason": 2
+  },
+  "severity_counts": {
+    "critical": 1,
+    "high": 15,
+    "medium": 28,
+    "low": 1
+  },
+  "continuation_checkpoint": {
+    "date": "2026-10-15",
+    "pilot": "reports/experiments/ml_data_foundation_pilot_20261014_final/pilot_manifest.json",
+    "focused_validation": "344 passed in 69.10s",
+    "bounded_project_validation": "660 passed, 1 failed, 0 skipped, 2 deselected (663 collected) in 168.65s",
+    "task_counts": {
+      "total": 40,
+      "verified": 26,
+      "partial": 6,
+      "blocked": 6,
+      "deferred_with_reason": 2
+    },
+    "disposition": "Research protocol and fail-closed record contract are prepared; candidate remains unvalidated and external independent review/truth/power inputs block confirmatory study.",
+    "focused_command": ".venv/Scripts/python.exe -m pytest tests/test_gate_reference_qiskit.py tests/test_gate_correctness.py tests/test_gates.py tests/test_simulator.py tests/test_measurement_reset_semantics.py tests/test_noise_model_validation.py tests/test_noise_channel_reference.py tests/test_local_package_import.py tests/test_quantum_circuit.py tests/test_experiment_runner.py tests/test_full_dataset_provenance.py tests/test_ml_data_pilot.py tests/test_ml_training_artifacts.py tests/test_ml_preflight.py tests/test_ml_evaluation_audit.py tests/test_ibm_validation.py tests/test_qmutbench_validation.py tests/test_qmutbench_ml_pipeline_resume.py tests/test_full_benchmark_runner_checkpoint.py tests/test_phase5_model.py tests/test_observable_model_adapter.py -q --tb=short --basetemp .pytest-tmp-postpilot-focused-20261015",
+    "pilot_manifest_revalidation": "provenance_valid=true; structurally_valid=true; 9 observations and 9 labels; 3 families and 3 lineages; 0 near-duplicate family pairs; fit_eligible=false; independent adjudications=0.",
+    "bounded_project_command": ".venv/Scripts/python.exe -m pytest tests -q --tb=short -k \"not bounded_recipe_comparison_120_templates_and_finite_shot_subset and not independent_calibration_fixture_and_permutation_comparison\" --durations=10 --basetemp .pwb-ddv15",
+    "protocol_validation": "47 passed in 35.93s in its focused checkpoint; the later bounded repository suite also includes the protocol/candidate/preflight tests.",
+    "development_study_preflight_validation": "35 focused tests passed in 0.85s after descendant-root regression; bounded repository suite: 695 passed, 1 frozen 7/45 failure, 0 skipped, 2 deselected (698 collected; 187.28s).",
+    "protocol_validation_command": ".venv/Scripts/python.exe -m pytest tests/test_diagnosis_evaluation_protocol.py tests/test_ml_data_pilot.py tests/test_ml_training_artifacts.py -q --tb=short --basetemp .pytest-tmp-diagnosis-protocol-final3-20261015"
+  },
+  "continuation_history": [
+    "2026-10-15 ML research milestone: added strict preflight to fallback training and model export; restricted gate_mismatch_fraction to an explicitly diagnostic ablation schema; documented feature eligibility. Focused tests 40 passed in 50.33s. Latest bounded suite 709 passed, 1 frozen diagnosis failure, 0 skipped, 2 deselected (712 collected; 217.11s). Backlog task counts unchanged at 40: 26 verified, 6 partial, 6 blocked, 2 deferred; ML generalization remains blocked.",
+    "2026-10-15 ML data recovery/generalization infrastructure milestone: record-level bounded recovery table verifies exactly 270 reports but confirms all remain ineligible (no row hashes/ancestry, no generation provenance, zero adjudications). Audited QMutBench source hash mismatch and other local sources; none qualifies for current three-way diagnosis generalization. Added registered feature-matrix enforcement, dummy baselines/fixed Linear SVM, single-worker cap, three-way family/lineage validator, family-cluster bootstrap, synthetic-only manifest scope, v3 no-overwrite output path. Focused suite 41 passed in 10.52s; broad suite 719 passed, unchanged frozen 7/45 failure, 0 skipped, 2 NO-GO tests deselected (722 collected; 216.10s). No dataset/model training. Counts: 42 tasks, 28 verified, 6 partial, 6 blocked, 2 deferred.",
+    "Final rerun after recovery-table schema v2 and explicit per-field evidence classification: focused recovery/evaluation/preflight/fallback suite 41 passed in 15.39s; bounded repository suite 719 passed, the same frozen 7/45 diagnosis acceptance failed, 0 skipped, 2 NO-GO finite-shot tests deselected (722 collected; 219.00s). Exact table v2 rebuild verified. No model fit, data regeneration, package install or hardware job.",
+    "Newly discovered required work: independent adjudication records are separated by the protocol validator but are not integrated with ML training; current ML preflight supports synthetic scenario reports only. Added P1-4 as blocked on an externally reviewed adjudication schema and provenance-complete independent observations. This is not completed by synthetic-only safeguards.",
+    "2026-10-15 final-tree ML evaluation and diagnosis closure: explicit raw probability/no-calibration manifest added; equivalent-output program-source differences preserve localization and abstain on behavioral attribution; grouped family/lineage folds validated before model construction. Focused 92 passed in 16.89s; bounded suite 722 passed, 1 unchanged frozen 7/45 failure, 0 skipped, 2 deselected (725 collected; 221.49s). Final backlog: 44 tasks (29 verified, 6 partial, 7 blocked, 2 deferred).",
+    "2026-10-15 provenance review tooling: added resumable hash-bound conflict reviews with rationale/evidence references, stale/duplicate rejection, and no self-resolution. Focused 21 passed; bounded suite 752 passed, 1 unchanged frozen 7/45 failure, 0 skipped, 2 NO-GO tests deselected (755 collected; 232.80s). Backlog: 47 tasks, 32 verified, 6 partial, 7 blocked, 2 deferred.",
+    "2026-10-15 correctness milestone: HardwareModel now validates finite nonnegative time parameters and applies/persists its default gate error/duration; statistics rejects negative/nonfinite inputs and uses overflow-stable normalization. Focused suite 149 passed; bounded suite 767 passed, 1 unchanged frozen 7/45 diagnosis failure, 0 skipped, 2 NO-GO deselections (770 collected; 224.36s).",
+    "Final verification after trace parity regression: bounded suite 768 passed, 1 unchanged frozen 7/45 diagnosis failure, 0 skipped, 2 NO-GO deselections (771 collected; 224.48s). Seeded traced/untraced hardware parity tests passed 6/6.",
+    "2026-10-15 ML inference boundary fix: non-finite/Boolean min_confidence values and malformed probability values now fail closed; missing classifier feature schema raises a clear contract error. Focused integrated suite 129 passed; bounded repository suite 778 passed, 1 unchanged frozen 7/45 failure, 0 skipped, 2 NO-GO tests deselected (781 collected; 223.55s). Counts remain 48 tasks: 33 verified, 6 partial, 7 blocked, 2 deferred.",
+    "2026-10-15 diagnosis evidence gate: missing execution distributions no longer turn a direct source mismatch into a detected behavioral anomaly. Source localization remains visible while anomaly status is unknown and final diagnosis abstains. Focused suite 85 passed; bounded suite 778 passed, 1 unchanged frozen 7/45 failure, 0 skipped, 2 NO-GO deselections (781 collected; 224.61s).",
+    "2026-10-15 causal gating: diagnosis now distinguishes structural source localization from modeled measured-output impact, requires counterfactual output change on connected measured qubits for program attribution, retains ambiguity when source and relevant hardware evidence coexist, and avoids definitive formatter language for candidate-only results. Focused 90 passed; bounded suite 783 passed, same frozen 7/45 failure, 0 skipped, 2 deselected (786 collected; 225.90s).",
+    "Final suite after removing a rejected generic timestamp gate: 783 passed, 1 unchanged frozen 7/45 failure, 0 skipped, 2 deselected (786 collected; 226.82s). The temporary timestamp gate had four regressions because experiment fixtures intentionally label modeled calibration as synthetic-config; no generic max-age policy exists, so no timestamp cutoff was added.",
+    "2026-10-15 generic calibration contract: separated caller-reported acquisition timestamp/provenance from snapshot created_at; added caller-specific freshness assessment and diagnosis causal gate; synthetic-config remains allowed. Focused suite 108 passed. Final short-path bounded suite 793 passed, one unchanged frozen 7/45 failure, two NO-GO deselections.",
+    "2026-10-15: reconciled P0-8 priority marker to completed after current-tree focused normalization regressions passed (8 passed, 59 deselected).",
+    "2026-10-15: final short-path bounded suite after calibration unknown-provenance regression: 794 passed, 1 unchanged frozen 7/45 failure, 0 skipped, 2 NO-GO deselections (797 collected; 227.40s). Current-tree reruns also verified P0-8 operand canonicalization (8 passed) and P2-11 scoped Bugs4Q discovery (1 passed); stale priority labels were reconciled.",
+    "2026-10-15: current-tree QMutBench root-scope regression passed (1 passed, 23 deselected), confirming unrelated qmutbench_full trees are not traversed. Existing implementation required no source change."
+  ]
+}

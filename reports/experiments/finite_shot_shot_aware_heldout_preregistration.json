@@ -1,0 +1,136 @@
+{
+  "acceptance_criteria": {
+    "abstentions": "retain every row in denominator; an abstention is a missed detection for sensitivity, not a false positive for FPR; report abstention rate and exact two-sided 95% CI separately; no exclusion",
+    "acceptance": "candidate passes only if every positive stratum x shot sensitivity one-sided exact 95% lower Clopper-Pearson bound meets its registered minimum and every control scenario x shot FPR one-sided exact 95% upper bound is <= 0.05",
+    "candidate_cutoffs": {
+      "1024": 0.09375,
+      "256": 0.18359375,
+      "4096": 0.0478515625
+    },
+    "maximum_false_positive_rate": 0.05,
+    "maximum_false_positives_at_n_600": 20,
+    "minimum_detections_at_n_600": {
+      "0.5": 321,
+      "0.8": 497,
+      "0.9": 553,
+      "0.95": 580
+    },
+    "one_sided_confidence": 0.95,
+    "sensitivity_minimums": {
+      "large": {
+        "1024": 0.95,
+        "256": 0.95,
+        "4096": 0.95
+      },
+      "moderate": {
+        "1024": 0.9,
+        "256": 0.8,
+        "4096": 0.95
+      },
+      "subtle": {
+        "1024": 0.8,
+        "256": 0.5,
+        "4096": 0.9
+      }
+    }
+  },
+  "baselines": {
+    "fixed_tvd": "unchanged threshold=0.05 and existing max(0.05,1/sqrt(shots)) guard",
+    "permutation": "unchanged pooled-label TVD permutation p-value, 999 resamples, add-one correction, alpha=0.05"
+  },
+  "candidate_rule": {
+    "cutoffs": {
+      "1024": 0.09375,
+      "256": 0.18359375,
+      "4096": 0.0478515625
+    },
+    "definition": "Flag iff observed TVD is strictly greater than the shot-specific cutoff; cutoff is max of the two negative-control higher empirical 95th percentiles on calibration data.",
+    "name": "calibration-control higher-quantile TVD cutoff",
+    "production_change": false,
+    "source": "finite_shot_distribution_calibration_followup.md; calibration split only"
+  },
+  "created_date": "2026-10-14",
+  "evaluation_split": {
+    "disjointness_check": {
+      "basis": "Compared the proposed IDs, template seeds, sampling seeds, and generated reference fingerprints against all 3,600 valid saved per-configuration outputs (240 prior templates, 3,600 prior sampling seeds). Zero overlaps.",
+      "new_configurations": 9000,
+      "new_sampling_seeds": 9000,
+      "new_templates": 600,
+      "prior_sampling_seeds_checked": 3600,
+      "prior_templates_checked": 240
+    },
+    "name": "new_heldout_20261014",
+    "output_staging_root": "C:/Quantum_Simulator_runs/finite_shot_shot_aware_heldout_run",
+    "paired_templates": "Reuse each new reference template across all 5 scenarios and all 3 shot counts; methods are calculated from the same sampled count pairs.",
+    "prior_artifact_hashes": {
+      "corrected_summary_sha256": "281592e4c9101a0e45bc022676f08e12d45cc4636eec21e4cd5dce6f9e0c5a16",
+      "registry_sha256": "45a656b2a8d7b941e68cc8fcf54e8f05bad2495e70b99dc0ffa1ff72347ab4d7"
+    },
+    "recipe": "fixed_pilot_topology_phase_tags",
+    "sampling_seed_root": 70361015,
+    "scenarios": [
+      "identical_control",
+      "measurement_equivalent_control",
+      "subtle",
+      "moderate",
+      "large"
+    ],
+    "shots": [
+      256,
+      1024,
+      4096
+    ],
+    "template_seed_root": 60271014,
+    "templates": 600
+  },
+  "execution_safeguards": {
+    "manifest": "Unique run directory, single manifest writer, per-output create-only writes; no concurrent resume or sync client in staging during execution.",
+    "multiprocessing": "not permitted; sequential runner only",
+    "prior_error": "The prior RuntimeError: can't allocate lock has no captured traceback or system-resource telemetry in the saved run artifacts. The inspected runner performs sequential work and does not create worker locks. Root cause therefore remains undetermined; single-process execution and local staging reduce likely process-lock and OneDrive contention but do not prove the cause.",
+    "processes": 1,
+    "staging": "Run from local non-OneDrive NTFS staging directory C:/Quantum_Simulator_runs/...; do not stream per-configuration manifest replacements through OneDrive. Copy the finalized, checksummed run directory into a new reports/experiments folder once after completion.",
+    "workers": 1
+  },
+  "failure_modes_addressed": [
+    "excessive TVD false positives on negative controls at 256 and 1024 shots from the fixed 0.05 / 1/sqrt(shots) cutoff",
+    "sensitivity and false-positive trade-off for the existing pooled-label permutation detector",
+    "finite-shot multinomial variation across 16 outcomes"
+  ],
+  "frozen_configuration_sha256": "426b0325d740a7b3ffb9f1fe632fa64d2b38861707e9a02df0e14ca25040baff",
+  "global_claim": "Candidate passes only if every component sensitivity and FPR criterion passes. The conjunction uses per-cell one-sided alpha=0.05 intersection-union testing; no multiplicity correction is applied to the all-conditions-must-pass gate. All three methods are scored on exactly the same held-out configurations; no thresholds or criteria are selected after opening held-out outputs.",
+  "hypothesis": "A calibration-only, shot-conditioned TVD cutoff selected from negative-control empirical nulls will reduce low-shot false-positive rates relative to unchanged fixed-guard TVD while meeting the registered sensitivity floors; the permutation detector is a comparator expected to retain lower control FPR but may lose subtle-fault sensitivity at lower shots.",
+  "methodological_decision_for_owner": "The calibration-only candidate was evaluated descriptively on the previously inspected validation data: subtle sensitivity was 13/120 at 256 shots and 41/120 at 1024, below the unchanged registered minima. Decide whether to proceed with the new held-out run as a confirmatory falsification/resource-cost study, or pause and define a new candidate using calibration data only before starting a fresh preregistration. No held-out simulation has been run.",
+  "metrics": {
+    "abstention_handling": "No row is excluded. Abstentions count as non-detections (false negatives) for sensitivity, do not count as positive flags for FPR, and are reported separately with exact intervals.",
+    "intervals": {
+      "abstention": "two-sided exact 95% Clopper-Pearson interval",
+      "false_positive_rate": "one-sided exact 95% Clopper-Pearson upper bound",
+      "paired_differences": "Two-sided 95% paired template bootstrap percentile interval, 10,000 resamples; within each cell, resample the same template indices jointly across all methods; deterministic bootstrap seed 90261014.",
+      "sensitivity": "one-sided exact 95% Clopper-Pearson lower bound"
+    },
+    "primary": "Sensitivity for each fault strength x shot cell; FPR separately for each negative-control scenario x shot cell.",
+    "secondary": [
+      "abstention rate by scenario x shot",
+      "precision under the fixed 60% positive design mix (descriptive only)",
+      "paired detector risk differences by template and cell"
+    ]
+  },
+  "status": "designed_not_executed",
+  "title": "Preregistered held-out evaluation of a shot-aware TVD detector",
+  "workload": {
+    "arithmetic": "2 sampled circuits * 600 templates * 5 strata * (256+1024+4096) shots",
+    "configurations": 9000,
+    "memory_estimate": "<1 MiB transient permutation working set for one 8,192-entry pooled count vector and temporaries; 100-300 MB estimated Python working set if all 9,000 result objects are retained. Budget at least 1 GiB available RAM; stream results where possible.",
+    "permutation_resamples": 8991000,
+    "runtime_estimate": {
+      "basis": "Completed 3,600-config calibration took 3,192.3 s (53.2 min); linear projection is ~133 min. Existing pre-run pilot-based estimate was higher than actual calibration time; use a broad 2.25-6 h planning window due circuit depth, host load, permutation work, and Windows filesystem variation.",
+      "empirical_linear_projection_minutes": 133.0,
+      "planning_range_minutes": [
+        130,
+        360
+      ]
+    },
+    "saved_output_size_estimate": "20.4 MB based on 2,267-byte mean saved calibration result (9,000 records); allow 50 MB for logs and metadata",
+    "shot_circuit_executions": 32256000
+  }
+}

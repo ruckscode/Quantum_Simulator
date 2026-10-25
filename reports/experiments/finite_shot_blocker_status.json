@@ -1,0 +1,126 @@
+{
+  "source_review": "reports/experiments/finite_shot_publication_readiness_review.md",
+  "source_register": "reports/experiments/finite_shot_experiment_protocol_gaps.json",
+  "assessment": "finite_shot_blocker_resolution",
+  "assessment_date": "2026-10-14",
+  "proposed_design": {
+    "independent_family_count": 252,
+    "condition_count": 4,
+    "verdict": "NO-GO",
+    "execution_authorized": false,
+    "verdict_basis": "The current experiment cannot adjudicate its intended combined finite-shot detection, source localization, and hardware attribution claims. Observationally equivalent causes remain indistinguishable from output counts alone."
+  },
+  "status_vocabulary": ["RESOLVED", "PARTIALLY RESOLVED", "UNRESOLVED"],
+  "blocking_issues": [
+    {
+      "id": "novelty_not_established",
+      "severity": "critical",
+      "evidence": "Virani et al. (IEEE QCE 2025) directly study statistical distinction between quantum software bugs and hardware noise; Hassan and Kaabouch (2026 arXiv preprint) study hardware error attribution with device calibration and cross-device evaluation; Maidl et al. (DDECS 2025) address measurement-dependent fault equivalence and localization. These overlap central proposed claims.",
+      "resolution_requirement": "Complete a methods-level comparison against the full papers and specify one operational distinction and measurable hypothesis that those methods do not already establish.",
+      "original_resolved": false,
+      "status": "PARTIALLY RESOLVED",
+      "evidence_references": [
+        "reports/experiments/finite_shot_publication_readiness_review.md#3-novelty-assessment",
+        "reports/experiments/finite_shot_candidate_selection_protocol.md#literature-and-novelty-boundary",
+        "https://arxiv.org/abs/2507.20475",
+        "https://arxiv.org/abs/2602.21253",
+        "https://www.dfki.de/web/forschung/projekte-publikationen/publikation/15756",
+        "https://hets.dfki.de/doc/konf/DDECS2025_AM.pdf"
+      ],
+      "status_rationale": "Primary/publication sources verify substantial overlap and local reports discuss a possible narrower contribution, but no completed full-method comparison or frozen operational distinction and measurable hypothesis exists for the 252-family design. Novelty is not established.",
+      "remaining_work": "Create a full-text methods comparison table and document one falsifiable operational distinction with a claim boundary, or conclude that no distinct claim remains.",
+      "blocks_experiment_execution": true
+    },
+    {
+      "id": "condition_definition_ambiguous",
+      "severity": "high",
+      "evidence": "The four stated conditions are identical controls, measurement-equivalent controls, known program faults, and hardware-channel faults. The proposal also mentions realistic stochastic hardware noise as a separate stratum without reconciling that with the four-condition design or its resource count.",
+      "resolution_requirement": "Freeze a condition table specifying mechanism, ground-truth label, construction, evidence source, and count for each unit; explicitly decide whether realistic stochastic noise is in scope.",
+      "original_resolved": false,
+      "status": "PARTIALLY RESOLVED",
+      "evidence_references": [
+        "reports/experiments/finite_shot_publication_readiness_review.md#1-identifiability-audit",
+        "reports/experiments/finite_shot_publication_readiness_review.md#4-proposed-experiment-audit",
+        "reports/experiments/finite_shot_identifiability_analysis.md",
+        "reports/experiments/controlled_fault_isolation_phase1_3/REPORT.md"
+      ],
+      "status_rationale": "The four categories and equivalence distinctions are described and related synthetic scenarios exist, but no frozen condition/mechanism/label/evidence/count table resolves how realistic stochastic noise fits into the four conditions for this design.",
+      "remaining_work": "Publish one condition table for this design and explicitly include or exclude stochastic noise without silently changing the four-condition count.",
+      "blocks_experiment_execution": true
+    },
+    {
+      "id": "ground_truth_and_leakage_protocol_missing",
+      "severity": "critical",
+      "evidence": "Saved calibration has no hardware-fault samples or independent calibration evidence. The diagnosis interface can accept a HardwareModel; using simulator-injected condition identity or correlated calibration data as inference evidence risks label leakage.",
+      "resolution_requirement": "Specify independent source-mutation adjudication and device calibration/telemetry acquisition, blinding and time/component matching, admissible inference inputs, and a data-flow audit demonstrating labels cannot leak into model inputs.",
+      "original_resolved": false,
+      "status": "UNRESOLVED",
+      "evidence_references": [
+        "reports/experiments/finite_shot_publication_readiness_review.md#2-statistical-and-artifact-audit",
+        "reports/experiments/finite_shot_publication_readiness_review.md#ground-truth-leakage-and-outcomes-still-needed",
+        "reports/experiments/finite_shot_distribution_calibration_run/summary.json",
+        "src/quantum_simulator/diagnosis_engine.py",
+        "src/quantum_simulator/fault_localizer.py"
+      ],
+      "status_rationale": "No independent device telemetry/calibration dataset, blinded adjudication, matched time/component protocol, or completed data-flow audit was found. A simulator HardwareModel is not independent hardware evidence.",
+      "remaining_work": "Specify independent hardware evidence acquisition and source mutation adjudication, blinding and matching, allowed inference fields, and a data-flow audit; otherwise remove hardware attribution from the primary question.",
+      "blocks_experiment_execution": true
+    },
+    {
+      "id": "independent_family_unit_and_paired_estimand_unverified",
+      "severity": "high",
+      "evidence": "The saved calibration uses repeated templates and variants in a single narrow topology/recipe. Its configuration count does not establish independent family count. The n=252 calculation powers marginal binomial gates, not paired superiority between detectors.",
+      "resolution_requirement": "Provide a deduplicated family sampling frame, disjoint calibration/evaluation family identities and seeds, family-level clustering/aggregation rules, a paired primary estimand, and power analysis for that estimand using defensible rate and dependence assumptions.",
+      "original_resolved": false,
+      "status": "PARTIALLY RESOLVED",
+      "evidence_references": [
+        "reports/experiments/finite_shot_statistical_power_analysis.md#data-provenance-and-independent-unit-problem",
+        "reports/experiments/finite_shot_statistical_power_analysis.md#paired-method-comparisons",
+        "reports/experiments/finite_shot_candidate_selection_protocol.md#leakage-resistant-new-split",
+        "reports/experiments/finite_shot_selective_diagnosis_revised_proposal.md#smallest-proposed-held-out-evaluation",
+        "reports/experiments/finite_shot_distribution_calibration_run/run_manifest.json"
+      ],
+      "status_rationale": "Later reports define useful split and cluster principles, and explicitly warn the current n=252 marginal-gate analysis is not paired-comparison power. No deduplicated 252-family sampling frame or final paired estimand/power analysis for this design exists; the later 20-family proposal is a distinct design.",
+      "remaining_work": "Supply and deduplicate a canonical family frame disjoint from all development artifacts, freeze family-level clustering/aggregation and a paired primary estimand, then assess paired power under declared defensible dependence assumptions.",
+      "blocks_experiment_execution": true
+    },
+    {
+      "id": "primary_endpoints_and_decision_rules_incomplete",
+      "severity": "high",
+      "evidence": "The reconstructed sensitivity/FPR gates do not fully define coverage, selective risk, localization scoring, multiplicity, indeterminate labels, paired comparisons, or failure handling. Joint power relies on assumed rates and only a conservative union bound is available without criterion dependence data.",
+      "resolution_requirement": "Freeze endpoint definitions, confidence intervals, multiplicity policy, coverage/selective-risk and localization rules, indeterminate-case handling, paired analysis, and explicit acceptance/failure criteria before held-out outcomes are observed.",
+      "original_resolved": false,
+      "status": "PARTIALLY RESOLVED",
+      "evidence_references": [
+        "reports/experiments/finite_shot_selective_diagnosis_revised_proposal.md#endpoints-uncertainty-and-paired-comparisons",
+        "reports/experiments/finite_shot_candidate_selection_protocol.md#endpoints-and-reporting",
+        "reports/experiments/finite_shot_statistical_power_analysis.md#clustering-multiplicity-abstention-and-coverage",
+        "reports/experiments/finite_shot_publication_readiness_review.md#ground-truth-leakage-and-outcomes-still-needed"
+      ],
+      "status_rationale": "Successor-study documents propose extensive outcome and interval rules, but they are not a single frozen contract for the 252-family four-condition design and retain choices dependent on valid ground truth and the primary estimand.",
+      "remaining_work": "Freeze one design-specific analysis contract covering estimand, units and aggregation, denominators, abstention/indeterminate outcomes, intervals, multiplicity, paired analysis, localization eligibility, and explicit pass/fail handling before held-out outcomes are opened.",
+      "blocks_experiment_execution": true
+    }
+  ],
+  "claim_audit": {
+    "hardware_attribution_validated": false,
+    "source_localization_validated": false,
+    "output_only_observational_identifiability_claim_supported": false,
+    "notes": [
+      "Simulator-injected hardware conditions do not establish real hardware attribution.",
+      "Calibration records do not contain independently adjudicated source/target localization outcomes.",
+      "Exactly observationally equivalent causes cannot be separated by additional output shots; the design may establish this limit or add independent auxiliary evidence, but cannot claim output-only causal identification."
+    ]
+  },
+  "work_performed": {
+    "read_only_evidence_review": true,
+    "external_literature_verification": true,
+    "simulations_run": 0,
+    "tests_run": 0,
+    "training_run": 0,
+    "benchmarks_run": 0,
+    "hardware_jobs": 0,
+    "source_code_or_dataset_changes": 0,
+    "existing_artifacts_modified": 0
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "blockers": [
+    "270 report rows lack per-run source_sha256 provenance",
+    "dataset generator source hashes do not match current generation code (missing/changed: ['experiment_config.py', 'experiments/full_dataset.py', 'experiments/run_experiment.py', 'pyproject.toml', 'src/quantum_simulator/diagnosis_engine.py', 'src/quantum_simulator/gates.py', 'src/quantum_simulator/hardware_model.py', 'src/quantum_simulator/quantum_simulator.py'])",
+    "dataset manifest is missing generation_provenance"
+  ],
+  "class_order": [
+    "NORMAL",
+    "PROGRAM_FAULT",
+    "HARDWARE_ANOMALY"
+  ],
+  "counts": {
+    "completed": 270,
+    "eligible": 270,
+    "failed": 0,
+    "ineligible": 0,
+    "other_source_dispositions": {},
+    "unsupported": 0
+  },
+  "dataset_fingerprint_definition": "SHA-256 over sorted POSIX-relative paths and raw bytes of every .json file under the selected source directory; the dataset_manifest.json is included; configured generated-output subdirectories are excluded.",
+  "dataset_fingerprint_scheme": "source_json_bytes_sha256_v1",
+  "dataset_fingerprint_sha256": "af4776f5adcc1f090f03d74220b2b3f589a4652818d9cb3b8c79a25baa0bb54a",
+  "dataset_provenance": null,
+  "dataset_provenance_blockers": [
+    "270 report rows lack per-run source_sha256 provenance",
+    "dataset generator source hashes do not match current generation code (missing/changed: ['experiment_config.py', 'experiments/full_dataset.py', 'experiments/run_experiment.py', 'pyproject.toml', 'src/quantum_simulator/diagnosis_engine.py', 'src/quantum_simulator/gates.py', 'src/quantum_simulator/hardware_model.py', 'src/quantum_simulator/quantum_simulator.py'])",
+    "dataset manifest is missing generation_provenance"
+  ],
+  "estimator_fitting_started": false,
+  "family_count": 30,
+  "feature_schema": [
+    "total_variation_distance",
+    "js_divergence",
+    "hellinger_distance",
+    "observed_entropy_bits",
+    "observed_max_probability"
+  ],
+  "folds": [
+    {
+      "family_overlap": [],
+      "outer_fold": 1,
+      "test_class_counts": {
+        "HARDWARE_ANOMALY": 18,
+        "NORMAL": 18,
+        "PROGRAM_FAULT": 18
+      },
+      "test_families": 6,
+      "test_rows": 54,
+      "train_class_counts": {
+        "HARDWARE_ANOMALY": 72,
+        "NORMAL": 72,
+        "PROGRAM_FAULT": 72
+      },
+      "train_families": 24,
+      "train_rows": 216
+    },
+    {
+      "family_overlap": [],
+      "outer_fold": 2,
+      "test_class_counts": {
+        "HARDWARE_ANOMALY": 18,
+        "NORMAL": 18,
+        "PROGRAM_FAULT": 18
+      },
+      "test_families": 6,
+      "test_rows": 54,
+      "train_class_counts": {
+        "HARDWARE_ANOMALY": 72,
+        "NORMAL": 72,
+        "PROGRAM_FAULT": 72
+      },
+      "train_families": 24,
+      "train_rows": 216
+    },
+    {
+      "family_overlap": [],
+      "outer_fold": 3,
+      "test_class_counts": {
+        "HARDWARE_ANOMALY": 18,
+        "NORMAL": 18,
+        "PROGRAM_FAULT": 18
+      },
+      "test_families": 6,
+      "test_rows": 54,
+      "train_class_counts": {
+        "HARDWARE_ANOMALY": 72,
+        "NORMAL": 72,
+        "PROGRAM_FAULT": 72
+      },
+      "train_families": 24,
+      "train_rows": 216
+    },
+    {
+      "family_overlap": [],
+      "outer_fold": 4,
+      "test_class_counts": {
+        "HARDWARE_ANOMALY": 18,
+        "NORMAL": 18,
+        "PROGRAM_FAULT": 18
+      },
+      "test_families": 6,
+      "test_rows": 54,
+      "train_class_counts": {
+        "HARDWARE_ANOMALY": 72,
+        "NORMAL": 72,
+        "PROGRAM_FAULT": 72
+      },
+      "train_families": 24,
+      "train_rows": 216
+    },
+    {
+      "family_overlap": [],
+      "outer_fold": 5,
+      "test_class_counts": {
+        "HARDWARE_ANOMALY": 18,
+        "NORMAL": 18,
+        "PROGRAM_FAULT": 18
+      },
+      "test_families": 6,
+      "test_rows": 54,
+      "train_class_counts": {
+        "HARDWARE_ANOMALY": 72,
+        "NORMAL": 72,
+        "PROGRAM_FAULT": 72
+      },
+      "train_families": 24,
+      "train_rows": 216
+    }
+  ],
+  "ineligible_row_reasons": {},
+  "label_semantics": "scenario-construction ground truth from controlled simulator reports; not independent external adjudication",
+  "model_export_started": false,
+  "output_is_outside_historical_reports": true,
+  "prediction_started": false,
+  "proposed_output_directory": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\ml_results\\grouped_cv_audit_v2",
+  "protocol_assumptions": [
+    "circuit_family_id is the grouping unit for outer folds",
+    "the dataset is a controlled local-simulator study, not physical-hardware validation",
+    "scenario labels are assigned by construction metadata and require independent adjudication for external accuracy claims",
+    "the five production observables are checked against the runtime diagnosis adapter order"
+  ],
+  "ready": false,
+  "source_hashes": {
+    "experiment_config.py": "b5b48ef888ec074c49a8a11d7c517bcceff66ff82efb12dfb783b8e26e28a9ec",
+    "experiments/full_dataset.py": "56f45c83b7a8c67263cb98a458e5351ca2b9530989e537693b9afcc233cbd141",
+    "experiments/run_experiment.py": "395b07edd2f011586d0b172f240cc363d2170966cfeace90913ef0ede7d3426f",
+    "ml_evaluation.py": "483e4e0141d3c85c8b8a496afaad4fa89ab3eb32bef68b9cf9265504f4198f28",
+    "ml_training.py": "28bb9467c47ca78c7d833d4262aa2c13faeab319a3eefc1004565f053af919a8",
+    "src/quantum_simulator/diagnosis_engine.py": "16ccc815f00e8d13a5e72311e82d5a979af0bc4dde7770e6de0798876d55f1a0",
+    "src/quantum_simulator/hardware_model.py": "2e9c5f3c54452c78571a072ecf64223616ec5d95efb08cc7b6c5a9739af567e1",
+    "src/quantum_simulator/quantum_simulator.py": "a07be9c304153a389454f699ffaaace8d12d99d430396bcfc1b5c383845406ef",
+    "src/quantum_simulator/statistics.py": "aa5433cb56b42ee9fc8c3042f274b0015efbf727386907d8de5c89212304a9aa"
+  },
+  "writes_performed": false
+}

@@ -1,0 +1,1765 @@
+﻿{
+    "created_date":  "2026-10-14",
+    "review_type":  "read-only static provenance audit; no benchmark execution",
+    "artifact_hashes":  [
+                            {
+                                "path":  "bugs4q_integration.py",
+                                "sha256":  "55D19C582C1EABC3723E9D62201CB8FC7A48E951B5634D9141B770CE8EB1C225"
+                            },
+                            {
+                                "path":  "bugs4q_validation.py",
+                                "sha256":  "7A4FC2530C8362B7AC178397625D618BC2824A2DBB0972B8D08111F3411D632A"
+                            },
+                            {
+                                "path":  "qmutbench_validation.py",
+                                "sha256":  "78702113A5CAA18905F585F9A0F9514B95493687109D089BC60165C00E61B30F"
+                            },
+                            {
+                                "path":  "reports/benchmarks/qmutbench_full_results.json",
+                                "sha256":  "D6C8239C7A8E0FBDB8279905DC6B11A7F4592E5FE43946A7789F93C55736EB43"
+                            },
+                            {
+                                "path":  "reports/benchmarks/qmutbench_full_checkpoint.json",
+                                "sha256":  "2C46F8A753D6F47D3C530583E130E0964DCC7A442CC573A015C67C6D96562C90"
+                            },
+                            {
+                                "path":  "reports/benchmarks/qmutbench_validation_report.json",
+                                "sha256":  "3004A85D9BA176B0CB689EBCB0D1DF26FCB4A6F5E52E543DABA204203E139E4F"
+                            },
+                            {
+                                "path":  "reports/benchmarks/bugs4q_full_results.json",
+                                "sha256":  "455C5111C1069449CB85B860AB1345B1C2FB20E8700DD7BE98B59F8203858C95"
+                            },
+                            {
+                                "path":  "reports/benchmarks/bugs4q_validation_report.json",
+                                "sha256":  "871F81D848ACE80C8DDE1FCE524508EC86EEBCFD68D37207887A8CDA541C52EB"
+                            },
+                            {
+                                "path":  "reports/benchmarks/combined_validation_report.json",
+                                "sha256":  "C8CD0F3D11CD1B5C0DF8A077AE4181283FBC84F753501490367C87300038E550"
+                            },
+                            {
+                                "path":  "reports/benchmarks/combined_benchmark_results.json",
+                                "sha256":  "51A235BA38DBB651282D007F4AA7150B552C6683B8F261CB1D3A78BD69F17C0A"
+                            }
+                        ],
+    "qmutbench_snapshot_summaries":  [
+                                         {
+                                             "artifact":  "reports/benchmarks/qmutbench_validation_report.json",
+                                             "total":  12,
+                                             "supported":  11,
+                                             "unsupported":  1,
+                                             "executed":  11,
+                                             "diagnosed":  11,
+                                             "reliable_ground_truth":  0,
+                                             "metric_eligible":  0
+                                         },
+                                         {
+                                             "artifact":  "reports/benchmarks/qmutbench_full_results.json",
+                                             "total":  12,
+                                             "parsed":  12,
+                                             "translated":  12,
+                                             "executable":  12,
+                                             "diagnosed":  12,
+                                             "labeled_evaluation":  0,
+                                             "metric_eligible":  0
+                                         }
+                                     ],
+    "bugs4q_snapshot_summaries":  [
+                                      {
+                                          "artifact":  "reports/benchmarks/bugs4q_validation_report.json",
+                                          "dataset_found":  false,
+                                          "discovered":  0,
+                                          "supported":  0,
+                                          "unsupported":  0,
+                                          "reliable_ground_truth":  0
+                                      },
+                                      {
+                                          "artifact":  "reports/benchmarks/bugs4q_full_results.json",
+                                          "total":  42,
+                                          "parsed":  41,
+                                          "translated":  19,
+                                          "executable":  19,
+                                          "diagnosed":  19,
+                                          "unsupported":  22,
+                                          "labeled_evaluation":  0,
+                                          "metric_eligible":  0
+                                      }
+                                  ],
+    "checkpoint_compatibility":  {
+                                     "artifact":  "reports/benchmarks/qmutbench_full_checkpoint.json",
+                                     "top_level":  "bare array of per-case records",
+                                     "record_count":  12,
+                                     "source_hashes_present":  false,
+                                     "runner_hash_present":  false,
+                                     "schema_version_present":  false,
+                                     "runtime_versions_present":  false,
+                                     "compatibility":  "not independently verifiable from this checkpoint"
+                                 },
+    "findings":  [
+                     "QMutBench validation and full-results snapshots conflict: the validation report marks one case unsupported (RXX), while the full-results snapshot reports all 12 parsed, translated, executable, and diagnosed.",
+                     "QMutBench has zero diagnosis-compatible labels in both snapshots; executed diagnoses are integration evidence, not accuracy or localization scores.",
+                     "Bugs4Q validation snapshot reports dataset_found=false and zero cases; separate official-source integration snapshot covers 42 cases, 19 executable/diagnosed and 22 unsupported, but zero diagnosis-category labels.",
+                     "The source archives and current adapters are hashed here, but the saved result/checkpoint artifacts do not link their generating adapter/source hashes or runtime versions; current-source hashes cannot establish historical execution compatibility.",
+                     "No benchmark result artifact supports accuracy, precision, recall, F1, mutation score, or causal localization claims."
+                 ],
+    "disposition":  "PARTIAL: case-level source hashes and eligibility are mapped; snapshot conflicts and absent independent truth block benchmark claims.",
+    "cases":  [
+                  {
+                      "benchmark":  "QMutBench",
+                      "case_id":  "AddGate_h_inGap_1_",
+                      "source_files":  [
+                                           {
+                                               "path":  "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+                                               "exists":  true,
+                                               "sha256":  "5558AC5D9CAB5DF930890426A29B5C1D0DF4B837C10914B9F07D2690251E15AE"
+                                           },
+                                           {
+                                               "path":  "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\AddGate_h_inGap_1_.qasm",
+                                               "exists":  true,
+                                               "sha256":  "12C861DF1FE10171936C399A6C87B716C0054CAD73072D9A328C9D49310F00B7"
+                                           }
+                                       ],
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "MISSING",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "integration only; no compatible diagnosis label"
+                  },
+                  {
+                      "benchmark":  "QMutBench",
+                      "case_id":  "AddGate_rxx_inGap_1_",
+                      "source_files":  [
+                                           {
+                                               "path":  "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+                                               "exists":  true,
+                                               "sha256":  "5558AC5D9CAB5DF930890426A29B5C1D0DF4B837C10914B9F07D2690251E15AE"
+                                           },
+                                           {
+                                               "path":  "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\AddGate_rxx_inGap_1_.qasm",
+                                               "exists":  true,
+                                               "sha256":  "A26C4FC0E15D3260C7A06F96C72A70FB95A3C81E888AFDD0DF78101FF09AB8D3"
+                                           }
+                                       ],
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "MISSING",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "integration only; no compatible diagnosis label"
+                  },
+                  {
+                      "benchmark":  "QMutBench",
+                      "case_id":  "AddGate_ry_inGap_1_",
+                      "source_files":  [
+                                           {
+                                               "path":  "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+                                               "exists":  true,
+                                               "sha256":  "5558AC5D9CAB5DF930890426A29B5C1D0DF4B837C10914B9F07D2690251E15AE"
+                                           },
+                                           {
+                                               "path":  "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\AddGate_ry_inGap_1_.qasm",
+                                               "exists":  true,
+                                               "sha256":  "A19B3F4CAA553A930E15044E57F66B3ECDB7AA895BB8DA78DFB9EC3CB60E4849"
+                                           }
+                                       ],
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "MISSING",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "integration only; no compatible diagnosis label"
+                  },
+                  {
+                      "benchmark":  "QMutBench",
+                      "case_id":  "RemoveGate_1_",
+                      "source_files":  [
+                                           {
+                                               "path":  "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+                                               "exists":  true,
+                                               "sha256":  "5558AC5D9CAB5DF930890426A29B5C1D0DF4B837C10914B9F07D2690251E15AE"
+                                           },
+                                           {
+                                               "path":  "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\RemoveGate_1_.qasm",
+                                               "exists":  true,
+                                               "sha256":  "5B62F0C1963B00822F7CCD5540997FE588D0CB8E4EF208E5EC265F96D7EFBFF8"
+                                           }
+                                       ],
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "MISSING",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "integration only; no compatible diagnosis label"
+                  },
+                  {
+                      "benchmark":  "QMutBench",
+                      "case_id":  "ReplaceGate_h_inPositionOfGate_1",
+                      "source_files":  [
+                                           {
+                                               "path":  "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+                                               "exists":  true,
+                                               "sha256":  "5558AC5D9CAB5DF930890426A29B5C1D0DF4B837C10914B9F07D2690251E15AE"
+                                           },
+                                           {
+                                               "path":  "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_h_inPositionOfGate_1.qasm",
+                                               "exists":  true,
+                                               "sha256":  "7ED99A253D94A45ADD6BC491EC3C350DDE076CAEFD87658576CAA948829BED10"
+                                           }
+                                       ],
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "MISSING",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "integration only; no compatible diagnosis label"
+                  },
+                  {
+                      "benchmark":  "QMutBench",
+                      "case_id":  "ReplaceGate_id_inPositionOfGate_1",
+                      "source_files":  [
+                                           {
+                                               "path":  "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+                                               "exists":  true,
+                                               "sha256":  "5558AC5D9CAB5DF930890426A29B5C1D0DF4B837C10914B9F07D2690251E15AE"
+                                           },
+                                           {
+                                               "path":  "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_id_inPositionOfGate_1.qasm",
+                                               "exists":  true,
+                                               "sha256":  "33613DD2FAC2931559703FCD088114D94BB42172C45ABD48113EBEAAB60CC0AF"
+                                           }
+                                       ],
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "MISSING",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "integration only; no compatible diagnosis label"
+                  },
+                  {
+                      "benchmark":  "QMutBench",
+                      "case_id":  "ReplaceGate_rz_inPositionOfGate_1",
+                      "source_files":  [
+                                           {
+                                               "path":  "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+                                               "exists":  true,
+                                               "sha256":  "5558AC5D9CAB5DF930890426A29B5C1D0DF4B837C10914B9F07D2690251E15AE"
+                                           },
+                                           {
+                                               "path":  "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_rz_inPositionOfGate_1.qasm",
+                                               "exists":  true,
+                                               "sha256":  "0FE5EC8D681088E484246BC4DEDD849FE559AFA3BB83A3609F08DCBF35ABD3E4"
+                                           }
+                                       ],
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "MISSING",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "integration only; no compatible diagnosis label"
+                  },
+                  {
+                      "benchmark":  "QMutBench",
+                      "case_id":  "ReplaceGate_s_inPositionOfGate_1",
+                      "source_files":  [
+                                           {
+                                               "path":  "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+                                               "exists":  true,
+                                               "sha256":  "5558AC5D9CAB5DF930890426A29B5C1D0DF4B837C10914B9F07D2690251E15AE"
+                                           },
+                                           {
+                                               "path":  "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_s_inPositionOfGate_1.qasm",
+                                               "exists":  true,
+                                               "sha256":  "C8146CDC1C9264498203F607DF564FE9252BE7E7295E6CB4405FECFE6C2A2667"
+                                           }
+                                       ],
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "MISSING",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "integration only; no compatible diagnosis label"
+                  },
+                  {
+                      "benchmark":  "QMutBench",
+                      "case_id":  "ReplaceGate_t_inPositionOfGate_1",
+                      "source_files":  [
+                                           {
+                                               "path":  "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+                                               "exists":  true,
+                                               "sha256":  "5558AC5D9CAB5DF930890426A29B5C1D0DF4B837C10914B9F07D2690251E15AE"
+                                           },
+                                           {
+                                               "path":  "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_t_inPositionOfGate_1.qasm",
+                                               "exists":  true,
+                                               "sha256":  "D1278460FBE59021E908BCB48290DA96C11703DCC6B2B0A85D71AE4053D9645A"
+                                           }
+                                       ],
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "MISSING",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "integration only; no compatible diagnosis label"
+                  },
+                  {
+                      "benchmark":  "QMutBench",
+                      "case_id":  "ReplaceGate_x_inPositionOfGate_1",
+                      "source_files":  [
+                                           {
+                                               "path":  "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+                                               "exists":  true,
+                                               "sha256":  "5558AC5D9CAB5DF930890426A29B5C1D0DF4B837C10914B9F07D2690251E15AE"
+                                           },
+                                           {
+                                               "path":  "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_x_inPositionOfGate_1.qasm",
+                                               "exists":  true,
+                                               "sha256":  "B92F4C7EAD20861660BF89862E7F25A40DB50E0EF6E1F0DE515A92703CA062CE"
+                                           }
+                                       ],
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "MISSING",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "integration only; no compatible diagnosis label"
+                  },
+                  {
+                      "benchmark":  "QMutBench",
+                      "case_id":  "ReplaceGate_y_inPositionOfGate_1",
+                      "source_files":  [
+                                           {
+                                               "path":  "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+                                               "exists":  true,
+                                               "sha256":  "5558AC5D9CAB5DF930890426A29B5C1D0DF4B837C10914B9F07D2690251E15AE"
+                                           },
+                                           {
+                                               "path":  "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_y_inPositionOfGate_1.qasm",
+                                               "exists":  true,
+                                               "sha256":  "5E8BF6E9E1354BB3386F50D7BE6F041F48B2C7CB19C801F7C079D4845AD12B65"
+                                           }
+                                       ],
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "MISSING",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "integration only; no compatible diagnosis label"
+                  },
+                  {
+                      "benchmark":  "QMutBench",
+                      "case_id":  "ReplaceGate_z_inPositionOfGate_1",
+                      "source_files":  [
+                                           {
+                                               "path":  "data\\qmutbench\\Origin_programs\\ghz_2_qubits.qasm",
+                                               "exists":  true,
+                                               "sha256":  "5558AC5D9CAB5DF930890426A29B5C1D0DF4B837C10914B9F07D2690251E15AE"
+                                           },
+                                           {
+                                               "path":  "data\\qmutbench\\Mutated_programs\\Mutants_ghz_2_qubits\\ReplaceGate_z_inPositionOfGate_1.qasm",
+                                               "exists":  true,
+                                               "sha256":  "94C4CA44CE63FFB12B8DB93F6AC5E4633302EF8764A05164D305A1C7729A5613"
+                                           }
+                                       ],
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "MISSING",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "integration only; no compatible diagnosis label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-1",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/1/buggy_1.py",
+                                               "exists":  true,
+                                               "sha256":  "6892DBDC6C2565350B01963E8C60802DA69F4B4102F1C4A4D23D18EF13E5F133"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/1/fixed_1.py",
+                                               "exists":  true,
+                                               "sha256":  "A13D277EB7452C79E4BED615CEFE96EA2E2F811555FAC168A7C0CE457D6B8975"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/1/modify_1.txt",
+                                               "exists":  true,
+                                               "sha256":  "389591FE13EE1CBD6C0A629BD9FC642DE8B7E713BA75E5822F13F2F0BAE0123B"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-2",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/2/buggy_2.py",
+                                               "exists":  true,
+                                               "sha256":  "96B23D60B906A9D0B718A4E84E2E3E32B9A7D6541A1144DADFE9FF5922C1E107"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/2/fixed_2.py",
+                                               "exists":  true,
+                                               "sha256":  "1777900CE0E6E49F17B2595B0F7B9250CBF734140C3036C7960219F4FED72BD9"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/2/modify_2.txt",
+                                               "exists":  true,
+                                               "sha256":  "D4ADB34D37D49EA5DDF934F4AAA062FE4BDFC4B833556928BA2B95C133A234E1"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-3",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/3/buggy_3.py",
+                                               "exists":  true,
+                                               "sha256":  "94769FA08D5F870229260C737E10552795F4D8D456AC7C766E59E2B23FEC503C"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/3/fixed_3.py",
+                                               "exists":  true,
+                                               "sha256":  "BADA5EB4A872F1184C6E5BC37B6EF99693E5497B6FCA0A229D69A5A877FF2742"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/3/modify_3.txt",
+                                               "exists":  true,
+                                               "sha256":  "0B5B7867C55C0C1A73CAF9B8864FE0630133604F93B7E36BFA93CD81CD8EEA0F"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-4",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/4/buggy_4.py",
+                                               "exists":  true,
+                                               "sha256":  "46E45A85D074468E81D24B7890D19104B353993438288978D5852B445F1AAE8B"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/4/fixed_4.py",
+                                               "exists":  true,
+                                               "sha256":  "62F65B58D44985257C8AA785ECE6B84510F2CB64BFC75BE4F53FD7DE15DB6ADE"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/4/modify_4.txt",
+                                               "exists":  true,
+                                               "sha256":  "8D16FE55A087A7B32F3F4A5E0A27A9998D2C42739BE995783E72F103A21B58B3"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-5",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/5/buggy_5.py",
+                                               "exists":  true,
+                                               "sha256":  "23FC1BA0CA4B6BF85ADEAFFA96679514681873D0CC131FB15305B394B4F5376A"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/5/fixed_5.py",
+                                               "exists":  true,
+                                               "sha256":  "007FE3045CB254A1B0D84AD10416B2173C3ED3B5FCD62E2A68889F9CB1149504"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/5/modify_5.txt",
+                                               "exists":  true,
+                                               "sha256":  "50598A1C19ED2E830A58093BE4367148AA4DDCCEC63A67F5585BAE967628FC99"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-6",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/6/buggy_6.py",
+                                               "exists":  true,
+                                               "sha256":  "60734CB01C134BCEF6628A6B569CCDF57FB9E3CE0E96597D3D8BAC6284635120"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/6/fixed_6.py",
+                                               "exists":  true,
+                                               "sha256":  "CEE51185CECA65C35A1182EDFEEC183E4455D4310C61220D29EA354AC229EBCA"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/6/modify_6.txt",
+                                               "exists":  true,
+                                               "sha256":  "F4C360054F429D7CAADAD0478449BFF12299CD5C5C2B801D6EA90FAE2BB804F2"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-7",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/7/buggy_7.py",
+                                               "exists":  true,
+                                               "sha256":  "7D40FE9D78028D3AFFCD6BAD5CB880E40EEBB039888F7778BDDDB38A2D913BEE"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/7/fixed_7.py",
+                                               "exists":  true,
+                                               "sha256":  "7BAE67A527D6F09CFC4F6932F38BE5FF680DAA629F9D3CABE25D10F88BCEFCB9"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/7/modify_7.txt",
+                                               "exists":  true,
+                                               "sha256":  "198A87C7C00139DD3F68746E74D3DEEEA24E51EEDB16C2EAC72A1EF05C6B1111"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-8",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/8/buggy_8.py",
+                                               "exists":  true,
+                                               "sha256":  "F905BF453715E0EBFE9D8AC2D8ED5D6F37E4540D5DA9CC8FABDDAD844BFDD9BA"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/8/fixed_8.py",
+                                               "exists":  true,
+                                               "sha256":  "702A420B7D881271B9CD82893BB29CDC45BCBBA4E826BF1FEAC97B26C103DA9D"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/8/modify_8.txt",
+                                               "exists":  true,
+                                               "sha256":  "F6B9E131E2706269DFC5509E30A9E945CE9863266651B38EE8E69034A224C5BC"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-9",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/9/buggy_9.py",
+                                               "exists":  true,
+                                               "sha256":  "B15C5C3FFEED3B88162CCA24BE402698833D79E99D1D360D72015B8BD786B604"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/9/fixed_9.py",
+                                               "exists":  true,
+                                               "sha256":  "6471032AB7C73E04FCC74589BDFEEA5EBB4BEBEC7CC3A6C43969E89B38447682"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/9/modify_9.txt",
+                                               "exists":  true,
+                                               "sha256":  "AF64BACB235AD3E9D0510A240CF677E2CE8A3FDA6BF3D59571AD36D7AF924A5F"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-10",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/10/buggy_10.py",
+                                               "exists":  true,
+                                               "sha256":  "04B337102FBC06BFE5CBC44BA3967BD449DBFA0689E7C7CF53BD91EF4251D064"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/10/fixed_10.py",
+                                               "exists":  true,
+                                               "sha256":  "26E64DBCEBADBB6DD588D7C8511AA9F485134F31E65EF5DD6E5C1AA19FBA92E2"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/10/modify_10.txt",
+                                               "exists":  true,
+                                               "sha256":  "A564EA00CDB3A4DDBCA6A0E77EE61AE3960114855399900AC03BADB9946CC604"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-11",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/11/buggy_11.py",
+                                               "exists":  true,
+                                               "sha256":  "D286F705BA2F3CCF348D630A2C6C9243697249BC7DF8769E2A9D53C9E4BA76D3"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/11/fixed_11.py",
+                                               "exists":  true,
+                                               "sha256":  "759AA372F164B91D6576CF97C5B278F96C9BB65DF9F50B70E1E9880C6D9158AD"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/11/modify_11.txt",
+                                               "exists":  true,
+                                               "sha256":  "9B116995905390024ABB0D403CDFF41E00F4FD5910137319A74093CE724EBD7F"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-12",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/12/buggy_12.py",
+                                               "exists":  true,
+                                               "sha256":  "2C4248426B92FB4500924957D72B6BBAB1DBEC40F62767DE2173FB648C407993"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/12/fixed_12.py",
+                                               "exists":  true,
+                                               "sha256":  "BF1657D87FD84E56C2EE15D6FBA92F81BEC1ABEB8D52E32125D775B72E012B5F"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/12/modify_12.txt",
+                                               "exists":  true,
+                                               "sha256":  "85EA455AB838B7C8F70FE63F583798F74466B05415BF69EB57204A502C74BA05"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-13",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/13/buggy_13.py",
+                                               "exists":  true,
+                                               "sha256":  "67DBDB9078A031ECD9B9874D9647EB190DEFE510CF8C0581BDF9AAD191249F91"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/13/fixed_13.py",
+                                               "exists":  true,
+                                               "sha256":  "E29CC03D800AF163B61FADF6B388AD2E1B73C832051FB8922441A1990244EE11"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/13/modify_13.txt",
+                                               "exists":  true,
+                                               "sha256":  "C57104CA8548361D529ABB0F5BFC0A9DC417E09CA295ED2BF00C66030692DB5B"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-14",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/14/buggy_14.py",
+                                               "exists":  true,
+                                               "sha256":  "C3BA4D8CDC490DECBD36BE9110C8855342867FD3E33BAFB9F890876CC4FF4AA4"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/14/fixed_14.py",
+                                               "exists":  true,
+                                               "sha256":  "EAB4CBA62B6D6867665B353589DEC0211AD4E418859044A899AD086F872377F6"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/14/modify_14.txt",
+                                               "exists":  true,
+                                               "sha256":  "D36473259C53C1878CCA5ED5E192E7120A5FEF9BA82CEA50AB7D204AFBEF504C"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-15",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/15/buggy_15.py",
+                                               "exists":  true,
+                                               "sha256":  "384E342B50AC7F58206B13F5DD7402FFEB403BA99FBD641475A53AA7624A9834"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/15/fixed_15.py",
+                                               "exists":  true,
+                                               "sha256":  "37D5B2E6BF1C9F59C35AE362710B9949A10EE9D36B4EA585F6FC78C679F8E52F"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/15/modify_15.txt",
+                                               "exists":  true,
+                                               "sha256":  "37D51DA772B8301269725205441FAE35405C31F2540D5AB6FBC943E665E4EEED"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-16",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/16/buggy_16.py",
+                                               "exists":  true,
+                                               "sha256":  "44C36BE6F22A60432B8F7044598D783C19CC6A463AE396F0F4D2D3E21496559A"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/16/fixed_16.py",
+                                               "exists":  true,
+                                               "sha256":  "932EDC70811C5AD13C659BF55DD0616D00B571F66823BF13C1A9FD795D2B576A"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/16/modify_16.txt",
+                                               "exists":  true,
+                                               "sha256":  "759890F7F130D54848A18E5BAD3A48F8D43E5AAD0CBC9C24EB94849C9A1B4D74"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-17",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/17/buggy_17.py",
+                                               "exists":  true,
+                                               "sha256":  "ACA7CE567CD57772EFFC81398C6F405F274FB04C5BA1900276B901DDD9E16F95"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/17/fixed_17.py",
+                                               "exists":  true,
+                                               "sha256":  "6251AED537F29241B6B597D541E45BD257DE09A9A433B6C150E889B3C8353542"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/17/modify_17.txt",
+                                               "exists":  true,
+                                               "sha256":  "4E6F66B23D0EFCE93B1A0A124987B67CA0B4A33FE413C3A643C8DCBE2822C5B6"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-18",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/18/buggy_18.py",
+                                               "exists":  true,
+                                               "sha256":  "38B4706239BBE7BC3886C33C1EF73B65AFB9AC7D2D9AE45CD0FF9FB766FD48C6"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/18/fixed_18.py",
+                                               "exists":  true,
+                                               "sha256":  "835CF16098905F6B207012D9BC4D2C37668130125A8CCC708AE3E34917AE759E"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/18/modify_18.txt",
+                                               "exists":  true,
+                                               "sha256":  "EF6C45676D18F4627E3E409B1FDD3BDEF438B3824BD414B296D270A7E3290D92"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-19",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/19/buggy_19.py",
+                                               "exists":  true,
+                                               "sha256":  "CB7BE92F63B3AFF10315D0D5EA65E81375283376B02C74FF25E2CE8477D6DC60"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/19/fixed_19.py",
+                                               "exists":  true,
+                                               "sha256":  "7676EC5B53A5B9297241890D0C616052A34F826B6D9CB19AA67644C58E9DF88D"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/19/modify_19.txt",
+                                               "exists":  true,
+                                               "sha256":  "062517F363640DD9C1A04A61CE80B34DDEE1D3A7D3081AEC680C56FB8FCEDABD"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-20",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/20/buggy_20.py",
+                                               "exists":  true,
+                                               "sha256":  "1635F0ACAC711D25FD987C32D74EE52B40B69E827818388D3AA06C868B5DC145"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/20/fixed_20.py",
+                                               "exists":  true,
+                                               "sha256":  "AE54423AD82A708DA6D22791D4EF224600BD1CFBB779CE4035AF76A0BEC8F982"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/20/modify_20.txt",
+                                               "exists":  true,
+                                               "sha256":  "E3A92CA6EF574914F96B3DA1A6AE04AEE6671EF07687700347E21C571ACCD201"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-21",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/21/buggy_21.py",
+                                               "exists":  true,
+                                               "sha256":  "790E5D9A38CF466F01370B764710722EC7868C2F6AE5E6C2793A9C5F9D7DC7B8"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/21/fixed_21.py",
+                                               "exists":  true,
+                                               "sha256":  "D197C2B825EF1C970FC097B9FFD3A41BAC4331A0B3A855FEB420F175D9200880"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/21/modify_21.txt",
+                                               "exists":  true,
+                                               "sha256":  "F2277040E588CD0570316ED6BD36AD25C5C6B54B97FFE98CA2FB228199753C06"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-22",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/22/buggy_22.py",
+                                               "exists":  true,
+                                               "sha256":  "D72193192DEAC0D515359ABEE4A06354669719E9DA9DC9A1C36CF1651CF844C9"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/22/fixed_22.py",
+                                               "exists":  true,
+                                               "sha256":  "446487F7CBE58245B5DC6561060E776209DA8FD343F87945355F4F7D3EFE0600"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/22/modify_22.txt",
+                                               "exists":  true,
+                                               "sha256":  "C4078CC27ED0F49C0185E8E4851BD19EAEA91A2C85CA2DB16E4A491362EEED49"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-23",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/23/buggy_23.py",
+                                               "exists":  true,
+                                               "sha256":  "FA3338E6D44E5166A5B8471546F98023A44920AE20E070626D6A1462F1318D37"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/23/fixed_23.py",
+                                               "exists":  true,
+                                               "sha256":  "6B0DBD927770C6836144B0F16F4E1DAEB2B53644636DE3AB4439D7623E19D555"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/23/modify_23.txt",
+                                               "exists":  true,
+                                               "sha256":  "06D18F18C2679B1CCA7D2C729761D19DDFCEE8B8E4CB2926D2325999195E9B2D"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-24",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/24/buggy_24.py",
+                                               "exists":  true,
+                                               "sha256":  "16CDB23A3E22AF479184C7AF360C57B79DE0FE074AC9CE224C609674DC75C9B6"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/24/fixed_24.py",
+                                               "exists":  true,
+                                               "sha256":  "86B5EF6435D4BDFBB86A0E34503AFA56EFB2855382582F835DB76FCD588A6505"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/24/modify_24.txt",
+                                               "exists":  true,
+                                               "sha256":  "7FA45CA49D8292E5E3196409CB645C495F5A66E0192CE21B4161DF020C955445"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-25",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/25/buggy_25.py",
+                                               "exists":  true,
+                                               "sha256":  "0CF722227891A5BFA81BA42D0B3B912B3B6F3610D4FA40D8FEDC10E80CE472F4"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/25/fixed_25.py",
+                                               "exists":  true,
+                                               "sha256":  "96F680B31A002B9A31FF06E739C4245F45E09CE6992203815D2C2245FC027B98"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/25/modify_25.txt",
+                                               "exists":  true,
+                                               "sha256":  "8FDFAA56BC857D4331BE78C1E2287AF9C60F84EAFBEF9E5DE1A764164C25FF08"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-26",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/26/buggy_26.py",
+                                               "exists":  true,
+                                               "sha256":  "1B5047EF834F4C917240FDE76113A2E1335636C39F07F67F89204443F26C0F5F"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/26/fixed_26.py",
+                                               "exists":  true,
+                                               "sha256":  "D8E303E662F5F142F73E4C7AA4BF55E06CCC96BCF97EC7D885A7561E255E66A6"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/26/modify_26.txt",
+                                               "exists":  true,
+                                               "sha256":  "AFC28B07FD1AFC4AF7B77F98C2EEEC7DD9DA4702C5ADCCB5ECE6CBED8D6B8DAE"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-27",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/27/buggy_27.py",
+                                               "exists":  true,
+                                               "sha256":  "7DA737388DA8B22BF9F1333D6A8D782C4ECC3B628D29C2338691C0B84EB205AC"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/27/fixed_27.py",
+                                               "exists":  true,
+                                               "sha256":  "714029A6BA45C914AA9D1CCEA0DA6C55CBD15229999917FC56E2760BC25EBAA1"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/27/modify_27.txt",
+                                               "exists":  true,
+                                               "sha256":  "40EC6BA1614CE8F30D5F5C9B3188014DF77FECE726AD3FA977718046382B89EF"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-28",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/28/buggy_28.py",
+                                               "exists":  true,
+                                               "sha256":  "D70108D204F7CF3F9B1B31487DF9DAE6E66F7D64EB5D674C896DCA3F3BA5AE0A"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/28/fixed_28.py",
+                                               "exists":  true,
+                                               "sha256":  "E163936B1775B158338873B655C991517256121015A37AB52BC320FC1DC3C565"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/28/modify_28.txt",
+                                               "exists":  true,
+                                               "sha256":  "1FEF47C4B5477F80444A8DEA0D030D52A43C45F2FA46866A8A65112EC8C7DDAC"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-29",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/29/buggy_29.py",
+                                               "exists":  true,
+                                               "sha256":  "E582CD0D334412E51118638F1352CBD3C7359F1A94F4FAC48F993D7DFCCAA035"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/29/fixed_29.py",
+                                               "exists":  true,
+                                               "sha256":  "A3F3551BB61B322E53FCAB900959E3F2C03D6609FCEBE8D87CA077BB4754D174"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/29/modify_29.txt",
+                                               "exists":  true,
+                                               "sha256":  "0413F5BB2359A579B5613AE486E5DFA7F8A288422AC1011EB0C684D2B6CAD3A4"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-30",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/30/buggy_30.py",
+                                               "exists":  true,
+                                               "sha256":  "F146CD45AC59632606A0DCCDD6B867D48081DCBE97465E87B996FBEDDBD4D394"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/30/fixed_30.py",
+                                               "exists":  true,
+                                               "sha256":  "29BE2E45192D6B8DC9FE0DBCB6EEC8CFA250B00A5DBA75916680E526DC52248A"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/30/modify_30.txt",
+                                               "exists":  true,
+                                               "sha256":  "D9175A76C8D0C3FE2FBD1695E820D218B7C82367A65F652FE56AB4FD59888526"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-31",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/31/buggy_31.py",
+                                               "exists":  true,
+                                               "sha256":  "344DE0069F796A7BBF995BF45D1ED9425A218C3FDA0FA72BCFCE980637DC8C2F"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/31/fixed_31.py",
+                                               "exists":  true,
+                                               "sha256":  "5AEF94057E358521660562803FAEC73DFBACB4CBBCCD2E076AC01A69AA0DC3F9"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/31/modify_31.txt",
+                                               "exists":  true,
+                                               "sha256":  "0BEBBDF5C73872CD91ACD2080475CD6670DD2AC1592DE9954F8BEEC406B8F1BB"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-32",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/32/buggy_32.py",
+                                               "exists":  true,
+                                               "sha256":  "87C0F3B9413B4FE92152249E613EAB52AEAAD86B541BA5943D7814CAF3019BC7"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/32/fixed_32.py",
+                                               "exists":  true,
+                                               "sha256":  "5810F3098462DBF314B28CFC94A81B66F11DABD5E31BF82D3E14C96CB3503F85"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/32/modify_32.txt",
+                                               "exists":  true,
+                                               "sha256":  "0A9F20D46640321FC9DF9F12AE3B460FE931CEB5A72D8ED00F5AFE314D2F458F"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-33",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/33/buggy_33.py",
+                                               "exists":  true,
+                                               "sha256":  "F2E2EA95F6C8E38F35DF4A4DDAD020A6AE59BB961FC7A58E63E4A4C58A214641"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/33/fixed_33.py",
+                                               "exists":  true,
+                                               "sha256":  "73EEE7A1B93773E43D517B3443AE57FA49BD8209FA6C84D62D80F9D7ED49A6CD"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/33/modify_33.txt",
+                                               "exists":  true,
+                                               "sha256":  "0FAB3204DA0D6E5E8FFA7D30B0E9951767B2350F296EBD54FCCB2EE896D8F14C"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "PARSING_ERROR",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-34",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/34/buggy_34.py",
+                                               "exists":  true,
+                                               "sha256":  "F2BF69601C56DCC8D29B88EA4AA255DC6C3A97ACBBA70524EBCA18B111DF03A2"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/34/fixed_34.py",
+                                               "exists":  true,
+                                               "sha256":  "D9BCF5B3EEE18145C46ECA2DAE5823CE5B810230A51BA1186E6EBFF258057657"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/34/modify_34.txt",
+                                               "exists":  true,
+                                               "sha256":  "1461020DC148BA39FDFC5FFDF0A2033D0514F8DD3C989837C9819341249A919A"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-35",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/35/buggy_35.py",
+                                               "exists":  true,
+                                               "sha256":  "F6277FCAFC6D7563BA82FB5F6F59F5D8E42A74187DAA39F2B34210EE9F152F1A"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/35/fixed_35.py",
+                                               "exists":  true,
+                                               "sha256":  "DB1ABEA8B9C8B626051CC22FC463F67249972C4ADDBECC9B17786FB6854B9D66"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/35/modify_35.txt",
+                                               "exists":  true,
+                                               "sha256":  "4B7C0F7C8C9CF31B1FC143CA1937A09B9C6A333E4694DB3F6CE59E2B581B1855"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-36",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/36/buggy_36.py",
+                                               "exists":  true,
+                                               "sha256":  "96C7D71C7DC06FF88F7FC3595D409AC47C2E4A63FEB846DE72EB46409338F708"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/36/fixed_36.py",
+                                               "exists":  true,
+                                               "sha256":  "5A043E8A8F2B2B95A5625820E96C7639ACAF152405EE5707C7A15A1320ED451B"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/36/modify_36.txt",
+                                               "exists":  true,
+                                               "sha256":  "D4C3C246520B0ABBAEE0C543E5EF57205E71B2C78C5C58866B5A20B1C8E5BFED"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-37",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/37/buggy_37.py",
+                                               "exists":  true,
+                                               "sha256":  "AA78597840EF339CA677395BE6C2D36649D87E6FAC17873129025B6F72FA1889"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/37/fixed_37.py",
+                                               "exists":  true,
+                                               "sha256":  "AD22EC617F66D9BC8CA88B6A3A68C8BCA71BEADCC29C62DBB26C176D86CF4885"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/37/modify_37.txt",
+                                               "exists":  true,
+                                               "sha256":  "974E1EA15B83B36D7AA23673A7B35423740AFD25E30FC5E76CC0967A223CD851"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-38",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/38/buggy_38.py",
+                                               "exists":  true,
+                                               "sha256":  "D1A72304798BC9140FAF239741584DE51F395AD8CA5ABBDFCF5DBE62167533CD"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/38/fixed_38.py",
+                                               "exists":  true,
+                                               "sha256":  "97FF8B60E39EE89FAE0A31E2635685D326AB5E6611AA768778E3764620C6D4E5"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/38/modify_38.txt",
+                                               "exists":  true,
+                                               "sha256":  "3D439DC4219EC679A79B96F35F495D64C8AEE42691D819DFEADC2A03A5821AAB"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-39",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/39/buggy_39.py",
+                                               "exists":  true,
+                                               "sha256":  "1A1009EDCDE55DBFAA1150B3638912F4CE0139BCB92EBAD4127C81C06ED71D3B"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/39/fixed_39.py",
+                                               "exists":  true,
+                                               "sha256":  "0EC7D7ED1427CEBFEE94CC1E9E56538FF177677F649EA2D6C2E4D62D96CFCFCF"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/39/modify_39.txt",
+                                               "exists":  true,
+                                               "sha256":  "70AAEB2E1092CDAC1166A88EE5AB3F6C4FE3122D63E86A7B6785DDF9C7A386AC"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-40",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/40/buggy_40.py",
+                                               "exists":  true,
+                                               "sha256":  "86ACD507F3B660ABD1BDAE4D0CEE6B7B24FF0C3998B1C515BDCA5E47D7B530AF"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/40/fixed_40.py",
+                                               "exists":  true,
+                                               "sha256":  "E20D82B7C875591AA40C9610C1078E2417927B3E20190DC40375C815A4E023F4"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/40/modify_40.txt",
+                                               "exists":  true,
+                                               "sha256":  "B1576ECF7B813693D6635E55336C71F7B8C8C58C4F73DB1FA8477CC5B414A3D1"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-41",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/41/buggy_41.py",
+                                               "exists":  true,
+                                               "sha256":  "155D59BEB436177F5F88C4F8B83E903CFD47D21AA0B70927E0337581457B2B0A"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/41/fixed_41.py",
+                                               "exists":  true,
+                                               "sha256":  "3DF8820C813D206CED2ED9CB3435C1C666A930F32CF5F9757C98ECC4C25BA809"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/41/modify_41.txt",
+                                               "exists":  true,
+                                               "sha256":  "DC6F27B7B38C4894E6CB66B86647C1E3146957B003F1FEA510B1CC7F824CE391"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  false,
+                      "translated":  false,
+                      "executable":  false,
+                      "diagnosed":  false,
+                      "execution_status":  "UNSUPPORTED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  },
+                  {
+                      "benchmark":  "Bugs4Q",
+                      "case_id":  "Bugs4Q-42",
+                      "source_files":  [
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/42/buggy_42.py",
+                                               "exists":  true,
+                                               "sha256":  "97DDB6C792757B4BB9800356F3B72F2A2F00E5BAA4AABD4EB7C56626921A528A"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/42/fixed_42.py",
+                                               "exists":  true,
+                                               "sha256":  "309A60463FC4D1A5357B345E56C5B4E0D6C41CF9336E55D50FC0275FCF7471C4"
+                                           },
+                                           {
+                                               "path":  "data/Bugs4Q_official/extracted/Zenodo-Framework/Bugs4Q-Framework/qiskit/42/modify_42.txt",
+                                               "exists":  true,
+                                               "sha256":  "BE64B7FFAD518DC33120F771DC64C689961153EE282E66C3F1AB88A69F98FAE1"
+                                           }
+                                       ],
+                      "source_loaded":  true,
+                      "parsed":  true,
+                      "translated":  true,
+                      "executable":  true,
+                      "diagnosed":  true,
+                      "execution_status":  "COMPLETED",
+                      "ground_truth_status":  "BUG_TYPE_METADATA_ONLY",
+                      "ground_truth_category":  null,
+                      "ground_truth_location":  null,
+                      "diagnosis_ground_truth_compatible":  false,
+                      "disposition":  "source/bug-type context only; no diagnosis-category or independent localization label"
+                  }
+              ]
+}

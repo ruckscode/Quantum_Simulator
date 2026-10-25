@@ -1,0 +1,221 @@
+{
+  "anomaly": {
+    "anomaly_detected": true,
+    "expected_distribution": {
+      "0": 0.5,
+      "1": 0.5
+    },
+    "finite_shot_guard": 0.05,
+    "hellinger_distance": 0.541196100146197,
+    "js_divergence": 0.21576155433883565,
+    "message": "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+    "observed_distribution": {
+      "0": 1.0,
+      "1": 0.0
+    },
+    "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+    "shots": 512,
+    "threshold": 0.05,
+    "total_variation_distance": 0.5
+  },
+  "circuit": {
+    "ideal": [
+      [
+        "ry",
+        3,
+        1.5707963267948966
+      ],
+      [
+        "measure",
+        [
+          3
+        ]
+      ]
+    ],
+    "observed": [
+      [
+        "ry",
+        3,
+        1.5707963267948966
+      ],
+      [
+        "measure",
+        [
+          3
+        ]
+      ]
+    ]
+  },
+  "configuration": {
+    "anomaly_threshold": 0.05,
+    "backend_name": null,
+    "circuit": [
+      [
+        "ry",
+        3,
+        1.5707963267948966
+      ],
+      [
+        "measure",
+        [
+          3
+        ]
+      ]
+    ],
+    "circuit_family_id": "phase2_unknown_q3_rotation",
+    "circuit_id": "circuit-f44bbf78c4cf7655",
+    "description": "Phase 2 scenario: observed deviation with no hardware calibration or program mismatch supplied",
+    "experiment_name": "phase2_cause_unknown_phase_observation_seed_20262002",
+    "experimental_group_id": null,
+    "ground_truth_label": null,
+    "hardware_affected_component": null,
+    "hardware_condition_id": null,
+    "hardware_parameters": null,
+    "noise_parameters": null,
+    "num_qubits": 4,
+    "observed_circuit": null,
+    "observed_counts": {
+      "0": 512
+    },
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "random_seed": 20262002,
+    "repetition_index": null,
+    "run_id": null,
+    "shots": 512,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "diagnosis": {
+    "anomaly_detected": true,
+    "category": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+    "evidence": [
+      "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000.",
+      "Hardware calibration information was not provided."
+    ],
+    "hardware_evidence_candidates": [],
+    "hardware_result": null,
+    "missing_evidence": [
+      "Hardware calibration information was not provided."
+    ],
+    "program_evidence_candidates": [],
+    "program_result": {
+      "anomaly_metric": 0.0,
+      "candidates": [],
+      "evidence": [
+        "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+      ],
+      "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+      "threshold": 0.05
+    },
+    "statistics_result": {
+      "anomaly_detected": true,
+      "expected_distribution": {
+        "0": 0.5,
+        "1": 0.5
+      },
+      "finite_shot_guard": 0.05,
+      "hellinger_distance": 0.541196100146197,
+      "js_divergence": 0.21576155433883565,
+      "message": "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+      "observed_distribution": {
+        "0": 1.0,
+        "1": 0.0
+      },
+      "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+      "shots": 512,
+      "threshold": 0.05,
+      "total_variation_distance": 0.5
+    },
+    "summary": "An execution anomaly was detected, but available evidence does not isolate a program or hardware cause.",
+    "trace_deviation_candidates": []
+  },
+  "errors": [],
+  "execution_metadata": {
+    "backend_api_used": false,
+    "execution_kind": "SYNTHETIC_VALIDATION",
+    "execution_target": "LOCAL_SIMULATOR",
+    "generated_at": "2026-10-12T17:09:57+00:00",
+    "hardware_model_applied": false,
+    "noise_parameters_applied": false,
+    "numpy_version": "2.5.3",
+    "observation_source": "CONTROLLED_OBSERVATION_FIXTURE",
+    "python_version": "3.12.10",
+    "random_seed": 20262002,
+    "shots": 512
+  },
+  "experiment_metadata": {
+    "backend_name": null,
+    "circuit_family_id": "phase2_unknown_q3_rotation",
+    "circuit_id": "circuit-f44bbf78c4cf7655",
+    "created_at": "2026-10-12T17:09:57+00:00",
+    "experiment_name": "phase2_cause_unknown_phase_observation_seed_20262002",
+    "experimental_group_id": null,
+    "ground_truth_label": null,
+    "hardware_affected_component": null,
+    "hardware_condition_id": null,
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "repetition_index": null,
+    "run_id": null,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "hardware_evidence": null,
+  "ideal_distribution": {
+    "0": 0.5,
+    "1": 0.5
+  },
+  "ideal_statevector_distribution": {
+    "0000": 0.5,
+    "0001": 0.5,
+    "0010": 0.0,
+    "0011": 0.0,
+    "0100": 0.0,
+    "0101": 0.0,
+    "0110": 0.0,
+    "0111": 0.0,
+    "1000": 0.0,
+    "1001": 0.0,
+    "1010": 0.0,
+    "1011": 0.0,
+    "1100": 0.0,
+    "1101": 0.0,
+    "1110": 0.0,
+    "1111": 0.0
+  },
+  "observed_counts": {
+    "0": 512
+  },
+  "observed_distribution": {
+    "0": 1.0,
+    "1": 0.0
+  },
+  "program_evidence": {
+    "anomaly_metric": 0.0,
+    "candidates": [],
+    "evidence": [
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+    ],
+    "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+    "threshold": 0.05
+  },
+  "reproducibility": {
+    "deterministic_localizer_measurements": "measurement operations mapped to barriers for localization only",
+    "fingerprint": "0b95c4eda4e675ff8eb1bc1c622285896b47f9663658b391a5c94345aa6dda2e",
+    "fingerprint_excludes": [
+      "execution_metadata.generated_at",
+      "reproducibility.fingerprint"
+    ],
+    "random_seed": 20262002,
+    "simulator_version": "project-statevector-current"
+  },
+  "simulator_observed_counts": {
+    "0": 258,
+    "1": 254
+  },
+  "status": "COMPLETED"
+}

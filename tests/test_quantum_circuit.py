@@ -139,6 +139,15 @@ def test_run_with_same_seed_returns_identical_counts():
     assert first == second
 
 
+def test_run_passes_memory_budget_to_simulator_before_execution():
+    circuit = QuantumCircuit(2)
+    circuit.h(0)
+    budget = 3 * 16 * 2**2
+    assert sum(circuit.run(shots=16, seed=12, memory_budget_bytes=budget).get_counts().values()) == 16
+    with pytest.raises(MemoryError, match="configured budget"):
+        circuit.run(shots=16, seed=12, memory_budget_bytes=budget - 1)
+
+
 @pytest.mark.parametrize("shots", [0, -1, 1.5, "10", True])
 def test_run_rejects_invalid_shots(shots):
     with pytest.raises(ValueError, match="shots must be a positive integer"):

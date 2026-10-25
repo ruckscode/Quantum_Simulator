@@ -5,8 +5,10 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import platform
 import re
+import tempfile
 from dataclasses import dataclass, fields, is_dataclass
 from datetime import datetime, timezone
 from enum import Enum
@@ -19,6 +21,7 @@ from diagnosis_engine import DiagnosisResult, diagnose_execution
 from experiment_config import ExperimentConfig, load_experiment_config
 from hardware_model import HardwareModel
 from quantum_simulator import QuantumSimulator
+from quantum_simulator.hardware_model import HardwareModel as SimulatorHardwareModel
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -56,6 +59,56 @@ def _without_measurements(circuit: Sequence[Any]) -> list[Any]:
         if name != "measure":
             result.append(operation)
     return result
+
+
+def _atomic_write_text(destination: Path, text: str) -> None:
+    """Replace a text artifact atomically using a temporary sibling file."""
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{destination.name}.", suffix=".partial", dir=destination.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8", newline="\n") as stream:
+            stream.write(text)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, destination)
+    finally:
+        try:
+            temporary.unlink(missing_ok=True)
+        except OSError:
+            pass
+
+
+def _source_fingerprints() -> dict[str, str]:
+    paths = (
+        "pyproject.toml",
+        "experiment_config.py",
+        "experiments/full_dataset.py",
+        "experiments/run_experiment.py",
+        "quantum_simulator.py",
+        "diagnosis_engine.py",
+        "hardware_model.py",
+        "fault_localizer.py",
+        "hardware_fault_localizer.py",
+        "gates.py",
+        "statistics.py",
+        "src/quantum_simulator/__init__.py",
+        "src/quantum_simulator/quantum_circuit.py",
+        "src/quantum_simulator/quantum_simulator.py",
+        "src/quantum_simulator/gates.py",
+        "src/quantum_simulator/diagnosis_engine.py",
+        "src/quantum_simulator/fault_localizer.py",
+        "src/quantum_simulator/hardware_fault_localizer.py",
+        "src/quantum_simulator/hardware_model.py",
+        "src/quantum_simulator/statistics.py",
+    )
+    fingerprints = {}
+    for relative in paths:
+        source = PROJECT_ROOT / relative
+        fingerprints[relative] = hashlib.sha256(source.read_bytes()).hexdigest()
+    return fingerprints
 
 
 def _with_measurement(circuit: Sequence[Any]) -> list[Any]:
@@ -110,12 +163,12 @@ def _probabilities_from_counts(ideal_distribution: Mapping[str, float], counts: 
     return expected, observed
 
 
-def _build_hardware_model(config: ExperimentConfig) -> HardwareModel | None:
+def _build_hardware_model(config: ExperimentConfig, model_class: Any = HardwareModel) -> Any | None:
     parameters = config.hardware_parameters
     if parameters is None:
         return None
     coupling_map = parameters.get("coupling_map", [])
-    model = HardwareModel(
+    model = model_class(
         config.num_qubits,
         coupling_map=coupling_map,
         backend_name=config.backend_name or "local-simulator",
@@ -311,6 +364,19 @@ def _new_result(config: ExperimentConfig, **values: Any) -> ExperimentResult:
             "validation_label": config.validation_label,
             "backend_name": config.backend_name,
             "created_at": timestamp,
+            "ground_truth_label": config.ground_truth_label,
+            "circuit_id": config.circuit_id,
+            "circuit_family_id": config.circuit_family_id,
+            "circuit_lineage_id": config.circuit_lineage_id,
+            "program_fault_id": config.program_fault_id,
+            "hardware_condition_id": config.hardware_condition_id,
+            "experimental_group_id": config.experimental_group_id,
+            "run_id": config.run_id,
+            "repetition_index": config.repetition_index,
+            "program_fault_description": config.program_fault_description,
+            "program_fault_operation_index": config.program_fault_operation_index,
+            "program_fault_qubits": config.program_fault_qubits,
+            "hardware_affected_component": config.hardware_affected_component,
         },
         configuration=config.to_dict(),
         circuit={
@@ -333,7 +399,8 @@ def _new_result(config: ExperimentConfig, **values: Any) -> ExperimentResult:
             "shots": config.shots,
             "random_seed": config.random_seed,
             "observation_source": values.get("observation_source", "NOT_EXECUTED"),
-            "noise_parameters_applied": False,
+            "noise_parameters_applied": values.get("noise_parameters_applied", False),
+            "hardware_model_applied": values.get("hardware_model_applied", False),
             "generated_at": timestamp,
             "python_version": platform.python_version(),
             "numpy_version": np.__version__,
@@ -341,6 +408,7 @@ def _new_result(config: ExperimentConfig, **values: Any) -> ExperimentResult:
         reproducibility={
             "random_seed": config.random_seed,
             "simulator_version": "project-statevector-current",
+            "source_sha256": _source_fingerprints(),
             "deterministic_localizer_measurements": "measurement operations mapped to barriers for localization only",
             "fingerprint_excludes": ["execution_metadata.generated_at", "reproducibility.fingerprint"],
             "fingerprint": "",
@@ -370,13 +438,19 @@ def run_experiment(
     observed_circuit = resolved.observed_circuit if resolved.observed_circuit is not None else resolved.circuit
     try:
         model = _build_hardware_model(resolved)
+        execution_model = _build_hardware_model(resolved, model_class=SimulatorHardwareModel)
         ideal_statevector = _statevector_probabilities(resolved.circuit, resolved.num_qubits, resolved.random_seed)
         ideal_shots_circuit = _with_measurement(resolved.circuit)
         observed_shots_circuit = _with_measurement(observed_circuit)
         ideal_simulator = QuantumSimulator(resolved.num_qubits, seed=resolved.random_seed)
         observed_simulator = QuantumSimulator(resolved.num_qubits, seed=resolved.random_seed)
         ideal_counts = ideal_simulator.run_shots(ideal_shots_circuit, shots=resolved.shots, seed=resolved.random_seed)
-        simulator_observed_counts = observed_simulator.run_shots(observed_shots_circuit, shots=resolved.shots, seed=resolved.random_seed)
+        simulator_observed_counts = observed_simulator.run_shots(
+            observed_shots_circuit,
+            shots=resolved.shots,
+            seed=resolved.random_seed,
+            hardware_model=execution_model,
+        )
         selected_observed_counts = dict(resolved.observed_counts) if resolved.observed_counts is not None else dict(simulator_observed_counts)
         ideal_distribution = _marginal_ideal_distribution(
             ideal_statevector,
@@ -408,7 +482,13 @@ def run_experiment(
             diagnosis=diagnosis,
             program_evidence=diagnosis.program_result,
             hardware_evidence=diagnosis.hardware_result,
-            observation_source="CONTROLLED_OBSERVATION_FIXTURE" if resolved.observed_counts is not None else "SEEDED_LOCAL_SIMULATOR_SHOTS",
+            observation_source=(
+                "CONTROLLED_OBSERVATION_FIXTURE" if resolved.observed_counts is not None
+                else "SEEDED_LOCAL_SIMULATOR_SHOTS_WITH_HARDWARE_MODEL" if model is not None
+                else "SEEDED_LOCAL_SIMULATOR_SHOTS"
+            ),
+            hardware_model_applied=execution_model is not None,
+            noise_parameters_applied=False,
         )
     except Exception as exc:
         result = _new_result(
@@ -421,8 +501,7 @@ def run_experiment(
     if output_path is None:
         output_path = DEFAULT_RESULT_DIR / f"{_safe_name(resolved.experiment_name)}.json"
     destination = Path(output_path)
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(json.dumps(result.to_dict(), indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    _atomic_write_text(destination, json.dumps(result.to_dict(), indent=2, sort_keys=True) + "\n")
     return result
 
 
@@ -477,16 +556,17 @@ def run_config_batch(
             "python_version": platform.python_version(),
             "numpy_version": np.__version__,
             "platform": platform.platform(),
+            "source_sha256": _source_fingerprints(),
         },
         "limitations": [
-            "Experiments use the local simulator and controlled synthetic observation fixtures only.",
+            "Experiments use the local simulator; fixed observed_counts configurations remain controlled observation fixtures.",
             "No Bugs4Q benchmark data or IBM hardware execution is used.",
-            "Configured noise_parameters are recorded but not applied because this project has no noise model.",
+            "noise_parameters are metadata only; controlled hardware profiles are applied through HardwareModel during shot execution.",
         ],
     }
     destination = Path(reproducibility_report_path)
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    _atomic_write_text(destination, json.dumps(report, indent=2, sort_keys=True) + "\n")
     return report
 
 

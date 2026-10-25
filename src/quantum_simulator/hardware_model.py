@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+import math
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 
@@ -20,7 +21,9 @@ def _validate_qubit_index(qubit: int, n_qubits: int | None = None) -> int:
     return qubit
 
 
-def _validate_probability(value: float, name: str) -> float:
+def _validate_probability(value: float | None, name: str) -> float | None:
+    if value is None:
+        return None
     if not isinstance(value, (int, float)):
         raise TypeError(f"{name} must be numeric")
     numeric = float(value)
@@ -29,21 +32,23 @@ def _validate_probability(value: float, name: str) -> float:
     return numeric
 
 
-def _validate_nonnegative(value: float, name: str) -> float:
+def _validate_nonnegative(value: float | None, name: str) -> float | None:
+    if value is None:
+        return None
     if not isinstance(value, (int, float)):
         raise TypeError(f"{name} must be numeric")
     numeric = float(value)
-    if numeric < 0.0:
-        raise ValueError(f"{name} must be non-negative")
+    if not math.isfinite(numeric) or numeric < 0.0:
+        raise ValueError(f"{name} must be a finite non-negative number")
     return numeric
 
 
 @dataclass
 class QubitProperties:
     qubit: int
-    t1: float = 1e6
-    t2: float = 1e6
-    readout_error: float = 0.0
+    t1: float | None = 1e6
+    t2: float | None = 1e6
+    readout_error: float | None = 0.0
     status: str = "available"
     available: bool = True
     metadata: Dict[str, Any] = field(default_factory=dict)
@@ -61,8 +66,8 @@ class QubitProperties:
 class GateProperties:
     gate: str
     qubits: Tuple[int, ...] = ()
-    error: float = 0.0
-    duration: float = 0.0
+    error: float | None = 0.0
+    duration: float | None = 0.0
     supported: bool = True
     metadata: Dict[str, Any] = field(default_factory=dict)
 
@@ -81,8 +86,8 @@ class CouplingEdge:
     qubit_a: int
     qubit_b: int
     direction: Optional[str] = None
-    error: float = 0.0
-    duration: float = 0.0
+    error: float | None = 0.0
+    duration: float | None = 0.0
     supported: bool = True
     metadata: Dict[str, Any] = field(default_factory=dict)
 
@@ -102,14 +107,112 @@ class CouplingEdge:
 class CalibrationSnapshot:
     backend_name: str = "generic_backend"
     timestamp: str | None = None
+    timestamp_provenance: str = "unknown"
+    created_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat(timespec="seconds"))
     qubits: Dict[int, Dict[str, Any]] = field(default_factory=dict)
     gates: Dict[str, List[Dict[str, Any]]] = field(default_factory=dict)
     edges: Dict[Tuple[int, int], Dict[str, Any]] = field(default_factory=dict)
     metadata: Dict[str, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
-        if self.timestamp is None:
-            self.timestamp = datetime.now(timezone.utc).isoformat(timespec="seconds")
+        if self.timestamp_provenance not in {"reported", "synthetic", "unknown"}:
+            raise ValueError("timestamp_provenance must be 'reported', 'synthetic', or 'unknown'")
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Return a JSON-compatible snapshot while keeping acquisition and creation times distinct."""
+        return {
+            "backend_name": self.backend_name,
+            "timestamp": self.timestamp,
+            "timestamp_provenance": self.timestamp_provenance,
+            "created_at": self.created_at,
+            "qubits": {str(key): value for key, value in self.qubits.items()},
+            "gates": self.gates,
+            "edges": [
+                {"pair": list(pair), **value} for pair, value in self.edges.items()
+            ],
+            "metadata": self.metadata,
+        }
+
+    @classmethod
+    def from_dict(cls, value: Dict[str, Any]) -> "CalibrationSnapshot":
+        if not isinstance(value, dict):
+            raise TypeError("snapshot data must be a dictionary")
+        raw_edges = value.get("edges", [])
+        if isinstance(raw_edges, dict):
+            edges = {tuple(map(int, pair)): dict(info) for pair, info in raw_edges.items()}
+        else:
+            edges = {}
+            for entry in raw_edges:
+                pair = tuple(map(int, entry["pair"]))
+                edges[pair] = {key: item for key, item in entry.items() if key != "pair"}
+        return cls(
+            backend_name=value.get("backend_name", "generic_backend"),
+            timestamp=value.get("timestamp"),
+            timestamp_provenance=value.get("timestamp_provenance", "unknown"),
+            created_at=value.get("created_at", datetime.now(timezone.utc).isoformat(timespec="seconds")),
+            qubits={int(key): dict(info) for key, info in value.get("qubits", {}).items()},
+            gates={str(key): list(info) for key, info in value.get("gates", {}).items()},
+            edges=edges,
+            metadata=dict(value.get("metadata", {})),
+        )
+
+
+def assess_calibration_freshness(
+    timestamp: str | None,
+    *,
+    provenance: str = "unknown",
+    max_age_seconds: float | None = None,
+    now: datetime | None = None,
+) -> dict[str, Any]:
+    """Assess reported acquisition time only under an explicit caller age policy.
+
+    Snapshot creation time is intentionally not an input: copying old calibration
+    into a new snapshot does not make the underlying calibration current.
+    """
+    if provenance not in {"reported", "synthetic", "unknown"}:
+        raise ValueError("provenance must be 'reported', 'synthetic', or 'unknown'")
+    if max_age_seconds is not None and (
+        isinstance(max_age_seconds, bool)
+        or not isinstance(max_age_seconds, (int, float))
+        or not math.isfinite(float(max_age_seconds))
+        or max_age_seconds <= 0
+    ):
+        raise ValueError("max_age_seconds must be a positive finite number")
+    result: dict[str, Any] = {
+        "status": "UNKNOWN",
+        "age_seconds": None,
+        "max_age_seconds": None if max_age_seconds is None else float(max_age_seconds),
+        "provenance": provenance,
+    }
+    if provenance == "synthetic":
+        result["status"] = "SYNTHETIC"
+        return result
+    if provenance != "reported":
+        result["status"] = "UNKNOWN_PROVENANCE"
+        return result
+    if not isinstance(timestamp, str) or not timestamp.strip():
+        result["status"] = "MISSING_TIMESTAMP"
+        return result
+    try:
+        parsed = datetime.fromisoformat(timestamp.strip().replace("Z", "+00:00"))
+    except ValueError:
+        result["status"] = "INVALID_TIMESTAMP"
+        return result
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        result["status"] = "TIMEZONE_REQUIRED"
+        return result
+    reference = now or datetime.now(timezone.utc)
+    if reference.tzinfo is None or reference.utcoffset() is None:
+        raise ValueError("now must include a timezone")
+    age = (reference.astimezone(timezone.utc) - parsed.astimezone(timezone.utc)).total_seconds()
+    result["age_seconds"] = age
+    if age < 0:
+        result["status"] = "FUTURE_TIMESTAMP"
+    elif max_age_seconds is None:
+        result["status"] = "AGE_KNOWN_FRESHNESS_UNASSESSED"
+    else:
+        result["status"] = "FRESH" if age <= max_age_seconds else "STALE"
+    return result
 
 
 class HardwareModel:
@@ -121,6 +224,7 @@ class HardwareModel:
         coupling_map: Sequence[Tuple[int, int]] | None = None,
         backend_name: str = "generic_backend",
         calibration_timestamp: str | None = None,
+        calibration_timestamp_provenance: str | None = None,
         default_t1: float = 1e6,
         default_t2: float = 1e6,
         default_readout_error: float = 0.0,
@@ -132,7 +236,18 @@ class HardwareModel:
 
         self.n_qubits = n_qubits
         self.backend_name = backend_name
-        self.calibration_timestamp = calibration_timestamp or datetime.now(timezone.utc).isoformat(timespec="seconds")
+        self.calibration_timestamp = calibration_timestamp
+        if calibration_timestamp_provenance is None:
+            calibration_timestamp_provenance = (
+                "synthetic" if calibration_timestamp == "synthetic-config"
+                else "reported" if calibration_timestamp is not None
+                else "synthetic"
+            )
+        if calibration_timestamp_provenance not in {"reported", "synthetic", "unknown"}:
+            raise ValueError("calibration_timestamp_provenance must be 'reported', 'synthetic', or 'unknown'")
+        self.calibration_timestamp_provenance = calibration_timestamp_provenance
+        self.default_gate_error = _validate_probability(default_gate_error, "default_gate_error")
+        self.default_gate_duration = _validate_nonnegative(default_gate_duration, "default_gate_duration")
 
         self._qubits: Dict[int, QubitProperties] = {}
         self._gates: Dict[str, List[GateProperties]] = {}
@@ -243,15 +358,17 @@ class HardwareModel:
 
     def gate_error(self, gate_name: str, qubits: Sequence[int] | None = None) -> float:
         calib = self.get_gate_calibration(gate_name, qubits=qubits)
-        if not calib:
-            return 0.0
-        return min(entry.error for entry in calib)
+        errors = [entry.error for entry in calib if entry.error is not None]
+        if not errors:
+            return float(self.default_gate_error or 0.0)
+        return min(errors)
 
     def gate_duration(self, gate_name: str, qubits: Sequence[int] | None = None) -> float:
         calib = self.get_gate_calibration(gate_name, qubits=qubits)
-        if not calib:
-            return 0.0
-        return min(entry.duration for entry in calib)
+        durations = [entry.duration for entry in calib if entry.duration is not None]
+        if not durations:
+            return float(self.default_gate_duration or 0.0)
+        return min(durations)
 
     def add_edge(
         self,
@@ -305,6 +422,7 @@ class HardwareModel:
         snapshot = CalibrationSnapshot(
             backend_name=self.backend_name,
             timestamp=self.calibration_timestamp,
+            timestamp_provenance=self.calibration_timestamp_provenance,
             qubits={
                 q: {
                     "t1": props.t1,
@@ -340,7 +458,11 @@ class HardwareModel:
                 }
                 for edge in self._coupling_edges.values()
             },
-            metadata={"n_qubits": self.n_qubits},
+            metadata={
+                "n_qubits": self.n_qubits,
+                "default_gate_error": self.default_gate_error,
+                "default_gate_duration": self.default_gate_duration,
+            },
         )
         return snapshot
 
@@ -349,6 +471,13 @@ class HardwareModel:
             raise TypeError("snapshot must be a CalibrationSnapshot")
         self.backend_name = snapshot.backend_name
         self.calibration_timestamp = snapshot.timestamp
+        self.calibration_timestamp_provenance = snapshot.timestamp_provenance
+        self.default_gate_error = _validate_probability(
+            snapshot.metadata.get("default_gate_error", 0.0), "default_gate_error"
+        )
+        self.default_gate_duration = _validate_nonnegative(
+            snapshot.metadata.get("default_gate_duration", 0.0), "default_gate_duration"
+        )
         self._qubits = {}
         self._gates = {}
         self._coupling_edges = {}
@@ -396,4 +525,5 @@ __all__ = [
     "CouplingEdge",
     "CalibrationSnapshot",
     "HardwareModel",
+    "assess_calibration_freshness",
 ]

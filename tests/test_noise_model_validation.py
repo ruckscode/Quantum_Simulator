@@ -1,9 +1,10 @@
 """Focused checks for the hardware effects implemented by the simulator."""
 
 import numpy as np
+import pytest
 
 from quantum_simulator import QuantumSimulator
-from quantum_simulator.hardware_model import HardwareModel
+from quantum_simulator.hardware_model import HardwareModel, QubitProperties
 
 
 def _idle_model(*, t1=1e15, t2=1e15, duration=1.0):
@@ -62,6 +63,18 @@ def test_calibrated_gate_error_one_skips_deterministic_x_gate():
     np.testing.assert_allclose(failed.get_probabilities(), [1, 0], atol=1e-12)
 
 
+def test_default_gate_error_and_duration_are_used_when_specific_calibration_is_absent():
+    skipped_model = HardwareModel(1, default_gate_error=1.0)
+    skipped = QuantumSimulator(1, seed=35)
+    skipped.run_circuit([("x", 0)], hardware_model=skipped_model)
+    np.testing.assert_allclose(skipped.get_probabilities(), [1, 0], atol=1e-12)
+
+    relaxation_model = HardwareModel(1, default_t1=0.01, default_gate_duration=1.0)
+    relaxed = QuantumSimulator(1, seed=36)
+    relaxed.run_circuit([("x", 0), ("i", 0)], hardware_model=relaxation_model)
+    np.testing.assert_allclose(relaxed.get_probabilities(), [1, 0], atol=1e-12)
+
+
 def test_t1_relaxation_moves_excited_state_toward_zero():
     circuit = [("x", 0), ("i", 0)]
     long_t1 = QuantumSimulator(1, seed=41)
@@ -106,3 +119,25 @@ def test_t2_dephasing_reduces_interference_by_analytic_coherence_factor():
     observed_zero_probability = low_t2_zeros / shots
     assert abs(observed_zero_probability - expected_zero_probability) < 0.04
     assert observed_zero_probability < 0.65
+
+
+@pytest.mark.parametrize("invalid", [np.nan, np.inf, -np.inf])
+def test_nonfinite_relaxation_times_and_gate_durations_are_rejected(invalid):
+    with pytest.raises(ValueError, match="finite non-negative"):
+        QubitProperties(0, t1=invalid)
+    with pytest.raises(ValueError, match="finite non-negative"):
+        QubitProperties(0, t2=invalid)
+    with pytest.raises(ValueError, match="finite non-negative"):
+        HardwareModel(1, default_t1=invalid)
+    with pytest.raises(ValueError, match="finite non-negative"):
+        HardwareModel(1, default_gate_duration=invalid)
+
+    model = HardwareModel(2)
+    with pytest.raises(ValueError, match="finite non-negative"):
+        model.set_qubit_properties(0, t1=invalid)
+    with pytest.raises(ValueError, match="finite non-negative"):
+        model.set_qubit_properties(0, t2=invalid)
+    with pytest.raises(ValueError, match="finite non-negative"):
+        model.add_gate_calibration("i", qubits=(0,), duration=invalid)
+    with pytest.raises(ValueError, match="finite non-negative"):
+        model.add_edge(0, 1, duration=invalid)

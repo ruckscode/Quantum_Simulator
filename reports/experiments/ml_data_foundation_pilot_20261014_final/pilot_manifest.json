@@ -1,0 +1,1904 @@
+{
+  "artifacts": {
+    "observations.jsonl": {
+      "rows": 9,
+      "sha256": "f9ae3754e57cedd2f43341dc3b1f784a37cf62efd72d4a11725d25b957dbf1de"
+    },
+    "synthetic_labels.jsonl": {
+      "rows": 9,
+      "sha256": "f92674844926c7cc5c9c1e9c05fc3e983f02e8685beea6b41b9689fbf87d5f47"
+    }
+  },
+  "counts": {
+    "families": 3,
+    "independently_adjudicated": 0,
+    "lineages": 3,
+    "runs": 9,
+    "unresolved_attribution": 9
+  },
+  "dataset_id": "bounded_local_simulator_provenance_pilot",
+  "design": {
+    "conditions": [
+      "NORMAL",
+      "PROGRAM_FAULT",
+      "HARDWARE_ANOMALY"
+    ],
+    "configuration_records": [
+      {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "h",
+            0
+          ],
+          [
+            "y",
+            0
+          ],
+          [
+            "s",
+            0
+          ],
+          [
+            "ry",
+            0,
+            0.15
+          ],
+          [
+            "measure",
+            [
+              0
+            ]
+          ]
+        ],
+        "circuit_family_id": "circuit_family_01",
+        "circuit_id": "circuit-afd8aa65b4fd098c",
+        "circuit_lineage_id": "design_recipe_01",
+        "description": "Fixed design seed 6104271; NORMAL controlled condition.",
+        "experiment_name": "full_circuit_family_01_normal_rep0",
+        "experimental_group_id": "group-c1759cf21f19bd5e",
+        "ground_truth_label": "NORMAL",
+        "hardware_affected_component": null,
+        "hardware_condition_id": null,
+        "hardware_parameters": {
+          "coupling_map": [],
+          "gates": [],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 1,
+        "observed_circuit": [
+          [
+            "h",
+            0
+          ],
+          [
+            "y",
+            0
+          ],
+          [
+            "s",
+            0
+          ],
+          [
+            "ry",
+            0,
+            0.15
+          ],
+          [
+            "measure",
+            [
+              0
+            ]
+          ]
+        ],
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 930000,
+        "repetition_index": 0,
+        "run_id": "run-7a7647281ec25b65",
+        "shots": 32,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "h",
+            0
+          ],
+          [
+            "y",
+            0
+          ],
+          [
+            "s",
+            0
+          ],
+          [
+            "ry",
+            0,
+            0.15
+          ],
+          [
+            "measure",
+            [
+              0
+            ]
+          ]
+        ],
+        "circuit_family_id": "circuit_family_01",
+        "circuit_id": "circuit-afd8aa65b4fd098c",
+        "circuit_lineage_id": "design_recipe_01",
+        "description": "Fixed design seed 6104271; PROGRAM_FAULT controlled condition.",
+        "experiment_name": "full_circuit_family_01_program_fault_rep0",
+        "experimental_group_id": "group-0f51508acfdaeb79",
+        "ground_truth_label": "PROGRAM_FAULT",
+        "hardware_affected_component": null,
+        "hardware_condition_id": null,
+        "hardware_parameters": {
+          "coupling_map": [],
+          "gates": [],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 1,
+        "observed_circuit": [
+          [
+            "h",
+            0
+          ],
+          [
+            "y",
+            0
+          ],
+          [
+            "s",
+            0
+          ],
+          [
+            "x",
+            0
+          ],
+          [
+            "measure",
+            [
+              0
+            ]
+          ]
+        ],
+        "observed_counts": null,
+        "program_fault_description": "Replace operation 3: ['ry', 0, 0.15] with ['x', 0].",
+        "program_fault_id": "fault-01-gate_replacement",
+        "program_fault_operation_index": 3,
+        "program_fault_qubits": [
+          0
+        ],
+        "random_seed": 930100,
+        "repetition_index": 0,
+        "run_id": "run-ce554128d071e328",
+        "shots": 32,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "h",
+            0
+          ],
+          [
+            "y",
+            0
+          ],
+          [
+            "s",
+            0
+          ],
+          [
+            "ry",
+            0,
+            0.15
+          ],
+          [
+            "measure",
+            [
+              0
+            ]
+          ]
+        ],
+        "circuit_family_id": "circuit_family_01",
+        "circuit_id": "circuit-afd8aa65b4fd098c",
+        "circuit_lineage_id": "design_recipe_01",
+        "description": "Fixed design seed 6104271; HARDWARE_ANOMALY controlled condition.",
+        "experiment_name": "full_circuit_family_01_hardware_anomaly_rep0",
+        "experimental_group_id": "group-0a8c3297c3f55d9c",
+        "ground_truth_label": "HARDWARE_ANOMALY",
+        "hardware_affected_component": "readout on qubit 0",
+        "hardware_condition_id": "hardware-b9300d0487304b93",
+        "hardware_parameters": {
+          "coupling_map": [],
+          "gates": [],
+          "qubits": {
+            "0": {
+              "readout_error": 0.12,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 1,
+        "observed_circuit": [
+          [
+            "h",
+            0
+          ],
+          [
+            "y",
+            0
+          ],
+          [
+            "s",
+            0
+          ],
+          [
+            "ry",
+            0,
+            0.15
+          ],
+          [
+            "measure",
+            [
+              0
+            ]
+          ]
+        ],
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 930200,
+        "repetition_index": 0,
+        "run_id": "run-4190251a45d37899",
+        "shots": 32,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "s",
+            1
+          ],
+          [
+            "t",
+            2
+          ],
+          [
+            "rx",
+            3,
+            1.83
+          ],
+          [
+            "z",
+            0
+          ],
+          [
+            "ry",
+            2,
+            2.41
+          ],
+          [
+            "rz",
+            3,
+            0.29
+          ],
+          [
+            "t",
+            0
+          ],
+          [
+            "rx",
+            1,
+            1.83
+          ],
+          [
+            "rz",
+            0,
+            0.7680339887500001
+          ],
+          [
+            "cx",
+            0,
+            1
+          ],
+          [
+            "cx",
+            0,
+            2
+          ],
+          [
+            "cx",
+            0,
+            3
+          ],
+          [
+            "measure",
+            [
+              0
+            ]
+          ]
+        ],
+        "circuit_family_id": "circuit_family_02",
+        "circuit_id": "circuit-af8f1ef39fcb224c",
+        "circuit_lineage_id": "design_recipe_02",
+        "description": "Fixed design seed 6104272; NORMAL controlled condition.",
+        "experiment_name": "full_circuit_family_02_normal_rep0",
+        "experimental_group_id": "group-90c9e52be783656f",
+        "ground_truth_label": "NORMAL",
+        "hardware_affected_component": null,
+        "hardware_condition_id": null,
+        "hardware_parameters": {
+          "coupling_map": [],
+          "gates": [],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "3": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": [
+          [
+            "s",
+            1
+          ],
+          [
+            "t",
+            2
+          ],
+          [
+            "rx",
+            3,
+            1.83
+          ],
+          [
+            "z",
+            0
+          ],
+          [
+            "ry",
+            2,
+            2.41
+          ],
+          [
+            "rz",
+            3,
+            0.29
+          ],
+          [
+            "t",
+            0
+          ],
+          [
+            "rx",
+            1,
+            1.83
+          ],
+          [
+            "rz",
+            0,
+            0.7680339887500001
+          ],
+          [
+            "cx",
+            0,
+            1
+          ],
+          [
+            "cx",
+            0,
+            2
+          ],
+          [
+            "cx",
+            0,
+            3
+          ],
+          [
+            "measure",
+            [
+              0
+            ]
+          ]
+        ],
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 931000,
+        "repetition_index": 0,
+        "run_id": "run-6ea67ae98910bf34",
+        "shots": 32,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "s",
+            1
+          ],
+          [
+            "t",
+            2
+          ],
+          [
+            "rx",
+            3,
+            1.83
+          ],
+          [
+            "z",
+            0
+          ],
+          [
+            "ry",
+            2,
+            2.41
+          ],
+          [
+            "rz",
+            3,
+            0.29
+          ],
+          [
+            "t",
+            0
+          ],
+          [
+            "rx",
+            1,
+            1.83
+          ],
+          [
+            "rz",
+            0,
+            0.7680339887500001
+          ],
+          [
+            "cx",
+            0,
+            1
+          ],
+          [
+            "cx",
+            0,
+            2
+          ],
+          [
+            "cx",
+            0,
+            3
+          ],
+          [
+            "measure",
+            [
+              0
+            ]
+          ]
+        ],
+        "circuit_family_id": "circuit_family_02",
+        "circuit_id": "circuit-af8f1ef39fcb224c",
+        "circuit_lineage_id": "design_recipe_02",
+        "description": "Fixed design seed 6104272; PROGRAM_FAULT controlled condition.",
+        "experiment_name": "full_circuit_family_02_program_fault_rep0",
+        "experimental_group_id": "group-47a68d4059982f1b",
+        "ground_truth_label": "PROGRAM_FAULT",
+        "hardware_affected_component": null,
+        "hardware_condition_id": null,
+        "hardware_parameters": {
+          "coupling_map": [],
+          "gates": [],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "3": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": [
+          [
+            "s",
+            1
+          ],
+          [
+            "t",
+            2
+          ],
+          [
+            "rx",
+            3,
+            1.83
+          ],
+          [
+            "z",
+            0
+          ],
+          [
+            "ry",
+            2,
+            2.41
+          ],
+          [
+            "rz",
+            3,
+            0.29
+          ],
+          [
+            "t",
+            0
+          ],
+          [
+            "rx",
+            1,
+            1.83
+          ],
+          [
+            "cx",
+            0,
+            1
+          ],
+          [
+            "cx",
+            0,
+            2
+          ],
+          [
+            "cx",
+            0,
+            3
+          ],
+          [
+            "measure",
+            [
+              0
+            ]
+          ]
+        ],
+        "observed_counts": null,
+        "program_fault_description": "Delete operation 8: ['rz', 0, 0.7680339887500001].",
+        "program_fault_id": "fault-02-gate_deletion",
+        "program_fault_operation_index": 8,
+        "program_fault_qubits": [
+          0
+        ],
+        "random_seed": 931100,
+        "repetition_index": 0,
+        "run_id": "run-a6791a27c24781a4",
+        "shots": 32,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "s",
+            1
+          ],
+          [
+            "t",
+            2
+          ],
+          [
+            "rx",
+            3,
+            1.83
+          ],
+          [
+            "z",
+            0
+          ],
+          [
+            "ry",
+            2,
+            2.41
+          ],
+          [
+            "rz",
+            3,
+            0.29
+          ],
+          [
+            "t",
+            0
+          ],
+          [
+            "rx",
+            1,
+            1.83
+          ],
+          [
+            "rz",
+            0,
+            0.7680339887500001
+          ],
+          [
+            "cx",
+            0,
+            1
+          ],
+          [
+            "cx",
+            0,
+            2
+          ],
+          [
+            "cx",
+            0,
+            3
+          ],
+          [
+            "measure",
+            [
+              0
+            ]
+          ]
+        ],
+        "circuit_family_id": "circuit_family_02",
+        "circuit_id": "circuit-af8f1ef39fcb224c",
+        "circuit_lineage_id": "design_recipe_02",
+        "description": "Fixed design seed 6104272; HARDWARE_ANOMALY controlled condition.",
+        "experiment_name": "full_circuit_family_02_hardware_anomaly_rep0",
+        "experimental_group_id": "group-cb1c49c2901eedb7",
+        "ground_truth_label": "HARDWARE_ANOMALY",
+        "hardware_affected_component": "s gate on qubits [1]",
+        "hardware_condition_id": "hardware-ed33a35a47d1660a",
+        "hardware_parameters": {
+          "coupling_map": [],
+          "gates": [
+            {
+              "duration": 0.4,
+              "error": 0.08,
+              "gate": "s",
+              "qubits": [
+                1
+              ]
+            }
+          ],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "3": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 4,
+        "observed_circuit": [
+          [
+            "s",
+            1
+          ],
+          [
+            "t",
+            2
+          ],
+          [
+            "rx",
+            3,
+            1.83
+          ],
+          [
+            "z",
+            0
+          ],
+          [
+            "ry",
+            2,
+            2.41
+          ],
+          [
+            "rz",
+            3,
+            0.29
+          ],
+          [
+            "t",
+            0
+          ],
+          [
+            "rx",
+            1,
+            1.83
+          ],
+          [
+            "rz",
+            0,
+            0.7680339887500001
+          ],
+          [
+            "cx",
+            0,
+            1
+          ],
+          [
+            "cx",
+            0,
+            2
+          ],
+          [
+            "cx",
+            0,
+            3
+          ],
+          [
+            "measure",
+            [
+              0
+            ]
+          ]
+        ],
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 931200,
+        "repetition_index": 0,
+        "run_id": "run-7ac304caf7883fcf",
+        "shots": 32,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "rz",
+            2,
+            1.83
+          ],
+          [
+            "rx",
+            0,
+            0.93
+          ],
+          [
+            "ry",
+            1,
+            1.27
+          ],
+          [
+            "rz",
+            0,
+            1.83
+          ],
+          [
+            "h",
+            1
+          ],
+          [
+            "x",
+            2
+          ],
+          [
+            "y",
+            1
+          ],
+          [
+            "z",
+            2
+          ],
+          [
+            "x",
+            0
+          ],
+          [
+            "t",
+            2
+          ],
+          [
+            "z",
+            0
+          ],
+          [
+            "s",
+            1
+          ],
+          [
+            "t",
+            0
+          ],
+          [
+            "rx",
+            1,
+            2.41
+          ],
+          [
+            "ry",
+            2,
+            0.29
+          ],
+          [
+            "rz",
+            1,
+            0.61
+          ],
+          [
+            "h",
+            2
+          ],
+          [
+            "ry",
+            0,
+            0.29
+          ],
+          [
+            "y",
+            2
+          ],
+          [
+            "h",
+            0
+          ],
+          [
+            "x",
+            1
+          ],
+          [
+            "rx",
+            1,
+            1.3860679775
+          ],
+          [
+            "cz",
+            0,
+            1
+          ],
+          [
+            "cz",
+            1,
+            2
+          ],
+          [
+            "cz",
+            2,
+            0
+          ],
+          [
+            "measure",
+            [
+              0,
+              2
+            ]
+          ]
+        ],
+        "circuit_family_id": "circuit_family_03",
+        "circuit_id": "circuit-85648e9b91642681",
+        "circuit_lineage_id": "design_recipe_03",
+        "description": "Fixed design seed 6104273; NORMAL controlled condition.",
+        "experiment_name": "full_circuit_family_03_normal_rep0",
+        "experimental_group_id": "group-7a23b16336de6d49",
+        "ground_truth_label": "NORMAL",
+        "hardware_affected_component": null,
+        "hardware_condition_id": null,
+        "hardware_parameters": {
+          "coupling_map": [],
+          "gates": [],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 3,
+        "observed_circuit": [
+          [
+            "rz",
+            2,
+            1.83
+          ],
+          [
+            "rx",
+            0,
+            0.93
+          ],
+          [
+            "ry",
+            1,
+            1.27
+          ],
+          [
+            "rz",
+            0,
+            1.83
+          ],
+          [
+            "h",
+            1
+          ],
+          [
+            "x",
+            2
+          ],
+          [
+            "y",
+            1
+          ],
+          [
+            "z",
+            2
+          ],
+          [
+            "x",
+            0
+          ],
+          [
+            "t",
+            2
+          ],
+          [
+            "z",
+            0
+          ],
+          [
+            "s",
+            1
+          ],
+          [
+            "t",
+            0
+          ],
+          [
+            "rx",
+            1,
+            2.41
+          ],
+          [
+            "ry",
+            2,
+            0.29
+          ],
+          [
+            "rz",
+            1,
+            0.61
+          ],
+          [
+            "h",
+            2
+          ],
+          [
+            "ry",
+            0,
+            0.29
+          ],
+          [
+            "y",
+            2
+          ],
+          [
+            "h",
+            0
+          ],
+          [
+            "x",
+            1
+          ],
+          [
+            "rx",
+            1,
+            1.3860679775
+          ],
+          [
+            "cz",
+            0,
+            1
+          ],
+          [
+            "cz",
+            1,
+            2
+          ],
+          [
+            "cz",
+            2,
+            0
+          ],
+          [
+            "measure",
+            [
+              0,
+              2
+            ]
+          ]
+        ],
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 932000,
+        "repetition_index": 0,
+        "run_id": "run-bb4381b4a03e4fa3",
+        "shots": 32,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "rz",
+            2,
+            1.83
+          ],
+          [
+            "rx",
+            0,
+            0.93
+          ],
+          [
+            "ry",
+            1,
+            1.27
+          ],
+          [
+            "rz",
+            0,
+            1.83
+          ],
+          [
+            "h",
+            1
+          ],
+          [
+            "x",
+            2
+          ],
+          [
+            "y",
+            1
+          ],
+          [
+            "z",
+            2
+          ],
+          [
+            "x",
+            0
+          ],
+          [
+            "t",
+            2
+          ],
+          [
+            "z",
+            0
+          ],
+          [
+            "s",
+            1
+          ],
+          [
+            "t",
+            0
+          ],
+          [
+            "rx",
+            1,
+            2.41
+          ],
+          [
+            "ry",
+            2,
+            0.29
+          ],
+          [
+            "rz",
+            1,
+            0.61
+          ],
+          [
+            "h",
+            2
+          ],
+          [
+            "ry",
+            0,
+            0.29
+          ],
+          [
+            "y",
+            2
+          ],
+          [
+            "h",
+            0
+          ],
+          [
+            "x",
+            1
+          ],
+          [
+            "rx",
+            1,
+            1.3860679775
+          ],
+          [
+            "cz",
+            0,
+            1
+          ],
+          [
+            "cz",
+            1,
+            2
+          ],
+          [
+            "cz",
+            2,
+            0
+          ],
+          [
+            "measure",
+            [
+              0,
+              2
+            ]
+          ]
+        ],
+        "circuit_family_id": "circuit_family_03",
+        "circuit_id": "circuit-85648e9b91642681",
+        "circuit_lineage_id": "design_recipe_03",
+        "description": "Fixed design seed 6104273; PROGRAM_FAULT controlled condition.",
+        "experiment_name": "full_circuit_family_03_program_fault_rep0",
+        "experimental_group_id": "group-4bb9a6a24d087f46",
+        "ground_truth_label": "PROGRAM_FAULT",
+        "hardware_affected_component": null,
+        "hardware_condition_id": null,
+        "hardware_parameters": {
+          "coupling_map": [],
+          "gates": [],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 3,
+        "observed_circuit": [
+          [
+            "rz",
+            2,
+            1.83
+          ],
+          [
+            "rx",
+            0,
+            0.93
+          ],
+          [
+            "ry",
+            1,
+            1.27
+          ],
+          [
+            "rz",
+            0,
+            1.83
+          ],
+          [
+            "h",
+            1
+          ],
+          [
+            "x",
+            2
+          ],
+          [
+            "y",
+            1
+          ],
+          [
+            "z",
+            2
+          ],
+          [
+            "x",
+            0
+          ],
+          [
+            "t",
+            2
+          ],
+          [
+            "z",
+            0
+          ],
+          [
+            "s",
+            1
+          ],
+          [
+            "t",
+            0
+          ],
+          [
+            "rx",
+            1,
+            2.41
+          ],
+          [
+            "ry",
+            2,
+            0.29
+          ],
+          [
+            "rz",
+            1,
+            0.61
+          ],
+          [
+            "h",
+            2
+          ],
+          [
+            "ry",
+            0,
+            0.29
+          ],
+          [
+            "y",
+            2
+          ],
+          [
+            "h",
+            0
+          ],
+          [
+            "x",
+            1
+          ],
+          [
+            "rx",
+            1,
+            1.8560679775
+          ],
+          [
+            "cz",
+            0,
+            1
+          ],
+          [
+            "cz",
+            1,
+            2
+          ],
+          [
+            "cz",
+            2,
+            0
+          ],
+          [
+            "measure",
+            [
+              0,
+              2
+            ]
+          ]
+        ],
+        "observed_counts": null,
+        "program_fault_description": "Modify operation 21 parameter from 1.386068 to 1.856068.",
+        "program_fault_id": "fault-03-parameter_modification",
+        "program_fault_operation_index": 21,
+        "program_fault_qubits": [
+          1
+        ],
+        "random_seed": 932100,
+        "repetition_index": 0,
+        "run_id": "run-27bea12a0069a2ff",
+        "shots": 32,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      },
+      {
+        "anomaly_threshold": 0.05,
+        "backend_name": null,
+        "circuit": [
+          [
+            "rz",
+            2,
+            1.83
+          ],
+          [
+            "rx",
+            0,
+            0.93
+          ],
+          [
+            "ry",
+            1,
+            1.27
+          ],
+          [
+            "rz",
+            0,
+            1.83
+          ],
+          [
+            "h",
+            1
+          ],
+          [
+            "x",
+            2
+          ],
+          [
+            "y",
+            1
+          ],
+          [
+            "z",
+            2
+          ],
+          [
+            "x",
+            0
+          ],
+          [
+            "t",
+            2
+          ],
+          [
+            "z",
+            0
+          ],
+          [
+            "s",
+            1
+          ],
+          [
+            "t",
+            0
+          ],
+          [
+            "rx",
+            1,
+            2.41
+          ],
+          [
+            "ry",
+            2,
+            0.29
+          ],
+          [
+            "rz",
+            1,
+            0.61
+          ],
+          [
+            "h",
+            2
+          ],
+          [
+            "ry",
+            0,
+            0.29
+          ],
+          [
+            "y",
+            2
+          ],
+          [
+            "h",
+            0
+          ],
+          [
+            "x",
+            1
+          ],
+          [
+            "rx",
+            1,
+            1.3860679775
+          ],
+          [
+            "cz",
+            0,
+            1
+          ],
+          [
+            "cz",
+            1,
+            2
+          ],
+          [
+            "cz",
+            2,
+            0
+          ],
+          [
+            "measure",
+            [
+              0,
+              2
+            ]
+          ]
+        ],
+        "circuit_family_id": "circuit_family_03",
+        "circuit_id": "circuit-85648e9b91642681",
+        "circuit_lineage_id": "design_recipe_03",
+        "description": "Fixed design seed 6104273; HARDWARE_ANOMALY controlled condition.",
+        "experiment_name": "full_circuit_family_03_hardware_anomaly_rep0",
+        "experimental_group_id": "group-99f96cc4ed7e199e",
+        "ground_truth_label": "HARDWARE_ANOMALY",
+        "hardware_affected_component": "relaxation on qubit 2",
+        "hardware_condition_id": "hardware-779a5d0582b8b86d",
+        "hardware_parameters": {
+          "coupling_map": [],
+          "gates": [
+            {
+              "duration": 8.0,
+              "error": 0.0,
+              "gate": "rz",
+              "qubits": [
+                2
+              ]
+            }
+          ],
+          "qubits": {
+            "0": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "1": {
+              "readout_error": 0.0,
+              "t1": 1000000.0,
+              "t2": 1000000.0
+            },
+            "2": {
+              "readout_error": 0.0,
+              "t1": 80.0,
+              "t2": 60.0
+            }
+          }
+        },
+        "noise_parameters": null,
+        "num_qubits": 3,
+        "observed_circuit": [
+          [
+            "rz",
+            2,
+            1.83
+          ],
+          [
+            "rx",
+            0,
+            0.93
+          ],
+          [
+            "ry",
+            1,
+            1.27
+          ],
+          [
+            "rz",
+            0,
+            1.83
+          ],
+          [
+            "h",
+            1
+          ],
+          [
+            "x",
+            2
+          ],
+          [
+            "y",
+            1
+          ],
+          [
+            "z",
+            2
+          ],
+          [
+            "x",
+            0
+          ],
+          [
+            "t",
+            2
+          ],
+          [
+            "z",
+            0
+          ],
+          [
+            "s",
+            1
+          ],
+          [
+            "t",
+            0
+          ],
+          [
+            "rx",
+            1,
+            2.41
+          ],
+          [
+            "ry",
+            2,
+            0.29
+          ],
+          [
+            "rz",
+            1,
+            0.61
+          ],
+          [
+            "h",
+            2
+          ],
+          [
+            "ry",
+            0,
+            0.29
+          ],
+          [
+            "y",
+            2
+          ],
+          [
+            "h",
+            0
+          ],
+          [
+            "x",
+            1
+          ],
+          [
+            "rx",
+            1,
+            1.3860679775
+          ],
+          [
+            "cz",
+            0,
+            1
+          ],
+          [
+            "cz",
+            1,
+            2
+          ],
+          [
+            "cz",
+            2,
+            0
+          ],
+          [
+            "measure",
+            [
+              0,
+              2
+            ]
+          ]
+        ],
+        "observed_counts": null,
+        "program_fault_description": null,
+        "program_fault_id": null,
+        "program_fault_operation_index": null,
+        "program_fault_qubits": null,
+        "random_seed": 932200,
+        "repetition_index": 0,
+        "run_id": "run-c78b6ae357885288",
+        "shots": 32,
+        "validation_label": "SYNTHETIC_VALIDATION"
+      }
+    ],
+    "configuration_sha256": "91f4fe2a3dc7aa1e4145d97210e324eecc591986f6090093345879db27f41e42",
+    "design_seed_base": 6104271,
+    "execution_seed_base": 930000,
+    "families": [
+      "circuit_family_01",
+      "circuit_family_02",
+      "circuit_family_03"
+    ],
+    "family_indices": [
+      0,
+      1,
+      2
+    ],
+    "lineage_to_partition": {
+      "design_recipe_01": "development",
+      "design_recipe_02": "calibration",
+      "design_recipe_03": "untouched_test"
+    },
+    "partition_names": [
+      "development",
+      "calibration",
+      "untouched_test"
+    ],
+    "partition_unit": "circuit_lineage_id",
+    "random_seed_by_run": {
+      "run-27bea12a0069a2ff": 932100,
+      "run-4190251a45d37899": 930200,
+      "run-6ea67ae98910bf34": 931000,
+      "run-7a7647281ec25b65": 930000,
+      "run-7ac304caf7883fcf": 931200,
+      "run-a6791a27c24781a4": 931100,
+      "run-bb4381b4a03e4fa3": 932000,
+      "run-c78b6ae357885288": 932200,
+      "run-ce554128d071e328": 930100
+    },
+    "repetitions_per_condition": 1,
+    "shots_per_run": 32
+  },
+  "execution_target": "LOCAL_SIMULATOR",
+  "features": {
+    "calibration_feature_disposition": "EXCLUDED_NOT_OBSERVATION_ONLY",
+    "excluded_fields": [
+      "calibration_readout_error_max",
+      "calibration_t1_min",
+      "calibration_t2_min",
+      "circuit",
+      "configuration",
+      "diagnosis",
+      "gate_mismatch_fraction",
+      "ground_truth_label",
+      "hardware_affected_component",
+      "hardware_condition_id",
+      "hardware_evidence",
+      "observed_counts",
+      "program_evidence",
+      "program_fault_description",
+      "program_fault_id",
+      "program_fault_operation_index",
+      "program_fault_qubits",
+      "scenario_label"
+    ],
+    "gate_mismatch_fraction_disposition": "EXCLUDED_TARGET_LEAKAGE_SHORTCUT",
+    "label_fields_are_separate_artifact": true,
+    "predictor_fields": [
+      "total_variation_distance",
+      "js_divergence",
+      "hellinger_distance",
+      "observed_entropy_bits",
+      "observed_max_probability"
+    ]
+  },
+  "ground_truth_status": "SYNTHETIC_ONLY_NOT_INDEPENDENT",
+  "independent_evaluation_ready": false,
+  "internal_run_artifacts": {
+    "disposition": "DIAGNOSTIC_AND_SCENARIO_METADATA; NEVER A MODEL_INPUT",
+    "records": [
+      {
+        "circuit_lineage_id": "design_recipe_01",
+        "deterministic_fingerprint": "2dd748493027590f6828f522259fb34cdc081086bd08334af09c709298c6662f",
+        "file": "runs/run-7a7647281ec25b65.json",
+        "random_seed": 930000,
+        "run_id": "run-7a7647281ec25b65",
+        "sha256": "e84423c62fe0ded3c2ce23861fe3ab2c6d15553f6de539a7098270aeb3d2ead7"
+      },
+      {
+        "circuit_lineage_id": "design_recipe_01",
+        "deterministic_fingerprint": "79ffd0b9ca5a39a9304cc01a223209844fffb510bb0c7f43d27e739bf219a141",
+        "file": "runs/run-ce554128d071e328.json",
+        "random_seed": 930100,
+        "run_id": "run-ce554128d071e328",
+        "sha256": "dc40564c99c5a19183b0cfa94b9f3baba153ec29788834799c09932583d98f7f"
+      },
+      {
+        "circuit_lineage_id": "design_recipe_01",
+        "deterministic_fingerprint": "7f025b71cace4eeed4fe0c82a05c439f85637c1e9f082f4e88599de576e0297b",
+        "file": "runs/run-4190251a45d37899.json",
+        "random_seed": 930200,
+        "run_id": "run-4190251a45d37899",
+        "sha256": "8e52a285fa1157574e9830c08568ff107ce4e9463ae01e1a17dfed7d60191bee"
+      },
+      {
+        "circuit_lineage_id": "design_recipe_02",
+        "deterministic_fingerprint": "2c58b714ea7200bddacd2c0a2322e1ca3a9bf205ab2043a542b27e6f09a6df51",
+        "file": "runs/run-6ea67ae98910bf34.json",
+        "random_seed": 931000,
+        "run_id": "run-6ea67ae98910bf34",
+        "sha256": "424a86e5056eb40c8db3f97c8ab162de9c0b68fad34f7177e938e4c415966608"
+      },
+      {
+        "circuit_lineage_id": "design_recipe_02",
+        "deterministic_fingerprint": "f28de69a8eda7ce323fa399df9df89fdcbcea0c83296d380d51e2f082b38ba36",
+        "file": "runs/run-a6791a27c24781a4.json",
+        "random_seed": 931100,
+        "run_id": "run-a6791a27c24781a4",
+        "sha256": "251f8a1762f1f20a20e239d98c55eb664d46919f881ca2a3ca3da78c089f5bce"
+      },
+      {
+        "circuit_lineage_id": "design_recipe_02",
+        "deterministic_fingerprint": "235ab22ab6378d0e399e916d5d4b39e40933f560ea48e5483ad65b34c80a180c",
+        "file": "runs/run-7ac304caf7883fcf.json",
+        "random_seed": 931200,
+        "run_id": "run-7ac304caf7883fcf",
+        "sha256": "2bd91ac9323b6c23b0caf412c7dafd87f937a9f0c5240d562c9283556c87b6e3"
+      },
+      {
+        "circuit_lineage_id": "design_recipe_03",
+        "deterministic_fingerprint": "8d5ef9952d6fb5c640ffa31f6ca58f8f826d90b88da41c6e0a8cdc432c74210c",
+        "file": "runs/run-bb4381b4a03e4fa3.json",
+        "random_seed": 932000,
+        "run_id": "run-bb4381b4a03e4fa3",
+        "sha256": "ff920ad006c39ff9839a445550bb189da7f34bbd19ff3d642dd9ef02fb389150"
+      },
+      {
+        "circuit_lineage_id": "design_recipe_03",
+        "deterministic_fingerprint": "b3a386fd889e3963d9fee1522c7e8d770e5a4e07a5bfd2fdbf8ae78e1d605e01",
+        "file": "runs/run-27bea12a0069a2ff.json",
+        "random_seed": 932100,
+        "run_id": "run-27bea12a0069a2ff",
+        "sha256": "7a6ccea165af829db46b537df3bf807fdf933144501bf707da5d6376593bceb8"
+      },
+      {
+        "circuit_lineage_id": "design_recipe_03",
+        "deterministic_fingerprint": "dca0bbe1f7c7b4aa4b9abf0e27fd02ec4bf208db5364cfb2039f495147674108",
+        "file": "runs/run-c78b6ae357885288.json",
+        "random_seed": 932200,
+        "run_id": "run-c78b6ae357885288",
+        "sha256": "e2701f7feae9ace0ae319504798596333f9925523999aaef09108b99da253249"
+      }
+    ]
+  },
+  "limitations": [
+    "Synthetic construction labels are not independent ground truth.",
+    "Three lineages are a pipeline smoke fixture, not a statistical evaluation sample.",
+    "No model fitting, calibration, acceptance scoring, or accuracy claim is permitted."
+  ],
+  "model_fitting_allowed": false,
+  "purpose": "provenance_and_leakage_control_validation_only",
+  "reason_not_fit_eligible": "No independent adjudication or independent family sampling frame exists.",
+  "runtime": {
+    "numpy_version": "2.5.3",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python_build": "tags/v3.12.10:0cc8128 Apr  8 2025 12:21:36",
+    "python_implementation": "CPython",
+    "python_version": "3.12.10"
+  },
+  "schema_version": "ml-data-pilot-v1",
+  "source_provenance": {
+    "config_sha256": "91f4fe2a3dc7aa1e4145d97210e324eecc591986f6090093345879db27f41e42",
+    "generator_sha256": "64451a3d8204667b5408953eb30694cc5fd305619d7bb70b07110de19faa88fb",
+    "git": {
+      "head_commit": "4ac81ad0e278c6045592a4e1c4df518512b04841",
+      "tracked_worktree_clean": false,
+      "tracked_worktree_status_sha256": "2eef03e1311297510669f25428e7f3428ed6e4ccc575a044d72ed214dad93b8f"
+    },
+    "source_sha256": {
+      "diagnosis_engine.py": "cac81fc98348014581f78163d5a73622565649ab6426e7af7f3fabdfdde24240",
+      "experiment_config.py": "f1a0f721d8bdf1175bfcdbd84d6d829099efb7155f1568ad703e9f6cc76d33b3",
+      "experiments/full_dataset.py": "2272d934648628ed8f7bf756ee1a6a0f988be8b8d28bd9972227ceeeed8cb0ac",
+      "experiments/ml_data_pilot.py": "64451a3d8204667b5408953eb30694cc5fd305619d7bb70b07110de19faa88fb",
+      "experiments/run_experiment.py": "fef2985d782c92756af81e84232c7b0c286dc930963063dc9c2b44348e30c034",
+      "fault_localizer.py": "87de10cde2991a7fb1ab0e4e7563cf81e5cb043bae44fc8c1c5051755d6194ba",
+      "gates.py": "5799e62fa582e8651344d257ad396e3415dd4f7db29d310962fec29ce5a8baad",
+      "hardware_fault_localizer.py": "e4c92314bbca1775d348d64d8f3ef5382be684520a3ffc66cefce81514f5a1bb",
+      "hardware_model.py": "d788c7f98dc1932159473e8256b45550f1430bd9b4da2f776099b152ba72aaaa",
+      "ml_evaluation.py": "4ab18ea0bab78a5af3d7785f95a7ce889a45f036bfee2afab174d1b208531fff",
+      "pyproject.toml": "da65396b438f76cf51a6a60f103e3b468d2713459cc151c574af66a7bffd4c06",
+      "quantum_simulator.py": "1641ad14c4b932a1739527f73c732276c7029cc192695cfd5e82cf7ea91a50fa",
+      "src/quantum_simulator/__init__.py": "38673e3726f0d4a8415639ad19e3adecd30c51ff5c1010d244146c97fe39f801",
+      "src/quantum_simulator/diagnosis_engine.py": "16ccc815f00e8d13a5e72311e82d5a979af0bc4dde7770e6de0798876d55f1a0",
+      "src/quantum_simulator/fault_localizer.py": "46fb76982a579e209d7f0caa252a7c4f27f665f9836e93698fd4766fe9d9da28",
+      "src/quantum_simulator/gates.py": "d0153f8609b8a375aadf1541322928aa65acb212b533f8154e424809afd658d8",
+      "src/quantum_simulator/hardware_fault_localizer.py": "ca0fec8d243282ca2ad1b1d1f0cb7e24f909fbcbecd537d116da722081e98686",
+      "src/quantum_simulator/hardware_model.py": "2e9c5f3c54452c78571a072ecf64223616ec5d95efb08cc7b6c5a9739af567e1",
+      "src/quantum_simulator/quantum_circuit.py": "5ebe9f05c7a72057929e339d5c1633b1b50c98621c068849d4fa1b4e9df2a6c1",
+      "src/quantum_simulator/quantum_simulator.py": "a07be9c304153a389454f699ffaaace8d12d99d430396bcfc1b5c383845406ef",
+      "src/quantum_simulator/statistics.py": "aa5433cb56b42ee9fc8c3042f274b0015efbf727386907d8de5c89212304a9aa",
+      "statistics.py": "e47a7fbf3d74ebf700fa722e74ac57b9ce6b3d0bd3a4a36b5b06cc25aa6f0a9d"
+    }
+  }
+}

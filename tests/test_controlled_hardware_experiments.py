@@ -243,9 +243,17 @@ def test_experiment_4_diagnostic_trace_preserves_program_evidence_despite_cancel
         and any("readout error is elevated at 1.0000" in item for item in candidate.evidence)
         for candidate in diagnosis.hardware_evidence_candidates
     )
-    # The final distribution comparison still controls the top-level category.
+    # Matching output distributions do not erase direct program and hardware
+    # evidence: the cancellation leaves both causes unresolved.
     assert diagnosis.statistics_result.total_variation_distance == 0.0
-    assert diagnosis.category is DiagnosisCategory.NO_ANOMALY
+    assert diagnosis.anomaly_detected is False
+    assert diagnosis.category is DiagnosisCategory.AMBIGUOUS
+    assert diagnosis.program_evidence_candidates
+    assert diagnosis.hardware_evidence_candidates
+    assert any(
+        "distributions match" in item.lower() and "fault evidence remain" in item.lower()
+        for item in diagnosis.evidence
+    )
 
 
 def test_experiment_5_program_and_partial_readout_fault_record_current_diagnosis():

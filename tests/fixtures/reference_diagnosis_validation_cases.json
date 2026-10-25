@@ -1,0 +1,399 @@
+[
+  {
+    "id": "correct_reference_match",
+    "group": "correct",
+    "reference": [["x", 0], ["measure", 0]],
+    "submitted": [["x", 0], ["measure", 0]],
+    "shots": 64,
+    "seed": 19,
+    "expected": {"detection": false, "classification": "NO_ANOMALY", "source_localized": false, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "equivalent_structural_variant",
+    "group": "behaviorally_equivalent_structural",
+    "reference": [["x", 0], ["measure", 0, [0]]],
+    "submitted": [["y", 0], ["measure", 0, [0]]],
+    "shots": 128,
+    "seed": 11,
+    "expected": {"detection": false, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": false, "abstain": true}
+  },
+  {
+    "id": "observable_program_fault",
+    "group": "program_fault",
+    "reference": [["x", 0], ["measure", 0]],
+    "submitted": [["h", 0], ["measure", 0]],
+    "shots": 256,
+    "seed": 7,
+    "expected": {"detection": true, "classification": "PROGRAM_FAULT", "source_localized": true, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "simulated_readout_anomaly",
+    "group": "hardware_model_anomaly",
+    "reference": [["x", 0], ["measure", 0]],
+    "submitted": [["x", 0], ["measure", 0]],
+    "hardware": {"n_qubits": 1, "readout_error": 1.0},
+    "shots": 64,
+    "seed": 5,
+    "expected": {"detection": true, "classification": "HARDWARE_ANOMALY", "source_localized": false, "hardware_localized": true, "abstain": false}
+  },
+  {
+    "id": "mixed_program_and_calibration_evidence",
+    "group": "ambiguous_evidence",
+    "reference": [["x", 0], ["measure", 0]],
+    "submitted": [["h", 0], ["measure", 0]],
+    "hardware": {"n_qubits": 1, "readout_error": 0.45},
+    "shots": 256,
+    "seed": 23,
+    "expected": {"detection": true, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": true, "abstain": true}
+  },
+  {
+    "id": "sampling_difference_without_causal_evidence",
+    "group": "insufficient_evidence",
+    "reference": [["h", 0], ["measure", 0]],
+    "submitted": [["h", 0], ["measure", 0]],
+    "shots": 4,
+    "seed": 1,
+    "expected": {"detection": true, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": false, "hardware_localized": false, "abstain": true}
+  },
+  {
+    "id": "incompatible_measurement_destinations",
+    "group": "incompatible_measurements",
+    "reference": [["x", 0], ["measure", 0, [0]]],
+    "submitted": [["x", 0], ["measure", 0, [1]]],
+    "shots": 32,
+    "seed": 3,
+    "expected": {"validation_error": "compatible measurement schemas"}
+  },
+  {
+    "id": "correct_two_qubit_bell_circuit",
+    "group": "correct_multi_qubit",
+    "family": "bell_2q",
+    "reference": [["h", 0], ["cx", 0, 1], ["measure", [0, 1], [0, 1]]],
+    "submitted": [["h", 0], ["cx", 0, 1], ["measure", [0, 1], [0, 1]]],
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": false, "classification": "NO_ANOMALY", "source_localized": false, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "equivalent_two_qubit_bell_construction",
+    "group": "behaviorally_equivalent_structural_multi_qubit",
+    "family": "bell_2q",
+    "reference": [["h", 0], ["cx", 0, 1], ["measure", [0, 1], [0, 1]]],
+    "submitted": [["h", 1], ["cx", 1, 0], ["measure", [0, 1], [0, 1]]],
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": false, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": false, "abstain": true}
+  },
+  {
+    "id": "observable_two_qubit_entanglement_fault",
+    "group": "program_fault_multi_qubit",
+    "family": "bell_2q",
+    "reference": [["h", 0], ["cx", 0, 1], ["measure", [0, 1], [0, 1]]],
+    "submitted": [["h", 0], ["measure", [0, 1], [0, 1]]],
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": true, "classification": "PROGRAM_FAULT", "source_localized": true, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "reversed_qubit_classical_mapping_changes_output_order",
+    "group": "measurement_order_multi_qubit",
+    "family": "bell_2q",
+    "reference": [["x", 0], ["measure", [0, 1], [0, 1]]],
+    "submitted": [["x", 0], ["measure", [1, 0], [0, 1]]],
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": true, "classification": "PROGRAM_FAULT", "source_localized": true, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "ambiguous_two_qubit_program_and_readout_evidence",
+    "group": "ambiguous_multi_qubit",
+    "family": "bell_2q",
+    "reference": [["h", 0], ["cx", 0, 1], ["measure", [0, 1], [0, 1]]],
+    "submitted": [["h", 0], ["measure", [0, 1], [0, 1]]],
+    "hardware": {"n_qubits": 2, "readout_error": 0.45},
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": true, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": true, "abstain": true}
+  },
+  {
+    "id": "correct_two_qubit_bell_circuit_seed223",
+    "group": "correct_multi_qubit",
+    "family": "bell_2q",
+    "reference": [["h", 0], ["cx", 0, 1], ["measure", [0, 1], [0, 1]]],
+    "submitted": [["h", 0], ["cx", 0, 1], ["measure", [0, 1], [0, 1]]],
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": false, "classification": "NO_ANOMALY", "source_localized": false, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "equivalent_two_qubit_bell_construction_seed223",
+    "group": "behaviorally_equivalent_structural_multi_qubit",
+    "family": "bell_2q",
+    "reference": [["h", 0], ["cx", 0, 1], ["measure", [0, 1], [0, 1]]],
+    "submitted": [["h", 1], ["cx", 1, 0], ["measure", [0, 1], [0, 1]]],
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": false, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": false, "abstain": true}
+  },
+  {
+    "id": "observable_two_qubit_entanglement_fault_seed223",
+    "group": "program_fault_multi_qubit",
+    "family": "bell_2q",
+    "reference": [["h", 0], ["cx", 0, 1], ["measure", [0, 1], [0, 1]]],
+    "submitted": [["h", 0], ["measure", [0, 1], [0, 1]]],
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": true, "classification": "PROGRAM_FAULT", "source_localized": true, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "reversed_qubit_classical_mapping_changes_output_order_seed223",
+    "group": "measurement_order_multi_qubit",
+    "family": "bell_2q",
+    "reference": [["x", 0], ["measure", [0, 1], [0, 1]]],
+    "submitted": [["x", 0], ["measure", [1, 0], [0, 1]]],
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": true, "classification": "PROGRAM_FAULT", "source_localized": true, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "ambiguous_two_qubit_program_and_readout_evidence_seed223",
+    "group": "ambiguous_multi_qubit",
+    "family": "bell_2q",
+    "reference": [["h", 0], ["cx", 0, 1], ["measure", [0, 1], [0, 1]]],
+    "submitted": [["h", 0], ["measure", [0, 1], [0, 1]]],
+    "hardware": {"n_qubits": 2, "readout_error": 0.45},
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": true, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": true, "abstain": true}
+  },
+  {
+    "id": "simulated_two_qubit_bell_readout_seed211",
+    "group": "hardware_model_anomaly_multi_qubit",
+    "family": "bell_2q",
+    "reference": [["h", 0], ["cx", 0, 1], ["measure", [0, 1], [0, 1]]],
+    "submitted": [["h", 0], ["cx", 0, 1], ["measure", [0, 1], [0, 1]]],
+    "hardware": {"n_qubits": 2, "readout_error": 1.0},
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": true, "classification": "HARDWARE_ANOMALY", "source_localized": false, "hardware_localized": true, "abstain": false}
+  },
+  {
+    "id": "simulated_two_qubit_bell_readout_seed223",
+    "group": "hardware_model_anomaly_multi_qubit",
+    "family": "bell_2q",
+    "reference": [["h", 0], ["cx", 0, 1], ["measure", [0, 1], [0, 1]]],
+    "submitted": [["h", 0], ["cx", 0, 1], ["measure", [0, 1], [0, 1]]],
+    "hardware": {"n_qubits": 2, "readout_error": 1.0},
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": true, "classification": "HARDWARE_ANOMALY", "source_localized": false, "hardware_localized": true, "abstain": false}
+  },
+  {
+    "id": "correct_three_qubit_ghz_seed211",
+    "group": "correct_multi_qubit",
+    "family": "ghz_3q",
+    "reference": [["h", 0], ["cx", 0, 1], ["cx", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["cx", 0, 1], ["cx", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": false, "classification": "NO_ANOMALY", "source_localized": false, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "equivalent_three_qubit_ghz_seed211",
+    "group": "behaviorally_equivalent_structural_multi_qubit",
+    "family": "ghz_3q",
+    "reference": [["h", 0], ["cx", 0, 1], ["cx", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 2], ["cx", 2, 1], ["cx", 1, 0], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": false, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": false, "abstain": true}
+  },
+  {
+    "id": "observable_three_qubit_ghz_fault_seed211",
+    "group": "program_fault_multi_qubit",
+    "family": "ghz_3q",
+    "reference": [["h", 0], ["cx", 0, 1], ["cx", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["cx", 0, 1], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": true, "classification": "PROGRAM_FAULT", "source_localized": true, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "simulated_three_qubit_ghz_readout_seed211",
+    "group": "hardware_model_anomaly_multi_qubit",
+    "family": "ghz_3q",
+    "reference": [["h", 0], ["cx", 0, 1], ["cx", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["cx", 0, 1], ["cx", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "hardware": {"n_qubits": 3, "readout_error": 1.0},
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": true, "classification": "HARDWARE_ANOMALY", "source_localized": false, "hardware_localized": true, "abstain": false}
+  },
+  {
+    "id": "ambiguous_three_qubit_ghz_seed211",
+    "group": "ambiguous_multi_qubit",
+    "family": "ghz_3q",
+    "reference": [["h", 0], ["cx", 0, 1], ["cx", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["cx", 0, 1], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "hardware": {"n_qubits": 3, "readout_error": 0.45},
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": true, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": true, "abstain": true}
+  },
+  {
+    "id": "correct_three_qubit_ghz_seed223",
+    "group": "correct_multi_qubit",
+    "family": "ghz_3q",
+    "reference": [["h", 0], ["cx", 0, 1], ["cx", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["cx", 0, 1], ["cx", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": false, "classification": "NO_ANOMALY", "source_localized": false, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "equivalent_three_qubit_ghz_seed223",
+    "group": "behaviorally_equivalent_structural_multi_qubit",
+    "family": "ghz_3q",
+    "reference": [["h", 0], ["cx", 0, 1], ["cx", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 2], ["cx", 2, 1], ["cx", 1, 0], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": false, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": false, "abstain": true}
+  },
+  {
+    "id": "observable_three_qubit_ghz_fault_seed223",
+    "group": "program_fault_multi_qubit",
+    "family": "ghz_3q",
+    "reference": [["h", 0], ["cx", 0, 1], ["cx", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["cx", 0, 1], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": true, "classification": "PROGRAM_FAULT", "source_localized": true, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "simulated_three_qubit_ghz_readout_seed223",
+    "group": "hardware_model_anomaly_multi_qubit",
+    "family": "ghz_3q",
+    "reference": [["h", 0], ["cx", 0, 1], ["cx", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["cx", 0, 1], ["cx", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "hardware": {"n_qubits": 3, "readout_error": 1.0},
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": true, "classification": "HARDWARE_ANOMALY", "source_localized": false, "hardware_localized": true, "abstain": false}
+  },
+  {
+    "id": "ambiguous_three_qubit_ghz_seed223",
+    "group": "ambiguous_multi_qubit",
+    "family": "ghz_3q",
+    "reference": [["h", 0], ["cx", 0, 1], ["cx", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["cx", 0, 1], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "hardware": {"n_qubits": 3, "readout_error": 0.45},
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": true, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": true, "abstain": true}
+  },
+  {
+    "id": "correct_three_qubit_parity_seed211",
+    "group": "correct_multi_qubit",
+    "family": "parity_3q",
+    "reference": [["h", 0], ["h", 1], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["h", 1], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": false, "classification": "NO_ANOMALY", "source_localized": false, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "equivalent_three_qubit_parity_seed211",
+    "group": "behaviorally_equivalent_structural_multi_qubit",
+    "family": "parity_3q",
+    "reference": [["h", 0], ["h", 1], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 1], ["h", 0], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": false, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": false, "abstain": true}
+  },
+  {
+    "id": "observable_three_qubit_parity_fault_seed211",
+    "group": "program_fault_multi_qubit",
+    "family": "parity_3q",
+    "reference": [["h", 0], ["h", 1], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["h", 1], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": true, "classification": "PROGRAM_FAULT", "source_localized": true, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "simulated_three_qubit_parity_readout_seed211",
+    "group": "hardware_model_anomaly_multi_qubit",
+    "family": "parity_3q",
+    "reference": [["h", 0], ["h", 1], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["h", 1], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "hardware": {"n_qubits": 3, "readout_error": 1.0},
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": true, "classification": "HARDWARE_ANOMALY", "source_localized": false, "hardware_localized": true, "abstain": false}
+  },
+  {
+    "id": "ambiguous_three_qubit_parity_seed211",
+    "group": "ambiguous_multi_qubit",
+    "family": "parity_3q",
+    "reference": [["h", 0], ["h", 1], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["h", 1], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "hardware": {"n_qubits": 3, "readout_error": 0.45},
+    "shots": 256,
+    "seed": 211,
+    "expected": {"detection": true, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": true, "abstain": true}
+  },
+  {
+    "id": "correct_three_qubit_parity_seed223",
+    "group": "correct_multi_qubit",
+    "family": "parity_3q",
+    "reference": [["h", 0], ["h", 1], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["h", 1], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": false, "classification": "NO_ANOMALY", "source_localized": false, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "equivalent_three_qubit_parity_seed223",
+    "group": "behaviorally_equivalent_structural_multi_qubit",
+    "family": "parity_3q",
+    "reference": [["h", 0], ["h", 1], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 1], ["h", 0], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": false, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": false, "abstain": true}
+  },
+  {
+    "id": "observable_three_qubit_parity_fault_seed223",
+    "group": "program_fault_multi_qubit",
+    "family": "parity_3q",
+    "reference": [["h", 0], ["h", 1], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["h", 1], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": true, "classification": "PROGRAM_FAULT", "source_localized": true, "hardware_localized": false, "abstain": false}
+  },
+  {
+    "id": "simulated_three_qubit_parity_readout_seed223",
+    "group": "hardware_model_anomaly_multi_qubit",
+    "family": "parity_3q",
+    "reference": [["h", 0], ["h", 1], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["h", 1], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "hardware": {"n_qubits": 3, "readout_error": 1.0},
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": true, "classification": "HARDWARE_ANOMALY", "source_localized": false, "hardware_localized": true, "abstain": false}
+  },
+  {
+    "id": "ambiguous_three_qubit_parity_seed223",
+    "group": "ambiguous_multi_qubit",
+    "family": "parity_3q",
+    "reference": [["h", 0], ["h", 1], ["cx", 0, 2], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "submitted": [["h", 0], ["h", 1], ["cz", 1, 2], ["measure", [0, 1, 2], [0, 1, 2]]],
+    "hardware": {"n_qubits": 3, "readout_error": 0.45},
+    "shots": 256,
+    "seed": 223,
+    "expected": {"detection": true, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": true, "abstain": true}
+  }
+]

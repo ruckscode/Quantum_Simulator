@@ -1,0 +1,309 @@
+{
+  "anomaly": {
+    "anomaly_detected": true,
+    "expected_distribution": {
+      "00": 0.0,
+      "01": 0.0,
+      "10": 1.0,
+      "11": 0.0
+    },
+    "finite_shot_guard": 0.05,
+    "hellinger_distance": 0.6187583924145116,
+    "js_divergence": 0.2865147988717438,
+    "message": "Observed distribution differs from expected distribution by TVD=0.619141, which exceeds threshold=0.050000.",
+    "observed_distribution": {
+      "00": 0.619140625,
+      "01": 0.0,
+      "10": 0.380859375,
+      "11": 0.0
+    },
+    "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+    "shots": 512,
+    "threshold": 0.05,
+    "total_variation_distance": 0.619140625
+  },
+  "circuit": {
+    "ideal": [
+      [
+        "x",
+        0
+      ],
+      [
+        "i",
+        0
+      ],
+      [
+        "measure",
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "observed": [
+      [
+        "x",
+        0
+      ],
+      [
+        "i",
+        0
+      ],
+      [
+        "measure",
+        [
+          0,
+          1
+        ]
+      ]
+    ]
+  },
+  "configuration": {
+    "anomaly_threshold": 0.05,
+    "backend_name": null,
+    "circuit": [
+      [
+        "x",
+        0
+      ],
+      [
+        "i",
+        0
+      ],
+      [
+        "measure",
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "circuit_family_id": "fault_isolation_family_01",
+    "circuit_id": "circuit-d31990d7d703c40c",
+    "description": "",
+    "experiment_name": "fault_isolation_coherence_degradation_q0_seed_20261018",
+    "experimental_group_id": "group-6dbbbfa8e6632d33",
+    "ground_truth_label": "HARDWARE_ANOMALY",
+    "hardware_affected_component": "coherence qubit 0",
+    "hardware_condition_id": "condition_coherence_degradation_q0",
+    "hardware_parameters": {
+      "coupling_map": [],
+      "gates": [
+        {
+          "duration": 2.0,
+          "error": 0.0,
+          "gate": "i",
+          "qubits": [
+            0
+          ]
+        }
+      ],
+      "qubits": {
+        "0": {
+          "readout_error": 0.0,
+          "t1": 2.0,
+          "t2": 1.0
+        },
+        "1": {
+          "readout_error": 0.0,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        }
+      }
+    },
+    "noise_parameters": null,
+    "num_qubits": 2,
+    "observed_circuit": null,
+    "observed_counts": null,
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "random_seed": 20261018,
+    "repetition_index": null,
+    "run_id": null,
+    "shots": 512,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "diagnosis": {
+    "anomaly_detected": true,
+    "category": "HARDWARE_ANOMALY",
+    "evidence": [
+      "Observed distribution differs from expected distribution by TVD=0.619141, which exceeds threshold=0.050000.",
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000.",
+      "Qubit 0 T1 is short at 2.00 microseconds.",
+      "Qubit 0 T2 is short at 1.00 microseconds.",
+      "No gate calibration entry is available for x on qubits (0,)."
+    ],
+    "hardware_evidence_candidates": [
+      {
+        "component": 0,
+        "component_type": "qubit",
+        "evidence": [
+          "Qubit 0 T1 is short at 2.00 microseconds.",
+          "Qubit 0 T2 is short at 1.00 microseconds."
+        ],
+        "reason": "Qubit 0 shows hardware degradation: t1=2.00; t2=1.00",
+        "score": 1.97
+      }
+    ],
+    "hardware_result": {
+      "anomaly_metric": 0.0,
+      "candidates": [
+        {
+          "component": 0,
+          "component_type": "qubit",
+          "evidence": [
+            "Qubit 0 T1 is short at 2.00 microseconds.",
+            "Qubit 0 T2 is short at 1.00 microseconds."
+          ],
+          "reason": "Qubit 0 shows hardware degradation: t1=2.00; t2=1.00",
+          "score": 1.97
+        }
+      ],
+      "evidence": [
+        "Qubit 0 T1 is short at 2.00 microseconds.",
+        "Qubit 0 T2 is short at 1.00 microseconds."
+      ],
+      "summary": "Calibration-backed hardware fault candidate(s): qubit 0",
+      "threshold": 0.05
+    },
+    "missing_evidence": [
+      "No gate calibration entry is available for x on qubits (0,)."
+    ],
+    "program_evidence_candidates": [],
+    "program_result": {
+      "anomaly_metric": 0.0,
+      "candidates": [],
+      "evidence": [
+        "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+      ],
+      "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+      "threshold": 0.05
+    },
+    "statistics_result": {
+      "anomaly_detected": true,
+      "expected_distribution": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 1.0,
+        "11": 0.0
+      },
+      "finite_shot_guard": 0.05,
+      "hellinger_distance": 0.6187583924145116,
+      "js_divergence": 0.2865147988717438,
+      "message": "Observed distribution differs from expected distribution by TVD=0.619141, which exceeds threshold=0.050000.",
+      "observed_distribution": {
+        "00": 0.619140625,
+        "01": 0.0,
+        "10": 0.380859375,
+        "11": 0.0
+      },
+      "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+      "shots": 512,
+      "threshold": 0.05,
+      "total_variation_distance": 0.619140625
+    },
+    "summary": "An execution anomaly is accompanied by relevant hardware calibration evidence.",
+    "trace_deviation_candidates": []
+  },
+  "errors": [],
+  "execution_metadata": {
+    "backend_api_used": false,
+    "execution_kind": "SYNTHETIC_VALIDATION",
+    "execution_target": "LOCAL_SIMULATOR",
+    "generated_at": "2026-10-12T17:03:13+00:00",
+    "hardware_model_applied": true,
+    "noise_parameters_applied": false,
+    "numpy_version": "2.5.3",
+    "observation_source": "SEEDED_LOCAL_SIMULATOR_SHOTS_WITH_HARDWARE_MODEL",
+    "python_version": "3.12.10",
+    "random_seed": 20261018,
+    "shots": 512
+  },
+  "experiment_metadata": {
+    "backend_name": null,
+    "circuit_family_id": "fault_isolation_family_01",
+    "circuit_id": "circuit-d31990d7d703c40c",
+    "created_at": "2026-10-12T17:03:13+00:00",
+    "experiment_name": "fault_isolation_coherence_degradation_q0_seed_20261018",
+    "experimental_group_id": "group-6dbbbfa8e6632d33",
+    "ground_truth_label": "HARDWARE_ANOMALY",
+    "hardware_affected_component": "coherence qubit 0",
+    "hardware_condition_id": "condition_coherence_degradation_q0",
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "repetition_index": null,
+    "run_id": null,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "hardware_evidence": {
+    "anomaly_metric": 0.0,
+    "candidates": [
+      {
+        "component": 0,
+        "component_type": "qubit",
+        "evidence": [
+          "Qubit 0 T1 is short at 2.00 microseconds.",
+          "Qubit 0 T2 is short at 1.00 microseconds."
+        ],
+        "reason": "Qubit 0 shows hardware degradation: t1=2.00; t2=1.00",
+        "score": 1.97
+      }
+    ],
+    "evidence": [
+      "Qubit 0 T1 is short at 2.00 microseconds.",
+      "Qubit 0 T2 is short at 1.00 microseconds."
+    ],
+    "summary": "Calibration-backed hardware fault candidate(s): qubit 0",
+    "threshold": 0.05
+  },
+  "ideal_distribution": {
+    "00": 0.0,
+    "01": 0.0,
+    "10": 1.0,
+    "11": 0.0
+  },
+  "ideal_statevector_distribution": {
+    "00": 0.0,
+    "01": 0.0,
+    "10": 1.0,
+    "11": 0.0
+  },
+  "observed_counts": {
+    "00": 317,
+    "10": 195
+  },
+  "observed_distribution": {
+    "00": 0.619140625,
+    "01": 0.0,
+    "10": 0.380859375,
+    "11": 0.0
+  },
+  "program_evidence": {
+    "anomaly_metric": 0.0,
+    "candidates": [],
+    "evidence": [
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+    ],
+    "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+    "threshold": 0.05
+  },
+  "reproducibility": {
+    "deterministic_localizer_measurements": "measurement operations mapped to barriers for localization only",
+    "fingerprint": "b832297cbc0f2fca0876639b091e2f917cbaecc74d8cc01dcfe66e51ebadd430",
+    "fingerprint_excludes": [
+      "execution_metadata.generated_at",
+      "reproducibility.fingerprint"
+    ],
+    "random_seed": 20261018,
+    "simulator_version": "project-statevector-current"
+  },
+  "simulator_observed_counts": {
+    "00": 317,
+    "10": 195
+  },
+  "status": "COMPLETED"
+}

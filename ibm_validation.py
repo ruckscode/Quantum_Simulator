@@ -7,8 +7,10 @@ labelled and are never represented as results from IBM hardware.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib.util
 import json
+import math
 import os
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -31,6 +33,7 @@ SINGLE_QUBIT_METHODS = {
 ROTATION_METHODS = {"rx": "rx", "ry": "ry", "rz": "rz", "p": "p", "cp": "cp", "crx": "crx", "cry": "cry", "crz": "crz"}
 TWO_QUBIT_METHODS = {"cx": "cx", "cnot": "cx", "cz": "cz", "swap": "swap", "ch": "ch"}
 THREE_QUBIT_METHODS = {"ccx": "ccx", "toffoli": "ccx", "cswap": "cswap", "fredkin": "cswap"}
+DEFAULT_MAX_CALIBRATION_AGE_SECONDS = 900.0
 
 
 def utc_timestamp() -> str:
@@ -357,14 +360,39 @@ def counts_to_probabilities(counts: Mapping[str, int], *, shots: int | None = No
             raise TypeError("count outcome keys must be strings")
         if not isinstance(count, (int, np.integer)) or isinstance(count, bool) or count < 0:
             raise ValueError(f"count for {outcome!r} must be a non-negative integer")
-        key = "".join(outcome.split())[::-1]
+        compact_outcome = "".join(outcome.split())
+        if not compact_outcome or any(bit not in "01" for bit in compact_outcome):
+            raise ValueError(f"count outcome {outcome!r} must contain only binary measurement bits")
+        key = compact_outcome[::-1]
         normalized[key] = normalized.get(key, 0) + int(count)
+    widths = {len(outcome) for outcome in normalized}
+    if len(widths) != 1:
+        raise ValueError("count outcomes must have a consistent measurement width")
     total = sum(normalized.values())
     if total <= 0:
         raise ValueError("counts must have a positive total")
-    if shots is not None and (not isinstance(shots, int) or shots <= 0):
-        raise ValueError("shots must be a positive integer")
+    if shots is not None:
+        if not isinstance(shots, int) or isinstance(shots, bool) or shots <= 0:
+            raise ValueError("shots must be a positive integer")
+        if total != shots:
+            raise ValueError(f"count total {total} does not match requested shots {shots}")
     return {outcome: count / total for outcome, count in sorted(normalized.items())}
+
+
+def _validate_execution_interval(start: str | None, end: str | None) -> None:
+    """Require a complete, timezone-aware, non-reversed execution interval."""
+
+    if not start or not end:
+        raise ValueError("execution start and end timestamps are required before diagnosis")
+    try:
+        start_at = datetime.fromisoformat(start.replace("Z", "+00:00"))
+        end_at = datetime.fromisoformat(end.replace("Z", "+00:00"))
+    except (AttributeError, TypeError, ValueError) as exc:
+        raise ValueError("execution timestamps must be valid ISO-8601 values") from exc
+    if start_at.tzinfo is None or end_at.tzinfo is None:
+        raise ValueError("execution timestamps must include a timezone")
+    if end_at.astimezone(timezone.utc) < start_at.astimezone(timezone.utc):
+        raise ValueError("execution end timestamp precedes execution start timestamp")
 
 
 def _parameter_map(parameters: Any) -> dict[str, Any]:
@@ -442,6 +470,7 @@ class IBMCalibrationCapture:
     retrieval_status: str
     capture_source: str = "IBM_BACKEND_API"
     errors: list[str] = field(default_factory=list)
+    retrieved_at: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -455,6 +484,7 @@ class IBMCalibrationCapture:
             "unavailable_fields": list(self.unavailable_fields),
             "retrieval_status": self.retrieval_status,
             "capture_source": self.capture_source,
+            "retrieved_at": self.retrieved_at,
             "errors": list(self.errors),
         }
 
@@ -462,6 +492,7 @@ class IBMCalibrationCapture:
 def capture_backend_calibration(backend: Any, *, capture_source: str = "IBM_BACKEND_API") -> IBMCalibrationCapture:
     """Extract available properties from a Qiskit-like backend object."""
 
+    retrieved_at = utc_timestamp()
     errors: list[str] = []
     unavailable: list[str] = []
     name = _value_or_call(backend, "name")
@@ -491,7 +522,10 @@ def capture_backend_calibration(backend: Any, *, capture_source: str = "IBM_BACK
             errors.append(f"Coupling map retrieval failed: {exc}")
             raw_coupling = None
     try:
-        coupling_map = [tuple(int(index) for index in edge) for edge in raw_coupling] if raw_coupling is not None else None
+        coupling_map = (
+            [tuple(_checked_index(index, "coupling qubit") for index in edge) for edge in raw_coupling]
+            if raw_coupling is not None else None
+        )
         if coupling_map is not None and any(len(edge) != 2 for edge in coupling_map):
             raise ValueError("coupling edges must have exactly two qubit indices")
         if coupling_map is not None:
@@ -611,7 +645,8 @@ def capture_backend_calibration(backend: Any, *, capture_source: str = "IBM_BACK
     if not properties_gates:
         unavailable.append("gate_calibrations")
     if model is not None:
-        model.calibration_timestamp = utc_timestamp()
+        model.calibration_timestamp = calibration_timestamp
+        model.calibration_timestamp_provenance = "reported" if calibration_timestamp else "unknown"
         model.backend_name = str(name or "unknown_backend")
 
     retrieval_status = "AVAILABLE" if properties is not None and n_qubits is not None else "PARTIAL"
@@ -627,8 +662,144 @@ def capture_backend_calibration(backend: Any, *, capture_source: str = "IBM_BACK
         hardware_model=model,
         retrieval_status=retrieval_status,
         capture_source=capture_source,
+        retrieved_at=retrieved_at,
         errors=errors,
     )
+
+
+def calibration_freshness(
+    capture: IBMCalibrationCapture,
+    *,
+    max_age_seconds: float = DEFAULT_MAX_CALIBRATION_AGE_SECONDS,
+    now: datetime | None = None,
+) -> dict[str, Any]:
+    """Assess calibration age without treating a missing timestamp as current."""
+
+    if isinstance(max_age_seconds, bool) or not isinstance(max_age_seconds, (int, float)) or not math.isfinite(float(max_age_seconds)) or max_age_seconds <= 0:
+        raise ValueError("max_age_seconds must be a positive number")
+    stamp = capture.timestamp
+    if not stamp:
+        return {"status": "MISSING_TIMESTAMP", "age_seconds": None, "max_age_seconds": float(max_age_seconds)}
+    try:
+        parsed = datetime.fromisoformat(str(stamp).replace("Z", "+00:00"))
+    except (TypeError, ValueError):
+        return {"status": "INVALID_TIMESTAMP", "age_seconds": None, "max_age_seconds": float(max_age_seconds)}
+    if parsed.tzinfo is None:
+        return {"status": "INVALID_TIMESTAMP", "age_seconds": None, "max_age_seconds": float(max_age_seconds)}
+    reference = now or datetime.now(timezone.utc)
+    if reference.tzinfo is None:
+        raise ValueError("now must include a timezone")
+    age = (reference - parsed.astimezone(timezone.utc)).total_seconds()
+    if age < 0:
+        return {"status": "FUTURE_TIMESTAMP", "age_seconds": age, "max_age_seconds": float(max_age_seconds)}
+    return {
+        "status": "FRESH" if age <= max_age_seconds else "STALE",
+        "age_seconds": age,
+        "max_age_seconds": float(max_age_seconds),
+    }
+
+
+def _calibration_snapshot_id(capture: IBMCalibrationCapture | None) -> str | None:
+    if capture is None:
+        return None
+    payload = json.dumps(capture.to_dict(), sort_keys=True, separators=(",", ":"), default=str).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def preflight_ibm_backend(
+    backend_name: str,
+    *,
+    token: str | None = None,
+    instance: str | None = None,
+    channel: str = "ibm_quantum_platform",
+    service: Any | None = None,
+    max_calibration_age_seconds: float = DEFAULT_MAX_CALIBRATION_AGE_SECONDS,
+    required_fields: Sequence[str] = (),
+    now: datetime | None = None,
+) -> dict[str, Any]:
+    """Perform a read-only backend/calibration check; this function submits no circuit."""
+
+    if not isinstance(backend_name, str) or not backend_name.strip():
+        raise ValueError("backend_name must be a non-empty string")
+    if isinstance(max_calibration_age_seconds, bool) or not isinstance(max_calibration_age_seconds, (int, float)) or not math.isfinite(float(max_calibration_age_seconds)) or max_calibration_age_seconds <= 0:
+        raise ValueError("max_calibration_age_seconds must be a positive number")
+    if isinstance(required_fields, str) or any(not isinstance(name, str) for name in required_fields):
+        raise ValueError("required_fields must be a sequence of field-name strings")
+    fixture_service = service is not None
+    access = (
+        IBMAccessStatus("SERVICE_PROVIDED", True, True, False, "injected service fixture")
+        if fixture_service
+        else _explicit_credential_access_status(token)
+    )
+    checks: list[dict[str, str]] = []
+    if fixture_service:
+        checks.append({"name": "dependencies", "status": "NOT_REQUIRED_FOR_INJECTED_SERVICE", "detail": "Caller supplied the service object; this does not verify installed IBM dependencies."})
+        checks.append({"name": "credentials", "status": "NOT_VERIFIED", "detail": "Caller-provided services are not evidence of IBM authentication."})
+    else:
+        dependencies_ok = access.qiskit_available and access.runtime_available
+        checks.append({"name": "dependencies", "status": "PASS" if dependencies_ok else "FAIL", "detail": "Qiskit and qiskit-ibm-runtime availability checked locally."})
+        credentials_ok = isinstance(token, str) and bool(token.strip())
+        checks.append({"name": "explicit_credentials", "status": "PASS" if credentials_ok else "FAIL", "detail": "An explicit token was supplied." if credentials_ok else "No explicit token was supplied."})
+    if not fixture_service and (not access.qiskit_available or not access.runtime_available):
+        return {"status": "BLOCKED", "blocker": "DEPENDENCIES_MISSING", "backend": backend_name, "access": access.to_dict(), "checks": checks, "calibration": None, "calibration_assessment": None, "job_submitted": False, "transpilation_performed": False, "error": access.reason}
+    if not fixture_service and (not isinstance(token, str) or not token.strip()):
+        return {"status": "BLOCKED", "blocker": "CREDENTIALS_MISSING", "backend": backend_name, "access": access.to_dict(), "checks": checks, "calibration": None, "calibration_assessment": None, "job_submitted": False, "transpilation_performed": False, "error": access.reason}
+    try:
+        runtime_service = service if fixture_service else _runtime_service(token, instance, channel)
+        backend = runtime_service.backend(backend_name)
+    except Exception as exc:
+        checks.append({"name": "backend_access", "status": "FAIL", "detail": f"{type(exc).__name__}: {exc}"})
+        return {"status": "BLOCKED", "blocker": "BACKEND_ACCESS_FAILED", "backend": backend_name, "access": access.to_dict(), "checks": checks, "calibration": None, "calibration_assessment": None, "job_submitted": False, "transpilation_performed": False, "error": f"{type(exc).__name__}: {exc}"}
+
+    capture = capture_backend_calibration(backend, capture_source="INJECTED_SERVICE_FIXTURE" if fixture_service else "IBM_BACKEND_API")
+    freshness = calibration_freshness(capture, max_age_seconds=max_calibration_age_seconds, now=now)
+    status_value = (capture.backend_status or {}).get("operational")
+    missing_required = sorted(set(required_fields).intersection(capture.unavailable_fields))
+    completeness_gaps = missing_required if required_fields else list(capture.unavailable_fields)
+    identity_ok = capture.backend_name == backend_name
+    checks.extend([
+        {"name": "backend_identity", "status": "PASS" if identity_ok else "FAIL", "detail": f"Requested {backend_name!r}; received {capture.backend_name!r}."},
+        {"name": "backend_status", "status": "PASS" if status_value is True else ("FAIL" if status_value is False else "UNVERIFIED"), "detail": "Backend reports operational." if status_value is True else ("Backend reports non-operational." if status_value is False else "Operational status was unavailable." )},
+        {"name": "calibration_timestamp", "status": "PASS" if freshness["status"] == "FRESH" else "FAIL", "detail": f"Freshness result: {freshness['status']} (age={freshness['age_seconds']}, limit={freshness['max_age_seconds']} seconds)."},
+        {"name": "calibration_completeness", "status": "PASS" if not completeness_gaps and not capture.errors else "FAIL", "detail": "Required calibration fields are available." if not completeness_gaps and not capture.errors else "Unavailable required fields or calibration parse errors are present."},
+        {"name": "qubit_and_coupling_indices", "status": "PASS" if capture.n_qubits and capture.coupling_map is not None and not capture.errors else "FAIL", "detail": "Qubit count and coupling indices parsed without errors." if capture.n_qubits and capture.coupling_map is not None and not capture.errors else "Qubit count, coupling map, or calibration index validation is incomplete or invalid."},
+    ])
+    if status_value is False:
+        blocker = "BACKEND_UNAVAILABLE"
+    elif not identity_ok:
+        blocker = "BACKEND_IDENTITY_MISMATCH"
+    elif freshness["status"] != "FRESH":
+        blocker = "CALIBRATION_" + freshness["status"]
+    elif status_value is not True:
+        blocker = "BACKEND_STATUS_UNKNOWN"
+    elif completeness_gaps:
+        blocker = "INCOMPLETE_CALIBRATION"
+    elif capture.errors:
+        blocker = "CALIBRATION_INVALID"
+    elif capture.n_qubits is None or capture.coupling_map is None:
+        blocker = "TOPOLOGY_INCOMPLETE"
+    else:
+        blocker = None
+    live_backend = not fixture_service
+    status = "PREFLIGHT_READY" if blocker is None and live_backend else ("PREFLIGHT_INJECTED_READY" if blocker is None else "BLOCKED")
+    snapshot_id = _calibration_snapshot_id(capture)
+    return {
+        "status": status,
+        "blocker": blocker,
+        "backend": capture.backend_name,
+        "requested_backend": backend_name,
+        "access": access.to_dict(),
+        "source": "CALLER_PROVIDED_SERVICE" if fixture_service else "IBM_BACKEND_API",
+        "evidence_class": "INJECTED_OR_MOCKED" if fixture_service else ("AUTHENTICATED_BACKEND_API" if blocker is None else "LIVE_ACCESS_ATTEMPT"),
+        "real_backend_contact": None if fixture_service else True,
+        "checks": checks,
+        "job_submitted": False,
+        "transpilation_performed": False,
+        "calibration": capture.to_dict(),
+        "calibration_snapshot_id": snapshot_id,
+        "calibration_assessment": {**freshness, "backend_name": capture.backend_name, "calibration_timestamp": capture.timestamp, "calibration_retrieved_at": capture.retrieved_at, "calibration_capture_source": capture.capture_source, "calibration_snapshot_id": snapshot_id, "completeness": "COMPLETE_FOR_REQUEST" if not completeness_gaps and not capture.errors else "INCOMPLETE", "missing_required_fields": missing_required, "unavailable_fields": capture.unavailable_fields, "errors": capture.errors},
+        "error": None if blocker is None else blocker,
+    }
 
 
 def inspect_ibm_backend_calibration(
@@ -686,6 +857,7 @@ def hardware_model_from_ibm_calibration(capture: IBMCalibrationCapture) -> Hardw
     # The HardwareModel constructor uses a local timestamp when passed None;
     # retain the source value even when the IBM snapshot lacks one.
     model.calibration_timestamp = capture.timestamp
+    model.calibration_timestamp_provenance = "reported" if capture.timestamp else "unknown"
     return model
 
 
@@ -721,8 +893,6 @@ def _environment_runtime_service(channel: str) -> Any:
 
 def discover_ibm_backends(service: Any | None = None, *, token: str | None = None, instance: str | None = None, channel: str = "ibm_quantum_platform") -> dict[str, Any]:
     if service is None:
-        access = _explicit_credential_access_status(token)
-    elif token:
         access = _explicit_credential_access_status(token)
     else:
         access = IBMAccessStatus("SERVICE_PROVIDED", True, True, False, "provided Runtime service")
@@ -826,12 +996,16 @@ class IBMValidationResult:
     access: dict[str, Any]
     errors: list[str] = field(default_factory=list)
     real_hardware_executed: bool = False
+    execution_start_timestamp: str | None = None
+    execution_end_timestamp: str | None = None
+    calibration_snapshot_id: str | None = None
+    calibration_assessment: dict[str, Any] | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
             "implementation_status": "IMPLEMENTED",
             "offline_status": "OFFLINE_TESTED" if self.execution_origin == "OFFLINE_FIXTURE" else "NOT_RUN",
-            "real_ibm_status": "REAL_IBM_EXECUTED" if self.real_hardware_executed else ("BLOCKED" if not self.access.get("runtime_available") or not self.access.get("credentials_detected") else "NOT_EXECUTED"),
+            "real_ibm_status": "REAL_IBM_EXECUTED" if self.real_hardware_executed else ("NOT_EXECUTED" if self.execution_origin == "OFFLINE_FIXTURE" else ("BLOCKED" if not self.access.get("runtime_available") or not self.access.get("credentials_detected") else "NOT_EXECUTED")),
             "overall_status": self.overall_status,
             "execution_status": self.execution_status,
             "execution_origin": self.execution_origin,
@@ -840,6 +1014,8 @@ class IBMValidationResult:
             "job_id": self.job_id,
             "shots": self.shots,
             "execution_timestamp": self.execution_timestamp,
+            "execution_start_timestamp": self.execution_start_timestamp,
+            "execution_end_timestamp": self.execution_end_timestamp,
             "ideal_distribution": _json_safe(self.ideal_distribution),
             "observed_counts": _json_safe(self.observed_counts),
             "observed_distribution": _json_safe(self.observed_distribution),
@@ -848,6 +1024,9 @@ class IBMValidationResult:
             "program_candidates": _json_safe(self.program_candidates),
             "hardware_candidates": _json_safe(self.hardware_candidates),
             "calibration_snapshot": _json_safe(self.calibration_snapshot),
+            "calibration_snapshot_id": self.calibration_snapshot_id,
+            "diagnosis_calibration_snapshot_id": self.calibration_snapshot_id if self.diagnosis is not None else None,
+            "calibration_assessment": _json_safe(self.calibration_assessment),
             "transpilation_info": _json_safe(self.transpilation_info),
             "conversion_info": _json_safe(self.conversion_info),
             "access": _json_safe(self.access),
@@ -873,7 +1052,23 @@ def _make_result(
     calibration: IBMCalibrationCapture | None = None, conversion: CircuitConversionResult | None = None,
     transpilation_info: dict[str, Any] | None = None, job_id: str | None = None,
     errors: list[str] | None = None, real_executed: bool = False,
+    execution_start_timestamp: str | None = None, execution_end_timestamp: str | None = None,
+    calibration_assessment: dict[str, Any] | None = None,
 ) -> IBMValidationResult:
+    snapshot_id = _calibration_snapshot_id(calibration)
+    assessment = dict(calibration_assessment or {})
+    if calibration is not None:
+        assessment.update({
+            "backend_name": calibration.backend_name,
+            "calibration_timestamp": calibration.timestamp,
+            "calibration_retrieved_at": calibration.retrieved_at,
+            "calibration_capture_source": calibration.capture_source,
+            "calibration_snapshot_id": snapshot_id,
+        })
+    assessment.update({
+        "execution_start_timestamp": execution_start_timestamp,
+        "execution_end_timestamp": execution_end_timestamp,
+    })
     program, hardware = _candidate_payload(diagnosis)
     stats = diagnosis.statistics_result if diagnosis else None
     anomaly = None if stats is None else {
@@ -905,6 +1100,10 @@ def _make_result(
         access=access.to_dict(),
         errors=errors or [],
         real_hardware_executed=real_executed,
+        execution_start_timestamp=execution_start_timestamp,
+        execution_end_timestamp=execution_end_timestamp,
+        calibration_snapshot_id=snapshot_id,
+        calibration_assessment=assessment if assessment else None,
     )
 
 
@@ -951,6 +1150,7 @@ def run_offline_validation(
         hardware_model=model,
         retrieval_status="OFFLINE_FIXTURE",
         capture_source="OFFLINE_FIXTURE",
+        retrieved_at=utc_timestamp(),
     )
     try:
         ideal = ideal_distribution(selected_circuit, plan.num_qubits, seed=seed)
@@ -1006,6 +1206,11 @@ def transpile_for_backend(circuit: Any, backend: Any, *, optimization_level: int
             configuration = _value_or_call(backend, "configuration")
             backend_operations = getattr(configuration, "basis_gates", None)
         source_operations = {str(name): int(count) for name, count in circuit.count_ops().items()}
+        layout_info = _extract_transpilation_layout(
+            transpiled,
+            logical_num_qubits=int(circuit.num_qubits),
+            backend_num_qubits=int(getattr(backend, "num_qubits", transpiled.num_qubits)),
+        )
         mapped_operations = []
         if backend_operations is not None:
             backend_operation_names = {str(name).lower() for name in backend_operations}
@@ -1024,6 +1229,7 @@ def transpile_for_backend(circuit: Any, backend: Any, *, optimization_level: int
             "backend_gate_mappings": mapped_operations,
             "depth": int(transpiled.depth()),
             "num_qubits": int(transpiled.num_qubits),
+            **layout_info,
             "circuit_text": str(transpiled),
             "circuit": transpiled,
             "error": None,
@@ -1042,15 +1248,82 @@ def transpile_for_backend(circuit: Any, backend: Any, *, optimization_level: int
         return {"status": "TRANSPILE_FAILED", "optimization_level": optimization_level, "unsupported_backend_gates": unsupported, "error": f"{type(exc).__name__}: {exc}", "circuit": None}
 
 
+def _extract_transpilation_layout(
+    transpiled: Any,
+    *,
+    logical_num_qubits: int,
+    backend_num_qubits: int,
+) -> dict[str, Any]:
+    """Read Qiskit's final logical-to-physical mapping, rejecting ambiguous routes."""
+
+    layout = getattr(transpiled, "layout", None)
+    if layout is None:
+        return {"layout_status": "MISSING_LAYOUT", "logical_to_physical": None, "layout_error": "Transpiler did not expose a layout."}
+    # A routing permutation means logical states move during execution. A single
+    # final map cannot safely attribute every original gate to one physical pair.
+    final_layout = getattr(layout, "final_layout", None)
+    if final_layout is not None:
+        return {"layout_status": "ROUTING_LAYOUT_UNRESOLVED", "logical_to_physical": None, "layout_error": "Transpiler reports a final routing permutation; per-operation physical locations are unavailable."}
+    final_index_layout = getattr(layout, "final_index_layout", None)
+    if not callable(final_index_layout):
+        return {"layout_status": "MISSING_LAYOUT", "logical_to_physical": None, "layout_error": "Layout has no final_index_layout mapping."}
+    try:
+        physical = final_index_layout(filter_ancillas=True)
+    except TypeError:
+        try:
+            physical = final_index_layout()
+        except Exception as exc:
+            return {"layout_status": "INVALID_LAYOUT", "logical_to_physical": None, "layout_error": f"Could not read final layout: {type(exc).__name__}: {exc}"}
+    except Exception as exc:
+        return {"layout_status": "INVALID_LAYOUT", "logical_to_physical": None, "layout_error": f"Could not read final layout: {type(exc).__name__}: {exc}"}
+    try:
+        mapping = [int(index) for index in physical]
+    except (TypeError, ValueError):
+        mapping = []
+    if len(mapping) != logical_num_qubits:
+        return {"layout_status": "INVALID_LAYOUT", "logical_to_physical": None, "layout_error": f"Expected {logical_num_qubits} logical mappings, received {len(mapping)}."}
+    if len(set(mapping)) != len(mapping) or any(index < 0 or index >= backend_num_qubits for index in mapping):
+        return {"layout_status": "INVALID_LAYOUT", "logical_to_physical": None, "layout_error": "Layout contains duplicate or out-of-range physical qubit indices."}
+    try:
+        operation_counts = {str(name).lower(): int(count) for name, count in transpiled.count_ops().items()}
+    except Exception:
+        operation_counts = {}
+    if operation_counts.get("swap", 0):
+        return {"layout_status": "ROUTING_LAYOUT_UNRESOLVED", "logical_to_physical": None, "layout_error": "Transpiled circuit contains SWAP routing; per-operation physical locations are unavailable."}
+    return {"layout_status": "MAPPED", "logical_to_physical": mapping, "layout_error": None}
+
+
+def _map_plan_to_physical(plan: CircuitPlan, logical_to_physical: Sequence[int], backend_num_qubits: int) -> CircuitPlan:
+    """Re-index every operation, including all operands of multi-qubit gates."""
+
+    mapping = [int(index) for index in logical_to_physical]
+    if len(mapping) != plan.num_qubits or len(set(mapping)) != len(mapping):
+        raise ValueError("logical-to-physical mapping is missing or inconsistent")
+    if any(index < 0 or index >= backend_num_qubits for index in mapping):
+        raise ValueError("logical-to-physical mapping contains an out-of-range physical qubit")
+    operations = [
+        NormalizedOperation(
+            operation.name,
+            tuple(mapping[index] for index in operation.qubits),
+            operation.parameters,
+            operation.classical_bits,
+        )
+        for operation in plan.operations
+    ]
+    return CircuitPlan(backend_num_qubits, operations, list(plan.unsupported_operations), list(plan.errors))
+
+
 def _job_identifier(job: Any) -> str | None:
     value = _value_or_call(job, "job_id")
     return str(value) if value is not None else None
 
 
-def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: str, instance: str | None = None, shots: int = 1024, channel: str = "ibm_quantum_platform", optimization_level: int = 1) -> IBMValidationResult:
+def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: str, instance: str | None = None, shots: int = 1024, channel: str = "ibm_quantum_platform", optimization_level: int = 1, max_calibration_age_seconds: float = DEFAULT_MAX_CALIBRATION_AGE_SECONDS) -> IBMValidationResult:
     """Transpile and submit a circuit only when runtime dependencies and credentials exist."""
 
     access = _explicit_credential_access_status(token)
+    if isinstance(max_calibration_age_seconds, bool) or not isinstance(max_calibration_age_seconds, (int, float)) or not math.isfinite(float(max_calibration_age_seconds)) or max_calibration_age_seconds <= 0:
+        raise ValueError("max_calibration_age_seconds must be a positive number")
     plan = build_circuit_plan(circuit)
     if not plan.supported:
         conversion = CircuitConversionResult(
@@ -1062,7 +1335,7 @@ def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: 
         return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, conversion=conversion, errors=[conversion.error or "Circuit is unsupported"])
     if not isinstance(token, str) or not token.strip() or access.status != "ACCESS_CONFIGURED":
         return _make_result(status="BLOCKED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, errors=[access.reason or "IBM access is not configured"])
-    if not isinstance(shots, int) or shots <= 0:
+    if not isinstance(shots, int) or isinstance(shots, bool) or shots <= 0:
         return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=0, access=access, errors=["shots must be a positive integer"])
 
     try:
@@ -1082,29 +1355,62 @@ def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: 
         return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, conversion=conversion, errors=[f"Backend selection failed: {type(exc).__name__}: {exc}"])
 
     capture = capture_backend_calibration(backend)
+    calibration_assessment = calibration_freshness(capture, max_age_seconds=max_calibration_age_seconds)
+    calibration_assessment.update({
+        "completeness": "COMPLETE" if not capture.unavailable_fields and not capture.errors else "INCOMPLETE",
+        "unavailable_fields": capture.unavailable_fields,
+        "errors": capture.errors,
+    })
+    if capture.backend_name != backend_name:
+        return _make_result(status="BLOCKED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, calibration=capture, conversion=conversion, errors=[f"Selected backend identity {capture.backend_name!r} does not match requested backend {backend_name!r}; no circuit was submitted."], calibration_assessment={**calibration_assessment, "backend_identity_status": "MISMATCH", "requested_backend": backend_name})
+    calibration_assessment["backend_identity_status"] = "MATCH"
+    if calibration_assessment["status"] != "FRESH":
+        return _make_result(status="BLOCKED", origin="REAL_IBM_REQUEST", backend_name=capture.backend_name, shots=shots, access=access, calibration=capture, conversion=conversion, errors=[f"Calibration is {calibration_assessment['status'].lower()}; no circuit was submitted."], calibration_assessment=calibration_assessment)
+    if not capture.backend_status or capture.backend_status.get("operational") is not True:
+        backend_state = "unavailable" if capture.backend_status and capture.backend_status.get("operational") is False else "unknown"
+        return _make_result(status="BLOCKED", origin="REAL_IBM_REQUEST", backend_name=capture.backend_name, shots=shots, access=access, calibration=capture, conversion=conversion, errors=[f"Backend operational status is {backend_state}; no circuit was submitted."], calibration_assessment={**calibration_assessment, "backend_operational": capture.backend_status.get("operational") if capture.backend_status else None})
     transpilation = transpile_for_backend(conversion.circuit, backend, optimization_level=optimization_level)
     if transpilation["status"] != "TRANSPILED":
         transpilation_info = {key: value for key, value in transpilation.items() if key != "circuit"}
         return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=capture.backend_name, shots=shots, access=access, calibration=capture, conversion=conversion, transpilation_info=transpilation_info, errors=[transpilation["error"] or "Transpilation failed"])
 
+    transpilation_info = {key: value for key, value in transpilation.items() if key != "circuit"}
+    if transpilation.get("layout_status") != "MAPPED":
+        return _make_result(status="BLOCKED", origin="REAL_IBM_REQUEST", backend_name=capture.backend_name, shots=shots, access=access, calibration=capture, conversion=conversion, transpilation_info=transpilation_info, errors=[transpilation.get("layout_error") or "Physical qubit layout is unavailable; no circuit was submitted."], calibration_assessment={**calibration_assessment, "layout_status": transpilation.get("layout_status")})
+    try:
+        localization_plan = _map_plan_to_physical(plan, transpilation["logical_to_physical"], int(capture.n_qubits or 0))
+    except (KeyError, TypeError, ValueError) as exc:
+        return _make_result(status="BLOCKED", origin="REAL_IBM_REQUEST", backend_name=capture.backend_name, shots=shots, access=access, calibration=capture, conversion=conversion, transpilation_info=transpilation_info, errors=[f"Physical qubit layout is inconsistent; no circuit was submitted: {exc}"], calibration_assessment={**calibration_assessment, "layout_status": "INVALID_LAYOUT"})
+
+    execution_start_timestamp = None
+    execution_end_timestamp = None
     try:
         from qiskit_ibm_runtime.executor_sampler import Sampler
 
         sampler = Sampler(mode=backend)
+        execution_start_timestamp = utc_timestamp()
         job = sampler.run([transpilation["circuit"]], shots=shots)
         job_id = _job_identifier(job)
         sampler_result = job.result()
         counts_raw = sampler_result[0].data.c.get_counts()
+        observed = counts_to_probabilities(counts_raw, shots=shots)
+        expected_widths = {len("".join(str(outcome).split())) for outcome in ideal}
+        observed_widths = {len(outcome) for outcome in observed}
+        if len(expected_widths) != 1 or observed_widths != expected_widths:
+            raise ValueError("execution result measurement width is incompatible with the expected distribution")
         counts = {str(outcome): int(value) for outcome, value in counts_raw.items()}
+        execution_end_timestamp = utc_timestamp()
+        _validate_execution_interval(execution_start_timestamp, execution_end_timestamp)
     except Exception as exc:
+        if execution_start_timestamp is not None:
+            execution_end_timestamp = utc_timestamp()
         info = {key: value for key, value in transpilation.items() if key != "circuit"}
-        return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=capture.backend_name, shots=shots, access=access, calibration=capture, conversion=conversion, transpilation_info=info, errors=[f"Hardware execution/result retrieval failed: {type(exc).__name__}: {exc}"])
+        return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=capture.backend_name, shots=shots, access=access, calibration=capture, conversion=conversion, transpilation_info=info, errors=[f"Hardware execution/result retrieval failed: {type(exc).__name__}: {exc}"], execution_start_timestamp=locals().get("execution_start_timestamp"), execution_end_timestamp=execution_end_timestamp, calibration_assessment={**calibration_assessment, "layout_status": "MAPPED"})
 
-    observed = counts_to_probabilities(counts, shots=shots)
     model = capture.hardware_model
     if model is None:
         model = HardwareModel(max(capture.n_qubits or 1, conversion.plan.num_qubits))
-    localization_circuit = _deterministic_localization_circuit(plan)
+    localization_circuit = _deterministic_localization_circuit(localization_plan)
     try:
         diagnosis = diagnose_execution(
             expected_distribution=ideal,
@@ -1116,9 +1422,15 @@ def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: 
         )
     except Exception as exc:
         info = {key: value for key, value in transpilation.items() if key != "circuit"}
-        return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=capture.backend_name, shots=shots, ideal=ideal, counts=counts, observed=observed, access=access, calibration=capture, conversion=conversion, transpilation_info=info, job_id=job_id, errors=[f"Diagnosis failed after hardware execution: {type(exc).__name__}: {exc}"])
+        return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=capture.backend_name, shots=shots, ideal=ideal, counts=counts, observed=observed, access=access, calibration=capture, conversion=conversion, transpilation_info=info, job_id=job_id, errors=[f"Diagnosis failed after hardware execution: {type(exc).__name__}: {exc}"], execution_start_timestamp=execution_start_timestamp, execution_end_timestamp=execution_end_timestamp, calibration_assessment={**calibration_assessment, "layout_status": "MAPPED"})
+    if capture.unavailable_fields:
+        calibration_gap = "Backend calibration snapshot is incomplete; unavailable fields: " + ", ".join(capture.unavailable_fields)
+        if calibration_gap not in diagnosis.missing_evidence:
+            diagnosis.missing_evidence.append(calibration_gap)
+        if calibration_gap not in diagnosis.evidence:
+            diagnosis.evidence.append(calibration_gap)
     transpilation_info = {key: value for key, value in transpilation.items() if key != "circuit"}
-    return _make_result(status="REAL_IBM_EXECUTED", origin="REAL_IBM", backend_name=capture.backend_name, shots=shots, access=access, ideal=ideal, counts=counts, observed=observed, diagnosis=diagnosis, calibration=capture, conversion=conversion, transpilation_info=transpilation_info, job_id=job_id, real_executed=True)
+    return _make_result(status="REAL_IBM_EXECUTED", origin="REAL_IBM", backend_name=capture.backend_name, shots=shots, access=access, ideal=ideal, counts=counts, observed=observed, diagnosis=diagnosis, calibration=capture, conversion=conversion, transpilation_info=transpilation_info, job_id=job_id, real_executed=True, execution_start_timestamp=execution_start_timestamp, execution_end_timestamp=execution_end_timestamp, calibration_assessment={**calibration_assessment, "layout_status": "MAPPED"})
 
 
 def _offline_report_result() -> IBMValidationResult:
@@ -1193,6 +1505,7 @@ __all__ = [
     "NormalizedOperation",
     "build_circuit_plan",
     "build_ibm_validation_report",
+    "calibration_freshness",
     "capture_backend_calibration",
     "check_ibm_access_status",
     "counts_to_probabilities",
@@ -1202,6 +1515,7 @@ __all__ = [
     "inspect_ibm_backend_calibration",
     "hardware_model_from_ibm_calibration",
     "ideal_distribution",
+    "preflight_ibm_backend",
     "run_offline_validation",
     "transpile_for_backend",
     "write_ibm_validation_report",

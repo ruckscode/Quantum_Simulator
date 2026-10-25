@@ -1,6 +1,12 @@
 import pytest
+from datetime import datetime, timezone
+import json
 
-from quantum_simulator.hardware_model import CalibrationSnapshot, HardwareModel
+from quantum_simulator.hardware_model import (
+    CalibrationSnapshot,
+    HardwareModel,
+    assess_calibration_freshness,
+)
 
 
 def test_hardware_model_creation():
@@ -66,7 +72,11 @@ def test_invalid_inputs():
 
 
 def test_calibration_snapshot_round_trip():
-    model = HardwareModel(2)
+    model = HardwareModel(
+        2, default_gate_error=0.12, default_gate_duration=0.07,
+        calibration_timestamp="2025-01-01T00:00:00+00:00",
+        calibration_timestamp_provenance="reported",
+    )
     model.set_qubit_properties(0, t1=25.0, readout_error=0.04)
     model.add_gate_calibration("rx", qubits=(0,), error=0.01, duration=0.03)
     model.add_edge(0, 1, error=0.02, duration=0.05)
@@ -79,6 +89,77 @@ def test_calibration_snapshot_round_trip():
     assert new_model.get_qubit_properties(0).readout_error == 0.04
     assert new_model.get_gate_calibration("rx", qubits=(0,))[0].error == 0.01
     assert new_model.get_edge(0, 1).error == 0.02
+    assert new_model.default_gate_error == 0.12
+    assert new_model.default_gate_duration == 0.07
+    assert new_model.calibration_timestamp == model.calibration_timestamp
+    assert new_model.calibration_timestamp_provenance == "reported"
+
+
+def test_snapshot_distinguishes_acquisition_and_creation_timestamps_in_serialization():
+    model = HardwareModel(
+        1,
+        calibration_timestamp="2025-01-01T00:00:00+00:00",
+        calibration_timestamp_provenance="reported",
+    )
+    snapshot = model.to_calibration_snapshot()
+    serialized = json.loads(json.dumps(snapshot.to_dict()))
+    restored = CalibrationSnapshot.from_dict(serialized)
+    assert restored.timestamp == "2025-01-01T00:00:00+00:00"
+    assert restored.timestamp_provenance == "reported"
+    assert restored.created_at == snapshot.created_at
+    assert restored.created_at != restored.timestamp
+
+
+def test_calibration_freshness_requires_explicit_policy_and_timezone_aware_time():
+    now = datetime(2025, 1, 1, 0, 10, tzinfo=timezone.utc)
+    timestamp = "2025-01-01T00:00:00-00:00"
+    assert assess_calibration_freshness(
+        timestamp, provenance="reported", now=now,
+    )["status"] == "AGE_KNOWN_FRESHNESS_UNASSESSED"
+    fresh = assess_calibration_freshness(
+        "2025-01-01T00:05:00Z", provenance="reported",
+        max_age_seconds=600, now=now,
+    )
+    assert fresh["status"] == "FRESH"
+    assert fresh["age_seconds"] == 300
+    stale = assess_calibration_freshness(
+        timestamp, provenance="reported", max_age_seconds=599, now=now,
+    )
+    assert stale["status"] == "STALE"
+    assert assess_calibration_freshness(
+        "2025-01-01T00:00:00", provenance="reported", max_age_seconds=600, now=now,
+    )["status"] == "TIMEZONE_REQUIRED"
+
+
+@pytest.mark.parametrize(
+    ("timestamp", "provenance", "expected"),
+    [
+        (None, "reported", "MISSING_TIMESTAMP"),
+        ("synthetic-config", "synthetic", "SYNTHETIC"),
+        ("bad timestamp", "reported", "INVALID_TIMESTAMP"),
+        ("2025-01-01T00:00:00Z", "unknown", "UNKNOWN_PROVENANCE"),
+        ("2025-01-01T00:01:00Z", "reported", "FUTURE_TIMESTAMP"),
+    ],
+)
+def test_calibration_freshness_provenance_and_invalid_time_cases(timestamp, provenance, expected):
+    now = datetime(2025, 1, 1, 0, 0, tzinfo=timezone.utc)
+    result = assess_calibration_freshness(
+        timestamp, provenance=provenance, max_age_seconds=600, now=now,
+    )
+    assert result["status"] == expected
+
+
+def test_synthetic_config_remains_explicitly_synthetic_and_missing_time_is_unknown():
+    synthetic = HardwareModel(1, calibration_timestamp="synthetic-config")
+    assert synthetic.calibration_timestamp_provenance == "synthetic"
+    assert assess_calibration_freshness(
+        synthetic.calibration_timestamp,
+        provenance=synthetic.calibration_timestamp_provenance,
+        max_age_seconds=1,
+    )["status"] == "SYNTHETIC"
+    legacy = CalibrationSnapshot(timestamp=None)
+    assert legacy.timestamp is None
+    assert legacy.timestamp_provenance == "unknown"
 
 
 def test_phase_a_regression_gate_module():

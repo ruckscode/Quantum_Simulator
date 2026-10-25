@@ -1,0 +1,94 @@
+{
+  "audit_date": "2026-10-14",
+  "scope": "bounded read-only structural audit and repeated fixed Logistic Regression grouped evaluation on preserved historical feature rows",
+  "dataset": {
+    "path": "reports/experiments/full_dataset",
+    "fingerprint_sha256": "af4776f5adcc1f090f03d74220b2b3f589a4652818d9cb3b8c79a25baa0bb54a",
+    "eligible_rows": 270,
+    "families": 30,
+    "class_counts": {
+      "HARDWARE_ANOMALY": 90,
+      "NORMAL": 90,
+      "PROGRAM_FAULT": 90
+    },
+    "unique_run_ids": 270,
+    "duplicate_report_fingerprints": 0,
+    "row_source_hashes_present": false,
+    "generator_hashes_in_historical_manifest_present": false
+  },
+  "preflight": {
+    "ready_structural_only": true,
+    "fold_count": 5,
+    "family_overlap_folds": 0,
+    "rows_per_fold": {
+      "train": 216,
+      "test": 54
+    },
+    "families_per_fold": {
+      "train": 24,
+      "test": 6
+    },
+    "feature_schema": [
+      "total_variation_distance",
+      "js_divergence",
+      "hellinger_distance",
+      "observed_entropy_bits",
+      "observed_max_probability"
+    ],
+    "writes_performed": false,
+    "fitting_started": false,
+    "predictions_started": false
+  },
+  "evaluation": {
+    "model": "LogisticRegression(max_iter=2000,class_weight=balanced)",
+    "splitter": "StratifiedGroupKFold(n_splits=5,shuffle=True,random_state=42)",
+    "repeat_exact": true,
+    "matches_saved_oof": true,
+    "max_probability_delta": 0.0,
+    "accuracy": 0.562962962962963,
+    "balanced_accuracy": 0.562962962962963,
+    "macro_f1": 0.5403526613967774,
+    "brier_multiclass": 0.5578358002893076,
+    "log_loss": 0.9077938203216485,
+    "confusion_matrix_true_rows_predicted_columns": [
+      [
+        83,
+        0,
+        7
+      ],
+      [
+        34,
+        38,
+        18
+      ],
+      [
+        47,
+        12,
+        31
+      ]
+    ],
+    "probability_calibration_established": false
+  },
+  "integrity_and_leakage": {
+    "production_features_finite_nonmissing": true,
+    "production_schema_excludes_calibration_features": true,
+    "production_schema_excludes_gate_mismatch_fraction": true,
+    "imputer_scaler_fit_within_training_fold": true,
+    "family_overlap": false,
+    "labels_independently_adjudicated": false,
+    "external_holdout": false,
+    "tuning_performed": false
+  },
+  "current_evaluation_source_sha256": {
+    "ml_training.py": "51cec395bffbe98ddcec2c70802e5d2453d4a124b77fbfd8540333f759719867",
+    "ml_evaluation.py": "84909a424d7e38e3c546eb785d574fa5b83856133c9bb35d0debe1ba5d8f0504",
+    "experiments/full_dataset.py": "56f45c83b7a8c67263cb98a458e5351ca2b9530989e537693b9afcc233cbd141",
+    "experiments/run_experiment.py": "395b07edd2f011586d0b172f240cc363d2170966cfeace90913ef0ede7d3426f",
+    "experiment_config.py": "b5b48ef888ec074c49a8a11d7c517bcceff66ff82efb12dfb783b8e26e28a9ec",
+    "src/quantum_simulator/statistics.py": "aa5433cb56b42ee9fc8c3042f274b0015efbf727386907d8de5c89212304a9aa",
+    "src/quantum_simulator/diagnosis_engine.py": "16ccc815f00e8d13a5e72311e82d5a979af0bc4dde7770e6de0798876d55f1a0",
+    "src/quantum_simulator/quantum_simulator.py": "a07be9c304153a389454f699ffaaace8d12d99d430396bcfc1b5c383845406ef",
+    "src/quantum_simulator/hardware_model.py": "2e9c5f3c54452c78571a072ecf64223616ec5d95efb08cc7b6c5a9739af567e1"
+  },
+  "disposition": "Repeatable descriptive re-evaluation on simulator-derived historical synthetic rows. It does not establish current-source row generation, independent truth/generalization, calibration, benchmark accuracy, or deployment readiness. No large-scale training or model export was run."
+}

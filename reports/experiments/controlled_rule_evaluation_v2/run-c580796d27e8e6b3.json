@@ -1,0 +1,767 @@
+{
+  "anomaly": {
+    "anomaly_detected": false,
+    "expected_distribution": {
+      "00": 0.04204736940466159,
+      "01": 0.04035866407009344,
+      "10": 0.44939508778907417,
+      "11": 0.4681988787361707
+    },
+    "finite_shot_guard": 0.05,
+    "hellinger_distance": 0.010458274252644133,
+    "js_divergence": 0.00010933931880724532,
+    "message": "Observed distribution differs by TVD=0.007211, which is within the configured threshold=0.050000.",
+    "observed_distribution": {
+      "00": 0.0400390625,
+      "01": 0.03515625,
+      "10": 0.4521484375,
+      "11": 0.47265625
+    },
+    "reason": "No statistically meaningful anomaly detected",
+    "shots": 1024,
+    "threshold": 0.05,
+    "total_variation_distance": 0.007210720974755072
+  },
+  "circuit": {
+    "ideal": [
+      [
+        "rz",
+        2,
+        1.83
+      ],
+      [
+        "rx",
+        0,
+        0.93
+      ],
+      [
+        "ry",
+        1,
+        1.27
+      ],
+      [
+        "rz",
+        0,
+        1.83
+      ],
+      [
+        "h",
+        1
+      ],
+      [
+        "x",
+        2
+      ],
+      [
+        "y",
+        1
+      ],
+      [
+        "z",
+        2
+      ],
+      [
+        "x",
+        0
+      ],
+      [
+        "t",
+        2
+      ],
+      [
+        "z",
+        0
+      ],
+      [
+        "s",
+        1
+      ],
+      [
+        "t",
+        0
+      ],
+      [
+        "rx",
+        1,
+        2.41
+      ],
+      [
+        "ry",
+        2,
+        0.29
+      ],
+      [
+        "rz",
+        1,
+        0.61
+      ],
+      [
+        "h",
+        2
+      ],
+      [
+        "ry",
+        0,
+        0.29
+      ],
+      [
+        "y",
+        2
+      ],
+      [
+        "h",
+        0
+      ],
+      [
+        "x",
+        1
+      ],
+      [
+        "rx",
+        1,
+        2.5942719100000002
+      ],
+      [
+        "cx",
+        0,
+        1
+      ],
+      [
+        "cx",
+        1,
+        2
+      ],
+      [
+        "measure",
+        [
+          0,
+          2
+        ]
+      ]
+    ],
+    "observed": [
+      [
+        "rz",
+        2,
+        1.83
+      ],
+      [
+        "rx",
+        0,
+        0.93
+      ],
+      [
+        "ry",
+        1,
+        1.27
+      ],
+      [
+        "rz",
+        0,
+        1.83
+      ],
+      [
+        "h",
+        1
+      ],
+      [
+        "x",
+        2
+      ],
+      [
+        "y",
+        1
+      ],
+      [
+        "z",
+        2
+      ],
+      [
+        "x",
+        0
+      ],
+      [
+        "t",
+        2
+      ],
+      [
+        "z",
+        0
+      ],
+      [
+        "s",
+        1
+      ],
+      [
+        "t",
+        0
+      ],
+      [
+        "rx",
+        1,
+        2.41
+      ],
+      [
+        "ry",
+        2,
+        0.29
+      ],
+      [
+        "rz",
+        1,
+        0.61
+      ],
+      [
+        "h",
+        2
+      ],
+      [
+        "ry",
+        0,
+        0.29
+      ],
+      [
+        "y",
+        2
+      ],
+      [
+        "h",
+        0
+      ],
+      [
+        "x",
+        1
+      ],
+      [
+        "rx",
+        1,
+        2.5942719100000002
+      ],
+      [
+        "cx",
+        0,
+        1
+      ],
+      [
+        "cx",
+        1,
+        2
+      ],
+      [
+        "measure",
+        [
+          0,
+          2
+        ]
+      ]
+    ]
+  },
+  "configuration": {
+    "anomaly_threshold": 0.05,
+    "backend_name": null,
+    "circuit": [
+      [
+        "rz",
+        2,
+        1.83
+      ],
+      [
+        "rx",
+        0,
+        0.93
+      ],
+      [
+        "ry",
+        1,
+        1.27
+      ],
+      [
+        "rz",
+        0,
+        1.83
+      ],
+      [
+        "h",
+        1
+      ],
+      [
+        "x",
+        2
+      ],
+      [
+        "y",
+        1
+      ],
+      [
+        "z",
+        2
+      ],
+      [
+        "x",
+        0
+      ],
+      [
+        "t",
+        2
+      ],
+      [
+        "z",
+        0
+      ],
+      [
+        "s",
+        1
+      ],
+      [
+        "t",
+        0
+      ],
+      [
+        "rx",
+        1,
+        2.41
+      ],
+      [
+        "ry",
+        2,
+        0.29
+      ],
+      [
+        "rz",
+        1,
+        0.61
+      ],
+      [
+        "h",
+        2
+      ],
+      [
+        "ry",
+        0,
+        0.29
+      ],
+      [
+        "y",
+        2
+      ],
+      [
+        "h",
+        0
+      ],
+      [
+        "x",
+        1
+      ],
+      [
+        "rx",
+        1,
+        2.5942719100000002
+      ],
+      [
+        "cx",
+        0,
+        1
+      ],
+      [
+        "cx",
+        1,
+        2
+      ],
+      [
+        "measure",
+        [
+          0,
+          2
+        ]
+      ]
+    ],
+    "circuit_family_id": "circuit_family_09",
+    "circuit_id": "circuit-c92a5166f62dd683",
+    "description": "Fixed design seed 6104279; HARDWARE_ANOMALY controlled condition.",
+    "experiment_name": "full_circuit_family_09_hardware_anomaly_rep0",
+    "experimental_group_id": "group-fa1914d291ec8ab8",
+    "ground_truth_label": "HARDWARE_ANOMALY",
+    "hardware_affected_component": "readout on qubit 2",
+    "hardware_condition_id": "hardware-fd49403867f6cf82",
+    "hardware_parameters": {
+      "coupling_map": [],
+      "gates": [],
+      "qubits": {
+        "0": {
+          "readout_error": 0.0,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        },
+        "1": {
+          "readout_error": 0.0,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        },
+        "2": {
+          "readout_error": 0.24,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        }
+      }
+    },
+    "noise_parameters": null,
+    "num_qubits": 3,
+    "observed_circuit": [
+      [
+        "rz",
+        2,
+        1.83
+      ],
+      [
+        "rx",
+        0,
+        0.93
+      ],
+      [
+        "ry",
+        1,
+        1.27
+      ],
+      [
+        "rz",
+        0,
+        1.83
+      ],
+      [
+        "h",
+        1
+      ],
+      [
+        "x",
+        2
+      ],
+      [
+        "y",
+        1
+      ],
+      [
+        "z",
+        2
+      ],
+      [
+        "x",
+        0
+      ],
+      [
+        "t",
+        2
+      ],
+      [
+        "z",
+        0
+      ],
+      [
+        "s",
+        1
+      ],
+      [
+        "t",
+        0
+      ],
+      [
+        "rx",
+        1,
+        2.41
+      ],
+      [
+        "ry",
+        2,
+        0.29
+      ],
+      [
+        "rz",
+        1,
+        0.61
+      ],
+      [
+        "h",
+        2
+      ],
+      [
+        "ry",
+        0,
+        0.29
+      ],
+      [
+        "y",
+        2
+      ],
+      [
+        "h",
+        0
+      ],
+      [
+        "x",
+        1
+      ],
+      [
+        "rx",
+        1,
+        2.5942719100000002
+      ],
+      [
+        "cx",
+        0,
+        1
+      ],
+      [
+        "cx",
+        1,
+        2
+      ],
+      [
+        "measure",
+        [
+          0,
+          2
+        ]
+      ]
+    ],
+    "observed_counts": null,
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "random_seed": 938200,
+    "repetition_index": 0,
+    "run_id": "run-c580796d27e8e6b3",
+    "shots": 1024,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "diagnosis": {
+    "anomaly_detected": false,
+    "category": "HARDWARE_ANOMALY",
+    "evidence": [
+      "Observed distribution differs by TVD=0.007211, which is within the configured threshold=0.050000.",
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000.",
+      "Qubit 2 readout error is elevated at 0.2400.",
+      "No gate calibration entry is available for rz on qubits (2,).",
+      "No gate calibration entry is available for rx on qubits (0,).",
+      "No gate calibration entry is available for ry on qubits (1,).",
+      "No gate calibration entry is available for rz on qubits (0,).",
+      "No gate calibration entry is available for h on qubits (1,).",
+      "No gate calibration entry is available for x on qubits (2,).",
+      "No gate calibration entry is available for y on qubits (1,).",
+      "No gate calibration entry is available for z on qubits (2,).",
+      "No gate calibration entry is available for x on qubits (0,).",
+      "No gate calibration entry is available for t on qubits (2,).",
+      "No gate calibration entry is available for z on qubits (0,).",
+      "No gate calibration entry is available for s on qubits (1,).",
+      "No gate calibration entry is available for t on qubits (0,).",
+      "No gate calibration entry is available for rx on qubits (1,).",
+      "No gate calibration entry is available for ry on qubits (2,).",
+      "No gate calibration entry is available for rz on qubits (1,).",
+      "No gate calibration entry is available for h on qubits (2,).",
+      "No gate calibration entry is available for ry on qubits (0,).",
+      "No gate calibration entry is available for y on qubits (2,).",
+      "No gate calibration entry is available for h on qubits (0,).",
+      "No gate calibration entry is available for x on qubits (1,).",
+      "No gate calibration entry is available for cx on qubits (0, 1).",
+      "No coupling-edge calibration is available for edge (0, 1).",
+      "No gate calibration entry is available for cx on qubits (1, 2).",
+      "No coupling-edge calibration is available for edge (1, 2)."
+    ],
+    "hardware_evidence_candidates": [
+      {
+        "component": 2,
+        "component_type": "qubit",
+        "evidence": [
+          "Qubit 2 readout error is elevated at 0.2400."
+        ],
+        "reason": "Qubit 2 shows hardware degradation: readout_error=0.2400",
+        "score": 0.96
+      }
+    ],
+    "hardware_result": {
+      "anomaly_metric": 0.0,
+      "candidates": [
+        {
+          "component": 2,
+          "component_type": "qubit",
+          "evidence": [
+            "Qubit 2 readout error is elevated at 0.2400."
+          ],
+          "reason": "Qubit 2 shows hardware degradation: readout_error=0.2400",
+          "score": 0.96
+        }
+      ],
+      "evidence": [
+        "Qubit 2 readout error is elevated at 0.2400."
+      ],
+      "summary": "Likely hardware component(s): qubit 2",
+      "threshold": 0.05
+    },
+    "missing_evidence": [
+      "No gate calibration entry is available for rz on qubits (2,).",
+      "No gate calibration entry is available for rx on qubits (0,).",
+      "No gate calibration entry is available for ry on qubits (1,).",
+      "No gate calibration entry is available for rz on qubits (0,).",
+      "No gate calibration entry is available for h on qubits (1,).",
+      "No gate calibration entry is available for x on qubits (2,).",
+      "No gate calibration entry is available for y on qubits (1,).",
+      "No gate calibration entry is available for z on qubits (2,).",
+      "No gate calibration entry is available for x on qubits (0,).",
+      "No gate calibration entry is available for t on qubits (2,).",
+      "No gate calibration entry is available for z on qubits (0,).",
+      "No gate calibration entry is available for s on qubits (1,).",
+      "No gate calibration entry is available for t on qubits (0,).",
+      "No gate calibration entry is available for rx on qubits (1,).",
+      "No gate calibration entry is available for ry on qubits (2,).",
+      "No gate calibration entry is available for rz on qubits (1,).",
+      "No gate calibration entry is available for h on qubits (2,).",
+      "No gate calibration entry is available for ry on qubits (0,).",
+      "No gate calibration entry is available for y on qubits (2,).",
+      "No gate calibration entry is available for h on qubits (0,).",
+      "No gate calibration entry is available for x on qubits (1,).",
+      "No gate calibration entry is available for cx on qubits (0, 1).",
+      "No coupling-edge calibration is available for edge (0, 1).",
+      "No gate calibration entry is available for cx on qubits (1, 2).",
+      "No coupling-edge calibration is available for edge (1, 2)."
+    ],
+    "program_evidence_candidates": [],
+    "program_result": {
+      "anomaly_metric": 0.0,
+      "candidates": [],
+      "evidence": [
+        "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+      ],
+      "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+      "threshold": 0.05
+    },
+    "statistics_result": {
+      "anomaly_detected": false,
+      "expected_distribution": {
+        "00": 0.04204736940466159,
+        "01": 0.04035866407009344,
+        "10": 0.44939508778907417,
+        "11": 0.4681988787361707
+      },
+      "finite_shot_guard": 0.05,
+      "hellinger_distance": 0.010458274252644133,
+      "js_divergence": 0.00010933931880724532,
+      "message": "Observed distribution differs by TVD=0.007211, which is within the configured threshold=0.050000.",
+      "observed_distribution": {
+        "00": 0.0400390625,
+        "01": 0.03515625,
+        "10": 0.4521484375,
+        "11": 0.47265625
+      },
+      "reason": "No statistically meaningful anomaly detected",
+      "shots": 1024,
+      "threshold": 0.05,
+      "total_variation_distance": 0.007210720974755072
+    },
+    "summary": "The observed distribution matches the reference, but relevant hardware calibration fault evidence remains.",
+    "trace_deviation_candidates": []
+  },
+  "errors": [],
+  "execution_metadata": {
+    "backend_api_used": false,
+    "execution_kind": "SYNTHETIC_VALIDATION",
+    "execution_target": "LOCAL_SIMULATOR",
+    "generated_at": "2026-10-12T15:50:45+00:00",
+    "hardware_model_applied": true,
+    "noise_parameters_applied": false,
+    "numpy_version": "2.5.3",
+    "observation_source": "SEEDED_LOCAL_SIMULATOR_SHOTS_WITH_HARDWARE_MODEL",
+    "python_version": "3.12.10",
+    "random_seed": 938200,
+    "shots": 1024
+  },
+  "experiment_metadata": {
+    "backend_name": null,
+    "circuit_family_id": "circuit_family_09",
+    "circuit_id": "circuit-c92a5166f62dd683",
+    "created_at": "2026-10-12T15:50:45+00:00",
+    "experiment_name": "full_circuit_family_09_hardware_anomaly_rep0",
+    "experimental_group_id": "group-fa1914d291ec8ab8",
+    "ground_truth_label": "HARDWARE_ANOMALY",
+    "hardware_affected_component": "readout on qubit 2",
+    "hardware_condition_id": "hardware-fd49403867f6cf82",
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "repetition_index": 0,
+    "run_id": "run-c580796d27e8e6b3",
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "hardware_evidence": {
+    "anomaly_metric": 0.0,
+    "candidates": [
+      {
+        "component": 2,
+        "component_type": "qubit",
+        "evidence": [
+          "Qubit 2 readout error is elevated at 0.2400."
+        ],
+        "reason": "Qubit 2 shows hardware degradation: readout_error=0.2400",
+        "score": 0.96
+      }
+    ],
+    "evidence": [
+      "Qubit 2 readout error is elevated at 0.2400."
+    ],
+    "summary": "Likely hardware component(s): qubit 2",
+    "threshold": 0.05
+  },
+  "ideal_distribution": {
+    "00": 0.0420473694046616,
+    "01": 0.04035866407009345,
+    "10": 0.4493950877890743,
+    "11": 0.46819887873617083
+  },
+  "ideal_statevector_distribution": {
+    "000": 0.02839111951089854,
+    "001": 0.015764672526529595,
+    "010": 0.013656249893763055,
+    "011": 0.024593991543563856,
+    "100": 0.2738549266548613,
+    "101": 0.15206280389307672,
+    "110": 0.175540161134213,
+    "111": 0.3161360748430941
+  },
+  "observed_counts": {
+    "00": 41,
+    "01": 36,
+    "10": 463,
+    "11": 484
+  },
+  "observed_distribution": {
+    "00": 0.0400390625,
+    "01": 0.03515625,
+    "10": 0.4521484375,
+    "11": 0.47265625
+  },
+  "program_evidence": {
+    "anomaly_metric": 0.0,
+    "candidates": [],
+    "evidence": [
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+    ],
+    "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+    "threshold": 0.05
+  },
+  "reproducibility": {
+    "deterministic_localizer_measurements": "measurement operations mapped to barriers for localization only",
+    "fingerprint": "8277d7dce924dda2f150cf9de8ff752d0a585de10c46ae2ce6a2627311486cca",
+    "fingerprint_excludes": [
+      "execution_metadata.generated_at",
+      "reproducibility.fingerprint"
+    ],
+    "random_seed": 938200,
+    "simulator_version": "project-statevector-current"
+  },
+  "simulator_observed_counts": {
+    "00": 41,
+    "01": 36,
+    "10": 463,
+    "11": 484
+  },
+  "status": "COMPLETED"
+}

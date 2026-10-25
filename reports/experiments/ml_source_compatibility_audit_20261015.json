@@ -1,0 +1,123 @@
+{
+  "audit_date": "2026-10-15",
+  "audit_type": "current-tree recheck after bounded lineage/pilot closure; historical artifacts preserved",
+  "changed_source_count": 7,
+  "current_generator_scope": {
+    "diagnosis_engine.py": "cac81fc98348014581f78163d5a73622565649ab6426e7af7f3fabdfdde24240",
+    "experiment_config.py": "f1a0f721d8bdf1175bfcdbd84d6d829099efb7155f1568ad703e9f6cc76d33b3",
+    "experiments/full_dataset.py": "2272d934648628ed8f7bf756ee1a6a0f988be8b8d28bd9972227ceeeed8cb0ac",
+    "experiments/run_experiment.py": "fef2985d782c92756af81e84232c7b0c286dc930963063dc9c2b44348e30c034",
+    "fault_localizer.py": "87de10cde2991a7fb1ab0e4e7563cf81e5cb043bae44fc8c1c5051755d6194ba",
+    "gates.py": "5799e62fa582e8651344d257ad396e3415dd4f7db29d310962fec29ce5a8baad",
+    "hardware_fault_localizer.py": "e4c92314bbca1775d348d64d8f3ef5382be684520a3ffc66cefce81514f5a1bb",
+    "hardware_model.py": "d788c7f98dc1932159473e8256b45550f1430bd9b4da2f776099b152ba72aaaa",
+    "pyproject.toml": "da65396b438f76cf51a6a60f103e3b468d2713459cc151c574af66a7bffd4c06",
+    "quantum_simulator.py": "1641ad14c4b932a1739527f73c732276c7029cc192695cfd5e82cf7ea91a50fa",
+    "src/quantum_simulator/__init__.py": "38673e3726f0d4a8415639ad19e3adecd30c51ff5c1010d244146c97fe39f801",
+    "src/quantum_simulator/diagnosis_engine.py": "16ccc815f00e8d13a5e72311e82d5a979af0bc4dde7770e6de0798876d55f1a0",
+    "src/quantum_simulator/fault_localizer.py": "46fb76982a579e209d7f0caa252a7c4f27f665f9836e93698fd4766fe9d9da28",
+    "src/quantum_simulator/gates.py": "d0153f8609b8a375aadf1541322928aa65acb212b533f8154e424809afd658d8",
+    "src/quantum_simulator/hardware_fault_localizer.py": "ca0fec8d243282ca2ad1b1d1f0cb7e24f909fbcbecd537d116da722081e98686",
+    "src/quantum_simulator/hardware_model.py": "2e9c5f3c54452c78571a072ecf64223616ec5d95efb08cc7b6c5a9739af567e1",
+    "src/quantum_simulator/quantum_circuit.py": "5ebe9f05c7a72057929e339d5c1633b1b50c98621c068849d4fa1b4e9df2a6c1",
+    "src/quantum_simulator/quantum_simulator.py": "a07be9c304153a389454f699ffaaace8d12d99d430396bcfc1b5c383845406ef",
+    "src/quantum_simulator/statistics.py": "aa5433cb56b42ee9fc8c3042f274b0015efbf727386907d8de5c89212304a9aa",
+    "statistics.py": "e47a7fbf3d74ebf700fa722e74ac57b9ce6b3d0bd3a4a36b5b06cc25aa6f0a9d"
+  },
+  "dataset": {
+    "current_sha256": "af4776f5adcc1f090f03d74220b2b3f589a4652818d9cb3b8c79a25baa0bb54a",
+    "matches": true,
+    "saved_sha256": "af4776f5adcc1f090f03d74220b2b3f589a4652818d9cb3b8c79a25baa0bb54a"
+  },
+  "historical_attribution": "unresolved: saved evaluator hashes identify the evaluator snapshot but historical manifest and report rows do not identify the generator snapshot.",
+  "historical_training_preflight": {
+    "artifact": "reports/experiments/ml_data_foundation_preflight_20261015.json",
+    "blockers": [
+      "270 report rows lack per-run source_sha256 provenance",
+      "dataset generator source hashes do not match current generation code (missing/changed: ['diagnosis_engine.py', 'experiment_config.py', 'experiments/full_dataset.py', 'experiments/run_experiment.py', 'fault_localizer.py', 'gates.py', 'hardware_fault_localizer.py', 'hardware_model.py', 'pyproject.toml', 'quantum_simulator.py', 'src/quantum_simulator/__init__.py', 'src/quantum_simulator/diagnosis_engine.py', 'src/quantum_simulator/fault_localizer.py', 'src/quantum_simulator/gates.py', 'src/quantum_simulator/hardware_fault_localizer.py', 'src/quantum_simulator/hardware_model.py', 'src/quantum_simulator/quantum_circuit.py', 'src/quantum_simulator/quantum_simulator.py', 'src/quantum_simulator/statistics.py', 'statistics.py'])",
+      "dataset manifest is missing generation_provenance",
+      "no eligible rows are available for grouped folds"
+    ],
+    "counts": {
+      "completed": 270,
+      "eligible": 0,
+      "failed": 0,
+      "ineligible": 270,
+      "other_source_dispositions": {},
+      "unsupported": 0
+    },
+    "estimator_fitting_started": false,
+    "model_export_started": false,
+    "prediction_started": false,
+    "ready": false,
+    "writes_performed": false
+  },
+  "interpretation": "File-level differences correspond to current implementation changes and are recorded as version differences. Exact historical row-generating/evaluator compatibility remains unproven; no saved metric is certified reproducible on the current tree.",
+  "runtime_current": {
+    "numpy": "2.5.3",
+    "python": "3.12.10",
+    "scikit_learn": "1.9.1"
+  },
+  "runtime_saved": {
+    "numpy": "2.5.3",
+    "python": "3.12.10",
+    "scikit_learn": "1.9.1"
+  },
+  "saved_evaluation_manifest": "ml_results/grouped_cv_audit_v2/evaluation_manifest.json",
+  "source_comparisons": [
+    {
+      "changed": true,
+      "current_sha256": "f1a0f721d8bdf1175bfcdbd84d6d829099efb7155f1568ad703e9f6cc76d33b3",
+      "path": "experiment_config.py",
+      "saved_sha256": "b5b48ef888ec074c49a8a11d7c517bcceff66ff82efb12dfb783b8e26e28a9ec"
+    },
+    {
+      "changed": true,
+      "current_sha256": "2272d934648628ed8f7bf756ee1a6a0f988be8b8d28bd9972227ceeeed8cb0ac",
+      "path": "experiments/full_dataset.py",
+      "saved_sha256": "db9f793d9f39d2aca6f369a00ff842189c07255822ea488d9ea40464b6ac6e50"
+    },
+    {
+      "changed": true,
+      "current_sha256": "fef2985d782c92756af81e84232c7b0c286dc930963063dc9c2b44348e30c034",
+      "path": "experiments/run_experiment.py",
+      "saved_sha256": "7c5b9d9a468caae02beee2ef0253f1c7c07a81dd0fe3a7608b0c4078b972b350"
+    },
+    {
+      "changed": true,
+      "current_sha256": "4ab18ea0bab78a5af3d7785f95a7ce889a45f036bfee2afab174d1b208531fff",
+      "path": "ml_evaluation.py",
+      "saved_sha256": "0284ac34dbc7e27025fb409c22ad4bd224e2431af18e7bfdab6f0eee2bdfee51"
+    },
+    {
+      "changed": true,
+      "current_sha256": "6c059562b5183b6287921c8ff6dae81566d98f08f417642f8d06ffe8014458c6",
+      "path": "ml_training.py",
+      "saved_sha256": "51cec395bffbe98ddcec2c70802e5d2453d4a124b77fbfd8540333f759719867"
+    },
+    {
+      "changed": true,
+      "current_sha256": "16ccc815f00e8d13a5e72311e82d5a979af0bc4dde7770e6de0798876d55f1a0",
+      "path": "src/quantum_simulator/diagnosis_engine.py",
+      "saved_sha256": "787cb8265433d494f42695ed3dfe2f6f659799a4b1c86cfe988364945ef9578e"
+    },
+    {
+      "changed": false,
+      "current_sha256": "2e9c5f3c54452c78571a072ecf64223616ec5d95efb08cc7b6c5a9739af567e1",
+      "path": "src/quantum_simulator/hardware_model.py",
+      "saved_sha256": "2e9c5f3c54452c78571a072ecf64223616ec5d95efb08cc7b6c5a9739af567e1"
+    },
+    {
+      "changed": true,
+      "current_sha256": "a07be9c304153a389454f699ffaaace8d12d99d430396bcfc1b5c383845406ef",
+      "path": "src/quantum_simulator/quantum_simulator.py",
+      "saved_sha256": "636152653de779878d9ea383604b57bba5f3e04bebc1b53e968a040620f4a3a9"
+    },
+    {
+      "changed": false,
+      "current_sha256": "aa5433cb56b42ee9fc8c3042f274b0015efbf727386907d8de5c89212304a9aa",
+      "path": "src/quantum_simulator/statistics.py",
+      "saved_sha256": "aa5433cb56b42ee9fc8c3042f274b0015efbf727386907d8de5c89212304a9aa"
+    }
+  ]
+}

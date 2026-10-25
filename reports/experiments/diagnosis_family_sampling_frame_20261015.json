@@ -1,0 +1,28 @@
+{
+  "algorithm": "stable-sort-by-sha256(seed || explicit-root-id); prior roots and unknown lineage excluded",
+  "blocker": "No root is eligible until the prior inventory is independently certified complete and all discovered ancestry/fingerprints are reconciled.",
+  "candidates": [],
+  "excluded_counts": {
+    "eligible_roots": 0,
+    "prior_artifact_circuit_records": 5366,
+    "unknown_or_unreconciled_lineage": 5186
+  },
+  "frame_sha256": "ccef18762d9c87412e0f88e6d2b84ebdbbfd8b9d4edbc3ff0d22c69c03c0031b",
+  "inventory_sha256": "ec39aeccbac38407d7cb9aa7891cd388d681b056332a0aa4197dfd74400f5c37",
+  "sampler_version": "sha256-ranked-family-frame-v1",
+  "schema_version": 1,
+  "selected": {
+    "development": [],
+    "validation": []
+  },
+  "selection_seed": 20261015,
+  "shortfall": {
+    "development": 8,
+    "validation": 8
+  },
+  "status": "blocked_incomplete_prior_inventory",
+  "target": {
+    "development": 8,
+    "validation": 8
+  }
+}

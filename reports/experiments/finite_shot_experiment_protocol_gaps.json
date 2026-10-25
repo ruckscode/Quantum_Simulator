@@ -1,0 +1,77 @@
+{
+  "review": "finite_shot_publication_readiness_review",
+  "verdict": "CONDITIONAL GO",
+  "execution_authorized": false,
+  "scope": "Research-direction refinement only; the proposed 252-family experiment is not ready to execute.",
+  "blocking_issues": [
+    {
+      "id": "novelty_not_established",
+      "severity": "critical",
+      "evidence": "Virani et al. (IEEE QCE 2025) directly study statistical distinction between quantum software bugs and hardware noise; Hassan and Kaabouch (2026 arXiv preprint) study hardware error attribution with device calibration and cross-device evaluation; Maidl et al. (DDECS 2025) address measurement-dependent fault equivalence and localization. These overlap central proposed claims.",
+      "resolution_requirement": "Complete a methods-level comparison against the full papers and specify one operational distinction and measurable hypothesis that those methods do not already establish.",
+      "resolved": false
+    },
+    {
+      "id": "condition_definition_ambiguous",
+      "severity": "high",
+      "evidence": "The four stated conditions are identical controls, measurement-equivalent controls, known program faults, and hardware-channel faults. The proposal also mentions realistic stochastic hardware noise as a separate stratum without reconciling that with the four-condition design or its resource count.",
+      "resolution_requirement": "Freeze a condition table specifying mechanism, ground-truth label, construction, evidence source, and count for each unit; explicitly decide whether realistic stochastic noise is in scope.",
+      "resolved": false
+    },
+    {
+      "id": "ground_truth_and_leakage_protocol_missing",
+      "severity": "critical",
+      "evidence": "Saved calibration has no hardware-fault samples or independent calibration evidence. The diagnosis interface can accept a HardwareModel; using simulator-injected condition identity or correlated calibration data as inference evidence risks label leakage.",
+      "resolution_requirement": "Specify independent source-mutation adjudication and device calibration/telemetry acquisition, blinding and time/component matching, admissible inference inputs, and a data-flow audit demonstrating labels cannot leak into model inputs.",
+      "resolved": false
+    },
+    {
+      "id": "independent_family_unit_and_paired_estimand_unverified",
+      "severity": "high",
+      "evidence": "The saved calibration uses repeated templates and variants in a single narrow topology/recipe. Its configuration count does not establish independent family count. The n=252 calculation powers marginal binomial gates, not paired superiority between detectors.",
+      "resolution_requirement": "Provide a deduplicated family sampling frame, disjoint calibration/evaluation family identities and seeds, family-level clustering/aggregation rules, a paired primary estimand, and power analysis for that estimand using defensible rate and dependence assumptions.",
+      "resolved": false
+    },
+    {
+      "id": "primary_endpoints_and_decision_rules_incomplete",
+      "severity": "high",
+      "evidence": "The reconstructed sensitivity/FPR gates do not fully define coverage, selective risk, localization scoring, multiplicity, indeterminate labels, paired comparisons, or failure handling. Joint power relies on assumed rates and only a conservative union bound is available without criterion dependence data.",
+      "resolution_requirement": "Freeze endpoint definitions, confidence intervals, multiplicity policy, coverage/selective-risk and localization rules, indeterminate-case handling, paired analysis, and explicit acceptance/failure criteria before held-out outcomes are observed.",
+      "resolved": false
+    }
+  ],
+  "analytical_checks": {
+    "approximate_two_sample_null_tvd_mean": {
+      "formula": "sqrt((K-1)/(pi*n)) for K=16 approximately uniform categories and independent equal-size multinomial samples",
+      "n_256": 0.1365685538,
+      "n_1024": 0.0682842769,
+      "interpretation": "Approximate null mean scale only; not a quantile, calibrated threshold, or error guarantee."
+    },
+    "n_252_one_sided_cp_gates": {
+      "per_bound_alpha": 0.0125,
+      "sensitivity_minimum": 0.8,
+      "minimum_successes": 216,
+      "lower_bound_at_gate": 0.8004615198,
+      "fpr_maximum": 0.05,
+      "maximum_false_positives": 5,
+      "upper_bound_at_gate": 0.0498795826,
+      "power_if_true_sensitivity_0_90": 0.98826356,
+      "power_if_true_fpr_0_01": 0.95747749,
+      "four_gate_union_bound_joint_power_lower_bound_under_assumptions": 0.8914821,
+      "caveat": "Assumed endpoint rates; marginal binomial gates; independent family sampling for the stated endpoint calculations. Not paired-comparison power or generalization evidence."
+    },
+    "projected_primary_execution_count": {
+      "configurations": 1008,
+      "shots_per_reference_and_submitted_circuit": 4096,
+      "total_shot_circuit_executions": 8257536
+    }
+  },
+  "work_performed": {
+    "read_only": true,
+    "simulations_run": 0,
+    "tests_run": 0,
+    "models_trained": 0,
+    "hardware_jobs": 0,
+    "existing_artifacts_modified": 0
+  }
+}

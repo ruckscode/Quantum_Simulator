@@ -1,0 +1,116 @@
+{
+  "baseline_eligible_independent_recipe_roots": 0,
+  "checker_scope": "structural checks only; external identities, signatures, attestations, and truth are not authenticated",
+  "eligibility_decision_changed": false,
+  "errors": [],
+  "evaluation_manifest_justified": false,
+  "gates": [
+    {
+      "gate_id": "qmutbench_release_and_mapping",
+      "independent_verification_status": "BLOCKED",
+      "reasons": [
+        "qmutbench_source_archive: fields not evidenced: bytes, commit, custodian, received_utc, repository, sha256, source_uri",
+        "qmutbench_source_archive: artifact path and checksum unresolved",
+        "qmutbench_source_archive: coverage not explicitly complete",
+        "qmutbench_origin_mutant_map: fields not evidenced: artifact_id, artifact_sha256, mapping_basis, mutant_id, mutation_metadata, origin_id, parent_artifact_id",
+        "qmutbench_origin_mutant_map: artifact path and checksum unresolved",
+        "qmutbench_origin_mutant_map: coverage not explicitly complete",
+        "qmutbench_checksum_manifest: fields not evidenced: bytes, relative_path, sha256, source_commit",
+        "qmutbench_checksum_manifest: artifact path and checksum unresolved",
+        "qmutbench_checksum_manifest: coverage not explicitly complete",
+        "independent reviewer identity, independence, and attestation authenticity require external verification"
+      ],
+      "status": "BLOCKED",
+      "structural_status": "BLOCKED"
+    },
+    {
+      "gate_id": "mqt_recipe_ancestry",
+      "independent_verification_status": "BLOCKED",
+      "reasons": [
+        "mqt_bench_release: fields not evidenced: commit, custodian, release_archive_sha256, repository, version",
+        "mqt_bench_release: artifact path and checksum unresolved",
+        "mqt_bench_release: coverage not explicitly complete",
+        "mqt_origin_recipe_map: fields not evidenced: abstraction_level, circuit_size, generation_parameters, mqt_benchmark_id, mqt_version, optimization_level, parent_artifact_sha256, qmutbench_origin_artifact_sha256, seed, target",
+        "mqt_origin_recipe_map: artifact path and checksum unresolved",
+        "mqt_origin_recipe_map: coverage not explicitly complete",
+        "generation_environment: fields not evidenced: adapter_sha256, configuration_sha256, dependency_lock_sha256, generator_source_sha256, runtime_version",
+        "generation_environment: artifact path and checksum unresolved",
+        "generation_environment: coverage not explicitly complete",
+        "independent reviewer identity, independence, and attestation authenticity require external verification"
+      ],
+      "status": "BLOCKED",
+      "structural_status": "BLOCKED"
+    },
+    {
+      "gate_id": "complete_prior_inventory_reconciliation",
+      "independent_verification_status": "BLOCKED",
+      "reasons": [
+        "prior_artifact_inventory: fields not evidenced: inventory_scope, record_count, records, scan_roots, scan_timestamp_utc, sha256, truncation_status",
+        "prior_artifact_inventory: artifact path and checksum unresolved",
+        "prior_artifact_inventory: coverage not explicitly complete",
+        "cross_source_reconciliation: fields not evidenced: ancestor_edges, artifact_sha256, candidate_root_id, decision_basis, duplicate_decision, review_status",
+        "cross_source_reconciliation: artifact path and checksum unresolved",
+        "cross_source_reconciliation: coverage not explicitly complete",
+        "independent reviewer identity, independence, and attestation authenticity require external verification"
+      ],
+      "status": "BLOCKED",
+      "structural_status": "BLOCKED"
+    },
+    {
+      "gate_id": "source_integrity_and_chain_of_custody",
+      "independent_verification_status": "BLOCKED",
+      "reasons": [
+        "receipt_and_transform_log: fields not evidenced: custodian, log_sha256, operator, original_sha256, received_sha256, retrieval_utc, source_uri, transformations, transport_or_accession_method",
+        "receipt_and_transform_log: artifact path and checksum unresolved",
+        "receipt_and_transform_log: coverage not explicitly complete",
+        "independent reviewer identity, independence, and attestation authenticity require external verification"
+      ],
+      "status": "BLOCKED",
+      "structural_status": "BLOCKED"
+    },
+    {
+      "gate_id": "behavioral_label_provenance",
+      "independent_verification_status": "BLOCKED",
+      "reasons": [
+        "label_protocol: fields not evidenced: endpoint_definition, frozen_utc, label_evidence_rules, observable_definition, positive_negative_ambiguous_rules, protocol_sha256",
+        "label_protocol: artifact path and checksum unresolved",
+        "label_protocol: coverage not explicitly complete",
+        "adjudicated_labels: fields not evidenced: artifact_sha256, blinding_record, disagreement_resolution, evidence_refs, label, reviewer_1_decision, reviewer_2_decision",
+        "adjudicated_labels: artifact path and checksum unresolved",
+        "adjudicated_labels: coverage not explicitly complete",
+        "independent reviewer identity, independence, and attestation authenticity require external verification"
+      ],
+      "status": "BLOCKED",
+      "structural_status": "BLOCKED"
+    },
+    {
+      "gate_id": "execution_measurement_provenance",
+      "independent_verification_status": "BLOCKED",
+      "reasons": [
+        "execution_observation_ledger: fields not evidenced: circuit_sha256, configuration_sha256, execution_id, failure_status, measurement_basis, noise_or_device_settings, raw_counts_path, raw_counts_sha256, record_id, reference_sha256, runtime_versions, seed, shots",
+        "execution_observation_ledger: artifact path and checksum unresolved",
+        "execution_observation_ledger: coverage not explicitly complete",
+        "independent reviewer identity, independence, and attestation authenticity require external verification"
+      ],
+      "status": "BLOCKED",
+      "structural_status": "BLOCKED"
+    },
+    {
+      "gate_id": "independent_review_and_attestation",
+      "independent_verification_status": "BLOCKED",
+      "reasons": [
+        "independent_review_record: fields not evidenced: attestation_sha256, conflict_statement, findings, independence_basis, reviewer_identity, reviewer_organization, scope, signature_or_verification_method",
+        "independent_review_record: artifact path and checksum unresolved",
+        "independent_review_record: coverage not explicitly complete",
+        "review_trust_basis: fields not evidenced: trusted_identity_source, verification_method, verification_record_sha256, verified_by_independent_party",
+        "review_trust_basis: artifact path and checksum unresolved",
+        "review_trust_basis: coverage not explicitly complete",
+        "independent reviewer identity, independence, and attestation authenticity require external verification"
+      ],
+      "status": "BLOCKED",
+      "structural_status": "BLOCKED"
+    }
+  ],
+  "readiness_status": "BLOCKED",
+  "schema": "qmutbench-evidence-readiness-result-v1"
+}

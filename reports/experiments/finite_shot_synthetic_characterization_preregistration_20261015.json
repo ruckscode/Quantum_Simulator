@@ -1,0 +1,118 @@
+{
+  "acceptance_criteria": {
+    "alternative_power": "Descriptive power curve only; no minimum power criterion was stated by the architecture plan, and none is added here.",
+    "null_gate": "PASS only if one-sided exact 95% upper bound for FPR <=0.06 separately at all three shot counts; otherwise FAIL.",
+    "resource_gate": "Exactly 12,000 pairs planned and maximum; abort on exceeding 600 seconds, 256 MiB traced memory, or 256 MiB serialized output."
+  },
+  "artifacts": {
+    "focused_test": "tests/test_finite_shot_synthetic_characterization.py",
+    "implementation": "experiments/finite_shot_synthetic_characterization.py",
+    "implementation_sha256": "a40a1d81a0fd1a7aaadcb187535484849a80c14f6b6165ed32501974a9e63a9f",
+    "result": "reports/experiments/finite_shot_synthetic_characterization_results_20261015.json",
+    "statistics_module": "src/quantum_simulator/statistics.py",
+    "statistics_module_sha256": "2d90d01a024aa527a4dd7805a09ba0216e35afceb3e718d979e9ed5399212d82"
+  },
+  "created_date": "2026-10-15",
+  "endpoint": "Two-sample observable-distribution anomaly flag from src/quantum_simulator/statistics.py::compare_distributions; empirical TVD > max(0.05, 1/sqrt(shots)).",
+  "hypothesis": "Under independent multinomial sampling from the specified four-outcome null, the existing TVD guard's one-sided exact 95% upper false-positive bound is <=0.06 at each shot count; power will increase with effect size and generally with shot count, reported descriptively.",
+  "limitations": [
+    "Synthetic multinomial distributions only; not a circuit simulation or independent quantum execution.",
+    "No QMutBench, program mutation, family, diagnosis, physical hardware, or generalization claim.",
+    "The existing detector threshold is heuristic; this experiment estimates its operating behavior only under the registered synthetic distributions.",
+    "Exact binomial intervals quantify replicate-level Monte Carlo uncertainty, not uncertainty over quantum circuits or families."
+  ],
+  "metrics": {
+    "alternatives": "Detection proportion and two-sided exact 95% Clopper-Pearson interval for each effect x shot cell.",
+    "null": "False-positive proportion and one-sided exact 95% Clopper-Pearson upper bound for each shot count.",
+    "shot_sensitivity": "Compare cell-level null FPR and alternative power across shot counts; no pooling across shots."
+  },
+  "plan_source": "reports/experiments/research_framework_architecture_20261015.md",
+  "protocol_id": "synthetic-two-sample-tvd-v1-20261015",
+  "resource_cap": {
+    "cpu_time_minutes": 10,
+    "maximum_count_pairs": 12000,
+    "memory_bytes": 268435456,
+    "output_bytes": 268435456,
+    "planned_count_pairs": 12000,
+    "workers": 1
+  },
+  "sampling": {
+    "alternatives": [
+      {
+        "condition_id": "tvd_025",
+        "delta": 0.025,
+        "replicates_per_shot": 500,
+        "submitted_distribution": [
+          0.475,
+          0.275,
+          0.15,
+          0.1
+        ]
+      },
+      {
+        "condition_id": "tvd_050",
+        "delta": 0.05,
+        "replicates_per_shot": 500,
+        "submitted_distribution": [
+          0.45,
+          0.3,
+          0.15,
+          0.1
+        ]
+      },
+      {
+        "condition_id": "tvd_100",
+        "delta": 0.1,
+        "replicates_per_shot": 500,
+        "submitted_distribution": [
+          0.4,
+          0.35,
+          0.15,
+          0.1
+        ]
+      },
+      {
+        "condition_id": "tvd_200",
+        "delta": 0.2,
+        "replicates_per_shot": 500,
+        "submitted_distribution": [
+          0.3,
+          0.45,
+          0.15,
+          0.1
+        ]
+      }
+    ],
+    "count_pair_definition": "One pair is one independent reference multinomial count vector plus one independent submitted multinomial count vector at the same shot count and condition.",
+    "null": {
+      "condition_id": "null_equal",
+      "replicates_per_shot": 2000,
+      "submitted_distribution": [
+        0.5,
+        0.25,
+        0.15,
+        0.1
+      ]
+    },
+    "reference_distribution": [
+      0.5,
+      0.25,
+      0.15,
+      0.1
+    ],
+    "seed_policy": "For each stream use first 32 bits (big-endian) of SHA-256 over UTF-8 protocol_id|shot_count|condition_id|replicate_index|stream_role; stream_role is reference or submitted. Seed each NumPy default_rng independently.",
+    "shot_counts": [
+      256,
+      1024,
+      4096
+    ]
+  },
+  "schema_version": "synthetic-two-sample-tvd-prereg-v1",
+  "status": "frozen_before_experiment_execution",
+  "threshold_selection": {
+    "development_draws": 0,
+    "evaluation_draws": "All registered replicates; threshold fixed before these draws.",
+    "rule": "No threshold selection. Reuse the existing fixed threshold=0.05 and the existing max(threshold,1/sqrt(shots)) guard; do not tune on development or evaluation draws."
+  },
+  "title": "Preregistered synthetic finite-shot characterization of existing TVD guard"
+}

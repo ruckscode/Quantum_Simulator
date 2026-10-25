@@ -102,3 +102,67 @@ def test_aer_dependency_detection_reports_missing_aer(monkeypatch):
     assert result["status"] == "UNAVAILABLE"
     assert result["raw_counts"] is None
     assert result["reason"] == "Qiskit Aer is not installed."
+
+
+def test_aer_diagnosis_bridge_routes_synthetic_evidence_and_abstains(monkeypatch):
+    from quantum_simulator.diagnosis_engine import DiagnosisCategory
+
+    def fake_run(instructions, n_qubits, shots, seed, *, noise_config=None):
+        flips = (noise_config or {}).get("readout_error", 0.0) == 1.0
+        bit = int(any(tuple(op)[0] == "x" for op in instructions)) ^ int(flips)
+        counts = {"0": shots, "1": 0} if bit == 0 else {"0": 0, "1": shots}
+        return {
+            "status": "COMPLETED", "reason": None, "normalized_counts": counts,
+            "probability_distribution": {key: value / shots for key, value in counts.items()},
+        }
+
+    monkeypatch.setattr(three_way, "_run_aer", fake_run)
+    normal = three_way.run_aer_diagnosis([], 1, shots=64, seed=19)
+    program = three_way.run_aer_diagnosis([], 1, executed_instructions=[("x", 0)], shots=64, seed=19)
+    hardware = three_way.run_aer_diagnosis([], 1, noise_config={"readout_error": 1.0}, shots=64, seed=19)
+    ambiguous = three_way.run_aer_diagnosis(
+        [], 1, executed_instructions=[("x", 0)], noise_config={"readout_error": 1.0}, shots=64, seed=19,
+    )
+
+    assert normal["diagnosis"].category is DiagnosisCategory.NO_ANOMALY
+    assert program["diagnosis"].category is DiagnosisCategory.PROGRAM_FAULT
+    assert hardware["diagnosis"].category is DiagnosisCategory.HARDWARE_ANOMALY
+    assert hardware["calibration_evidence"]["provenance"] == "synthetic_simulation"
+    assert ambiguous["diagnosis"].category is DiagnosisCategory.AMBIGUOUS
+    assert ambiguous["diagnosis"].anomaly_detected is False
+    assert normal["shots"] == program["shots"] == hardware["shots"] == 64
+
+
+def test_aer_diagnosis_rejects_unsupported_or_invalid_noise_without_aer():
+    import pytest
+
+    with pytest.raises(ValueError, match="unsupported Aer noise"):
+        three_way.run_aer_diagnosis([], 1, noise_config={"depolarizing_error": 0.1})
+    with pytest.raises(ValueError, match="readout_error"):
+        three_way.run_aer_diagnosis([], 1, noise_config={"readout_error": 1.1})
+
+
+def test_aer_diagnosis_runtime_cases_when_aer_is_installed():
+    import pytest
+
+    pytest.importorskip("qiskit")
+    pytest.importorskip("qiskit_aer")
+    from quantum_simulator.diagnosis_engine import DiagnosisCategory
+
+    normal = three_way.run_aer_diagnosis([], 1, shots=128, seed=1729)
+    program = three_way.run_aer_diagnosis([], 1, executed_instructions=[("x", 0)], shots=128, seed=1729)
+    hardware = three_way.run_aer_diagnosis([], 1, noise_config={"readout_error": 1.0}, shots=128, seed=1729)
+
+    assert normal["status"] == program["status"] == hardware["status"] == "COMPLETED"
+    assert normal["diagnosis"].category is DiagnosisCategory.NO_ANOMALY
+    assert program["diagnosis"].category is DiagnosisCategory.PROGRAM_FAULT
+    assert hardware["diagnosis"].category is DiagnosisCategory.HARDWARE_ANOMALY
+
+
+def test_fixed_width_distribution_includes_unobserved_outcomes_as_zero_probability():
+    assert three_way._complete_distribution({"11": 1.0}, n_qubits=2) == {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 1.0,
+    }

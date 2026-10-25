@@ -190,19 +190,36 @@ def discover_bugs4q_files(root: str | Path) -> tuple[list[Path], list[Path]]:
 
     supported: list[Path] = []
     unsupported: list[Path] = []
-    for path in root_path.rglob("*"):
-        if not path.is_file() or any(part.lower() in {".venv", ".git", "__pycache__", ".pytest_cache"} for part in path.parts):
-            continue
-        if path.name.lower().startswith("bugs4q_validation_report"):
-            continue
-        if path.suffix.lower() in {".py", ".pyc"}:
-            continue
-        if not any("bugs4q" in part.lower() for part in path.parts):
-            continue
-        if path.suffix.lower() in SUPPORTED_SUFFIXES:
-            supported.append(path)
-        else:
-            unsupported.append(path)
+
+    # Dataset discovery is intentionally scoped to conventional Bugs4Q roots.
+    # Recursively walking the repository root also walks unrelated, potentially
+    # hundreds-of-thousands-file benchmark trees (for example QMutBench).
+    candidate_roots: set[Path] = set()
+    if root_path.name.lower().startswith("bugs4q"):
+        candidate_roots.add(root_path)
+    candidate_roots.update(
+        child for child in root_path.iterdir()
+        if child.is_dir() and "bugs4q" in child.name.lower()
+    )
+    data_root = root_path / "data"
+    if data_root.is_dir():
+        candidate_roots.update(
+            child for child in data_root.iterdir()
+            if child.is_dir() and "bugs4q" in child.name.lower()
+        )
+
+    for candidate_root in sorted(candidate_roots):
+        for path in candidate_root.rglob("*"):
+            if not path.is_file() or any(part.lower() in {".venv", ".git", "__pycache__", ".pytest_cache"} for part in path.parts):
+                continue
+            if path.name.lower().startswith("bugs4q_validation_report"):
+                continue
+            if path.suffix.lower() in {".py", ".pyc"}:
+                continue
+            if path.suffix.lower() in SUPPORTED_SUFFIXES:
+                supported.append(path)
+            else:
+                unsupported.append(path)
     return sorted(supported), sorted(unsupported)
 
 

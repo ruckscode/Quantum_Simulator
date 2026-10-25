@@ -1,0 +1,78 @@
+{
+  "audit_date": "2026-10-14",
+  "audit_type": "final post-provenance and dataset-generator manifest review; read-only",
+  "training_or_fitting_performed": false,
+  "grouped_cv_rerun": true,
+  "saved_evaluation_manifest": "ml_results/grouped_cv_audit_v2/evaluation_manifest.json",
+  "dataset": {
+    "source_directory": "reports/experiments/full_dataset",
+    "saved_sha256": "af4776f5adcc1f090f03d74220b2b3f589a4652818d9cb3b8c79a25baa0bb54a",
+    "current_sha256": "af4776f5adcc1f090f03d74220b2b3f589a4652818d9cb3b8c79a25baa0bb54a",
+    "matches": true,
+    "report_row_source_sha256_present": false,
+    "manifest_generator_source_fingerprints_present": false,
+    "eligible_report_count": 270
+  },
+  "sources": {
+    "experiment_config.py": {
+      "saved": "b5b48ef888ec074c49a8a11d7c517bcceff66ff82efb12dfb783b8e26e28a9ec",
+      "current": "b5b48ef888ec074c49a8a11d7c517bcceff66ff82efb12dfb783b8e26e28a9ec",
+      "changed": false
+    },
+    "experiments/full_dataset.py": {
+      "saved": "db9f793d9f39d2aca6f369a00ff842189c07255822ea488d9ea40464b6ac6e50",
+      "current": "56f45c83b7a8c67263cb98a458e5351ca2b9530989e537693b9afcc233cbd141",
+      "changed": true
+    },
+    "experiments/run_experiment.py": {
+      "saved": "7c5b9d9a468caae02beee2ef0253f1c7c07a81dd0fe3a7608b0c4078b972b350",
+      "current": "395b07edd2f011586d0b172f240cc363d2170966cfeace90913ef0ede7d3426f",
+      "changed": true
+    },
+    "ml_evaluation.py": {
+      "saved": "0284ac34dbc7e27025fb409c22ad4bd224e2431af18e7bfdab6f0eee2bdfee51",
+      "current": "84909a424d7e38e3c546eb785d574fa5b83856133c9bb35d0debe1ba5d8f0504",
+      "changed": true
+    },
+    "ml_training.py": {
+      "saved": "51cec395bffbe98ddcec2c70802e5d2453d4a124b77fbfd8540333f759719867",
+      "current": "51cec395bffbe98ddcec2c70802e5d2453d4a124b77fbfd8540333f759719867",
+      "changed": false
+    },
+    "src/quantum_simulator/diagnosis_engine.py": {
+      "saved": "787cb8265433d494f42695ed3dfe2f6f659799a4b1c86cfe988364945ef9578e",
+      "current": "16ccc815f00e8d13a5e72311e82d5a979af0bc4dde7770e6de0798876d55f1a0",
+      "changed": true
+    },
+    "src/quantum_simulator/hardware_model.py": {
+      "saved": "2e9c5f3c54452c78571a072ecf64223616ec5d95efb08cc7b6c5a9739af567e1",
+      "current": "2e9c5f3c54452c78571a072ecf64223616ec5d95efb08cc7b6c5a9739af567e1",
+      "changed": false
+    },
+    "src/quantum_simulator/quantum_simulator.py": {
+      "saved": "636152653de779878d9ea383604b57bba5f3e04bebc1b53e968a040620f4a3a9",
+      "current": "a07be9c304153a389454f699ffaaace8d12d99d430396bcfc1b5c383845406ef",
+      "changed": true
+    },
+    "src/quantum_simulator/statistics.py": {
+      "saved": "aa5433cb56b42ee9fc8c3042f274b0015efbf727386907d8de5c89212304a9aa",
+      "current": "aa5433cb56b42ee9fc8c3042f274b0015efbf727386907d8de5c89212304a9aa",
+      "changed": false
+    }
+  },
+  "changed_source_count": 5,
+  "changed_sources": [
+    "experiments/full_dataset.py",
+    "experiments/run_experiment.py",
+    "ml_evaluation.py",
+    "src/quantum_simulator/diagnosis_engine.py",
+    "src/quantum_simulator/quantum_simulator.py"
+  ],
+  "disposition": "Historical saved evaluation remains incompatible with the current source manifest and its rows lack generating hashes. New experiment reports and future full-dataset manifests now carry scoped source identity and runtime. Existing history was not rewritten.",
+  "supersedes_current_hash_snapshot": "reports/experiments/ml_source_compatibility_audit_20261014_post_provenance.json",
+  "limitations": [
+    "Source list is scoped, not a whole-repository fingerprint.",
+    "No historical row provenance can be reconstructed from current files.",
+    "Synthetic labels are not independent adjudication; matching saved OOF output is not external validation."
+  ]
+}

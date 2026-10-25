@@ -19,6 +19,7 @@ from quantum_simulator.gates import (
     U1,
     U2,
     U3,
+    U,
     CX,
     CZ,
     SWAP,
@@ -27,7 +28,10 @@ from quantum_simulator.gates import (
     CRX,
     CRY,
     CRZ,
+    RXX,
+    RZZ,
     CCX,
+    RCCX,
     CSWAP,
     GATE_REGISTRY,
     GATE_QUBIT_COUNT,
@@ -60,16 +64,18 @@ def test_parameterized_gate_shapes():
     assert U1(np.pi / 3).shape == (2, 2)
     assert U2(0.2, 0.3).shape == (2, 2)
     assert U3(0.5, 0.2, 0.3).shape == (2, 2)
+    np.testing.assert_allclose(U(0.5, 0.2, 0.3), U3(0.5, 0.2, 0.3))
+    assert_unitary(U(0.5, 0.2, 0.3))
 
 
 def test_two_qubit_gate_shapes():
-    for gate in (CX, CZ, SWAP, CH, CP(np.pi / 4), CRX(np.pi / 3), CRY(np.pi / 3), CRZ(np.pi / 3)):
+    for gate in (CX, CZ, SWAP, CH, CP(np.pi / 4), CRX(np.pi / 3), CRY(np.pi / 3), CRZ(np.pi / 3), RXX(np.pi / 4), RZZ(np.pi / 4)):
         assert gate.shape == (4, 4)
         assert_unitary(gate)
 
 
 def test_three_qubit_gate_shapes():
-    for gate in (CCX, CSWAP):
+    for gate in (CCX, RCCX, CSWAP):
         assert gate.shape == (8, 8)
         assert_unitary(gate)
 
@@ -78,12 +84,18 @@ def test_gate_registry():
     assert "h" in GATE_REGISTRY
     assert "cx" in GATE_REGISTRY
     assert "ccx" in GATE_REGISTRY
+    assert "rccx" in GATE_REGISTRY
     assert "sx" in GATE_REGISTRY
     assert "rx" in GATE_REGISTRY
     assert get_gate_qubit_count("cx") == 2
     assert get_gate_qubit_count("ccx") == 3
     assert get_gate_qubit_count("rx") == 1
+    assert get_gate_qubit_count("u") == 1
+    assert get_gate_qubit_count("rzz") == 2
+    assert get_gate_qubit_count("rccx") == 3
     assert is_parameterized_gate("rx") is True
+    assert is_parameterized_gate("u") is True
+    assert is_parameterized_gate("rzz") is True
     assert is_parameterized_gate("h") is False
     assert is_unitary("cx") is True
 

@@ -1,0 +1,286 @@
+{
+  "anomaly": {
+    "anomaly_detected": true,
+    "expected_distribution": {
+      "00": 0.5,
+      "01": 0.0,
+      "10": 0.0,
+      "11": 0.5
+    },
+    "finite_shot_guard": 0.05,
+    "hellinger_distance": 0.7058993740700069,
+    "js_divergence": 0.34539192326343343,
+    "message": "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+    "observed_distribution": {
+      "00": 0.50341796875,
+      "01": 0.0,
+      "10": 0.49658203125,
+      "11": 0.0
+    },
+    "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+    "shots": 2048,
+    "threshold": 0.05,
+    "total_variation_distance": 0.5
+  },
+  "circuit": {
+    "ideal": [
+      [
+        "h",
+        0
+      ],
+      [
+        "cx",
+        0,
+        1
+      ],
+      [
+        "measure"
+      ]
+    ],
+    "observed": [
+      [
+        "h",
+        0
+      ],
+      [
+        "measure"
+      ]
+    ]
+  },
+  "configuration": {
+    "anomaly_threshold": 0.05,
+    "backend_name": null,
+    "circuit": [
+      [
+        "h",
+        0
+      ],
+      [
+        "cx",
+        0,
+        1
+      ],
+      [
+        "measure"
+      ]
+    ],
+    "circuit_family_id": "bell_pair",
+    "circuit_id": "circuit-d709bf4531757892",
+    "description": "",
+    "experiment_name": "pilot_bell_pair_program_fault_rep1",
+    "experimental_group_id": "group-db252486a8041be9",
+    "ground_truth_label": "PROGRAM_FAULT",
+    "hardware_condition_id": null,
+    "hardware_parameters": null,
+    "noise_parameters": null,
+    "num_qubits": 2,
+    "observed_circuit": [
+      [
+        "h",
+        0
+      ],
+      [
+        "measure"
+      ]
+    ],
+    "observed_counts": null,
+    "program_fault_id": "bell_pair_remove_cx_v1",
+    "random_seed": 73311,
+    "repetition_index": 1,
+    "run_id": "run-6f79bc26742989aa",
+    "shots": 2048,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "diagnosis": {
+    "anomaly_detected": true,
+    "category": "PROGRAM_FAULT",
+    "evidence": [
+      "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+      "Step 1: expected cx on qubits (0, 1) but it was not executed.",
+      "Hardware calibration information was not provided."
+    ],
+    "hardware_evidence_candidates": [],
+    "hardware_result": null,
+    "missing_evidence": [
+      "Hardware calibration information was not provided."
+    ],
+    "program_evidence_candidates": [
+      {
+        "actual_signature": null,
+        "evidence": [
+          "Step 1: expected cx on qubits (0, 1) but it was not executed."
+        ],
+        "expected_signature": [
+          "cx",
+          [
+            0,
+            1
+          ],
+          []
+        ],
+        "index": 1,
+        "operation": "cx",
+        "qubits": [
+          0,
+          1
+        ],
+        "reason": "Expected operation missing in observed circuit",
+        "score": 1.0
+      }
+    ],
+    "program_result": {
+      "anomaly_metric": 0.5,
+      "candidates": [
+        {
+          "actual_signature": null,
+          "evidence": [
+            "Step 1: expected cx on qubits (0, 1) but it was not executed."
+          ],
+          "expected_signature": [
+            "cx",
+            [
+              0,
+              1
+            ],
+            []
+          ],
+          "index": 1,
+          "operation": "cx",
+          "qubits": [
+            0,
+            1
+          ],
+          "reason": "Expected operation missing in observed circuit",
+          "score": 1.0
+        }
+      ],
+      "evidence": [
+        "Step 1: expected cx on qubits (0, 1) but it was not executed."
+      ],
+      "summary": "Program fault localization identified the following likely offending operation(s): step 1 (cx)",
+      "threshold": 0.05
+    },
+    "statistics_result": {
+      "anomaly_detected": true,
+      "expected_distribution": {
+        "00": 0.5,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.5
+      },
+      "finite_shot_guard": 0.05,
+      "hellinger_distance": 0.7058993740700069,
+      "js_divergence": 0.34539192326343343,
+      "message": "Observed distribution differs from expected distribution by TVD=0.500000, which exceeds threshold=0.050000.",
+      "observed_distribution": {
+        "00": 0.50341796875,
+        "01": 0.0,
+        "10": 0.49658203125,
+        "11": 0.0
+      },
+      "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+      "shots": 2048,
+      "threshold": 0.05,
+      "total_variation_distance": 0.5
+    },
+    "summary": "An execution anomaly is accompanied by program-operation fault evidence."
+  },
+  "errors": [],
+  "execution_metadata": {
+    "backend_api_used": false,
+    "execution_kind": "SYNTHETIC_VALIDATION",
+    "execution_target": "LOCAL_SIMULATOR",
+    "generated_at": "2026-10-07T05:24:03+00:00",
+    "hardware_model_applied": false,
+    "noise_parameters_applied": false,
+    "numpy_version": "2.5.3",
+    "observation_source": "SEEDED_LOCAL_SIMULATOR_SHOTS",
+    "python_version": "3.12.10",
+    "random_seed": 73311,
+    "shots": 2048
+  },
+  "experiment_metadata": {
+    "backend_name": null,
+    "circuit_family_id": "bell_pair",
+    "circuit_id": "circuit-d709bf4531757892",
+    "created_at": "2026-10-07T05:24:03+00:00",
+    "experiment_name": "pilot_bell_pair_program_fault_rep1",
+    "experimental_group_id": "group-db252486a8041be9",
+    "ground_truth_label": "PROGRAM_FAULT",
+    "hardware_condition_id": null,
+    "program_fault_id": "bell_pair_remove_cx_v1",
+    "repetition_index": 1,
+    "run_id": "run-6f79bc26742989aa",
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "hardware_evidence": null,
+  "ideal_distribution": {
+    "00": 0.5,
+    "01": 0.0,
+    "10": 0.0,
+    "11": 0.5
+  },
+  "ideal_statevector_distribution": {
+    "00": 0.5,
+    "01": 0.0,
+    "10": 0.0,
+    "11": 0.5
+  },
+  "observed_counts": {
+    "00": 1031,
+    "10": 1017
+  },
+  "observed_distribution": {
+    "00": 0.50341796875,
+    "01": 0.0,
+    "10": 0.49658203125,
+    "11": 0.0
+  },
+  "program_evidence": {
+    "anomaly_metric": 0.5,
+    "candidates": [
+      {
+        "actual_signature": null,
+        "evidence": [
+          "Step 1: expected cx on qubits (0, 1) but it was not executed."
+        ],
+        "expected_signature": [
+          "cx",
+          [
+            0,
+            1
+          ],
+          []
+        ],
+        "index": 1,
+        "operation": "cx",
+        "qubits": [
+          0,
+          1
+        ],
+        "reason": "Expected operation missing in observed circuit",
+        "score": 1.0
+      }
+    ],
+    "evidence": [
+      "Step 1: expected cx on qubits (0, 1) but it was not executed."
+    ],
+    "summary": "Program fault localization identified the following likely offending operation(s): step 1 (cx)",
+    "threshold": 0.05
+  },
+  "reproducibility": {
+    "deterministic_localizer_measurements": "measurement operations mapped to barriers for localization only",
+    "fingerprint": "adc5a241370d506809cec77c025a49674854bce2a8e5119ddfa495ba3eb05e78",
+    "fingerprint_excludes": [
+      "execution_metadata.generated_at",
+      "reproducibility.fingerprint"
+    ],
+    "random_seed": 73311,
+    "simulator_version": "project-statevector-current"
+  },
+  "simulator_observed_counts": {
+    "00": 1031,
+    "10": 1017
+  },
+  "status": "COMPLETED"
+}

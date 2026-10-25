@@ -7,16 +7,51 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
+import inspect
 import json
+import os
 import re
+import sys
+import tempfile
+import warnings
 from pathlib import Path
 from typing import Any
 
+import qmutbench_validation
 from qmutbench_validation import discover_qmutbench_files, validate_qmutbench_case
 from bugs4q_integration import OFFICIAL_ROOT, discover_bugs4q_cases, run_bugs4q_integration
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "reports" / "benchmarks"
+CHECKPOINT_SCHEMA_VERSION = 1
+QMUT_SHOTS = 1024
+QMUT_SEED = 1729
+QMUT_THRESHOLD = 0.05
+
+
+def _atomic_write(path: Path, write_content: Any) -> None:
+    """Write one artifact through a flushed sibling temp file and replace."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".partial", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8", newline="\n") as stream:
+            write_content(stream)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        try:
+            temporary.unlink(missing_ok=True)
+        except OSError:
+            pass
+
+
+def _atomic_write_text(path: Path, text: str) -> None:
+    _atomic_write(path, lambda stream: stream.write(text))
 
 
 def _metrics(records: list[dict[str, Any]]) -> dict[str, Any]:
@@ -71,29 +106,123 @@ def _summary(name: str, records: list[dict[str, Any]], total: int, discovered: i
 def _write(name: str, report: dict[str, Any]) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     stem = name.lower() + "_full_results"
-    (OUT / f"{stem}.json").write_text(json.dumps(report, indent=2, sort_keys=True), encoding="utf-8")
+    _atomic_write_text(OUT / f"{stem}.json", json.dumps(report, indent=2, sort_keys=True))
     rows = report["records"]
     keys = sorted({key for row in rows for key in row})
-    with (OUT / f"{stem}.csv").open("w", newline="", encoding="utf-8") as stream:
+
+    def write_csv(stream: Any) -> None:
         writer = csv.DictWriter(stream, fieldnames=keys, extrasaction="ignore")
         writer.writeheader()
         writer.writerows({k: json.dumps(v, sort_keys=True) if isinstance(v, (dict, list)) else v for k, v in row.items()} for row in rows)
+
+    _atomic_write(OUT / f"{stem}.csv", write_csv)
+
+
+def _runner_source_hashes() -> dict[str, str]:
+    """Hash the runner and local modules that determine QMutBench results."""
+    qmut_module = qmutbench_validation
+    objects = [
+        sys.modules[__name__],
+        qmut_module,
+        qmut_module.diagnose_execution,
+        qmut_module.QuantumSimulator,
+        qmut_module.get_gate,
+        qmut_module.compare_distributions,
+        qmut_module.BenchmarkAdapter,
+        qmut_module.NormalizedBenchmarkCase,
+    ]
+    paths = {
+        Path(getattr(obj, "__file__", None) or inspect.getsourcefile(obj)).resolve()
+        for obj in objects
+    }
+    hashes = {}
+    for path in sorted(paths, key=str):
+        try:
+            label = path.relative_to(ROOT).as_posix()
+        except ValueError:
+            label = str(path)
+        hashes[label] = hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashes
+
+
+def _qmut_checkpoint_metadata(dataset: Any) -> dict[str, Any]:
+    """Identity for deciding whether saved QMutBench rows are reusable."""
+    cases = sorted(dataset.cases, key=lambda case: case.case_id)
+    dataset_payload = [
+        {
+            "case_id": case.case_id,
+            "source_files": list(case.source_files),
+            "parse_error": case.parse_error,
+            "raw": dict(case.raw),
+        }
+        for case in cases
+    ]
+    canonical_dataset = json.dumps(dataset_payload, sort_keys=True, separators=(",", ":"), default=str)
+    return {
+        "checkpoint_schema_version": CHECKPOINT_SCHEMA_VERSION,
+        "runner_sources": _runner_source_hashes(),
+        "dataset_case_ids": [case.case_id for case in cases],
+        "dataset_sha256": hashlib.sha256(canonical_dataset.encode("utf-8")).hexdigest(),
+        "execution": {"shots": QMUT_SHOTS, "seed": QMUT_SEED, "threshold": QMUT_THRESHOLD},
+        "runtime": {"python": list(sys.version_info[:3]), "numpy": qmutbench_validation.np.__version__},
+    }
+
+
+def _load_qmut_checkpoint(path: Path, metadata: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    """Load only checkpoints whose schema, runner, data, and run settings match."""
+    try:
+        document = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        document = None
+    if (
+        not isinstance(document, dict)
+        or document.get("checkpoint_metadata") != metadata
+        or not isinstance(document.get("results"), list)
+        or not isinstance(document.get("run_provenance"), dict)
+        or document["run_provenance"].get("status") not in {"IN_PROGRESS", "COMPLETED"}
+        or any(not isinstance(row, dict) or not isinstance(row.get("case_id"), str) for row in document["results"])
+    ):
+        warnings.warn(
+            f"Ignoring incompatible QMutBench checkpoint {path}; cached rows will be recomputed.",
+            RuntimeWarning,
+            stacklevel=2,
+        )
+        return {}
+    return {row["case_id"]: row for row in document["results"]}
+
+
+def _write_qmut_checkpoint(
+    path: Path,
+    metadata: dict[str, Any],
+    saved: dict[str, dict[str, Any]],
+    run_provenance: dict[str, Any],
+) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = json.dumps(
+        {"checkpoint_metadata": metadata, "run_provenance": run_provenance, "results": list(saved.values())},
+        indent=2,
+        sort_keys=True,
+    )
+    _atomic_write_text(path, payload)
 
 
 def run_qmut(resume: bool = True) -> dict[str, Any]:
     dataset = discover_qmutbench_files(ROOT)
     checkpoint = OUT / "qmutbench_full_checkpoint.json"
-    saved = {}
+    checkpoint_metadata = _qmut_checkpoint_metadata(dataset)
+    saved: dict[str, dict[str, Any]] = {}
     if resume and checkpoint.exists():
-        try: saved = {r["case_id"]: r for r in json.loads(checkpoint.read_text(encoding="utf-8"))}
-        except (ValueError, OSError): saved = {}
+        saved = _load_qmut_checkpoint(checkpoint, checkpoint_metadata)
     records = []
+    reused_case_ids = []
+    fresh_case_ids = []
     for case in dataset.cases:
         result = saved.get(case.case_id)
         if result is not None and not (result.get("execution_status") == "COMPLETED" and result.get("system_diagnosis")):
             result = None
         if result is None:
-            item = validate_qmutbench_case(case).to_dict()
+            fresh_case_ids.append(case.case_id)
+            item = validate_qmutbench_case(case, shots=QMUT_SHOTS, seed=QMUT_SEED, threshold=QMUT_THRESHOLD).to_dict()
             diagnosis = item.get("system_diagnosis") or {}
             gt = item.get("benchmark_ground_truth") or {}
             result = {"case_id": case.case_id, "source_files": case.source_files,
@@ -115,11 +244,22 @@ def run_qmut(resume: bool = True) -> dict[str, Any]:
                            "mutant_circuit": item.get("mutant_circuit"),
                            "unsupported_reason": (item.get("errors") or [None])[0] if item.get("support_status") == "UNSUPPORTED" else None})
             saved[case.case_id] = result
-            checkpoint.parent.mkdir(parents=True, exist_ok=True)
-            checkpoint.write_text(json.dumps(list(saved.values()), indent=2), encoding="utf-8")
+            _write_qmut_checkpoint(checkpoint, checkpoint_metadata, saved, {
+                "status": "IN_PROGRESS",
+                "reused_case_ids": reused_case_ids,
+                "fresh_case_ids": fresh_case_ids,
+            })
+        else:
+            reused_case_ids.append(case.case_id)
         result.setdefault("support_status", "PARSING_FAILURE" if case.parse_error else "UNSUPPORTED" if result.get("status") == "UNSUPPORTED" else "SUPPORTED")
         result.setdefault("status", "PARSING_ERROR" if case.parse_error else "UNSUPPORTED" if result.get("support_status") == "UNSUPPORTED" else "OK")
         records.append(result)
+    if dataset.cases:
+        _write_qmut_checkpoint(checkpoint, checkpoint_metadata, saved, {
+            "status": "COMPLETED",
+            "reused_case_ids": reused_case_ids,
+            "fresh_case_ids": fresh_case_ids,
+        })
     report = _summary("QMutBench", records, len(dataset.cases), len(dataset.cases), sum(case.parse_error is None for case in dataset.cases))
     report["issues"] = dataset.issues
     report["data_files"] = dataset.data_files
@@ -195,7 +335,7 @@ def main() -> None:
     combined["total_unsupported"] = combined["unsupported_cases"]
     combined["total_errors"] = combined["error_cases"]
     combined["combined_metrics"] = combined["metrics"] if combined["labeled_evaluation_cases"] else None
-    (OUT / "combined_benchmark_results.json").write_text(json.dumps(combined, indent=2, sort_keys=True), encoding="utf-8")
+    _atomic_write_text(OUT / "combined_benchmark_results.json", json.dumps(combined, indent=2, sort_keys=True))
     print(json.dumps({k: {key: report[key] for key in ("total_cases", "discovered_cases", "parsed_cases", "executable_cases", "diagnosed_cases", "unsupported_cases", "error_cases", "metrics")} for k, report in results.items()}, indent=2))
 
 

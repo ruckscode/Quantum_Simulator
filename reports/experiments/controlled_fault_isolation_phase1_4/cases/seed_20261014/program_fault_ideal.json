@@ -1,0 +1,369 @@
+{
+  "anomaly": {
+    "anomaly_detected": true,
+    "expected_distribution": {
+      "00": 0.0,
+      "01": 0.0,
+      "10": 1.0,
+      "11": 0.0
+    },
+    "finite_shot_guard": 0.05,
+    "hellinger_distance": 1.0,
+    "js_divergence": 0.6931471805599453,
+    "message": "Observed distribution differs from expected distribution by TVD=1.000000, which exceeds threshold=0.050000.",
+    "observed_distribution": {
+      "00": 1.0,
+      "01": 0.0,
+      "10": 0.0,
+      "11": 0.0
+    },
+    "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+    "shots": 512,
+    "threshold": 0.05,
+    "total_variation_distance": 1.0
+  },
+  "circuit": {
+    "ideal": [
+      [
+        "x",
+        0
+      ],
+      [
+        "measure",
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "observed": [
+      [
+        "measure",
+        [
+          0,
+          1
+        ]
+      ]
+    ]
+  },
+  "configuration": {
+    "anomaly_threshold": 0.05,
+    "backend_name": null,
+    "circuit": [
+      [
+        "x",
+        0
+      ],
+      [
+        "measure",
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "circuit_family_id": "fault_isolation_family_01",
+    "circuit_id": "circuit-233d88647822fce2",
+    "description": "",
+    "experiment_name": "fault_isolation_program_fault_ideal_seed_20261014",
+    "experimental_group_id": "group-14d6d0a1d675c39f",
+    "ground_truth_label": "PROGRAM_FAULT",
+    "hardware_affected_component": null,
+    "hardware_condition_id": null,
+    "hardware_parameters": {
+      "coupling_map": [],
+      "gates": [],
+      "qubits": {
+        "0": {
+          "readout_error": 0.0,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        },
+        "1": {
+          "readout_error": 0.0,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        }
+      }
+    },
+    "noise_parameters": null,
+    "num_qubits": 2,
+    "observed_circuit": [
+      [
+        "measure",
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "observed_counts": null,
+    "program_fault_description": "Remove the X operation on qubit 0.",
+    "program_fault_id": "fault_remove_x_q0",
+    "program_fault_operation_index": 0,
+    "program_fault_qubits": [
+      0
+    ],
+    "random_seed": 20261014,
+    "repetition_index": null,
+    "run_id": null,
+    "shots": 512,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "diagnosis": {
+    "anomaly_detected": true,
+    "category": "PROGRAM_FAULT",
+    "evidence": [
+      "Observed distribution differs from expected distribution by TVD=1.000000, which exceeds threshold=0.050000.",
+      "Step 0: expected x on qubits (0,) but it was not executed.",
+      "A direct circuit-operation mismatch was localized.",
+      "Qubit 0 appears in 1 relevant circuit operations.",
+      "Observed deviation at operation index 0: Expected operation missing in observed circuit",
+      "Observed anomaly associated with operation x at index 0."
+    ],
+    "hardware_evidence_candidates": [],
+    "hardware_result": {
+      "anomaly_metric": 1.0,
+      "candidates": [
+        {
+          "component": 0,
+          "component_type": "qubit",
+          "evidence": [
+            "Qubit 0 appears in 1 relevant circuit operations.",
+            "Observed deviation at operation index 0: Expected operation missing in observed circuit"
+          ],
+          "reason": "Program trace implicated qubit 0: No notable qubit degradation was detected.",
+          "score": 1.0
+        },
+        {
+          "component": [
+            0
+          ],
+          "component_type": "gate",
+          "evidence": [
+            "Observed anomaly associated with operation x at index 0."
+          ],
+          "reason": "Gate calibration for x on qubits (0,): No gate calibration was available.",
+          "score": 0.35
+        }
+      ],
+      "evidence": [
+        "Qubit 0 appears in 1 relevant circuit operations.",
+        "Observed deviation at operation index 0: Expected operation missing in observed circuit",
+        "Observed anomaly associated with operation x at index 0."
+      ],
+      "summary": "Trace-associated hardware location candidate(s), without calibration-backed fault evidence: qubit 0, gate (0,)",
+      "threshold": 0.05
+    },
+    "missing_evidence": [],
+    "program_evidence_candidates": [
+      {
+        "actual_signature": null,
+        "evidence": [
+          "Step 0: expected x on qubits (0,) but it was not executed."
+        ],
+        "expected_signature": [
+          "x",
+          [
+            0
+          ],
+          []
+        ],
+        "index": 0,
+        "operation": "x",
+        "qubits": [
+          0
+        ],
+        "reason": "Expected operation missing in observed circuit",
+        "score": 1.0
+      }
+    ],
+    "program_result": {
+      "anomaly_metric": 1.0,
+      "candidates": [
+        {
+          "actual_signature": null,
+          "evidence": [
+            "Step 0: expected x on qubits (0,) but it was not executed."
+          ],
+          "expected_signature": [
+            "x",
+            [
+              0
+            ],
+            []
+          ],
+          "index": 0,
+          "operation": "x",
+          "qubits": [
+            0
+          ],
+          "reason": "Expected operation missing in observed circuit",
+          "score": 1.0
+        }
+      ],
+      "evidence": [
+        "Step 0: expected x on qubits (0,) but it was not executed."
+      ],
+      "summary": "Program fault localization identified the following likely offending operation(s): step 0 (x)",
+      "threshold": 0.05
+    },
+    "statistics_result": {
+      "anomaly_detected": true,
+      "expected_distribution": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 1.0,
+        "11": 0.0
+      },
+      "finite_shot_guard": 0.05,
+      "hellinger_distance": 1.0,
+      "js_divergence": 0.6931471805599453,
+      "message": "Observed distribution differs from expected distribution by TVD=1.000000, which exceeds threshold=0.050000.",
+      "observed_distribution": {
+        "00": 1.0,
+        "01": 0.0,
+        "10": 0.0,
+        "11": 0.0
+      },
+      "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+      "shots": 512,
+      "threshold": 0.05,
+      "total_variation_distance": 1.0
+    },
+    "summary": "An execution anomaly is accompanied by program-operation fault evidence.",
+    "trace_deviation_candidates": []
+  },
+  "errors": [],
+  "execution_metadata": {
+    "backend_api_used": false,
+    "execution_kind": "SYNTHETIC_VALIDATION",
+    "execution_target": "LOCAL_SIMULATOR",
+    "generated_at": "2026-10-12T17:03:08+00:00",
+    "hardware_model_applied": true,
+    "noise_parameters_applied": false,
+    "numpy_version": "2.5.3",
+    "observation_source": "SEEDED_LOCAL_SIMULATOR_SHOTS_WITH_HARDWARE_MODEL",
+    "python_version": "3.12.10",
+    "random_seed": 20261014,
+    "shots": 512
+  },
+  "experiment_metadata": {
+    "backend_name": null,
+    "circuit_family_id": "fault_isolation_family_01",
+    "circuit_id": "circuit-233d88647822fce2",
+    "created_at": "2026-10-12T17:03:08+00:00",
+    "experiment_name": "fault_isolation_program_fault_ideal_seed_20261014",
+    "experimental_group_id": "group-14d6d0a1d675c39f",
+    "ground_truth_label": "PROGRAM_FAULT",
+    "hardware_affected_component": null,
+    "hardware_condition_id": null,
+    "program_fault_description": "Remove the X operation on qubit 0.",
+    "program_fault_id": "fault_remove_x_q0",
+    "program_fault_operation_index": 0,
+    "program_fault_qubits": [
+      0
+    ],
+    "repetition_index": null,
+    "run_id": null,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "hardware_evidence": {
+    "anomaly_metric": 1.0,
+    "candidates": [
+      {
+        "component": 0,
+        "component_type": "qubit",
+        "evidence": [
+          "Qubit 0 appears in 1 relevant circuit operations.",
+          "Observed deviation at operation index 0: Expected operation missing in observed circuit"
+        ],
+        "reason": "Program trace implicated qubit 0: No notable qubit degradation was detected.",
+        "score": 1.0
+      },
+      {
+        "component": [
+          0
+        ],
+        "component_type": "gate",
+        "evidence": [
+          "Observed anomaly associated with operation x at index 0."
+        ],
+        "reason": "Gate calibration for x on qubits (0,): No gate calibration was available.",
+        "score": 0.35
+      }
+    ],
+    "evidence": [
+      "Qubit 0 appears in 1 relevant circuit operations.",
+      "Observed deviation at operation index 0: Expected operation missing in observed circuit",
+      "Observed anomaly associated with operation x at index 0."
+    ],
+    "summary": "Trace-associated hardware location candidate(s), without calibration-backed fault evidence: qubit 0, gate (0,)",
+    "threshold": 0.05
+  },
+  "ideal_distribution": {
+    "00": 0.0,
+    "01": 0.0,
+    "10": 1.0,
+    "11": 0.0
+  },
+  "ideal_statevector_distribution": {
+    "00": 0.0,
+    "01": 0.0,
+    "10": 1.0,
+    "11": 0.0
+  },
+  "observed_counts": {
+    "00": 512
+  },
+  "observed_distribution": {
+    "00": 1.0,
+    "01": 0.0,
+    "10": 0.0,
+    "11": 0.0
+  },
+  "program_evidence": {
+    "anomaly_metric": 1.0,
+    "candidates": [
+      {
+        "actual_signature": null,
+        "evidence": [
+          "Step 0: expected x on qubits (0,) but it was not executed."
+        ],
+        "expected_signature": [
+          "x",
+          [
+            0
+          ],
+          []
+        ],
+        "index": 0,
+        "operation": "x",
+        "qubits": [
+          0
+        ],
+        "reason": "Expected operation missing in observed circuit",
+        "score": 1.0
+      }
+    ],
+    "evidence": [
+      "Step 0: expected x on qubits (0,) but it was not executed."
+    ],
+    "summary": "Program fault localization identified the following likely offending operation(s): step 0 (x)",
+    "threshold": 0.05
+  },
+  "reproducibility": {
+    "deterministic_localizer_measurements": "measurement operations mapped to barriers for localization only",
+    "fingerprint": "9328db59c75ce5c7c657c94633c054262d28185b18e20537448943a713032139",
+    "fingerprint_excludes": [
+      "execution_metadata.generated_at",
+      "reproducibility.fingerprint"
+    ],
+    "random_seed": 20261014,
+    "simulator_version": "project-statevector-current"
+  },
+  "simulator_observed_counts": {
+    "00": 512
+  },
+  "status": "COMPLETED"
+}

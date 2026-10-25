@@ -1,14 +1,30 @@
 {
   "project": "Quantum Diagnostic System",
   "phase_status": {
-    "A": {"status": "COMPLETE"},
-    "B": {"status": "COMPLETE"},
-    "C": {"status": "COMPLETE"},
-    "D": {"status": "COMPLETE"},
-    "E": {"status": "COMPLETE"},
-    "F": {"status": "COMPLETE"},
-    "G": {"status": "COMPLETE"},
-    "H": {"status": "COMPLETE"},
+    "A": {
+      "status": "COMPLETE"
+    },
+    "B": {
+      "status": "COMPLETE"
+    },
+    "C": {
+      "status": "COMPLETE"
+    },
+    "D": {
+      "status": "COMPLETE"
+    },
+    "E": {
+      "status": "COMPLETE"
+    },
+    "F": {
+      "status": "COMPLETE"
+    },
+    "G": {
+      "status": "COMPLETE"
+    },
+    "H": {
+      "status": "COMPLETE"
+    },
     "I": {
       "status": "PARTIAL",
       "dataset_available": false,
@@ -47,5 +63,47 @@
     "Synthetic validation scenarios are not Bugs4Q benchmark ground truth.",
     "No IBM hardware execution or IBM calibration retrieval was performed.",
     "No benchmark accuracy, precision, recall, or F1 is claimed."
-  ]
+  ],
+  "generic_calibration_contract": {
+    "acquisition_timestamp": "optional caller-reported timestamp; never synthesized from model or snapshot creation time",
+    "provenance_values": [
+      "reported",
+      "synthetic",
+      "unknown"
+    ],
+    "snapshot_creation_time": "created_at is distinct from the underlying calibration timestamp",
+    "freshness_policy": "FRESH/STALE is assessed only when a caller supplies a positive maximum age; no generic maximum is defined",
+    "diagnosis_gate": "reported calibration candidates are excluded from causal attribution when an explicit policy cannot establish freshness; synthetic fixtures remain simulator configuration",
+    "ibm_preflight": "separate backend-specific timestamp contract retained",
+    "limitation": "reported provenance is not independently authenticated; software validation does not establish physical-hardware validity"
+  },
+  "finalization_milestone": {
+    "report": "final_research_report.md",
+    "date": "2026-10-15",
+    "focused_validation": {
+      "command": ".venv\\Scripts\\python.exe -m pytest tests/test_reference_diagnosis_generalization.py -q --tb=short --basetemp .t-finalization-focused",
+      "passed": 1,
+      "failed": 1,
+      "result": "The forensic explanation test passed; the unchanged frozen 45-case acceptance test failed on the known seven mismatches."
+    },
+    "bounded_validation": {
+      "command": ".venv\\Scripts\\python.exe -m pytest tests -q --tb=short -k \"not bounded_recipe_comparison_120_templates_and_finite_shot_subset and not independent_calibration_fixture_and_permutation_comparison\" --basetemp .t-finalization-suite",
+      "collected": 797,
+      "passed": 794,
+      "failed": 1,
+      "skipped": 0,
+      "deselected": 2,
+      "duration_seconds": 259.71,
+      "known_failure": "tests/test_reference_diagnosis_generalization.py::test_heldout_generalization_outcomes_and_targets (7/45 frozen outcome mismatch)",
+      "exclusions": "Both registered finite-shot NO-GO tests remained deselected."
+    },
+    "diff_check": "git diff --check exited successfully; only LF-to-CRLF normalization warnings were emitted.",
+    "json_validation": "reports/experiment_schema.json and reports/project_status.json parse as JSON.",
+    "software_release_clean": false,
+    "research_validity": {
+      "independent_ml_generalization": "not established",
+      "physical_hardware_validation": "not established"
+    },
+    "verdict": "Finalization documented; clean release remains blocked by the frozen acceptance failure."
+  }
 }

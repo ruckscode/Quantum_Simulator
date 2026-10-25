@@ -1,0 +1,22 @@
+{
+  "created_date": "2026-10-14",
+  "scope": "bounded adaptive process-RSS profile; one H and one nonadjacent CX, widths 15-18; no shots or dataset processing",
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "total_memory_bytes": 7851741184
+  },
+  "safety_policy": {
+    "minimum_available_memory_bytes": 536870912,
+    "maximum_modeled_working_arrays_fraction": 0.05,
+    "maximum_width_requested": 18
+  },
+  "profile": [],
+  "stop_reason": "available memory 532836352 below 512 MiB stop floor before n=15",
+  "sampling": {
+    "process_rss_poll_interval_seconds": 0.01,
+    "method": "psutil process RSS sampled on a background thread; very brief transients may be missed"
+  },
+  "source_sha256": "26cabe90c6cd8b253e74374d73df936dfd2e3ffd1caf86f8726448881015e6a8",
+  "interpretation": "This is a one-process smoke profile, not a safe-width guarantee. RSS is sampled and excludes unobserved transients; host memory may be shared or change. The array estimate excludes Python, NumPy allocator and runtime overhead."
+}

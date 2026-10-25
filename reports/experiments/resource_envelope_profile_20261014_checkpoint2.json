@@ -1,0 +1,57 @@
+{
+  "created_date": "2026-10-14",
+  "scope": "bounded continuation of adaptive process-RSS profile; one H and one nonadjacent CX at widths 19-20; no shots or dataset processing",
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "total_memory_bytes": 7851741184
+  },
+  "safety_policy": {
+    "minimum_available_memory_bytes": 536870912,
+    "maximum_modeled_working_arrays_fraction": 0.05,
+    "maximum_width_requested": 20
+  },
+  "profile": [
+    {
+      "qubits": 19,
+      "modeled_working_array_bytes": 25165824,
+      "statevector_bytes": 8388608,
+      "rss_before_bytes": 32919552,
+      "rss_peak_sampled_bytes": 52260864,
+      "rss_after_bytes": 43888640,
+      "available_before_bytes": 709132288,
+      "available_after_bytes": 628723712,
+      "elapsed_seconds": 6.204558600002201,
+      "norm_absolute_error": 1.1102230246251565e-16,
+      "operations": [
+        "h(0)",
+        "cx(0,18)"
+      ],
+      "seed": 1729
+    },
+    {
+      "qubits": 20,
+      "modeled_working_array_bytes": 50331648,
+      "statevector_bytes": 16777216,
+      "rss_before_bytes": 43876352,
+      "rss_peak_sampled_bytes": 69079040,
+      "rss_after_bytes": 52293632,
+      "available_before_bytes": 628887552,
+      "available_after_bytes": 419151872,
+      "elapsed_seconds": 11.66949279999244,
+      "norm_absolute_error": 1.1102230246251565e-16,
+      "operations": [
+        "h(0)",
+        "cx(0,19)"
+      ],
+      "seed": 1729
+    }
+  ],
+  "stop_reason": null,
+  "sampling": {
+    "process_rss_poll_interval_seconds": 0.01,
+    "method": "psutil process RSS sampled on background thread; brief transients may be missed"
+  },
+  "source_sha256": "a07be9c304153a389454f699ffaaace8d12d99d430396bcfc1b5c383845406ef",
+  "interpretation": "Bounded smoke profile, not a safe-width guarantee. RSS sampling can miss transients; host memory may be shared/change. Array estimate excludes Python, NumPy allocator and runtime overhead."
+}

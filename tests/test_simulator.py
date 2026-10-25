@@ -11,6 +11,87 @@ def test_initial_state():
     assert sim.dim == 4
 
 
+@pytest.mark.parametrize("bad_qubit", [0.5, "0", True, np.float64(1.0)])
+def test_qubit_indices_reject_lossy_or_boolean_coercion(bad_qubit):
+    sim = QuantumSimulator(2)
+    before = sim.state.copy()
+    with pytest.raises(TypeError):
+        sim.apply_gate("x", bad_qubit)
+    np.testing.assert_array_equal(sim.state, before)
+
+
+@pytest.mark.parametrize("instruction", [
+    ("cx", 0, 0),
+    ("cz", 1, 1),
+    ("rxx", 0, 0, 0.7),
+])
+def test_duplicate_multi_qubit_operands_are_rejected_without_state_change(instruction):
+    sim = QuantumSimulator(2)
+    sim.apply_gate("h", 0)
+    before = sim.state.copy()
+    with pytest.raises(ValueError, match="distinct"):
+        sim.run_circuit([instruction])
+    np.testing.assert_array_equal(sim.state, before)
+
+
+def test_boolean_qubit_count_is_rejected_and_numpy_integer_is_supported():
+    with pytest.raises(ValueError, match="positive integer"):
+        QuantumSimulator(True)
+    sim = QuantumSimulator(np.int64(2))
+    sim.apply_gate("x", np.int64(1))
+    np.testing.assert_array_equal(sim.state, [0, 1, 0, 0])
+
+
+def test_working_array_estimate_and_opt_in_budget_guard():
+    estimate = QuantumSimulator.estimate_working_array_bytes(4)
+    assert estimate == 3 * 16 * 2**4
+    sim = QuantumSimulator(4, memory_budget_bytes=np.int64(estimate))
+    assert sim.memory_budget_bytes == estimate
+    with pytest.raises(MemoryError, match="configured budget"):
+        QuantumSimulator(4, memory_budget_bytes=estimate - 1)
+
+
+def test_working_array_estimate_rejects_unaddressable_statevector_size():
+    with pytest.raises(MemoryError, match="addressable array size"):
+        QuantumSimulator.estimate_working_array_bytes(59)
+    with pytest.raises(MemoryError, match="addressable array size"):
+        QuantumSimulator.estimate_working_array_bytes(10**12)
+
+
+@pytest.mark.parametrize("budget", [0, -1, 1.5, True])
+def test_memory_budget_must_be_a_positive_integer_or_none(budget):
+    with pytest.raises(ValueError, match="memory_budget_bytes"):
+        QuantumSimulator(1, memory_budget_bytes=budget)
+
+
+def test_run_shots_reuses_configured_memory_budget_for_each_trajectory():
+    budget = QuantumSimulator.estimate_working_array_bytes(1)
+    sim = QuantumSimulator(1, memory_budget_bytes=budget)
+    assert sum(sim.run_shots([("h", 0)], shots=32, seed=11).values()) == 32
+
+
+@pytest.mark.parametrize("angle", [np.nan, np.inf, -np.inf])
+def test_nonfinite_gate_parameters_are_rejected_without_state_change(angle):
+    sim = QuantumSimulator(1)
+    before = sim.state.copy()
+    with pytest.raises(ValueError, match="finite"):
+        sim.apply_gate("rx", 0, angle)
+    np.testing.assert_array_equal(sim.state, before)
+
+
+@pytest.mark.parametrize("matrix", [
+    np.array([[1, 0], [0, 2]], dtype=complex),
+    np.array([[1, 0], [0, np.nan]], dtype=complex),
+    np.array([1, 0], dtype=complex),
+])
+def test_invalid_custom_gate_matrices_are_rejected_without_state_change(matrix):
+    sim = QuantumSimulator(1)
+    before = sim.state.copy()
+    with pytest.raises(ValueError):
+        sim.apply_gate(matrix, 0)
+    np.testing.assert_array_equal(sim.state, before)
+
+
 def test_single_qubit_hadamard_and_x():
     sim = QuantumSimulator(1)
     sim.apply_gate("h", 0)
@@ -55,6 +136,69 @@ def test_run_shots_counts():
     counts = sim.run_shots([("h", 0)], shots=200)
     assert sum(counts.values()) == 200
     assert set(counts) <= {"0", "1"}
+
+
+@pytest.mark.parametrize("bad_shots", [0, -1, 1.5, True])
+def test_run_shots_rejects_nonpositive_or_noninteger_counts(bad_shots):
+    with pytest.raises(ValueError, match="positive integer"):
+        QuantumSimulator(1).run_shots([], shots=bad_shots)
+
+
+def test_run_shots_replays_generator_circuit_for_every_shot():
+    circuit = [("h", 0), ("measure", 0)]
+    expected = QuantumSimulator(1).run_shots(circuit, shots=256, seed=991)
+    actual = QuantumSimulator(1).run_shots((instruction for instruction in circuit), shots=256, seed=991)
+    assert actual == expected
+    assert set(actual) == {"0", "1"}
+
+
+def test_run_circuit_traced_records_each_sequential_actual_state():
+    simulator = QuantumSimulator(1, seed=1)
+    instructions = [("x", 0), ("h", 0)]
+
+    clean_states, actual_states, labels, trace = simulator.run_circuit_traced(
+        instructions, instructions
+    )
+
+    assert len(trace) == len(instructions)
+    assert labels == ["x", "h"]
+    assert len(actual_states) == len(instructions) + 1
+    np.testing.assert_allclose(actual_states[0], [1, 0])
+    np.testing.assert_allclose(actual_states[1], [0, 1])
+    np.testing.assert_allclose(actual_states[2], [1 / np.sqrt(2), -1 / np.sqrt(2)])
+    assert not np.allclose(actual_states[0], actual_states[1])
+    assert not np.allclose(actual_states[1], actual_states[2])
+
+
+@pytest.mark.parametrize("expected,actual,expected_pairs", [
+    ([('x', 0), ('h', 0)], [('x', 0), ('h', 0)], [(('x', 0), ('x', 0)), (('h', 0), ('h', 0))]),
+    ([('x', 0), ('h', 0)], [('x', 0), ('z', 0), ('h', 0)], [(('x', 0), ('x', 0)), (None, ('z', 0)), (('h', 0), ('h', 0))]),
+    ([('x', 0), ('z', 0), ('h', 0)], [('x', 0), ('h', 0)], [(('x', 0), ('x', 0)), (('z', 0), None), (('h', 0), ('h', 0))]),
+])
+def test_traced_alignment_records_matches_insertions_and_deletions(expected, actual, expected_pairs):
+    _, _, _, trace = QuantumSimulator(1).run_circuit_traced(expected, actual)
+    assert [(row['expected'], row['actual']) for row in trace] == expected_pairs
+    assert all({'step', 'operation', 'operands', 'expected', 'actual', 'difference'} <= row.keys() for row in trace)
+
+
+def test_traced_alignment_keeps_later_operations_aligned_after_replacement():
+    _, _, _, trace = QuantumSimulator(1).run_circuit_traced(
+        [('x', 0), ('h', 0), ('z', 0)], [('x', 0), ('y', 0), ('z', 0)]
+    )
+    assert [(row['expected'], row['actual']) for row in trace] == [
+        (('x', 0), ('x', 0)), (('h', 0), ('y', 0)), (('z', 0), ('z', 0))
+    ]
+
+
+def test_traced_differences_are_probability_distances_and_snapshots_progress():
+    clean, actual, _, trace = QuantumSimulator(1).run_circuit_traced(
+        [('x', 0), ('h', 0)], [('x', 0), ('z', 0)]
+    )
+    assert not np.allclose(clean[0], clean[1])
+    assert not np.allclose(actual[1], actual[2])
+    assert trace[-1]['difference'] == pytest.approx(
+        np.abs(np.abs(clean[-1]) ** 2 - np.abs(actual[-1]) ** 2).sum() / 2
+    )
 
 
 def test_run_shots_hadamard_samples_both_outcomes():
@@ -136,6 +280,17 @@ def test_readout_error_is_applied_only_when_configured():
 
     unrelated = QuantumSimulator(2, seed=7)
     assert unrelated.run_circuit([("measure", 1)], hardware_model=model)[0] == "0"
+
+
+def test_run_shots_applies_hardware_model_to_each_execution():
+    circuit = [("x", 0), ("measure", 0)]
+    ideal = QuantumSimulator(1).run_shots(circuit, shots=512, seed=23)
+    hardware = HardwareModel(1)
+    hardware.set_qubit_properties(0, readout_error=1.0)
+    affected = QuantumSimulator(1).run_shots(circuit, shots=512, seed=23, hardware_model=hardware)
+
+    assert ideal == {"1": 512}
+    assert affected == {"0": 512}
 
 
 def _idle_calibration(model, duration=1.0):

@@ -1,0 +1,59 @@
+{
+  "circuit_families": 5,
+  "conditions": [
+    "NORMAL",
+    "PROGRAM_FAULT",
+    "HARDWARE_ANOMALY"
+  ],
+  "controlled_hardware_effect_check": {
+    "circuit_family_id": "single_x",
+    "confirmed": true,
+    "hardware_aggregate_counts": {
+      "0": 1198,
+      "1": 4946
+    },
+    "hardware_profile_applied": true,
+    "normal_aggregate_counts": {
+      "1": 6144
+    },
+    "normal_hardware_disabled": true,
+    "normal_vs_hardware_tvd": 0.19498697916666663,
+    "same_reference_circuit_and_program": true
+  },
+  "hardware_execution_evidence": {
+    "hardware_model_applied_in_reports": true,
+    "normal_runs_hardware_disabled": true
+  },
+  "observed_counts_fixtures_used": false,
+  "paired_observation_effects": [
+    {
+      "circuit_family_id": "single_x",
+      "hardware_tvd_vs_normal": 0.19498697916666663,
+      "program_fault_tvd_vs_normal": 0.4970703125
+    },
+    {
+      "circuit_family_id": "single_ry",
+      "hardware_tvd_vs_normal": 0.13313802083333334,
+      "program_fault_tvd_vs_normal": 0.7470703125
+    },
+    {
+      "circuit_family_id": "hzh_sequence",
+      "hardware_tvd_vs_normal": 0.29915364583333337,
+      "program_fault_tvd_vs_normal": 1.0
+    },
+    {
+      "circuit_family_id": "bell_pair",
+      "hardware_tvd_vs_normal": 0.44677734375,
+      "program_fault_tvd_vs_normal": 0.49951171875
+    },
+    {
+      "circuit_family_id": "controlled_pair",
+      "hardware_tvd_vs_normal": 0.4005533854166667,
+      "program_fault_tvd_vs_normal": 1.0
+    }
+  ],
+  "pilot_name": "five_family_execution_derived_pilot",
+  "records": 45,
+  "repetitions_per_group": 3,
+  "shots_per_run": 2048
+}

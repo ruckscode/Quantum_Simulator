@@ -74,8 +74,8 @@ U1 = P
 def U2(phi, lam):
     return (1 / np.sqrt(2)) * np.array(
         [
-            [1, np.exp(-1j * lam)],
-            [np.exp(1j * phi), -np.exp(1j * (phi + lam))],
+            [1, -np.exp(1j * lam)],
+            [np.exp(1j * phi), np.exp(1j * (phi + lam))],
         ],
         dtype=complex,
     )
@@ -173,6 +173,17 @@ def RXX(theta):
     )
 
 
+def RZZ(theta):
+    """Return exp(-i theta/2 (Z tensor Z)), the two-qubit ZZ rotation."""
+    phase_same = np.exp(-0.5j * theta)
+    phase_different = np.exp(0.5j * theta)
+    return np.diag([phase_same, phase_different, phase_different, phase_same]).astype(complex)
+
+
+# OpenQASM 2 calls this same three-parameter matrix ``u``.
+U = U3
+
+
 # ---------------------------------------------------------------------------
 # Three-qubit gates
 # ---------------------------------------------------------------------------
@@ -190,6 +201,23 @@ def CCX():
 
 
 CCX = CCX()
+
+
+def RCCX():
+    """Return the Margolus relative-phase Toffoli (OpenQASM ``rccx``).
+
+    In operand order (control, control, target), this uses the standard
+    relative phases: |101> receives -1 and the |110>/<111> exchange carries
+    +i/-i amplitudes, respectively.
+    """
+    matrix = CCX.copy()
+    matrix[5, 5] = -1.0
+    matrix[6, 7] = -1j
+    matrix[7, 6] = 1j
+    return matrix
+
+
+RCCX = RCCX()
 
 
 def CSWAP():
@@ -235,6 +263,7 @@ GATE_QUBIT_COUNT = {
     "u1": 1,
     "u2": 1,
     "u3": 1,
+    "u": 1,
     "cx": 2,
     "cnot": 2,
     "cz": 2,
@@ -245,7 +274,9 @@ GATE_QUBIT_COUNT = {
     "cry": 2,
     "crz": 2,
     "rxx": 2,
+    "rzz": 2,
     "ccx": 3,
+    "rccx": 3,
     "toffoli": 3,
     "cswap": 3,
     "fredkin": 3,
@@ -259,11 +290,13 @@ PARAMETERIZED_GATES = {
     "u1": U1,
     "u2": U2,
     "u3": U3,
+    "u": U,
     "cp": CP,
     "crx": CRX,
     "cry": CRY,
     "crz": CRZ,
     "rxx": RXX,
+    "rzz": RZZ,
 }
 
 GATE_REGISTRY = {
@@ -288,6 +321,7 @@ GATE_REGISTRY = {
     "u1": U1,
     "u2": U2,
     "u3": U3,
+    "u": U,
     "cx": CX,
     "cnot": CX,
     "cz": CZ,
@@ -298,7 +332,9 @@ GATE_REGISTRY = {
     "cry": CRY,
     "crz": CRZ,
     "rxx": RXX,
+    "rzz": RZZ,
     "ccx": CCX,
+    "rccx": RCCX,
     "toffoli": CCX,
     "cswap": CSWAP,
     "fredkin": CSWAP,
@@ -372,6 +408,7 @@ __all__ = [
     "U1",
     "U2",
     "U3",
+    "U",
     "CX",
     "CZ",
     "SWAP",
@@ -381,7 +418,9 @@ __all__ = [
     "CRY",
     "CRZ",
     "RXX",
+    "RZZ",
     "CCX",
+    "RCCX",
     "CSWAP",
     "GATE_REGISTRY",
     "PARAMETERIZED_GATES",

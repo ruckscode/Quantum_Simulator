@@ -1,0 +1,8 @@
+feature_set,model,matrix
+MAJORITY_CLASS_BASELINE,Majority Class,"[[90, 0, 0], [90, 0, 0], [90, 0, 0]]"
+OBSERVABLE_ONLY,Logistic Regression,"[[83, 0, 7], [34, 38, 18], [47, 12, 31]]"
+OBSERVABLE_ONLY,Decision Tree,"[[69, 7, 14], [26, 37, 27], [45, 24, 21]]"
+OBSERVABLE_ONLY,Random Forest,"[[60, 10, 20], [25, 43, 22], [41, 27, 22]]"
+OBSERVABLE_PLUS_REPLAY_TRACE,Logistic Regression,"[[77, 10, 3], [19, 51, 20], [41, 22, 27]]"
+OBSERVABLE_PLUS_REPLAY_TRACE,Decision Tree,"[[64, 5, 21], [11, 62, 17], [29, 19, 42]]"
+OBSERVABLE_PLUS_REPLAY_TRACE,Random Forest,"[[74, 6, 10], [8, 61, 21], [33, 19, 38]]"

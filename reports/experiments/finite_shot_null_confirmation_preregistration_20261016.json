@@ -1,0 +1,127 @@
+{
+  "created_date": "2026-10-16",
+  "decision_rule": {
+    "direction": "one-sided",
+    "fail": "FAIL if the exact one-sided 95% Clopper-Pearson lower bound BetaPPF(0.05, x, n-x+1) is >0.06.",
+    "inconclusive": "INCONCLUSIVE if neither the pass nor fail condition holds.",
+    "interpretation": "At theta=0.06, each directional exact bound controls its corresponding one-sided error at 0.05. PASS certifies the specified synthetic null operating point against the 6% ceiling under the sampling assumptions; FAIL is evidence theta exceeds the ceiling. INCONCLUSIVE is not a pass and does not prove theta is above the ceiling.",
+    "pass": "PASS if the exact one-sided 95% Clopper-Pearson upper bound BetaPPF(0.95, x+1, n-x) is <=0.06.",
+    "relationship_to_prior": "This is a new prospective decision rule/sample, not a revision or reversal of the prior experiment's registered overall FAIL.",
+    "significance_level": 0.05
+  },
+  "detector": {
+    "decision": "Flag iff empirical TVD(reference_counts/1024, submitted_counts/1024) > max(0.05, 1/sqrt(1024)); strict greater-than.",
+    "effective_cutoff": 0.05,
+    "finite_shot_guard": "max(0.05, 1/sqrt(shots))",
+    "no_tuning": "No threshold selection or adaptation. Keep the existing detector unchanged.",
+    "provenance_note": "The reference runner's constants and run() workload are fixed to the completed 12,000-pair experiment, so it is not itself an executable driver for this confirmation. The pair_outcome/stream_seed behavior and detector are the pinned reference. A separate confirmation driver must be created, reviewed, and hash-bound before any sample generation; its hash is unresolved and execution is prohibited until recorded.",
+    "reference_runner_sha256": "a40a1d81a0fd1a7aaadcb187535484849a80c14f6b6165ed32501974a9e63a9f",
+    "source": "src/quantum_simulator/statistics.py::compare_distributions called by experiments/finite_shot_synthetic_characterization.py::pair_outcome",
+    "statistics_module_sha256": "2d90d01a024aa527a4dd7805a09ba0216e35afceb3e718d979e9ed5399212d82",
+    "threshold_argument": 0.05
+  },
+  "exclusions": [
+    "No alternatives or power endpoint beyond the null FPR confirmation.",
+    "No detector, threshold, acceptance criterion, prior result, or frozen diagnosis evaluation changes.",
+    "No quantum circuit or simulator execution; no QMutBench, lineage, family, program-mutation, three-way diagnosis, physical-hardware, classical-ML, or QML inference.",
+    "No interim looks, optional stopping, or pooling with prior replicates."
+  ],
+  "hypotheses": {
+    "alternative": "H1: theta < 0.06.",
+    "null": "H0: theta >= 0.06.",
+    "parameter": "theta = probability that one independently sampled reference/submitted count-pair is flagged under q=p.",
+    "planning_alternative": "theta=0.057, used only as an assumed operating point for power/sample-size planning from the prior pilot estimate; it is not treated as known truth."
+  },
+  "limitations": [
+    "This is a synthetic four-outcome multinomial null only; it cannot establish hardware or circuit-family operating characteristics.",
+    "A deterministic pseudorandom simulation is interpreted using an IID sampling model; distinct seeds are not a mathematical proof of independence.",
+    "At true theta exactly 0.06, high probability of certifying an upper bound <=0.06 is not expected; the 80% power target is specifically at theta=0.057.",
+    "The decision does not fix the 256-shot failure, establish alternative power, or authorize program-mutation detection or model fitting.",
+    "Execution driver hash is pending and must be pinned and independently checked before the confirmation is executable."
+  ],
+  "primary_endpoint": "Number and proportion of detector flags among the 38,228 new null pairs, with exact one-sided 95% Clopper-Pearson confidence limits.",
+  "research_question": "For the specified four-outcome null and unchanged TVD detector at 1,024 shots, is the long-run per-pair flag probability at most 0.06?",
+  "resource_cap": {
+    "cost_basis": "Linear extrapolation from the saved 6.0 CPU seconds for 12,000 pairs; estimate only, not a benchmark. The shot/circuit outcome count is synthetic multinomial work, not quantum executions.",
+    "count_pairs_planned_and_maximum": 38228,
+    "count_vectors": 76456,
+    "cpu_seconds_maximum": 600,
+    "enforcement": "New driver must check planned total before starting, stop before any pair that would exceed the cap, check CPU time and traced memory during work, and use create-only output.",
+    "estimated_cpu_seconds": 19.114,
+    "multinomial_outcome_draws": 78290944,
+    "serialized_output_bytes_maximum": 268435456,
+    "traced_memory_bytes_maximum": 268435456,
+    "workers": 1
+  },
+  "runtime_reproducibility": {
+    "environment_limit": "The original experiment did not record its Python/NumPy versions. The planning environment version is not evidence of the original run's version. Reproducibility claims apply only to the recorded compatible runtime and seeded generator behavior.",
+    "planning_environment": {
+      "numpy": "2.5.3 observed during planning; verify and record before execution",
+      "python": "3.12.10 observed during planning; verify and record before execution"
+    },
+    "required_execution_record": [
+      "Python version",
+      "NumPy version and bit generator",
+      "driver SHA-256",
+      "statistics module SHA-256",
+      "preregistration SHA-256",
+      "derived seed-ledger SHA-256",
+      "actual pairs, detections, CPU time, traced memory, result SHA-256"
+    ]
+  },
+  "sample_size_rationale": {
+    "assumptions": [
+      "Per-pair flags are independent and identically distributed Bernoulli(theta).",
+      "The reference and submitted multinomial count vectors are independent within each pair under the specified null.",
+      "Distinct seeded NumPy generators provide adequate pseudorandom independence for this Monte Carlo study.",
+      "The planning value theta=0.057 is a design assumption taken from the prior observed point estimate; power will be lower if the true theta is closer to 0.06."
+    ],
+    "calculated_power_at_n": 0.8024299192074023,
+    "maximum_passing_detections_at_n": 2217,
+    "method": "Exact binomial power calculation for the one-sided Clopper-Pearson upper-bound pass rule. For each candidate n, find the largest integer k such that BetaPPF(0.95, k+1, n-k) <= 0.06; power at theta=0.057 is BinomialCDF(k; n, 0.057). Numerical evaluation used beta quantiles and the binomial CDF; it generated no samples.",
+    "minimum_n_for_target_power": 38228,
+    "power_at_n_minus_1": 0.7966325306577215,
+    "target_power": 0.8,
+    "upper_bound_at_maximum_passing_count": 0.05999850882877437,
+    "upper_bound_at_next_count_2218": 0.06002508221219589
+  },
+  "sampling": {
+    "evaluation": "All 38,228 new pairs are the independent confirmation sample. No development data, adaptive analysis, optional stopping, or interim threshold selection. Analyze this sample alone; do not pool it with or revise the prior experiment.",
+    "pair_unit": "One pair is one reference multinomial count vector and one independently generated submitted multinomial count vector, each with 1,024 trials, compared once by the fixed detector. The statistical outcome is one Bernoulli flag indicator per pair.",
+    "procedure": "For each replicate index 0..38227, draw reference and submitted counts with separate numpy.random.default_rng(seed).multinomial(1024, p) calls; run the existing pair_outcome comparison logic. Stream aggregate counts; do not retain per-pair records unless needed for audit.",
+    "reference_distribution": [
+      0.5,
+      0.25,
+      0.15,
+      0.1
+    ],
+    "replicates": 38228,
+    "seed_policy": {
+      "condition_id": "null_equal_confirmation_20261016_01",
+      "roles": [
+        "reference",
+        "submitted"
+      ],
+      "seed_ledger_integrity": {
+        "internal_collisions": 0,
+        "note": "Computed from deterministic hashes only; no multinomial samples generated. The future driver must recompute and verify these conditions before sampling, and abort if they differ.",
+        "ordered_seed_bytes_sha256": "222e5522204fd09f56f860c4a474130b2357d34997c9393f0d47521953f341ad",
+        "overlap_with_prior_1024_shot_seed_streams": 0,
+        "streams": 76456,
+        "unique_seeds": 76456
+      },
+      "seed_prefix_protocol_id": "synthetic-two-sample-tvd-v1-20261015 (the fixed prefix used by the hashed reference implementation)",
+      "source_implementation": "Reuse the existing stream_seed hash scheme: first 32 bits, big-endian, of SHA-256 over UTF-8 PROTOCOL_ID|shots|condition_id|replicate_index|stream_role; pass the resulting integer to numpy.random.default_rng."
+    },
+    "shot_count": 1024,
+    "submitted_distribution": [
+      0.5,
+      0.25,
+      0.15,
+      0.1
+    ]
+  },
+  "schema_version": "finite-shot-null-confirmation-prereg-v1",
+  "status": "prospective_design_frozen_execution_driver_hash_pending",
+  "title": "Prospective independent null-only confirmation at 1,024 shots"
+}

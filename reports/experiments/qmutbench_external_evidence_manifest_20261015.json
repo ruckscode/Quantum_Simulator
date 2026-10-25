@@ -1,0 +1,448 @@
+{
+  "schema": "qmutbench-external-evidence-acquisition-v1",
+  "created_date": "2026-10-15",
+  "purpose": "Acquire and independently verify evidence needed to assess a family-separated QMutBench program-mutation detection evaluation.",
+  "current_eligibility_decision": {
+    "eligible_independent_recipe_roots": 0,
+    "evaluation_manifest_justified": false,
+    "decision_is_not_changed_by_this_template": true
+  },
+  "baseline": {
+    "qmutbench_repository": "https://github.com/EnautMendi/QMutBench",
+    "qmutbench_commit": "01f5e7700c051fe715fc368b307deaa7e6869ba8",
+    "qmutbench_commit_signature_status": "reported unsigned in local source manifest; not locally authenticated",
+    "metadata_path": "data/qmutbench_ingestion/raw/official_all_data_20261015.csv",
+    "metadata_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+    "metadata_bytes": 59913911,
+    "source_manifest_path": "data/qmutbench_ingestion/source_manifest.json",
+    "source_manifest_sha256": "2b177520e7a1bb2b94b35f3fcc389c56f145f1f81499f51f81e5376292415407",
+    "lineage_audit_path": "reports/qmutbench_lineage_audit_20261015.json",
+    "lineage_audit_sha256": "21f904c25587d8039cc3f04a01147aa891e441b5cac2ffeaa2880c82bc912a4a",
+    "metadata_rows": 723079,
+    "origin_program_id_count": 375,
+    "locally_hash_verified_qasm_artifacts": 24,
+    "locally_represented_origin_groups": [
+      "ghz_indep_qiskit_2"
+    ],
+    "local_recipe_root_mapping": "unresolved",
+    "per_origin_mqt_bench_ancestry": "unresolved",
+    "prior_inventory_reconciliation": "incomplete",
+    "independent_behavioral_labels": "unavailable",
+    "independent_recipe_roots": 0,
+    "evaluation_manifest_justified": false,
+    "frozen_45_case": "unchanged; same seven mismatches; acceptance test remains failing",
+    "frozen_fixture_path": "tests/fixtures/reference_diagnosis_generalization_cases.json",
+    "frozen_fixture_sha256": "afa8c20f5f2a49289c889ba8f0f11f4077e97cf5d43cb4ddbd33246eec25bc1b",
+    "latest_focused_validation": "11 passed: finite-shot recovery module and QMutBench lineage tests",
+    "latest_bounded_validation": "807 passed, 1 failed, 2 deselected; sole failure is frozen 45-case acceptance test",
+    "bounded_suite_exclusions": [
+      "bounded_recipe_comparison_120_templates_and_finite_shot_subset",
+      "independent_calibration_fixture_and_permutation_comparison"
+    ]
+  },
+  "public_source_review": [
+    {
+      "source": "QMutBench",
+      "url": "https://github.com/EnautMendi/QMutBench",
+      "pinned_reference": "https://github.com/EnautMendi/QMutBench/commit/01f5e7700c051fe715fc368b307deaa7e6869ba8",
+      "officially_documented": [
+        "The README describes over 300 original circuits and over 700,000 mutants.",
+        "The README describes Origin_programs and Mutated_programs folders, with mutants grouped under a folder named for an original circuit.",
+        "The README describes mutation selection fields and survival-rate filtering."
+      ],
+      "local_checksum_verified": [
+        "Pinned metadata CSV bytes and 24 QASM artifacts listed in data/qmutbench_ingestion/source_manifest.json."
+      ],
+      "referenced_but_not_acquired": [
+        "Complete pinned repository tree/archive and complete source QASM set for all origins and mutants.",
+        "Complete release-level source checksum inventory and custodian chain-of-custody records."
+      ],
+      "inference_not_proof": [
+        "Origin_program and directory grouping indicate a parent association, not an independent recipe root.",
+        "Mutation filenames or IDs do not prove all ancestry, generation parameters, or behavioral effect."
+      ],
+      "custodian_or_independent_review_needed": [
+        "Complete mapping and completeness attestation.",
+        "Recipe/generator provenance, parent relationships, and label-generation evidence."
+      ]
+    },
+    {
+      "source": "MQT Bench",
+      "url": "https://github.com/munich-quantum-toolkit/bench",
+      "documentation_url": "https://mqt.readthedocs.io/projects/bench/en/stable/",
+      "officially_documented": [
+        "MQT Bench provides benchmark circuits through a Python API, CLI, and web interface.",
+        "Documentation describes algorithmic, target-independent, native-gate, and mapped levels and generator parameters."
+      ],
+      "local_checksum_verified": [],
+      "referenced_but_not_acquired": [
+        "The exact MQT Bench source version/commit and generated source circuit artifacts used for the QMutBench originals.",
+        "The applicable generation configuration, dependency/runtime versions, random seeds, and transformations."
+      ],
+      "inference_not_proof": [
+        "QMutBench documentation identifies MQT Bench as an initial original-circuit source; no per-origin mapping to an MQT benchmark/recipe is locally verified.",
+        "Same algorithm/qubit count or byte similarity alone cannot establish common or independent recipe roots."
+      ],
+      "custodian_or_independent_review_needed": [
+        "QMutBench custodian mapping from each original to source repository/version, benchmark/design ID, recipe/configuration, and derivatives.",
+        "Independent root/duplicate/ancestor reconciliation across QMutBench, MQT Bench, and prior project artifacts."
+      ]
+    }
+  ],
+  "acceptance_policy": {
+    "all_required_artifacts_present": true,
+    "all_sha256_checksums_match_received_bytes": true,
+    "coverage_must_be_explicit_and_complete": true,
+    "all_lineage_edges_must_resolve_or_be_explicitly_rejected": true,
+    "independent_root_decisions_require_independent_reviewer_attestation": true,
+    "labels_must_be_independently_adjudicated_for_defined_detection_endpoint": true,
+    "observation_configuration_must_match_or_be_stratified_by_protocol": true,
+    "missing_conflicting_or_unverified_required_evidence": "BLOCK; do not infer roots or create an evaluation split",
+    "external_signature_authentication": "must be performed by an independent reviewer using an agreed trust mechanism; this checker does not authenticate signatures"
+  },
+  "evidence_gates": [
+    {
+      "gate_id": "qmutbench_release_and_mapping",
+      "description": "Pinned release, full original/mutant inventory, and complete explicit parent mapping.",
+      "required_artifacts": [
+        {
+          "artifact_id": "qmutbench_source_archive",
+          "kind": "release_archive_or_git_bundle",
+          "required_fields": [
+            "source_uri",
+            "repository",
+            "commit",
+            "bytes",
+            "sha256",
+            "custodian",
+            "received_utc"
+          ],
+          "coverage": "all repository files required to reproduce the data release",
+          "path": null,
+          "sha256": null,
+          "coverage_complete": null,
+          "provided_fields": []
+        },
+        {
+          "artifact_id": "qmutbench_origin_mutant_map",
+          "kind": "machine_readable_mapping",
+          "required_fields": [
+            "artifact_id",
+            "artifact_sha256",
+            "origin_id",
+            "mutant_id",
+            "parent_artifact_id",
+            "mutation_metadata",
+            "mapping_basis"
+          ],
+          "coverage": "every original and mutant represented by the pinned metadata/source release",
+          "path": null,
+          "sha256": null,
+          "coverage_complete": null,
+          "provided_fields": []
+        },
+        {
+          "artifact_id": "qmutbench_checksum_manifest",
+          "kind": "checksum_manifest",
+          "required_fields": [
+            "relative_path",
+            "bytes",
+            "sha256",
+            "source_commit"
+          ],
+          "coverage": "every acquired source artifact",
+          "path": null,
+          "sha256": null,
+          "coverage_complete": null,
+          "provided_fields": []
+        }
+      ],
+      "external_review": {
+        "status": "unresolved",
+        "reviewer_identity": null,
+        "organization": null,
+        "attestation_path": null,
+        "attestation_sha256": null
+      }
+    },
+    {
+      "gate_id": "mqt_recipe_ancestry",
+      "description": "Exact MQT Bench version and original circuit-to-design/recipe/configuration ancestry.",
+      "required_artifacts": [
+        {
+          "artifact_id": "mqt_bench_release",
+          "kind": "source_release",
+          "required_fields": [
+            "repository",
+            "version",
+            "commit",
+            "release_archive_sha256",
+            "custodian"
+          ],
+          "coverage": "exact release used for each mapped original",
+          "path": null,
+          "sha256": null,
+          "coverage_complete": null,
+          "provided_fields": []
+        },
+        {
+          "artifact_id": "mqt_origin_recipe_map",
+          "kind": "machine_readable_lineage_map",
+          "required_fields": [
+            "qmutbench_origin_artifact_sha256",
+            "mqt_benchmark_id",
+            "mqt_version",
+            "abstraction_level",
+            "circuit_size",
+            "target",
+            "optimization_level",
+            "generation_parameters",
+            "seed",
+            "parent_artifact_sha256"
+          ],
+          "coverage": "every original with an MQT Bench ancestry claim; explicit none/unknown values with rationale for others",
+          "path": null,
+          "sha256": null,
+          "coverage_complete": null,
+          "provided_fields": []
+        },
+        {
+          "artifact_id": "generation_environment",
+          "kind": "environment_lock_and_generator_record",
+          "required_fields": [
+            "generator_source_sha256",
+            "dependency_lock_sha256",
+            "runtime_version",
+            "adapter_sha256",
+            "configuration_sha256"
+          ],
+          "coverage": "every distinct generation recipe/configuration",
+          "path": null,
+          "sha256": null,
+          "coverage_complete": null,
+          "provided_fields": []
+        }
+      ],
+      "external_review": {
+        "status": "unresolved",
+        "reviewer_identity": null,
+        "organization": null,
+        "attestation_path": null,
+        "attestation_sha256": null
+      }
+    },
+    {
+      "gate_id": "complete_prior_inventory_reconciliation",
+      "description": "Complete prior-artifact inventory, duplicate/ancestor reconciliation, and sampling-frame completeness.",
+      "required_artifacts": [
+        {
+          "artifact_id": "prior_artifact_inventory",
+          "kind": "inventory_snapshot",
+          "required_fields": [
+            "inventory_scope",
+            "scan_roots",
+            "scan_timestamp_utc",
+            "record_count",
+            "records",
+            "sha256",
+            "truncation_status"
+          ],
+          "coverage": "complete project artifact scope; no truncation or unresolved scan roots",
+          "path": null,
+          "sha256": null,
+          "coverage_complete": null,
+          "provided_fields": []
+        },
+        {
+          "artifact_id": "cross_source_reconciliation",
+          "kind": "reconciliation_table",
+          "required_fields": [
+            "artifact_sha256",
+            "candidate_root_id",
+            "ancestor_edges",
+            "duplicate_decision",
+            "decision_basis",
+            "review_status"
+          ],
+          "coverage": "every QMutBench/MQT/prior artifact and every unresolved possible match",
+          "path": null,
+          "sha256": null,
+          "coverage_complete": null,
+          "provided_fields": []
+        }
+      ],
+      "external_review": {
+        "status": "unresolved",
+        "reviewer_identity": null,
+        "organization": null,
+        "attestation_path": null,
+        "attestation_sha256": null
+      }
+    },
+    {
+      "gate_id": "source_integrity_and_chain_of_custody",
+      "description": "Exact source hashes, receipt records, transformations, and custody chain.",
+      "required_artifacts": [
+        {
+          "artifact_id": "receipt_and_transform_log",
+          "kind": "chain_of_custody_log",
+          "required_fields": [
+            "custodian",
+            "source_uri",
+            "retrieval_utc",
+            "transport_or_accession_method",
+            "original_sha256",
+            "received_sha256",
+            "transformations",
+            "operator",
+            "log_sha256"
+          ],
+          "coverage": "each archive, circuit, metadata file, label file, and observation file",
+          "path": null,
+          "sha256": null,
+          "coverage_complete": null,
+          "provided_fields": []
+        }
+      ],
+      "external_review": {
+        "status": "unresolved",
+        "reviewer_identity": null,
+        "organization": null,
+        "attestation_path": null,
+        "attestation_sha256": null
+      }
+    },
+    {
+      "gate_id": "behavioral_label_provenance",
+      "description": "Independent labels for output-only program-mutation detection, controls, equivalence, and ambiguity.",
+      "required_artifacts": [
+        {
+          "artifact_id": "label_protocol",
+          "kind": "preregistered_label_protocol",
+          "required_fields": [
+            "endpoint_definition",
+            "positive_negative_ambiguous_rules",
+            "observable_definition",
+            "label_evidence_rules",
+            "protocol_sha256",
+            "frozen_utc"
+          ],
+          "coverage": "all labels and observable configurations",
+          "path": null,
+          "sha256": null,
+          "coverage_complete": null,
+          "provided_fields": []
+        },
+        {
+          "artifact_id": "adjudicated_labels",
+          "kind": "case_level_labels",
+          "required_fields": [
+            "artifact_sha256",
+            "label",
+            "evidence_refs",
+            "reviewer_1_decision",
+            "reviewer_2_decision",
+            "blinding_record",
+            "disagreement_resolution"
+          ],
+          "coverage": "every evaluated original/mutant case including controls, survivors/equivalents, and unresolved cases",
+          "path": null,
+          "sha256": null,
+          "coverage_complete": null,
+          "provided_fields": []
+        }
+      ],
+      "external_review": {
+        "status": "unresolved",
+        "reviewer_identity": null,
+        "organization": null,
+        "attestation_path": null,
+        "attestation_sha256": null
+      }
+    },
+    {
+      "gate_id": "execution_measurement_provenance",
+      "description": "Immutable observations tied to exact circuits, configurations, execution, and measurement protocol.",
+      "required_artifacts": [
+        {
+          "artifact_id": "execution_observation_ledger",
+          "kind": "immutable_observation_ledger",
+          "required_fields": [
+            "record_id",
+            "circuit_sha256",
+            "reference_sha256",
+            "configuration_sha256",
+            "execution_id",
+            "shots",
+            "seed",
+            "measurement_basis",
+            "noise_or_device_settings",
+            "runtime_versions",
+            "raw_counts_path",
+            "raw_counts_sha256",
+            "failure_status"
+          ],
+          "coverage": "each labeled case and every execution/repetition used by evaluation",
+          "path": null,
+          "sha256": null,
+          "coverage_complete": null,
+          "provided_fields": []
+        }
+      ],
+      "external_review": {
+        "status": "unresolved",
+        "reviewer_identity": null,
+        "organization": null,
+        "attestation_path": null,
+        "attestation_sha256": null
+      }
+    },
+    {
+      "gate_id": "independent_review_and_attestation",
+      "description": "Independent verification of custodian claims, lineage decisions, completeness, and label/observation evidence.",
+      "required_artifacts": [
+        {
+          "artifact_id": "independent_review_record",
+          "kind": "review_attestation",
+          "required_fields": [
+            "reviewer_identity",
+            "reviewer_organization",
+            "independence_basis",
+            "conflict_statement",
+            "scope",
+            "findings",
+            "signature_or_verification_method",
+            "attestation_sha256"
+          ],
+          "coverage": "all preceding gates and the complete proposed sampling frame",
+          "path": null,
+          "sha256": null,
+          "coverage_complete": null,
+          "provided_fields": []
+        },
+        {
+          "artifact_id": "review_trust_basis",
+          "kind": "external_trust_record",
+          "required_fields": [
+            "trusted_identity_source",
+            "verification_method",
+            "verified_by_independent_party",
+            "verification_record_sha256"
+          ],
+          "coverage": "each reviewer/custodian identity and each signature or attestation",
+          "path": null,
+          "sha256": null,
+          "coverage_complete": null,
+          "provided_fields": []
+        }
+      ],
+      "external_review": {
+        "status": "unresolved",
+        "reviewer_identity": null,
+        "organization": null,
+        "attestation_path": null,
+        "attestation_sha256": null
+      }
+    }
+  ]
+}

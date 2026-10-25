@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-14",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "win32",
+  "environment_directory": ".pwb-clean-env-20261014",
+  "editable_install_command": ".pwb-clean-env-20261014/Scripts/python.exe -m pip install -e \".[dev]\"",
+  "pip_check": "No broken requirements found",
+  "key_packages": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scikit_learn": "1.9.1",
+    "pytest": "9.1.1"
+  },
+  "pip_freeze": [
+    "cloudpickle==3.1.2",
+    "colorama==0.4.6",
+    "iniconfig==2.3.1",
+    "joblib==1.6.0",
+    "narwhals==2.27.1",
+    "numpy==2.5.4",
+    "packaging==26.3",
+    "pandas==3.0.6",
+    "pluggy==1.6.0",
+    "Pygments==2.21.0",
+    "pytest==9.1.1",
+    "python-dateutil==2.9.0.post0",
+    "-e git+https://github.com/ruckscode/Quantum_Simulator.git@4ac81ad0e278c6045592a4e1c4df518512b04841#egg=quantum_simulator",
+    "scikit-learn==1.9.1",
+    "scipy==1.18.1",
+    "six==1.17.0",
+    "threadpoolctl==3.7.0",
+    "tzdata==2026.5"
+  ],
+  "routine_suite": {
+    "command": ".pwb-clean-env-20261014/Scripts/python.exe -m pytest tests -q --tb=short -k \"not bounded_recipe_comparison_120_templates_and_finite_shot_subset and not independent_calibration_fixture_and_permutation_comparison\" --durations=10 --basetemp .pwb-clean-suite-20261014",
+    "result": "604 passed, 1 failed, 4 skipped, 2 deselected in 149.78s",
+    "failure": "tests/test_reference_diagnosis_generalization.py::test_heldout_generalization_outcomes_and_targets",
+    "excluded": [
+      "test_bounded_recipe_comparison_120_templates_and_finite_shot_subset",
+      "test_independent_calibration_fixture_and_permutation_comparison"
+    ]
+  },
+  "test_collection_comparison": {
+    "primary_environment": 643,
+    "clean_environment": 610,
+    "difference": 33,
+    "missing_test_module": "tests/test_gate_reference_qiskit.py",
+    "reason": "Qiskit is not declared in pyproject.toml and therefore not present in a clean install; Qiskit oracle tests remain separately validated in primary environment."
+  },
+  "limits": [
+    "The known frozen held-out acceptance failure remains.",
+    "Two finite-shot comparisons were excluded under NO-GO policy.",
+    "Optional Qiskit oracle suite is not installed in the declared environment."
+  ]
+}

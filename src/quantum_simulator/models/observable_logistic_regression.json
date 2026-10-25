@@ -1,0 +1,91 @@
+{
+  "artifact_type": "quantum_simulator.observable_logistic_regression.v1",
+  "class_names": [
+    "NORMAL",
+    "PROGRAM_FAULT",
+    "HARDWARE_ANOMALY"
+  ],
+  "coefficients": [
+    [
+      -0.44823322253322767,
+      -0.47742393941778827,
+      -4.179885787892289,
+      -1.4234302948445263,
+      -0.9647751101816405
+    ],
+    [
+      1.3885202095630653,
+      1.852870017934204,
+      1.902875690425848,
+      -0.29497899962054447,
+      -0.6411106930600254
+    ],
+    [
+      -0.9402869870298358,
+      -1.3754460785164229,
+      2.277010097466448,
+      1.7184092944650813,
+      1.6058858032416718
+    ]
+  ],
+  "confidence_policy": {
+    "cutoff": 0.6,
+    "meaning": "operational confidence rule; not a guarantee of 60% empirical correctness",
+    "probability_source": "uncalibrated Logistic Regression predict_proba output"
+  },
+  "feature_names": [
+    "total_variation_distance",
+    "js_divergence",
+    "hellinger_distance",
+    "observed_entropy_bits",
+    "observed_max_probability"
+  ],
+  "intercept": [
+    -2.4948618895624914,
+    -0.16067033168621922,
+    2.655532221248688
+  ],
+  "metadata": {
+    "class_order_source": "quantum_simulator.ml_diagnosis.CLASSES",
+    "dataset_source": "Phase 5 prepared training rows",
+    "evaluation_methodology": "development-family-only fit; no probability calibration",
+    "excluded_families": [
+      "F3_SWAP_ROUTING",
+      "F4_PARITY_TREE",
+      "F5_PHASE_LAYER"
+    ],
+    "random_state": 42,
+    "row_count": 330,
+    "training_families": [
+      "F1_GHZ_CHAIN",
+      "F2_TOFFOLI_COMPUTE"
+    ]
+  },
+  "model_type": "sklearn.linear_model.LogisticRegression",
+  "preprocessing": {
+    "median_imputer_statistics": [
+      0.12109375,
+      0.037373723916681374,
+      0.2298956976234619,
+      0.9501187880093673,
+      0.619140625
+    ],
+    "standard_scaler_mean": [
+      0.22315710819128787,
+      0.12586851745260474,
+      0.31528533701818906,
+      0.8061765738337122,
+      0.6974483605587121
+    ],
+    "standard_scaler_scale": [
+      0.28574002104154,
+      0.2031511660322662,
+      0.28459047686710237,
+      0.541785850962543,
+      0.22353967274462358
+    ]
+  },
+  "probabilities_calibrated": false,
+  "probability_calibration": "none",
+  "training_status": "FINAL DEPLOYABLE MODEL"
+}

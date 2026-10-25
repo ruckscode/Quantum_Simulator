@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 from pathlib import Path
 from typing import Any
 
 import numpy as np
+import sklearn
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
@@ -70,6 +72,15 @@ def _load_joined_rows() -> list[dict[str, Any]]:
     observable_rows = load_dataset()
     if len(observable_rows) != 270:
         raise ValueError(f"Expected 270 baseline report rows, found {len(observable_rows)}")
+    audit_path = REPLAY_FEATURES_CSV.with_name("audit_report.json")
+    audit = json.loads(audit_path.read_text(encoding="utf-8"))
+    if audit.get("audit_pass") is not True:
+        raise ValueError("Replay feature audit did not pass")
+    expected_csv_hash = audit.get("replay_feature_csv_sha256")
+    actual_csv_hash = hashlib.sha256(REPLAY_FEATURES_CSV.read_bytes()).hexdigest()
+    if not expected_csv_hash or actual_csv_hash != expected_csv_hash:
+        raise ValueError("Replay feature CSV does not match its provenance audit")
+
     with REPLAY_FEATURES_CSV.open(newline="", encoding="utf-8") as stream:
         replay_rows = list(csv.DictReader(stream))
     replay_by_id = {row["run_id"]: row for row in replay_rows}
@@ -136,7 +147,28 @@ def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
 
 
 def run_experiment(output_dir: Path = OUTPUT_DIR) -> dict[str, Any]:
+    output_dir = Path(output_dir).resolve()
     rows = _load_joined_rows()
+    source_identity = []
+    for row in rows:
+        report_path = Path(row["report_path"])
+        if not report_path.is_absolute():
+            report_path = ROOT / report_path
+        source_identity.append({
+            "run_id": row["run_id"],
+            "report_sha256": hashlib.sha256(report_path.read_bytes()).hexdigest(),
+            "declared_source_sha256": row.get("_source_sha256"),
+        })
+    source_identity.sort(key=lambda row: row["run_id"])
+    source_data_fingerprint = hashlib.sha256(
+        json.dumps(source_identity, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    trace_features_sha256 = hashlib.sha256(REPLAY_FEATURES_CSV.read_bytes()).hexdigest()
+    trace_audit_path = REPLAY_FEATURES_CSV.with_name("audit_report.json")
+    trace_audit_sha256 = hashlib.sha256(trace_audit_path.read_bytes()).hexdigest()
+    trace_implementation_sha256 = json.loads(trace_audit_path.read_text(encoding="utf-8")).get(
+        "implementation_sha256", {}
+    )
     labels = np.asarray([row["ground_truth_label"] for row in rows])
     groups = np.asarray([row["circuit_family_id"] for row in rows])
     if set(np.unique(labels)) != set(LABELS) or len(set(groups)) != 30:
@@ -313,6 +345,16 @@ def run_experiment(output_dir: Path = OUTPUT_DIR) -> dict[str, Any]:
         "n_records": len(rows),
         "class_counts": {label: int(np.sum(labels == label)) for label in LABELS},
         "group_count": len(set(groups)),
+        "input_provenance": {
+            "baseline_report_set_sha256": source_data_fingerprint,
+            "replay_feature_csv_sha256": trace_features_sha256,
+            "replay_feature_audit_sha256": trace_audit_sha256,
+            "trace_implementation_sha256": trace_implementation_sha256,
+            "baseline_report_sha256_coverage": len(source_identity),
+            "embedded_source_hash_coverage": sum(row.get("_source_sha256") is not None for row in rows),
+            "numpy_version": np.__version__,
+            "scikit_learn_version": sklearn.__version__,
+        },
         "methodology": {
             "splitter": "StratifiedGroupKFold",
             "n_splits": 5,
@@ -353,8 +395,12 @@ def run_experiment(output_dir: Path = OUTPUT_DIR) -> dict[str, Any]:
     _write_csv(output_dir / "confusion_matrices.csv", confusion_rows)
     (output_dir / "feature_correlation_audit.json").write_text(json.dumps(correlation_audit, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     (output_dir / "leakage_audit.json").write_text(json.dumps(leakage_audit, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    try:
+        displayed_output_dir = output_dir.relative_to(ROOT).as_posix()
+    except ValueError:
+        displayed_output_dir = str(output_dir)
     print(json.dumps({
-        "output_dir": str(output_dir.relative_to(ROOT)),
+        "output_dir": displayed_output_dir,
         "summary": summary_rows,
         "comparisons": comparisons,
         "majority_baseline": report["majority_baseline"],

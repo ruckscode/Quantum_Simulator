@@ -6,6 +6,9 @@ legacy tuple-based instruction format expected in the earlier Colab work.
 
 from __future__ import annotations
 
+import sys
+from copy import deepcopy
+from numbers import Integral
 from typing import Any, Iterable, List, Sequence
 
 import numpy as np
@@ -41,12 +44,50 @@ class QuantumSimulator:
     plus special operations for measurement, reset, and barrier.
     """
 
-    def __init__(self, n_qubits: int, seed: int | None = None):
-        if not isinstance(n_qubits, int) or n_qubits <= 0:
+    @staticmethod
+    def estimate_working_array_bytes(n_qubits: int) -> int:
+        """Estimate principal complex128/probability arrays for a circuit.
+
+        The estimate reserves three statevector-sized blocks (48 bytes per
+        amplitude), covering the state, a gate/reset output, and measurement
+        probability temporaries. It excludes Python/NumPy/runtime overhead.
+        """
+        if isinstance(n_qubits, bool) or not isinstance(n_qubits, Integral) or n_qubits <= 0:
+            raise ValueError("n_qubits must be a positive integer")
+        n_qubits = int(n_qubits)
+        max_addressable_qubits = (sys.maxsize // np.dtype(np.complex128).itemsize).bit_length() - 1
+        if n_qubits > max_addressable_qubits:
+            raise MemoryError("Requested statevector exceeds the platform addressable array size")
+        statevector_bytes = np.dtype(np.complex128).itemsize * (1 << n_qubits)
+        return 3 * statevector_bytes
+
+    def __init__(
+        self,
+        n_qubits: int,
+        seed: int | None = None,
+        *,
+        memory_budget_bytes: int | None = None,
+    ):
+        if isinstance(n_qubits, bool) or not isinstance(n_qubits, Integral) or n_qubits <= 0:
             raise ValueError("n_qubits must be a positive integer")
 
-        self.n = n_qubits
-        self.dim = 2 ** n_qubits
+        self.n = int(n_qubits)
+        estimated_bytes = self.estimate_working_array_bytes(self.n)
+        if memory_budget_bytes is not None:
+            if (
+                isinstance(memory_budget_bytes, bool)
+                or not isinstance(memory_budget_bytes, Integral)
+                or memory_budget_bytes <= 0
+            ):
+                raise ValueError("memory_budget_bytes must be a positive integer or None")
+            memory_budget_bytes = int(memory_budget_bytes)
+            if estimated_bytes > memory_budget_bytes:
+                raise MemoryError(
+                    f"Estimated simulator working arrays require {estimated_bytes} bytes, "
+                    f"exceeding the configured budget of {memory_budget_bytes} bytes"
+                )
+        self.memory_budget_bytes = memory_budget_bytes
+        self.dim = 2 ** self.n
         self.state = np.zeros(self.dim, dtype=complex)
         self.state[0] = 1.0
         self.history: List[str] = []
@@ -54,29 +95,37 @@ class QuantumSimulator:
         self.rng = np.random.default_rng(seed)
 
     def _validate_qubit(self, qubit: int) -> None:
-        if not isinstance(qubit, int):
+        if isinstance(qubit, bool) or not isinstance(qubit, Integral):
             raise TypeError(f"Qubit index must be int, got {type(qubit).__name__}")
+        qubit = int(qubit)
         if qubit < 0 or qubit >= self.n:
             raise ValueError(f"Qubit index {qubit} out of range for {self.n} qubits")
 
     def _validate_qubits(self, qubits: Sequence[int]) -> List[int]:
-        normalized = [int(q) for q in qubits]
-        for q in normalized:
-            self._validate_qubit(q)
+        normalized = []
+        for qubit in qubits:
+            self._validate_qubit(qubit)
+            normalized.append(int(qubit))
         return normalized
 
     def _apply_local_gate(self, gate_matrix: np.ndarray, qubits: Sequence[int]) -> None:
         qubits = self._validate_qubits(qubits)
         if len(qubits) == 0:
             return
+        if len(set(qubits)) != len(qubits):
+            raise ValueError("Gate operands must refer to distinct qubits")
 
         matrix = np.asarray(gate_matrix, dtype=complex)
-        if matrix.shape[0] != matrix.shape[1]:
+        if matrix.ndim != 2 or matrix.shape[0] != matrix.shape[1]:
             raise ValueError("Gate matrix must be square")
         if matrix.shape[0] != 2 ** len(qubits):
             raise ValueError(
                 f"Gate matrix dimension {matrix.shape} does not match qubit count {len(qubits)}"
             )
+        if not np.all(np.isfinite(matrix)):
+            raise ValueError("Gate matrix must contain only finite values")
+        if not np.allclose(matrix.conj().T @ matrix, np.eye(matrix.shape[0]), rtol=0.0, atol=1e-10):
+            raise ValueError("Gate matrix must be unitary")
 
         new_state = np.zeros_like(self.state)
         for basis_index in range(self.dim):
@@ -123,7 +172,13 @@ class QuantumSimulator:
                 raise ValueError(f"Gate {name!r} requires parameters")
             if len(params) == 0:
                 raise ValueError(f"Gate {name!r} requires at least one parameter")
-            return gate(*params)
+            try:
+                finite_params = [float(value) for value in params]
+            except (TypeError, ValueError, OverflowError) as exc:
+                raise ValueError(f"Gate {name!r} parameters must be finite real numbers") from exc
+            if not np.all(np.isfinite(finite_params)):
+                raise ValueError(f"Gate {name!r} parameters must be finite real numbers")
+            return gate(*finite_params)
 
         return gate
 
@@ -140,9 +195,9 @@ class QuantumSimulator:
             self._apply_local_gate(matrix, qubits)
             return
 
-        self._validate_qubit(int(qubit))
+        self._validate_qubit(qubit)
         matrix = self._resolve_gate_matrix(str(gate_name), list(params))
-        self._apply_local_gate(matrix, [int(qubit)])
+        self._apply_local_gate(matrix, [qubit])
 
     def apply_cnot(self, control: int, target: int) -> None:
         self._validate_qubit(control)
@@ -177,27 +232,35 @@ class QuantumSimulator:
         self.history.append(f"barrier({normalized})")
 
     def reset_qubit(self, qubit: int) -> None:
+        """Apply the reset channel using a seeded pure-state trajectory.
+
+        The two Kraus branches are |0><0| and |0><1|. For an entangled
+        input, one trajectory conditions the other qubits on the sampled
+        branch; averaging trajectories reproduces the mixed channel output.
+        """
         self._validate_qubit(qubit)
-        new_state = np.zeros_like(self.state)
-        for basis_index in range(self.dim):
-            bits = list(f"{basis_index:0{self.n}b}")
-            if bits[qubit] == "0":
-                new_state[basis_index] = self.state[basis_index]
+        bit_mask = 1 << (self.n - 1 - qubit)
+        zero_indices = np.array([i for i in range(self.dim) if not (i & bit_mask)])
+        one_indices = zero_indices | bit_mask
+        zero_probability = float(np.sum(np.abs(self.state[zero_indices]) ** 2))
+        one_probability = float(np.sum(np.abs(self.state[one_indices]) ** 2))
+        total_probability = zero_probability + one_probability
+        if not np.isfinite(total_probability) or total_probability <= 0:
+            raise ValueError("Cannot reset an invalid zero-norm state")
 
-        norm = np.linalg.norm(new_state)
-        if norm == 0:
-            new_state = np.zeros_like(self.state)
-            zero_state = 0
-            if self.n == 1:
-                new_state[0] = 1.0
-            else:
-                zero_bits = "0" * self.n
-                zero_state = int(zero_bits, 2)
-                new_state[zero_state] = 1.0
+        if one_probability <= 0:
+            choose_one = False
+        elif zero_probability <= 0:
+            choose_one = True
         else:
-            new_state = new_state / norm
-
-        self.state = new_state
+            choose_one = self.rng.random() >= zero_probability / total_probability
+        new_state = np.zeros_like(self.state)
+        source_indices = one_indices if choose_one else zero_indices
+        new_state[zero_indices] = self.state[source_indices]
+        norm = np.linalg.norm(new_state)
+        if norm <= 0:
+            raise ValueError("Cannot reset an invalid zero-norm state")
+        self.state = new_state / norm
         self.history.append(f"reset({qubit})")
 
     def measure(self, qubits: int | Sequence[int] | None = None, classical_bits: Sequence[int] | None = None, readout_error: float | Sequence[float] | None = None) -> Any:
@@ -220,30 +283,32 @@ class QuantumSimulator:
         full_probabilities = np.abs(self.state) ** 2
         full_index = int(self.rng.choice(self.dim, p=full_probabilities))
         full_bits = list(f"{full_index:0{self.n}b}")
-        selected_bits = [full_bits[q] for q in qubits]
-        result = "".join(selected_bits)
+        physical_bits = [full_bits[q] for q in qubits]
+        reported_bits = physical_bits.copy()
+        result = "".join(reported_bits)
 
         if readout_error is not None:
-            errors = ([float(readout_error)] * len(selected_bits)
+            errors = ([float(readout_error)] * len(physical_bits)
                       if isinstance(readout_error, (int, float))
                       else [float(error) for error in readout_error])
-            if len(errors) != len(selected_bits) or any(not 0 <= error <= 1 for error in errors):
+            if len(errors) != len(physical_bits) or any(not 0 <= error <= 1 for error in errors):
                 raise ValueError("readout_error must contain one probability per measured qubit")
             flipped = []
-            for bit, error in zip(selected_bits, errors):
+            for bit, error in zip(physical_bits, errors):
                 if self.rng.random() < error:
                     flipped.append("1" if bit == "0" else "0")
                 else:
                     flipped.append(bit)
-            result = "".join(flipped)
-            selected_bits = list(result)
+            reported_bits = flipped
+            result = "".join(reported_bits)
 
-        # Collapse the state to the observed measurement outcome.
+        # Physical collapse follows the sampled quantum outcome. Readout noise
+        # changes only the classical report, not the post-measurement state.
         new_state = np.zeros_like(self.state)
         for basis_index in range(self.dim):
             bits = list(f"{basis_index:0{self.n}b}")
             observed = [bits[q] for q in qubits]
-            if observed == selected_bits:
+            if observed == physical_bits:
                 new_state[basis_index] = self.state[basis_index]
 
         norm = np.linalg.norm(new_state)
@@ -258,7 +323,7 @@ class QuantumSimulator:
         self.measurement_results.append(result)
 
         if classical_bits:
-            return {classical_bit: int(bit) for classical_bit, bit in zip(classical_bits, selected_bits)}
+            return {classical_bit: int(bit) for classical_bit, bit in zip(classical_bits, reported_bits)}
 
         return result
 
@@ -329,9 +394,9 @@ class QuantumSimulator:
             gate_failed = False
 
             if hardware_model is not None and op_name not in {"measure", "reset", "barrier"}:
-                if op_name in {"cx", "cnot", "cz", "swap", "ch", "rxx", "cp", "crx", "cry", "crz"}:
+                if op_name in {"cx", "cnot", "cz", "swap", "ch", "rxx", "rzz", "cp", "crx", "cry", "crz"}:
                     gate_qubits = tuple(int(q) for q in operands[:2])
-                elif op_name in {"ccx", "toffoli", "cswap", "fredkin"}:
+                elif op_name in {"ccx", "rccx", "toffoli", "cswap", "fredkin"}:
                     gate_qubits = tuple(int(q) for q in operands[:3])
                 else:
                     gate_qubits = tuple(int(q) for q in operands[:1])
@@ -396,9 +461,11 @@ class QuantumSimulator:
                     self._apply_hardware_relaxation(gate_qubits, gate_duration, hardware_model)
                 continue
 
-            if op_name in {"u2", "u3"}:
-                if len(operands) != 3:
-                    raise ValueError(f"Gate {op_name!r} expects a qubit and two parameters")
+            if op_name in {"u2", "u3", "u"}:
+                expected_operands = 3 if op_name == "u2" else 4
+                if len(operands) != expected_operands:
+                    parameter_count = expected_operands - 1
+                    raise ValueError(f"Gate {op_name!r} expects one qubit and {parameter_count} parameters")
                 qubit = operands[0]
                 params = [float(v) for v in operands[1:]]
                 self.apply_gate(op_name, qubit, *params)
@@ -406,10 +473,10 @@ class QuantumSimulator:
                     self._apply_hardware_relaxation(gate_qubits, gate_duration, hardware_model)
                 continue
 
-            if op_name == "rxx":
+            if op_name in {"rxx", "rzz"}:
                 if len(operands) != 3:
-                    raise ValueError("Gate 'rxx' expects two qubit operands and one parameter")
-                self.apply_gate("rxx", [int(operands[0]), int(operands[1])], float(operands[2]))
+                    raise ValueError(f"Gate {op_name!r} expects two qubit operands and one parameter")
+                self.apply_gate(op_name, [operands[0], operands[1]], float(operands[2]))
                 if hardware_model is not None:
                     self._apply_hardware_relaxation(gate_qubits, gate_duration, hardware_model)
                 continue
@@ -417,7 +484,7 @@ class QuantumSimulator:
             if op_name in {"cp", "crx", "cry", "crz"}:
                 if len(operands) != 3:
                     raise ValueError(f"Gate {op_name!r} expects two qubit operands and one parameter")
-                self.apply_gate(op_name, [int(operands[0]), int(operands[1])], float(operands[2]))
+                self.apply_gate(op_name, [operands[0], operands[1]], float(operands[2]))
                 if hardware_model is not None:
                     self._apply_hardware_relaxation(gate_qubits, gate_duration, hardware_model)
                 continue
@@ -426,13 +493,21 @@ class QuantumSimulator:
                 if len(operands) != 2:
                     raise ValueError(f"Gate {op_name!r} expects two qubit operands")
                 if op_name in {"cx", "cnot"}:
-                    self.apply_cnot(int(operands[0]), int(operands[1]))
+                    self.apply_cnot(operands[0], operands[1])
                 elif op_name == "cz":
-                    self._apply_local_gate(CZ, [int(operands[0]), int(operands[1])])
+                    self._apply_local_gate(CZ, [operands[0], operands[1]])
                 elif op_name == "swap":
-                    self._apply_local_gate(SWAP, [int(operands[0]), int(operands[1])])
+                    self._apply_local_gate(SWAP, [operands[0], operands[1]])
                 elif op_name == "ch":
-                    self._apply_local_gate(CH, [int(operands[0]), int(operands[1])])
+                    self._apply_local_gate(CH, [operands[0], operands[1]])
+                if hardware_model is not None:
+                    self._apply_hardware_relaxation(gate_qubits, gate_duration, hardware_model)
+                continue
+
+            if op_name == "rccx":
+                if len(operands) != 3:
+                    raise ValueError("Gate 'rccx' expects three qubit operands")
+                self._apply_local_gate(get_gate("rccx"), [operands[0], operands[1], operands[2]])
                 if hardware_model is not None:
                     self._apply_hardware_relaxation(gate_qubits, gate_duration, hardware_model)
                 continue
@@ -440,7 +515,7 @@ class QuantumSimulator:
             if op_name in {"ccx", "toffoli"}:
                 if len(operands) != 3:
                     raise ValueError(f"Gate {op_name!r} expects three qubit operands")
-                self.apply_toffoli(int(operands[0]), int(operands[1]), int(operands[2]))
+                self.apply_toffoli(operands[0], operands[1], operands[2])
                 if hardware_model is not None:
                     self._apply_hardware_relaxation(gate_qubits, gate_duration, hardware_model)
                 continue
@@ -448,7 +523,7 @@ class QuantumSimulator:
             if op_name in {"cswap", "fredkin"}:
                 if len(operands) != 3:
                     raise ValueError(f"Gate {op_name!r} expects three qubit operands")
-                self._apply_local_gate(CSWAP, [int(operands[0]), int(operands[1]), int(operands[2])])
+                self._apply_local_gate(CSWAP, [operands[0], operands[1], operands[2]])
                 if hardware_model is not None:
                     self._apply_hardware_relaxation(gate_qubits, gate_duration, hardware_model)
                 continue
@@ -457,16 +532,30 @@ class QuantumSimulator:
 
         return results
 
-    def run_shots(self, instructions: Iterable[Any], shots: int = 1000, *, seed: int | None = None) -> dict[str, int]:
-        if shots <= 0:
-            raise ValueError("shots must be positive")
+    def run_shots(
+        self,
+        instructions: Iterable[Any],
+        shots: int = 1000,
+        *,
+        seed: int | None = None,
+        hardware_model: HardwareModel | None = None,
+    ) -> dict[str, int]:
+        if isinstance(shots, bool) or not isinstance(shots, Integral) or shots <= 0:
+            raise ValueError("shots must be a positive integer")
+        shots = int(shots)
+        # Materialize once so a generator describes the same circuit on every shot.
+        instructions = list(instructions)
 
         counts: dict[str, int] = {}
         rng = np.random.default_rng(seed)
 
         for _ in range(shots):
-            sim = QuantumSimulator(self.n, seed=int(rng.integers(0, 2 ** 31 - 1)))
-            sim.run_circuit(instructions)
+            sim = QuantumSimulator(
+                self.n,
+                seed=int(rng.integers(0, 2 ** 31 - 1)),
+                memory_budget_bytes=self.memory_budget_bytes,
+            )
+            sim.run_circuit(instructions, hardware_model=hardware_model)
             if sim.measurement_results:
                 last = sim.measurement_results[-1]
             else:
@@ -477,27 +566,120 @@ class QuantumSimulator:
 
         return counts
 
-    def run_circuit_traced(self, correct_instructions: Iterable[Any], actual_instructions: Iterable[Any]):
-        clean = QuantumSimulator(self.n)
-        noisy = QuantumSimulator(self.n)
+    def run_circuit_traced(
+        self,
+        correct_instructions: Iterable[Any],
+        actual_instructions: Iterable[Any],
+        *,
+        hardware_model: HardwareModel | None = None,
+        seed: int | None = None,
+    ):
+        """Run aligned expected/actual operations and record state evidence.
 
-        clean.run_circuit(correct_instructions)
-        noisy.run_circuit(actual_instructions)
-
+        Trace rows follow edit-distance alignment, so an inserted or deleted
+        operation cannot shift all later comparisons. Missing instructions are
+        represented by ``None`` on their respective side.
+        """
+        clean = QuantumSimulator(self.n, seed=seed)
+        noisy = QuantumSimulator(self.n, seed=seed)
         clean_states = [clean.state.copy()]
         noisy_states = [noisy.state.copy()]
         labels = []
         trace = []
-
-        for instruction in actual_instructions:
-            op_name, operands = self._normalize_operation(instruction)
+        correct = list(correct_instructions)
+        actual = list(actual_instructions)
+        expected_sigs = [self._normalize_operation(op) for op in correct]
+        actual_sigs = [self._normalize_operation(op) for op in actual]
+        rows, cols = len(correct) + 1, len(actual) + 1
+        costs = [[0] * cols for _ in range(rows)]
+        moves = [[""] * cols for _ in range(rows)]
+        for i in range(1, rows): costs[i][0], moves[i][0] = i, "delete"
+        for j in range(1, cols): costs[0][j], moves[0][j] = j, "insert"
+        for i in range(1, rows):
+            for j in range(1, cols):
+                if expected_sigs[i-1] == actual_sigs[j-1]:
+                    costs[i][j], moves[i][j] = costs[i-1][j-1], "match"
+                else:
+                    choices = ((costs[i-1][j-1]+1, "substitute"), (costs[i][j-1]+1, "insert"), (costs[i-1][j]+1, "delete"))
+                    costs[i][j], moves[i][j] = min(choices, key=lambda item: item[0])
+        aligned = []
+        i, j = len(correct), len(actual)
+        while i or j:
+            move = moves[i][j]
+            if move in {"match", "substitute"}:
+                aligned.append((i-1, j-1)); i -= 1; j -= 1
+            elif move == "insert":
+                aligned.append((None, j-1)); j -= 1
+            else:
+                aligned.append((i-1, None)); i -= 1
+        aligned.reverse()
+        for step, (expected_idx, actual_idx) in enumerate(aligned):
+            expected_instruction = correct[expected_idx] if expected_idx is not None else None
+            actual_instruction = actual[actual_idx] if actual_idx is not None else None
+            trace_instruction = actual_instruction if actual_instruction is not None else expected_instruction
+            op_name, operands = self._normalize_operation(trace_instruction)
+            metadata = {
+                "resolved_calibration_name": None,
+                "gate_error": None,
+                "gate_duration": None,
+                "gate_failed": None,
+                "affected_hardware_qubits": None,
+                "t1": None,
+                "t2": None,
+                "readout_error": None,
+            }
+            if expected_instruction is not None:
+                clean.run_circuit([expected_instruction])
+            if actual_instruction is not None:
+                actual_name, actual_operands = self._normalize_operation(actual_instruction)
+                metadata_qubits: tuple[int, ...] = ()
+                calibration_name = None
+                if hardware_model is not None:
+                    if actual_name == "measure":
+                        metadata_qubits = tuple(range(self.n)) if not actual_operands else tuple(
+                            int(q) for q in (
+                                actual_operands[0] if isinstance(actual_operands[0], (list, tuple)) else [actual_operands[0]]
+                            )
+                        )
+                        metadata["readout_error"] = {
+                            q: hardware_model.get_qubit_properties(q).readout_error for q in metadata_qubits
+                        }
+                    elif actual_name not in {"reset", "barrier"}:
+                        if actual_name in {"cx", "cnot", "cz", "swap", "ch", "rxx", "rzz", "cp", "crx", "cry", "crz"}:
+                            metadata_qubits = tuple(int(q) for q in actual_operands[:2])
+                        elif actual_name in {"ccx", "rccx", "toffoli", "cswap", "fredkin"}:
+                            metadata_qubits = tuple(int(q) for q in actual_operands[:3])
+                        else:
+                            metadata_qubits = tuple(int(q) for q in actual_operands[:1])
+                        calibration_name = {"cnot": "cx", "id": "i", "identity": "i"}.get(actual_name, actual_name)
+                        metadata["resolved_calibration_name"] = calibration_name
+                        metadata["gate_error"] = hardware_model.gate_error(calibration_name, metadata_qubits)
+                        metadata["gate_duration"] = hardware_model.gate_duration(calibration_name, metadata_qubits)
+                        # Predict the exact failure draw, then restore RNG state so
+                        # run_circuit consumes it once and execution remains unchanged.
+                        rng_state = deepcopy(noisy.rng.bit_generator.state)
+                        failed = noisy.rng.random() < metadata["gate_error"]
+                        noisy.rng.bit_generator.state = rng_state
+                        metadata["gate_failed"] = bool(failed)
+                    if metadata_qubits:
+                        metadata["affected_hardware_qubits"] = list(metadata_qubits)
+                        if actual_name != "measure":
+                            metadata["t1"] = {q: hardware_model.get_qubit_properties(q).t1 for q in metadata_qubits}
+                            metadata["t2"] = {q: hardware_model.get_qubit_properties(q).t2 for q in metadata_qubits}
+                noisy.run_circuit([actual_instruction], hardware_model=hardware_model)
             labels.append(op_name)
             clean_states.append(clean.state.copy())
             noisy_states.append(noisy.state.copy())
+            difference = float(np.abs(np.abs(clean.state) ** 2 - np.abs(noisy.state) ** 2).sum() / 2)
             trace.append({
+                "step": step,
                 "operation": op_name,
                 "operands": operands,
-                "deviation": float(np.linalg.norm(noisy.state - clean.state)),
+                "expected": expected_instruction,
+                "actual": actual_instruction,
+                "difference": difference,
+                "probability_difference": difference,
+                **metadata,
             })
 
         return clean_states, noisy_states, labels, trace

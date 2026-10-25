@@ -1,0 +1,136 @@
+{
+  "purpose": "Independent finite-shot calibration fixture for distribution comparison",
+  "predeclared_before_evaluation": true,
+  "structure_note": "Four-qubit scrambled-uniform preparation with a paired CNOT topology; not copied from the Bell, GHZ, parity, QFT-like, Toffoli, or ring-cluster fixtures.",
+  "seeds": [13, 29],
+  "shot_counts": [256, 1024],
+  "shot_seed_offsets": {"256": 0, "1024": 10000},
+  "permutation_repetitions": 999,
+  "permutation_alpha": 0.05,
+  "outcome_space_size": 16,
+  "proposed_next_calibration_plan": {
+    "status": "preregistered_not_executed",
+    "scope": "Select a candidate finite-shot method on calibration data, then evaluate it once on untouched validation data. These targets do not alter the frozen Phase 5 contract.",
+    "confidence_rule": "One-sided 95% exact Clopper-Pearson bounds, computed separately at each shot count and stratum.",
+    "candidate_test": "Two-sample categorical TVD permutation test, alpha 0.05, with 999 Monte Carlo resamples and add-one p-value correction. The current implementation shuffles the pooled per-shot label vector; that implementation has only been exercised at pilot scale. Benchmark/optimize permutation post-processing before this plan is authorized.",
+    "shot_counts": [256, 1024, 4096],
+    "trials_per_stratum_per_shot_per_split": 120,
+    "false_positive_targets": {
+      "maximum_rate": 0.05,
+      "strata": ["identical_control", "measurement_equivalent_control"],
+      "maximum_false_positives_at_n": 1,
+      "upper_bound_at_maximum": 0.038921,
+      "upper_bound_with_two_false_positives": 0.051534
+    },
+    "sensitivity_targets_by_effect_and_shots": {
+      "subtle": {"ideal_tvd_range": "[0.05, 0.10)", "256": 0.50, "1024": 0.80, "4096": 0.90},
+      "moderate": {"ideal_tvd_range": "[0.15, 0.25)", "256": 0.80, "1024": 0.90, "4096": 0.95},
+      "large": {"ideal_tvd_range": "[0.40, 0.50]", "256": 0.95, "1024": 0.95, "4096": 0.95}
+    },
+    "minimum_detected_at_n_120": {"0.50": 70, "0.80": 104, "0.90": 114, "0.95": 119},
+    "design": {
+      "distinct_reference_templates_per_split": 120,
+      "negative_composition_per_split": {"identical_control": 120, "measurement_equivalent_control": 120},
+      "positive_composition_per_split": {"subtle": 120, "moderate": 120, "large": 120},
+      "template_generation_seed_roots": {"calibration": 20261014, "untouched_validation": 40271014},
+      "sampling_seed_roots": {"calibration": 30261015, "untouched_validation": 50361015},
+      "seed_derivation": "Four globally disjoint namespaces. For each split, derive template seeds as template_seed_root + template_index. Derive sampling seeds as sampling_seed_root + 10000*stratum_index + 10*template_index + shot_index. Use a distinct sample seed for each shot count; reject duplicate circuit fingerprints across splits.",
+      "seed_namespace_ranges": {
+        "calibration_template_generation": [20261014, 20261133],
+        "calibration_sampling": [30261015, 30302207],
+        "validation_template_generation": [40271014, 40271133],
+        "validation_sampling": [50361015, 50402207]
+      },
+      "calibration_output_directory": "reports/experiments/finite_shot_distribution_calibration_run",
+      "generation_protocol": {
+        "status": "approved_and_frozen",
+        "specified_by_existing_evidence": {
+          "qubit_count": 4,
+          "pilot_reference": [["h", 0], ["h", 1], ["h", 2], ["h", 3], ["cx", 0, 2], ["cx", 1, 3], ["measure", [0, 1, 2, 3]]],
+          "identical_control": "submitted circuit is exactly the reference circuit",
+          "measurement_equivalent_control": "pilot inserts z on qubit 3 immediately before measurement",
+          "fault_interventions": {
+            "subtle": {"operation": "replace first h on qubit 0 with ry", "angle_radians": 1.45, "pilot_ideal_tvd": 0.0603},
+            "moderate": {"operation": "replace first h on qubit 0 with ry", "angle_radians": 1.2, "pilot_ideal_tvd": 0.1812},
+            "large": {"operation": "replace first h on qubit 0 with ry", "angle_radians": 0.4, "pilot_ideal_tvd": 0.4605}
+          },
+          "labels": {"identical_control": "NO_ANOMALY", "measurement_equivalent_control": "NO_ANOMALY", "subtle": "ANOMALY", "moderate": "ANOMALY", "large": "ANOMALY"},
+          "pairing": "Reuse the same generated reference template across all five strata and all shot counts within a split. Change only the submitted-circuit intervention. This follows the plan requirement that each template contribute at every shot level and stratum and the paired pilot examples.",
+          "fault_target_mapping": "Keep qubit 0 fixed as the fault target. Each generated reference must retain exactly one H on qubit 0; replace that H with the registered RY intervention. The pilot examples use H(0) as the first operation, but the intervention is defined by gate identity and qubit rather than list position."
+        },
+        "primary_recipe": {
+          "id": "fixed_pilot_topology_phase_tags",
+          "status": "selected_for_primary_calibration",
+          "algorithm": "Initialize numpy.default_rng(template_seed); use H in order 0,1,2,3, then CX(0,2), CX(1,3), then append RZ(q, angle[q]) for q=0..3 with four angles drawn uniformly from [-pi,pi), then measure all qubits.",
+          "rationale": "Owner decision made now: preserve the exact paired-CNOT topology in the original pilot. Terminal RZ phase tags provide deterministic distinct templates while preserving the pilot's uniform computational-basis distribution. The fixed topology is the primary preregistered recipe; this decision does not claim that phase tags are the only scientifically valid template construction."
+        },
+        "missing_decisions": [],
+        "candidate_recipes_for_comparison_only": [
+          {"id": "seeded_paired_topology_phase_tags", "status": "exploratory_only_outside_primary_preregistered_calibration", "algorithm": "Initialize numpy.default_rng(template_seed); draw an H-qubit permutation; choose uniformly among the three perfect matchings of four qubits; draw CNOT pair order and each edge direction; append four seed-derived terminal RZ angles from [-pi,pi); then measure all qubits."}
+        ]
+      },
+      "separation": "Use calibration split only for method/threshold selection. Freeze method, threshold, and configuration hash before opening untouched validation. Never reuse validation outcomes for tuning; if changed after validation, require a new untouched validation split.",
+      "uncertainty": "Report exact binomial intervals per shot and stratum. Also report template-paired differences across shot levels; do not pool shot counts. Each template contributes one result per shot level and stratum."
+    },
+    "workload": {
+      "diagnosis_configurations": 3600,
+      "shot_circuit_executions": 12902400,
+      "arithmetic": "2 splits * 5 strata * 120 templates * 2 sampled circuits * (256 + 1024 + 4096) shots",
+      "runtime_pilot": {
+        "seed": 13,
+        "permutations_per_comparison": 999,
+        "scenarios": 5,
+        "shot_counts": [256, 1024],
+        "diagnosis_configurations": 10,
+        "shot_circuit_executions": 12800,
+        "simulator_seconds": {"256": 1.449, "1024": 5.769, "total": 7.218},
+        "postprocessing_seconds": {"256": 0.109, "1024": 0.255, "total": 0.364},
+        "wall_seconds": 7.581
+      },
+      "estimated_runtime_minutes": {"low": 110, "high": 145},
+      "runtime_scope": "Estimate uses the measured 1,774 shot-circuit-executions/second pilot rate and includes approximately 5-10 minutes extrapolated permutation work. Assumes sequential streaming and similar four-qubit circuit cost; allow uncertainty for generated circuit depth and host load. Earlier 55-75 minute estimate was low because its pilot execution count was double-counted.",
+      "memory_note": "Stream one small circuit comparison at a time; retain only per-configuration metrics and fingerprints. The largest pooled-label vector at 4096 shots is 8192 int64 entries (64 KiB), with a similarly sized permutation temporary; estimated permutation working set is below 1 MiB per active comparison, excluding Python/runtime baseline."
+    },
+    "phase5_non_change": "Phase 5 sensitivity >=0.80, specificity >=0.90, fixed 0.05 threshold, and finite-shot guard remain unchanged. These proposed calibration targets are separate and stricter in some strata."
+  },
+  "cases": [
+    {
+      "id": "same_circuit_control",
+      "scenario": "identical_control",
+      "expected_anomaly": false,
+      "reference": [["h", 0], ["h", 1], ["h", 2], ["h", 3], ["cx", 0, 2], ["cx", 1, 3], ["measure", [0, 1, 2, 3]]],
+      "submitted": [["h", 0], ["h", 1], ["h", 2], ["h", 3], ["cx", 0, 2], ["cx", 1, 3], ["measure", [0, 1, 2, 3]]]
+    },
+    {
+      "id": "measurement_equivalent_phase_mutation",
+      "scenario": "ambiguous_observable_equivalence",
+      "expected_anomaly": false,
+      "reference": [["h", 0], ["h", 1], ["cx", 0, 2], ["cx", 1, 3], ["measure", [0, 1, 2, 3]]],
+      "submitted": [["h", 0], ["h", 1], ["cx", 0, 2], ["cx", 1, 3], ["z", 3], ["measure", [0, 1, 2, 3]]]
+    },
+    {
+      "id": "subtle_ry_fault",
+      "scenario": "observable_fault_subtle",
+      "expected_anomaly": true,
+      "expected_ideal_tvd": 0.0603,
+      "reference": [["h", 0], ["h", 1], ["h", 2], ["h", 3], ["cx", 0, 2], ["cx", 1, 3], ["measure", [0, 1, 2, 3]]],
+      "submitted": [["ry", 0, 1.45], ["h", 1], ["h", 2], ["h", 3], ["cx", 0, 2], ["cx", 1, 3], ["measure", [0, 1, 2, 3]]]
+    },
+    {
+      "id": "moderate_ry_fault",
+      "scenario": "observable_fault_moderate",
+      "expected_anomaly": true,
+      "expected_ideal_tvd": 0.1812,
+      "reference": [["h", 0], ["h", 1], ["h", 2], ["h", 3], ["cx", 0, 2], ["cx", 1, 3], ["measure", [0, 1, 2, 3]]],
+      "submitted": [["ry", 0, 1.2], ["h", 1], ["h", 2], ["h", 3], ["cx", 0, 2], ["cx", 1, 3], ["measure", [0, 1, 2, 3]]]
+    },
+    {
+      "id": "large_ry_fault",
+      "scenario": "observable_fault_large",
+      "expected_anomaly": true,
+      "expected_ideal_tvd": 0.4605,
+      "reference": [["h", 0], ["h", 1], ["h", 2], ["h", 3], ["cx", 0, 2], ["cx", 1, 3], ["measure", [0, 1, 2, 3]]],
+      "submitted": [["ry", 0, 0.4], ["h", 1], ["h", 2], ["h", 3], ["cx", 0, 2], ["cx", 1, 3], ["measure", [0, 1, 2, 3]]]
+    }
+  ]
+}

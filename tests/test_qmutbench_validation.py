@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+import numpy as np
+
 from benchmark_validation import run_benchmark_validation
 from quantum_simulator.diagnosis_engine import DiagnosisCategory
 from qmutbench_validation import (
@@ -14,6 +16,7 @@ from qmutbench_validation import (
     validate_qmutbench_case,
     validate_qmutbench_dataset,
 )
+from quantum_simulator import QuantumSimulator
 
 
 QMB_ROOT = __import__("pathlib").Path(__file__).resolve().parents[1] / "data" / "qmutbench"
@@ -96,6 +99,22 @@ def test_parses_whole_register_measurement(tmp_path):
     assert operations == [("measure", 0), ("measure", 1)]
 
 
+def test_parses_and_executes_u_rccx_and_rzz_qasm(tmp_path):
+    source = tmp_path / "new_gates.qasm"
+    source.write_text(
+        'OPENQASM 2.0; include "qelib1.inc"; qreg q[3]; '
+        'u(pi/3, pi/5, -pi/7) q[0]; rzz(pi/4) q[0],q[1]; '
+        'rccx q[0],q[1],q[2];',
+        encoding="utf-8",
+    )
+    operations, width = parse_qasm_file(source)
+    assert width == 3
+    assert [operation[0] for operation in operations] == ["u", "rzz", "rccx"]
+    simulator = QuantumSimulator(width)
+    simulator.run_circuit(operations)
+    np.testing.assert_allclose(np.linalg.norm(simulator.state), 1.0, atol=1e-12)
+
+
 def test_discovers_pairs_and_executes_supported_real_qasm_mutants():
     dataset = discover_qmutbench_files(QMB_ROOT.parents[1])
 
@@ -111,6 +130,30 @@ def test_discovers_pairs_and_executes_supported_real_qasm_mutants():
     assert next(case for case in report["cases"] if case["case_id"] == "ReplaceGate_id_inPositionOfGate_1")["execution_status"] == "COMPLETED"
     assert all(sum(case["original_output"]["counts"].values()) == 1024 for case in report["cases"] if case["execution_status"] == "COMPLETED")
     assert next(case for case in report["cases"] if case["case_id"] == "AddGate_rxx_inGap_1_")["execution_status"] == "COMPLETED"
+
+
+def test_discovery_scans_conventional_qmutbench_root_only(tmp_path, monkeypatch):
+    dataset_root = tmp_path / "data" / "qmutbench"
+    origin = dataset_root / "Origin_programs" / "prog.qasm"
+    mutant = dataset_root / "Mutated_programs" / "Mutants_prog" / "mutant.qasm"
+    _write_qasm_program(origin, "h")
+    _write_qasm_program(mutant, "x")
+    unrelated = tmp_path / "data" / "qmutbench_full" / "large" / "nested"
+    unrelated.mkdir(parents=True)
+    (unrelated / "not_a_case.json").write_text("{}", encoding="utf-8")
+
+    original_rglob = Path.rglob
+    scanned_roots = []
+
+    def track_rglob(path, pattern):
+        scanned_roots.append(path)
+        return original_rglob(path, pattern)
+
+    monkeypatch.setattr(Path, "rglob", track_rglob)
+    dataset = discover_qmutbench_files(tmp_path)
+
+    assert [case.case_id for case in dataset.cases] == ["mutant"]
+    assert all("qmutbench_full" not in path.parts for path in scanned_roots)
 
 
 def _write_qasm_program(path, gate):

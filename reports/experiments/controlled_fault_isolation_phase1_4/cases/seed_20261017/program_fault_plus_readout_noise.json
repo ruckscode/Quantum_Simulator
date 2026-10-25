@@ -1,0 +1,384 @@
+{
+  "anomaly": {
+    "anomaly_detected": true,
+    "expected_distribution": {
+      "00": 0.0,
+      "01": 0.0,
+      "10": 1.0,
+      "11": 0.0
+    },
+    "finite_shot_guard": 0.05,
+    "hellinger_distance": 0.6034538624302658,
+    "js_divergence": 0.27167519034971754,
+    "message": "Observed distribution differs from expected distribution by TVD=0.595703, which exceeds threshold=0.050000.",
+    "observed_distribution": {
+      "00": 0.595703125,
+      "01": 0.0,
+      "10": 0.404296875,
+      "11": 0.0
+    },
+    "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+    "shots": 512,
+    "threshold": 0.05,
+    "total_variation_distance": 0.595703125
+  },
+  "circuit": {
+    "ideal": [
+      [
+        "x",
+        0
+      ],
+      [
+        "measure",
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "observed": [
+      [
+        "measure",
+        [
+          0,
+          1
+        ]
+      ]
+    ]
+  },
+  "configuration": {
+    "anomaly_threshold": 0.05,
+    "backend_name": null,
+    "circuit": [
+      [
+        "x",
+        0
+      ],
+      [
+        "measure",
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "circuit_family_id": "fault_isolation_family_01",
+    "circuit_id": "circuit-233d88647822fce2",
+    "description": "",
+    "experiment_name": "fault_isolation_program_fault_plus_readout_noise_seed_20261017",
+    "experimental_group_id": null,
+    "ground_truth_label": null,
+    "hardware_affected_component": null,
+    "hardware_condition_id": null,
+    "hardware_parameters": {
+      "coupling_map": [],
+      "gates": [],
+      "qubits": {
+        "0": {
+          "readout_error": 0.4,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        },
+        "1": {
+          "readout_error": 0.0,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        }
+      }
+    },
+    "noise_parameters": null,
+    "num_qubits": 2,
+    "observed_circuit": [
+      [
+        "measure",
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "observed_counts": null,
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "random_seed": 20261017,
+    "repetition_index": null,
+    "run_id": null,
+    "shots": 512,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "diagnosis": {
+    "anomaly_detected": true,
+    "category": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+    "evidence": [
+      "Observed distribution differs from expected distribution by TVD=0.595703, which exceeds threshold=0.050000.",
+      "Step 0: expected x on qubits (0,) but it was not executed.",
+      "A direct circuit-operation mismatch was localized.",
+      "Qubit 0 readout error is elevated at 0.4000.",
+      "Qubit 0 appears in 1 relevant circuit operations.",
+      "Observed deviation at operation index 0: Expected operation missing in observed circuit",
+      "Observed anomaly associated with operation x at index 0."
+    ],
+    "hardware_evidence_candidates": [
+      {
+        "component": 0,
+        "component_type": "qubit",
+        "evidence": [
+          "Qubit 0 readout error is elevated at 0.4000.",
+          "Qubit 0 appears in 1 relevant circuit operations.",
+          "Observed deviation at operation index 0: Expected operation missing in observed circuit"
+        ],
+        "reason": "Program trace implicated qubit 0: readout_error=0.4000",
+        "score": 2.6
+      }
+    ],
+    "hardware_result": {
+      "anomaly_metric": 1.0,
+      "candidates": [
+        {
+          "component": 0,
+          "component_type": "qubit",
+          "evidence": [
+            "Qubit 0 readout error is elevated at 0.4000.",
+            "Qubit 0 appears in 1 relevant circuit operations.",
+            "Observed deviation at operation index 0: Expected operation missing in observed circuit"
+          ],
+          "reason": "Program trace implicated qubit 0: readout_error=0.4000",
+          "score": 2.6
+        },
+        {
+          "component": [
+            0
+          ],
+          "component_type": "gate",
+          "evidence": [
+            "Observed anomaly associated with operation x at index 0."
+          ],
+          "reason": "Gate calibration for x on qubits (0,): No gate calibration was available.",
+          "score": 0.35
+        }
+      ],
+      "evidence": [
+        "Qubit 0 readout error is elevated at 0.4000.",
+        "Qubit 0 appears in 1 relevant circuit operations.",
+        "Observed deviation at operation index 0: Expected operation missing in observed circuit",
+        "Observed anomaly associated with operation x at index 0."
+      ],
+      "summary": "Calibration-backed hardware fault candidate(s): qubit 0; trace-associated hardware locations: gate (0,)",
+      "threshold": 0.05
+    },
+    "missing_evidence": [],
+    "program_evidence_candidates": [
+      {
+        "actual_signature": null,
+        "evidence": [
+          "Step 0: expected x on qubits (0,) but it was not executed."
+        ],
+        "expected_signature": [
+          "x",
+          [
+            0
+          ],
+          []
+        ],
+        "index": 0,
+        "operation": "x",
+        "qubits": [
+          0
+        ],
+        "reason": "Expected operation missing in observed circuit",
+        "score": 1.0
+      }
+    ],
+    "program_result": {
+      "anomaly_metric": 1.0,
+      "candidates": [
+        {
+          "actual_signature": null,
+          "evidence": [
+            "Step 0: expected x on qubits (0,) but it was not executed."
+          ],
+          "expected_signature": [
+            "x",
+            [
+              0
+            ],
+            []
+          ],
+          "index": 0,
+          "operation": "x",
+          "qubits": [
+            0
+          ],
+          "reason": "Expected operation missing in observed circuit",
+          "score": 1.0
+        }
+      ],
+      "evidence": [
+        "Step 0: expected x on qubits (0,) but it was not executed."
+      ],
+      "summary": "Program fault localization identified the following likely offending operation(s): step 0 (x)",
+      "threshold": 0.05
+    },
+    "statistics_result": {
+      "anomaly_detected": true,
+      "expected_distribution": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 1.0,
+        "11": 0.0
+      },
+      "finite_shot_guard": 0.05,
+      "hellinger_distance": 0.6034538624302658,
+      "js_divergence": 0.27167519034971754,
+      "message": "Observed distribution differs from expected distribution by TVD=0.595703, which exceeds threshold=0.050000.",
+      "observed_distribution": {
+        "00": 0.595703125,
+        "01": 0.0,
+        "10": 0.404296875,
+        "11": 0.0
+      },
+      "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+      "shots": 512,
+      "threshold": 0.05,
+      "total_variation_distance": 0.595703125
+    },
+    "summary": "Both program-level and calibration-backed hardware evidence are present; neither cause is isolated.",
+    "trace_deviation_candidates": []
+  },
+  "errors": [],
+  "execution_metadata": {
+    "backend_api_used": false,
+    "execution_kind": "SYNTHETIC_VALIDATION",
+    "execution_target": "LOCAL_SIMULATOR",
+    "generated_at": "2026-10-12T17:03:12+00:00",
+    "hardware_model_applied": true,
+    "noise_parameters_applied": false,
+    "numpy_version": "2.5.3",
+    "observation_source": "SEEDED_LOCAL_SIMULATOR_SHOTS_WITH_HARDWARE_MODEL",
+    "python_version": "3.12.10",
+    "random_seed": 20261017,
+    "shots": 512
+  },
+  "experiment_metadata": {
+    "backend_name": null,
+    "circuit_family_id": "fault_isolation_family_01",
+    "circuit_id": "circuit-233d88647822fce2",
+    "created_at": "2026-10-12T17:03:12+00:00",
+    "experiment_name": "fault_isolation_program_fault_plus_readout_noise_seed_20261017",
+    "experimental_group_id": null,
+    "ground_truth_label": null,
+    "hardware_affected_component": null,
+    "hardware_condition_id": null,
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "repetition_index": null,
+    "run_id": null,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "hardware_evidence": {
+    "anomaly_metric": 1.0,
+    "candidates": [
+      {
+        "component": 0,
+        "component_type": "qubit",
+        "evidence": [
+          "Qubit 0 readout error is elevated at 0.4000.",
+          "Qubit 0 appears in 1 relevant circuit operations.",
+          "Observed deviation at operation index 0: Expected operation missing in observed circuit"
+        ],
+        "reason": "Program trace implicated qubit 0: readout_error=0.4000",
+        "score": 2.6
+      },
+      {
+        "component": [
+          0
+        ],
+        "component_type": "gate",
+        "evidence": [
+          "Observed anomaly associated with operation x at index 0."
+        ],
+        "reason": "Gate calibration for x on qubits (0,): No gate calibration was available.",
+        "score": 0.35
+      }
+    ],
+    "evidence": [
+      "Qubit 0 readout error is elevated at 0.4000.",
+      "Qubit 0 appears in 1 relevant circuit operations.",
+      "Observed deviation at operation index 0: Expected operation missing in observed circuit",
+      "Observed anomaly associated with operation x at index 0."
+    ],
+    "summary": "Calibration-backed hardware fault candidate(s): qubit 0; trace-associated hardware locations: gate (0,)",
+    "threshold": 0.05
+  },
+  "ideal_distribution": {
+    "00": 0.0,
+    "01": 0.0,
+    "10": 1.0,
+    "11": 0.0
+  },
+  "ideal_statevector_distribution": {
+    "00": 0.0,
+    "01": 0.0,
+    "10": 1.0,
+    "11": 0.0
+  },
+  "observed_counts": {
+    "00": 305,
+    "10": 207
+  },
+  "observed_distribution": {
+    "00": 0.595703125,
+    "01": 0.0,
+    "10": 0.404296875,
+    "11": 0.0
+  },
+  "program_evidence": {
+    "anomaly_metric": 1.0,
+    "candidates": [
+      {
+        "actual_signature": null,
+        "evidence": [
+          "Step 0: expected x on qubits (0,) but it was not executed."
+        ],
+        "expected_signature": [
+          "x",
+          [
+            0
+          ],
+          []
+        ],
+        "index": 0,
+        "operation": "x",
+        "qubits": [
+          0
+        ],
+        "reason": "Expected operation missing in observed circuit",
+        "score": 1.0
+      }
+    ],
+    "evidence": [
+      "Step 0: expected x on qubits (0,) but it was not executed."
+    ],
+    "summary": "Program fault localization identified the following likely offending operation(s): step 0 (x)",
+    "threshold": 0.05
+  },
+  "reproducibility": {
+    "deterministic_localizer_measurements": "measurement operations mapped to barriers for localization only",
+    "fingerprint": "b8d0af8b70b8332e78449c64863cb1e552b35f5889d8f6d6c6454a61e01e7852",
+    "fingerprint_excludes": [
+      "execution_metadata.generated_at",
+      "reproducibility.fingerprint"
+    ],
+    "random_seed": 20261017,
+    "simulator_version": "project-statevector-current"
+  },
+  "simulator_observed_counts": {
+    "00": 305,
+    "10": 207
+  },
+  "status": "COMPLETED"
+}

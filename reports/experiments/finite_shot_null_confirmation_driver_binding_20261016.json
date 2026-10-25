@@ -1,0 +1,19 @@
+{
+  "binding_path": "reports/experiments/finite_shot_null_confirmation_driver_binding_20261016.json",
+  "configuration_sha256": "dd59d525990e4435ef74ad585b730a43a6c38485f2081454c8997c12ea5c19c3",
+  "driver_sha256": "01b3610d63bc4824532cfdeaa05a09856c747ecc9ac24973e8a2e0ee343b83ab",
+  "independent_review_release": {
+    "note": "No reviewer identity or approval is configured. Execution requires a valid Ed25519 approval under the externally provisioned protected ProgramData trust root.",
+    "status": "pending"
+  },
+  "note": "Local consistency binding only. It is not authorization. Execution requires detached Ed25519 approval verified using the externally provisioned trusted reviewer key.",
+  "preregistration_sha256": "bd50e03c195b0b58c589364a2872eb17ab21e68534ee54d8e249917b59da8e20",
+  "reference_runner_sha256": "a40a1d81a0fd1a7aaadcb187535484849a80c14f6b6165ed32501974a9e63a9f",
+  "schema_version": "finite-shot-null-confirmation-driver-binding-v1",
+  "seed_ledger_sha256": "222e5522204fd09f56f860c4a474130b2357d34997c9393f0d47521953f341ad",
+  "seed_overlap_with_prior": 0,
+  "seed_streams": 76456,
+  "statistics_module_sha256": "2d90d01a024aa527a4dd7805a09ba0216e35afceb3e718d979e9ed5399212d82",
+  "status": "implementation_hash_bound",
+  "unique_seed_streams": 76456
+}

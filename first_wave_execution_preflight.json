@@ -1,0 +1,45 @@
+{
+  "title": "First-wave execution preflight",
+  "date": "2026-10-12",
+  "decision": "STOP",
+  "status": "BLOCKED",
+  "execution_authorized": false,
+  "reports_generated": false,
+  "specification_hashes": {
+    "data/qmutbench_ml/final/first_wave_experiment_spec_v3.md": "CB6D1FE0031036483234367288D31C6CE4CF4F9A4E71206B651E6BA15F1AD52F",
+    "data/qmutbench_ml/final/first_wave_experiment_spec_v3.json": "0B01CEF12E3C1D54ACDD383B782A118277C99DBC14910625F1D8167A9CD47A55",
+    "data/qmutbench_ml/final/first_wave_spec_v3_review.md": "AA285971A56FADCE49A1BD36133DCFD78616B0EA42B7A4B9C885A4BCA92743A9",
+    "data/qmutbench_ml/final/first_wave_spec_v3_review.json": "9BD45B930EFAE7C85D83176003257F5D9C4069C725F3DAA0671B7E14AC192788"
+  },
+  "checks": {
+    "implementation_support": {"result":"PASS","evidence":["src/quantum_simulator/hardware_model.py::_validate_probability line 23 validates probabilities in [0,1].","src/quantum_simulator/hardware_model.py::HardwareModel.gate_error line 244 matches gate/qubit calibration.","src/quantum_simulator/quantum_simulator.py::QuantumSimulator.run_circuit line 344 skips iff rng.random() < gate_error.","experiments/run_experiment.py::_build_hardware_model uses hardware_parameters; run_experiment records hardware_model_applied and noise_parameters_applied=false at lines 436-437."]},
+    "t1_t2": {"result":"PASS_EXCLUDED","status":"BLOCKED_AND_EXCLUDED","evidence":"V3 contains no T1/T2 scenarios; no relaxation or real-hardware claims."},
+    "rx_sampling_unit": {"result":"PASS_SEMANTICS_BLOCKED_COUNT_CAPTURE","evidence":"One calibrated RX invocation per shot; run_shots loops shots at lines 471-495. Thus 1024 decisions/report. run_shots returns measurement counts and does not expose gate_failed events."},
+    "mathematical_observability": {"result":"PASS_STATIC","evidence":"RY(pi/3) on q0 then RX(theta), q0 measured; spectator gates only q1+. All theta are nonzero and <pi/2; combined readout rates <0.5. Exact q0 marginal depends on skip probability."},
+    "matrix": {"result":"PASS","reports":240,"class_counts":{"NORMAL":48,"PROGRAM_FAULT":48,"HARDWARE_ANOMALY":144},"families":16,"cells":12,"reports_per_cell":12},
+    "splits": {"result":"PASS","train_families":8,"validation_families":4,"exploratory_test_families":4,"split_reports":{"train":120,"validation":60,"exploratory_test":60},"family_leakage":false},
+    "seeds": {"result":"PASS","derivation":"uint32_be(SHA256('qsim-first-wave-v3|Fxx|r')[:4]); map zero to one","expected_count":48,"matched_derivation_count":48,"unique_count":48,"zero_count":0},
+    "output_isolation": {"result":"PASS","proposed_directory":"data/qmutbench_ml/final/first_wave_v3_reports","existed_at_preflight":false,"created":false}
+  },
+  "blockers": [
+    {
+      "id":"B1_REALIZED_SKIP_COUNTS",
+      "severity":"execution_and_data_integrity_blocker",
+      "finding":"The specified report path does not expose realized RX skip counts for its actual 1024 shots. run_circuit computes gate_failed but does not return/persist it; run_shots aggregates only measurement counts. run_circuit_traced exposes gate_failed on a separate path, not the report's sampled shot stream.",
+      "evidence_files_and_locations":["src/quantum_simulator/quantum_simulator.py:344","src/quantum_simulator/quantum_simulator.py:471-495","src/quantum_simulator/quantum_simulator.py:498,554-592","experiments/run_experiment.py:389-405"],
+      "required_correction":"Specify and review a way to record every gate skip in the same shot stream that generates the report, without changing production diagnosis behavior; or obtain owner approval to revise requirements and treat realized count as unavailable. Do not infer skips from bitstrings or a second stochastic trace."
+    },
+    {
+      "id":"B2_GENERATION_CONTROL_PROTOCOL",
+      "severity":"execution_and_resumability_blocker",
+      "finding":"V3 does not specify progress checkpoints, failure classification, resume and duplicate behavior, bounded retries, resource/failure stopping threshold, or final planned/completed/failed/skipped reconciliation. run_experiment writes directly to output path; run_config_batch reruns configs; full_dataset.generate_dataset deletes existing run-*.json files.",
+      "evidence_files_and_locations":["experiments/run_experiment.py:447-451","experiments/run_experiment.py:463-472","experiments/full_dataset.py:262-268"],
+      "required_correction":"Review a protocol with isolated directory creation, deterministic scenario IDs, atomic writes, status log, resume keyed by spec hash and scenario ID, duplicate protection, no silent replacements, bounded/no retries, resource stop threshold, explicit completion condition, and row reconciliation."
+    }
+  ],
+  "deferred_deliverables": ["generation manifest","run log","data-validation Markdown report","data-validation JSON report"],
+  "reason_deferred":"Decision gate failed; generating any scenarios before blocker resolution would violate the user's stop instruction.",
+  "resource_use": {"simulations":0,"reports":0,"model_training":0,"package_installations":0,"real_hardware_access":false},
+  "t1_t2": "BLOCKED_AND_EXCLUDED",
+  "real_hardware_validation": false
+}

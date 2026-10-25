@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import inspect
 import json
 import math
 from collections import Counter
@@ -36,6 +37,7 @@ FEATURES = (
     "trace_deviation_concentration",
     "trace_high_deviation_fraction",
 )
+PROBABILITY_DIFFERENCE_ROUNDOFF_TOLERANCE = 1e-12
 FEATURE_SOURCE_FIELDS = (
     "replayed_trace[*].probability_difference",
     "replayed_trace[*].probability_difference",
@@ -71,6 +73,10 @@ METADATA_COLUMNS = (
     "source_report_path",
     "source_report_sha256",
 )
+IMPLEMENTATION_FILES = {
+    "feature_generator": Path(__file__).resolve(),
+    "quantum_simulator": Path(inspect.getsourcefile(QuantumSimulator)).resolve(),
+}
 
 
 def _hardware_model(num_qubits: int, values: dict[str, Any] | None) -> HardwareModel | None:
@@ -81,6 +87,7 @@ def _hardware_model(num_qubits: int, values: dict[str, Any] | None) -> HardwareM
         coupling_map=values.get("coupling_map", []),
         backend_name="replay-derived",
         calibration_timestamp="replay-derived",
+        calibration_timestamp_provenance="synthetic",
     )
     for qubit, props in (values.get("qubits") or {}).items():
         model.set_qubit_properties(
@@ -112,9 +119,30 @@ def _hardware_model(num_qubits: int, values: dict[str, Any] | None) -> HardwareM
 
 
 def _extract_features(trace: list[dict[str, Any]]) -> dict[str, float]:
-    differences = [float(row["probability_difference"]) for row in trace]
-    if not differences:
+    if not trace:
         raise ValueError("a replayed trace must contain at least one operation row")
+    differences = []
+    for index, row in enumerate(trace):
+        try:
+            raw_value = row["probability_difference"]
+            if isinstance(raw_value, bool):
+                raise TypeError("boolean is not a probability difference")
+            value = float(raw_value)
+        except (KeyError, TypeError, ValueError) as exc:
+            raise ValueError(
+                f"trace row {index} must contain a numeric probability_difference"
+            ) from exc
+        if not math.isfinite(value) or not (
+            -PROBABILITY_DIFFERENCE_ROUNDOFF_TOLERANCE
+            <= value
+            <= 1.0 + PROBABILITY_DIFFERENCE_ROUNDOFF_TOLERANCE
+        ):
+            raise ValueError(
+                f"trace row {index} probability_difference must be finite and between 0 and 1"
+            )
+        # Total variation is bounded by 1; tolerate and clamp floating-point
+        # roundoff from summing normalized state probabilities.
+        differences.append(min(1.0, max(0.0, value)))
     total = sum(differences)
     return {
         "trace_max_probability_difference": max(differences),
@@ -242,6 +270,10 @@ def generate_dataset(source_dir: Path = SOURCE_DIR, output_dir: Path = OUTPUT_DI
             failures.append({"source_report": path.resolve().relative_to(ROOT).as_posix(), "error": f"{type(exc).__name__}: {exc}"})
 
     audit = audit_records(records, len(records), failures)
+    audit["implementation_sha256"] = {
+        name: hashlib.sha256(path.read_bytes()).hexdigest()
+        for name, path in IMPLEMENTATION_FILES.items()
+    }
     output_dir.mkdir(parents=True, exist_ok=True)
     dataset_json = {
         "dataset_name": DATASET_NAME,
@@ -262,6 +294,9 @@ def generate_dataset(source_dir: Path = SOURCE_DIR, output_dir: Path = OUTPUT_DI
         writer = csv.DictWriter(stream, fieldnames=csv_columns)
         writer.writeheader()
         writer.writerows(records)
+    audit["replay_feature_csv_sha256"] = hashlib.sha256(
+        (output_dir / "replay_trace_features.csv").read_bytes()
+    ).hexdigest()
     (output_dir / "audit_report.json").write_text(
         json.dumps(audit, indent=2, allow_nan=False) + "\n", encoding="utf-8"
     )

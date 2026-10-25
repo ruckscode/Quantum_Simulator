@@ -88,6 +88,10 @@ class QuantumCircuit:
     def rz(self, theta: float, qubit: int) -> None:
         self._append_rotation("rz", theta, qubit)
 
+    def u(self, theta: float, phi: float, lam: float, qubit: int) -> None:
+        self._validate_qubit(qubit)
+        self.instructions.append(("u", qubit, theta, phi, lam))
+
     def rxx(self, theta: float, qubit1: int, qubit2: int) -> None:
         self._validate_distinct_qubits(qubit1, qubit2)
         if isinstance(theta, bool):
@@ -99,6 +103,18 @@ class QuantumCircuit:
         if not math.isfinite(angle):
             raise ValueError("RXX angle must be a finite number")
         self.instructions.append(("rxx", qubit1, qubit2, angle))
+
+    def rzz(self, theta: float, qubit1: int, qubit2: int) -> None:
+        self._validate_distinct_qubits(qubit1, qubit2)
+        if isinstance(theta, bool):
+            raise ValueError("RZZ angle must be a finite number")
+        try:
+            angle = float(theta)
+        except (TypeError, ValueError) as exc:
+            raise ValueError("RZZ angle must be a finite number") from exc
+        if not math.isfinite(angle):
+            raise ValueError("RZZ angle must be a finite number")
+        self.instructions.append(("rzz", qubit1, qubit2, angle))
 
     def cx(self, control: int, target: int) -> None:
         self._validate_distinct_qubits(control, target)
@@ -115,6 +131,10 @@ class QuantumCircuit:
     def ccx(self, control1: int, control2: int, target: int) -> None:
         self._validate_distinct_qubits(control1, control2, target)
         self.instructions.append(("ccx", control1, control2, target))
+
+    def rccx(self, control1: int, control2: int, target: int) -> None:
+        self._validate_distinct_qubits(control1, control2, target)
+        self.instructions.append(("rccx", control1, control2, target))
 
     def reset(self, qubit: int) -> None:
         self._validate_qubit(qubit)
@@ -135,9 +155,15 @@ class QuantumCircuit:
     def measure_all(self) -> None:
         self.instructions.append(("measure", list(range(self.n_qubits))))
 
-    def run(self, shots: int = 1000, seed: int | None = None) -> SimulationResult:
+    def run(
+        self,
+        shots: int = 1000,
+        seed: int | None = None,
+        *,
+        memory_budget_bytes: int | None = None,
+    ) -> SimulationResult:
         if isinstance(shots, bool) or not isinstance(shots, int) or shots <= 0:
             raise ValueError("shots must be a positive integer")
-        simulator = QuantumSimulator(self.n_qubits)
+        simulator = QuantumSimulator(self.n_qubits, memory_budget_bytes=memory_budget_bytes)
         counts = simulator.run_shots(self.instructions, shots=shots, seed=seed)
         return SimulationResult(counts)

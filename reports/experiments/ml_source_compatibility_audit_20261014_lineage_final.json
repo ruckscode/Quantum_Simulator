@@ -1,0 +1,82 @@
+{
+  "audit_date": "2026-10-14",
+  "audit_type": "post-lineage and expanded future source-scope compatibility recheck; saved artifacts preserved",
+  "changed_source_count": 7,
+  "dataset": {
+    "current_sha256": "af4776f5adcc1f090f03d74220b2b3f589a4652818d9cb3b8c79a25baa0bb54a",
+    "matches": true,
+    "saved_sha256": "af4776f5adcc1f090f03d74220b2b3f589a4652818d9cb3b8c79a25baa0bb54a"
+  },
+  "historical_attribution": "unresolved: historical dataset manifest has no generation_provenance and reports have no per-run source_sha256; evaluator source hashes do not identify row-generating source.",
+  "limitations": [
+    "Historical source code cannot be reconstructed from the present repository snapshot.",
+    "Matching dataset bytes proves data identity only, not generation compatibility.",
+    "Historical score values are not current-source validation."
+  ],
+  "runtime_current": {
+    "numpy": "2.5.3",
+    "python": "3.12.10"
+  },
+  "runtime_saved": {
+    "numpy": "2.5.3",
+    "python": "3.12.10",
+    "scikit_learn": "1.9.1"
+  },
+  "saved_evaluation_manifest": "ml_results/grouped_cv_audit_v2/evaluation_manifest.json",
+  "source_comparisons": [
+    {
+      "changed": true,
+      "current_sha256": "f1a0f721d8bdf1175bfcdbd84d6d829099efb7155f1568ad703e9f6cc76d33b3",
+      "path": "experiment_config.py",
+      "saved_sha256": "b5b48ef888ec074c49a8a11d7c517bcceff66ff82efb12dfb783b8e26e28a9ec"
+    },
+    {
+      "changed": true,
+      "current_sha256": "2272d934648628ed8f7bf756ee1a6a0f988be8b8d28bd9972227ceeeed8cb0ac",
+      "path": "experiments/full_dataset.py",
+      "saved_sha256": "db9f793d9f39d2aca6f369a00ff842189c07255822ea488d9ea40464b6ac6e50"
+    },
+    {
+      "changed": true,
+      "current_sha256": "fef2985d782c92756af81e84232c7b0c286dc930963063dc9c2b44348e30c034",
+      "path": "experiments/run_experiment.py",
+      "saved_sha256": "7c5b9d9a468caae02beee2ef0253f1c7c07a81dd0fe3a7608b0c4078b972b350"
+    },
+    {
+      "changed": true,
+      "current_sha256": "4ab18ea0bab78a5af3d7785f95a7ce889a45f036bfee2afab174d1b208531fff",
+      "path": "ml_evaluation.py",
+      "saved_sha256": "0284ac34dbc7e27025fb409c22ad4bd224e2431af18e7bfdab6f0eee2bdfee51"
+    },
+    {
+      "changed": true,
+      "current_sha256": "6fb5aef97d26115ea514ca5895f7df3d088c859e77575ffb51141835bb4bec11",
+      "path": "ml_training.py",
+      "saved_sha256": "51cec395bffbe98ddcec2c70802e5d2453d4a124b77fbfd8540333f759719867"
+    },
+    {
+      "changed": true,
+      "current_sha256": "16ccc815f00e8d13a5e72311e82d5a979af0bc4dde7770e6de0798876d55f1a0",
+      "path": "src/quantum_simulator/diagnosis_engine.py",
+      "saved_sha256": "787cb8265433d494f42695ed3dfe2f6f659799a4b1c86cfe988364945ef9578e"
+    },
+    {
+      "changed": false,
+      "current_sha256": "2e9c5f3c54452c78571a072ecf64223616ec5d95efb08cc7b6c5a9739af567e1",
+      "path": "src/quantum_simulator/hardware_model.py",
+      "saved_sha256": "2e9c5f3c54452c78571a072ecf64223616ec5d95efb08cc7b6c5a9739af567e1"
+    },
+    {
+      "changed": true,
+      "current_sha256": "a07be9c304153a389454f699ffaaace8d12d99d430396bcfc1b5c383845406ef",
+      "path": "src/quantum_simulator/quantum_simulator.py",
+      "saved_sha256": "636152653de779878d9ea383604b57bba5f3e04bebc1b53e968a040620f4a3a9"
+    },
+    {
+      "changed": false,
+      "current_sha256": "aa5433cb56b42ee9fc8c3042f274b0015efbf727386907d8de5c89212304a9aa",
+      "path": "src/quantum_simulator/statistics.py",
+      "saved_sha256": "aa5433cb56b42ee9fc8c3042f274b0015efbf727386907d8de5c89212304a9aa"
+    }
+  ]
+}

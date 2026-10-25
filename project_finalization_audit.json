@@ -1,0 +1,163 @@
+{
+  "title": "Project Finalization Audit",
+  "project": "Hardware-Aware Data-Driven Testing and Fault Localization for Quantum Programs",
+  "audit_date": "2026-10-12",
+  "method": {
+    "read_only": true,
+    "simulations_run": false,
+    "training_run": false,
+    "tests_run": false,
+    "packages_installed": false,
+    "production_or_historical_files_modified": false,
+    "limitations": [
+      "Inventory and selected file contents were inspected; not every row of every CSV was independently recomputed.",
+      "Saved NPZ weights were schema-inspected but not loaded to reproduce predictions.",
+      "No fresh full-suite run was performed. Test totals in repository documentation are historical snapshots."
+    ]
+  },
+  "recommendation": "FINALIZE WITH EXISTING EVIDENCE",
+  "decision_rationale": "The original project can be closed honestly with narrow claims about the implemented simulator, evidence-based rule diagnosis, dataset-specific binary QMutBench evaluation, and controlled simulator-only ML comparisons. The proposed 240-report wave is an optional new study, not a prerequisite for those claims. Its saved preflight is BLOCKED and it supplies no real-hardware validation.",
+  "implementation": {
+    "implemented_and_tested": [
+      "Statevector simulator, circuit API, supported gate execution, measurement, finite-shot sampling.",
+      "HardwareModel parameters for readout, gate calibration, coherence, and connectivity.",
+      "Distribution metrics and finite-shot anomaly comparison.",
+      "Evidence-based diagnosis with operation mismatch and calibration-backed hardware candidates; ambiguity and insufficient-evidence outcomes are supported.",
+      "High-level diagnose_circuit ideal/optional hardware-aware execution; lower-level diagnose_execution accepts distinct expected and observed circuits and distributions.",
+      "Observable feature extraction, adapter schema/probability checks, abstention, and independent localization gating are implemented; integration coverage uses mock classifiers."
+    ],
+    "not_implemented_or_not_verified": [
+      "A compatible deployable observable-only three-class model artifact is not present; default ML inference intentionally raises ModelBackendUnavailable.",
+      "Real inference from a genuine compatible artifact is not verified by the mock-based adapter tests.",
+      "diagnose_circuit does not accept a separate reference circuit; use diagnose_execution for direct expected/observed comparison.",
+      "No real-hardware validation is present. IBM adapter validation is offline/fixture based; live backend access and execution are unavailable in checked-in status."
+    ],
+    "test_evidence": {
+      "relevant_test_files": [
+        "tests/test_simulator.py",
+        "tests/test_diagnosis_engine.py",
+        "tests/test_ml_diagnosis_integration.py",
+        "tests/test_stage3_controlled_diagnosis_evaluation.py",
+        "tests/test_hardware_fault_localizer.py",
+        "tests/test_fault_localizer.py",
+        "tests/test_gate_correctness.py"
+      ],
+      "historical_suite_counts": [
+        {"source": "README.md", "passed": 280, "context": "latest verified full suite claimed; required writable pytest temp directory"},
+        {"source": "reports/project_status.json", "passed": 89, "context": "older project status snapshot"},
+        {"source": "reports/reproducibility_report.json", "passed": 96, "context": "reproducibility report snapshot"}
+      ],
+      "audit_reran_tests": false
+    }
+  },
+  "ml_results": {
+    "best_supported_baseline": {
+      "artifact": "data/qmutbench_ml/final/grouped_model_comparison.json",
+      "model": "StandardScaler + LogisticRegression(C=1, max_iter=2000), fixed and unsearched",
+      "data": {"reports": 270, "families": 30, "rows_per_family": 9, "class_counts": {"NORMAL": 90, "PROGRAM_FAULT": 90, "HARDWARE_ANOMALY": 90}},
+      "features": ["total_variation_distance", "js_divergence", "hellinger_distance", "observed_entropy_bits", "observed_max_probability"],
+      "protocol": {
+        "outer": "30-fold leave-one-circuit-family-out GroupKFold; each fold tests one full family (9 rows, 3 per class), with mutually disjoint outer test folds.",
+        "inner": "5-fold GroupKFold over the 29 outer-training families used for tuning candidate models; inner macro-F1 selection. Fixed logistic baseline is unsearched.",
+        "preprocessing": "Scaler fitted inside training folds only; labels and family identifiers are targets/grouping metadata, not features.",
+        "holdout_overlap": "No family overlap across any outer train/test split. Outer training sets overlap across folds."
+      },
+      "pooled_oof_metrics": {
+        "accuracy": 0.563,
+        "balanced_accuracy": 0.563,
+        "macro_f1": 0.543,
+        "recall": {"NORMAL": 0.9, "PROGRAM_FAULT": 0.422, "HARDWARE_ANOMALY": 0.367},
+        "support_each_class": 90
+      },
+      "interpretation": "Best fixed baseline for a predeclared comparable protocol; controlled simulator research evidence only. Nine rows per held-out family make per-family scores coarse. Exact feature collisions, limited families, and no significance test constrain conclusions."
+    },
+    "tuned_candidate_not_validated_winner": {
+      "model": "logistic_tuned_C",
+      "protocol": "Same nested 30-family outer evaluation; C chosen from predeclared values using inner grouped macro-F1.",
+      "pooled_oof_metrics": {"accuracy": 0.585, "balanced_accuracy": 0.585, "macro_f1": 0.576, "hardware_anomaly_recall": 0.422},
+      "family_consistency_vs_fixed_logistic": {"better": 7, "tied": 18, "worse": 5, "mean_family_macro_f1_delta": 0.037},
+      "interpretation": "Highest pooled nested comparison score, but improvement is not consistent across families; do not call it a selected or validated winner."
+    },
+    "qmutbench_binary": {
+      "artifacts": [
+        "data/qmutbench_ml/final/evaluation_report.json",
+        "data/qmutbench_ml/final/threshold_tuning_report.json",
+        "data/qmutbench_ml/final/final_project_summary.json",
+        "data/qmutbench_ml/final/test_predictions.csv",
+        "data/qmutbench_ml/final/tuned_test_predictions.csv",
+        "data/qmutbench_ml/final/threshold_validation_curve.csv"
+      ],
+      "dataset": {"records": 10003, "PROGRAM_FAULT": 9792, "NORMAL": 211, "features": 5, "feature_schema": "trace operation deviation summary"},
+      "earlier_untuned_protocol": {"train_records": 8051, "test_records": 1952, "train_groups": 169, "test_groups": 42, "group_overlap": 0, "threshold": "default report protocol"},
+      "later_threshold_tuned_result": {
+        "threshold": 0.8100000000000002,
+        "test_records": 1675,
+        "test_NORMAL": 43,
+        "test_PROGRAM_FAULT": 1632,
+        "metrics": {"accuracy": 0.8770149253731343, "balanced_accuracy": 0.9368872549019608, "macro_f1": 0.6135781287796662, "NORMAL_precision": 0.17269076305220885, "NORMAL_recall": 1.0, "PROGRAM_FAULT_precision": 1.0, "PROGRAM_FAULT_recall": 0.8737745098039216},
+        "confusion_matrix_actual_rows_predicted_columns_order_PROGRAM_FAULT_NORMAL": [[1426, 206], [0, 43]]
+      },
+      "label_and_feature_caveats": [
+        "NORMAL labels are all original records and PROGRAM_FAULT labels are all mutant records, so record type and target are perfectly associated by construction.",
+        "All 211 original records have zero features; 1,258 mutant records also have zero features.",
+        "The later 1,675-row threshold-tuned held-out set is not the same size as the earlier 1,952-row test set; results and protocols must not be conflated.",
+        "This is preliminary dataset-specific binary classification, not independent program behavior truth or hardware-fault localization."
+      ]
+    },
+    "other_saved_evaluations": [
+      {"artifacts": ["data/qmutbench_ml/final/controlled_diagnosis_evaluation.json", "data/qmutbench_ml/final/controlled_diagnosis_evaluation.md"], "protocol": "Hand-designed local rule-based diagnosis cases; no ML population estimate.", "interpretation": "Decision-path and localization coverage only."},
+      {"artifacts": ["data/qmutbench_ml/final/controlled_three_class_feasibility.json", "data/qmutbench_ml/final/expected_mode_shift_evaluation.json", "data/qmutbench_ml/final/repeated_feature_evaluation.json", "data/qmutbench_ml/final/controlled_feature_ablation.json"], "protocol": "Small grouped controlled simulator evaluations and feature comparisons with saved predictions.", "interpretation": "Exploratory; low/unstable hardware separation, feature collisions, small/dependent splits; no real device evidence or reliable feature improvement claim."}
+    ],
+    "model_artifact_status": {
+      "present_incompatible": ["data/qmutbench_ml/final/numpy_logistic_model.npz", "data/qmutbench_ml/final/numpy_logistic_model_tuned.npz"],
+      "incompatibility": "Both NPZ files are binary NORMAL/PROGRAM_FAULT models over five trace features; production adapter expects ordered five observable distribution features and three classes including HARDWARE_ANOMALY.",
+      "expected_observable_json": {"path": "src/quantum_simulator/models/observable_logistic_regression.json", "present": false},
+      "real_artifact_inference_verified": false
+    }
+  },
+  "limitations_classification": {
+    "scientific": [
+      "QMutBench labels are record-type-derived, highly imbalanced, and not independent behavior ground truth.",
+      "All originals and many mutants have zero trace features, so dataset construction can drive apparent separation.",
+      "Three-class ML uses 30 controlled simulator families and synthetic hardware interventions; feature collisions occur and best-candidate hardware recall is 0.422.",
+      "Simulator channels/calibration are not physical device evidence; no real-hardware validation.",
+      "The 240-report proposal covers a narrow simulator subset and an exploratory four-family test only."
+    ],
+    "correctness_or_data_integrity": [
+      "Ordinary sampled run reports do not expose per-shot gate_failed events for actual gate skips; traced path is a separate stream. This blocks realized skip-count reporting for the proposed wave.",
+      "Saved preflight reports no safe resumable, atomic, duplicate-safe, bounded bulk-run orchestration protocol for the proposed wave.",
+      "No concrete diagnosis misclassification or simulator defect was established in reviewed reports; this audit did not freshly execute the test suite."
+    ]
+  },
+  "first_wave": {
+    "specification": "data/qmutbench_ml/final/first_wave_experiment_spec_v3.json",
+    "review": "data/qmutbench_ml/final/first_wave_spec_v3_review.json",
+    "preflight": "first_wave_execution_preflight.json",
+    "planned_reports": 240,
+    "review_state": "READY_FOR_OWNER_APPROVAL; not execution authorization",
+    "preflight_state": "BLOCKED; decision STOP; no reports generated",
+    "blockers": [
+      {"id": "B1_REALIZED_SKIP_COUNTS", "detail": "Actual sampled-stream RX gate skip events are not emitted/persisted; a separate stochastic trace cannot supply the realized count."},
+      {"id": "B2_GENERATION_CONTROL_PROTOCOL", "detail": "Safe isolated output, atomic writes, progress, resumability, duplicate handling, bounded retry/resource stop and reconciliation are unspecified."}
+    ],
+    "necessary_for_original_project_finish": false,
+    "why_defer": "Existing rule-diagnosis coverage and controlled grouped ML evidence support an honest bounded conclusion. The wave is needed only if a new narrow simulator study becomes a required claim; it will not establish real hardware performance or repair QMutBench label validity.",
+    "experiment_executed": false
+  },
+  "minimum_remaining_tasks": [
+    {"task": "Finalize written claims with explicit boundaries: preliminary QMutBench record-type classification, controlled simulator-only three-class results, no deployed compatible ML artifact, no real-hardware validation.", "stop_condition": "All summaries and conclusions state these limitations and do not imply physical hardware or production ML inference."},
+    {"task": "Index headline result citations to the exact saved report, predictions, manifest/model, labels and split protocol; keep 1,952-row and 1,675-row binary test protocols distinct.", "stop_condition": "Every cited result resolves to an existing artifact and identifies the protocol/caveat."},
+    {"task": "Keep first wave deferred/blocked; do not generate reports. If later promoted, separately resolve B1/B2 before any execution.", "stop_condition": "No reports, runner, code, or experiment added as part of this finalization."},
+    {"task": "Close project at this evidence boundary; do not connect the incompatible binary NPZ to the three-class adapter.", "stop_condition": "Project status labels dataset-specific accuracy, simulator-only controlled ML, and live hardware/compatible model work accurately."}
+  ],
+  "artifact_inventory": {
+    "project_docs": ["README.md", "reports/project_status.json", "reports/reproducibility_report.json", "data/qmutbench_ml/final/FINAL_PROJECT_REPORT.md"],
+    "source_and_tests": ["src/quantum_simulator/quantum_simulator.py", "src/quantum_simulator/hardware_model.py", "src/quantum_simulator/diagnosis_engine.py", "src/quantum_simulator/fault_localizer.py", "src/quantum_simulator/hardware_fault_localizer.py", "src/quantum_simulator/ml_diagnosis.py", "src/quantum_simulator/observable_model_adapter.py", "tests/test_simulator.py", "tests/test_diagnosis_engine.py", "tests/test_ml_diagnosis_integration.py", "tests/test_stage3_controlled_diagnosis_evaluation.py"],
+    "qmutbench_data_and_evaluation": ["data/qmutbench_ml/qmutbench_results.csv", "data/qmutbench_ml/qmutbench_manifest.json", "data/qmutbench_ml/qmutbench_failures.csv", "data/qmutbench_ml/final/dataset_audit.json", "data/qmutbench_ml/final/training_data_label_audit.json", "data/qmutbench_ml/final/zero_feature_diagnostic.json", "data/qmutbench_ml/final/evaluation_report.json", "data/qmutbench_ml/final/threshold_tuning_report.json", "data/qmutbench_ml/final/final_project_summary.json", "data/qmutbench_ml/final/test_predictions.csv", "data/qmutbench_ml/final/tuned_test_predictions.csv"],
+    "controlled_ml": ["reports/experiments/full_dataset/ (270 saved reports plus dataset manifest)", "data/qmutbench_ml/final/grouped_model_comparison.json", "data/qmutbench_ml/final/grouped_model_comparison.md", "data/qmutbench_ml/final/grouped_model_comparison_predictions.csv", "data/qmutbench_ml/final/controlled_diagnosis_evaluation.json", "data/qmutbench_ml/final/controlled_three_class_feasibility.json", "data/qmutbench_ml/final/expected_mode_shift_evaluation.json", "data/qmutbench_ml/final/repeated_feature_evaluation.json", "data/qmutbench_ml/final/controlled_feature_ablation.json", "data/qmutbench_ml/final/hardware_anomaly_coverage_audit.json"],
+    "proposed_wave": ["data/qmutbench_ml/final/first_wave_experiment_spec_v3.json", "data/qmutbench_ml/final/first_wave_spec_v3_review.json", "first_wave_execution_preflight.json"],
+    "saved_models": ["data/qmutbench_ml/final/numpy_logistic_model.npz", "data/qmutbench_ml/final/numpy_logistic_model_tuned.npz"],
+    "external_dataset_or_live_device_note": "Do not infer full official QMutBench source data or real hardware evidence from adapter reports. Project status marks Bugs4Q source data and live IBM use unavailable/partial."
+  },
+  "final_recommendation": "FINALIZE WITH EXISTING EVIDENCE"
+}

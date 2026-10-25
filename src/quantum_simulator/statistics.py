@@ -9,7 +9,7 @@ statistical tolerance for finite measurement data.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from math import sqrt
+from math import isfinite, sqrt
 from typing import Mapping, Sequence
 
 import numpy as np
@@ -30,27 +30,35 @@ class DistributionComparisonResult:
     message: str
 
 
+def _normalize_nonnegative_values(values, name: str) -> list[float]:
+    normalized = []
+    for key, value in values:
+        if isinstance(value, (bool, np.bool_)) or not isinstance(value, (int, float, np.integer, np.floating)):
+            raise TypeError(f"{name} values must be numeric; got {type(value).__name__} for key {key!r}")
+        numeric = float(value)
+        if not isfinite(numeric):
+            raise ValueError(f"{name} values must be finite; got {numeric} for key {key!r}")
+        if numeric < 0:
+            raise ValueError(f"{name} values must be non-negative; got {numeric} for key {key!r}")
+        normalized.append(numeric)
+    if not normalized:
+        raise ValueError(f"{name} must not be empty")
+    scale = max(normalized)
+    if scale <= 0:
+        raise ValueError(f"{name} must contain a positive total mass")
+    scaled = [value / scale for value in normalized]
+    total = sum(scaled)
+    return [value / total for value in scaled]
+
+
 def _validate_nonnegative_mapping(mapping: Mapping[str, float], name: str) -> dict[str, float]:
     if not isinstance(mapping, Mapping):
         raise TypeError(f"{name} must be a mapping of outcome -> numeric value")
-
-    normalized: dict[str, float] = {}
-    for key, value in mapping.items():
-        if not isinstance(value, (int, float, np.integer, np.floating)):
-            raise TypeError(f"{name} values must be numeric; got {type(value).__name__} for key {key!r}")
-        numeric = float(value)
-        if numeric < 0:
-            raise ValueError(f"{name} values must be non-negative; got {numeric} for key {key!r}")
-        normalized[str(key)] = numeric
-
-    if not normalized:
-        raise ValueError(f"{name} must not be empty")
-
-    total = sum(normalized.values())
-    if total <= 0:
-        raise ValueError(f"{name} must contain a positive total mass")
-
-    return {key: value / total for key, value in normalized.items()}
+    keys = [str(key) for key in mapping]
+    if len(set(keys)) != len(keys):
+        raise ValueError(f"{name} keys must remain unique when converted to outcome strings")
+    values = _normalize_nonnegative_values(zip(keys, mapping.values()), name)
+    return dict(zip(keys, values))
 
 
 def _require_same_keys(expected: Mapping[str, float], observed: Mapping[str, float]) -> None:
@@ -62,13 +70,10 @@ def _as_probability_dict(raw: Mapping[str, float] | Sequence[float], label: str)
     if isinstance(raw, Mapping):
         return _validate_nonnegative_mapping(raw, label)
     if isinstance(raw, (list, tuple, np.ndarray)):
-        values = [float(v) for v in raw]
-        if not values:
-            raise ValueError(f"{label} must not be empty")
-        total = sum(values)
-        if total <= 0:
-            raise ValueError(f"{label} must contain a positive total mass")
-        return {str(i): (float(v) / total) for i, v in enumerate(values)}
+        if isinstance(raw, np.ndarray) and raw.ndim != 1:
+            raise ValueError(f"{label} sequence must be one-dimensional")
+        values = _normalize_nonnegative_values(enumerate(raw), label)
+        return {str(i): value for i, value in enumerate(values)}
     raise TypeError(f"{label} must be a mapping or sequence of numeric values")
 
 
@@ -119,14 +124,14 @@ def compare_distributions(
     1/sqrt(shots)).
     """
 
-    if not isinstance(threshold, (int, float)):
+    if isinstance(threshold, bool) or not isinstance(threshold, (int, float, np.integer, np.floating)):
         raise TypeError("threshold must be a numeric value")
     threshold = float(threshold)
-    if threshold < 0:
-        raise ValueError("threshold must be non-negative")
+    if not isfinite(threshold) or threshold < 0:
+        raise ValueError("threshold must be finite and non-negative")
 
     if shots is not None:
-        if not isinstance(shots, int):
+        if isinstance(shots, bool) or not isinstance(shots, (int, np.integer)):
             raise TypeError("shots must be an integer or None")
         if shots <= 0:
             raise ValueError("shots must be positive")

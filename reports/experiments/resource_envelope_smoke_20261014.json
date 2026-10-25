@@ -1,0 +1,62 @@
+{
+  "created_date": "2026-10-14",
+  "scope": "bounded local smoke profile; no high-qubit or large-shot benchmark",
+  "environment": {
+    "python": "3.12.10",
+    "platform": "nt",
+    "total_memory_bytes": 7851741184,
+    "available_memory_before_bytes": 793219072,
+    "process_baseline_rss_bytes": 33034240,
+    "process_peak_rss_sampled_bytes": 35930112
+  },
+  "profile": [
+    {
+      "qubits": 1,
+      "statevector_bytes": 32,
+      "two_statevector_lower_bound_bytes": 64,
+      "elapsed_seconds": 0.13340839999727905,
+      "rss_before_bytes": 33034240,
+      "rss_after_bytes": 35266560,
+      "norm": 2.220446049250313e-16
+    },
+    {
+      "qubits": 4,
+      "statevector_bytes": 256,
+      "two_statevector_lower_bound_bytes": 512,
+      "elapsed_seconds": 0.00027239999326411635,
+      "rss_before_bytes": 35332096,
+      "rss_after_bytes": 35332096,
+      "norm": 2.220446049250313e-16
+    },
+    {
+      "qubits": 8,
+      "statevector_bytes": 4096,
+      "two_statevector_lower_bound_bytes": 8192,
+      "elapsed_seconds": 0.003009299995028414,
+      "rss_before_bytes": 35332096,
+      "rss_after_bytes": 35332096,
+      "norm": 2.220446049250313e-16
+    },
+    {
+      "qubits": 12,
+      "statevector_bytes": 65536,
+      "two_statevector_lower_bound_bytes": 131072,
+      "elapsed_seconds": 0.04825930000515655,
+      "rss_before_bytes": 35332096,
+      "rss_after_bytes": 35401728,
+      "norm": 2.220446049250313e-16
+    },
+    {
+      "qubits": 14,
+      "statevector_bytes": 262144,
+      "two_statevector_lower_bound_bytes": 524288,
+      "elapsed_seconds": 0.18881699998746626,
+      "rss_before_bytes": 35401728,
+      "rss_after_bytes": 35930112,
+      "norm": 2.220446049250313e-16
+    }
+  ],
+  "analytical_memory_model": "one dense complex128 statevector is 16*2^n bytes; local unitary application temporarily holds at least the old and new vectors, about 32*2^n bytes, excluding Python/NumPy/runtime overhead.",
+  "source_sha256": "338e9505b220c08e222acd458b1faea93f7ca8f17f6440ecdeea9adfb9626ffe",
+  "interpretation": "Measured widths are too small to establish a robust machine-specific safe maximum; no universal qubit ceiling or guard is inferred from this smoke profile."
+}

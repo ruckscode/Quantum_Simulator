@@ -32,11 +32,11 @@ CASE_SUFFIXES = {".json", ".jsonl", ".ndjson", ".csv"}
 TEXT_SUFFIXES = CASE_SUFFIXES | {".qasm", ".txt", ".yaml", ".yml"}
 EXCLUDED_PARTS = {".venv", ".git", "__pycache__", ".pytest_cache", ".pytest-tmp", "tests", "reports"}
 SINGLE_GATES = {"i", "id", "identity", "x", "y", "z", "h", "s", "sdg", "t", "tdg", "sx", "sxdg"}
-ROTATION_GATES = {"rx", "ry", "rz", "p", "u1"}
+ROTATION_GATES = {"rx", "ry", "rz", "p", "u1", "u"}
 TWO_GATES = {"cx", "cnot", "cz", "swap", "ch"}
-TWO_QUBIT_ROTATIONS = {"rxx"}
-THREE_GATES = {"ccx", "toffoli", "cswap", "fredkin"}
-PARAMETERIZED_ARITY = {"rx": 1, "ry": 1, "rz": 1, "p": 1, "u1": 1, "u2": 2, "u3": 3}
+TWO_QUBIT_ROTATIONS = {"rxx", "rzz"}
+THREE_GATES = {"ccx", "rccx", "toffoli", "cswap", "fredkin"}
+PARAMETERIZED_ARITY = {"rx": 1, "ry": 1, "rz": 1, "p": 1, "u1": 1, "u2": 2, "u3": 3, "u": 3}
 CONTROLLED_PARAMETER_GATES = {"cp", "crx", "cry", "crz"}
 
 
@@ -401,9 +401,10 @@ def _qasm_mutation_metadata(path: Path) -> dict[str, Any]:
     return {"operator": match.group(1), "filename_descriptor": match.group(2), "source_filename": path.name} if match else {"source_filename": path.name}
 
 
-def _discover_qmutbench_qasm(root: Path, dataset: QMutBenchDataset) -> None:
-    origin_dir = root / "data" / "qmutbench" / "Origin_programs"
-    mutant_root = root / "data" / "qmutbench" / "Mutated_programs"
+def _discover_qmutbench_qasm(root: Path, dataset: QMutBenchDataset, dataset_root: Path | None = None) -> None:
+    dataset_root = dataset_root or root / "data" / "qmutbench"
+    origin_dir = dataset_root / "Origin_programs"
+    mutant_root = dataset_root / "Mutated_programs"
     if not origin_dir.is_dir() or not mutant_root.is_dir():
         return
     originals = {path.stem: path for path in origin_dir.glob("*.qasm") if path.is_file()}
@@ -488,7 +489,7 @@ def _relative(path: Path, root: Path) -> str:
 
 
 def discover_qmutbench_files(root: str | Path) -> QMutBenchDataset:
-    """Search arbitrary project filenames; only verified QMutBench provenance is accepted."""
+    """Discover verified data under conventional QMutBench roots without scanning unrelated trees."""
 
     root_path = Path(root)
     dataset = QMutBenchDataset(root=str(root_path))
@@ -496,49 +497,70 @@ def discover_qmutbench_files(root: str | Path) -> QMutBenchDataset:
         dataset.issues.append({"source_file": str(root_path), "status": "DATASET_UNAVAILABLE", "reason": "Dataset root does not exist."})
         return dataset
 
-    for path in sorted(root_path.rglob("*")):
-        if not path.is_file():
-            continue
-        relative = _relative(path, root_path)
-        if any(part.lower() in EXCLUDED_PARTS for part in Path(relative).parts):
-            continue
-        suffix = path.suffix.lower()
-        if suffix not in TEXT_SUFFIXES:
-            continue
-        path_hint = _qmut_path_hint(path, root_path)
-        if suffix not in CASE_SUFFIXES:
-            if path_hint:
-                dataset.source_files.append(relative)
-            continue
-        try:
-            document = _read_structured_file(path)
-        except (OSError, UnicodeError, json.JSONDecodeError, csv.Error, ValueError) as exc:
-            if path_hint:
-                dataset.issues.append({"source_file": relative, "status": "PARSING_FAILURE", "reason": f"{type(exc).__name__}: {exc}"})
-            continue
+    def is_qmutbench_root(path: Path) -> bool:
+        return (path / "Origin_programs").is_dir() and (path / "Mutated_programs").is_dir()
 
-        explicit_provenance = path_hint or _contains_qmutbench_metadata(document)
-        rows, has_collection = _collection(document)
-        case_rows = [row for row in rows if _case_like(row)]
-        if not explicit_provenance:
-            continue
-        dataset.provenance_verified = True
-        dataset.test_fixture_data = dataset.test_fixture_data or any(
-            part.lower().replace("-", "_") in {"test_fixtures", "fixtures"}
-            for part in path.parts
-        )
-        if case_rows:
-            dataset.data_files.append(relative)
-            for index, raw_case in enumerate(case_rows, start=1):
-                case_id = next((raw_case[key] for key in ("case_id", "benchmark_case_id", "id", "name") if raw_case.get(key) is not None), f"{path.stem}#{index}")
-                dataset.cases.append(QMutBenchCase(str(case_id), raw_case, [relative]))
-        elif has_collection:
-            dataset.data_files.append(relative)
-            dataset.issues.append({"source_file": relative, "status": "NO_CASES", "reason": "Verified QMutBench provenance, but no case-shaped entries were found."})
-        else:
-            dataset.metadata_files.append(relative)
+    scan_roots: set[Path] = set()
+    if root_path.name.lower() in {"qmutbench", "qmutbench_official"} or is_qmutbench_root(root_path):
+        scan_roots.add(root_path)
+    conventional_parents = (
+        root_path,
+        root_path / "data",
+        root_path / "TEST_FIXTURES",
+        root_path / "tests" / "fixtures",
+        root_path / "fixtures",
+    )
+    for parent in conventional_parents:
+        if parent.is_dir():
+            scan_roots.update(
+                child for child in parent.iterdir()
+                if child.is_dir() and child.name.lower() in {"qmutbench", "qmutbench_official"}
+            )
 
-    _discover_qmutbench_qasm(root_path, dataset)
+    for scan_root in sorted(scan_roots):
+        for path in sorted(scan_root.rglob("*")):
+            if not path.is_file():
+                continue
+            relative = _relative(path, root_path)
+            if any(part.lower() in EXCLUDED_PARTS for part in Path(relative).parts):
+                continue
+            suffix = path.suffix.lower()
+            if suffix not in TEXT_SUFFIXES:
+                continue
+            path_hint = _qmut_path_hint(path, root_path)
+            if suffix not in CASE_SUFFIXES:
+                if path_hint:
+                    dataset.source_files.append(relative)
+                continue
+            try:
+                document = _read_structured_file(path)
+            except (OSError, UnicodeError, json.JSONDecodeError, csv.Error, ValueError) as exc:
+                if path_hint:
+                    dataset.issues.append({"source_file": relative, "status": "PARSING_FAILURE", "reason": f"{type(exc).__name__}: {exc}"})
+                continue
+
+            explicit_provenance = path_hint or _contains_qmutbench_metadata(document)
+            rows, has_collection = _collection(document)
+            case_rows = [row for row in rows if _case_like(row)]
+            if not explicit_provenance:
+                continue
+            dataset.provenance_verified = True
+            dataset.test_fixture_data = dataset.test_fixture_data or any(
+                part.lower().replace("-", "_") in {"test_fixtures", "fixtures"}
+                for part in path.parts
+            )
+            if case_rows:
+                dataset.data_files.append(relative)
+                for index, raw_case in enumerate(case_rows, start=1):
+                    case_id = next((raw_case[key] for key in ("case_id", "benchmark_case_id", "id", "name") if raw_case.get(key) is not None), f"{path.stem}#{index}")
+                    dataset.cases.append(QMutBenchCase(str(case_id), raw_case, [relative]))
+            elif has_collection:
+                dataset.data_files.append(relative)
+                dataset.issues.append({"source_file": relative, "status": "NO_CASES", "reason": "Verified QMutBench provenance, but no case-shaped entries were found."})
+            else:
+                dataset.metadata_files.append(relative)
+
+        _discover_qmutbench_qasm(root_path, dataset, scan_root)
     dataset.data_files = sorted(set(dataset.data_files))
     dataset.metadata_files = sorted(set(dataset.metadata_files))
     dataset.source_files = sorted(set(dataset.source_files))
@@ -699,7 +721,7 @@ def _normalize_instruction(instruction: Any, case_id: str) -> tuple[Any, ...]:
     if name not in SINGLE_GATES | ROTATION_GATES | {"u2", "u3"} | TWO_GATES | TWO_QUBIT_ROTATIONS | THREE_GATES | {"measure", "reset", "barrier"}:
         raise QMutBenchUnsupportedError(f"{case_id}: unsupported simulator operation {name!r}")
     operands = list(instruction[1:])
-    parameter_count = PARAMETERIZED_ARITY.get(name, 1 if name in TWO_QUBIT_ROTATIONS else 2 if name == "u2" else 3 if name == "u3" else 0)
+    parameter_count = PARAMETERIZED_ARITY.get(name, 1 if name in TWO_QUBIT_ROTATIONS else 0)
     if name in SINGLE_GATES:
         qubit_count = 1
     elif name in ROTATION_GATES or name in {"u2", "u3"}:

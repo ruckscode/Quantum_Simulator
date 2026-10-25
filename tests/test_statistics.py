@@ -1,4 +1,5 @@
 import pytest
+import numpy as np
 
 from quantum_simulator.statistics import DistributionComparisonResult, compare_counts, compare_distributions
 
@@ -54,3 +55,30 @@ def test_invalid_inputs_raise():
         compare_counts({"0": 10}, {"0": 5, "1": 5})
     with pytest.raises(ValueError):
         compare_counts({"0": 10, "1": 10}, {"0": 5, "1": 5}, shots=0)
+
+
+@pytest.mark.parametrize("invalid", [float("nan"), float("inf"), -float("inf"), -1.0])
+def test_nonfinite_or_negative_mapping_and_sequence_values_are_rejected(invalid):
+    with pytest.raises(ValueError):
+        compare_distributions({"0": 1.0, "1": 0.0}, {"0": invalid, "1": 1.0})
+    with pytest.raises(ValueError):
+        compare_distributions([1.0, 0.0], [invalid, 1.0])
+
+
+@pytest.mark.parametrize("invalid", [float("nan"), float("inf"), -1.0, True])
+def test_invalid_thresholds_are_rejected(invalid):
+    with pytest.raises((TypeError, ValueError)):
+        compare_distributions([1, 0], [1, 0], threshold=invalid)
+
+
+def test_distribution_normalization_is_stable_for_large_finite_values():
+    result = compare_distributions([1e308, 1e308], [1e308, 1e308])
+    assert result.anomaly_detected is False
+    assert result.total_variation_distance == 0.0
+
+
+def test_colliding_stringified_outcome_keys_and_multidimensional_arrays_fail_closed():
+    with pytest.raises(ValueError, match="keys must remain unique"):
+        compare_distributions({0: 1.0, "0": 1.0}, {"0": 1.0})
+    with pytest.raises(ValueError, match="one-dimensional"):
+        compare_distributions(np.array([[1.0, 0.0]]), np.array([[1.0, 0.0]]))

@@ -16,6 +16,30 @@ from .quantum_simulator import QuantumSimulator
 from .statistics import compare_distributions
 
 
+_SIMULATOR_SPECIAL_OPERATIONS = {"measure", "barrier", "reset"}
+TRACE_UNAVAILABLE_EVIDENCE = "No simulated trace evidence is available for the unsupported operation(s)."
+TRACE_METRIC_PLACEHOLDER_EVIDENCE = (
+    "anomaly_metric=0.0 is a placeholder because trace simulation was skipped; it is not a measured deviation."
+)
+
+
+def _unsupported_operations(*circuits: Sequence[Any] | None) -> list[str]:
+    """Return operation names that cannot be executed by the simulator."""
+    unsupported: set[str] = set()
+    for circuit in circuits:
+        if circuit is None:
+            continue
+        for instruction in circuit:
+            name = _normalize_operation(instruction)[0]
+            if name in _SIMULATOR_SPECIAL_OPERATIONS:
+                continue
+            try:
+                get_gate_qubit_count(name)
+            except (TypeError, ValueError):
+                unsupported.add(name)
+    return sorted(unsupported)
+
+
 @dataclass
 class LocalizationCandidate:
     index: int
@@ -153,6 +177,7 @@ class DiagnosticTraceStep(TypedDict):
 
     step: int
     operation: str
+    operands: Any
     expected: Any
     actual: Any
     difference: float
@@ -219,6 +244,7 @@ def localize_program_fault(
         raise TypeError("actual_circuit must be a sequence of operations")
 
     n_qubits = max(_infer_n_qubits(expected_circuit), _infer_n_qubits(actual_circuit))
+    unsupported_operations = _unsupported_operations(expected_circuit, actual_circuit)
 
     candidates: List[LocalizationCandidate] = []
     trace_deviation_result: DiagnosticTrace | None = precomputed_trace
@@ -229,6 +255,8 @@ def localize_program_fault(
 
         if move == "insert":
             sig = _signature_for_instruction(actual_instr)
+            if not _is_supported_operation_name(sig[0]):
+                continue
             candidates.append(LocalizationCandidate(
                 index=idx,
                 operation=sig[0],
@@ -243,6 +271,8 @@ def localize_program_fault(
 
         if move == "delete":
             sig = _signature_for_instruction(expected_instr)
+            if not _is_supported_operation_name(sig[0]):
+                continue
             candidates.append(LocalizationCandidate(
                 index=idx,
                 operation=sig[0],
@@ -258,6 +288,8 @@ def localize_program_fault(
         if move == "substitute":
             expected_sig = _signature_for_instruction(expected_instr)
             actual_sig = _signature_for_instruction(actual_instr)
+            if not all(_is_supported_operation_name(signature[0]) for signature in (expected_sig, actual_sig)):
+                continue
             score = _operation_score(expected_instr, actual_instr)
             if score > 0:
                 reason = "Operation signature mismatch"
@@ -281,8 +313,27 @@ def localize_program_fault(
                     ],
                 ))
 
-    if trace_deviation_result is None:
+    trace_unavailable = trace_deviation_result is None and bool(unsupported_operations)
+    if trace_deviation_result is None and not trace_unavailable:
         trace_deviation_result = _trace_deviation(expected_circuit, actual_circuit, n_qubits)
+
+    if trace_unavailable:
+        unsupported_text = ", ".join(unsupported_operations)
+        direct_evidence = [item for candidate in candidates for item in candidate.evidence]
+        return FaultLocalizationResult(
+            candidates=candidates,
+            anomaly_metric=0.0,
+            threshold=threshold,
+            summary=(
+                "Direct operation comparison is partial; simulator trace localization was skipped "
+                f"because these operations are unsupported: {unsupported_text}."
+            ),
+            evidence=[
+                *direct_evidence,
+                TRACE_UNAVAILABLE_EVIDENCE,
+                TRACE_METRIC_PLACEHOLDER_EVIDENCE,
+            ],
+        )
 
     if not candidates:
         anomaly_metric, trace = trace_deviation_result
@@ -334,6 +385,16 @@ def localize_program_fault(
         summary=summary,
         evidence=evidence,
     )
+
+
+def _is_supported_operation_name(name: str) -> bool:
+    if name in _SIMULATOR_SPECIAL_OPERATIONS:
+        return True
+    try:
+        get_gate_qubit_count(name)
+    except (TypeError, ValueError):
+        return False
+    return True
 
 
 __all__ = [

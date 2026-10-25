@@ -1,0 +1,90 @@
+{
+  "review_date": "2026-10-14",
+  "source": "tests/fixtures/reference_diagnosis_generalization_cases.json; current-tree deterministic reproduction",
+  "shots": 256,
+  "frozen_base_threshold": 0.05,
+  "finite_shot_guard": 0.0625,
+  "cases": [
+    {
+      "id": "qft_like_3q_program_fault_11",
+      "exact_tvd": 0.007855904127237757,
+      "sampled_tvd": 0.01953125,
+      "finite_shot_guard": 0.0625,
+      "frozen_detection_expected": true,
+      "observed_detection": false,
+      "source_target_hit": true,
+      "root_cause": "The mutated circuit has real but subthreshold distribution change; unchanged .05 threshold / .0625 guard prevents detection."
+    },
+    {
+      "id": "qft_like_3q_program_fault_29",
+      "exact_tvd": 0.0012597206789296321,
+      "sampled_tvd": 0.0,
+      "finite_shot_guard": 0.0625,
+      "frozen_detection_expected": true,
+      "observed_detection": false,
+      "source_target_hit": true,
+      "root_cause": "The mutated circuit has real but subthreshold distribution change; unchanged .05 threshold / .0625 guard prevents detection."
+    },
+    {
+      "id": "qft_like_3q_program_fault_47",
+      "exact_tvd": 0.011299432586568126,
+      "sampled_tvd": 0.01953125,
+      "finite_shot_guard": 0.0625,
+      "frozen_detection_expected": true,
+      "observed_detection": false,
+      "source_target_hit": true,
+      "root_cause": "The mutated circuit has real but subthreshold distribution change; unchanged .05 threshold / .0625 guard prevents detection."
+    },
+    {
+      "id": "ring_cluster_4q_correct_11",
+      "exact_tvd": 0.0,
+      "sampled_tvd": 0.0859375,
+      "finite_shot_guard": 0.0625,
+      "frozen_detection_expected": false,
+      "observed_detection": true,
+      "source_target_hit": null,
+      "root_cause": "Identical exact distributions produce a finite-shot false positive at this registered seed."
+    },
+    {
+      "id": "ring_cluster_4q_correct_29",
+      "exact_tvd": 0.0,
+      "sampled_tvd": 0.125,
+      "finite_shot_guard": 0.0625,
+      "frozen_detection_expected": false,
+      "observed_detection": true,
+      "source_target_hit": null,
+      "root_cause": "Identical exact distributions produce a finite-shot false positive at this registered seed."
+    },
+    {
+      "id": "ring_cluster_4q_equivalent_11",
+      "exact_tvd": 0.0,
+      "sampled_tvd": 0.0859375,
+      "finite_shot_guard": 0.0625,
+      "frozen_detection_expected": false,
+      "observed_detection": true,
+      "source_target_hit": true,
+      "root_cause": "Commuting CZ reorder preserves exact output distribution; finite-shot false positive drives the category to PROGRAM_FAULT because the localizer reports syntactic operation differences."
+    },
+    {
+      "id": "ring_cluster_4q_equivalent_29",
+      "exact_tvd": 0.0,
+      "sampled_tvd": 0.125,
+      "finite_shot_guard": 0.0625,
+      "frozen_detection_expected": false,
+      "observed_detection": true,
+      "source_target_hit": true,
+      "root_cause": "Commuting CZ reorder preserves exact output distribution; finite-shot false positive drives the category to PROGRAM_FAULT because the localizer reports syntactic operation differences."
+    }
+  ],
+  "conclusion": {
+    "implementation_defect_found": false,
+    "methodological_limitation": "The observed finite-shot TVD guard fails both sensitivity for intentionally subthreshold QFT-like faults and specificity for exact-equality ring controls at these seeds.",
+    "test_acceptance_assumption": "Three frozen positive expectations require detection where exact TVD is below the unchanged 0.05 threshold. This makes those expected positives incompatible with the current detector criterion; preserve them and report the failure rather than changing the fixture or threshold.",
+    "localization": "All source target assertions continue to pass; ring equivalent cases have syntactic source candidates despite semantic commutation. No hardware target is expected in these seven cases.",
+    "action": "Added a forensic regression asserting exact-vs-sampled distribution behavior while keeping test_heldout_generalization_outcomes_and_targets unchanged and failing. No threshold tuning or held-out outcome tuning was performed."
+  },
+  "validation": {
+    "command": ".venv/Scripts/python.exe -m pytest tests/test_reference_diagnosis_generalization.py::test_frozen_heldout_mismatches_are_explained_by_distribution_resolution -q --basetemp .pwb-heldout-forensics",
+    "result": "1 passed in 6.62s"
+  }
+}

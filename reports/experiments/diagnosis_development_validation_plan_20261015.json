@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "plan_id": "finite-shot-permutation-family-disjoint-development-pilot-20261015",
+  "status": "blocked_before_generation",
+  "objective": "Compare a fixed TVD detector with an isolated pooled-label permutation statistic for synthetic simulator healthy-control false positives and sensitivity to parameter-shift program faults.",
+  "evidence_boundary": {
+    "frozen_heldout_acceptance": "excluded; no outcomes, labels, thresholds, or expectations may be used for development selection",
+    "previous_finite_shot_calibration_and_validation": "excluded from new train/calibration/validation observations; existing summaries may motivate the question only",
+    "three_family_reference_fixture": "engineering fixture only; excluded from fresh development and validation",
+    "independent_truth": "simulator intervention labels are known by construction and remain synthetic; no independent truth or hardware claim"
+  },
+  "family_sampling": {
+    "target_frame": "new simulator-generated circuit families with a supported measured single-qubit RY operation, sampled from a versioned, reviewable finite family frame",
+    "sampling_frame_status": "materialized_but_blocked_incomplete_prior_inventory",
+    "family_root_definition": "canonical ordered gate-name/qubit topology before any fault intervention; angle values, sampling seeds, repetitions, shot levels, and injected mutations are descendants within that root",
+    "planned_families": 16,
+    "development_families": 8,
+    "validation_families": 8,
+    "family_unit": "unique canonical circuit topology root; seeds, angle variants, repetitions, shot counts, and mutations remain descendants of that single root",
+    "required_per_family_fields": [
+      "family_id",
+      "lineage_root_id",
+      "ancestor_root_ids",
+      "topology_sha256",
+      "source_sha256",
+      "partition"
+    ],
+    "exclusion_rules": [
+      "reject any prior/descendant lineage-root overlap",
+      "reject exact topology fingerprint reuse",
+      "reject duplicate topology roots across new families",
+      "exclude all known old finite-shot, reference-generalization, controlled-fault, full-dataset, and frozen-acceptance roots"
+    ],
+    "partition_rule": "assign complete family roots to development or validation before generating outcome counts; never split descendants",
+    "inventory_path": "reports/experiments/diagnosis_prior_lineage_inventory_20261015.json",
+    "inventory_sha256": "ec39aeccbac38407d7cb9aa7891cd388d681b056332a0aa4197dfd74400f5c37",
+    "frame_path": "reports/experiments/diagnosis_family_sampling_frame_20261015.json",
+    "frame_sha256": "ccef18762d9c87412e0f88e6d2b84ebdbbfd8b9d4edbc3ff0d22c69c03c0031b",
+    "eligible_roots": 0,
+    "excluded_prior_circuit_records": 5366,
+    "unknown_or_unreconciled_lineage_records": 5186,
+    "observed_prior_lineage_roots": 3,
+    "source_declared_possible_roots": 6,
+    "unknown_lineage_circuit_records": 5186,
+    "inventory_scan_truncated": true,
+    "artifact_count": 20000,
+    "bytes_scanned": 124638914,
+    "exact_duplicate_content_artifacts": 457,
+    "review_flags": 6,
+    "family_only_without_root_record_artifacts": 1671,
+    "scan_truncated": true
+  },
+  "conditions": {
+    "strata": {
+      "healthy": {
+        "intervention": "no circuit change"
+      },
+      "subtle": {
+        "intervention": "RY angle shift +0.03 radians"
+      },
+      "moderate": {
+        "intervention": "RY angle shift +0.10 radians"
+      },
+      "strong": {
+        "intervention": "RY angle shift +0.30 radians"
+      }
+    },
+    "shot_counts": [
+      256,
+      1024
+    ],
+    "repetitions_per_family_stratum_shot": 2,
+    "repetition_unit": "paired sampled reference and submitted circuit executions; repetitions are repeated measures within a family, not independent families",
+    "random_seed_policy": "derive deterministic per-family/stratum/shot/repetition seeds from the frozen master seed and lineage root; do not reuse prior campaign seeds"
+  },
+  "methods": {
+    "baseline": {
+      "name": "current_TVD_guard",
+      "threshold": 0.05,
+      "finite_shot_guard": "max(threshold, 1/sqrt(shots))"
+    },
+    "candidate": {
+      "name": "pooled_label_TVD_permutation",
+      "implementation": "experiments/diagnosis_candidate_methods.py",
+      "permutation_repetitions": 199,
+      "monte_carlo_correction": "add-one",
+      "test_alpha_selection": "choose the largest alpha in [0.01, 0.025, 0.05, 0.10] whose development healthy-control empirical false-positive rate is at most 0.05; if none qualifies, classify the candidate unsuccessful and do not evaluate on validation"
+    },
+    "candidate_settings_freeze": "write and hash selected alpha and method settings before opening validation outcomes",
+    "statistical_assumption": "permutation p-value is interpretable under independent, exchangeable shot outcomes between reference and submitted samples; it is not a fault probability"
+  },
+  "outcomes": {
+    "primary": [
+      "healthy-control false-positive rate",
+      "sensitivity separately for subtle, moderate, and strong strata, at each shot count"
+    ],
+    "comparison": "paired baseline/candidate decisions on identical sampled counts; aggregate by family and report paired family-level differences",
+    "uncertainty": "report exact binomial descriptive intervals per cell and family-cluster bootstrap intervals for paired differences; label intervals exploratory because only eight validation family clusters are planned",
+    "abstention": "the candidate statistic itself has no abstention output; report an abstention only when the independent protocol/evidence disposition is ambiguous or execution is invalid, and do not force a single-cause label",
+    "attribution_localization": "not evaluated; detection results do not establish program/hardware causal attribution or source localization"
+  },
+  "provisional_development_decision_rules": {
+    "status": "directional pilot rules only; not approved acceptance criteria and not suitable for release, publication, or confirmatory claims",
+    "promising": "on fresh validation families, candidate aggregate healthy-control FPR is lower than baseline and candidate sensitivity is no lower in every predefined fault stratum; family-cluster uncertainty is still reported and no population-level claim follows",
+    "unsuccessful": "candidate is not selectable under the development-only alpha rule, or validation FPR is no lower than baseline and sensitivity is no higher in every fault stratum",
+    "inconclusive": "all other outcomes, insufficient valid independent families, missing/invalid cells, or family-cluster intervals compatible with both benefit and harm",
+    "restriction": "these relative directional categories are pilot triage only; no absolute performance floor is asserted"
+  },
+  "resource_limits": {
+    "max_circuit_executions": 512,
+    "max_shot_circuit_executions": 327680,
+    "max_wall_runtime_seconds": 180,
+    "max_peak_memory_bytes": 268435456,
+    "max_output_bytes": 5242880,
+    "stop_rules": [
+      "stop before a reservation that would exceed any circuit, shot, or output cap",
+      "stop immediately when runtime or peak-memory cap is crossed",
+      "stop and preserve a partial manifest on any provenance, lineage, seed, or output-integrity failure",
+      "do not resume across changed source/configuration hashes"
+    ],
+    "authorization": "no execution authorization is implied by this plan"
+  },
+  "blocker": {
+    "reason": "The resource-bounded scan covered the six primary source/data/evidence roots and retained prior temp-output roots: 20,000 artifacts / 124,638,914 bytes across 108 roots, then stopped at its file cap; five oversized files were skipped. It found 5,366 circuit-like records, 5,186 unknown-lineage records, three observed recipe roots, and six source-declared possible design_recipe roots, of which only three were observed in saved rows. Six cross-artifact root/family review flags remain unresolved. Inventory completeness is therefore explicitly false; no families are eligible.",
+    "required_before_generation": [
+      "independently reconcile all remaining files after the deterministic 20,000-file/128-MiB scan cap and five oversized files",
+      "resolve missing per-template roots, ancestry and fingerprints or conservatively account for all affected records",
+      "review six cross-artifact root/family flags and reconcile all six source-declared roots against saved descendants",
+      "obtain hash-bound independent completeness attestation and at least 16 genuinely fresh, disjoint roots",
+      "validate unchanged plan against current source/runtime and obtain separate execution authorization"
+    ],
+    "current_disposition": "No circuit or shot data generated; provenance inventory/frame only; zero eligible roots; no candidate threshold selected; no study run."
+  }
+}

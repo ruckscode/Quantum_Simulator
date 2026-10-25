@@ -1,0 +1,69 @@
+{
+  "dataset_name": "REPLAY_DERIVED_TRACE_FEATURES",
+  "trace_origin": "REPLAY_DERIVED",
+  "description": "Fresh seeded replays of stored reports; these are not original-run traces.",
+  "trace_generation_version": "stage2_operation_trace_seeded_v1",
+  "high_deviation_threshold": 0.05,
+  "high_deviation_rule": "probability_difference > 0.05; fixed from the simulator's default statistical threshold before label inspection",
+  "source_report_count": 270,
+  "successful_replays": 270,
+  "replay_failure_count": 0,
+  "replay_failures": [],
+  "class_counts": {
+    "NORMAL": 90,
+    "PROGRAM_FAULT": 90,
+    "HARDWARE_ANOMALY": 90
+  },
+  "class_count_check": true,
+  "circuit_family_count": 30,
+  "circuit_family_check": true,
+  "repetitions_per_family_class": 3,
+  "repetition_group_count": 90,
+  "repetitions_check": true,
+  "feature_names": [
+    "trace_max_probability_difference",
+    "trace_mean_probability_difference",
+    "trace_median_probability_difference",
+    "trace_deviation_concentration",
+    "trace_high_deviation_fraction"
+  ],
+  "feature_source_fields": [
+    "replayed_trace[*].probability_difference",
+    "replayed_trace[*].probability_difference",
+    "replayed_trace[*].probability_difference",
+    "replayed_trace[*].probability_difference",
+    "replayed_trace[*].probability_difference"
+  ],
+  "feature_missing_counts": {
+    "trace_max_probability_difference": 0,
+    "trace_mean_probability_difference": 0,
+    "trace_median_probability_difference": 0,
+    "trace_deviation_concentration": 0,
+    "trace_high_deviation_fraction": 0
+  },
+  "no_missing_features_check": true,
+  "ground_truth_label_is_target_only": true,
+  "ground_truth_not_in_features_check": true,
+  "diagnosis_output_used_as_feature": false,
+  "diagnosis_not_in_features_check": true,
+  "forbidden_feature_sources": [
+    "diagnosis",
+    "diagnosis.category",
+    "diagnosis.hardware_evidence_candidates",
+    "diagnosis.program_evidence_candidates",
+    "diagnosis.trace_deviation_candidates",
+    "gate_error",
+    "gate_failed",
+    "ground_truth_label",
+    "readout_error",
+    "step_position",
+    "t1",
+    "t2"
+  ],
+  "audit_pass": true,
+  "implementation_sha256": {
+    "feature_generator": "670c016e2927c05550331aa52d083e3a4d621c2ba64d7446b1399e91c6282efc",
+    "quantum_simulator": "a07be9c304153a389454f699ffaaace8d12d99d430396bcfc1b5c383845406ef"
+  },
+  "replay_feature_csv_sha256": "10620c3d5b8504a95485689224d5f65f6de7db4f46570faf6d151702872c92f7"
+}

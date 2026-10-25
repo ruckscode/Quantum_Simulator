@@ -44,3 +44,60 @@ Thumbs.db
 
 # Official Bugs4Q archives and extracted repositories
 data/Bugs4Q_official/
+
+# Local experiment and test workspaces (contents remain available locally)
+/.pwb*/
+/.pytest-*/
+/.t*/
+/.tmp-*/
+/.b4q/
+/.bqmb/
+/.pt*/
+/.qsr/
+/.tcp*/
+/.tqmb*/
+/.tcal*/
+
+# Local recovery copy of the pre-audit tracked working-tree diff
+.tracked-working-tree-recovery.patch
+
+# Locally generated QMutBench downloads, ingestion products, and ML intermediates
+/data/qmutbench_full/
+/data/qmutbench_ingestion/
+/data/qmutbench_ml/
+/data/phase5_training_f1_f2.jsonl
+/data/phase5_training_f1_f2_ordered.jsonl
+
+# Large generated research outputs; source scripts, tests, manifests, and reports stay trackable
+/reports/experiments/full_dataset/
+/reports/experiments/finite_shot_distribution_calibration_run/
+/reports/experiments/phase5_benchmark/
+/reports/experiments/phase5_training_f1_f2/
+/reports/experiments/replay_derived_trace_features_pre_audit_20261025/
+
+# Superseded generated snapshots retained locally for audit history
+/reports/experiments/controlled_fault_isolation_phase1/
+/reports/experiments/controlled_fault_isolation_phase1_3/
+/reports/experiments/controlled_rule_evaluation_v1/
+/reports/experiments/ml_data_foundation_pilot_20261015/
+/reports/experiments/ml_data_foundation_pilot_20261015_v2/
+/reports/experiments/ml_data_foundation_pilot_20261015_v3/
+
+# Historical/local model outputs that are not eligible as current validated results
+/ml_results/fallback_ml_evaluation/
+/ml_results/grouped_cv_audit_v1/
+/ml_results/grouped_cv_audit_v2/
+/ml_results/reduced_calibration_experiment/
+
+# Large generated case inventories and per-row analysis exports retained locally
+/reports/detection_failure_analysis_report.md
+/reports/experiments/diagnosis_prior_lineage_inventory_20261015.json
+/reports/experiments/ml_historical_record_recovery_20261015.json
+/reports/experiments/ml_historical_record_recovery_20261015_v2.json
+/reports/experiments/hardware_validation_phase3_4_environment/
+
+# Draft report retained locally; final reviewed reports are tracked separately
+/final_research_report_draft.md
+
+# Accidental terminal output saved under a command-shaped filename
+s -ExecutionPolicy RemoteSigned)*

@@ -1,0 +1,287 @@
+{
+  "anomaly": {
+    "anomaly_detected": true,
+    "expected_distribution": {
+      "0": 0.0,
+      "1": 1.0
+    },
+    "finite_shot_guard": 0.05,
+    "hellinger_distance": 0.40689142264716266,
+    "js_divergence": 0.11892620044687587,
+    "message": "Observed distribution differs from expected distribution by TVD=0.303711, which exceeds threshold=0.050000.",
+    "observed_distribution": {
+      "0": 0.3037109375,
+      "1": 0.6962890625
+    },
+    "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+    "shots": 2048,
+    "threshold": 0.05,
+    "total_variation_distance": 0.3037109375
+  },
+  "circuit": {
+    "ideal": [
+      [
+        "h",
+        0
+      ],
+      [
+        "z",
+        0
+      ],
+      [
+        "h",
+        0
+      ],
+      [
+        "measure",
+        0
+      ]
+    ],
+    "observed": [
+      [
+        "h",
+        0
+      ],
+      [
+        "z",
+        0
+      ],
+      [
+        "h",
+        0
+      ],
+      [
+        "measure",
+        0
+      ]
+    ]
+  },
+  "configuration": {
+    "anomaly_threshold": 0.05,
+    "backend_name": null,
+    "circuit": [
+      [
+        "h",
+        0
+      ],
+      [
+        "z",
+        0
+      ],
+      [
+        "h",
+        0
+      ],
+      [
+        "measure",
+        0
+      ]
+    ],
+    "circuit_family_id": "hzh_sequence",
+    "circuit_id": "circuit-b18251eb1ebcf6f1",
+    "description": "",
+    "experiment_name": "pilot_hzh_sequence_hardware_anomaly_rep1",
+    "experimental_group_id": "group-3fa0dd9520bba0bf",
+    "ground_truth_label": "HARDWARE_ANOMALY",
+    "hardware_condition_id": "readout_bit_flip_30pct_v1",
+    "hardware_parameters": {
+      "coupling_map": [],
+      "qubits": {
+        "0": {
+          "readout_error": 0.3,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        }
+      }
+    },
+    "noise_parameters": null,
+    "num_qubits": 1,
+    "observed_circuit": [
+      [
+        "h",
+        0
+      ],
+      [
+        "z",
+        0
+      ],
+      [
+        "h",
+        0
+      ],
+      [
+        "measure",
+        0
+      ]
+    ],
+    "observed_counts": null,
+    "program_fault_id": null,
+    "random_seed": 73221,
+    "repetition_index": 1,
+    "run_id": "run-d932b0c2d281b00d",
+    "shots": 2048,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "diagnosis": {
+    "anomaly_detected": true,
+    "category": "HARDWARE_ANOMALY",
+    "evidence": [
+      "Observed distribution differs from expected distribution by TVD=0.303711, which exceeds threshold=0.050000.",
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000.",
+      "Qubit 0 readout error is elevated at 0.3000.",
+      "No gate calibration entry is available for h on qubits (0,).",
+      "No gate calibration entry is available for z on qubits (0,)."
+    ],
+    "hardware_evidence_candidates": [
+      {
+        "component": 0,
+        "component_type": "qubit",
+        "evidence": [
+          "Qubit 0 readout error is elevated at 0.3000."
+        ],
+        "reason": "Qubit 0 shows hardware degradation: readout_error=0.3000",
+        "score": 1.2
+      }
+    ],
+    "hardware_result": {
+      "anomaly_metric": 0.0,
+      "candidates": [
+        {
+          "component": 0,
+          "component_type": "qubit",
+          "evidence": [
+            "Qubit 0 readout error is elevated at 0.3000."
+          ],
+          "reason": "Qubit 0 shows hardware degradation: readout_error=0.3000",
+          "score": 1.2
+        }
+      ],
+      "evidence": [
+        "Qubit 0 readout error is elevated at 0.3000."
+      ],
+      "summary": "Likely hardware component(s): qubit 0",
+      "threshold": 0.05
+    },
+    "missing_evidence": [
+      "No gate calibration entry is available for h on qubits (0,).",
+      "No gate calibration entry is available for z on qubits (0,)."
+    ],
+    "program_evidence_candidates": [],
+    "program_result": {
+      "anomaly_metric": 0.0,
+      "candidates": [],
+      "evidence": [
+        "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+      ],
+      "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+      "threshold": 0.05
+    },
+    "statistics_result": {
+      "anomaly_detected": true,
+      "expected_distribution": {
+        "0": 0.0,
+        "1": 1.0
+      },
+      "finite_shot_guard": 0.05,
+      "hellinger_distance": 0.40689142264716266,
+      "js_divergence": 0.11892620044687587,
+      "message": "Observed distribution differs from expected distribution by TVD=0.303711, which exceeds threshold=0.050000.",
+      "observed_distribution": {
+        "0": 0.3037109375,
+        "1": 0.6962890625
+      },
+      "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+      "shots": 2048,
+      "threshold": 0.05,
+      "total_variation_distance": 0.3037109375
+    },
+    "summary": "An execution anomaly is accompanied by relevant hardware calibration evidence."
+  },
+  "errors": [],
+  "execution_metadata": {
+    "backend_api_used": false,
+    "execution_kind": "SYNTHETIC_VALIDATION",
+    "execution_target": "LOCAL_SIMULATOR",
+    "generated_at": "2026-10-07T05:23:59+00:00",
+    "hardware_model_applied": true,
+    "noise_parameters_applied": false,
+    "numpy_version": "2.5.3",
+    "observation_source": "SEEDED_LOCAL_SIMULATOR_SHOTS_WITH_HARDWARE_MODEL",
+    "python_version": "3.12.10",
+    "random_seed": 73221,
+    "shots": 2048
+  },
+  "experiment_metadata": {
+    "backend_name": null,
+    "circuit_family_id": "hzh_sequence",
+    "circuit_id": "circuit-b18251eb1ebcf6f1",
+    "created_at": "2026-10-07T05:23:59+00:00",
+    "experiment_name": "pilot_hzh_sequence_hardware_anomaly_rep1",
+    "experimental_group_id": "group-3fa0dd9520bba0bf",
+    "ground_truth_label": "HARDWARE_ANOMALY",
+    "hardware_condition_id": "readout_bit_flip_30pct_v1",
+    "program_fault_id": null,
+    "repetition_index": 1,
+    "run_id": "run-d932b0c2d281b00d",
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "hardware_evidence": {
+    "anomaly_metric": 0.0,
+    "candidates": [
+      {
+        "component": 0,
+        "component_type": "qubit",
+        "evidence": [
+          "Qubit 0 readout error is elevated at 0.3000."
+        ],
+        "reason": "Qubit 0 shows hardware degradation: readout_error=0.3000",
+        "score": 1.2
+      }
+    ],
+    "evidence": [
+      "Qubit 0 readout error is elevated at 0.3000."
+    ],
+    "summary": "Likely hardware component(s): qubit 0",
+    "threshold": 0.05
+  },
+  "ideal_distribution": {
+    "0": 0.0,
+    "1": 1.0
+  },
+  "ideal_statevector_distribution": {
+    "0": 0.0,
+    "1": 1.0
+  },
+  "observed_counts": {
+    "0": 622,
+    "1": 1426
+  },
+  "observed_distribution": {
+    "0": 0.3037109375,
+    "1": 0.6962890625
+  },
+  "program_evidence": {
+    "anomaly_metric": 0.0,
+    "candidates": [],
+    "evidence": [
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+    ],
+    "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+    "threshold": 0.05
+  },
+  "reproducibility": {
+    "deterministic_localizer_measurements": "measurement operations mapped to barriers for localization only",
+    "fingerprint": "c12a0738108674703bf2067c397391797cb6c52685b06899fc7eb3d1b048e29b",
+    "fingerprint_excludes": [
+      "execution_metadata.generated_at",
+      "reproducibility.fingerprint"
+    ],
+    "random_seed": 73221,
+    "simulator_version": "project-statevector-current"
+  },
+  "simulator_observed_counts": {
+    "0": 622,
+    "1": 1426
+  },
+  "status": "COMPLETED"
+}

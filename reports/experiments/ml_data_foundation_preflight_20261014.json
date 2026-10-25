@@ -1,0 +1,68 @@
+{
+  "blockers": [
+    "270 report rows lack per-run source_sha256 provenance",
+    "dataset generator source hashes do not match current generation code (missing/changed: ['diagnosis_engine.py', 'experiment_config.py', 'experiments/full_dataset.py', 'experiments/run_experiment.py', 'fault_localizer.py', 'gates.py', 'hardware_fault_localizer.py', 'hardware_model.py', 'pyproject.toml', 'quantum_simulator.py', 'src/quantum_simulator/__init__.py', 'src/quantum_simulator/diagnosis_engine.py', 'src/quantum_simulator/fault_localizer.py', 'src/quantum_simulator/gates.py', 'src/quantum_simulator/hardware_fault_localizer.py', 'src/quantum_simulator/hardware_model.py', 'src/quantum_simulator/quantum_circuit.py', 'src/quantum_simulator/quantum_simulator.py', 'src/quantum_simulator/statistics.py', 'statistics.py'])",
+    "dataset manifest is missing generation_provenance",
+    "no eligible rows are available for grouped folds"
+  ],
+  "class_order": [
+    "NORMAL",
+    "PROGRAM_FAULT",
+    "HARDWARE_ANOMALY"
+  ],
+  "counts": {
+    "completed": 270,
+    "eligible": 0,
+    "failed": 0,
+    "ineligible": 270,
+    "other_source_dispositions": {},
+    "unsupported": 0
+  },
+  "dataset_fingerprint_definition": "SHA-256 over sorted POSIX-relative paths and raw bytes of every .json file under the selected source directory; the dataset_manifest.json is included; configured generated-output subdirectories are excluded.",
+  "dataset_fingerprint_scheme": "source_json_bytes_sha256_v1",
+  "dataset_fingerprint_sha256": "af4776f5adcc1f090f03d74220b2b3f589a4652818d9cb3b8c79a25baa0bb54a",
+  "dataset_provenance": null,
+  "dataset_provenance_blockers": [
+    "270 report rows lack per-run source_sha256 provenance",
+    "dataset generator source hashes do not match current generation code (missing/changed: ['diagnosis_engine.py', 'experiment_config.py', 'experiments/full_dataset.py', 'experiments/run_experiment.py', 'fault_localizer.py', 'gates.py', 'hardware_fault_localizer.py', 'hardware_model.py', 'pyproject.toml', 'quantum_simulator.py', 'src/quantum_simulator/__init__.py', 'src/quantum_simulator/diagnosis_engine.py', 'src/quantum_simulator/fault_localizer.py', 'src/quantum_simulator/gates.py', 'src/quantum_simulator/hardware_fault_localizer.py', 'src/quantum_simulator/hardware_model.py', 'src/quantum_simulator/quantum_circuit.py', 'src/quantum_simulator/quantum_simulator.py', 'src/quantum_simulator/statistics.py', 'statistics.py'])",
+    "dataset manifest is missing generation_provenance"
+  ],
+  "estimator_fitting_started": false,
+  "family_count": 0,
+  "feature_schema": [
+    "total_variation_distance",
+    "js_divergence",
+    "hellinger_distance",
+    "observed_entropy_bits",
+    "observed_max_probability"
+  ],
+  "folds": [],
+  "ineligible_row_reasons": {
+    "missing circuit_lineage_id": 270,
+    "missing metadata fields: circuit_lineage_id": 270
+  },
+  "label_semantics": "scenario-construction ground truth from controlled simulator reports; not independent external adjudication",
+  "model_export_started": false,
+  "output_is_outside_historical_reports": true,
+  "prediction_started": false,
+  "proposed_output_directory": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\ml_results\\grouped_cv_audit_v2",
+  "protocol_assumptions": [
+    "circuit_lineage_id is the grouping unit for outer folds; all family conditions and recipe siblings stay together",
+    "the dataset is a controlled local-simulator study, not physical-hardware validation",
+    "scenario labels are assigned by construction metadata and require independent adjudication for external accuracy claims",
+    "the five production observables are checked against the runtime diagnosis adapter order"
+  ],
+  "ready": false,
+  "source_hashes": {
+    "experiment_config.py": "f1a0f721d8bdf1175bfcdbd84d6d829099efb7155f1568ad703e9f6cc76d33b3",
+    "experiments/full_dataset.py": "2272d934648628ed8f7bf756ee1a6a0f988be8b8d28bd9972227ceeeed8cb0ac",
+    "experiments/run_experiment.py": "fef2985d782c92756af81e84232c7b0c286dc930963063dc9c2b44348e30c034",
+    "ml_evaluation.py": "4ab18ea0bab78a5af3d7785f95a7ce889a45f036bfee2afab174d1b208531fff",
+    "ml_training.py": "6fb5aef97d26115ea514ca5895f7df3d088c859e77575ffb51141835bb4bec11",
+    "src/quantum_simulator/diagnosis_engine.py": "16ccc815f00e8d13a5e72311e82d5a979af0bc4dde7770e6de0798876d55f1a0",
+    "src/quantum_simulator/hardware_model.py": "2e9c5f3c54452c78571a072ecf64223616ec5d95efb08cc7b6c5a9739af567e1",
+    "src/quantum_simulator/quantum_simulator.py": "a07be9c304153a389454f699ffaaace8d12d99d430396bcfc1b5c383845406ef",
+    "src/quantum_simulator/statistics.py": "aa5433cb56b42ee9fc8c3042f274b0015efbf727386907d8de5c89212304a9aa"
+  },
+  "writes_performed": false
+}

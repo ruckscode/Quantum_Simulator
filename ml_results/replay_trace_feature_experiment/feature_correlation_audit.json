@@ -1,0 +1,246 @@
+{
+  "method": "Pearson correlation over the 270 joined records; computed without labels as inputs",
+  "high_correlation_cutoff_absolute_r": 0.95,
+  "near_duplicate_cutoff_absolute_r": 0.995,
+  "constant_features": [],
+  "correlations": [
+    {
+      "feature_a": "total_variation_distance",
+      "feature_b": "js_divergence",
+      "pearson_r": 0.9443232809111892
+    },
+    {
+      "feature_a": "total_variation_distance",
+      "feature_b": "hellinger_distance",
+      "pearson_r": 0.9895395019689754
+    },
+    {
+      "feature_a": "total_variation_distance",
+      "feature_b": "observed_entropy_bits",
+      "pearson_r": -0.14982983767723942
+    },
+    {
+      "feature_a": "total_variation_distance",
+      "feature_b": "observed_max_probability",
+      "pearson_r": 0.23192465611871557
+    },
+    {
+      "feature_a": "total_variation_distance",
+      "feature_b": "trace_max_probability_difference",
+      "pearson_r": 0.35347921631417933
+    },
+    {
+      "feature_a": "total_variation_distance",
+      "feature_b": "trace_mean_probability_difference",
+      "pearson_r": 0.40097514231951426
+    },
+    {
+      "feature_a": "total_variation_distance",
+      "feature_b": "trace_median_probability_difference",
+      "pearson_r": -0.025122784860234733
+    },
+    {
+      "feature_a": "total_variation_distance",
+      "feature_b": "trace_deviation_concentration",
+      "pearson_r": 0.10221693098220057
+    },
+    {
+      "feature_a": "total_variation_distance",
+      "feature_b": "trace_high_deviation_fraction",
+      "pearson_r": 0.33066057671915366
+    },
+    {
+      "feature_a": "js_divergence",
+      "feature_b": "hellinger_distance",
+      "pearson_r": 0.9686450501821859
+    },
+    {
+      "feature_a": "js_divergence",
+      "feature_b": "observed_entropy_bits",
+      "pearson_r": -0.21354645212214762
+    },
+    {
+      "feature_a": "js_divergence",
+      "feature_b": "observed_max_probability",
+      "pearson_r": 0.2818290496246617
+    },
+    {
+      "feature_a": "js_divergence",
+      "feature_b": "trace_max_probability_difference",
+      "pearson_r": 0.30865815457253143
+    },
+    {
+      "feature_a": "js_divergence",
+      "feature_b": "trace_mean_probability_difference",
+      "pearson_r": 0.37827334874341595
+    },
+    {
+      "feature_a": "js_divergence",
+      "feature_b": "trace_median_probability_difference",
+      "pearson_r": -0.032583542039315544
+    },
+    {
+      "feature_a": "js_divergence",
+      "feature_b": "trace_deviation_concentration",
+      "pearson_r": 0.030815208204290876
+    },
+    {
+      "feature_a": "js_divergence",
+      "feature_b": "trace_high_deviation_fraction",
+      "pearson_r": 0.2793908682372363
+    },
+    {
+      "feature_a": "hellinger_distance",
+      "feature_b": "observed_entropy_bits",
+      "pearson_r": -0.12945768912388386
+    },
+    {
+      "feature_a": "hellinger_distance",
+      "feature_b": "observed_max_probability",
+      "pearson_r": 0.2187247516776677
+    },
+    {
+      "feature_a": "hellinger_distance",
+      "feature_b": "trace_max_probability_difference",
+      "pearson_r": 0.34854901692928014
+    },
+    {
+      "feature_a": "hellinger_distance",
+      "feature_b": "trace_mean_probability_difference",
+      "pearson_r": 0.3864533832585899
+    },
+    {
+      "feature_a": "hellinger_distance",
+      "feature_b": "trace_median_probability_difference",
+      "pearson_r": -0.029669606943483497
+    },
+    {
+      "feature_a": "hellinger_distance",
+      "feature_b": "trace_deviation_concentration",
+      "pearson_r": 0.08989248058519142
+    },
+    {
+      "feature_a": "hellinger_distance",
+      "feature_b": "trace_high_deviation_fraction",
+      "pearson_r": 0.3058483652741748
+    },
+    {
+      "feature_a": "observed_entropy_bits",
+      "feature_b": "observed_max_probability",
+      "pearson_r": -0.9183295967596778
+    },
+    {
+      "feature_a": "observed_entropy_bits",
+      "feature_b": "trace_max_probability_difference",
+      "pearson_r": 0.31188000498371593
+    },
+    {
+      "feature_a": "observed_entropy_bits",
+      "feature_b": "trace_mean_probability_difference",
+      "pearson_r": -0.0978161880449638
+    },
+    {
+      "feature_a": "observed_entropy_bits",
+      "feature_b": "trace_median_probability_difference",
+      "pearson_r": -0.007156738819278053
+    },
+    {
+      "feature_a": "observed_entropy_bits",
+      "feature_b": "trace_deviation_concentration",
+      "pearson_r": 0.390093627853989
+    },
+    {
+      "feature_a": "observed_entropy_bits",
+      "feature_b": "trace_high_deviation_fraction",
+      "pearson_r": -0.07326391651951718
+    },
+    {
+      "feature_a": "observed_max_probability",
+      "feature_b": "trace_max_probability_difference",
+      "pearson_r": -0.26177612966107333
+    },
+    {
+      "feature_a": "observed_max_probability",
+      "feature_b": "trace_mean_probability_difference",
+      "pearson_r": 0.027201311324957716
+    },
+    {
+      "feature_a": "observed_max_probability",
+      "feature_b": "trace_median_probability_difference",
+      "pearson_r": -0.04120788868550783
+    },
+    {
+      "feature_a": "observed_max_probability",
+      "feature_b": "trace_deviation_concentration",
+      "pearson_r": -0.3882851002159051
+    },
+    {
+      "feature_a": "observed_max_probability",
+      "feature_b": "trace_high_deviation_fraction",
+      "pearson_r": 0.006360779461900168
+    },
+    {
+      "feature_a": "trace_max_probability_difference",
+      "feature_b": "trace_mean_probability_difference",
+      "pearson_r": 0.6107063916059661
+    },
+    {
+      "feature_a": "trace_max_probability_difference",
+      "feature_b": "trace_median_probability_difference",
+      "pearson_r": 0.07270541093399768
+    },
+    {
+      "feature_a": "trace_max_probability_difference",
+      "feature_b": "trace_deviation_concentration",
+      "pearson_r": 0.8412058016964721
+    },
+    {
+      "feature_a": "trace_max_probability_difference",
+      "feature_b": "trace_high_deviation_fraction",
+      "pearson_r": 0.4842276999871981
+    },
+    {
+      "feature_a": "trace_mean_probability_difference",
+      "feature_b": "trace_median_probability_difference",
+      "pearson_r": 0.583526931091238
+    },
+    {
+      "feature_a": "trace_mean_probability_difference",
+      "feature_b": "trace_deviation_concentration",
+      "pearson_r": 0.34961976629336555
+    },
+    {
+      "feature_a": "trace_mean_probability_difference",
+      "feature_b": "trace_high_deviation_fraction",
+      "pearson_r": 0.8584510716591927
+    },
+    {
+      "feature_a": "trace_median_probability_difference",
+      "feature_b": "trace_deviation_concentration",
+      "pearson_r": -0.055389381398705216
+    },
+    {
+      "feature_a": "trace_median_probability_difference",
+      "feature_b": "trace_high_deviation_fraction",
+      "pearson_r": 0.5756396149582752
+    },
+    {
+      "feature_a": "trace_deviation_concentration",
+      "feature_b": "trace_high_deviation_fraction",
+      "pearson_r": 0.2871047749312082
+    }
+  ],
+  "high_correlation_pairs": [
+    {
+      "feature_a": "total_variation_distance",
+      "feature_b": "hellinger_distance",
+      "pearson_r": 0.9895395019689754
+    },
+    {
+      "feature_a": "js_divergence",
+      "feature_b": "hellinger_distance",
+      "pearson_r": 0.9686450501821859
+    }
+  ],
+  "near_duplicate_pairs": []
+}

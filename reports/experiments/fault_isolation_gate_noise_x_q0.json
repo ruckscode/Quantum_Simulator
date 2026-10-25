@@ -1,0 +1,310 @@
+{
+  "anomaly": {
+    "anomaly_detected": true,
+    "expected_distribution": {
+      "00": 0.0,
+      "01": 0.0,
+      "10": 1.0,
+      "11": 0.0
+    },
+    "finite_shot_guard": 0.05,
+    "hellinger_distance": 0.4589845490104291,
+    "js_divergence": 0.15273000310263668,
+    "message": "Observed distribution differs from expected distribution by TVD=0.376953, which exceeds threshold=0.050000.",
+    "observed_distribution": {
+      "00": 0.37695312500000006,
+      "01": 0.0,
+      "10": 0.623046875,
+      "11": 0.0
+    },
+    "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+    "shots": 512,
+    "threshold": 0.05,
+    "total_variation_distance": 0.376953125
+  },
+  "circuit": {
+    "ideal": [
+      [
+        "x",
+        0
+      ],
+      [
+        "measure",
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "observed": [
+      [
+        "x",
+        0
+      ],
+      [
+        "measure",
+        [
+          0,
+          1
+        ]
+      ]
+    ]
+  },
+  "configuration": {
+    "anomaly_threshold": 0.05,
+    "backend_name": null,
+    "circuit": [
+      [
+        "x",
+        0
+      ],
+      [
+        "measure",
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "circuit_family_id": "fault_isolation_family_01",
+    "circuit_id": "circuit-233d88647822fce2",
+    "circuit_lineage_id": null,
+    "description": "",
+    "experiment_name": "fault_isolation_gate_noise_x_q0",
+    "experimental_group_id": "group-ae11f820c2522a1b",
+    "ground_truth_label": "HARDWARE_ANOMALY",
+    "hardware_affected_component": "x gate on qubit 0",
+    "hardware_condition_id": "condition_gate_noise_x_q0",
+    "hardware_parameters": {
+      "coupling_map": [],
+      "gates": [
+        {
+          "duration": 0.0,
+          "error": 0.4,
+          "gate": "x",
+          "qubits": [
+            0
+          ]
+        }
+      ],
+      "qubits": {
+        "0": {
+          "readout_error": 0.0,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        },
+        "1": {
+          "readout_error": 0.0,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        }
+      }
+    },
+    "noise_parameters": null,
+    "num_qubits": 2,
+    "observed_circuit": null,
+    "observed_counts": null,
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "random_seed": 20261013,
+    "repetition_index": null,
+    "run_id": null,
+    "shots": 512,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "diagnosis": {
+    "anomaly_detected": true,
+    "category": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+    "evidence": [
+      "Observed distribution differs from expected distribution by TVD=0.376953, which exceeds threshold=0.050000.",
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000.",
+      "Gate x on qubits (0,) has elevated calibration error 0.4000.",
+      "Hardware calibration timestamp is invalid."
+    ],
+    "hardware_evidence_candidates": [],
+    "hardware_result": {
+      "anomaly_metric": 0.0,
+      "candidates": [
+        {
+          "component": [
+            0
+          ],
+          "component_type": "gate",
+          "evidence": [
+            "Gate x on qubits (0,) has elevated calibration error 0.4000."
+          ],
+          "reason": "Gate calibration for x on qubits (0,) is degraded: gate_error=0.4000",
+          "score": 4.0
+        }
+      ],
+      "evidence": [
+        "Gate x on qubits (0,) has elevated calibration error 0.4000."
+      ],
+      "summary": "Calibration-backed hardware fault candidate(s): gate (0,)",
+      "threshold": 0.05
+    },
+    "missing_evidence": [
+      "Hardware calibration timestamp is invalid."
+    ],
+    "program_behavioral_candidates": [],
+    "program_evidence_candidates": [],
+    "program_result": {
+      "anomaly_metric": 0.0,
+      "candidates": [],
+      "evidence": [
+        "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+      ],
+      "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+      "threshold": 0.05
+    },
+    "statistics_result": {
+      "anomaly_detected": true,
+      "expected_distribution": {
+        "00": 0.0,
+        "01": 0.0,
+        "10": 1.0,
+        "11": 0.0
+      },
+      "finite_shot_guard": 0.05,
+      "hellinger_distance": 0.4589845490104291,
+      "js_divergence": 0.15273000310263668,
+      "message": "Observed distribution differs from expected distribution by TVD=0.376953, which exceeds threshold=0.050000.",
+      "observed_distribution": {
+        "00": 0.37695312500000006,
+        "01": 0.0,
+        "10": 0.623046875,
+        "11": 0.0
+      },
+      "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+      "shots": 512,
+      "threshold": 0.05,
+      "total_variation_distance": 0.376953125
+    },
+    "summary": "An execution anomaly was detected, but available evidence does not isolate a cause.",
+    "trace_deviation_candidates": []
+  },
+  "errors": [],
+  "execution_metadata": {
+    "backend_api_used": false,
+    "execution_kind": "SYNTHETIC_VALIDATION",
+    "execution_target": "LOCAL_SIMULATOR",
+    "generated_at": "2026-10-15T08:24:52+00:00",
+    "hardware_model_applied": true,
+    "noise_parameters_applied": false,
+    "numpy_version": "2.5.3",
+    "observation_source": "SEEDED_LOCAL_SIMULATOR_SHOTS_WITH_HARDWARE_MODEL",
+    "python_version": "3.12.10",
+    "random_seed": 20261013,
+    "shots": 512
+  },
+  "experiment_metadata": {
+    "backend_name": null,
+    "circuit_family_id": "fault_isolation_family_01",
+    "circuit_id": "circuit-233d88647822fce2",
+    "circuit_lineage_id": null,
+    "created_at": "2026-10-15T08:24:52+00:00",
+    "experiment_name": "fault_isolation_gate_noise_x_q0",
+    "experimental_group_id": "group-ae11f820c2522a1b",
+    "ground_truth_label": "HARDWARE_ANOMALY",
+    "hardware_affected_component": "x gate on qubit 0",
+    "hardware_condition_id": "condition_gate_noise_x_q0",
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "repetition_index": null,
+    "run_id": null,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "hardware_evidence": {
+    "anomaly_metric": 0.0,
+    "candidates": [
+      {
+        "component": [
+          0
+        ],
+        "component_type": "gate",
+        "evidence": [
+          "Gate x on qubits (0,) has elevated calibration error 0.4000."
+        ],
+        "reason": "Gate calibration for x on qubits (0,) is degraded: gate_error=0.4000",
+        "score": 4.0
+      }
+    ],
+    "evidence": [
+      "Gate x on qubits (0,) has elevated calibration error 0.4000."
+    ],
+    "summary": "Calibration-backed hardware fault candidate(s): gate (0,)",
+    "threshold": 0.05
+  },
+  "ideal_distribution": {
+    "00": 0.0,
+    "01": 0.0,
+    "10": 1.0,
+    "11": 0.0
+  },
+  "ideal_statevector_distribution": {
+    "00": 0.0,
+    "01": 0.0,
+    "10": 1.0,
+    "11": 0.0
+  },
+  "observed_counts": {
+    "00": 193,
+    "10": 319
+  },
+  "observed_distribution": {
+    "00": 0.376953125,
+    "01": 0.0,
+    "10": 0.623046875,
+    "11": 0.0
+  },
+  "program_evidence": {
+    "anomaly_metric": 0.0,
+    "candidates": [],
+    "evidence": [
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+    ],
+    "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+    "threshold": 0.05
+  },
+  "reproducibility": {
+    "deterministic_localizer_measurements": "measurement operations mapped to barriers for localization only",
+    "fingerprint": "7cc3475d8ec608a781b06b489d19e6040b1a327c0f143b228d8be2c04c29f930",
+    "fingerprint_excludes": [
+      "execution_metadata.generated_at",
+      "reproducibility.fingerprint"
+    ],
+    "random_seed": 20261013,
+    "simulator_version": "project-statevector-current",
+    "source_sha256": {
+      "diagnosis_engine.py": "cac81fc98348014581f78163d5a73622565649ab6426e7af7f3fabdfdde24240",
+      "experiment_config.py": "f1a0f721d8bdf1175bfcdbd84d6d829099efb7155f1568ad703e9f6cc76d33b3",
+      "experiments/full_dataset.py": "2272d934648628ed8f7bf756ee1a6a0f988be8b8d28bd9972227ceeeed8cb0ac",
+      "experiments/run_experiment.py": "fef2985d782c92756af81e84232c7b0c286dc930963063dc9c2b44348e30c034",
+      "fault_localizer.py": "87de10cde2991a7fb1ab0e4e7563cf81e5cb043bae44fc8c1c5051755d6194ba",
+      "gates.py": "5799e62fa582e8651344d257ad396e3415dd4f7db29d310962fec29ce5a8baad",
+      "hardware_fault_localizer.py": "e4c92314bbca1775d348d64d8f3ef5382be684520a3ffc66cefce81514f5a1bb",
+      "hardware_model.py": "d788c7f98dc1932159473e8256b45550f1430bd9b4da2f776099b152ba72aaaa",
+      "pyproject.toml": "da65396b438f76cf51a6a60f103e3b468d2713459cc151c574af66a7bffd4c06",
+      "quantum_simulator.py": "1641ad14c4b932a1739527f73c732276c7029cc192695cfd5e82cf7ea91a50fa",
+      "src/quantum_simulator/__init__.py": "38673e3726f0d4a8415639ad19e3adecd30c51ff5c1010d244146c97fe39f801",
+      "src/quantum_simulator/diagnosis_engine.py": "be4927877949d73a2bd4402021d2c25f45590eb1ff01648d4ec34c6505bdfed1",
+      "src/quantum_simulator/fault_localizer.py": "46fb76982a579e209d7f0caa252a7c4f27f665f9836e93698fd4766fe9d9da28",
+      "src/quantum_simulator/gates.py": "d0153f8609b8a375aadf1541322928aa65acb212b533f8154e424809afd658d8",
+      "src/quantum_simulator/hardware_fault_localizer.py": "ca0fec8d243282ca2ad1b1d1f0cb7e24f909fbcbecd537d116da722081e98686",
+      "src/quantum_simulator/hardware_model.py": "5f46713f80e5ab62a6038a50e9cd2306a1d1e0ef0c83684808f15ab29469cc0f",
+      "src/quantum_simulator/quantum_circuit.py": "5ebe9f05c7a72057929e339d5c1633b1b50c98621c068849d4fa1b4e9df2a6c1",
+      "src/quantum_simulator/quantum_simulator.py": "a07be9c304153a389454f699ffaaace8d12d99d430396bcfc1b5c383845406ef",
+      "src/quantum_simulator/statistics.py": "2d90d01a024aa527a4dd7805a09ba0216e35afceb3e718d979e9ed5399212d82",
+      "statistics.py": "e47a7fbf3d74ebf700fa722e74ac57b9ce6b3d0bd3a4a36b5b06cc25aa6f0a9d"
+    }
+  },
+  "simulator_observed_counts": {
+    "00": 193,
+    "10": 319
+  },
+  "status": "COMPLETED"
+}

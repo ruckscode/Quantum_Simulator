@@ -1,0 +1,402 @@
+{
+  "anomaly": {
+    "anomaly_detected": false,
+    "expected_distribution": {
+      "00": 0.6876737438555849,
+      "01": 0.028257448337006295,
+      "10": 0.2728567531458576,
+      "11": 0.011212054661551165
+    },
+    "finite_shot_guard": 0.05,
+    "hellinger_distance": 0.02217742235680266,
+    "js_divergence": 0.0004913879011830389,
+    "message": "Observed distribution differs by TVD=0.025058, which is within the configured threshold=0.050000.",
+    "observed_distribution": {
+      "00": 0.666015625,
+      "01": 0.03125,
+      "10": 0.294921875,
+      "11": 0.0078125
+    },
+    "reason": "No statistically meaningful anomaly detected",
+    "shots": 512,
+    "threshold": 0.05,
+    "total_variation_distance": 0.025057673517136073
+  },
+  "circuit": {
+    "ideal": [
+      [
+        "ry",
+        0,
+        0.6
+      ],
+      [
+        "rx",
+        2,
+        0.4
+      ],
+      [
+        "rzz",
+        0,
+        2,
+        0.7
+      ],
+      [
+        "h",
+        0
+      ],
+      [
+        "measure",
+        [
+          0,
+          2
+        ]
+      ]
+    ],
+    "observed": [
+      [
+        "ry",
+        0,
+        0.6
+      ],
+      [
+        "rx",
+        2,
+        0.4
+      ],
+      [
+        "rzz",
+        0,
+        2,
+        0.7
+      ],
+      [
+        "h",
+        0
+      ],
+      [
+        "measure",
+        [
+          0,
+          2
+        ]
+      ]
+    ]
+  },
+  "configuration": {
+    "anomaly_threshold": 0.05,
+    "backend_name": null,
+    "circuit": [
+      [
+        "ry",
+        0,
+        0.6
+      ],
+      [
+        "rx",
+        2,
+        0.4
+      ],
+      [
+        "rzz",
+        0,
+        2,
+        0.7
+      ],
+      [
+        "h",
+        0
+      ],
+      [
+        "measure",
+        [
+          0,
+          2
+        ]
+      ]
+    ],
+    "circuit_family_id": "phase2_rzz_phase_q0_q2",
+    "circuit_id": "circuit-5e438d349c9f759d",
+    "description": "Phase 2 scenario: RZZ calibration error 0.055 near the decision threshold",
+    "experiment_name": "phase2_hardware_rzz_error_near_threshold_seed_20262001",
+    "experimental_group_id": "group-38a466137847ff97",
+    "ground_truth_label": "HARDWARE_ANOMALY",
+    "hardware_affected_component": "RZZ q0-q2",
+    "hardware_condition_id": "phase2_hardware_rzz_error_near_threshold_condition",
+    "hardware_parameters": {
+      "coupling_map": [
+        [
+          0,
+          2
+        ]
+      ],
+      "edges": [],
+      "gates": [
+        {
+          "duration": 0.1,
+          "error": 0.0,
+          "gate": "ry",
+          "qubits": [
+            0
+          ]
+        },
+        {
+          "duration": 0.1,
+          "error": 0.0,
+          "gate": "rx",
+          "qubits": [
+            2
+          ]
+        },
+        {
+          "duration": 0.1,
+          "error": 0.055,
+          "gate": "rzz",
+          "qubits": [
+            0,
+            2
+          ]
+        },
+        {
+          "duration": 0.1,
+          "error": 0.0,
+          "gate": "h",
+          "qubits": [
+            0
+          ]
+        }
+      ],
+      "qubits": {
+        "0": {
+          "readout_error": 0.0,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        },
+        "1": {
+          "readout_error": 0.0,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        },
+        "2": {
+          "readout_error": 0.0,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        },
+        "3": {
+          "readout_error": 0.0,
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        }
+      }
+    },
+    "noise_parameters": null,
+    "num_qubits": 4,
+    "observed_circuit": null,
+    "observed_counts": null,
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "random_seed": 20262001,
+    "repetition_index": null,
+    "run_id": null,
+    "shots": 512,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "diagnosis": {
+    "anomaly_detected": false,
+    "category": "HARDWARE_ANOMALY",
+    "evidence": [
+      "Observed distribution differs by TVD=0.025058, which is within the configured threshold=0.050000.",
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000.",
+      "Gate rzz on qubits (0, 2) has elevated calibration error 0.0550."
+    ],
+    "hardware_evidence_candidates": [
+      {
+        "component": [
+          0,
+          2
+        ],
+        "component_type": "gate",
+        "evidence": [
+          "Gate rzz on qubits (0, 2) has elevated calibration error 0.0550."
+        ],
+        "reason": "Gate calibration for rzz on qubits (0, 2) is degraded: gate_error=0.0550",
+        "score": 0.55
+      }
+    ],
+    "hardware_result": {
+      "anomaly_metric": 0.0,
+      "candidates": [
+        {
+          "component": [
+            0,
+            2
+          ],
+          "component_type": "gate",
+          "evidence": [
+            "Gate rzz on qubits (0, 2) has elevated calibration error 0.0550."
+          ],
+          "reason": "Gate calibration for rzz on qubits (0, 2) is degraded: gate_error=0.0550",
+          "score": 0.55
+        }
+      ],
+      "evidence": [
+        "Gate rzz on qubits (0, 2) has elevated calibration error 0.0550."
+      ],
+      "summary": "Calibration-backed hardware fault candidate(s): gate (0, 2)",
+      "threshold": 0.05
+    },
+    "missing_evidence": [],
+    "program_evidence_candidates": [],
+    "program_result": {
+      "anomaly_metric": 0.0,
+      "candidates": [],
+      "evidence": [
+        "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+      ],
+      "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+      "threshold": 0.05
+    },
+    "statistics_result": {
+      "anomaly_detected": false,
+      "expected_distribution": {
+        "00": 0.6876737438555849,
+        "01": 0.028257448337006295,
+        "10": 0.2728567531458576,
+        "11": 0.011212054661551165
+      },
+      "finite_shot_guard": 0.05,
+      "hellinger_distance": 0.02217742235680266,
+      "js_divergence": 0.0004913879011830389,
+      "message": "Observed distribution differs by TVD=0.025058, which is within the configured threshold=0.050000.",
+      "observed_distribution": {
+        "00": 0.666015625,
+        "01": 0.03125,
+        "10": 0.294921875,
+        "11": 0.0078125
+      },
+      "reason": "No statistically meaningful anomaly detected",
+      "shots": 512,
+      "threshold": 0.05,
+      "total_variation_distance": 0.025057673517136073
+    },
+    "summary": "The observed distribution matches the reference, but relevant hardware calibration fault evidence remains.",
+    "trace_deviation_candidates": []
+  },
+  "errors": [],
+  "execution_metadata": {
+    "backend_api_used": false,
+    "execution_kind": "SYNTHETIC_VALIDATION",
+    "execution_target": "LOCAL_SIMULATOR",
+    "generated_at": "2026-10-12T17:09:52+00:00",
+    "hardware_model_applied": true,
+    "noise_parameters_applied": false,
+    "numpy_version": "2.5.3",
+    "observation_source": "SEEDED_LOCAL_SIMULATOR_SHOTS_WITH_HARDWARE_MODEL",
+    "python_version": "3.12.10",
+    "random_seed": 20262001,
+    "shots": 512
+  },
+  "experiment_metadata": {
+    "backend_name": null,
+    "circuit_family_id": "phase2_rzz_phase_q0_q2",
+    "circuit_id": "circuit-5e438d349c9f759d",
+    "created_at": "2026-10-12T17:09:52+00:00",
+    "experiment_name": "phase2_hardware_rzz_error_near_threshold_seed_20262001",
+    "experimental_group_id": "group-38a466137847ff97",
+    "ground_truth_label": "HARDWARE_ANOMALY",
+    "hardware_affected_component": "RZZ q0-q2",
+    "hardware_condition_id": "phase2_hardware_rzz_error_near_threshold_condition",
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "repetition_index": null,
+    "run_id": null,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "hardware_evidence": {
+    "anomaly_metric": 0.0,
+    "candidates": [
+      {
+        "component": [
+          0,
+          2
+        ],
+        "component_type": "gate",
+        "evidence": [
+          "Gate rzz on qubits (0, 2) has elevated calibration error 0.0550."
+        ],
+        "reason": "Gate calibration for rzz on qubits (0, 2) is degraded: gate_error=0.0550",
+        "score": 0.55
+      }
+    ],
+    "evidence": [
+      "Gate rzz on qubits (0, 2) has elevated calibration error 0.0550."
+    ],
+    "summary": "Calibration-backed hardware fault candidate(s): gate (0, 2)",
+    "threshold": 0.05
+  },
+  "ideal_distribution": {
+    "00": 0.6876737438555849,
+    "01": 0.028257448337006295,
+    "10": 0.2728567531458576,
+    "11": 0.011212054661551165
+  },
+  "ideal_statevector_distribution": {
+    "0000": 0.6876737438555849,
+    "0001": 0.0,
+    "0010": 0.028257448337006295,
+    "0011": 0.0,
+    "0100": 0.0,
+    "0101": 0.0,
+    "0110": 0.0,
+    "0111": 0.0,
+    "1000": 0.2728567531458576,
+    "1001": 0.0,
+    "1010": 0.011212054661551165,
+    "1011": 0.0,
+    "1100": 0.0,
+    "1101": 0.0,
+    "1110": 0.0,
+    "1111": 0.0
+  },
+  "observed_counts": {
+    "00": 341,
+    "01": 16,
+    "10": 151,
+    "11": 4
+  },
+  "observed_distribution": {
+    "00": 0.666015625,
+    "01": 0.03125,
+    "10": 0.294921875,
+    "11": 0.0078125
+  },
+  "program_evidence": {
+    "anomaly_metric": 0.0,
+    "candidates": [],
+    "evidence": [
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+    ],
+    "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+    "threshold": 0.05
+  },
+  "reproducibility": {
+    "deterministic_localizer_measurements": "measurement operations mapped to barriers for localization only",
+    "fingerprint": "f0977a8c105bf4378c710a7eebbd3f78c344435a3d74135e0c0c57602eee4d17",
+    "fingerprint_excludes": [
+      "execution_metadata.generated_at",
+      "reproducibility.fingerprint"
+    ],
+    "random_seed": 20262001,
+    "simulator_version": "project-statevector-current"
+  },
+  "simulator_observed_counts": {
+    "00": 341,
+    "01": 16,
+    "10": 151,
+    "11": 4
+  },
+  "status": "COMPLETED"
+}

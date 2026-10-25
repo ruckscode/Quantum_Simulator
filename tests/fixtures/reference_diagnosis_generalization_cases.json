@@ -1,0 +1,37 @@
+{
+  "shots": 256,
+  "seeds": [11, 29, 47],
+  "families": [
+    {
+      "name": "qft_like_3q",
+      "generator": {"family": "qft_like", "n_qubits": 3, "depth": 2},
+      "fault_injection": "two_qubit_fault",
+      "expected_fault_target": {"index": 1, "operation": "crz", "qubits": [0, 1]},
+      "equivalent_mutation": {"kind": "insert_identity", "before_measurement": true, "qubit": 0},
+      "hardware_qubit": 2
+    },
+    {
+      "name": "toffoli_reversible_4q",
+      "reference": [["x", 0], ["x", 1], ["ccx", 0, 1, 2], ["x", 3], ["measure", [0, 1, 2, 3]]],
+      "fault_injection": "gate_deletion",
+      "expected_fault_target": {"index": 2, "operation": "ccx", "qubits": [0, 1, 2]},
+      "equivalent_mutation": {"kind": "reorder_disjoint_x_and_ccx"},
+      "hardware_qubit": 2
+    },
+    {
+      "name": "ring_cluster_4q",
+      "reference": [["h", 0], ["h", 1], ["h", 2], ["h", 3], ["cz", 0, 1], ["cz", 1, 2], ["cz", 2, 3], ["cz", 3, 0], ["h", 0], ["h", 1], ["h", 2], ["h", 3], ["measure", [0, 1, 2, 3]]],
+      "fault_injection": "gate_deletion",
+      "expected_fault_target": {"index": 6, "operation": "cz", "qubits": [2, 3]},
+      "equivalent_mutation": {"kind": "reverse_commuting_cz_ring"},
+      "hardware_qubit": 2
+    }
+  ],
+  "expected_by_scenario": {
+    "correct": {"detection": false, "classification": "NO_ANOMALY", "source_localized": false, "hardware_localized": false, "abstain": false},
+    "equivalent": {"detection": false, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": false, "abstain": true},
+    "program_fault": {"detection": true, "classification": "PROGRAM_FAULT", "source_localized": true, "hardware_localized": false, "abstain": false},
+    "hardware_anomaly": {"detection": true, "classification": "HARDWARE_ANOMALY", "source_localized": false, "hardware_localized": true, "abstain": false},
+    "ambiguous": {"detection": true, "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE", "source_localized": true, "hardware_localized": true, "abstain": true}
+  }
+}

@@ -169,3 +169,18 @@ def test_single_replacement_remains_a_substitution_candidate():
     assert result.candidates[0].qubits == (1,)
     assert result.candidates[0].expected_signature[0] == "h"
     assert result.candidates[0].actual_signature[0] == "x"
+
+
+def test_mixed_supported_and_unsupported_operations_return_partial_localization():
+    expected = [("x", 0), ("unsupported_gate", 1)]
+    actual = [("h", 0), ("other_unsupported_gate", 1)]
+
+    result = localize_program_fault(expected, actual)
+
+    assert len(result.candidates) == 1
+    assert result.candidates[0].operation == "h"
+    assert result.candidates[0].expected_signature[0] == "x"
+    assert "partial" in result.summary.lower()
+    assert any("no simulated trace evidence" in item.lower() for item in result.evidence)
+    assert any("not a measured deviation" in item.lower() for item in result.evidence)
+    assert all("Largest traced deviation" not in candidate.reason for candidate in result.candidates)

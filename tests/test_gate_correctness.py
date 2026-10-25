@@ -104,6 +104,41 @@ def test_rxx_zero_is_identity():
     np.testing.assert_allclose(RXX(0), np.eye(4), rtol=0.0, atol=1e-12)
 
 
+def test_u_matches_u3_and_executes_parameterized_matrix():
+    from gates import U, U3
+    theta, phi, lam = 0.37, -0.22, 0.81
+    np.testing.assert_allclose(U(theta, phi, lam), U3(theta, phi, lam), rtol=0.0, atol=1e-12)
+    sim = QuantumSimulator(1)
+    sim.run_circuit([("u", 0, theta, phi, lam)])
+    np.testing.assert_allclose(sim.state, U(theta, phi, lam) @ np.array([1, 0], dtype=complex))
+
+
+def test_rzz_diagonal_phase_definition_and_execution():
+    from gates import RZZ
+    theta = 0.73
+    expected = np.diag([np.exp(-0.5j * theta), np.exp(0.5j * theta), np.exp(0.5j * theta), np.exp(-0.5j * theta)])
+    np.testing.assert_allclose(RZZ(theta), expected, rtol=0.0, atol=1e-12)
+    sim = QuantumSimulator(2)
+    sim.run_circuit([("x", 0), ("rzz", 0, 1, theta)])
+    expected_state = np.zeros(4, dtype=complex)
+    expected_state[2] = np.exp(0.5j * theta)
+    np.testing.assert_allclose(sim.state, expected_state, rtol=0.0, atol=1e-12)
+
+
+def test_rccx_relative_phase_and_toffoli_permutation():
+    sim = QuantumSimulator(3)
+    sim.run_circuit([("x", 0), ("x", 2), ("rccx", 0, 1, 2)])
+    expected = np.zeros(8, dtype=complex)
+    expected[5] = -1
+    np.testing.assert_allclose(sim.state, expected, rtol=0.0, atol=1e-12)
+
+    sim = QuantumSimulator(3)
+    sim.run_circuit([("x", 0), ("x", 1), ("rccx", 0, 1, 2)])
+    expected = np.zeros(8, dtype=complex)
+    expected[7] = 1j
+    np.testing.assert_allclose(sim.state, expected, rtol=0.0, atol=1e-12)
+
+
 def test_rxx_pi_flips_both_bits():
     sim = QuantumSimulator(2)
     sim.run_circuit([("rxx", 0, 1, np.pi)])

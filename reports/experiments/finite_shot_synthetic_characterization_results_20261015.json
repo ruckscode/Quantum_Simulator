@@ -1,0 +1,238 @@
+{
+  "cells": [
+    {
+      "condition_id": "null_equal",
+      "detections": 680,
+      "kind": "null",
+      "one_sided_95_upper": 0.357839170726461,
+      "rate": 0.34,
+      "replicates": 2000,
+      "shots": 256,
+      "tvd_truth": 0.0
+    },
+    {
+      "condition_id": "tvd_025",
+      "detections": 220,
+      "kind": "alternative",
+      "rate": 0.44,
+      "replicates": 500,
+      "shots": 256,
+      "tvd_truth": 0.025,
+      "two_sided_95_interval": [
+        0.3959574112037689,
+        0.48475606103093505
+      ]
+    },
+    {
+      "condition_id": "tvd_050",
+      "detections": 304,
+      "kind": "alternative",
+      "rate": 0.608,
+      "replicates": 500,
+      "shots": 256,
+      "tvd_truth": 0.05,
+      "two_sided_95_interval": [
+        0.5636725167381575,
+        0.6510426144021917
+      ]
+    },
+    {
+      "condition_id": "tvd_100",
+      "detections": 470,
+      "kind": "alternative",
+      "rate": 0.94,
+      "replicates": 500,
+      "shots": 256,
+      "tvd_truth": 0.1,
+      "two_sided_95_interval": [
+        0.9154514462923953,
+        0.9591558182372226
+      ]
+    },
+    {
+      "condition_id": "tvd_200",
+      "detections": 500,
+      "kind": "alternative",
+      "rate": 1.0,
+      "replicates": 500,
+      "shots": 256,
+      "tvd_truth": 0.2,
+      "two_sided_95_interval": [
+        0.9926493899480806,
+        1.0
+      ]
+    },
+    {
+      "condition_id": "null_equal",
+      "detections": 114,
+      "kind": "null",
+      "one_sided_95_upper": 0.06627157733821926,
+      "rate": 0.057,
+      "replicates": 2000,
+      "shots": 1024,
+      "tvd_truth": 0.0
+    },
+    {
+      "condition_id": "tvd_025",
+      "detections": 107,
+      "kind": "alternative",
+      "rate": 0.214,
+      "replicates": 500,
+      "shots": 1024,
+      "tvd_truth": 0.025,
+      "two_sided_95_interval": [
+        0.1788322266500001,
+        0.25258913428692875
+      ]
+    },
+    {
+      "condition_id": "tvd_050",
+      "detections": 349,
+      "kind": "alternative",
+      "rate": 0.698,
+      "replicates": 500,
+      "shots": 1024,
+      "tvd_truth": 0.05,
+      "two_sided_95_interval": [
+        0.6556700366777324,
+        0.7379700225668993
+      ]
+    },
+    {
+      "condition_id": "tvd_100",
+      "detections": 499,
+      "kind": "alternative",
+      "rate": 0.998,
+      "replicates": 500,
+      "shots": 1024,
+      "tvd_truth": 0.1,
+      "two_sided_95_interval": [
+        0.988907523101014,
+        0.9999493656659926
+      ]
+    },
+    {
+      "condition_id": "tvd_200",
+      "detections": 500,
+      "kind": "alternative",
+      "rate": 1.0,
+      "replicates": 500,
+      "shots": 1024,
+      "tvd_truth": 0.2,
+      "two_sided_95_interval": [
+        0.9926493899480806,
+        1.0
+      ]
+    },
+    {
+      "condition_id": "null_equal",
+      "detections": 0,
+      "kind": "null",
+      "one_sided_95_upper": 0.0014967448951882841,
+      "rate": 0.0,
+      "replicates": 2000,
+      "shots": 4096,
+      "tvd_truth": 0.0
+    },
+    {
+      "condition_id": "tvd_025",
+      "detections": 10,
+      "kind": "alternative",
+      "rate": 0.02,
+      "replicates": 500,
+      "shots": 4096,
+      "tvd_truth": 0.025,
+      "two_sided_95_interval": [
+        0.009631429586422349,
+        0.03647240829220842
+      ]
+    },
+    {
+      "condition_id": "tvd_050",
+      "detections": 360,
+      "kind": "alternative",
+      "rate": 0.72,
+      "replicates": 500,
+      "shots": 4096,
+      "tvd_truth": 0.05,
+      "two_sided_95_interval": [
+        0.6784209332693254,
+        0.7589550834778318
+      ]
+    },
+    {
+      "condition_id": "tvd_100",
+      "detections": 500,
+      "kind": "alternative",
+      "rate": 1.0,
+      "replicates": 500,
+      "shots": 4096,
+      "tvd_truth": 0.1,
+      "two_sided_95_interval": [
+        0.9926493899480806,
+        1.0
+      ]
+    },
+    {
+      "condition_id": "tvd_200",
+      "detections": 500,
+      "kind": "alternative",
+      "rate": 1.0,
+      "replicates": 500,
+      "shots": 4096,
+      "tvd_truth": 0.2,
+      "two_sided_95_interval": [
+        0.9926493899480806,
+        1.0
+      ]
+    }
+  ],
+  "implementation_sha256": "a40a1d81a0fd1a7aaadcb187535484849a80c14f6b6165ed32501974a9e63a9f",
+  "limitations": [
+    "Synthetic sampled distributions only; no circuit, simulator, QMutBench, family, program-fault, or hardware inference.",
+    "Alternative power estimates are descriptive; no minimum power criterion was specified.",
+    "Replicate intervals assume independently seeded multinomial count pairs."
+  ],
+  "null_gate": {
+    "criterion": "one-sided exact 95% upper FPR bound <= 0.06 at each shot count",
+    "passed": false,
+    "shot_results": [
+      {
+        "false_positives": 680,
+        "fpr": 0.34,
+        "shots": 256,
+        "trials": 2000,
+        "upper_95": 0.357839170726461
+      },
+      {
+        "false_positives": 114,
+        "fpr": 0.057,
+        "shots": 1024,
+        "trials": 2000,
+        "upper_95": 0.06627157733821926
+      },
+      {
+        "false_positives": 0,
+        "fpr": 0.0,
+        "shots": 4096,
+        "trials": 2000,
+        "upper_95": 0.0014967448951882841
+      }
+    ]
+  },
+  "preregistration_sha256": "f7f3e859b9a93ace66d07d5572f494597790ed47d6dfb5db7c4f794d85e18e5b",
+  "protocol_id": "synthetic-two-sample-tvd-v1-20261015",
+  "resource_accounting": {
+    "actual_pairs": 12000,
+    "counting_convention": "one pair is one independent reference multinomial count vector plus one submitted multinomial count vector for a single condition and shot count",
+    "cpu_seconds": 6.0,
+    "maximum_pairs": 12000,
+    "planned_pairs": 12000,
+    "runtime_seconds": 6.046999999998661,
+    "tracemalloc_peak_bytes": 1070257,
+    "workers": 1
+  },
+  "schema_version": "synthetic-two-sample-tvd-result-v1",
+  "statistics_module_sha256": "2d90d01a024aa527a4dd7805a09ba0216e35afceb3e718d979e9ed5399212d82",
+  "verdict": "FAIL"
+}

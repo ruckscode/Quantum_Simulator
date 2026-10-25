@@ -15,6 +15,8 @@ from ibm_validation import (
     execute_on_ibm_backend,
 )
 from quantum_simulator import QuantumCircuit
+from quantum_simulator.diagnosis_engine import diagnose_execution
+from quantum_simulator.hardware_model import HardwareModel
 from statistics import compare_distributions
 
 
@@ -66,12 +68,21 @@ def _distribution(counts: Mapping[str, int]) -> dict[str, float]:
     return {key: value / total for key, value in sorted(counts.items())}
 
 
+def _complete_distribution(distribution: Mapping[str, float], n_qubits: int) -> dict[str, float]:
+    """Align sparse shot distributions over the complete fixed-width support."""
+    support = (format(index, f"0{n_qubits}b") for index in range(1 << n_qubits))
+    return {key: distribution.get(key, 0.0) for key in support}
+
+
 def _environment(status: str, reason: str | None = None, **fields: Any) -> dict[str, Any]:
     return {"status": status, "reason": reason, "raw_counts": None,
             "normalized_counts": None, "probability_distribution": None, **fields}
 
 
-def _run_aer(instructions: Sequence[Any], n_qubits: int, shots: int, seed: int) -> dict[str, Any]:
+def _run_aer(
+    instructions: Sequence[Any], n_qubits: int, shots: int, seed: int,
+    *, noise_config: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
     if importlib.util.find_spec("qiskit") is None:
         return _environment("UNAVAILABLE", "Qiskit is not installed.", dependencies={"qiskit": False, "qiskit_aer": importlib.util.find_spec("qiskit_aer") is not None})
     aer_available = importlib.util.find_spec("qiskit_aer") is not None
@@ -80,6 +91,20 @@ def _run_aer(instructions: Sequence[Any], n_qubits: int, shots: int, seed: int) 
     try:
         from qiskit import QuantumCircuit as QiskitCircuit
         from qiskit_aer import AerSimulator
+        noise_model = None
+        if noise_config:
+            unsupported = set(noise_config) - {"readout_error"}
+            if unsupported:
+                raise ValueError(f"unsupported Aer noise configuration: {sorted(unsupported)}")
+            probability = float(noise_config.get("readout_error", 0.0))
+            if not math.isfinite(probability) or not 0.0 <= probability <= 1.0:
+                raise ValueError("readout_error must be finite and between 0 and 1")
+            from qiskit_aer.noise import NoiseModel, ReadoutError
+
+            noise_model = NoiseModel()
+            noise_model.add_all_qubit_readout_error(
+                ReadoutError([[1.0 - probability, probability], [probability, 1.0 - probability]])
+            )
 
         qc = QiskitCircuit(n_qubits, n_qubits)
         for instruction in instructions:
@@ -92,7 +117,7 @@ def _run_aer(instructions: Sequence[Any], n_qubits: int, shots: int, seed: int) 
             else:
                 getattr(qc, name)(*args)
         qc.measure(range(n_qubits), range(n_qubits))
-        backend = AerSimulator()
+        backend = AerSimulator(noise_model=noise_model) if noise_model is not None else AerSimulator()
         result = backend.run(qc, shots=shots, seed_simulator=seed).result()
         raw = {str(key): int(value) for key, value in result.get_counts(qc).items()}
         normalized = _canonical_counts(raw, reverse_bits=True)
@@ -101,6 +126,89 @@ def _run_aer(instructions: Sequence[Any], n_qubits: int, shots: int, seed: int) 
                             probability_distribution=_distribution(normalized), seed_used=seed)
     except Exception as exc:
         return _environment("FAILED", f"{type(exc).__name__}: {exc}", dependencies={"qiskit": True, "qiskit_aer": True})
+
+
+def run_aer_diagnosis(
+    intended_instructions: Sequence[Sequence[Any]],
+    n_qubits: int,
+    *,
+    executed_instructions: Sequence[Sequence[Any]] | None = None,
+    shots: int = 256,
+    seed: int = SEED,
+    noise_config: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Run one controlled Aer execution and feed its evidence to diagnosis.
+
+    Only symmetric readout error is currently supported. The matching
+    HardwareModel is explicitly synthetic and represents the simulation
+    configuration, not measured hardware calibration.
+    """
+    if isinstance(n_qubits, bool) or not isinstance(n_qubits, int) or n_qubits <= 0:
+        raise ValueError("n_qubits must be a positive integer")
+    if isinstance(shots, bool) or not isinstance(shots, int) or shots <= 0:
+        raise ValueError("shots must be a positive integer")
+    if isinstance(seed, bool) or not isinstance(seed, int):
+        raise ValueError("seed must be an integer")
+    if noise_config is not None:
+        unsupported = set(noise_config) - {"readout_error"}
+        if unsupported:
+            raise ValueError(f"unsupported Aer noise configuration: {sorted(unsupported)}")
+        probability = float(noise_config.get("readout_error", 0.0))
+        if not math.isfinite(probability) or not 0.0 <= probability <= 1.0:
+            raise ValueError("readout_error must be finite and between 0 and 1")
+        noise_config = {"readout_error": probability}
+
+    intended = [tuple(item) for item in intended_instructions]
+    executed = intended if executed_instructions is None else [tuple(item) for item in executed_instructions]
+    expected_run = _run_aer(intended, n_qubits, shots, seed)
+    if expected_run["status"] != "COMPLETED":
+        return {"status": expected_run["status"], "reason": expected_run["reason"],
+                "intended_instructions": intended, "executed_instructions": executed,
+                "shots": shots, "seed": seed, "noise_configuration": noise_config}
+    observed_run = _run_aer(executed, n_qubits, shots, seed, noise_config=noise_config)
+    if observed_run["status"] != "COMPLETED":
+        return {"status": observed_run["status"], "reason": observed_run["reason"],
+                "intended_instructions": intended, "executed_instructions": executed,
+                "shots": shots, "seed": seed, "noise_configuration": noise_config}
+
+    measurement = ("measure", list(range(n_qubits)), list(range(n_qubits)))
+    intended_circuit = [*intended, measurement]
+    executed_circuit = [*executed, measurement]
+    hardware = HardwareModel(
+        n_qubits, backend_name="synthetic_qiskit_aer",
+        calibration_timestamp="synthetic-config",
+        calibration_timestamp_provenance="synthetic",
+    )
+    if noise_config and noise_config.get("readout_error", 0.0):
+        for qubit in range(n_qubits):
+            hardware.set_qubit_properties(
+                qubit, readout_error=noise_config["readout_error"],
+                evidence_provenance="synthetic_aer_noise_configuration",
+            )
+    diagnosis = diagnose_execution(
+        expected_distribution=_complete_distribution(expected_run["probability_distribution"], n_qubits),
+        observed_distribution=_complete_distribution(observed_run["probability_distribution"], n_qubits),
+        expected_circuit=intended_circuit,
+        observed_circuit=executed_circuit,
+        hardware_model=hardware,
+        shots=shots,
+    )
+    return {
+        "status": "COMPLETED", "reason": None,
+        "intended_instructions": intended, "executed_instructions": executed,
+        "intended_circuit": intended_circuit, "executed_circuit": executed_circuit,
+        "expected_counts": expected_run["normalized_counts"],
+        "observed_counts": observed_run["normalized_counts"],
+        "expected_distribution": expected_run["probability_distribution"],
+        "observed_distribution": observed_run["probability_distribution"],
+        "shots": shots, "seed": seed, "noise_configuration": noise_config,
+        "calibration_evidence": {
+            "provenance": "synthetic_simulation",
+            "backend_name": hardware.backend_name,
+            "readout_error": None if not noise_config else noise_config.get("readout_error", 0.0),
+        },
+        "diagnosis": diagnosis,
+    }
 
 
 def run_three_way_validation(

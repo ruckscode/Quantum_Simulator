@@ -13,7 +13,12 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Iterable, List, Sequence
 
-from .fault_localizer import localize_program_fault
+from .fault_localizer import (
+    TRACE_METRIC_PLACEHOLDER_EVIDENCE,
+    TRACE_UNAVAILABLE_EVIDENCE,
+    _unsupported_operations,
+    localize_program_fault,
+)
 from .hardware_model import HardwareModel
 
 
@@ -134,11 +139,8 @@ def _score_edge(model: HardwareModel, left: int, right: int, *, circuit_context:
         reasons.append(f"edge_error={edge.error:.4f}")
         evidence.append(f"Coupling edge ({left}, {right}) has elevated error {edge.error:.4f}.")
 
-    if edge.duration > 1.0:
-        score += edge.duration / 10.0
-        reasons.append(f"edge_duration={edge.duration:.4f}")
-        evidence.append(f"Coupling edge ({left}, {right}) has long duration {edge.duration:.4f}.")
-
+    # Duration is retained for execution/noise modeling, but without a
+    # calibrated expected-duration baseline it is not evidence of a fault.
     if circuit_context:
         edge_ops = [op for op in circuit_context if _extract_qubits(op) == (left, right) or tuple(sorted(_extract_qubits(op))) == tuple(sorted((left, right)))]
         if edge_ops:
@@ -169,11 +171,8 @@ def _score_gate(model: HardwareModel, gate_name: str, qubits: Sequence[int]) -> 
         reasons.append(f"gate_error={best.error:.4f}")
         evidence.append(f"Gate {gate_name} on qubits {tuple(qubits)} has elevated calibration error {best.error:.4f}.")
 
-    if best.duration > 1.0:
-        score += best.duration / 10.0
-        reasons.append(f"gate_duration={best.duration:.4f}")
-        evidence.append(f"Gate {gate_name} on qubits {tuple(qubits)} has long duration {best.duration:.4f}.")
-
+    # Duration is recorded calibration metadata, but this model has no
+    # expected-duration baseline. Its absolute value cannot establish a fault.
     reason = "; ".join(reasons) if reasons else "No notable gate calibration issue detected."
     return score, reason, evidence
 
@@ -197,6 +196,10 @@ def _impact_from_program_result(model: HardwareModel, expected_circuit: Sequence
 
     program_result = localize_program_fault(expected_circuit, actual_circuit, threshold=threshold)
     anomaly_metric = program_result.anomaly_metric
+    trace_unavailable = TRACE_UNAVAILABLE_EVIDENCE in program_result.evidence
+    if trace_unavailable:
+        # A partial result's zero is a placeholder, not a measured circuit deviation.
+        return [], anomaly_metric
     if anomaly_metric <= threshold and not program_result.candidates:
         return [], anomaly_metric
 
@@ -351,6 +354,13 @@ def localize_hardware_fault(
 
     _validate_circuit_against_model(hardware_model, expected_circuit)
     _validate_circuit_against_model(hardware_model, actual_circuit)
+    unsupported_operations = _unsupported_operations(expected_circuit, actual_circuit)
+    trace_unavailable_note = None
+    if unsupported_operations:
+        trace_unavailable_note = (
+            "Circuit-impact trace localization was skipped for unsupported operation(s): "
+            f"{', '.join(unsupported_operations)}. The anomaly_metric value 0.0 is unavailable, not measured."
+        )
 
     base_candidates = _hardware_model_base_candidates(hardware_model)
     if expected_circuit is not None and actual_circuit is not None:
@@ -378,6 +388,9 @@ def localize_hardware_fault(
         evidence = [
             f"No qubit, edge, or gate calibration metric crossed the threshold={threshold:.4f}.",
         ]
+        if trace_unavailable_note:
+            summary += " " + trace_unavailable_note
+            evidence.extend([TRACE_UNAVAILABLE_EVIDENCE, TRACE_METRIC_PLACEHOLDER_EVIDENCE, trace_unavailable_note])
         return HardwareFaultLocalizationResult(
             candidates=[],
             anomaly_metric=anomaly_metric,
@@ -390,13 +403,31 @@ def localize_hardware_fault(
     for candidate in candidates:
         evidence.extend(candidate.evidence)
 
-    summary = (
-        "Likely hardware component(s): "
-        + ", ".join(
+    base_candidate_keys = {
+        (candidate.component_type, candidate.component)
+        for candidate in base_candidates
+    }
+    calibration_candidates = [candidate for candidate in candidates if (candidate.component_type, candidate.component) in base_candidate_keys]
+    trace_only_candidates = [candidate for candidate in candidates if (candidate.component_type, candidate.component) not in base_candidate_keys]
+
+    def _candidate_names(items: List[HardwareCandidate]) -> str:
+        return ", ".join(
             f"{candidate.component_type} {candidate.component}"
-            for candidate in candidates[:3]
+            for candidate in items[:3]
         )
-    )
+
+    if calibration_candidates:
+        summary = "Calibration-backed hardware fault candidate(s): " + _candidate_names(calibration_candidates)
+        if trace_only_candidates:
+            summary += "; trace-associated hardware locations: " + _candidate_names(trace_only_candidates)
+    else:
+        summary = (
+            "Trace-associated hardware location candidate(s), without calibration-backed fault evidence: "
+            + _candidate_names(trace_only_candidates)
+        )
+    if trace_unavailable_note:
+        summary += ". " + trace_unavailable_note
+        evidence.extend([TRACE_UNAVAILABLE_EVIDENCE, TRACE_METRIC_PLACEHOLDER_EVIDENCE, trace_unavailable_note])
 
     return HardwareFaultLocalizationResult(
         candidates=candidates,
