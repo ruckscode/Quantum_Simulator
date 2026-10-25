@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330">
+<rect width="100%" height="100%" fill="white"/>
+<text x="30" y="32" font-family="Arial,sans-serif" font-size="19" text-anchor="start" font-weight="bold" fill="#20242a">Grouped cross-validation: macro F1</text>
+<line x1="235.0" y1="58" x2="235.0" y2="285" stroke="#e1e4e8"/>
+<text x="235.0" y="307" font-family="Arial,sans-serif" font-size="11" text-anchor="middle" font-weight="normal" fill="#59636e">0%</text>
+<line x1="323.0" y1="58" x2="323.0" y2="285" stroke="#e1e4e8"/>
+<text x="323.0" y="307" font-family="Arial,sans-serif" font-size="11" text-anchor="middle" font-weight="normal" fill="#59636e">20%</text>
+<line x1="411.0" y1="58" x2="411.0" y2="285" stroke="#e1e4e8"/>
+<text x="411.0" y="307" font-family="Arial,sans-serif" font-size="11" text-anchor="middle" font-weight="normal" fill="#59636e">40%</text>
+<line x1="499.0" y1="58" x2="499.0" y2="285" stroke="#e1e4e8"/>
+<text x="499.0" y="307" font-family="Arial,sans-serif" font-size="11" text-anchor="middle" font-weight="normal" fill="#59636e">60%</text>
+<line x1="587.0" y1="58" x2="587.0" y2="285" stroke="#e1e4e8"/>
+<text x="587.0" y="307" font-family="Arial,sans-serif" font-size="11" text-anchor="middle" font-weight="normal" fill="#59636e">80%</text>
+<line x1="675.0" y1="58" x2="675.0" y2="285" stroke="#e1e4e8"/>
+<text x="675.0" y="307" font-family="Arial,sans-serif" font-size="11" text-anchor="middle" font-weight="normal" fill="#59636e">100%</text>
+<text x="223" y="95" font-family="Arial,sans-serif" font-size="13" text-anchor="end" font-weight="normal" fill="#20242a">Majority baseline</text>
+<rect x="235" y="78" width="150.22" height="28" rx="3" fill="#89a9b8"/>
+<text x="393.22383962358276" y="97" font-family="Arial,sans-serif" font-size="12" text-anchor="start" font-weight="bold" fill="#20242a">0.341</text>
+<text x="223" y="149" font-family="Arial,sans-serif" font-size="13" text-anchor="end" font-weight="normal" fill="#20242a">Logistic regression</text>
+<rect x="235" y="132" width="304.75" height="28" rx="3" fill="#89a9b8"/>
+<text x="547.7517516227078" y="151" font-family="Arial,sans-serif" font-size="12" text-anchor="start" font-weight="bold" fill="#20242a">0.693</text>
+<text x="223" y="203" font-family="Arial,sans-serif" font-size="13" text-anchor="end" font-weight="normal" fill="#20242a">Decision tree</text>
+<rect x="235" y="186" width="310.75" height="28" rx="3" fill="#89a9b8"/>
+<text x="553.749753326314" y="205" font-family="Arial,sans-serif" font-size="12" text-anchor="start" font-weight="bold" fill="#20242a">0.706</text>
+<text x="223" y="257" font-family="Arial,sans-serif" font-size="13" text-anchor="end" font-weight="normal" fill="#20242a">Random forest</text>
+<rect x="235" y="240" width="322.97" height="28" rx="3" fill="#176b87"/>
+<text x="565.971601566582" y="259" font-family="Arial,sans-serif" font-size="12" text-anchor="start" font-weight="bold" fill="#20242a">0.734</text>
+<text x="30" y="325" font-family="Arial,sans-serif" font-size="11" text-anchor="start" font-weight="normal" fill="#59636e">Three stratified folds grouped by Origin_program; final held-out groups excluded.</text>
+</svg>

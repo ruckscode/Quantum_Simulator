@@ -240,6 +240,10 @@ The repository includes separate adapters for Bugs4Q and QMutBench data. They no
 
 The checked-in QMutBench data contains a small set of QASM source/mutant examples. The Bugs4Q adapter and integration tests are present; external/official dataset material may not be available in every checkout. Synthetic test fixtures and controlled local scenarios are not benchmark ground truth.
 
+### QMutBench outcome ML experiment
+
+The local environment contains a source-hash-verified 723,079-row QMutBench metadata CSV and a bounded ML experiment predicting the historical binary oracle outcome (`WOO`/`OPO` detected versus `Survivor`) from seven pre-outcome metadata features. Evaluation holds out whole `Origin_program` groups. The selected random forest scored 77.65% accuracy and 77.64% macro F1 on that test; the 85% objective was not achieved. This predicts the benchmark's historical oracle result only and does not establish source localization, hardware diagnosis, or unseen recipe-family performance. The full metrics, confusion matrix, source audit, and limitations are in the [QMutBench outcome ML report](reports/experiments/qmutbench_outcome_ml/README.md). Run the bounded smoke, training, and tests with the commands in that report. The model, held-out predictions, and full local run manifest are git-ignored under `data/qmutbench_ml/outcome_model_v1/`.
+
 Run benchmark reporting from the repository root with:
 
 ```powershell
