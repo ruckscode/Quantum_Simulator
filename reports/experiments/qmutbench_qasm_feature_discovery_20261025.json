@@ -1,0 +1,1140 @@
+{
+  "branch": "qmutbench-master-optimization",
+  "dataset": {
+    "development_origins": 305,
+    "development_rows": 578117,
+    "frozen_test_labels_or_files_used_for_selection": false,
+    "historical_frozen_origins": 70,
+    "historical_frozen_rows": 144962,
+    "path": "data/qmutbench_ingestion/raw/official_all_data_20261015.csv",
+    "rows": 723079,
+    "sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778"
+  },
+  "excluded_source_fields": {
+    "Killed": "Prediction target; never included in feature extraction/model matrix.",
+    "Origin_program": "Used only to exclude whole groups in folds and to report origin support.",
+    "Unnamed: 0": "Used only as a traceability join key; not a model feature.",
+    "local gate neighborhood / control-target mutation": "Not extracted because source-QASM decomposition and the published position index do not establish an unambiguous pre-mutation neighbor mapping.",
+    "original/replacement gate reconstruction": "QASM is already source-compiled/decomposed; original mutation gate semantics are not reliably recoverable from these artifacts, so no reconstructed gate pair is claimed.",
+    "simulation/measurement outcomes": "Not used; post-outcome behavior is excluded."
+  },
+  "existing_metadata_feature_inventory": {
+    "note": "Source-column definitions, types, missingness/cardinality, availability, and training-partition associations for existing metadata inputs.",
+    "path": "reports/experiments/qmutbench_feature_audit_20261025.json",
+    "sha256": "e67b7bb3386ae6ea11fded8af07019880468e5c06463135ec61dc58a4c56ba4b"
+  },
+  "extraction": {
+    "cache_dir": "data/qmutbench_ml/qasm_structural_v4/",
+    "cache_manifest_sha256": "7d562057485d66155fe4f1aa23b1d00f172051954d880b5f291d50ce1d6baa6d",
+    "chunk_count": 58,
+    "depth_policy": "ASAP per-wire native gate layers; barriers synchronize; measurements excluded",
+    "extracted_rows": 578117,
+    "manifest": "data/qmutbench_ml/qasm_structural_v4/manifest.json",
+    "original_circuit_count": 305,
+    "parse_error_rows": 0,
+    "requested_development_rows": 578117,
+    "resume_and_stale_cache_protection": true,
+    "script": "experiments/qmutbench_qasm_features.py",
+    "status": "complete",
+    "workers": 3
+  },
+  "features": {
+    "qasm_delta_ccx_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Mutated minus original fraction of counted QASM instructions named ccx.",
+      "distinct_values": 845,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.05109806553240795,
+        0.05137014585248352,
+        0.060154816136501296
+      ],
+      "fold_training_association_mean": 0.05420767584046426,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_delta_cp_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Mutated minus original fraction of counted QASM instructions named cp.",
+      "distinct_values": 1775,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.10400097809516316,
+        0.07972355939370955,
+        0.0873978227786518
+      ],
+      "fold_training_association_mean": 0.09037412008917484,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_delta_cx_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Mutated minus original fraction of counted QASM instructions named cx.",
+      "distinct_values": 3039,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.11495220934965558,
+        0.12455702171900215,
+        0.08105442107228442
+      ],
+      "fold_training_association_mean": 0.1068545507136474,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_delta_cz_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Mutated minus original fraction of counted QASM instructions named cz.",
+      "distinct_values": 578,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.16952627974291043,
+        0.1353288920291768,
+        0.12830773743715035
+      ],
+      "fold_training_association_mean": 0.1443876364030792,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_delta_depth": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "Mutated minus original ASAP per-qubit gate-layer depth.",
+      "distinct_values": 193,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.07801720459076224,
+        0.08735130276970807,
+        0.11578277066316721
+      ],
+      "fold_training_association_mean": 0.09371709267454585,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_delta_gate_count": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "Mutated minus original parsed gate-instruction count.",
+      "distinct_values": 258,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.10667251055993215,
+        0.11638217837617919,
+        0.11561969828913933
+      ],
+      "fold_training_association_mean": 0.1128914624084169,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_delta_h_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Mutated minus original fraction of counted QASM instructions named h.",
+      "distinct_values": 3073,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.1588871382879668,
+        0.16993916709457357,
+        0.15488247059476706
+      ],
+      "fold_training_association_mean": 0.1612362586591025,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_delta_rx_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Mutated minus original fraction of counted QASM instructions named rx.",
+      "distinct_values": 375,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.05599975479242054,
+        0.04765653980066637,
+        0.052369457573088536
+      ],
+      "fold_training_association_mean": 0.05200858405539182,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_delta_rxx_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Mutated minus original fraction of counted QASM instructions named rxx.",
+      "distinct_values": 204,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fold_training_association_mean": 0.0,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_delta_ry_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Mutated minus original fraction of counted QASM instructions named ry.",
+      "distinct_values": 749,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.1136446935733402,
+        0.12709074947729224,
+        0.13484008141001674
+      ],
+      "fold_training_association_mean": 0.12519184148688306,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_delta_rz_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Mutated minus original fraction of counted QASM instructions named rz.",
+      "distinct_values": 202,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fold_training_association_mean": 0.0,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_delta_rzz_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Mutated minus original fraction of counted QASM instructions named rzz.",
+      "distinct_values": 375,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.040852733388988066,
+        0.02630862889959037,
+        0.03399729266084775
+      ],
+      "fold_training_association_mean": 0.03371955164980873,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_delta_swap_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Mutated minus original fraction of counted QASM instructions named swap.",
+      "distinct_values": 1515,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.0030605469392367144,
+        0.10104717781422243,
+        0.09554736437117797
+      ],
+      "fold_training_association_mean": 0.06655169637487904,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_delta_two_qubit_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Mutated minus original fraction of gates with at least two operands.",
+      "distinct_values": 3864,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.14490327748393964,
+        0.17932901264790937,
+        0.14679370574580655
+      ],
+      "fold_training_association_mean": 0.15700866529255186,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_delta_u_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Mutated minus original fraction of counted QASM instructions named u.",
+      "distinct_values": 1805,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.06580348417806083,
+        0.048220315531098186,
+        0.07253991314386198
+      ],
+      "fold_training_association_mean": 0.062187904284340324,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_ccx_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of mutated QASM counted gate instructions whose parsed name is ccx.",
+      "distinct_values": 644,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.05125746714526437,
+        0.058390425177836165,
+        0.056174917618646444
+      ],
+      "fold_training_association_mean": 0.055274269980582325,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_cp_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of mutated QASM counted gate instructions whose parsed name is cp.",
+      "distinct_values": 1243,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.09237158604196792,
+        0.06597048293619988,
+        0.04039085923350091
+      ],
+      "fold_training_association_mean": 0.06624430940388958,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_cx_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of mutated QASM counted gate instructions whose parsed name is cx.",
+      "distinct_values": 2203,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.19687213054570812,
+        0.17490324660089515,
+        0.18627990546088025
+      ],
+      "fold_training_association_mean": 0.18601842753582784,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_cz_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of mutated QASM counted gate instructions whose parsed name is cz.",
+      "distinct_values": 545,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.19996549618772877,
+        0.13694104735621646,
+        0.11062606027756618
+      ],
+      "fold_training_association_mean": 0.14917753460717045,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_depth": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "ASAP per-qubit gate-layer depth on linked mutated QASM; barriers synchronize their wires; measurements excluded; no gate decomposition.",
+      "distinct_values": 359,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.15245570096100067,
+        0.19422644345092685,
+        0.14870651227304096
+      ],
+      "fold_training_association_mean": 0.16512955222832282,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_depth_per_qubit": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Mutated QASM ASAP layer depth divided by declared QASM qubit count.",
+      "distinct_values": 1410,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.16705030356466932,
+        0.1874748884142289,
+        0.20138125265824122
+      ],
+      "fold_training_association_mean": 0.1853021482123798,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_distinct_gate_types": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "Number of distinct parsed gate instruction names in the mutated QASM.",
+      "distinct_values": 9,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.0937355081858952,
+        0.11642637928427638,
+        0.14149834313821996
+      ],
+      "fold_training_association_mean": 0.11722007686946384,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_gate_count": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "Count of parsed non-measurement, non-barrier gate instructions in the linked mutated QASM.",
+      "distinct_values": 451,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.15248263889423325,
+        0.16384996819418787,
+        0.12644287049444086
+      ],
+      "fold_training_association_mean": 0.147591825860954,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_h_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of mutated QASM counted gate instructions whose parsed name is h.",
+      "distinct_values": 1838,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.1091428916514381,
+        0.11154522190931952,
+        0.05988215982545431
+      ],
+      "fold_training_association_mean": 0.09352342446207064,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_rx_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of mutated QASM counted gate instructions whose parsed name is rx.",
+      "distinct_values": 358,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fold_training_association_mean": 0.0,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_rxx_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of mutated QASM counted gate instructions whose parsed name is rxx.",
+      "distinct_values": 204,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fold_training_association_mean": 0.0,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_ry_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of mutated QASM counted gate instructions whose parsed name is ry.",
+      "distinct_values": 624,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.10107354220215291,
+        0.113995756204945,
+        0.12858859396973973
+      ],
+      "fold_training_association_mean": 0.11455263079227922,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_rz_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of mutated QASM counted gate instructions whose parsed name is rz.",
+      "distinct_values": 202,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fold_training_association_mean": 0.0,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_rzz_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of mutated QASM counted gate instructions whose parsed name is rzz.",
+      "distinct_values": 378,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.0,
+        0.045873642417458664,
+        0.01232687642693381
+      ],
+      "fold_training_association_mean": 0.019400172948130824,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_single_qubit_count": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "Count of parsed one-qubit gate instructions in the mutated QASM.",
+      "distinct_values": 175,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.10674774371184241,
+        0.17975361489306926,
+        0.12993387930717748
+      ],
+      "fold_training_association_mean": 0.13881174597069637,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_swap_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of mutated QASM counted gate instructions whose parsed name is swap.",
+      "distinct_values": 803,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.08502488700281285,
+        0.05208913453209344,
+        0.044287014397135935
+      ],
+      "fold_training_association_mean": 0.060467011977347405,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_three_plus_count": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "Count of parsed gates with three or more operands in the mutated QASM.",
+      "distinct_values": 156,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.04775264505430438,
+        0.07309604229598035,
+        0.06790342974253491
+      ],
+      "fold_training_association_mean": 0.06291737236427321,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_two_plus_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of counted mutated QASM gates with arity two or greater.",
+      "distinct_values": 2360,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.1888675467276076,
+        0.20202657166524451,
+        0.18421617515274144
+      ],
+      "fold_training_association_mean": 0.19170343118186453,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_two_qubit_count": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "Count of parsed two-qubit gate instructions in the mutated QASM.",
+      "distinct_values": 359,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.17375769505919333,
+        0.1729268541597075,
+        0.1379802983321404
+      ],
+      "fold_training_association_mean": 0.1615549491836804,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_mut_u_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of mutated QASM counted gate instructions whose parsed name is u.",
+      "distinct_values": 1341,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.05934020069688837,
+        0.049116226755567885,
+        0.09354070280211474
+      ],
+      "fold_training_association_mean": 0.06733237675152366,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_ccx_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of original QASM counted gate instructions whose parsed name is ccx.",
+      "distinct_values": 19,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.0,
+        0.06442854817806144,
+        0.06239195761493366
+      ],
+      "fold_training_association_mean": 0.04227350193099836,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_cp_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of original QASM counted gate instructions whose parsed name is cp.",
+      "distinct_values": 83,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.09160285796415119,
+        0.06632830785638856,
+        0.039645495459305354
+      ],
+      "fold_training_association_mean": 0.06585888709328169,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_cx_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of original QASM counted gate instructions whose parsed name is cx.",
+      "distinct_values": 138,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.20329290764074945,
+        0.170353583984724,
+        0.18754482496692154
+      ],
+      "fold_training_association_mean": 0.18706377219746498,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_cz_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of original QASM counted gate instructions whose parsed name is cz.",
+      "distinct_values": 42,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.10788812821680112,
+        0.13061780859980954,
+        0.09276835608996617
+      ],
+      "fold_training_association_mean": 0.11042476430219228,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_depth": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "ASAP per-qubit gate-layer depth on linked original QASM; barriers synchronize their wires; measurements excluded; no gate decomposition.",
+      "distinct_values": 81,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.14232100941834755,
+        0.1850032546125437,
+        0.142695591163328
+      ],
+      "fold_training_association_mean": 0.15667328506473974,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_depth_per_qubit": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Original QASM ASAP layer depth divided by declared QASM qubit count.",
+      "distinct_values": 152,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.17254408561499085,
+        0.17694848702452995,
+        0.20096351063656057
+      ],
+      "fold_training_association_mean": 0.18348536109202715,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_distinct_gate_types": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "Number of distinct parsed gate instruction names in the original QASM.",
+      "distinct_values": 7,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.08897700837887632,
+        0.12186855818037728,
+        0.15249322490101647
+      ],
+      "fold_training_association_mean": 0.12111293048675668,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_gate_count": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "Count of parsed non-measurement, non-barrier gate instructions in the linked original QASM.",
+      "distinct_values": 143,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.150192139335859,
+        0.16800080665710668,
+        0.12321049093602907
+      ],
+      "fold_training_association_mean": 0.14713447897633158,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_h_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of original QASM counted gate instructions whose parsed name is h.",
+      "distinct_values": 121,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.10666382699081606,
+        0.10451831883829309,
+        0.05552422510107393
+      ],
+      "fold_training_association_mean": 0.08890212364339435,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_rx_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of original QASM counted gate instructions whose parsed name is rx.",
+      "distinct_values": 8,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.04813825422684276,
+        0.07444039796409184,
+        0.06204466319796733
+      ],
+      "fold_training_association_mean": 0.061541105129633976,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_rxx_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of original QASM counted gate instructions whose parsed name is rxx.",
+      "distinct_values": 1,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fold_training_association_mean": 0.0,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_ry_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of original QASM counted gate instructions whose parsed name is ry.",
+      "distinct_values": 62,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.1064491605716929,
+        0.09608615989967256,
+        0.12936414965454354
+      ],
+      "fold_training_association_mean": 0.11063315670863634,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_rz_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of original QASM counted gate instructions whose parsed name is rz.",
+      "distinct_values": 1,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "fold_training_association_mean": 0.0,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_rzz_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of original QASM counted gate instructions whose parsed name is rzz.",
+      "distinct_values": 8,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.04813825422684276,
+        0.07444039796409184,
+        0.06204466319796733
+      ],
+      "fold_training_association_mean": 0.061541105129633976,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_single_qubit_count": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "Count of parsed one-qubit gate instructions in the original QASM.",
+      "distinct_values": 68,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.11255934275901075,
+        0.188052238754057,
+        0.13194430077938918
+      ],
+      "fold_training_association_mean": 0.14418529409748565,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_swap_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of original QASM counted gate instructions whose parsed name is swap.",
+      "distinct_values": 57,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.09110090427169677,
+        0.05377402779761455,
+        0.045165474735971024
+      ],
+      "fold_training_association_mean": 0.06334680226842744,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_three_plus_count": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "Count of parsed gates with three or more operands in the original QASM.",
+      "distinct_values": 13,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.06579127387642024,
+        0.08241374170562013,
+        0.06790342974253491
+      ],
+      "fold_training_association_mean": 0.07203614844152509,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_two_plus_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of counted original QASM gates with arity two or greater.",
+      "distinct_values": 184,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.18124615929662005,
+        0.18968418459294895,
+        0.17759806499632982
+      ],
+      "fold_training_association_mean": 0.18284280296196628,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_two_qubit_count": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "Count of parsed two-qubit gate instructions in the original QASM.",
+      "distinct_values": 108,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.17195323764690917,
+        0.16892558175215816,
+        0.141511088420195
+      ],
+      "fold_training_association_mean": 0.1607966359397541,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "qasm_orig_u_fraction": {
+      "available_before_outcome": true,
+      "data_type": "float64",
+      "definition": "Fraction of original QASM counted gate instructions whose parsed name is u.",
+      "distinct_values": 73,
+      "extraction_cost": "One parse per unique original circuit and one per development mutant; cached in 58 resumable compressed chunks.",
+      "fold_training_association_cramers_v": [
+        0.04126174947751661,
+        0.04098570744158042,
+        0.10009956030295056
+      ],
+      "fold_training_association_mean": 0.06078233907401587,
+      "leakage_risk": "Low when supplied original and mutant QASM are available before outcome execution; no outcome, group, row ID, or circuit behavior is included.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": true,
+      "precision_limit": "Counts and depth refer to parsed OpenQASM instructions without transpiler decomposition; estimated ASAP depth is not hardware execution depth.",
+      "selection_status": "selected only for controlled screen/confirmation; not promoted",
+      "source": "official pinned QMutBench original/mutated QASM via qmutbench_validation.parse_qasm_file"
+    },
+    "source_gate_count_match": {
+      "available_before_outcome": true,
+      "data_type": "int64",
+      "definition": "Diagnostic equality check of parsed mutated gate count against the source CSV gates field; not a model input.",
+      "distinct_values": 2,
+      "extraction_cost": "Computed from already extracted counts and source metadata.",
+      "fold_training_association_cramers_v": [],
+      "fold_training_association_mean": null,
+      "leakage_risk": "Not outcome leakage, but diagnostic consistency flag only; excluded from model inputs.",
+      "missing_rows": 0,
+      "model_input_in_this_phase": false,
+      "precision_limit": "Discrepancies reflect differing source gate-count conventions and must not be interpreted as parser failures.",
+      "selection_status": "diagnostic only",
+      "source": "QASM-derived count and metadata gates column"
+    }
+  },
+  "official_checkout": {
+    "all_data_csv_sha256": "d8adabf58173f1ae7c28954832e1b9607bc315eb1269a9cb57237343dfa95934",
+    "commit": "01f5e7700c051fe715fc368b307deaa7e6869ba8",
+    "development_linkage_coverage": 1.0,
+    "development_mutant_qasm_links": 578117,
+    "development_original_qasm_links": 305,
+    "metadata_csv_semantic_equality_verified": true,
+    "metadata_csv_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+    "missing_development_mutant_files": 0,
+    "mutant_qasm_files": 723079,
+    "original_qasm_files": 375,
+    "path": "data/qmutbench_full",
+    "repository": "https://github.com/EnautMendi/QMutBench",
+    "tracked_qasm_files": 723454,
+    "worktree_clean": true
+  },
+  "schema": "qmutbench-qasm-feature-discovery-v1",
+  "source_csv_columns": [
+    "Unnamed: 0",
+    "Origin_program",
+    "algorithm",
+    "qubits",
+    "gates",
+    "operation",
+    "Position_int",
+    "Killed",
+    "gate",
+    "algorithm_group",
+    "dominant_state",
+    "position"
+  ],
+  "source_csv_interpretation": {
+    "gates": "Metadata gate count has convention differences from parsed QASM for some mutation types; it is retained as existing source input but not treated as validation oracle.",
+    "operation_and_gate": "Available source metadata known before mutation outcome; no target-derived mutation details added.",
+    "position": "Position (Circuit %) category documented as ten percentage bands; position_fraction remains the coarse-bin midpoint, not an exact position."
+  },
+  "starting_commit": "11b0fcc067a22b101b29bd506deed100f5f0edd8"
+}

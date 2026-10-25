@@ -1,0 +1,862 @@
+{
+  "artifact_paths": {
+    "discovery_manifest": "reports/experiments/qmutbench_qasm_feature_discovery_20261025.json",
+    "extracted_features": "data/qmutbench_ml/qasm_structural_v4/ (ignored local cache)",
+    "feature_extractor": "experiments/qmutbench_qasm_features.py",
+    "model_experiments": "experiments/qmutbench_qasm_model_comparison.py",
+    "results_json": "reports/experiments/qmutbench_qasm_model_results_20261025.json",
+    "results_markdown": "reports/experiments/qmutbench_qasm_model_results_20261025.md"
+  },
+  "candidate_confirmation": {
+    "accuracy_delta": 0.003215612064685791,
+    "balanced_accuracy_delta": 0.002256173116749638,
+    "decision": "not promoted: below the predeclared 0.5 pp materiality bar at 0.32 pp, and not consistent across folds",
+    "feature_set": "current position_fraction model inputs plus 12 mutant QASM gate-name fractions and the multi-qubit gate fraction",
+    "fold_macro_f1": [
+      0.7594198894052107,
+      0.7776544599379804,
+      0.7770117696704794
+    ],
+    "fold_macro_f1_deltas": [
+      -0.002666712856178366,
+      0.00490893546510851,
+      0.007093968215326818
+    ],
+    "folds_won": 2,
+    "macro_f1_delta": 0.003185116573073521,
+    "macro_f1_delta_percentage_points": 0.3185116573073521,
+    "metrics_at_0_5": {
+      "accuracy": 0.7714718646917492,
+      "average_precision": 0.8776388805897062,
+      "balanced_accuracy": 0.7719425348401826,
+      "brier_score": 0.15453516192177635,
+      "confusion_matrix_labels_0_1": [
+        [
+          218477,
+          59936
+        ],
+        [
+          72180,
+          227524
+        ]
+      ],
+      "macro_f1": 0.7714158858710527,
+      "per_class": {
+        "detected_1": {
+          "f1": 0.7749930172830759,
+          "precision": 0.7914979475405274,
+          "recall": 0.7591623735418946,
+          "support": 299704
+        },
+        "survivor_0": {
+          "f1": 0.7678387544590296,
+          "precision": 0.7516660531141517,
+          "recall": 0.7847226961384706,
+          "support": 278413
+        }
+      },
+      "roc_auc": 0.8628895426543391
+    },
+    "nested_threshold_delta_vs_current": 0.0024201328063954,
+    "nested_threshold_mean_macro_f1": 0.7703201849883303,
+    "nested_thresholds": [
+      0.5,
+      0.48,
+      0.5
+    ],
+    "origin_level_macro_f1": {
+      "mean_delta": -0.0032965594417569423,
+      "median_delta": -0.0011122574609345737,
+      "origins_improved": 135,
+      "origins_with_both_classes": 305,
+      "origins_worsened": 166
+    }
+  },
+  "current_selected_model": {
+    "artifact_path": "data/qmutbench_ml/position_fraction_v1/best_model.joblib",
+    "features": [
+      "algorithm",
+      "operation",
+      "gate",
+      "dominant_state",
+      "qubits",
+      "gates",
+      "Position_int",
+      "position_fraction"
+    ],
+    "fold_macro_f1": [
+      0.762086602261389,
+      0.7727455244728719,
+      0.7699178014551525
+    ],
+    "metrics_at_0_5": {
+      "accuracy": 0.7682562526270634,
+      "average_precision": 0.8766680119539187,
+      "balanced_accuracy": 0.769686361723433,
+      "brier_score": 0.15576074121729466,
+      "confusion_matrix_labels_0_1": [
+        [
+          225102,
+          53311
+        ],
+        [
+          80664,
+          219040
+        ]
+      ],
+      "macro_f1": 0.7682307692979792,
+      "per_class": {
+        "detected_1": {
+          "f1": 0.7658004912115094,
+          "precision": 0.8042562722369295,
+          "recall": 0.7308544430504764,
+          "support": 299704
+        },
+        "survivor_0": {
+          "f1": 0.770661047384449,
+          "precision": 0.7361904201251938,
+          "recall": 0.8085182803963895,
+          "support": 278413
+        }
+      },
+      "roc_auc": 0.862495487980846
+    },
+    "nested_threshold_mean_macro_f1": 0.7679000521819349,
+    "nested_thresholds": [
+      0.495,
+      0.46,
+      0.48
+    ],
+    "sha256": "641a18b67448f910ea0126c914e7e5f17bc946a3fa940b0486c045b845f8ee45",
+    "version": "qmutbench-position-fraction-v1"
+  },
+  "evaluation": {
+    "folds": {
+      "1": {
+        "origins": 91,
+        "rows": 194269
+      },
+      "2": {
+        "origins": 101,
+        "rows": 191737
+      },
+      "3": {
+        "origins": 113,
+        "rows": 192111
+      }
+    },
+    "grouping": "same saved three-fold StratifiedGroupKFold assignments from current position_fraction OOF; all records of each origin stayed together",
+    "historical_frozen_test_used": false,
+    "population": "578,117 development rows from 305 Origin_program groups",
+    "primary_metric": "macro F1",
+    "threshold": 0.5,
+    "threshold_context": "Existing nested grouped threshold protocol was reused; thresholds are selected using the other two folds and applied to the held fold."
+  },
+  "limitations": [
+    "Only three saved outer group folds were available; available memory and fit times make a new five-fold full-corpus experiment impractical in this phase.",
+    "The selected QASM feature candidate did not meet the predeclared +0.5 pp macro-F1 criterion or win all folds; current model and inference API remain unchanged.",
+    "ASAP depth is a parser-derived native-instruction scheduling proxy, not transpiled circuit depth or hardware depth.",
+    "The dataset metadata 'gates' has convention differences from parsed circuit instruction counts for some operators; the diagnostic mismatch feature is excluded from models.",
+    "Position_fraction is the midpoint of a coarse 10 percentage-point band, not an exact mutation location.",
+    "No model was fitted against historical frozen-test rows and those labels were not loaded for feature screening."
+  ],
+  "promoted_model": "qmutbench-position-fraction-v1",
+  "provenance": {
+    "development_origins": 305,
+    "development_rows": 578117,
+    "frozen_test_labels_or_files_used_for_selection": false,
+    "historical_frozen_origins": 70,
+    "historical_frozen_rows": 144962,
+    "path": "data/qmutbench_ingestion/raw/official_all_data_20261015.csv",
+    "rows": 723079,
+    "sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778"
+  },
+  "reproduction_commands": [
+    ".venv/Scripts/python.exe -m pytest tests/test_qmutbench_qasm_features.py -q",
+    ".venv/Scripts/python.exe -m experiments.qmutbench_qasm_features --workers 3 --chunk-rows 10000",
+    ".venv/Scripts/python.exe -m experiments.qmutbench_qasm_model_comparison --variants mutant_gate_composition",
+    ".venv/Scripts/python.exe -m experiments.qmutbench_qasm_model_comparison --delta-composition",
+    ".venv/Scripts/python.exe -m experiments.qmutbench_qasm_model_comparison --confirm-gate-composition",
+    ".venv/Scripts/python.exe -m experiments.qmutbench_qasm_model_comparison --variants baseline_random_forest"
+  ],
+  "schema": "qmutbench-qasm-model-results-v1",
+  "screen_experiments": {
+    "combined_structure_and_gate_composition_fold1": {
+      "decision": "stopped after fold 1 materially underperformed; no remaining folds fit",
+      "fold1_baseline_macro_f1": 0.7630736162658147,
+      "macro_f1": 0.7477635716239516
+    },
+    "matched_60_tree_extra_trees_baseline": {
+      "fit_seconds_by_fold": [
+        106.0864647999988,
+        109.42590689999633,
+        111.20492820000072
+      ],
+      "fold_macro_f1_sd_sample": 0.003564678209351935,
+      "fold_metrics_at_0_5": [
+        {
+          "accuracy": 0.7630810885936511,
+          "average_precision": 0.8710439301984572,
+          "balanced_accuracy": 0.7643323850104229,
+          "brier_score": 0.1579724456170349,
+          "confusion_matrix_labels_0_1": [
+            [
+              74667,
+              18878
+            ],
+            [
+              27148,
+              73576
+            ]
+          ],
+          "macro_f1": 0.7630736162658147,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7617430556274524,
+              "precision": 0.7958119713587297,
+              "recall": 0.7304713871569835,
+              "support": 100724
+            },
+            "survivor_0": {
+              "f1": 0.764404176904177,
+              "precision": 0.7333595246280018,
+              "recall": 0.7981933828638623,
+              "support": 93545
+            }
+          },
+          "roc_auc": 0.8568436225187868
+        },
+        {
+          "accuracy": 0.7701226158748703,
+          "average_precision": 0.8811281346265956,
+          "balanced_accuracy": 0.7709923495683209,
+          "brier_score": 0.1543772536028115,
+          "confusion_matrix_labels_0_1": [
+            [
+              73523,
+              18920
+            ],
+            [
+              25156,
+              74138
+            ]
+          ],
+          "macro_f1": 0.7701202508316034,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7708575944102479,
+              "precision": 0.7966859378022308,
+              "recall": 0.7466513585916571,
+              "support": 99294
+            },
+            "survivor_0": {
+              "f1": 0.7693829072529589,
+              "precision": 0.7450724064897293,
+              "recall": 0.7953333405449845,
+              "support": 92443
+            }
+          },
+          "roc_auc": 0.8655925902915278
+        },
+        {
+          "accuracy": 0.7657083665172739,
+          "average_precision": 0.8746769018393498,
+          "balanced_accuracy": 0.7673524701482047,
+          "brier_score": 0.15570052118252806,
+          "confusion_matrix_labels_0_1": [
+            [
+              74943,
+              17482
+            ],
+            [
+              27528,
+              72158
+            ]
+          ],
+          "macro_f1": 0.765659117905387,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7622619185954386,
+              "precision": 0.8049754573850959,
+              "recall": 0.7238528981000341,
+              "support": 99686
+            },
+            "survivor_0": {
+              "f1": 0.7690563172153354,
+              "precision": 0.7313581403519045,
+              "recall": 0.8108520421963754,
+              "support": 92425
+            }
+          },
+          "roc_auc": 0.8632104358673522
+        }
+      ],
+      "mean_fold_macro_f1": 0.7662843283342684,
+      "pooled_oof_metrics_at_0_5": {
+        "accuracy": 0.766289522709071,
+        "average_precision": 0.8753780958709905,
+        "balanced_accuracy": 0.7675382843037618,
+        "brier_score": 0.15602510103753164,
+        "confusion_matrix_labels_0_1": [
+          [
+            223133,
+            55280
+          ],
+          [
+            79832,
+            219872
+          ]
+        ],
+        "macro_f1": 0.7662820863197629,
+        "per_class": {
+          "detected_1": {
+            "f1": 0.7649637474428379,
+            "precision": 0.7990928650345991,
+            "recall": 0.7336305154419027,
+            "support": 299704
+          },
+          "survivor_0": {
+            "f1": 0.7676004251966879,
+            "precision": 0.7364976152360834,
+            "recall": 0.8014460531656209,
+            "support": 278413
+          }
+        },
+        "roc_auc": 0.8615334067639526
+      }
+    },
+    "mutant_gate_composition": {
+      "decision": "screen gain below materiality and only 2/3 folds improved; advanced to 100-tree confirmation",
+      "fit_seconds_by_fold": [
+        172.1602144999997,
+        171.9045799000014,
+        177.00990289999754
+      ],
+      "fold_macro_f1_sd_sample": 0.010477617075590343,
+      "fold_metrics_at_0_5": [
+        {
+          "accuracy": 0.7590763323021171,
+          "average_precision": 0.868607482150297,
+          "balanced_accuracy": 0.7603229142999446,
+          "brier_score": 0.1586818518962696,
+          "confusion_matrix_labels_0_1": [
+            [
+              74280,
+              19265
+            ],
+            [
+              27539,
+              73185
+            ]
+          ],
+          "macro_f1": 0.7590686778432617,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7577106649963246,
+              "precision": 0.7916170903190914,
+              "recall": 0.7265894920773599,
+              "support": 100724
+            },
+            "survivor_0": {
+              "f1": 0.7604266906901989,
+              "precision": 0.7295298519922607,
+              "recall": 0.7940563365225293,
+              "support": 93545
+            }
+          },
+          "roc_auc": 0.8537743511258249
+        },
+        {
+          "accuracy": 0.7789263418119612,
+          "average_precision": 0.8845212100537768,
+          "balanced_accuracy": 0.7784519132582713,
+          "brier_score": 0.15248155449383716,
+          "confusion_matrix_labels_0_1": [
+            [
+              70735,
+              21708
+            ],
+            [
+              20680,
+              78614
+            ]
+          ],
+          "macro_f1": 0.7785524023331554,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7876522924014107,
+              "precision": 0.7836167540519527,
+              "recall": 0.7917296110540415,
+              "support": 99294
+            },
+            "survivor_0": {
+              "f1": 0.7694525122649001,
+              "precision": 0.7737789203084833,
+              "recall": 0.7651742154625012,
+              "support": 92443
+            }
+          },
+          "roc_auc": 0.8687337068947272
+        },
+        {
+          "accuracy": 0.7754943756474122,
+          "average_precision": 0.8806990036180926,
+          "balanced_accuracy": 0.7764589644591944,
+          "brier_score": 0.1531099846596941,
+          "confusion_matrix_labels_0_1": [
+            [
+              74123,
+              18302
+            ],
+            [
+              24828,
+              74858
+            ]
+          ],
+          "macro_f1": 0.7754910893732259,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7763500409653299,
+              "precision": 0.8035422928295406,
+              "recall": 0.750937945147764,
+              "support": 99686
+            },
+            "survivor_0": {
+              "f1": 0.7746321377811219,
+              "precision": 0.7490879324109913,
+              "recall": 0.8019799837706248,
+              "support": 92425
+            }
+          },
+          "roc_auc": 0.866856153857329
+        }
+      ],
+      "mean_fold_macro_f1": 0.771037389849881,
+      "pooled_oof_metrics_at_0_5": {
+        "accuracy": 0.7711155354365985,
+        "average_precision": 0.8776188704806219,
+        "balanced_accuracy": 0.771683193071905,
+        "brier_score": 0.15477391732638848,
+        "confusion_matrix_labels_0_1": [
+          [
+            219138,
+            59275
+          ],
+          [
+            73047,
+            226657
+          ]
+        ],
+        "macro_f1": 0.7710768115914267,
+        "per_class": {
+          "detected_1": {
+            "f1": 0.7740541906576781,
+            "precision": 0.7926954660548662,
+            "recall": 0.7562695192590022,
+            "support": 299704
+          },
+          "survivor_0": {
+            "f1": 0.7680994325251753,
+            "precision": 0.7499974331331177,
+            "recall": 0.7870968668848078,
+            "support": 278413
+          }
+        },
+        "roc_auc": 0.8625773333196612
+      }
+    },
+    "prior_model_family_evidence": {
+      "scope": "existing fixed-fold comparison recorded in reports/experiments/qmutbench_model_comparison_20261025.json",
+      "unweighted_random_forest_macro_f1_mean": 0.731447
+    },
+    "qasm_structure_only": {
+      "decision": "rejected; below matched baseline",
+      "fit_seconds_by_fold": [
+        323.20342900000105,
+        342.817189100002,
+        320.32871180000075
+      ],
+      "fold_macro_f1_sd_sample": 0.0010160560000901154,
+      "fold_metrics_at_0_5": [
+        {
+          "accuracy": 0.7589579397639356,
+          "average_precision": 0.8692417949436095,
+          "balanced_accuracy": 0.7600807380499228,
+          "brier_score": 0.15975249334110883,
+          "confusion_matrix_labels_0_1": [
+            [
+              73944,
+              19601
+            ],
+            [
+              27226,
+              73498
+            ]
+          ],
+          "macro_f1": 0.7589566693132035,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7584032854717965,
+              "precision": 0.7894606816399746,
+              "recall": 0.7296969937651404,
+              "support": 100724
+            },
+            "survivor_0": {
+              "f1": 0.7595100531546106,
+              "precision": 0.7308886033409113,
+              "recall": 0.7904644823347052,
+              "support": 93545
+            }
+          },
+          "roc_auc": 0.8541957315146629
+        },
+        {
+          "accuracy": 0.7587998143290028,
+          "average_precision": 0.870569674298308,
+          "balanced_accuracy": 0.7597347489844184,
+          "brier_score": 0.15974190802448365,
+          "confusion_matrix_labels_0_1": [
+            [
+              72651,
+              19792
+            ],
+            [
+              26455,
+              72839
+            ]
+          ],
+          "macro_f1": 0.7587995824390683,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7590360818027876,
+              "precision": 0.7863350282302901,
+              "recall": 0.7335689971196648,
+              "support": 99294
+            },
+            "survivor_0": {
+              "f1": 0.7585630830753489,
+              "precision": 0.7330635884810203,
+              "recall": 0.785900500849172,
+              "support": 92443
+            }
+          },
+          "roc_auc": 0.8530188647901914
+        },
+        {
+          "accuracy": 0.7606696128800537,
+          "average_precision": 0.8740118976911818,
+          "balanced_accuracy": 0.7622276997649275,
+          "brier_score": 0.15865749216713698,
+          "confusion_matrix_labels_0_1": [
+            [
+              74259,
+              18166
+            ],
+            [
+              27812,
+              71874
+            ]
+          ],
+          "macro_f1": 0.7606327204650476,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7576610480376965,
+              "precision": 0.7982452243447357,
+              "recall": 0.7210039524105691,
+              "support": 99686
+            },
+            "survivor_0": {
+              "f1": 0.7636043928923988,
+              "precision": 0.7275229986969854,
+              "recall": 0.803451447119286,
+              "support": 92425
+            }
+          },
+          "roc_auc": 0.8562027309978378
+        }
+      ],
+      "mean_fold_macro_f1": 0.7594629907391065,
+      "pooled_oof_metrics_at_0_5": {
+        "accuracy": 0.759474293265896,
+        "average_precision": 0.8711926929823759,
+        "balanced_accuracy": 0.7606743763581791,
+        "brier_score": 0.15938510859479163,
+        "confusion_matrix_labels_0_1": [
+          [
+            220854,
+            57559
+          ],
+          [
+            81493,
+            218211
+          ]
+        ],
+        "macro_f1": 0.7594692659818705,
+        "per_class": {
+          "detected_1": {
+            "f1": 0.7583696222592159,
+            "precision": 0.7912789643543533,
+            "recall": 0.7280883805354617,
+            "support": 299704
+          },
+          "survivor_0": {
+            "f1": 0.7605689097045251,
+            "precision": 0.7304653262641931,
+            "recall": 0.7932603721808967,
+            "support": 278413
+          }
+        },
+        "roc_auc": 0.8544212442562624
+      }
+    },
+    "random_forest_same_features_and_folds": {
+      "fit_seconds_by_fold": [
+        167.19041950000246,
+        181.5775250000006,
+        181.7741260000039
+      ],
+      "fold_macro_f1_sd_sample": 0.011772578656489813,
+      "fold_metrics_at_0_5": [
+        {
+          "accuracy": 0.7484467413740741,
+          "average_precision": 0.8630005475328524,
+          "balanced_accuracy": 0.7484850468327413,
+          "brier_score": 0.1607368300275096,
+          "confusion_matrix_labels_0_1": [
+            [
+              70114,
+              23431
+            ],
+            [
+              25438,
+              75286
+            ]
+          ],
+          "macro_f1": 0.7482683195816224,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.75497014154562,
+              "precision": 0.7626447319104106,
+              "recall": 0.7474484730550812,
+              "support": 100724
+            },
+            "survivor_0": {
+              "f1": 0.7415664976176248,
+              "precision": 0.7337784661754856,
+              "recall": 0.7495216206104014,
+              "support": 93545
+            }
+          },
+          "roc_auc": 0.8484920146125375
+        },
+        {
+          "accuracy": 0.7570578448604077,
+          "average_precision": 0.8715007101664571,
+          "balanced_accuracy": 0.7571366999660551,
+          "brier_score": 0.15766452645932516,
+          "confusion_matrix_labels_0_1": [
+            [
+              70196,
+              22247
+            ],
+            [
+              24334,
+              74960
+            ]
+          ],
+          "macro_f1": 0.7569077718051597,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7629477712581615,
+              "precision": 0.7711378810167993,
+              "recall": 0.7549298044191995,
+              "support": 99294
+            },
+            "survivor_0": {
+              "f1": 0.7508677723521578,
+              "precision": 0.7425790754257907,
+              "recall": 0.7593435955129106,
+              "support": 92443
+            }
+          },
+          "roc_auc": 0.8548715105260078
+        },
+        {
+          "accuracy": 0.7715799719953569,
+          "average_precision": 0.8802840278057009,
+          "balanced_accuracy": 0.7730677657028897,
+          "brier_score": 0.15277488415562712,
+          "confusion_matrix_labels_0_1": [
+            [
+              75089,
+              17336
+            ],
+            [
+              26546,
+              73140
+            ]
+          ],
+          "macro_f1": 0.7715564595339743,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7692388594987432,
+              "precision": 0.8083911755603695,
+              "recall": 0.7337038300262825,
+              "support": 99686
+            },
+            "survivor_0": {
+              "f1": 0.7738740595692054,
+              "precision": 0.7388104491562946,
+              "recall": 0.8124317013794969,
+              "support": 92425
+            }
+          },
+          "roc_auc": 0.870242732263158
+        }
+      ],
+      "mean_fold_macro_f1": 0.7589108503069188,
+      "pooled_oof_metrics_at_0_5": {
+        "accuracy": 0.7589899622394775,
+        "average_precision": 0.8712120956143219,
+        "balanced_accuracy": 0.7595112976213487,
+        "brier_score": 0.157072084564833,
+        "confusion_matrix_labels_0_1": [
+          [
+            215399,
+            63014
+          ],
+          [
+            76318,
+            223386
+          ]
+        ],
+        "macro_f1": 0.7589439520607497,
+        "per_class": {
+          "detected_1": {
+            "f1": 0.762274272142828,
+            "precision": 0.7799790502793296,
+            "recall": 0.7453554173451138,
+            "support": 299704
+          },
+          "survivor_0": {
+            "f1": 0.7556136319786715,
+            "precision": 0.7383834332589462,
+            "recall": 0.7736671778975838,
+            "support": 278413
+          }
+        },
+        "roc_auc": 0.8575424444861967
+      }
+    },
+    "signed_mutant_minus_original_gate_composition": {
+      "baseline_fold_macro_f1": [
+        0.7630736162658147,
+        0.7701202508316034,
+        0.765659117905387
+      ],
+      "definition": "per-gate mutant QASM instruction-fraction minus original QASM instruction-fraction",
+      "features": [
+        "qasm_delta_cx_fraction",
+        "qasm_delta_cz_fraction",
+        "qasm_delta_cp_fraction",
+        "qasm_delta_u_fraction",
+        "qasm_delta_h_fraction",
+        "qasm_delta_ry_fraction",
+        "qasm_delta_rx_fraction",
+        "qasm_delta_rz_fraction",
+        "qasm_delta_ccx_fraction",
+        "qasm_delta_swap_fraction",
+        "qasm_delta_rzz_fraction",
+        "qasm_delta_rxx_fraction"
+      ],
+      "fit_seconds_by_fold": [
+        144.8307777000009,
+        146.31244580000202,
+        143.0153180999987
+      ],
+      "fold_macro_f1": [
+        0.7625026717174894,
+        0.7649350979157371,
+        0.764379145983707
+      ],
+      "fold_macro_f1_delta": [
+        -0.0005709445483252917,
+        -0.005185152915866298,
+        -0.0012799719216799454
+      ],
+      "matched_60_tree_baseline_pooled_oof_metrics": {
+        "accuracy": 0.766289522709071,
+        "average_precision": 0.8753780958709905,
+        "balanced_accuracy": 0.7675382843037618,
+        "brier_score": 0.15602510103753164,
+        "confusion_matrix_labels_0_1": [
+          [
+            223133,
+            55280
+          ],
+          [
+            79832,
+            219872
+          ]
+        ],
+        "macro_f1": 0.7662820863197629,
+        "per_class": {
+          "detected_1": {
+            "f1": 0.7649637474428379,
+            "precision": 0.7990928650345991,
+            "recall": 0.7336305154419027,
+            "support": 299704
+          },
+          "survivor_0": {
+            "f1": 0.7676004251966879,
+            "precision": 0.7364976152360834,
+            "recall": 0.8014460531656209,
+            "support": 278413
+          }
+        },
+        "roc_auc": 0.8615334067639526
+      },
+      "pooled_macro_f1_delta": -0.0023240473646691795,
+      "pooled_oof_metrics": {
+        "accuracy": 0.7639872205799172,
+        "average_precision": 0.874295280432277,
+        "balanced_accuracy": 0.7654348788753395,
+        "brier_score": 0.1580117707151918,
+        "confusion_matrix_labels_0_1": [
+          [
+            224051,
+            54362
+          ],
+          [
+            82081,
+            217623
+          ]
+        ],
+        "macro_f1": 0.7639580389550937,
+        "per_class": {
+          "detected_1": {
+            "f1": 0.7613335222472358,
+            "precision": 0.8001286835671085,
+            "recall": 0.7261264447588287,
+            "support": 299704
+          },
+          "survivor_0": {
+            "f1": 0.7665825556629515,
+            "precision": 0.7318770987678518,
+            "recall": 0.8047433129918502,
+            "support": 278413
+          }
+        },
+        "roc_auc": 0.8589112697293635
+      },
+      "rows": 578117,
+      "status": "complete",
+      "threshold": 0.5
+    }
+  },
+  "target_85_percent_reached": false,
+  "test_results": {
+    "actual_selected_model_inference_smoke": "single and batch prediction passed; finite output; saved version and 0.5 threshold",
+    "feature_extraction_tests": "5 passed"
+  }
+}

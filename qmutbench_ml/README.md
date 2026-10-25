@@ -44,6 +44,6 @@ one = predictor.predict({
 many = predictor.predict([one_input_record, another_input_record])
 ```
 
-Each returned record includes `predicted_class`, `predicted_label`, `probability_detected`, `applied_threshold`, and `model_version`. The probability is an uncalibrated model probability, not calibrated confidence. The default threshold is loaded from metadata (currently 0.485); an explicit threshold override is available through `predict(..., threshold=...)`.
+Each returned record includes `predicted_class`, `predicted_label`, `probability_detected`, `applied_threshold`, and `model_version`. The probability is an uncalibrated model probability, not calibrated confidence. The default threshold is loaded from metadata (currently 0.5); an explicit threshold override is available through `predict(..., threshold=...)`.
 
 Run focused tests with `.venv/Scripts/python.exe -m pytest tests/test_qmutbench_inference.py -q`.

@@ -1,0 +1,107 @@
+{
+  "experiments": {
+    "candidate_100_tree_macro_f1_delta": 0.003185116573073521,
+    "candidate_100_tree_macro_f1_delta_percentage_points": 0.3185116573073521,
+    "candidate_fold_macro_f1_deltas": [
+      -0.002666712856178366,
+      0.00490893546510851,
+      0.007093968215326818
+    ],
+    "candidate_nested_threshold_delta": 0.0024201328063954,
+    "candidate_origin_level_macro_f1": {
+      "mean_delta": -0.0032965594417569423,
+      "median_delta": -0.0011122574609345737,
+      "origins_improved": 135,
+      "origins_with_both_classes": 305,
+      "origins_worsened": 166
+    },
+    "candidate_promoted": false,
+    "combined_qasm_fold1_macro_f1": 0.747764,
+    "comparison_threshold": 0.5,
+    "fixed_group_folds": 3,
+    "full_corpus_five_fold_confirmation": "not run; three saved grouped folds were reused; measured candidate fits took 348.8, 369.8, and 347.9 seconds, and available RAM was constrained",
+    "held_out_origins_per_fold": [
+      91,
+      101,
+      113
+    ],
+    "matched_60_tree_extra_trees_baseline_mean_fold_macro_f1": 0.7662843283342684,
+    "mutant_gate_composition_screen_mean_fold_macro_f1": 0.771037389849881,
+    "primary_metric": "macro F1",
+    "promotion_reason": "Below the 0.5 pp materiality criterion and candidate lost in the first outer fold; current position_fraction model remains selected.",
+    "qasm_structure_only_mean_fold_macro_f1": 0.7594629907391065,
+    "random_forest_same_fold_mean_macro_f1": 0.7589108503069188,
+    "signed_gate_composition_pooled_macro_f1_delta_vs_matched_60_tree": -0.0023240473646691795,
+    "target_85_percent_reached": false
+  },
+  "extraction": {
+    "cached_as_58_resumable_gzip_chunks": true,
+    "development_rows_requested": 578117,
+    "features_manifest": "data/qmutbench_ml/qasm_structural_v4/manifest.json",
+    "features_manifest_sha256": "7d562057485d66155fe4f1aa23b1d00f172051954d880b5f291d50ce1d6baa6d",
+    "historical_frozen_test_rows_parsed": false,
+    "parse_failures": 0,
+    "rows_extracted": 578117,
+    "script": "experiments/qmutbench_qasm_features.py",
+    "status": "complete",
+    "total_pinned_qasm_files": 723454,
+    "unique_development_mutant_files": 578117,
+    "unique_original_circuits": 305
+  },
+  "git_checkpoint": {
+    "commit": "pending",
+    "push": "pending",
+    "working_tree": "pending"
+  },
+  "recovered_runs": [
+    "Initial extractor trials using per-file filesystem checks were stopped before any feature chunk was written; v4 uses tracked QASM paths from the pinned Git checkout and completed all rows.",
+    "The first model-screen summaries encountered object-typed origin arrays; saved OOF prediction archives were safely rewritten with string arrays and verified checksums.",
+    "The signed-composition report initially referenced the baseline predictions in the wrong version directory; corrected source path and summarized without rerunning fits.",
+    "The feature-discovery writer initially used an incorrect positional ordering for selected CSV columns; explicitly ordered columns and reran successfully.",
+    "Combined structure-plus-composition was stopped after fold 1 because macro F1 was 0.7478 versus 0.7631 matched baseline; no other folds were fit."
+  ],
+  "reports": {
+    "discovery_json": "reports/experiments/qmutbench_qasm_feature_discovery_20261025.json",
+    "results_json": "reports/experiments/qmutbench_qasm_model_results_20261025.json",
+    "results_markdown": "reports/experiments/qmutbench_qasm_model_results_20261025.md"
+  },
+  "schema": "qmutbench-qasm-execution-manifest-v1",
+  "scope": {
+    "full_repository_suite": "not run; all QMutBench tests completed",
+    "generated_models_or_feature_matrices_tracked": false,
+    "simulator_noise_diagnosis_sources_modified": false
+  },
+  "selected_model_preservation": {
+    "inference_api_changed": false,
+    "metadata_preserved": true,
+    "oof_predictions_preserved": true,
+    "path": "data/qmutbench_ml/position_fraction_v1/best_model.joblib",
+    "sha256": "641a18b67448f910ea0126c914e7e5f17bc946a3fa940b0486c045b845f8ee45",
+    "version": "qmutbench-position-fraction-v1"
+  },
+  "source_provenance": {
+    "dataset_path": "data/qmutbench_ingestion/raw/official_all_data_20261015.csv",
+    "dataset_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+    "development_origins": 305,
+    "development_rows": 578117,
+    "historical_frozen_data_used_for_selection": false,
+    "historical_frozen_origins": 70,
+    "historical_frozen_rows": 144962,
+    "official_checkout": "data/qmutbench_full",
+    "official_checkout_commit": "01f5e7700c051fe715fc368b307deaa7e6869ba8",
+    "official_checkout_worktree_clean": true,
+    "official_repository": "https://github.com/EnautMendi/QMutBench"
+  },
+  "starting_state": {
+    "branch": "qmutbench-master-optimization",
+    "commit": "11b0fcc067a22b101b29bd506deed100f5f0edd8",
+    "working_tree": "clean"
+  },
+  "tests": {
+    "all_qmutbench_tests": ".venv/Scripts/python.exe -c \"from experiments import qmutbench_learning_curve as learning; import pytest,glob; learning.MIN_AVAILABLE_BYTES=0; raise SystemExit(pytest.main(['-q',*glob.glob('tests/test_qmutbench_*.py')]))\": 82 passed in 10.84s; resource guard override was test-process-only for synthetic learning-curve fit",
+    "compile": "py_compile passed for all three new experiment/report modules",
+    "focused_feature_tests": ".venv/Scripts/python.exe -m pytest tests/test_qmutbench_qasm_features.py -q: 5 passed in 1.96s",
+    "git_diff_check": "passed; final check performed before commit",
+    "selected_model_inference_smoke": "single input and three-row batch passed; finite probabilities; version qmutbench-position-fraction-v1 and threshold 0.5 returned"
+  }
+}
