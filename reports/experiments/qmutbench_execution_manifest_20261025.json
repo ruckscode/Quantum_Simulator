@@ -1,0 +1,77 @@
+{
+  "schema": "qmutbench-execution-manifest-v1",
+  "started_from": {
+    "branch": "qmutbench-master-optimization",
+    "commit": "cdbbfb4dab7703ec6a248ac92e9d35ee5b7cd1ef",
+    "working_tree": "clean"
+  },
+  "source": {
+    "path": "data/qmutbench_ingestion/raw/official_all_data_20261015.csv",
+    "sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+    "rows": 723079,
+    "development_rows": 578117,
+    "development_origin_groups": 305,
+    "historical_frozen_rows": 144962,
+    "historical_frozen_groups": 70
+  },
+  "verified_existing_artifacts": {
+    "optimization_manifest": "data/qmutbench_ml/master_optimization_v1/manifest.json",
+    "optimization_status": "complete; 45 stages checksum-verified; no failed stages",
+    "model": {
+      "path": "data/qmutbench_ml/master_optimization_v1/best_model.joblib",
+      "sha256": "8cd332a309e27ef09cc46c5bf8a8788da35c05aa6ed25ed5de21d26ced076175",
+      "metadata_sha256_match": true,
+      "source_model_sha256_match": true,
+      "loaded_in_repository_venv": true,
+      "saved_threshold": 0.485
+    },
+    "oof_predictions": {
+      "path": "data/qmutbench_ml/master_optimization_v1/oof_predictions.csv",
+      "sha256": "7d203ac4cd6878a1caaf19eb768bb9a1e4f322b42fc56475cdc603591cc250ce",
+      "rows": 578117,
+      "groups": 305,
+      "coverage_and_fold_membership": "validated against source rows and saved grouped fold manifest"
+    }
+  },
+  "phases": {
+    "repository_state_and_recovery": "complete; starting branch and commit verified; no pre-existing user changes",
+    "model_provenance": "complete; model checksum, metadata, feature schema, target map, environment load, and deterministic repeat inference verified",
+    "oof_integrity_and_error_analysis": "complete; exact row, target, origin, fold, and probability checks; grouped slices and calibration diagnostics generated",
+    "controlled_comparisons": "complete; verified and reused existing fixed-fold model, feature, subset, and nested-threshold evidence; no additional full-data training run needed",
+    "inference_api_and_tests": "complete; strict schema checks and small synthetic regression coverage added",
+    "documentation": "complete; API schema/usage, OOF report, comparison JSON, and this manifest added",
+    "final_regression_and_git": "tests, JSON parsing, package imports, and whitespace checks complete; commit and push pending"
+  },
+  "new_artifacts": [
+    "qmutbench_ml/inference.py",
+    "qmutbench_ml/README.md",
+    "experiments/qmutbench_oof_audit.py",
+    "reports/experiments/qmutbench_oof_validation.md",
+    "reports/experiments/qmutbench_oof_validation.json",
+    "reports/experiments/qmutbench_model_comparison_20261025.json",
+    "reports/experiments/qmutbench_execution_manifest_20261025.json",
+    "tests/test_qmutbench_inference.py"
+  ],
+  "recovered_command_issues": [
+    "Direct script invocation of the master runner lacked the repository package import path; reran successfully as python -m experiments.qmutbench_master_optimization.",
+    "The dataset loader correctly rejects a one-row sample because it requires at least two origins; inference smoke input was read directly with pandas and the real saved model produced deterministic output."
+  ],
+  "tests": {
+    "baseline": "python -m pytest tests/test_qmutbench_master_optimization.py tests/test_qmutbench_outcome_ml.py tests/test_qmutbench_selected_pipeline.py tests/test_qmutbench_learning_curve.py -q: 19 passed",
+    "new_inference": "python -m pytest tests/test_qmutbench_inference.py -q: 8 passed",
+    "all_qmutbench": "python -m pytest <all tests/test_qmutbench*.py> -q: 74 passed",
+    "full_repository": "attempted; interrupted after prolonged slow execution at approximately 24% progress; no final count claimed",
+    "actual_model_api_smoke": "pass; 8 records, output probabilities finite and in [0,1], repeat predictions identical"
+  },
+  "limits": [
+    "No new model training was run because validated fixed-fold candidate comparisons already exist; the best supported model remains Extra Trees.",
+    "The historical frozen test was not accessed for selection or reevaluation.",
+    "The saved estimator is fitted on all development rows; stored predictions are OOF predictions from fold-specific models, so in-sample prediction equality is not expected or asserted.",
+    "No simulator, noise-model, diagnosis, or unrelated research source files were changed."
+  ],
+  "git_checkpoint": {
+    "diff_check": "git diff --check passed; new source and report files scanned for trailing whitespace",
+    "commit": "containing commit hash is reported in the final execution summary",
+    "push": "push outcome is reported in the final execution summary"
+  }
+}
