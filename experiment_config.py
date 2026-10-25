@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from math import isfinite
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Mapping
@@ -54,9 +55,12 @@ class ExperimentConfig:
             raise ValueError("observed_circuit must be a list when provided")
         if not isinstance(self.anomaly_threshold, (int, float)) or isinstance(self.anomaly_threshold, bool):
             raise ValueError("anomaly_threshold must be numeric")
-        if not 0.0 <= float(self.anomaly_threshold):
+        threshold = float(self.anomaly_threshold)
+        if not isfinite(threshold):
+            raise ValueError("anomaly_threshold must be finite")
+        if threshold < 0.0:
             raise ValueError("anomaly_threshold must be non-negative")
-        self.anomaly_threshold = float(self.anomaly_threshold)
+        self.anomaly_threshold = threshold
         if self.backend_name is not None and not isinstance(self.backend_name, str):
             raise ValueError("backend_name must be a string or null")
         if self.hardware_parameters is not None and not isinstance(self.hardware_parameters, dict):
