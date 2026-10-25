@@ -138,8 +138,8 @@ The frozen acceptance evaluation matched **38/45** cases. Seven mismatches remai
 | qft_like_3q_program_fault_47 | 0.0112994 | 0.01953125 | Same sub-threshold limitation; source target found. |
 | ring_cluster_4q_correct_11 | 0 | 0.0859375 | Equal ideal distributions yielded a sampled false positive at the registered seed. |
 | ring_cluster_4q_correct_29 | 0 | 0.125 | Same false-positive mechanism. |
-| ring_cluster_4q_equivalent_11 | 0 | 0.0859375 | Commuting CZ reorder preserves output distribution; sampling false positive and syntactic operation candidates produce a PROGRAM_FAULT category. |
-| ring_cluster_4q_equivalent_29 | 0 | 0.125 | Same observational-equivalence and finite-shot false-positive mechanism. |
+| ring_cluster_4q_equivalent_11 | 0 | 0.0859375 | Commuting CZ reorder preserves output distribution; sampled detector false positive, followed by insufficient-evidence abstention. |
+| ring_cluster_4q_equivalent_29 | 0 | 0.125 | Same observational-equivalence and finite-shot false-positive mechanism, followed by abstention. |
 
 The current rule flags an anomaly when `TVD > max(threshold, 1/sqrt(shots))`; the default threshold is 0.05, so at 256 shots the effective cutoff is 0.0625. The reference and submitted circuits are sampled on separate streams, allowing nonzero empirical TVD even when ideal distributions match. The recorded explanations are simulator diagnostics, not proof of physical causation. Frozen fixtures, labels, thresholds, and outcomes remain unchanged.
 
@@ -211,6 +211,14 @@ Before stronger claims are justified, the evidence requirements are:
 4. Validate finite-shot detection and attribution on eligible independent cases under a prospectively fixed protocol. The existing synthetic null study failed its overall gate, and its proposed confirmation remains unexecuted and NO-GO.
 
 These are evidence prerequisites identified by existing audits; no such work was performed as part of this finalization.
+
+## 16. Post-push forensic erratum (2026-10-25)
+
+This section records a re-execution against commit `6b21492bff0dddb2decf3f8ca2063bfb71638ded`. The dated root-cause JSON `reports/experiments/heldout_diagnosis_root_cause_20261014.json` and the original wording of the two equivalent-ring rows above said syntactic operation candidates caused a `PROGRAM_FAULT` category. That statement does not match the current diagnosis path: syntactic candidates alone do not pass the behavioral counterfactual gate. On the registered cases, the sampled anomaly is detected, but the candidate's counterfactual output change is zero, no behavioral program candidate is emitted, and diagnosis abstains for insufficient evidence. The 2026-10-14 JSON is retained as historical evidence and is superseded on this specific point by the re-execution recorded in `reports/experiments/postpush_heldout_forensic_20261025.md`.
+
+The three QFT-like cases remain genuine source mutations with successful source-target localization, while their exact output TVDs (0.0078559, 0.0012597, 0.0112994) and registered sampled TVDs remain below the 256-shot detector cutoff of 0.0625. The correct and equivalent ring cases have exact TVD zero and sampled TVDs 0.0859375 or 0.125; these are finite-shot false alarms at the frozen seeds. Current downstream behavior abstains and supplies no supported hardware attribution. The frozen 7-case acceptance assertion remains failing; its expected composite outcomes are incompatible with the current evidence gates and are not changed by this erratum.
+
+The existing 3,600-record-per-split finite-shot calibration experiment compares the unchanged guard, pooled-label permutation test, and a calibration-only empirical q95 cutoff. It reports stratum-specific exact binomial intervals and shows the low-shot specificity/sensitivity tradeoff. It uses a single registered paired-CNOT template recipe and is synthetic simulator evidence; it does not establish cross-family performance, calibrated diagnosis abstention, source localization, hardware attribution, or physical-device behavior. The q95 validation was already inspected and is exploratory, not confirmatory. No candidate detector was promoted to production. A separately preregistered multi-family study with a new untouched evaluation set remains required before broader method claims.
 
 ## Evidence reviewed
 
