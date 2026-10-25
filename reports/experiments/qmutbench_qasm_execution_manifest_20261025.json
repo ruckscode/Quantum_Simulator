@@ -49,9 +49,9 @@
     "unique_original_circuits": 305
   },
   "git_checkpoint": {
-    "commit": "pending",
-    "push": "pending",
-    "working_tree": "pending"
+    "implementation_commit": "de54db5",
+    "push": "authorized; branch push is the final checkpoint action",
+    "working_tree": "scoped files committed; final push verification follows"
   },
   "recovered_runs": [
     "Initial extractor trials using per-file filesystem checks were stopped before any feature chunk was written; v4 uses tracked QASM paths from the pinned Git checkout and completed all rows.",
