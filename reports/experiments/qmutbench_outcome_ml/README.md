@@ -78,3 +78,36 @@ The bounded smoke test used 30,000 rows and 36 parent groups, completed a group-
 - The public corpus metadata is complete locally, but QASM sources are not. The model intentionally predicts from metadata rather than claiming circuit-semantic understanding.
 - A further study should hold out verified recipe families, compare richer circuit representations only after source-lineage acquisition, and pre-register a new test split. The current held-out split has already been inspected and must not be reused as a future confirmation set.
 - Improving beyond 85% is future work. Do not tune against this final test or reinterpret the target.
+
+## Selected-data resumable experiment
+
+The original full-metadata result, model, frozen test definition, and metrics above are preserved as the baseline. A second experiment now selects complete `Origin_program` groups only from the original development partition. Its deterministic greedy selector rewards coverage of rare pre-outcome metadata values and rare `(algorithm, operation, gate, dominant_state, target)` combinations, while regularizing class prevalence and mildly penalizing oversized groups. Selection assignments retain every source record ID and identify frozen-test, selected-development, and unselected-development groups. The selector reads the source in bounded CSV chunks; it does not run the simulator.
+
+Run or resume the selected experiment from the repository root:
+
+```powershell
+.\.venv\Scripts\python.exe -m experiments.qmutbench_selected_pipeline run --target-rows 50000 --chunk-rows 50000 --output-dir data/qmutbench_ml/selected_pilot_v2
+.\.venv\Scripts\python.exe -m experiments.qmutbench_selected_pipeline status --output-dir data/qmutbench_ml/selected_pilot_v2
+```
+
+Every source range is saved as an atomic CSV chunk under the requested ignored output directory. The manifest records source hash, schema, selection seed/configuration, full source-row-to-group assignment, class counts, chunk hashes, and progress. Resume verifies checksums and reuses valid chunks; corrupted or missing chunks are rewritten. Training stages use a separate state file and checksum-verified model checkpoints for each grouped validation fold/candidate. The experiment key binds checkpoints to the source, selected groups, feature schema, seed, fold count, and candidates. Candidate choice uses only grouped validation; the final model is evaluated on the frozen test groups. All selected outputs and model artifacts remain git-ignored. This selected run is a separate evaluation and does not overwrite the full-data baseline artifacts.
+
+### Completed selected-data run (2026-10-25)
+
+The 50,000-row pilot selected 50,772 records from 43 complete development origins and produced weak grouped validation (Random Forest: 54.11% accuracy, 51.77% macro F1). That result justified expanding coverage. The pilot's Extra Trees label was initially wired to the Random Forest instance; its candidate comparison is invalid and is not used. The wiring is fixed and regression-tested in the runner.
+
+The corrected expanded run selected **125,013 records from 86 development origins** (about 21.6% of the full source and 28.2% of the 305 development origins), using **15 verified chunks** with 50,000 source rows per scan range. Selection covered algorithm and algorithm-group categories, mutation operation/gate, dominant state, qubit count, gate-count bins, and mutation position, plus rare joint input/target profiles; it does not include any of the 70 frozen test origins. Three-fold group validation selected Extra Trees by macro F1:
+
+| Candidate | Group CV accuracy | Balanced accuracy | Macro F1 |
+|---|---:|---:|---:|
+| Random Forest | 66.28% | 66.42% | 66.12% |
+| Extra Trees | **67.92%** | **68.23%** | **67.70%** |
+
+On the frozen test (70 origins, 144,962 rows, zero group overlap), the selected model achieved **73.49% accuracy**, 73.71% balanced accuracy, and 73.46% macro F1. Group-bootstrap 95% intervals were 70.55–76.29% for accuracy, 71.04–76.30% for balanced accuracy, and 70.53–76.15% for macro F1. Mean per-origin accuracy was 75.46% (median 74.42%, range 52.16–94.80%). Per-class F1 was 74.41% for Survivor and 72.50% for Detected. The original full-data baseline remains 77.65% on the same frozen test; the selected-data model is lower and **does not reach 85%**. There is no validation evidence that a still larger subset would help, so no subset beyond 125,013 rows was run. The frozen test was evaluated during the pilot and several implementation runs. One expanded comparison was invalidated because Extra Trees had been wired as Random Forest; a later selection-schema run chose the same groups and produced the same model and score. Test results did not guide group, feature, or model choices, but this repeated use means the selected-data score is exploratory, not an independent confirmatory estimate. The pilot's candidate comparison is invalidated.
+
+The timed train stage reported **44.8 seconds**, including grouped validation, the selected-model fit, and its initial frozen-test prediction pass. The later 1,000-replicate bootstrap and group-wise summary are separate. Fold model-fit times were approximately 6.0–6.2 seconds per Extra Trees fold and 3.5–4.0 seconds per Random Forest fold. The Python process working set peaked around 229 MB during this run. The selected model and preprocessing pipeline, per-fold candidate checkpoints, manifest, verified chunks, metrics, and test predictions are under ignored `data/qmutbench_ml/selected_v3/`. Resume/status commands:
+
+```powershell
+.\.venv\Scripts\python.exe -m experiments.qmutbench_selected_pipeline run --target-rows 125000 --chunk-rows 50000 --output-dir data/qmutbench_ml/selected_v3
+.\.venv\Scripts\python.exe -m experiments.qmutbench_selected_pipeline status --output-dir data/qmutbench_ml/selected_v3
+```
