@@ -69,3 +69,32 @@ def test_checksum_and_threshold_validation(bundle):
     path.write_bytes(b"corrupt")
     with pytest.raises(ValueError, match="checksum"):
         QMutBenchOutcomeModel(path, meta)
+
+
+def test_source_position_category_derivation_and_validation(tmp_path):
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import StandardScaler
+
+    x = pd.DataFrame({"size": [1., 2., 3., 4.], "position_fraction": [.05, .25, .75, .955]})
+    estimator = make_pipeline(StandardScaler(), DummyClassifier(strategy="prior"))
+    estimator.fit(x, [0, 0, 1, 1])
+    model_path = tmp_path / "position_model.joblib"
+    joblib.dump(estimator, model_path)
+    metadata = {
+        "feature_schema": ["size", "position_fraction"],
+        "input_feature_schema": ["size", "position"],
+        "feature_derivations": {"position_fraction": {
+            "source_column": "position",
+            "mapping": {"0-10%": .05, "21-30%": .255, "71-80%": .755, "91-100%": .955},
+        }},
+        "target_map": {"OPO": 1, "Survivor": 0, "WOO": 1},
+        "inference_threshold": .5,
+        "model_sha256": hashlib.sha256(model_path.read_bytes()).hexdigest(),
+    }
+    meta_path = tmp_path / "position_model_metadata.json"
+    meta_path.write_text(json.dumps(metadata), encoding="utf-8")
+    predictor = QMutBenchOutcomeModel(model_path, meta_path)
+    result = predictor.predict({"size": 5, "position": "91-100%"})
+    assert result["model_version"] == "qmutbench-outcome-v1"
+    with pytest.raises(ValueError, match="Unsupported.*position"):
+        predictor.predict({"size": 5, "position": "unknown"})
