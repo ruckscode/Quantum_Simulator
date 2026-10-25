@@ -42,7 +42,7 @@ class QuantumSimulator:
     """
 
     def __init__(self, n_qubits: int, seed: int | None = None):
-        if not isinstance(n_qubits, int) or n_qubits <= 0:
+        if isinstance(n_qubits, bool) or not isinstance(n_qubits, int) or n_qubits <= 0:
             raise ValueError("n_qubits must be a positive integer")
 
         self.n = n_qubits

@@ -99,3 +99,9 @@ def test_unsupported_operation_returns_structured_failure(tmp_path):
     assert result.status == "FAILED"
     assert any("Unsupported operation" in error for error in result.errors)
 
+
+
+@pytest.mark.parametrize("bad_threshold", [float("nan"), float("inf"), float("-inf")])
+def test_non_finite_anomaly_threshold_is_rejected(bad_threshold):
+    with pytest.raises(ValueError, match="finite"):
+        _config(anomaly_threshold=bad_threshold)
