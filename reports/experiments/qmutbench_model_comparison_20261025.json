@@ -1,0 +1,69 @@
+{
+  "schema": "qmutbench-model-comparison-v1",
+  "source_report": "reports/experiments/qmutbench_master_optimization.md",
+  "source_manifest": "data/qmutbench_ml/master_optimization_v1/manifest.json",
+  "dataset_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+  "development": {
+    "rows": 578117,
+    "origin_groups": 305,
+    "validation": "fixed three-fold StratifiedGroupKFold grouped by Origin_program; historical frozen test excluded"
+  },
+  "selected_model": {
+    "name": "ExtraTreesClassifier",
+    "features": ["algorithm", "operation", "gate", "dominant_state", "qubits", "gates", "Position_int"],
+    "parameters": {
+      "n_estimators": 100,
+      "max_depth": 22,
+      "min_samples_leaf": 15,
+      "max_features": "sqrt",
+      "class_weight": "balanced_subsample",
+      "random_state": 20261025
+    },
+    "grouped_cv_at_threshold_0_5": {
+      "macro_f1": 0.7548,
+      "balanced_accuracy": 0.7564,
+      "accuracy": 0.7549,
+      "selection_status": "retained; no tested full-development model materially outperformed it"
+    },
+    "oof_selected_threshold": 0.485,
+    "oof_metrics_at_selected_threshold": {
+      "macro_f1": 0.756607990239911,
+      "balanced_accuracy": 0.7572694295823674,
+      "accuracy": 0.7566357675003502,
+      "roc_auc": 0.8491439648259841,
+      "average_precision": 0.8666235130256881,
+      "brier_score": 0.16073153407016658,
+      "estimate": "descriptive development selection estimate, not unbiased evaluation"
+    }
+  },
+  "model_comparisons": [
+    {"name": "Extra Trees, no class weights", "macro_f1_mean": 0.754799, "macro_f1_fold_sd": 0.000985, "balanced_accuracy_mean": 0.756436, "decision": "no material difference from selected model"},
+    {"name": "Unweighted Random Forest", "macro_f1_mean": 0.731447, "macro_f1_fold_sd": 0.010927, "balanced_accuracy_mean": 0.731910, "decision": "below selected model"},
+    {"name": "Extra Trees on selected-v3 subset", "macro_f1_mean": 0.709284, "macro_f1_fold_sd": 0.020619, "balanced_accuracy_mean": 0.709964, "decision": "below full-development model"}
+  ],
+  "feature_screen_macro_f1": {
+    "full": 0.731787,
+    "categorical_only": 0.730307,
+    "no_dominant_state": 0.727390,
+    "add_algorithm_group": 0.727323,
+    "add_position": 0.719965,
+    "no_operation": 0.701972,
+    "no_algorithm": 0.668466,
+    "no_gate": 0.589576,
+    "numeric_only": 0.513991,
+    "scope": "60-tree screen on representative 200k selection; not directly comparable to full-development baseline"
+  },
+  "selector_screen_macro_f1": {
+    "prevalence_coverage_200000": 0.734509,
+    "random_whole_origin_200000": 0.719907,
+    "scope": "same three grouped validation folds; subset screen"
+  },
+  "threshold_selection": {
+    "saved_threshold": 0.485,
+    "objective": "macro F1 on a 0.005 grid; leave-one-development-fold-out nested threshold checks also performed",
+    "nested_macro_f1_by_held_fold": [0.7560888208061876, 0.7545014243779008, 0.7565577337160945],
+    "limitation": "final 0.485 was selected from all development OOF predictions, so its pooled OOF score is selection-biased"
+  },
+  "frozen_test": "not used in new experiments; earlier examination means it remains exploratory",
+  "target_85_percent": "not achieved or confirmed"
+}
