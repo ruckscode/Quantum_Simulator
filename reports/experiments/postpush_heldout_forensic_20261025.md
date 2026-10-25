@@ -1,7 +1,7 @@
 # Post-push held-out diagnosis forensic review
 
-**Review date:** 2026-10-25  
-**Reviewed commit:** `6b21492bff0dddb2decf3f8ca2063bfb71638ded`  
+**Review date:** 2026-10-25
+**Reviewed commit:** `6b21492bff0dddb2decf3f8ca2063bfb71638ded`
 **Scope:** Re-execution and code-path review of the frozen seven-case diagnosis acceptance and its forensic companion. No fixture, label, expected outcome, threshold, or evaluation data was changed.
 
 ## Reproduction and implementation path
