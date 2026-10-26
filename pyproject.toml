@@ -15,7 +15,8 @@ oracle = ["qiskit>=2.5,<3"]
 ibm = ["qiskit>=2.5,<3", "qiskit-ibm-runtime>=0.50,<0.51"]
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["src", "."]
+include = ["quantum_simulator*", "qmutbench_ml*"]
 
 [tool.setuptools.package-data]
 quantum_simulator = ["models/*.json"]
