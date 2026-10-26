@@ -40,3 +40,5 @@ After the original cleanup, a recursive Git tree audit of 546 tracked files foun
 - Deletion commit: `7278aa0e8b4c9220d59d25ac836666c1d49508cb`
 
 The retained report contains the same preflight blockers and data as the removed file. No source code, tests, model artifacts, simulator behavior, feature schema, threshold, or benchmark metrics were changed. Other repeated basenames were not treated as duplicates because they are separate package compatibility modules, report families, or seed-specific experiment outputs.
+
+A separate packaging review also found that `pyproject.toml` originally searched only `src/` for packages, while the documented `qmutbench_ml` import lives at the repository root. The package-discovery configuration now searches both `src/` and the repository root, restricted to `quantum_simulator*` and `qmutbench_ml*`. This corrects the installation configuration without changing runtime code. A build/install and test run could not be executed through the GitHub-only editing session and remains to be verified locally.
