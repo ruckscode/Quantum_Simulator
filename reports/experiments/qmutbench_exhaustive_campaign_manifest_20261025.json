@@ -152,8 +152,10 @@
   },
   "git_checkpoint": {
     "branch": "qmutbench-master-optimization",
-    "commit": "to be recorded in repository history after final commit",
-    "push": "will push this branch after final commit; no force push"
+    "implementation_commit": "dfe0311ac5a502ddfb7b3d5274ce9688442176d6",
+    "implementation_commit_pushed": true,
+    "note": "This final status update is included in a follow-up report checkpoint commit.",
+    "push_target": "origin/qmutbench-master-optimization"
   },
   "overall_status": "complete",
   "planned_stages": [
