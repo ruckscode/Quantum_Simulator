@@ -64,6 +64,109 @@ def _attestations(record, *, protocol_sha=None):
     ]
 
 
+def _blocked_lineage_fixture(tmp_path):
+    """Return synthetic-only fixtures for deterministic, fail-closed gate tests.
+
+    These records exercise reconciliation behavior; they are not an inventory of
+    real repository artifacts and must never be treated as external provenance.
+    """
+    families = []
+    conflicts = []
+    source_rules = []
+
+    for index in range(1, 4):
+        root_id = f"conflicting-root-{index}"
+        families.append({
+            "lineage_root_id": root_id,
+            "family_ids": [f"conflicting-family-{index}"],
+            "topology_sha256s": [_sha(f"topology-a-{index}"), _sha(f"topology-b-{index}")],
+            "artifact_paths": [],
+            "ancestor_values": [],
+            "lineage_status": "observed_unadjudicated",
+        })
+        conflicts.append({
+            "kind": "lineage_root_maps_to_multiple_fingerprints",
+            "identifier": root_id,
+            "fingerprints": [_sha(f"topology-a-{index}"), _sha(f"topology-b-{index}")],
+        })
+
+    for index in range(1, 4):
+        source = tmp_path / f"declared-source-{index}.py"
+        source.write_text(f"# synthetic test source {index}\n", encoding="utf-8")
+        root_id = f"design_recipe_{index:02d}"
+        families.append({
+            "lineage_root_id": root_id,
+            "family_ids": [],
+            "topology_sha256s": [],
+            "artifact_paths": [],
+            "ancestor_values": [],
+            "lineage_status": "source_declared_not_observed_in_saved_rows",
+        })
+        source_rules.append({
+            "source_path": source.name,
+            "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
+            "declared_possible_roots": [root_id],
+            "status": "synthetic fixture declaration; not external lineage proof",
+        })
+
+    inventory = {
+        "schema_version": 1,
+        "scan_truncated": True,
+        "complete": False,
+        "missing_scan_roots": [],
+        "skipped_large_file_paths": [],
+        "bytes_scanned": 0,
+        "artifacts": [],
+        "families": families,
+        "source_lineage_rules": source_rules,
+        "conflicts": conflicts,
+        "summary": {
+            "artifact_count": 0,
+            "bytes_scanned": 0,
+            "circuit_record_count": 5366,
+            "unknown_lineage_circuit_count": 5186,
+            "duplicate_content_count": 457,
+            "family_only_without_root_record_count": 1671,
+            "source_declared_possible_root_count": 6,
+            "observed_lineage_root_count": 3,
+            "conflict_count": 3,
+        },
+    }
+    _seal(inventory, "inventory_sha256")
+
+    frame = {
+        "schema_version": 1,
+        "inventory_sha256": inventory["inventory_sha256"],
+        "status": "blocked_incomplete_prior_inventory",
+        "candidates": [],
+        "selected": {"development": [], "validation": []},
+    }
+    _seal(frame, "frame_sha256")
+
+    recovery_records = [
+        {
+            "circuit_family_id": f"synthetic-family-{family_index:02d}",
+            "run_id": f"synthetic-run-{family_index:02d}-{run_index:02d}",
+            "family_recipe_root": None,
+            "source_sha256_recorded": None,
+        }
+        for family_index in range(30)
+        for run_index in range(9)
+    ]
+    recovery = {
+        "dataset_manifest_sha256": _sha("synthetic-only-recovery-manifest"),
+        "records": recovery_records,
+        "summary": {
+            "record_count": len(recovery_records),
+            "total_report_bytes_read": 0,
+            "missing_lineage_rows": len(recovery_records),
+            "missing_run_source_hash_rows": len(recovery_records),
+            "independent_adjudication_rows": 0,
+        },
+    }
+    return inventory, frame, recovery
+
+
 def test_missing_evidence_and_self_attested_independence_block_case():
     record = _record()
     record["evidence_refs"] = []
@@ -177,13 +280,10 @@ def test_repeated_executions_in_same_family_cannot_inflate_independent_case_coun
         )
 
 
-def test_reconciliation_is_deterministic_and_does_not_promote_inferred_roots():
-    base = Path("reports/experiments")
-    inventory = json.loads((base / "diagnosis_prior_lineage_inventory_20261015.json").read_text(encoding="utf-8"))
-    frame = json.loads((base / "diagnosis_family_sampling_frame_20261015.json").read_text(encoding="utf-8"))
-    recovery = json.loads((base / "ml_historical_record_recovery_20261015_v2.json").read_text(encoding="utf-8"))
-    first = reconcile_saved_evidence(Path.cwd(), inventory, frame, recovery)
-    second = reconcile_saved_evidence(Path.cwd(), inventory, frame, recovery)
+def test_reconciliation_is_deterministic_and_does_not_promote_inferred_roots(tmp_path):
+    inventory, frame, recovery = _blocked_lineage_fixture(tmp_path)
+    first = reconcile_saved_evidence(tmp_path, inventory, frame, recovery)
+    second = reconcile_saved_evidence(tmp_path, inventory, frame, recovery)
     assert first == second
     assert first["summary"]["candidate_root_count"] == 6
     assert first["summary"]["conflicting_root_count"] == 3
@@ -314,13 +414,10 @@ def test_reconciliation_eligibility_requires_complete_attested_frame_and_exact_s
     assert any("generator_path bytes missing or hash mismatch" in item for item in stale["new_frame_candidates"][0]["eligibility_reasons"])
 
 
-def test_current_confirmatory_preflight_reports_missing_external_gates():
-    base = Path("reports/experiments")
-    inventory = json.loads((base / "diagnosis_prior_lineage_inventory_20261015.json").read_text(encoding="utf-8"))
-    frame = json.loads((base / "diagnosis_family_sampling_frame_20261015.json").read_text(encoding="utf-8"))
-    recovery = json.loads((base / "ml_historical_record_recovery_20261015_v2.json").read_text(encoding="utf-8"))
+def test_current_confirmatory_preflight_reports_missing_external_gates(tmp_path):
+    inventory, frame, recovery = _blocked_lineage_fixture(tmp_path)
     result = audit_confirmatory_study_preflight(
-        repository=Path.cwd(), inventory=inventory, frame=frame, recovery=recovery,
+        repository=tmp_path, inventory=inventory, frame=frame, recovery=recovery,
         protocol={"stage": "confirmatory", "preregistration_sha256": _sha("protocol")},
         protocol_cases=[], adjudication_records=[],
     )

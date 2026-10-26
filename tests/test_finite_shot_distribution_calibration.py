@@ -5,6 +5,7 @@ import math
 from pathlib import Path
 
 import numpy as np
+import pytest
 
 from quantum_simulator.diagnosis_engine import diagnose_circuit
 
@@ -25,7 +26,15 @@ def _permutation_p_value(first_counts, second_counts, repetitions, seed):
     """
     first = np.asarray(first_counts, dtype=np.int64)
     second = np.asarray(second_counts, dtype=np.int64)
+    if first.ndim != 1 or second.ndim != 1 or first.shape != second.shape:
+        raise ValueError("count vectors must be one-dimensional and have equal length")
+    if np.any(first < 0) or np.any(second < 0):
+        raise ValueError("count vectors must be non-negative")
     n_first, n_second = int(first.sum()), int(second.sum())
+    if n_first <= 0 or n_second <= 0:
+        raise ValueError("each count vector must have a positive total")
+    if isinstance(repetitions, bool) or not isinstance(repetitions, int) or repetitions <= 0:
+        raise ValueError("repetitions must be a positive integer")
     pooled = np.repeat(np.arange(len(first)), first + second)
     observed = _tvd(first / n_first, second / n_second)
     rng = np.random.default_rng(seed)
@@ -45,7 +54,6 @@ def _counts(distribution, support, shots):
 
 def evaluate_calibration():
     spec = json.loads(FIXTURE.read_text(encoding="utf-8"))
-    support = [format(index, "04b") for index in range(spec["outcome_space_size"])]
     rows = []
     for case in spec["cases"]:
         for shots in spec["shot_counts"]:
@@ -57,6 +65,10 @@ def evaluate_calibration():
                     shots=shots, seed=sample_seed, threshold=0.05,
                 )
                 stats = result.statistics_result
+                # Use the actual outcome labels returned by the simulator. A
+                # hard-coded four-bit support can silently produce all-zero
+                # vectors when a backend uses a different label representation.
+                support = sorted(set(stats.expected_distribution) | set(stats.observed_distribution))
                 first = _counts(stats.expected_distribution, support, shots)
                 second = _counts(stats.observed_distribution, support, shots)
                 p_value = _permutation_p_value(
@@ -107,6 +119,24 @@ def test_independent_calibration_fixture_and_permutation_comparison():
         print(scenario, [(row["shots"], row["seed"], round(row["tvd"], 4),
                          row["current_detected"], round(row["permutation_p"], 4))
                         for row in subset])
+
+
+@pytest.mark.parametrize(
+    "first, second",
+    [
+        ([0, 0], [1, 0]),
+        ([1, 0], [0, 0]),
+        ([0, 0], [0, 0]),
+    ],
+)
+def test_permutation_test_rejects_empty_count_vectors(first, second):
+    with pytest.raises(ValueError, match="positive total"):
+        _permutation_p_value(first, second, 99, seed=17)
+
+
+def test_permutation_test_rejects_negative_counts():
+    with pytest.raises(ValueError, match="non-negative"):
+        _permutation_p_value([2, -1], [1, 1], 99, seed=17)
 
 
 def test_permutation_test_is_dimension_aware_and_seeded():
