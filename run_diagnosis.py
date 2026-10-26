@@ -49,7 +49,7 @@ def load_hardware_model(config: dict[str, Any] | None) -> HardwareModel | None:
 
     model = HardwareModel(
         n_qubits,
-        coupling_map=[tuple(edge) for edge in config.get("edges", []) if "error" not in edge and "duration" not in edge],
+        coupling_map=None,
         backend_name=config.get("backend_name", "provided-calibration"),
         calibration_timestamp=config.get("calibration_timestamp"),
         calibration_timestamp_provenance=config.get("calibration_timestamp_provenance", "synthetic"),
