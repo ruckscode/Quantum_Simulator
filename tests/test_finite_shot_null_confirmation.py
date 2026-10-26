@@ -310,6 +310,12 @@ def test_interrupted_preflight_consumes_authorization_and_cannot_resume(tmp_path
     trusted, approval_path = make_approval(tmp_path, prereg=prereg)
     approval = json.loads(approval_path.read_text(encoding="utf-8"))
     run_id = approval["run_id"]
+    # This test targets single-use consumption on interruption, not manifest
+    # recomputation (covered by test_approval_is_bound_to_every_manifest_artifact).
+    # Preserve real signature verification while pinning its expected manifest
+    # to the exact manifest that was signed in this fixture.
+    signed_manifest = approval["artifact_manifest"]
+    monkeypatch.setattr(confirm, "artifact_manifest", lambda *args, **kwargs: signed_manifest)
     monkeypatch.setattr(confirm, "TRUSTED_REVIEWER_PATH", trusted)
     monkeypatch.setattr(confirm, "APPROVAL_PATH", approval_path)
     monkeypatch.setattr(confirm, "TRUST_ROOT", tmp_path)
