@@ -1,5 +1,27 @@
 # Hardware-Aware Data-Driven Testing and Fault Localization for Quantum Programs
 
+> **Research tracks:** This repository contains (1) a quantum simulator, noise models, and diagnosis research; (2) historical QMutBench mutation-outcome prediction; and (3) future hardware-aware fault-localization work. QMutBench outcome prediction is a separate task from simulator diagnosis and hardware fault localization.
+
+## Start here
+
+- Reusable simulator and diagnosis package: `src/quantum_simulator/` (compatibility entry points remain at the repository root).
+- QMutBench feature extraction and inference: `qmutbench_ml/`; reproducible experiment entry points: `experiments/`.
+- Automated checks: `tests/`; research reports, metrics, and manifests: `reports/` and `reports/experiments/`.
+- Small QASM examples are tracked in `data/qmutbench/`. Full datasets, the selected model bundle, and generated ML intermediates are local-only under `data/` and are excluded by `.gitignore`.
+
+The selected historical QMutBench model is **`qmutbench-mutation-aware-v1`** (100-tree Extra Trees, 23 features, inference threshold 0.5). Its fixed-model grouped development macro F1 is **79.34%**; five-fold nested grouped-selected development macro F1 is **79.28%**. The 85% target remains unmet. These are development results, not independent external validation; no compatible independent external dataset has been verified. See the [final QMutBench research report](reports/experiments/qmutbench_final_research_report_20261026.json) and [inference guide](qmutbench_ml/README.md). The local model bundle must be supplied to run inference; this repository does not retrain it during inference.
+
+## Setup and common checks
+
+From the repository root, install the declared dependencies and run tests:
+
+```powershell
+python -m pip install -e ".[dev]"
+python -m pytest tests -q
+```
+
+The [QMutBench inference guide](qmutbench_ml/README.md) documents single-record and batch prediction. The simulator quick start and focused suites are below. The optional IBM integration and Qiskit oracle dependencies are documented in their sections; neither is needed for core use.
+
 ## 1. Project Overview
 
 This project provides a statevector quantum simulator, a circuit-building API, distribution comparison, and an evidence-based diagnosis workflow. It compares expected and observed execution behavior, applies a configured finite-shot tolerance, and combines circuit-level and hardware-calibration evidence to identify a likely program fault or hardware anomaly. When the evidence cannot distinguish plausible causes, the diagnosis can remain ambiguous or report insufficient evidence.
@@ -242,7 +264,7 @@ The checked-in QMutBench data contains a small set of QASM source/mutant example
 
 ### QMutBench outcome ML experiment
 
-The local environment contains a source-hash-verified 723,079-row QMutBench metadata CSV and a bounded ML experiment predicting the historical binary oracle outcome (`WOO`/`OPO` detected versus `Survivor`) from seven pre-outcome metadata features. Evaluation holds out whole `Origin_program` groups. The selected random forest scored 77.65% accuracy and 77.64% macro F1 on that test; the 85% objective was not achieved. This predicts the benchmark's historical oracle result only and does not establish source localization, hardware diagnosis, or unseen recipe-family performance. The full metrics, confusion matrix, source audit, and limitations are in the [QMutBench outcome ML report](reports/experiments/qmutbench_outcome_ml/README.md). Run the bounded smoke, training, and tests with the commands in that report. The model, held-out predictions, and full local run manifest are git-ignored under `data/qmutbench_ml/outcome_model_v1/`.
+The selected model is `qmutbench-mutation-aware-v1` (100-tree Extra Trees, 23 features, threshold 0.5), documented in the [inference guide](qmutbench_ml/README.md). Current results are 79.34% fixed-model grouped development macro F1 and 79.28% five-fold nested grouped-selected development macro F1. The 85% target remains unmet, and no compatible independent external dataset has been verified. These metrics are development evidence for predicting the historical QMutBench mutation outcome only; they do not establish hardware diagnosis, source fault localization, or independent external generalization. The model bundle and full training data are local-only under `data/qmutbench_ml/mutation_aware_v1/` and are not included in Git. Older model comparisons and results remain in the linked historical reports and experiment records.
 
 Run benchmark reporting from the repository root with:
 
