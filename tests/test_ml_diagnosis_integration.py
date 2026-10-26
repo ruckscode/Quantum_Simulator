@@ -111,10 +111,11 @@ def test_normal_measurement_only_trace_difference_does_not_run_localizers(monkey
 
 
 def test_mock_normal_cannot_override_cancellation_fault_evidence():
-    # Reuse the circuit and ideal-output fixture from controlled experiment 4.
-    from test_controlled_hardware_experiments import (
-        CIRCUIT, PROGRAM_FAULT_CIRCUIT, IDEAL_REFERENCE,
-    )
+    # Keep this regression fixture self-contained: pytest's importlib mode
+    # intentionally does not guarantee that sibling test modules are importable.
+    CIRCUIT = [("measure",)]
+    PROGRAM_FAULT_CIRCUIT = [("x", 0), ("measure",)]
+    IDEAL_REFERENCE = {"0": 1.0, "1": 0.0}
     from quantum_simulator.fault_localizer import _trace_deviation
 
     faulty_hardware = HardwareModel(1, backend_name="adapter_cancellation_regression")

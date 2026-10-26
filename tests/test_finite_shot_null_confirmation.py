@@ -308,6 +308,10 @@ def test_interrupted_preflight_consumes_authorization_and_cannot_resume(tmp_path
     monkeypatch.setattr(confirm, "TRUSTED_REVIEWER_PATH", trusted)
     monkeypatch.setattr(confirm, "APPROVAL_PATH", approval_path)
     monkeypatch.setattr(confirm, "TRUST_ROOT", tmp_path)
+    # Isolate single-use authorization semantics from the separately tested
+    # production hash gate; the registered detector digest is intentionally
+    # mismatched in this checkout and must still block real execution.
+    monkeypatch.setattr(confirm, "verify_hash_bindings", lambda *args, **kwargs: None)
     monkeypatch.setattr(confirm, "check_live_resources", lambda *args: (_ for _ in ()).throw(TimeoutError("simulated preflight stop")))
     monkeypatch.setattr(confirm.np.random, "default_rng", lambda *args: pytest.fail("sampling must not be reached"))
     try:
