@@ -13,21 +13,23 @@ From the repository root:
 %run qmutbench_ml/colab_results/show_results.py
 ```
 
-The viewer reads the specific report at `reports/experiments/qmutbench_final_research_report_20261026.json` and displays a compact comparison of baseline OOF, mutation-aware OOF, and nested grouped evaluation metrics. It also reports whether the expected serialized model files are present.
+The viewer reads `reports/experiments/qmutbench_final_research_report_20261026.json` and displays a compact comparison of baseline OOF, mutation-aware OOF, and nested grouped evaluation metrics. It creates the chart from the saved values and checks for the model bundle.
 
-## Model bundle status and expected location
+## Model bundle
 
-The viewer checks for these files under `qmutbench_ml/colab_results/models/`:
+The documented canonical local-only location is:
 
-- `best_model.joblib`
-- `best_model_metadata.json`
+```
+data/qmutbench_ml/mutation_aware_v1/best_model.joblib
+data/qmutbench_ml/mutation_aware_v1/best_model_metadata.json
+```
 
-These files are not currently available in the checked repository location. The report records a historical inference smoke test, but that is not a substitute for having the serialized model bundle available now. Do not claim live inference from the report-only viewer. If the original artifacts cannot be recovered from the training environment or backups, the export must be regenerated through the project's actual training/inference pipeline and verified against the documented 23-feature schema.
+The viewer checks this location first, then `qmutbench_ml/colab_results/models/`. The bundle is excluded from Git, so a clone or Colab runtime may not contain it. The report records a historical inference smoke test, but that does not prove the serialized files are available in the current runtime. The viewer will not fabricate predictions or retrain silently. If the bundle is missing, recover it from the original training environment/backup or rerun the documented training/export pipeline and verify the resulting model hash and feature contract.
 
 ## Integrity
 
 - This is a report viewer, not a training pipeline.
 - QMutBench mutation-outcome prediction and hardware anomaly diagnosis are different tasks.
-- The nested grouped score is development evidence, not independent external validation.
+- Nested grouped and out-of-fold scores are development evidence, not independent external validation.
 - The 85% Macro F1 target remains unmet.
 - Core simulator files are not modified by this viewer.
