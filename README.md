@@ -427,3 +427,54 @@ The generic calibration contract distinguishes caller-reported acquisition time 
 ## Finalization report
 
 The authoritative current-tree research and software finalization report is [final_research_report.md](final_research_report.md). It records the bounded validation result, frozen 7/45 failure and case explanations, claim boundaries, evidence limitations, and release disposition. The separate [independent research handoff](reports/independent_research_handoff_20261015.md) defines a blocked, planning-only follow-up protocol and its provenance gates. Historical status entries above remain dated snapshots; use the report's finalization section for the current milestone verdict.
+
+
+## Synthetic-by-default and optional live IBM calibration
+
+The diagnosis runner now uses synthetic hardware calibration automatically when no IBM Quantum token is configured. If a token is present, `hardware_source: "auto"` fetches live calibration metadata from the selected IBM backend. The circuit itself is still executed locally by this simulator; this does **not** submit jobs to IBM hardware.
+
+Install the optional provider in Colab:
+
+```python
+%pip install qiskit-ibm-runtime
+```
+
+Set the token as a secret/environment variable; do not put it in a JSON file or commit it:
+
+```python
+import os
+from getpass import getpass
+os.environ["QISKIT_IBM_TOKEN"] = getpass("IBM Quantum API token: ")
+os.environ["QISKIT_IBM_BACKEND"] = "ibm_kingston"  # choose a backend available to your account
+# Optional for accounts that require an instance:
+# os.environ["QISKIT_IBM_INSTANCE"] = "your-instance-crn"
+```
+
+Input JSON can omit hardware settings entirely for automatic mode. With no token, the runner creates repeatable synthetic calibration. With a token, it attempts live IBM calibration and reports an error if authentication/backend lookup fails rather than silently labelling synthetic data as real.
+
+To force synthetic data even if a token is configured, add `"hardware_source": "synthetic"`. To require real IBM data, use `"hardware_source": "ibm"`.
+
+Example circuit input:
+
+```json
+{
+  "name": "Bell hardware-noise diagnostic",
+  "hardware_source": "auto",
+  "backend_name": "ibm_kingston",
+  "circuit": [
+    ["h", 0],
+    ["cx", 0, 1],
+    ["measure", [0, 1]]
+  ],
+  "reference_circuit": [
+    ["h", 0],
+    ["cx", 0, 1],
+    ["measure", [0, 1]]
+  ],
+  "shots": 1000,
+  "seed": 42,
+  "threshold": 0.05
+}
+```
+
+The imported real calibration is limited to the circuit-sized prefix of the backend, with logical qubit `q` mapped to physical qubit `q` (0-based). Review this mapping before interpreting results; remapping and hardware-aware transpilation are not performed. Synthetic calibration is labelled as synthetic and must not be presented as a measurement of a real backend.
