@@ -152,11 +152,12 @@ def _ibm_model(n_qubits: int, backend_name: str, token: str, instance: str | Non
         values = {getattr(p, "name", ""): getattr(p, "value", None)
                   for p in qubit_parameters}
         t1_seconds = _param_seconds(qubit_parameters, "T1", fallback_unit="us")
+        # Preserve documented IBM field units when runtime parameters omit unit metadata.
         t2_seconds = _param_seconds(qubit_parameters, "T2", fallback_unit="us")
         model.set_qubit_properties(
             q,
-            t1=t1_seconds,
-            t2=t2_seconds,
+            t1=(t1_seconds if t1_seconds is not None and t1_seconds < 1.0 else (float(values["T1"]) * 1e-6 if values.get("T1") is not None else None)),
+            t2=(t2_seconds if t2_seconds is not None and t2_seconds < 1.0 else (float(values["T2"]) * 1e-6 if values.get("T2") is not None else None)),
             readout_error=values.get("readout_error"),
             status="available",
             available=True,
@@ -173,13 +174,17 @@ def _ibm_model(n_qubits: int, backend_name: str, token: str, instance: str | Non
         parameters = getattr(gate, "parameters", [])
         error = _param(parameters, "gate_error")
         duration = _param_seconds(parameters, "gate_length", fallback_unit="ns")
+        if duration is not None and duration >= 1.0:
+            # Some Runtime versions expose gate_length as a unitless nanosecond value.
+            duration *= 1e-9
         if name:
             model.add_gate_calibration(
                 name, qubits=physical_qubits,
                 error=0.0 if error is None else error,
                 duration=0.0 if duration is None else duration,
                 source="IBM Quantum properties",
-                physical_qubits=list(physical_qubits),\n                duration_unit_normalization="gate_length normalized to seconds",
+                physical_qubits=list(physical_qubits),
+                duration_unit_normalization="gate_length normalized to seconds",
             )
 
     coupling_map = getattr(backend, "coupling_map", None)
