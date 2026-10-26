@@ -143,7 +143,7 @@ def build_report(config: dict[str, Any]) -> dict[str, Any]:
     threshold = config.get("threshold", 0.05)
     hardware_source_info = {
         "source": "user_supplied",
-        "is_real_calibration": bool(config.get("hardware_model", {}).get("calibration_timestamp")),
+        "is_real_calibration": config.get("hardware_model", {}).get("calibration_timestamp_provenance") == "reported",
         "backend_name": config.get("hardware_model", {}).get("backend_name", "provided-calibration"),
         "calibration_timestamp": config.get("hardware_model", {}).get("calibration_timestamp"),
         "note": "Using calibration explicitly supplied in the input JSON.",
@@ -269,7 +269,7 @@ def main() -> int:
         text_output = Path(args.text_output) if args.text_output else output.with_suffix(".txt")
         text_output.parent.mkdir(parents=True, exist_ok=True)
         text_output.write_text(text_report, encoding="utf-8")
-    except (OSError, json.JSONDecodeError, TypeError, ValueError) as exc:
+    except (OSError, json.JSONDecodeError, TypeError, ValueError, RuntimeError) as exc:
         parser.error(str(exc))
 
     print(text_report)
