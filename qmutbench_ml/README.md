@@ -4,7 +4,7 @@ This package applies the saved model for predicting the recorded historical QMut
 
 ## Model bundle
 
-The promoted development model is stored outside Git under `data/qmutbench_ml/position_fraction_v1/` as `best_model.joblib` with `best_model_metadata.json`. The previous seven-feature baseline remains preserved under `data/qmutbench_ml/master_optimization_v1/`. Pass the selected bundle's paths explicitly. The loader checks the model SHA-256 against metadata, the input and model feature contracts, target mapping, saved threshold, and fitted categorical vocabularies.
+The selected development model is stored outside Git under `data/qmutbench_ml/mutation_aware_v1/` as `best_model.joblib` with `best_model_metadata.json`. The prior `position_fraction_v1/` bundle and seven-feature baseline remain preserved. Pass the selected bundle's paths explicitly. The loader checks the model SHA-256 against metadata, the input and model feature contracts, target mapping, saved threshold, and fitted categorical vocabularies.
 
 Required columns, in training order:
 
@@ -18,8 +18,10 @@ Required columns, in training order:
 | `gates` | finite number | Missing and non-finite values rejected |
 | `Position_int` | finite number | Missing and non-finite values rejected |
 | `position` | QMutBench percentage band, such as `31-40%` | Missing and unseen bands rejected; converted to a fraction using the documented band midpoint |
+| `original_qasm` | Original OpenQASM 2.0 circuit source text | Required; parsed per record to derive mutation alignment and local-context features |
+| `mutant_qasm` | Mutated OpenQASM 2.0 circuit source text | Required; parsed per record to derive mutation alignment and local-context features |
 
-The promoted model receives the derived numeric feature `position_fraction` in place of source `position`; the API derives it using the bundle's saved mapping. `Killed`, `Origin_program`, row identifiers, and any other extra columns are rejected. The dataset's one-hot preprocessing handles learned categories; the API rejects values outside those learned categories before prediction. No imputation is performed at inference.
+The selected model receives the derived numeric feature `position_fraction` in place of source `position`; the API derives it using the bundle's saved mapping. It also compares the original and mutant QASM gate/wire sequences with a common-prefix/common-suffix alignment. Measurement and barrier instructions are excluded. Local-neighbor fields are marked unknown for complex alignments. Pass QASM source text directly; inference does not read the training CSV, fetch files from a machine-specific location, or retrain. `Killed`, `Origin_program`, row identifiers, and any other extra columns are rejected. The dataset's one-hot preprocessing handles learned categories; the API rejects values outside those learned categories before prediction. No imputation is performed at inference.
 
 ## Use
 
@@ -27,8 +29,8 @@ The promoted model receives the derived numeric feature `position_fraction` in p
 from qmutbench_ml import QMutBenchOutcomeModel
 
 predictor = QMutBenchOutcomeModel(
-    "data/qmutbench_ml/position_fraction_v1/best_model.joblib",
-    "data/qmutbench_ml/position_fraction_v1/best_model_metadata.json",
+    "data/qmutbench_ml/mutation_aware_v1/best_model.joblib",
+    "data/qmutbench_ml/mutation_aware_v1/best_model_metadata.json",
 )
 
 one = predictor.predict({
@@ -40,6 +42,8 @@ one = predictor.predict({
     "gates": 30,
     "Position_int": 4,
     "position": "0-10%",
+    "original_qasm": 'OPENQASM 2.0; include "qelib1.inc"; qreg q[2]; h q[0]; cx q[0],q[1];',
+    "mutant_qasm": 'OPENQASM 2.0; include "qelib1.inc"; qreg q[2]; h q[0]; x q[0]; cx q[0],q[1];',
 })
 many = predictor.predict([one_input_record, another_input_record])
 ```
