@@ -302,6 +302,11 @@ def test_consumed_run_id_rejects_approval_replay(tmp_path):
 
 def test_interrupted_preflight_consumes_authorization_and_cannot_resume(tmp_path, monkeypatch):
     prereg, _ = registered_inputs()
+    # Match the registered planning runtime before creating the signed manifest;
+    # otherwise approval is correctly rejected as stale before reaching preflight.
+    runtime = prereg["runtime_reproducibility"]["planning_environment"]
+    monkeypatch.setattr(confirm.sys, "version", runtime["python"])
+    monkeypatch.setattr(confirm.np, "__version__", runtime["numpy"].split()[0])
     trusted, approval_path = make_approval(tmp_path, prereg=prereg)
     approval = json.loads(approval_path.read_text(encoding="utf-8"))
     run_id = approval["run_id"]
@@ -309,15 +314,9 @@ def test_interrupted_preflight_consumes_authorization_and_cannot_resume(tmp_path
     monkeypatch.setattr(confirm, "APPROVAL_PATH", approval_path)
     monkeypatch.setattr(confirm, "TRUST_ROOT", tmp_path)
     # Isolate single-use authorization semantics from the separately tested
-    # production hash gate; the registered detector digest is intentionally
-    # mismatched in this checkout and must still block real execution.
+    # production hash/runtime gates; the registered detector digest remains
+    # mismatched in this checkout and real execution must still fail closed.
     monkeypatch.setattr(confirm, "verify_hash_bindings", lambda *args, **kwargs: None)
-    # Exercise the single-use/interrupt behavior independently of the pinned
-    # execution-runtime gate, which is tested by its own fail-closed checks.
-    prereg, _ = registered_inputs()
-    runtime = prereg["runtime_reproducibility"]["planning_environment"]
-    monkeypatch.setattr(confirm.sys, "version", runtime["python"])
-    monkeypatch.setattr(confirm.np, "__version__", runtime["numpy"].split()[0])
     monkeypatch.setattr(confirm, "check_live_resources", lambda *args: (_ for _ in ()).throw(TimeoutError("simulated preflight stop")))
     monkeypatch.setattr(confirm.np.random, "default_rng", lambda *args: pytest.fail("sampling must not be reached"))
     try:
