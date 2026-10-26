@@ -28,6 +28,48 @@ def _param(parameters: Any, name: str) -> float | None:
     return None
 
 
+def _seconds(value: Any, unit: Any, *, fallback_unit: str) -> float | None:
+    """Normalize a calibration time to seconds.
+
+    IBM property payloads have appeared with explicit units and with legacy
+    unitless numeric values (T1/T2 in microseconds, gate_length in nanoseconds).
+    Prefer explicit metadata; only use the documented field convention when
+    the unit is absent. HardwareModel and the simulator use seconds throughout.
+    """
+    try:
+        numeric = float(value)
+    except (TypeError, ValueError):
+        return None
+    if not np.isfinite(numeric) or numeric < 0:
+        return None
+
+    normalized = str(unit or "").strip().lower().replace("μ", "u").replace("µ", "u")
+    factors = {
+        "s": 1.0, "sec": 1.0, "second": 1.0, "seconds": 1.0,
+        "ms": 1e-3, "millisecond": 1e-3, "milliseconds": 1e-3,
+        "us": 1e-6, "usec": 1e-6, "microsecond": 1e-6, "microseconds": 1e-6,
+        "ns": 1e-9, "nsec": 1e-9, "nanosecond": 1e-9, "nanoseconds": 1e-9,
+        "ps": 1e-12,
+    }
+    if normalized in factors:
+        return numeric * factors[normalized]
+    if normalized:
+        # Do not silently reinterpret an unfamiliar explicit unit.
+        return None
+    return numeric * factors[fallback_unit]
+
+
+def _param_seconds(parameters: Any, name: str, *, fallback_unit: str) -> float | None:
+    for item in parameters or []:
+        if getattr(item, "name", None) == name:
+            return _seconds(
+                getattr(item, "value", None),
+                getattr(item, "unit", None),
+                fallback_unit=fallback_unit,
+            )
+    return None
+
+
 def _synthetic_model(n_qubits: int, seed: int = 42) -> HardwareModel:
     """Generate repeatable, explicitly synthetic calibration values."""
     rng = np.random.default_rng(seed)
@@ -106,17 +148,21 @@ def _ibm_model(n_qubits: int, backend_name: str, token: str, instance: str | Non
     # Explicit mapping for this first implementation: logical q maps to physical q.
     # Only the circuit-sized prefix is imported, preventing huge simulator states.
     for q in range(n_qubits):
+        qubit_parameters = props.qubits[q] if q < len(props.qubits) else []
         values = {getattr(p, "name", ""): getattr(p, "value", None)
-                  for p in (props.qubits[q] if q < len(props.qubits) else [])}
+                  for p in qubit_parameters}
+        t1_seconds = _param_seconds(qubit_parameters, "T1", fallback_unit="us")
+        t2_seconds = _param_seconds(qubit_parameters, "T2", fallback_unit="us")
         model.set_qubit_properties(
             q,
-            t1=values.get("T1"),
-            t2=values.get("T2"),
+            t1=t1_seconds,
+            t2=t2_seconds,
             readout_error=values.get("readout_error"),
             status="available",
             available=True,
             physical_qubit=q,
             calibration_source="IBM Quantum properties",
+            time_unit_normalization="T1/T2 normalized to seconds",
         )
 
     for gate in getattr(props, "gates", []):
@@ -126,14 +172,14 @@ def _ibm_model(n_qubits: int, backend_name: str, token: str, instance: str | Non
         name = str(getattr(gate, "gate", "")).lower()
         parameters = getattr(gate, "parameters", [])
         error = _param(parameters, "gate_error")
-        duration = _param(parameters, "gate_length")
+        duration = _param_seconds(parameters, "gate_length", fallback_unit="ns")
         if name:
             model.add_gate_calibration(
                 name, qubits=physical_qubits,
                 error=0.0 if error is None else error,
                 duration=0.0 if duration is None else duration,
                 source="IBM Quantum properties",
-                physical_qubits=list(physical_qubits),
+                physical_qubits=list(physical_qubits),\n                duration_unit_normalization="gate_length normalized to seconds",
             )
 
     coupling_map = getattr(backend, "coupling_map", None)
