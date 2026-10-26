@@ -530,8 +530,13 @@ def diagnose_execution(
         )
         evidence.append("Source mismatch alone does not establish an observable program fault.")
     elif anomaly_detected is False and hardware_evidence_candidates:
-        category = DiagnosisCategory.HARDWARE_ANOMALY
-        summary = "The observed distribution matches the reference, but relevant hardware calibration fault evidence remains."
+        # Calibration health can be reported as a risk indicator, but without
+        # an execution anomaly it must not be classified as a hardware anomaly.
+        category = DiagnosisCategory.NO_ANOMALY
+        summary = (
+            "No execution anomaly was detected; relevant hardware calibration "
+            "risk evidence remains for review."
+        )
     elif anomaly_detected is False:
         if unsupported_operations and not program_candidates and not hardware_evidence_candidates:
             category = DiagnosisCategory.INSUFFICIENT_EVIDENCE
