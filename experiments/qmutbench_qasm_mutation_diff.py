@@ -26,7 +26,7 @@ sys.path.insert(0, str(ROOT))
 from qmutbench_validation import parse_qasm_file  # noqa: E402
 from experiments.qmutbench_qasm_features import (BASELINE_OOF, EXPECTED_DATA_SHA, EXPECTED_REPO_COMMIT,
     OFFICIAL_CHECKOUT, PARSER_ARITY, QASM_ROOT, SOURCE_CSV, sha256_file)
-from qmutbench_ml.qasm_mutation_diff import mutation_diff_features
+from qmutbench_ml.qasm_mutation_diff import UnsupportedQASMGateError, mutation_diff_features
 
 OUTPUT = ROOT / "data/qmutbench_ml/qasm_mutation_diff_v1"
 FEATURE_COLUMNS = [
@@ -50,6 +50,10 @@ def _ops(path: Path) -> list[tuple[str, tuple[int, ...]]]:
         name = str(op[0]).lower()
         if name in {"measure", "barrier"}:
             continue
+        if name not in PARSER_ARITY:
+            raise UnsupportedQASMGateError(
+                f"Unsupported OpenQASM gate {name!r}; mutation features support {len(PARSER_ARITY)} gate names."
+            )
         arity, parameter_count = PARSER_ARITY[name]
         if len(op) != 1 + arity + parameter_count:
             raise ValueError(f"Unexpected parsed operation representation for {name!r}")

@@ -131,3 +131,6 @@ def test_qasm_mutation_features_are_derived_for_single_and_batch_inputs(tmp_path
     assert len(predictor.predict([record,record]))==2
     with pytest.raises(ValueError,match="non-empty OpenQASM"):
         predictor.predict({**record,"mutant_qasm":""})
+    mismatched = 'OPENQASM 2.0; include "qelib1.inc"; qreg q[3]; h q[0]; x q[0]; cx q[0],q[1];'
+    with pytest.raises(ValueError,match="same number of qubits"):
+        predictor.predict({**record,"mutant_qasm":mismatched})
