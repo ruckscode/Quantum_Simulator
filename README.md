@@ -127,6 +127,34 @@ print(result.get_counts())
 
 `QuantumCircuit` supports the gates and special operations implemented in the package, including single-qubit gates and rotations, `cx`, `cz`, `swap`, `ccx`, `reset`, barriers, and measurement. See `src/quantum_simulator/quantum_circuit.py` for the current builder methods.
 
+## Run a Circuit and Generate Its Diagnosis Report
+
+Use `run_diagnosis.py` when you want to run your own circuit and get a readable diagnosis report plus a machine-readable JSON report. Create an input file such as `my_circuit.json`:
+
+```json
+{
+  "name": "Bell state",
+  "circuit": [
+    ["h", 0],
+    ["cx", 0, 1],
+    ["measure", [0, 1]]
+  ],
+  "shots": 1000,
+  "seed": 42,
+  "threshold": 0.05
+}
+```
+
+From the repository root, run:
+
+```powershell
+python run_diagnosis.py my_circuit.json
+```
+
+By default this writes `reports/diagnosis_report.json` and `reports/diagnosis_report.txt`. Use `--output path/to/report.json` to choose the JSON destination; the text report uses the same path with a `.txt` extension. You can also provide `"reference_circuit": [...] ` to compare the submitted circuit against a reference. An optional `hardware_model` object accepts `n_qubits`, optional `qubits` entries (for example `{"qubit": 1, "readout_error": 0.1}`), `gates` entries (gate name, qubits, error and duration), and `edges` as qubit pairs or calibration objects.
+
+The report contains the diagnosis category, anomaly status, total-variation distance, effective threshold, program/hardware candidates, evidence, and missing evidence. Without a reference, the circuit is compared against its ideal execution as supported by the API. Without a hardware model, the report cannot attribute an anomaly to physical hardware. This command uses the local simulator only; it does not execute on IBM hardware.
+
 ## 8. Running Simulations
 
 `QuantumCircuit.run()` returns a result with a `get_counts()` method. The simulator can also be used directly:
