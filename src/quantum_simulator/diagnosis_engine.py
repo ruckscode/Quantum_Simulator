@@ -28,6 +28,7 @@ from .hardware_fault_localizer import (
     localize_hardware_fault,
 )
 from .hardware_model import HardwareModel, assess_calibration_freshness
+from .count_statistics import compare_count_samples
 from .statistics import DistributionComparisonResult, compare_distributions
 from .quantum_simulator import QuantumSimulator
 from .gates import get_gate_qubit_count
@@ -334,6 +335,8 @@ def diagnose_execution(
     shots: int | None = None,
     precomputed_trace: DiagnosticTrace | Sequence[dict[str, Any]] | None = None,
     max_calibration_age_seconds: float | None = None,
+    expected_counts: Mapping[str, int] | Sequence[int] | None = None,
+    observed_counts: Mapping[str, int] | Sequence[int] | None = None,
 ) -> DiagnosisResult:
     """Combine execution anomaly evidence with program and hardware candidates.
 
@@ -344,6 +347,8 @@ def diagnose_execution(
 
     if (expected_distribution is None) != (observed_distribution is None):
         raise ValueError("expected_distribution and observed_distribution must be provided together")
+    if (expected_counts is None) != (observed_counts is None):
+        raise ValueError("expected_counts and observed_counts must be provided together")
     if expected_circuit is not None and not isinstance(expected_circuit, Sequence):
         raise TypeError("expected_circuit must be a sequence of operations")
     if observed_circuit is not None and not isinstance(observed_circuit, Sequence):
@@ -366,11 +371,13 @@ def diagnose_execution(
     statistics_result = None
     anomaly_detected: bool | None = None
     if expected_distribution is not None and observed_distribution is not None:
-        statistics_result = compare_distributions(
-            expected_distribution,
-            observed_distribution,
-            threshold=threshold,
-            shots=shots,
+        statistics_result = (
+            compare_count_samples(expected_counts, observed_counts, threshold=threshold)
+            if expected_counts is not None else
+            compare_distributions(
+                expected_distribution, observed_distribution,
+                threshold=threshold, shots=shots,
+            )
         )
         anomaly_detected = statistics_result.anomaly_detected
 
@@ -675,7 +682,7 @@ def diagnose_circuit(
 
     def sample(
         program: Sequence[Any], model: HardwareModel | None, stream_seed: int | None,
-    ) -> dict[str, float]:
+    ) -> tuple[dict[str, float], dict[str, int]]:
         rng = np.random.default_rng(stream_seed)
         counts: dict[str, int] = {}
         for _ in range(shots):
@@ -694,13 +701,13 @@ def diagnose_circuit(
                 index = int(simulator.rng.choice(simulator.dim, p=simulator.get_probabilities()))
                 outcome = f"{index:0{n_qubits}b}"
             counts[outcome] = counts.get(outcome, 0) + 1
-        return {key: value / shots for key, value in counts.items()}
+        return {key: value / shots for key, value in counts.items()}, counts
 
-    expected = sample(expected_instructions, None, seed)
+    expected, expected_counts = sample(expected_instructions, None, seed)
     if reference_circuit is None and hardware_model is None:
-        observed = expected
+        observed, observed_counts = expected, expected_counts
     else:
-        observed = sample(
+        observed, observed_counts = sample(
             instructions, hardware_model, None if seed is None else seed + 1,
         )
     all_outcomes = set(expected) | set(observed)
@@ -714,6 +721,8 @@ def diagnose_circuit(
         hardware_model=hardware_model,
         threshold=threshold,
         shots=shots,
+        expected_counts=expected_counts,
+        observed_counts=observed_counts,
         max_calibration_age_seconds=max_calibration_age_seconds,
     )
     if (
