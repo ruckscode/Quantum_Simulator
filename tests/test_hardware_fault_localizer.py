@@ -28,7 +28,7 @@ def test_unsupported_circuit_marks_hardware_trace_metric_unavailable():
 
 def test_one_degraded_qubit_is_localized():
     model = HardwareModel(2, coupling_map=[(0, 1)])
-    model.set_qubit_properties(1, t1=8.0, t2=12.0, readout_error=0.25, status="available")
+    model.set_qubit_properties(1, t1=8e-6, t2=12e-6, readout_error=0.25, status="available")
     expected = [("h", 0), ("cnot", 0, 1)]
     actual = [("h", 0), ("x", 1), ("cnot", 0, 1)]
 
@@ -99,8 +99,8 @@ def test_edge_duration_without_error_is_not_a_fault_candidate(duration):
 
 def test_multiple_hardware_issues_returns_interpretable_candidates():
     model = HardwareModel(3, coupling_map=[(0, 1), (1, 2)])
-    model.set_qubit_properties(0, readout_error=0.20, t1=50.0)
-    model.set_qubit_properties(1, t1=8.0, t2=10.0)
+    model.set_qubit_properties(0, readout_error=0.20, t1=50e-6)
+    model.set_qubit_properties(1, t1=8e-6, t2=10e-6)
     model.add_edge(1, 2, error=0.35, duration=5.0)
     expected = [("h", 0), ("cnot", 0, 1), ("cnot", 1, 2)]
     actual = [("h", 0), ("x", 1), ("cnot", 0, 1), ("swap", 1, 2)]
