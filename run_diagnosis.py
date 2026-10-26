@@ -52,7 +52,10 @@ def load_hardware_model(config: dict[str, Any] | None) -> HardwareModel | None:
         coupling_map=None,
         backend_name=config.get("backend_name", "provided-calibration"),
         calibration_timestamp=config.get("calibration_timestamp"),
-        calibration_timestamp_provenance=config.get("calibration_timestamp_provenance", "synthetic"),
+        calibration_timestamp_provenance=config.get(
+            "calibration_timestamp_provenance",
+            "reported" if config.get("calibration_timestamp") else "synthetic",
+        ),
         default_gate_error=float(config.get("default_gate_error", 0.0)),
         default_gate_duration=float(config.get("default_gate_duration", 0.0)),
     )
@@ -75,7 +78,7 @@ def load_hardware_model(config: dict[str, Any] | None) -> HardwareModel | None:
             edge = dict(item)
             pair = edge.pop("qubits", edge.pop("pair", None))
             if not pair or len(pair) != 2:
-                raise ValueError("Each hardware edge object needs 'qubits': [q1, q2]")
+                raise ValueError("Each hardware edge object needs 'qubits' or 'pair': [q1, q2]")
             model.add_edge(
                 pair[0], pair[1],
                 direction=edge.pop("direction", None),
@@ -84,6 +87,10 @@ def load_hardware_model(config: dict[str, Any] | None) -> HardwareModel | None:
                 supported=edge.pop("supported", True),
                 **edge,
             )
+        elif isinstance(item, (list, tuple)) and len(item) == 2:
+            model.add_edge(item[0], item[1])
+        else:
+            raise ValueError("Each hardware edge must be a two-qubit pair or a calibration object")
     return model
 
 
