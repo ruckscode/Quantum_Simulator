@@ -100,15 +100,20 @@ def _score_qubit(model: HardwareModel, qubit: int, *, circuit_context: Sequence[
         reasons.append(f"readout_error={props.readout_error:.4f}")
         evidence.append(f"Qubit {qubit} readout error is elevated at {props.readout_error:.4f}.")
 
-    if props.t1 < 100.0:
-        score += max(0.0, (100.0 - props.t1) / 100.0)
-        reasons.append(f"t1={props.t1:.2f}")
-        evidence.append(f"Qubit {qubit} T1 is short at {props.t1:.2f} microseconds.")
+    # HardwareModel stores T1/T2 in seconds, matching gate durations and the
+    # simulator's relaxation model. Compare against 100 microseconds (1e-4 s)
+    # and convert to microseconds only for human-readable evidence.
+    t1_us = props.t1 * 1e6
+    t2_us = props.t2 * 1e6
+    if props.t1 < 100e-6:
+        score += max(0.0, (100.0 - t1_us) / 100.0)
+        reasons.append(f"t1={t1_us:.2f} us")
+        evidence.append(f"Qubit {qubit} T1 is short at {t1_us:.2f} microseconds.")
 
-    if props.t2 < 100.0:
-        score += max(0.0, (100.0 - props.t2) / 100.0)
-        reasons.append(f"t2={props.t2:.2f}")
-        evidence.append(f"Qubit {qubit} T2 is short at {props.t2:.2f} microseconds.")
+    if props.t2 < 100e-6:
+        score += max(0.0, (100.0 - t2_us) / 100.0)
+        reasons.append(f"t2={t2_us:.2f} us")
+        evidence.append(f"Qubit {qubit} T2 is short at {t2_us:.2f} microseconds.")
 
     if circuit_context:
         relevant_ops = [op for op in circuit_context if qubit in _extract_qubits(op)]
