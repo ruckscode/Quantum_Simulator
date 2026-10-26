@@ -11,6 +11,14 @@ from bugs4q_integration import (
 
 SPECIALIZED_CASES = (8, 12, 17, 25, 26, 30, 31, 39)
 
+# The official Bugs4Q archive is intentionally excluded from Git. Keep these
+# integration checks active when the archive is provisioned, but do not turn a
+# clean source checkout without external data into a suite-wide error.
+pytestmark = pytest.mark.skipif(
+    not OFFICIAL_ROOT.is_dir(),
+    reason="Official Bugs4Q source bundle is not provisioned (it is excluded from Git).",
+)
+
 
 @pytest.fixture(scope="module")
 def integration_report():

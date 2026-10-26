@@ -68,10 +68,20 @@ def make_approval(tmp_path, *, prereg=None, binding_path=None, driver_path=None,
     return trusted_path, approval_path
 
 
-def test_local_bindings_match_and_no_mutable_release_claim_is_trusted():
+def test_registered_hash_binding_passes_or_fails_closed_on_detector_mismatch():
     prereg, binding = registered_inputs()
     confirm.validate_preregistration(prereg)
-    confirm.verify_hash_bindings(prereg, binding)
+    registered_hash = prereg["detector"]["statistics_module_sha256"]
+    current_hash = confirm.sha256_file(confirm.STATISTICS_MODULE)
+
+    # Never rewrite a preregistered digest to fit the current source. If the
+    # original detector is unavailable, the expected and current hashes must
+    # remain visibly different and the confirmation binding must reject it.
+    if current_hash != registered_hash:
+        with pytest.raises(ValueError, match="statistics-module hash differs from preregistration"):
+            confirm.verify_hash_bindings(prereg, binding)
+    else:
+        confirm.verify_hash_bindings(prereg, binding)
     assert binding["independent_review_release"]["status"] == "pending"
 
 

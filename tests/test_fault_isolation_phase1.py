@@ -182,6 +182,11 @@ def test_saved_case_finalization_serializes_localizers_without_rerunning(execute
 
 def test_saved_report_preserves_historical_coherence_false_positive():
     saved_path = phase1.OUTPUT_DIR / "cases" / "coherence_healthy_control.json"
+    if not saved_path.is_file():
+        pytest.skip(
+            "The historical Phase 1 case is a local-only ignored artifact; "
+            "the tracked Phase 1.4 seed-sensitivity cases are not substituted for it."
+        )
     saved = json.loads(saved_path.read_text(encoding="utf-8"))
     assert saved["diagnosis"]["category"] == HARDWARE_CLASS
     assert saved["diagnosis"]["anomaly_detected"] is False
