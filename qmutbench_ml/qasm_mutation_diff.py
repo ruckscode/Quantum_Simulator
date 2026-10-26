@@ -7,6 +7,10 @@ from typing import Any
 
 from qmutbench_validation import parse_qasm_file
 
+
+class UnsupportedQASMGateError(ValueError):
+    """A valid OpenQASM operation is outside the feature extractor's gate schema."""
+
 PARSER_ARITY = {
     "id": (1, 0), "x": (1, 0), "y": (1, 0), "z": (1, 0), "h": (1, 0),
     "s": (1, 0), "sdg": (1, 0), "t": (1, 0), "tdg": (1, 0), "sx": (1, 0),
@@ -19,23 +23,32 @@ PARSER_ARITY = {
 }
 
 
-def operations_from_qasm_text(source: str) -> list[tuple[str, tuple[int, ...]]]:
+def circuit_signature_from_qasm_text(source: str) -> tuple[list[tuple[str, tuple[int, ...]]], int]:
     if not isinstance(source, str) or not source.strip():
         raise ValueError("QASM source must be a non-empty string")
     with tempfile.TemporaryDirectory(prefix="qmutbench-qasm-") as directory:
         path = Path(directory) / "record.qasm"
         path.write_text(source, encoding="utf-8")
-        parsed, _ = parse_qasm_file(path)
+        parsed, qubit_count = parse_qasm_file(path)
     result = []
     for operation in parsed:
         name = str(operation[0]).lower()
         if name in {"measure", "barrier"}:
             continue
+        if name not in PARSER_ARITY:
+            raise UnsupportedQASMGateError(
+                f"Unsupported OpenQASM gate {name!r}; mutation features support {len(PARSER_ARITY)} gate names."
+            )
         arity, parameter_count = PARSER_ARITY[name]
         if len(operation) != 1 + arity + parameter_count:
             raise ValueError(f"Unexpected parsed operation representation for {name!r}")
         result.append((name, tuple(int(q) for q in operation[1:1 + arity])))
-    return result
+    return result, qubit_count
+
+
+def operations_from_qasm_text(source: str) -> list[tuple[str, tuple[int, ...]]]:
+    """Return outcome-independent gate/wire signatures, excluding measure/barrier."""
+    return circuit_signature_from_qasm_text(source)[0]
 
 
 def mutation_diff_features(original: list[tuple[str, tuple[int, ...]]],

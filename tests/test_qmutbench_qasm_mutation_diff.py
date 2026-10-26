@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 from experiments.qmutbench_qasm_mutation_diff import mutation_diff_features
-from qmutbench_ml.qasm_mutation_diff import operations_from_qasm_text
+from qmutbench_ml.qasm_mutation_diff import (UnsupportedQASMGateError,
+    circuit_signature_from_qasm_text, operations_from_qasm_text)
+import pytest
 
 
 def test_add_edit_recovers_expected_gate_and_neighbor_context():
@@ -57,3 +59,19 @@ def test_qasm_text_parser_uses_gate_wire_signatures_and_ignores_measurement():
     measure q -> c;
     '''
     assert operations_from_qasm_text(source) == [("h", (0,)), ("cx", (0, 1))]
+
+
+def test_unsupported_gate_and_conditional_qasm_fail_with_clear_errors():
+    unsupported = 'OPENQASM 2.0; qreg q[1]; customgate q[0];'
+    with pytest.raises(UnsupportedQASMGateError, match="Unsupported OpenQASM gate 'customgate'"):
+        operations_from_qasm_text(unsupported)
+    conditional = 'OPENQASM 2.0; qreg q[1]; creg c[1]; if (c==1) x q[0];'
+    with pytest.raises(ValueError, match="malformed QASM parameter"):
+        operations_from_qasm_text(conditional)
+
+
+def test_circuit_signature_reports_qubit_count_for_pair_validation():
+    source = 'OPENQASM 2.0; qreg q[3]; h q[0];'
+    operations, qubits = circuit_signature_from_qasm_text(source)
+    assert operations == [("h", (0,))]
+    assert qubits == 3

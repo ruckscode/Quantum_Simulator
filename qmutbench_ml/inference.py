@@ -122,7 +122,7 @@ class QMutBenchOutcomeModel:
             raise ValueError(f"Input schema mismatch; missing={missing}; unexpected={extra}")
         frame = frame.loc[:, list(self.input_features)].copy()
         if self.qasm_feature_derivation:
-            from qmutbench_ml.qasm_mutation_diff import mutation_diff_features, operations_from_qasm_text
+            from qmutbench_ml.qasm_mutation_diff import mutation_diff_features, circuit_signature_from_qasm_text
 
             original_column = self.qasm_feature_derivation["original_column"]
             mutant_column = self.qasm_feature_derivation["mutant_column"]
@@ -130,7 +130,7 @@ class QMutBenchOutcomeModel:
             gate_column = self.qasm_feature_derivation.get("gate_column", "gate")
             if operation_column not in frame or gate_column not in frame:
                 raise ValueError("QASM feature derivation requires operation and gate inputs")
-            parsed_cache: dict[str, list[tuple[str, tuple[int, ...]]]] = {}
+            parsed_cache: dict[str, tuple[list[tuple[str, tuple[int, ...]]], int]] = {}
             derived = []
             for original_source, mutant_source, operation, gate in zip(
                     frame[original_column], frame[mutant_column], frame[operation_column], frame[gate_column]):
@@ -138,10 +138,14 @@ class QMutBenchOutcomeModel:
                     if not isinstance(source, str) or not source.strip():
                         raise ValueError(f"QASM input {column!r} must be a non-empty OpenQASM 2.0 string")
                 if original_source not in parsed_cache:
-                    parsed_cache[original_source] = operations_from_qasm_text(original_source)
+                    parsed_cache[original_source] = circuit_signature_from_qasm_text(original_source)
                 if mutant_source not in parsed_cache:
-                    parsed_cache[mutant_source] = operations_from_qasm_text(mutant_source)
-                derived.append(mutation_diff_features(parsed_cache[original_source], parsed_cache[mutant_source],
+                    parsed_cache[mutant_source] = circuit_signature_from_qasm_text(mutant_source)
+                original_ops, original_qubits = parsed_cache[original_source]
+                mutant_ops, mutant_qubits = parsed_cache[mutant_source]
+                if original_qubits != mutant_qubits:
+                    raise ValueError("Original and mutant QASM must declare the same number of qubits")
+                derived.append(mutation_diff_features(original_ops, mutant_ops,
                                                      str(operation), str(gate)))
             qasm_features = pd.DataFrame(derived, index=frame.index)
             expected = set(self.qasm_feature_derivation["output_features"])
