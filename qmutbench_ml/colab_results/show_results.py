@@ -6,7 +6,9 @@ Run from the repository root:
     %run qmutbench_ml/colab_results/show_results.py
 """
 from pathlib import Path
+import hashlib
 import json
+import sys
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -91,22 +93,58 @@ display(Markdown(
     "dataset was verified and the 85% Macro F1 target remains unmet."
 ))
 
-display(Markdown("## Model artifact availability"))
-for path in (MODEL_FILE, META_FILE):
-    print(("FOUND: " if path.is_file() else "MISSING: ") + str(path))
-print("Checked model directories:")
-for directory in MODEL_DIRS:
-    print("  " + str(directory) + (" (present)" if directory.is_dir() else " (absent)"))
+display(Markdown("## Model artifact integrity and inference-loader check"))
 
-if MODEL_FILE.is_file() and META_FILE.is_file():
+if not MODEL_FILE.is_file() or not META_FILE.is_file():
     display(Markdown(
-        "Both expected files exist. Before inference, validate the metadata, "
-        "feature schema, model version, and artifact hash against the report."
+        "**Live inference unavailable:** the model bundle is incomplete in this runtime. "
+        "Restore both files from the verified original training environment; this viewer "
+        "will not retrain or fabricate predictions."
     ))
 else:
-    display(Markdown(
-        "**Live inference is not enabled by this viewer.** The report records a "
-        "historical inference smoke test, but that does not mean the serialized "
-        "model bundle is currently available in this checkout. This script will "
-        "not fabricate predictions or retrain silently."
-    ))
+    try:
+        metadata = json.loads(META_FILE.read_text(encoding="utf-8"))
+        digest = hashlib.sha256()
+        with MODEL_FILE.open("rb") as stream:
+            for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+                digest.update(chunk)
+        actual_sha256 = digest.hexdigest()
+        expected_sha256 = metadata.get("model_sha256")
+        report_sha256 = report.get("baseline_and_feature_audit", {}).get("artifacts", {}).get("mutation_aware_model_sha256")
+        if not expected_sha256:
+            raise ValueError("metadata is missing model_sha256")
+        if actual_sha256 != expected_sha256:
+            raise ValueError("model SHA-256 does not match metadata")
+        if report_sha256 and actual_sha256 != report_sha256:
+            raise ValueError("model SHA-256 does not match the committed research report")
+        if metadata.get("model_version") != "qmutbench-mutation-aware-v1":
+            raise ValueError(f"unexpected model version: {metadata.get('model_version')!r}")
+        if len(metadata.get("feature_schema", [])) != 23:
+            raise ValueError("metadata does not declare the expected 23-feature schema")
+        if float(metadata.get("inference_threshold", -1)) != 0.5:
+            raise ValueError("metadata does not declare the selected 0.5 inference threshold")
+
+        if str(ROOT) not in sys.path:
+            sys.path.insert(0, str(ROOT))
+        from qmutbench_ml import QMutBenchOutcomeModel
+        predictor = QMutBenchOutcomeModel(MODEL_FILE, META_FILE)
+        if len(predictor.features) != 23:
+            raise ValueError(f"inference loader returned {len(predictor.features)} features, expected 23")
+
+        display(Markdown(
+            "**Bundle verified and inference loader passed.** This validates artifact integrity and "
+            "the model contract; it does not constitute independent evaluation or a real-record "
+            "prediction in this runtime."
+        ))
+        print("Model:", MODEL_FILE)
+        print("Metadata:", META_FILE)
+        print("Model version:", predictor.model_version)
+        print("Feature count:", len(predictor.features))
+        print("Threshold:", predictor.threshold)
+        print("Model size (bytes):", MODEL_FILE.stat().st_size)
+        print("SHA-256:", actual_sha256)
+        print("Metadata checksum match: PASS")
+        print("Research report checksum match:", "PASS" if report_sha256 == actual_sha256 else "not available")
+    except Exception as exc:
+        display(Markdown(f"**Bundle validation failed:** `{type(exc).__name__}: {exc}`"))
+        raise
