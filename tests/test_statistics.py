@@ -1,7 +1,10 @@
 import pytest
 import numpy as np
 
-from quantum_simulator.statistics import DistributionComparisonResult, compare_counts, compare_distributions
+from quantum_simulator.statistics import (
+    DistributionComparisonResult, compare_counts, compare_distributions,
+)
+from quantum_simulator.count_statistics import compare_count_samples
 
 
 def test_identical_distributions_are_not_anomalous():
@@ -82,3 +85,34 @@ def test_colliding_stringified_outcome_keys_and_multidimensional_arrays_fail_clo
         compare_distributions({0: 1.0, "0": 1.0}, {"0": 1.0})
     with pytest.raises(ValueError, match="one-dimensional"):
         compare_distributions(np.array([[1.0, 0.0]]), np.array([[1.0, 0.0]]))
+
+
+def test_count_sample_permutation_is_seeded_and_rejects_clear_behavioral_change():
+    first = {"0": 500, "1": 500, "2": 0}
+    same = {"0": 492, "1": 508, "2": 0}
+    shifted = {"0": 850, "1": 150, "2": 0}
+    null = compare_count_samples(first, same, threshold=0.05)
+    assert null.anomaly_detected is False
+    assert null.method == "conditional_tvd_permutation"
+    assert null.p_value == compare_count_samples(first, same, threshold=0.05).p_value
+    fault = compare_count_samples(first, shifted, threshold=0.05)
+    assert fault.anomaly_detected is True
+    assert fault.p_value <= 0.05
+
+
+def test_count_sample_permutation_respects_effect_gate_and_shot_count():
+    low_shot = compare_count_samples([50, 50], [55, 45], threshold=0.01)
+    high_shot = compare_count_samples([5000, 5000], [5500, 4500], threshold=0.01)
+    assert low_shot.shots == 100
+    assert high_shot.shots == 10000
+    assert low_shot.anomaly_detected is False
+    assert high_shot.anomaly_detected is True
+
+
+def test_count_sample_permutation_rejects_invalid_counts_and_settings():
+    with pytest.raises(ValueError):
+        compare_count_samples([10, -1], [9, 1])
+    with pytest.raises(ValueError):
+        compare_count_samples([0, 0], [1, 1])
+    with pytest.raises(ValueError):
+        compare_count_samples([1, 1], [1, 1], alpha=1.1)

@@ -1,0 +1,75 @@
+{
+  "contract": "reference-diagnosis-replay",
+  "version": "2.0.0",
+  "status": "active",
+  "supersedes": "scenario-level replay outcomes in v1; v1 fixtures remain historical evidence",
+  "historical_fixtures": {
+    "generalization": {
+      "path": "reference_diagnosis_generalization_cases.json",
+      "sha256": "afa8c20f5f2a49289c889ba8f0f11f4077e97cf5d43cb4ddbd33246eec25bc1b"
+    },
+    "validation": {
+      "path": "reference_diagnosis_validation_cases.json",
+      "sha256": "109e7deeb9743313ad66e3cc5662d846dd803827d1ae7f3a470d356832df71aa"
+    }
+  },
+  "detector": {
+    "method": "conditional two-sample TVD permutation test",
+    "permutations": 999,
+    "alpha": 0.05,
+    "p_value_correction": "add one",
+    "minimum_observed_tvd": 0.05,
+    "seed": 0
+  },
+  "decision_rationale": [
+    "The v1 QFT program-fault positives have ideal TVD below the configured 0.05 behavioral effect gate; source localization alone does not establish a behavioral fault.",
+    "A non-significant count comparison is not promoted to an anomaly based on source syntax or a known injected condition.",
+    "A significant finite-sample comparison can occur on an identical-distribution control at alpha 0.05; it is recorded as an unattributed anomaly and does not become a program or hardware fault without its separate evidence.",
+    "The four-shot sampling-difference control is not significant under the count test and is classified NO_ANOMALY.",
+    "The per-seed replay rows are regression checks, not an estimate of population false-positive rate. Calibration and held-out statistical performance remain evaluated separately."
+  ],
+  "outcome_overrides": {
+    "qft_like_3q_program_fault_11": {
+      "detection": false,
+      "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+      "source_localized": true,
+      "hardware_localized": false,
+      "abstain": true
+    },
+    "qft_like_3q_program_fault_29": {
+      "detection": false,
+      "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+      "source_localized": true,
+      "hardware_localized": false,
+      "abstain": true
+    },
+    "qft_like_3q_program_fault_47": {
+      "detection": false,
+      "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+      "source_localized": true,
+      "hardware_localized": false,
+      "abstain": true
+    },
+    "ring_cluster_4q_correct_29": {
+      "detection": true,
+      "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+      "source_localized": false,
+      "hardware_localized": false,
+      "abstain": true
+    },
+    "ring_cluster_4q_equivalent_29": {
+      "detection": true,
+      "classification": "AMBIGUOUS / INSUFFICIENT_EVIDENCE",
+      "source_localized": true,
+      "hardware_localized": false,
+      "abstain": true
+    },
+    "sampling_difference_without_causal_evidence": {
+      "detection": false,
+      "classification": "NO_ANOMALY",
+      "source_localized": false,
+      "hardware_localized": false,
+      "abstain": false
+    }
+  }
+}

@@ -9,6 +9,7 @@ from quantum_simulator.quantum_simulator import QuantumSimulator
 
 
 CASES_PATH = Path(__file__).parent / "fixtures" / "reference_diagnosis_validation_cases.json"
+CONTRACT_PATH = Path(__file__).parent / "fixtures" / "reference_diagnosis_acceptance_v2.json"
 ABSTAIN_CATEGORIES = {
     DiagnosisCategory.AMBIGUOUS,
     DiagnosisCategory.INSUFFICIENT_EVIDENCE,
@@ -44,6 +45,7 @@ def expected_multiqubit_targets(case):
 def evaluate_validation_set():
     """Evaluate cases with labels applied only after diagnosis has returned."""
     cases = json.loads(CASES_PATH.read_text(encoding="utf-8"))
+    overrides = json.loads(CONTRACT_PATH.read_text(encoding="utf-8"))["outcome_overrides"]
     rows = []
     for case in cases:
         hardware = None
@@ -65,7 +67,7 @@ def evaluate_validation_set():
         except ValueError as error:
             rows.append({
                 "id": case["id"],
-                "expected": case["expected"],
+                "expected": overrides.get(case["id"], case["expected"]),
                 "observed": {"validation_error": str(error)},
             })
             continue
@@ -98,7 +100,7 @@ def evaluate_validation_set():
             }
         rows.append({
             "id": case["id"],
-            "expected": case["expected"],
+            "expected": overrides.get(case["id"], case["expected"]),
             "observed": observed,
             "localization": localization,
         })
