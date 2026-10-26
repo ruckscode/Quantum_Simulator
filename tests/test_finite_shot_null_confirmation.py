@@ -312,6 +312,12 @@ def test_interrupted_preflight_consumes_authorization_and_cannot_resume(tmp_path
     # production hash gate; the registered detector digest is intentionally
     # mismatched in this checkout and must still block real execution.
     monkeypatch.setattr(confirm, "verify_hash_bindings", lambda *args, **kwargs: None)
+    # Exercise the single-use/interrupt behavior independently of the pinned
+    # execution-runtime gate, which is tested by its own fail-closed checks.
+    prereg, _ = registered_inputs()
+    runtime = prereg["runtime_reproducibility"]["planning_environment"]
+    monkeypatch.setattr(confirm.sys, "version", runtime["python"])
+    monkeypatch.setattr(confirm.np, "__version__", runtime["numpy"].split()[0])
     monkeypatch.setattr(confirm, "check_live_resources", lambda *args: (_ for _ in ()).throw(TimeoutError("simulated preflight stop")))
     monkeypatch.setattr(confirm.np.random, "default_rng", lambda *args: pytest.fail("sampling must not be reached"))
     try:
