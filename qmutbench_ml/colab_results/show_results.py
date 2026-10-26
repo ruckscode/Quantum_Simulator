@@ -14,9 +14,12 @@ from IPython.display import display, Markdown
 
 ROOT = Path.cwd()
 REPORT = ROOT / "reports" / "experiments" / "qmutbench_final_research_report_20261026.json"
-MODEL_DIR = ROOT / "qmutbench_ml" / "colab_results" / "models"
-MODEL_FILE = MODEL_DIR / "best_model.joblib"
-META_FILE = MODEL_DIR / "best_model_metadata.json"
+MODEL_DIRS = [
+    ROOT / "data" / "qmutbench_ml" / "mutation_aware_v1",
+    ROOT / "qmutbench_ml" / "colab_results" / "models",
+]
+MODEL_FILE = next((p / "best_model.joblib" for p in MODEL_DIRS if (p / "best_model.joblib").is_file()), MODEL_DIRS[0] / "best_model.joblib")
+META_FILE = next((p / "best_model_metadata.json" for p in MODEL_DIRS if (p / "best_model_metadata.json").is_file()), MODEL_FILE.with_name("best_model_metadata.json"))
 
 if not REPORT.is_file():
     raise FileNotFoundError(
@@ -91,6 +94,9 @@ display(Markdown(
 display(Markdown("## Model artifact availability"))
 for path in (MODEL_FILE, META_FILE):
     print(("FOUND: " if path.is_file() else "MISSING: ") + str(path))
+print("Checked model directories:")
+for directory in MODEL_DIRS:
+    print("  " + str(directory) + (" (present)" if directory.is_dir() else " (absent)"))
 
 if MODEL_FILE.is_file() and META_FILE.is_file():
     display(Markdown(
