@@ -20,6 +20,25 @@ def test_canonicalize_two_qubit_parameterized_gates_preserves_both_qubits(gate):
     assert _canonicalize_circuit([operation]) == [operation]
 
 
+def test_calibration_warning_without_execution_anomaly_does_not_change_category():
+    hardware = HardwareModel(1)
+    hardware.set_qubit_properties(0, readout_error=0.30)
+    circuit = [("x", 0), ("measure", 0)]
+
+    result = diagnose_execution(
+        expected_distribution={"0": 0.0, "1": 1.0},
+        observed_distribution={"0": 0.98, "1": 0.02},
+        expected_circuit=circuit,
+        observed_circuit=circuit,
+        hardware_model=hardware,
+    )
+
+    assert result.anomaly_detected is False
+    assert result.category is DiagnosisCategory.NO_ANOMALY
+    assert result.hardware_evidence_candidates
+    assert "risk evidence" in result.summary
+
+
 def test_normal_execution_is_no_anomaly():
     result = diagnose_execution(
         expected_distribution=EXPECTED,
@@ -127,6 +146,25 @@ def test_error_candidate_ranks_without_promoting_duration_only_qubit():
     assert result.hardware_evidence_candidates[0].component == (0,)
     assert all(candidate.component != (1,) for candidate in result.hardware_result.candidates)
     assert "calibration-backed hardware fault candidate(s): gate (0,)" in result.hardware_result.summary.lower()
+
+
+def test_reported_t1_t2_in_seconds_are_not_misclassified_as_zero_microseconds():
+    hardware = HardwareModel(1)
+    hardware.set_qubit_properties(0, t1=158.084e-6, t2=214.086e-6)
+    circuit = [("x", 0), ("measure", 0)]
+
+    result = diagnose_execution(
+        expected_distribution={"0": 0.0, "1": 1.0},
+        observed_distribution={"0": 0.98, "1": 0.02},
+        expected_circuit=circuit,
+        observed_circuit=circuit,
+        hardware_model=hardware,
+    )
+
+    assert result.anomaly_detected is False
+    assert result.category is DiagnosisCategory.NO_ANOMALY
+    assert result.hardware_evidence_candidates == []
+    assert not any("T1 is short" in item or "T2 is short" in item for item in result.evidence)
 
 
 def test_missing_gate_calibration_is_not_fault_evidence():
