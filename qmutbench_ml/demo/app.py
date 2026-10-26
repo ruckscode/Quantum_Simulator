@@ -18,11 +18,18 @@ st.set_page_config(page_title="QMutBench ML Classifier Lab", page_icon="⚛️",
 st.title("QMutBench ML Classifier Lab")
 st.caption("Historical mutation-outcome classification • Research showcase")
 
-st.info(
-    "This dashboard separates recorded evaluation results from live model inference. "
-    "The trained model bundle is intentionally not committed to Git; predictions are "
-    "disabled until the matching model and metadata files are supplied locally."
-)
+if MODEL.is_file() and METADATA.is_file():
+    st.info(
+        "This dashboard separates recorded evaluation results from live model inference. "
+        "A local model bundle was found; its checksum and input contract are validated "
+        "when you submit a prediction."
+    )
+else:
+    st.info(
+        "This dashboard separates recorded evaluation results from live model inference. "
+        "The trained model bundle is intentionally not committed to Git; live predictions "
+        "remain unavailable until both matching local bundle files are supplied."
+    )
 
 # Report values are explicit and versioned, so the dashboard remains usable without
 # the large, local-only .joblib artifact.
@@ -135,7 +142,7 @@ else:
         col1, col2, col3 = st.columns(3)
         algorithm = col1.text_input("Algorithm", "qft")
         operation = col2.selectbox("Mutation operation", ["Add", "Replace", "Remove"])
-        gate = col3.text_input("Gate", "h")
+        gate = col3.text_input("Mutated gate", "x")
         col4, col5, col6 = st.columns(3)
         dominant_state = col4.text_input("Dominant state", "0")
         qubits = col5.number_input("Qubits", min_value=1, max_value=100, value=2)
