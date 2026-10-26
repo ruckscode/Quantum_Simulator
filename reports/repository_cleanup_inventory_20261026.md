@@ -24,7 +24,19 @@ Scope: branch `qmutbench-master-optimization`, starting at `e75db89032c703e566f6
 3. **Reproducibility/research documentation:** root/package READMEs, `reports/`, manifests, benchmark summaries, and this inventory.
 4. **Historical experiments worth preserving:** all tracked experiment scripts and dated outputs, including superseded comparisons and negative results.
 5. **Generated/cache artifacts:** ignored Python/pytest/build outputs and local dataset/model products; retained locally and not staged.
-6. **Confirmed duplicate or obsolete files:** none established by this inspection; none deleted.
+6. **Confirmed duplicate or obsolete files:** the original cleanup inspection did not establish any. A subsequent tree-wide blob-SHA audit found and removed one byte-identical duplicate preflight report; see the follow-up audit below.
 7. **Uncertain—preserve:** ignored run workspaces, local recovery artifacts, historical reports, and the command-shaped ignored artifact described above.
 
 No source, test, report, manifest, dataset, model, or experiment file was deleted or moved. The README correction distinguishes the selected historical QMutBench outcome model from simulator/noise research and future hardware-aware fault localization.
+
+
+## Follow-up SHA-256 tree audit — 2026-10-26
+
+After the original cleanup, a recursive Git tree audit of 546 tracked files found one pair with the same Git blob SHA (byte-identical contents):
+
+- Retained: `reports/experiments/ml_data_foundation_preflight_20261014_pilot_final.json`
+- Removed duplicate: `reports/experiments/ml_data_foundation_preflight_20261015.json`
+- Shared blob SHA before removal: `e70a00033f0de1b20a952142b50602dc5a970cef`
+- Deletion commit: `7278aa0e8b4c9220d59d25ac836666c1d49508cb`
+
+The retained report contains the same preflight blockers and data as the removed file. No source code, tests, model artifacts, simulator behavior, feature schema, threshold, or benchmark metrics were changed. Other repeated basenames were not treated as duplicates because they are separate package compatibility modules, report families, or seed-specific experiment outputs.
