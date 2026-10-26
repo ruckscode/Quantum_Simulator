@@ -1,0 +1,238 @@
+{
+  "additional_evidence": {
+    "cache_key": "876b07b1b1f3bb438d811b1e2d2f0a60c47a677903c1e727ed094952daa1b98d",
+    "cache_shared_function_revalidation": "20 sampled rows equivalent, zero mismatches",
+    "equal_weight_baseline_candidate_blend_macro_f1": 0.785275240432039,
+    "error_analysis_path": "reports/experiments/qmutbench_exhaustive_error_analysis_20261026.json",
+    "feature_ablation": {
+      "delta_pp": -0.1533541108137748,
+      "fold_deltas_pp": [
+        0.3761085055114632,
+        -0.45922504606372705,
+        -0.3845469159189929
+      ],
+      "matched_baseline_macro_f1": 0.7662820863197629,
+      "omitted_features": [
+        "qasm_diff_removed_gate",
+        "qasm_diff_added_gate",
+        "qasm_diff_alignment_class",
+        "qasm_diff_local_prev_gate",
+        "qasm_diff_local_next_gate"
+      ],
+      "pooled_macro_f1": 0.7647485452116252,
+      "result_path": "data/qmutbench_ml/exhaustive_campaign_v1/feature_ablation_no_gate_context/summary.json",
+      "schema": "qmutbench-feature-ablation-v1",
+      "status": "complete"
+    },
+    "hist_gradient_boosting_baseline_macro_f1": 0.768470815153209,
+    "hist_gradient_boosting_macro_f1": 0.7771701763216003,
+    "qasm_diff_parse_errors": 0,
+    "qasm_diff_rows": 578117
+  },
+  "already_tested_hypotheses": [
+    {
+      "hypothesis": "position_fraction improves the seven-feature baseline",
+      "result": "+1.34 pp at 0.5 on the saved three grouped folds; retained current model"
+    },
+    {
+      "hypothesis": "simple algorithm-operation, algorithm-gate, gate-operation interactions help",
+      "result": "negative or not nested-stable in prior 60-tree screen"
+    },
+    {
+      "hypothesis": "QASM structure-only counts/depth help",
+      "result": "mean fold macro F1 0.75946 vs matched 60-tree Extra Trees baseline 0.76628"
+    },
+    {
+      "hypothesis": "mutant gate composition helps",
+      "result": "60-tree screen +0.48 pp; 100-tree confirmation +0.32 pp vs current, fold 1 loss; not promoted"
+    },
+    {
+      "hypothesis": "mutant-minus-original gate composition helps",
+      "result": "negative vs matched 60-tree baseline"
+    },
+    {
+      "hypothesis": "Random Forest replaces Extra Trees",
+      "result": "60-tree grouped mean macro F1 0.75891 vs matched Extra Trees 0.76628"
+    },
+    {
+      "hypothesis": "threshold tuning solves the remaining gap",
+      "result": "nested thresholds did not improve candidate beyond fixed 0.5; no evidence of ranking improvement"
+    },
+    {
+      "hypothesis": "other metadata such as algorithm_group or position integer improves",
+      "result": "prior screens were negative; position integer scale is not a reliable gate-count ratio"
+    }
+  ],
+  "artifacts": {
+    "baseline_oof": {
+      "bytes": 34169143,
+      "exists": true,
+      "path": "data/qmutbench_ml/master_optimization_v1/oof_predictions.csv",
+      "sha256": "7d203ac4cd6878a1caaf19eb768bb9a1e4f322b42fc56475cdc603591cc250ce"
+    },
+    "candidate_oof_manifest": {
+      "bytes": 189951,
+      "exists": true,
+      "path": "data/qmutbench_ml/performance_phase_full_v1/manifest.json",
+      "sha256": "93275003aea5e35f499c862534565b29efd74cbfadb20d45fa2509a6001e1d02"
+    },
+    "qasm_discovery": {
+      "bytes": 70502,
+      "exists": true,
+      "path": "reports/experiments/qmutbench_qasm_feature_discovery_20261025.json",
+      "sha256": "65427df951ab9f31661cc48b5d022ebd2da5b2490366dbc133b1d3b72134645b"
+    },
+    "qasm_features_manifest": {
+      "bytes": 15324,
+      "exists": true,
+      "path": "data/qmutbench_ml/qasm_structural_v4/manifest.json",
+      "sha256": "7d562057485d66155fe4f1aa23b1d00f172051954d880b5f291d50ce1d6baa6d"
+    },
+    "qasm_results": {
+      "bytes": 27632,
+      "exists": true,
+      "path": "reports/experiments/qmutbench_qasm_model_results_20261025.json",
+      "sha256": "6e6881828fbc1fc97225909071d77029c4461a6b56eeca90958f1600c6993422"
+    },
+    "selected_metadata": {
+      "bytes": 2552,
+      "exists": true,
+      "path": "data/qmutbench_ml/position_fraction_v1/best_model_metadata.json",
+      "sha256": "ab31c9921a16bdd8085d5f94acb736c5d236e81890e0df1b6e1439f170af3331"
+    },
+    "selected_model": {
+      "bytes": 28815368,
+      "exists": true,
+      "path": "data/qmutbench_ml/position_fraction_v1/best_model.joblib",
+      "sha256": "641a18b67448f910ea0126c914e7e5f17bc946a3fa940b0486c045b845f8ee45"
+    }
+  },
+  "campaign_date": "2026-10-25",
+  "checkpointing": {
+    "current_model_overwrite_prohibited": true,
+    "experiment_output_root": "data/qmutbench_ml/exhaustive_campaign_v1/",
+    "source_data_and_model_artifacts_remain_untouched": true,
+    "tracked_reports_root": "reports/experiments/"
+  },
+  "completion_date": "2026-10-26",
+  "final_candidate": {
+    "features": 23,
+    "five_fold_baseline_macro_f1": 0.7733866082913055,
+    "five_fold_delta_pp": 1.9926957144462687,
+    "five_fold_fold_deltas_pp": [
+      1.559118064605558,
+      1.916812804472745,
+      1.5152235678194215,
+      1.7466577107683956,
+      3.205636320005778
+    ],
+    "five_fold_macro_f1": 0.7933135654357681,
+    "metadata_path": "data/qmutbench_ml/mutation_aware_v1/best_model_metadata.json",
+    "model_path": "data/qmutbench_ml/mutation_aware_v1/best_model.joblib",
+    "model_version": "qmutbench-mutation-aware-v1",
+    "sha256": "7532be26b6959e7e62277220f0c0b78e648d723a0be35d2b693d68e1c9ebf085",
+    "three_fold_baseline_macro_f1": 0.7682307692979792,
+    "three_fold_delta_pp": 2.06705000395363,
+    "three_fold_macro_f1": 0.7889012693375155,
+    "threshold": 0.5
+  },
+  "final_selection": "qmutbench-mutation-aware-v1; 100-tree Extra Trees; 23 features; threshold 0.5",
+  "final_validation": {
+    "five_fold_baseline_macro_f1": 0.7733866082913055,
+    "five_fold_gain_pp": 1.9926957144462687,
+    "five_fold_macro_f1": 0.7933135654357681,
+    "five_fold_positive_folds": 5,
+    "frozen_test_used": false,
+    "target_85_percent_reached": false,
+    "three_fold_macro_f1_gain_pp": 2.06705000395363,
+    "three_fold_oof_accuracy": 0.7889077816428163,
+    "three_fold_oof_balanced_accuracy": 0.7897744121643089,
+    "three_fold_oof_macro_f1": 0.7889012693375155,
+    "three_fold_positive_folds": 3
+  },
+  "git_checkpoint": {
+    "branch": "qmutbench-master-optimization",
+    "commit": "to be recorded in repository history after final commit",
+    "push": "will push this branch after final commit; no force push"
+  },
+  "overall_status": "complete",
+  "planned_stages": [
+    {
+      "name": "mutation_sequence_diff_pilot",
+      "result": "Target-blind 3,600-row Add/Remove/Replace pilot; diff extractor implemented and revalidated against 20 cached rows.",
+      "scope": "stratified target-blind examples across Add/Remove/Replace; test if source level local mutation context is recoverable from original/mutated QASM",
+      "status": "complete"
+    },
+    {
+      "name": "targeted_tree_hyperparameter_screen",
+      "result": "Matched 60-tree feature screen and 100-tree confirmation. Tree depth, leaf size, feature subsampling, and weights stayed at incumbent values; no broad parameter grid.",
+      "scope": "small ExtraTrees parameter set on exact saved folds with matched 60-tree baseline",
+      "status": "complete"
+    },
+    {
+      "name": "native_histogram_boosting",
+      "result": "100-iteration fold-local native-categorical HistGradientBoosting; improved own baseline but below Extra Trees finalist.",
+      "scope": "HistGradientBoosting with fold-local categorical dtype conversion if installed version supports it",
+      "status": "complete"
+    },
+    {
+      "name": "leakage_safe_ensemble_check",
+      "result": "OOF error overlap and fixed 50/50 blend checked; blend below finalist. No stacking because there was no justified improvement.",
+      "scope": "error complementarity from saved OOF and only fixed/inner-fold ensemble if a plausible gain exists",
+      "status": "complete"
+    },
+    {
+      "name": "finalist_confirmation",
+      "result": "Fixed three-fold 100-tree confirmation plus additional five-fold StratifiedGroupKFold comparison; all paired folds positive; same development data informed selection.",
+      "scope": "only candidates reaching screening bar; exact saved fold assignments; nested threshold only if needed",
+      "status": "complete"
+    },
+    {
+      "name": "final_regression_and_checkpoint",
+      "result": "88 QMutBench tests passed; cache resume, actual-model inference, py_compile and git diff --check passed; commit/push step follows.",
+      "scope": "QMutBench tests, model smoke, reports, diff review, commit/push",
+      "status": "complete"
+    }
+  ],
+  "reports": {
+    "error_analysis": "reports/experiments/qmutbench_exhaustive_error_analysis_20261026.json",
+    "json": "reports/experiments/qmutbench_exhaustive_optimization_20261026.json",
+    "markdown": "reports/experiments/qmutbench_exhaustive_optimization_20261026.md"
+  },
+  "resources_at_start": {
+    "cpu_count": 12,
+    "feature_cache_parse_errors": 0,
+    "feature_cache_rows": 578117,
+    "ram_available_bytes": 1355296768,
+    "ram_total_bytes": 7851741184
+  },
+  "schema": "qmutbench-exhaustive-optimization-campaign-v1",
+  "starting_state": {
+    "branch": "qmutbench-master-optimization",
+    "commit": "13a45194961fe4293b1b300ca4611df7e4a5900a",
+    "working_tree": "clean"
+  },
+  "tests": {
+    "actual_bundle_smoke": "single and batch prediction passed with real development QASM pair",
+    "cache_resume": "578117/578117, zero errors",
+    "feature_inference_focused": "15 passed in 2.27s",
+    "git_diff_check": "passed",
+    "python_compile": "passed for all changed Python files",
+    "qmutbench_suite": "88 passed in 17.15s"
+  },
+  "verified_baseline": {
+    "all_rows": 723079,
+    "baseline_metric_source": "saved three-fold grouped OOF; source manifest verified",
+    "baseline_oof_sha256": "7d203ac4cd6878a1caaf19eb768bb9a1e4f322b42fc56475cdc603591cc250ce",
+    "development_origins": 305,
+    "development_rows": 578117,
+    "frozen_test_used": false,
+    "historical_frozen_rows": 144962,
+    "selected_model_sha256": "641a18b67448f910ea0126c914e7e5f17bc946a3fa940b0486c045b845f8ee45",
+    "selected_model_version": "qmutbench-position-fraction-v1",
+    "selected_threshold": 0.5,
+    "source_bytes": 59913911,
+    "source_csv": "data/qmutbench_ingestion/raw/official_all_data_20261015.csv",
+    "source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778"
+  }
+}

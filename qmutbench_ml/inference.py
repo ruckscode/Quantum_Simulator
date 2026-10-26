@@ -35,6 +35,15 @@ class QMutBenchOutcomeModel:
         if not self.input_features or len(set(self.input_features)) != len(self.input_features):
             raise ValueError("Metadata must define a unique, non-empty input_feature_schema")
         self.feature_derivations = self.metadata.get("feature_derivations", {})
+        self.qasm_feature_derivation = self.metadata.get("qasm_feature_derivation")
+        if self.qasm_feature_derivation:
+            qasm_inputs = {self.qasm_feature_derivation.get("original_column"),
+                           self.qasm_feature_derivation.get("mutant_column")}
+            qasm_outputs = set(self.qasm_feature_derivation.get("output_features", ()))
+            if None in qasm_inputs or not qasm_outputs or not qasm_inputs <= set(self.input_features):
+                raise ValueError("Invalid QASM feature derivation metadata")
+            if not qasm_outputs <= set(self.features):
+                raise ValueError("QASM derived features must be in feature_schema")
         prohibited = {"Killed", "Origin_program", "Unnamed: 0", "record_id", "row_index"}
         if prohibited.intersection(self.features) or prohibited.intersection(self.input_features):
             raise ValueError("Feature schema contains a prohibited outcome, group, or row identifier")
@@ -76,7 +85,8 @@ class QMutBenchOutcomeModel:
         """Read accepted categories from fitted OneHotEncoder objects when available."""
         result: dict[str, set[str]] = {}
         try:
-            transformers = self.model.named_steps["preprocess"].transformers_
+            pipeline = self.model.named_steps.get("preprocess", self.model.named_steps.get("prep"))
+            transformers = pipeline.transformers_
         except (AttributeError, KeyError, TypeError):
             return result
         for name, transformer, columns in transformers:
@@ -111,6 +121,35 @@ class QMutBenchOutcomeModel:
         if missing or extra:
             raise ValueError(f"Input schema mismatch; missing={missing}; unexpected={extra}")
         frame = frame.loc[:, list(self.input_features)].copy()
+        if self.qasm_feature_derivation:
+            from qmutbench_ml.qasm_mutation_diff import mutation_diff_features, operations_from_qasm_text
+
+            original_column = self.qasm_feature_derivation["original_column"]
+            mutant_column = self.qasm_feature_derivation["mutant_column"]
+            operation_column = self.qasm_feature_derivation.get("operation_column", "operation")
+            gate_column = self.qasm_feature_derivation.get("gate_column", "gate")
+            if operation_column not in frame or gate_column not in frame:
+                raise ValueError("QASM feature derivation requires operation and gate inputs")
+            parsed_cache: dict[str, list[tuple[str, tuple[int, ...]]]] = {}
+            derived = []
+            for original_source, mutant_source, operation, gate in zip(
+                    frame[original_column], frame[mutant_column], frame[operation_column], frame[gate_column]):
+                for column, source in ((original_column, original_source), (mutant_column, mutant_source)):
+                    if not isinstance(source, str) or not source.strip():
+                        raise ValueError(f"QASM input {column!r} must be a non-empty OpenQASM 2.0 string")
+                if original_source not in parsed_cache:
+                    parsed_cache[original_source] = operations_from_qasm_text(original_source)
+                if mutant_source not in parsed_cache:
+                    parsed_cache[mutant_source] = operations_from_qasm_text(mutant_source)
+                derived.append(mutation_diff_features(parsed_cache[original_source], parsed_cache[mutant_source],
+                                                     str(operation), str(gate)))
+            qasm_features = pd.DataFrame(derived, index=frame.index)
+            expected = set(self.qasm_feature_derivation["output_features"])
+            if not expected <= set(qasm_features.columns):
+                raise ValueError("QASM extractor did not produce the metadata feature schema")
+            for name in expected:
+                frame[name] = qasm_features[name]
+            frame = frame.drop(columns=[original_column, mutant_column])
         for target, derivation in self.feature_derivations.items():
             source = derivation["source_column"]
             mapping = {str(key): float(value) for key, value in derivation["mapping"].items()}

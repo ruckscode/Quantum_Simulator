@@ -1,0 +1,3144 @@
+{
+  "campaign_date": "2026-10-26",
+  "candidate": {
+    "artifact": "data/qmutbench_ml/mutation_aware_v1/best_model.joblib",
+    "features": [
+      "algorithm",
+      "operation",
+      "gate",
+      "dominant_state",
+      "qubits",
+      "gates",
+      "Position_int",
+      "position_fraction",
+      "qasm_diff_orig_span",
+      "qasm_diff_mut_span",
+      "qasm_diff_total_span",
+      "qasm_diff_expected_gate_match",
+      "qasm_diff_qubit_set_equal",
+      "qasm_diff_qubits_touched",
+      "qasm_diff_removed_arity",
+      "qasm_diff_added_arity",
+      "qasm_diff_exact_single_edit",
+      "qasm_diff_is_local",
+      "qasm_diff_removed_gate",
+      "qasm_diff_added_gate",
+      "qasm_diff_alignment_class",
+      "qasm_diff_local_prev_gate",
+      "qasm_diff_local_next_gate"
+    ],
+    "five_fold_grouped_confirmation": {
+      "baseline_fold_metrics": [
+        {
+          "accuracy": 0.7622932994667757,
+          "average_precision": 0.8766285098046118,
+          "balanced_accuracy": 0.7631540432209126,
+          "brier_score": 0.15116503944679546,
+          "confusion_matrix_labels_0_1": [
+            [
+              43464,
+              11841
+            ],
+            [
+              15486,
+              44170
+            ]
+          ],
+          "macro_f1": 0.7622843341396697,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7637441967026032,
+              "precision": 0.7885950973915838,
+              "recall": 0.7404116937106074,
+              "support": 59656
+            },
+            "survivor_0": {
+              "f1": 0.7608244715767363,
+              "precision": 0.7373027989821883,
+              "recall": 0.7858963927312178,
+              "support": 55305
+            }
+          },
+          "roc_auc": 0.8682544592492724
+        },
+        {
+          "accuracy": 0.7638717894289959,
+          "average_precision": 0.873350792531346,
+          "balanced_accuracy": 0.7653734605931457,
+          "brier_score": 0.15979486179063124,
+          "confusion_matrix_labels_0_1": [
+            [
+              45993,
+              10864
+            ],
+            [
+              16946,
+              43972
+            ]
+          ],
+          "macro_f1": 0.7638022386212132,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7597491231404531,
+              "precision": 0.8018819753446641,
+              "recall": 0.7218227781608063,
+              "support": 60918
+            },
+            "survivor_0": {
+              "f1": 0.7678553541019734,
+              "precision": 0.7307551756462607,
+              "recall": 0.808924143025485,
+              "support": 56857
+            }
+          },
+          "roc_auc": 0.8531659726232497
+        },
+        {
+          "accuracy": 0.7698646773074254,
+          "average_precision": 0.8784660185916355,
+          "balanced_accuracy": 0.7722022624255898,
+          "brier_score": 0.15640386826184374,
+          "confusion_matrix_labels_0_1": [
+            [
+              46305,
+              9176
+            ],
+            [
+              17354,
+              42445
+            ]
+          ],
+          "macro_f1": 0.7696063697328008,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7618919404056722,
+              "precision": 0.8222428856473141,
+              "recall": 0.7097944781685313,
+              "support": 59799
+            },
+            "survivor_0": {
+              "f1": 0.7773207990599295,
+              "precision": 0.7273912565387455,
+              "recall": 0.8346100466826482,
+              "support": 55481
+            }
+          },
+          "roc_auc": 0.8606051924904011
+        },
+        {
+          "accuracy": 0.7953109498198527,
+          "average_precision": 0.8953264987450276,
+          "balanced_accuracy": 0.7958143802574289,
+          "brier_score": 0.14194921836998942,
+          "confusion_matrix_labels_0_1": [
+            [
+              44763,
+              10547
+            ],
+            [
+              12973,
+              46623
+            ]
+          ],
+          "macro_f1": 0.7952573023930112,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7985715019783156,
+              "precision": 0.8155151303131013,
+              "recall": 0.7823176052084032,
+              "support": 59596
+            },
+            "survivor_0": {
+              "f1": 0.7919431028077066,
+              "precision": 0.7753048358043508,
+              "recall": 0.8093111553064545,
+              "support": 55310
+            }
+          },
+          "roc_auc": 0.8873249194792213
+        },
+        {
+          "accuracy": 0.7758930509136681,
+          "average_precision": 0.8848459467737365,
+          "balanced_accuracy": 0.7771615045124622,
+          "brier_score": 0.1533286323074388,
+          "confusion_matrix_labels_0_1": [
+            [
+              44997,
+              10463
+            ],
+            [
+              15353,
+              44382
+            ]
+          ],
+          "macro_f1": 0.7758866631230039,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.774690172805027,
+              "precision": 0.8092260005469961,
+              "recall": 0.7429815016322089,
+              "support": 59735
+            },
+            "survivor_0": {
+              "f1": 0.7770831534409809,
+              "precision": 0.7456006628003314,
+              "recall": 0.8113415073927155,
+              "support": 55460
+            }
+          },
+          "roc_auc": 0.8734058179969103
+        }
+      ],
+      "baseline_pooled_metrics": {
+        "accuracy": 0.7733970805217629,
+        "average_precision": 0.8816076573348991,
+        "balanced_accuracy": 0.7746981709473926,
+        "brier_score": 0.1525671629880066,
+        "confusion_matrix_labels_0_1": [
+          [
+            225522,
+            52891
+          ],
+          [
+            78112,
+            221592
+          ]
+        ],
+        "macro_f1": 0.7733866082913055,
+        "per_class": {
+          "detected_1": {
+            "f1": 0.7718461058853648,
+            "precision": 0.807306827745252,
+            "recall": 0.7393695112511011,
+            "support": 299704
+          },
+          "survivor_0": {
+            "f1": 0.7749271106972461,
+            "precision": 0.7427429075795201,
+            "recall": 0.810026830643684,
+            "support": 278413
+          }
+        },
+        "roc_auc": 0.8683832235301532
+      },
+      "candidate_fold_metrics": [
+        {
+          "accuracy": 0.7780899609432764,
+          "average_precision": 0.884867491759338,
+          "balanced_accuracy": 0.778028462997999,
+          "brier_score": 0.14508832500158245,
+          "confusion_matrix_labels_0_1": [
+            [
+              42939,
+              12366
+            ],
+            [
+              13145,
+              46511
+            ]
+          ],
+          "macro_f1": 0.7778755147857253,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7847772350315946,
+              "precision": 0.7899689182533077,
+              "recall": 0.7796533458495374,
+              "support": 59656
+            },
+            "survivor_0": {
+              "f1": 0.7709737945398558,
+              "precision": 0.7656194280008558,
+              "recall": 0.7764035801464605,
+              "support": 55305
+            }
+          },
+          "roc_auc": 0.8785405251810648
+        },
+        {
+          "accuracy": 0.7830694120144343,
+          "average_precision": 0.8894685795299013,
+          "balanced_accuracy": 0.7847390288812394,
+          "brier_score": 0.1499631040462288,
+          "confusion_matrix_labels_0_1": [
+            [
+              47371,
+              9486
+            ],
+            [
+              16063,
+              44855
+            ]
+          ],
+          "macro_f1": 0.7829703666659407,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7783340129621115,
+              "precision": 0.825435674720745,
+              "recall": 0.7363176729373913,
+              "support": 60918
+            },
+            "survivor_0": {
+              "f1": 0.78760672036977,
+              "precision": 0.7467761768136961,
+              "recall": 0.8331603848250875,
+              "support": 56857
+            }
+          },
+          "roc_auc": 0.873043409043411
+        },
+        {
+          "accuracy": 0.7847675225537821,
+          "average_precision": 0.8851666803802779,
+          "balanced_accuracy": 0.7861115258577377,
+          "brier_score": 0.15019210315481685,
+          "confusion_matrix_labels_0_1": [
+            [
+              45605,
+              9876
+            ],
+            [
+              14936,
+              44863
+            ]
+          ],
+          "macro_f1": 0.784758605411995,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.7833732036529362,
+              "precision": 0.8195801896271397,
+              "recall": 0.7502299369554675,
+              "support": 59799
+            },
+            "survivor_0": {
+              "f1": 0.7861440071710538,
+              "precision": 0.7532911580581755,
+              "recall": 0.8219931147600079,
+              "support": 55481
+            }
+          },
+          "roc_auc": 0.8710324435244604
+        },
+        {
+          "accuracy": 0.8130297808643587,
+          "average_precision": 0.9040882005726347,
+          "balanced_accuracy": 0.8126529143032621,
+          "brier_score": 0.13507748660875,
+          "confusion_matrix_labels_0_1": [
+            [
+              44389,
+              10921
+            ],
+            [
+              10563,
+              49033
+            ]
+          ],
+          "macro_f1": 0.8127238795006951,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.820292764533668,
+              "precision": 0.8178436801547854,
+              "recall": 0.8227565608430096,
+              "support": 59596
+            },
+            "survivor_0": {
+              "f1": 0.8051549944677223,
+              "precision": 0.8077776968991119,
+              "recall": 0.8025492677635148,
+              "support": 55310
+            }
+          },
+          "roc_auc": 0.89847555548164
+        },
+        {
+          "accuracy": 0.8079430530839012,
+          "average_precision": 0.9045196658280166,
+          "balanced_accuracy": 0.8090434353482902,
+          "brier_score": 0.1399212620966134,
+          "confusion_matrix_labels_0_1": [
+            [
+              46514,
+              8946
+            ],
+            [
+              13178,
+              46557
+            ]
+          ],
+          "macro_f1": 0.8079430263230617,
+          "per_class": {
+            "detected_1": {
+              "f1": 0.808014717367535,
+              "precision": 0.8388195232690124,
+              "recall": 0.7793923160626098,
+              "support": 59735
+            },
+            "survivor_0": {
+              "f1": 0.8078713352785883,
+              "precision": 0.7792333981102996,
+              "recall": 0.8386945546339705,
+              "support": 55460
+            }
+          },
+          "roc_auc": 0.8970138578758913
+        }
+      ],
+      "candidate_pooled_metrics": {
+        "accuracy": 0.7933290320125511,
+        "average_precision": 0.8933503915191537,
+        "balanced_accuracy": 0.7940874828150084,
+        "brier_score": 0.14407981883377102,
+        "confusion_matrix_labels_0_1": [
+          [
+            226818,
+            51595
+          ],
+          [
+            67885,
+            231819
+          ]
+        ],
+        "macro_f1": 0.7933135654357681,
+        "per_class": {
+          "detected_1": {
+            "f1": 0.7951015060416589,
+            "precision": 0.817951830184818,
+            "recall": 0.7734931799375384,
+            "support": 299704
+          },
+          "survivor_0": {
+            "f1": 0.7915256248298773,
+            "precision": 0.7696494436771937,
+            "recall": 0.8146817856924784,
+            "support": 278413
+          }
+        },
+        "roc_auc": 0.8832808027703442
+      },
+      "fold_contract": {
+        "1": {
+          "train_origins": 245,
+          "train_rows": 463156,
+          "validation_origins": 60,
+          "validation_record_id_sha256": "c23a21bbd90a219c68af3f4b34fbd9fc2c8fc693ffaacf69f460e648173a437c",
+          "validation_rows": 114961
+        },
+        "2": {
+          "train_origins": 246,
+          "train_rows": 460342,
+          "validation_origins": 59,
+          "validation_record_id_sha256": "c28143678bbe2de49b13a8d85703b2fb500e1e8c9e5a7cdaf57c87e3ce03ab2a",
+          "validation_rows": 117775
+        },
+        "3": {
+          "train_origins": 247,
+          "train_rows": 462837,
+          "validation_origins": 58,
+          "validation_record_id_sha256": "08072342aa0abddb418015059d94557cc8a82a40475915e825dc3f7ecf217999",
+          "validation_rows": 115280
+        },
+        "4": {
+          "train_origins": 236,
+          "train_rows": 463211,
+          "validation_origins": 69,
+          "validation_record_id_sha256": "dcd9a8023a089a91e1d4426733f2d9a3e0c37d663d7c910a99c7c75dbe1cfebd",
+          "validation_rows": 114906
+        },
+        "5": {
+          "train_origins": 246,
+          "train_rows": 462922,
+          "validation_origins": 59,
+          "validation_record_id_sha256": "ffaeb933e1f98bbc2b53b7f8a16181dc31a6e29e25ff5be455187983a085f2db",
+          "validation_rows": 115195
+        }
+      },
+      "fold_macro_f1_deltas": [
+        0.01559118064605558,
+        0.01916812804472745,
+        0.015152235679194215,
+        0.017466577107683956,
+        0.03205636320005778
+      ],
+      "interpretation": "additional grouped stability confirmation on the development dataset; not an independent external test because feature selection used development OOF evidence",
+      "model_seed": "20261025+fold",
+      "origins": 305,
+      "pooled_macro_f1_delta": 0.019926957144462687,
+      "rows": 578117,
+      "schema": "qmutbench-five-fold-grouped-confirmation-v1",
+      "source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+      "splitter": "StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=20261026)",
+      "status": "complete",
+      "threshold": 0.5,
+      "trees": 100
+    },
+    "full_development_fit_seconds": 466.2467884999933,
+    "metadata": "data/qmutbench_ml/mutation_aware_v1/best_model_metadata.json",
+    "model": "100-tree ExtraTreesClassifier; depth 22; min leaf 15; sqrt features; balanced_subsample; threshold 0.5",
+    "model_sha256": "7532be26b6959e7e62277220f0c0b78e648d723a0be35d2b693d68e1c9ebf085",
+    "three_fold_macro_f1_delta": 0.0206705000395363,
+    "three_fold_macro_f1_deltas": [
+      0.02205116017065234,
+      0.027826254017871976,
+      0.012130043004878854
+    ],
+    "three_fold_oof_metrics": {
+      "accuracy": 0.7889077816428163,
+      "average_precision": 0.889129869674356,
+      "balanced_accuracy": 0.7897744121643089,
+      "brier_score": 0.14673752591355077,
+      "confusion_matrix_labels_0_1": [
+        [
+          226435,
+          51978
+        ],
+        [
+          70058,
+          229646
+        ]
+      ],
+      "macro_f1": 0.7889012693375155,
+      "per_class": {
+        "detected_1": {
+          "f1": 0.7900737621446068,
+          "precision": 0.8154347640826066,
+          "recall": 0.7662426927902197,
+          "support": 299704
+        },
+        "survivor_0": {
+          "f1": 0.7877287765304241,
+          "precision": 0.7637111162826778,
+          "recall": 0.813306131538398,
+          "support": 278413
+        }
+      },
+      "roc_auc": 0.8788483711694793
+    }
+  },
+  "ensemble_and_calibration": {
+    "candidate_alone_macro_f1": 0.7889012693375155,
+    "decision": "No ensemble selected; 50/50 blend was below the standalone candidate. No calibration or new threshold tuning was added; probabilities are uncalibrated.",
+    "equal_incumbent_candidate_blend_macro_f1": 0.785275240432039
+  },
+  "error_analysis": {
+    "baseline_candidate_per_origin_accuracy_delta": {
+      "improved": 246,
+      "mean": 0.030980521394718002,
+      "median": 0.02371883656509699,
+      "ties": 1,
+      "worsened": 58
+    },
+    "baseline_false_positive_and_false_negative_counts": {
+      "false_negative": 80664,
+      "false_positive": 53311
+    },
+    "candidate_false_positive_and_false_negative_counts": {
+      "false_negative": 70058,
+      "false_positive": 51978
+    },
+    "candidate_overall": {
+      "accuracy": 0.7889077816428163,
+      "accuracy_wilson_95": [
+        0.7878539079442873,
+        0.7899578157699129
+      ],
+      "false_negative": 70058,
+      "false_positive": 51978,
+      "high_confidence_errors_at_0_1_0_9": 1796,
+      "macro_f1": 0.7889012693375155,
+      "n": 578117
+    },
+    "origins": 305,
+    "rows": 578117,
+    "schema": "qmutbench-error-analysis-v1",
+    "source_features_read": [
+      "algorithm",
+      "operation",
+      "gate",
+      "dominant_state",
+      "qubits",
+      "gates",
+      "position"
+    ],
+    "source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+    "strongest_origins_min_n_100": [
+      {
+        "accuracy": 0.9990990990990991,
+        "accuracy_wilson_95": [
+          0.9949144929162598,
+          0.9998409552551858
+        ],
+        "false_negative": 1,
+        "false_positive": 0,
+        "high_confidence_errors_at_0_1_0_9": 0,
+        "macro_f1": 0.9988777120694483,
+        "n": 1110,
+        "origin_program": "graphstate_indep_qiskit_15"
+      },
+      {
+        "accuracy": 0.999034749034749,
+        "accuracy_wilson_95": [
+          0.9945526277311922,
+          0.9998295935609738
+        ],
+        "false_negative": 1,
+        "false_positive": 0,
+        "high_confidence_errors_at_0_1_0_9": 0,
+        "macro_f1": 0.9987859398712111,
+        "n": 1036,
+        "origin_program": "graphstate_indep_qiskit_14"
+      },
+      {
+        "accuracy": 0.998960498960499,
+        "accuracy_wilson_95": [
+          0.9941353195878582,
+          0.9998164836892014
+        ],
+        "false_negative": 1,
+        "false_positive": 0,
+        "high_confidence_errors_at_0_1_0_9": 0,
+        "macro_f1": 0.9986963974768108,
+        "n": 962,
+        "origin_program": "graphstate_indep_qiskit_13"
+      },
+      {
+        "accuracy": 0.9987714987714987,
+        "accuracy_wilson_95": [
+          0.9955315886022132,
+          0.9996630430336023
+        ],
+        "false_negative": 1,
+        "false_positive": 1,
+        "high_confidence_errors_at_0_1_0_9": 1,
+        "macro_f1": 0.9984727840359027,
+        "n": 1628,
+        "origin_program": "graphstate_indep_qiskit_22"
+      },
+      {
+        "accuracy": 0.9987714987714987,
+        "accuracy_wilson_95": [
+          0.9930741845513359,
+          0.9997831120205184
+        ],
+        "false_negative": 1,
+        "false_positive": 0,
+        "high_confidence_errors_at_0_1_0_9": 0,
+        "macro_f1": 0.9984707153257244,
+        "n": 814,
+        "origin_program": "graphstate_indep_qiskit_11"
+      },
+      {
+        "accuracy": 0.9986486486486487,
+        "accuracy_wilson_95": [
+          0.9950859986678493,
+          0.9996293402200751
+        ],
+        "false_negative": 1,
+        "false_positive": 1,
+        "high_confidence_errors_at_0_1_0_9": 0,
+        "macro_f1": 0.9983256971548164,
+        "n": 1480,
+        "origin_program": "graphstate_indep_qiskit_20"
+      },
+      {
+        "accuracy": 0.9986486486486487,
+        "accuracy_wilson_95": [
+          0.992385295507505,
+          0.9997614195995823
+        ],
+        "false_negative": 1,
+        "false_positive": 0,
+        "high_confidence_errors_at_0_1_0_9": 0,
+        "macro_f1": 0.998295052657529,
+        "n": 740,
+        "origin_program": "graphstate_indep_qiskit_10"
+      },
+      {
+        "accuracy": 0.9984101748807631,
+        "accuracy_wilson_95": [
+          0.9942216774223595,
+          0.9995639134156665
+        ],
+        "false_negative": 1,
+        "false_positive": 1,
+        "high_confidence_errors_at_0_1_0_9": 0,
+        "macro_f1": 0.9980102303893812,
+        "n": 1258,
+        "origin_program": "graphstate_indep_qiskit_17"
+      },
+      {
+        "accuracy": 0.9983108108108109,
+        "accuracy_wilson_95": [
+          0.9904942900611085,
+          0.999701762044015
+        ],
+        "false_negative": 1,
+        "false_positive": 0,
+        "high_confidence_errors_at_0_1_0_9": 0,
+        "macro_f1": 0.9978875174404704,
+        "n": 592,
+        "origin_program": "graphstate_indep_qiskit_8"
+      },
+      {
+        "accuracy": 0.9980694980694981,
+        "accuracy_wilson_95": [
+          0.9891466520886399,
+          0.999659146452527
+        ],
+        "false_negative": 1,
+        "false_positive": 0,
+        "high_confidence_errors_at_0_1_0_9": 0,
+        "macro_f1": 0.9976005521509336,
+        "n": 518,
+        "origin_program": "graphstate_indep_qiskit_7"
+      }
+    ],
+    "subgroups_min_n_5000": {
+      "algorithm": [
+        {
+          "accuracy": 0.4938088162456662,
+          "accuracy_wilson_95": [
+            0.4840599949947156,
+            0.5035623477500206
+          ],
+          "false_negative": 3210,
+          "false_positive": 1900,
+          "high_confidence_errors_at_0_1_0_9": 20,
+          "macro_f1": 0.483130492335629,
+          "n": 10095,
+          "value": "grover-noancilla"
+        },
+        {
+          "accuracy": 0.6959683357879234,
+          "accuracy_wilson_95": [
+            0.6898176735561079,
+            0.7020497142496269
+          ],
+          "false_negative": 4947,
+          "false_positive": 1659,
+          "high_confidence_errors_at_0_1_0_9": 10,
+          "macro_f1": 0.6518858748702714,
+          "n": 21728,
+          "value": "vqe"
+        },
+        {
+          "accuracy": 0.6621876968297291,
+          "accuracy_wilson_95": [
+            0.6543899948690718,
+            0.6698982138521387
+          ],
+          "false_negative": 2570,
+          "false_positive": 2257,
+          "high_confidence_errors_at_0_1_0_9": 12,
+          "macro_f1": 0.6621474276526977,
+          "n": 14289,
+          "value": "ae"
+        },
+        {
+          "accuracy": 0.7408159497877054,
+          "accuracy_wilson_95": [
+            0.7289791152716621,
+            0.75231146514301
+          ],
+          "false_negative": 882,
+          "false_positive": 522,
+          "high_confidence_errors_at_0_1_0_9": 42,
+          "macro_f1": 0.6747771943940426,
+          "n": 5417,
+          "value": "qwalk-noancilla"
+        },
+        {
+          "accuracy": 0.683955151460862,
+          "accuracy_wilson_95": [
+            0.6804236672584033,
+            0.6874655359012561
+          ],
+          "false_negative": 10226,
+          "false_positive": 10943,
+          "high_confidence_errors_at_0_1_0_9": 83,
+          "macro_f1": 0.6797714504150362,
+          "n": 66981,
+          "value": "portfoliovqe"
+        },
+        {
+          "accuracy": 0.6822270237676499,
+          "accuracy_wilson_95": [
+            0.6757233172539852,
+            0.6886603912805254
+          ],
+          "false_negative": 4297,
+          "false_positive": 2027,
+          "high_confidence_errors_at_0_1_0_9": 21,
+          "macro_f1": 0.6801622290612539,
+          "n": 19901,
+          "value": "pricingcall"
+        },
+        {
+          "accuracy": 0.6886618419185468,
+          "accuracy_wilson_95": [
+            0.6823862006879741,
+            0.6948689308898383
+          ],
+          "false_negative": 4522,
+          "false_positive": 2060,
+          "high_confidence_errors_at_0_1_0_9": 212,
+          "macro_f1": 0.6880542789885974,
+          "n": 21141,
+          "value": "pricingput"
+        },
+        {
+          "accuracy": 0.7183672749091166,
+          "accuracy_wilson_95": [
+            0.7146490911835988,
+            0.7220558527737528
+          ],
+          "false_negative": 10964,
+          "false_positive": 4995,
+          "high_confidence_errors_at_0_1_0_9": 333,
+          "macro_f1": 0.6983920626141642,
+          "n": 56666,
+          "value": "realamprandom"
+        },
+        {
+          "accuracy": 0.8018427199584739,
+          "accuracy_wilson_95": [
+            0.7927932426349229,
+            0.8105913975890733
+          ],
+          "false_negative": 142,
+          "false_positive": 1385,
+          "high_confidence_errors_at_0_1_0_9": 49,
+          "macro_f1": 0.6995088309131796,
+          "n": 7706,
+          "value": "portfolioqaoa"
+        },
+        {
+          "accuracy": 0.7344253724840987,
+          "accuracy_wilson_95": [
+            0.7286730969672192,
+            0.7400991938913432
+          ],
+          "false_negative": 4143,
+          "false_positive": 1953,
+          "high_confidence_errors_at_0_1_0_9": 15,
+          "macro_f1": 0.7318627412467378,
+          "n": 22954,
+          "value": "qpeinexact"
+        },
+        {
+          "accuracy": 0.7534436352121596,
+          "accuracy_wilson_95": [
+            0.750362328283363,
+            0.7564992513102068
+          ],
+          "false_negative": 12386,
+          "false_positive": 6301,
+          "high_confidence_errors_at_0_1_0_9": 250,
+          "macro_f1": 0.7320608997629039,
+          "n": 75792,
+          "value": "twolocalrandom"
+        },
+        {
+          "accuracy": 0.7638067061143984,
+          "accuracy_wilson_95": [
+            0.7575895250857814,
+            0.7699128607806691
+          ],
+          "false_negative": 1301,
+          "false_positive": 3010,
+          "high_confidence_errors_at_0_1_0_9": 19,
+          "macro_f1": 0.7340746025632358,
+          "n": 18252,
+          "value": "qaoa"
+        },
+        {
+          "accuracy": 0.8173623831099971,
+          "accuracy_wilson_95": [
+            0.8120461396351659,
+            0.8225611144269567
+          ],
+          "false_negative": 1986,
+          "false_positive": 1803,
+          "high_confidence_errors_at_0_1_0_9": 25,
+          "macro_f1": 0.7518592101605698,
+          "n": 20746,
+          "value": "qpeexact"
+        },
+        {
+          "accuracy": 0.8317532612193371,
+          "accuracy_wilson_95": [
+            0.8280738676054201,
+            0.8353695670266627
+          ],
+          "false_negative": 3934,
+          "false_positive": 2863,
+          "high_confidence_errors_at_0_1_0_9": 530,
+          "macro_f1": 0.7825440442287188,
+          "n": 40399,
+          "value": "su2random"
+        },
+        {
+          "accuracy": 0.8712464895225751,
+          "accuracy_wilson_95": [
+            0.864269619373236,
+            0.8779153905712227
+          ],
+          "false_negative": 606,
+          "false_positive": 586,
+          "high_confidence_errors_at_0_1_0_9": 11,
+          "macro_f1": 0.8607660831902875,
+          "n": 9258,
+          "value": "qwalk-v-chain"
+        },
+        {
+          "accuracy": 0.9147312819652889,
+          "accuracy_wilson_95": [
+            0.9111199671525819,
+            0.9182090363562686
+          ],
+          "false_negative": 226,
+          "false_positive": 1808,
+          "high_confidence_errors_at_0_1_0_9": 27,
+          "macro_f1": 0.8985931293682683,
+          "n": 23854,
+          "value": "dj"
+        },
+        {
+          "accuracy": 0.938692930218354,
+          "accuracy_wilson_95": [
+            0.9357230434224335,
+            0.9415341686975054
+          ],
+          "false_negative": 102,
+          "false_positive": 1504,
+          "high_confidence_errors_at_0_1_0_9": 69,
+          "macro_f1": 0.920558247499302,
+          "n": 26196,
+          "value": "graphstate"
+        },
+        {
+          "accuracy": 0.9401713136963552,
+          "accuracy_wilson_95": [
+            0.9370237629802034,
+            0.943171090767277
+          ],
+          "false_negative": 166,
+          "false_positive": 1203,
+          "high_confidence_errors_at_0_1_0_9": 9,
+          "macro_f1": 0.9283662722807964,
+          "n": 22882,
+          "value": "qftentangled"
+        },
+        {
+          "accuracy": 0.9670927621350838,
+          "accuracy_wilson_95": [
+            0.9651643891833153,
+            0.9689178250668642
+          ],
+          "false_negative": 130,
+          "false_positive": 1013,
+          "high_confidence_errors_at_0_1_0_9": 31,
+          "macro_f1": 0.9575342326626862,
+          "n": 34734,
+          "value": "wstate"
+        },
+        {
+          "accuracy": 0.9733835826168885,
+          "accuracy_wilson_95": [
+            0.9708535182086274,
+            0.9756995215889416
+          ],
+          "false_negative": 154,
+          "false_positive": 298,
+          "high_confidence_errors_at_0_1_0_9": 7,
+          "macro_f1": 0.9658939255631956,
+          "n": 16982,
+          "value": "qft"
+        },
+        {
+          "accuracy": 0.9941272876263316,
+          "accuracy_wilson_95": [
+            0.9920993734901603,
+            0.9956369706863232
+          ],
+          "false_negative": 19,
+          "false_positive": 24,
+          "high_confidence_errors_at_0_1_0_9": 5,
+          "macro_f1": 0.9873519265789392,
+          "n": 7322,
+          "value": "qgan"
+        },
+        {
+          "accuracy": 0.9892730943967694,
+          "accuracy_wilson_95": [
+            0.9875464871859381,
+            0.9907625567298175
+          ],
+          "false_negative": 0,
+          "false_positive": 170,
+          "high_confidence_errors_at_0_1_0_9": 7,
+          "macro_f1": 0.98905082464665,
+          "n": 15848,
+          "value": "ghz"
+        }
+      ],
+      "dominant_state": [
+        {
+          "accuracy": 0.7290267164552576,
+          "accuracy_wilson_95": [
+            0.7276733385722908,
+            0.730375860603398
+          ],
+          "false_negative": 67773,
+          "false_positive": 44850,
+          "high_confidence_errors_at_0_1_0_9": 1588,
+          "macro_f1": 0.7251710156574331,
+          "n": 415624,
+          "value": "yes"
+        },
+        {
+          "accuracy": 0.9420713507658791,
+          "accuracy_wilson_95": [
+            0.9409249984377352,
+            0.9431968010102116
+          ],
+          "false_negative": 2285,
+          "false_positive": 7128,
+          "high_confidence_errors_at_0_1_0_9": 208,
+          "macro_f1": 0.9353367201303242,
+          "n": 162493,
+          "value": "no"
+        }
+      ],
+      "gate": [
+        {
+          "accuracy": 0.7333749432591921,
+          "accuracy_wilson_95": [
+            0.7287333040595351,
+            0.7379657179853162
+          ],
+          "false_negative": 1321,
+          "false_positive": 8077,
+          "high_confidence_errors_at_0_1_0_9": 45,
+          "macro_f1": 0.5856586245485589,
+          "n": 35248,
+          "value": "rxx"
+        },
+        {
+          "accuracy": 0.8031086439333862,
+          "accuracy_wilson_95": [
+            0.7986821830771553,
+            0.8074612408537765
+          ],
+          "false_negative": 921,
+          "false_positive": 5286,
+          "high_confidence_errors_at_0_1_0_9": 33,
+          "macro_f1": 0.6425027298638541,
+          "n": 31525,
+          "value": "h"
+        },
+        {
+          "accuracy": 0.6835052245894966,
+          "accuracy_wilson_95": [
+            0.6781718302182722,
+            0.6887907928102044
+          ],
+          "false_negative": 6001,
+          "false_positive": 3328,
+          "high_confidence_errors_at_0_1_0_9": 6,
+          "macro_f1": 0.6829647795028695,
+          "n": 29476,
+          "value": "sx"
+        },
+        {
+          "accuracy": 0.7746844840386043,
+          "accuracy_wilson_95": [
+            0.770097668823081,
+            0.7792060244128776
+          ],
+          "false_negative": 2016,
+          "false_positive": 5268,
+          "high_confidence_errors_at_0_1_0_9": 49,
+          "macro_f1": 0.6875212409965603,
+          "n": 32328,
+          "value": "ry"
+        },
+        {
+          "accuracy": 0.7319795589026358,
+          "accuracy_wilson_95": [
+            0.7269161083501887,
+            0.7369830943402007
+          ],
+          "false_negative": 2481,
+          "false_positive": 5491,
+          "high_confidence_errors_at_0_1_0_9": 13,
+          "macro_f1": 0.6915373093984108,
+          "n": 29744,
+          "value": "rx"
+        },
+        {
+          "accuracy": 0.7202101497876146,
+          "accuracy_wilson_95": [
+            0.7155355845994099,
+            0.7248374386230915
+          ],
+          "false_negative": 7237,
+          "false_positive": 2775,
+          "high_confidence_errors_at_0_1_0_9": 36,
+          "macro_f1": 0.7080188676046885,
+          "n": 35784,
+          "value": "rzz"
+        },
+        {
+          "accuracy": 0.7563866597953324,
+          "accuracy_wilson_95": [
+            0.7512459942499324,
+            0.7614548232623787
+          ],
+          "false_negative": 5456,
+          "false_positive": 1162,
+          "high_confidence_errors_at_0_1_0_9": 2,
+          "macro_f1": 0.7199747600555824,
+          "n": 27166,
+          "value": "p"
+        },
+        {
+          "accuracy": 0.7647714604236343,
+          "accuracy_wilson_95": [
+            0.759284555475335,
+            0.7701711534239314
+          ],
+          "false_negative": 4533,
+          "false_positive": 953,
+          "high_confidence_errors_at_0_1_0_9": 64,
+          "macro_f1": 0.7237619320983082,
+          "n": 23322,
+          "value": "cswap"
+        },
+        {
+          "accuracy": 0.7318067887335911,
+          "accuracy_wilson_95": [
+            0.7261097194323881,
+            0.7374282079518747
+          ],
+          "false_negative": 4718,
+          "false_positive": 1595,
+          "high_confidence_errors_at_0_1_0_9": 23,
+          "macro_f1": 0.7248534133126021,
+          "n": 23539,
+          "value": "swap"
+        },
+        {
+          "accuracy": 0.7643800273182577,
+          "accuracy_wilson_95": [
+            0.7592181044076313,
+            0.769464890409758
+          ],
+          "false_negative": 5130,
+          "false_positive": 1080,
+          "high_confidence_errors_at_0_1_0_9": 6,
+          "macro_f1": 0.7375562354549794,
+          "n": 26356,
+          "value": "rz"
+        },
+        {
+          "accuracy": 0.7474216311575519,
+          "accuracy_wilson_95": [
+            0.7424293671862777,
+            0.752349410729544
+          ],
+          "false_negative": 5453,
+          "false_positive": 1992,
+          "high_confidence_errors_at_0_1_0_9": 7,
+          "macro_f1": 0.7416196380972498,
+          "n": 29476,
+          "value": "z"
+        },
+        {
+          "accuracy": 0.7854525715836613,
+          "accuracy_wilson_95": [
+            0.7807290871365017,
+            0.7901016597966842
+          ],
+          "false_negative": 5029,
+          "false_positive": 1295,
+          "high_confidence_errors_at_0_1_0_9": 4,
+          "macro_f1": 0.755240020638985,
+          "n": 29476,
+          "value": "s"
+        },
+        {
+          "accuracy": 0.7882968442800493,
+          "accuracy_wilson_95": [
+            0.7836379961895116,
+            0.7928818892184731
+          ],
+          "false_negative": 4208,
+          "false_positive": 2145,
+          "high_confidence_errors_at_0_1_0_9": 26,
+          "macro_f1": 0.772924244141904,
+          "n": 30009,
+          "value": "cz"
+        },
+        {
+          "accuracy": 0.9175600488533043,
+          "accuracy_wilson_95": [
+            0.9143655257223603,
+            0.9206457451658795
+          ],
+          "false_negative": 265,
+          "false_positive": 2165,
+          "high_confidence_errors_at_0_1_0_9": 500,
+          "macro_f1": 0.7804372171844793,
+          "n": 29476,
+          "value": "y"
+        },
+        {
+          "accuracy": 0.880037177189139,
+          "accuracy_wilson_95": [
+            0.8763195389136301,
+            0.8836579048443219
+          ],
+          "false_negative": 352,
+          "false_positive": 3262,
+          "high_confidence_errors_at_0_1_0_9": 284,
+          "macro_f1": 0.7812677504017327,
+          "n": 30126,
+          "value": "x"
+        },
+        {
+          "accuracy": 0.7960807199680561,
+          "accuracy_wilson_95": [
+            0.7916692588920051,
+            0.800422316529682
+          ],
+          "false_negative": 4655,
+          "false_positive": 1984,
+          "high_confidence_errors_at_0_1_0_9": 68,
+          "macro_f1": 0.7826962498061005,
+          "n": 32557,
+          "value": "ccx"
+        },
+        {
+          "accuracy": 0.7946647143608868,
+          "accuracy_wilson_95": [
+            0.7908519042577286,
+            0.7984257326369638
+          ],
+          "false_negative": 6478,
+          "false_positive": 2497,
+          "high_confidence_errors_at_0_1_0_9": 246,
+          "macro_f1": 0.7855100878470922,
+          "n": 43709,
+          "value": "cx"
+        },
+        {
+          "accuracy": 0.8638316737143636,
+          "accuracy_wilson_95": [
+            0.8598584649332667,
+            0.867709567212679
+          ],
+          "false_negative": 2981,
+          "false_positive": 1012,
+          "high_confidence_errors_at_0_1_0_9": 377,
+          "macro_f1": 0.829926247496793,
+          "n": 29324,
+          "value": "t"
+        },
+        {
+          "accuracy": 0.9513502510517031,
+          "accuracy_wilson_95": [
+            0.948834867795807,
+            0.9537480008991186
+          ],
+          "false_negative": 823,
+          "false_positive": 611,
+          "high_confidence_errors_at_0_1_0_9": 7,
+          "macro_f1": 0.9056180914516172,
+          "n": 29476,
+          "value": "id"
+        }
+      ],
+      "operation": [
+        {
+          "accuracy": 0.7691835990586363,
+          "accuracy_wilson_95": [
+            0.7667976979719557,
+            0.7715523623085343
+          ],
+          "false_negative": 12122,
+          "false_positive": 15732,
+          "high_confidence_errors_at_0_1_0_9": 180,
+          "macro_f1": 0.7485378547997796,
+          "n": 120676,
+          "value": "Replace"
+        },
+        {
+          "accuracy": 0.7932636654847334,
+          "accuracy_wilson_95": [
+            0.7920617493710439,
+            0.7944604371438854
+          ],
+          "false_negative": 55610,
+          "false_positive": 34937,
+          "high_confidence_errors_at_0_1_0_9": 1403,
+          "macro_f1": 0.7921110838524618,
+          "n": 437983,
+          "value": "Add"
+        },
+        {
+          "accuracy": 0.8131873779422345,
+          "accuracy_wilson_95": [
+            0.8076492200064154,
+            0.8186018948932146
+          ],
+          "false_negative": 2326,
+          "false_positive": 1309,
+          "high_confidence_errors_at_0_1_0_9": 213,
+          "macro_f1": 0.8124194328853245,
+          "n": 19458,
+          "value": "Remove"
+        }
+      ],
+      "position": [
+        {
+          "accuracy": 0.7589827911582803,
+          "accuracy_wilson_95": [
+            0.7553406698898637,
+            0.7625877354659536
+          ],
+          "false_negative": 7616,
+          "false_positive": 5283,
+          "high_confidence_errors_at_0_1_0_9": 218,
+          "macro_f1": 0.7580404248150316,
+          "n": 53519,
+          "value": "71-80%"
+        },
+        {
+          "accuracy": 0.7610028614252623,
+          "accuracy_wilson_95": [
+            0.7575361490222823,
+            0.7644354205719788
+          ],
+          "false_negative": 8169,
+          "false_positive": 5863,
+          "high_confidence_errors_at_0_1_0_9": 210,
+          "macro_f1": 0.7602175494869368,
+          "n": 58712,
+          "value": "21-30%"
+        },
+        {
+          "accuracy": 0.7661754100482627,
+          "accuracy_wilson_95": [
+            0.7625891868593612,
+            0.7697238194158121
+          ],
+          "false_negative": 7763,
+          "false_positive": 4882,
+          "high_confidence_errors_at_0_1_0_9": 238,
+          "macro_f1": 0.763233636856378,
+          "n": 54079,
+          "value": "41-50%"
+        },
+        {
+          "accuracy": 0.7692870201096892,
+          "accuracy_wilson_95": [
+            0.7656449232444739,
+            0.7728893049265847
+          ],
+          "false_negative": 6947,
+          "false_positive": 5042,
+          "high_confidence_errors_at_0_1_0_9": 185,
+          "macro_f1": 0.7664292312040899,
+          "n": 51965,
+          "value": "51-60%"
+        },
+        {
+          "accuracy": 0.777662001688734,
+          "accuracy_wilson_95": [
+            0.7741884868262132,
+            0.7810971933299249
+          ],
+          "false_negative": 7145,
+          "false_positive": 5231,
+          "high_confidence_errors_at_0_1_0_9": 165,
+          "macro_f1": 0.7759305922559673,
+          "n": 55663,
+          "value": "31-40%"
+        },
+        {
+          "accuracy": 0.7797508563118315,
+          "accuracy_wilson_95": [
+            0.7761772385330263,
+            0.783283347704979
+          ],
+          "false_negative": 6572,
+          "false_positive": 4938,
+          "high_confidence_errors_at_0_1_0_9": 165,
+          "macro_f1": 0.7770164847265844,
+          "n": 52259,
+          "value": "61-70%"
+        },
+        {
+          "accuracy": 0.7908776434506616,
+          "accuracy_wilson_95": [
+            0.7874918916121914,
+            0.7942235479578552
+          ],
+          "false_negative": 6698,
+          "false_positive": 5030,
+          "high_confidence_errors_at_0_1_0_9": 169,
+          "macro_f1": 0.7906812135753383,
+          "n": 56082,
+          "value": "81-90%"
+        },
+        {
+          "accuracy": 0.7926104284290933,
+          "accuracy_wilson_95": [
+            0.7893535725998959,
+            0.7958299537861062
+          ],
+          "false_negative": 7014,
+          "false_positive": 5475,
+          "high_confidence_errors_at_0_1_0_9": 160,
+          "macro_f1": 0.7922933163217728,
+          "n": 60220,
+          "value": "11-20%"
+        },
+        {
+          "accuracy": 0.8136229824383311,
+          "accuracy_wilson_95": [
+            0.8104632254260038,
+            0.8167419741900275
+          ],
+          "false_negative": 5861,
+          "false_positive": 5155,
+          "high_confidence_errors_at_0_1_0_9": 92,
+          "macro_f1": 0.8100107040573482,
+          "n": 59106,
+          "value": "0-10%"
+        },
+        {
+          "accuracy": 0.8516311166875784,
+          "accuracy_wilson_95": [
+            0.8490946940963394,
+            0.8541322308754954
+          ],
+          "false_negative": 6273,
+          "false_positive": 5079,
+          "high_confidence_errors_at_0_1_0_9": 194,
+          "macro_f1": 0.8466988362494634,
+          "n": 76512,
+          "value": "91-100%"
+        }
+      ]
+    },
+    "target_source": "verified grouped development OOF only; raw source target column not loaded",
+    "weakest_origins_min_n_100": [
+      {
+        "accuracy": 0.39176161262050835,
+        "accuracy_wilson_95": [
+          0.3719311360363881,
+          0.4119559014556236
+        ],
+        "false_negative": 3,
+        "false_positive": 1385,
+        "high_confidence_errors_at_0_1_0_9": 23,
+        "macro_f1": 0.3903962000515795,
+        "n": 2282,
+        "origin_program": "qpeexact_indep_qiskit_25"
+      },
+      {
+        "accuracy": 0.44771468144044324,
+        "accuracy_wilson_95": [
+          0.43492960756532256,
+          0.46056925870118565
+        ],
+        "false_negative": 2995,
+        "false_positive": 195,
+        "high_confidence_errors_at_0_1_0_9": 16,
+        "macro_f1": 0.43919312455319137,
+        "n": 5776,
+        "origin_program": "grover-noancilla_indep_qiskit_6"
+      },
+      {
+        "accuracy": 0.45481927710843373,
+        "accuracy_wilson_95": [
+          0.40207635817067827,
+          0.5085958158542192
+        ],
+        "false_negative": 147,
+        "false_positive": 34,
+        "high_confidence_errors_at_0_1_0_9": 6,
+        "macro_f1": 0.45477475842671145,
+        "n": 332,
+        "origin_program": "twolocalrandom_indep_qiskit_2"
+      },
+      {
+        "accuracy": 0.46621621621621623,
+        "accuracy_wilson_95": [
+          0.4101814660458641,
+          0.5231166486920509
+        ],
+        "false_negative": 1,
+        "false_positive": 157,
+        "high_confidence_errors_at_0_1_0_9": 39,
+        "macro_f1": 0.4632511591608135,
+        "n": 296,
+        "origin_program": "graphstate_indep_qiskit_4"
+      },
+      {
+        "accuracy": 0.46598639455782315,
+        "accuracy_wilson_95": [
+          0.45385296858925894,
+          0.47816020058348474
+        ],
+        "false_negative": 3185,
+        "false_positive": 269,
+        "high_confidence_errors_at_0_1_0_9": 180,
+        "macro_f1": 0.46594043750458985,
+        "n": 6468,
+        "origin_program": "realamprandom_indep_qiskit_12"
+      },
+      {
+        "accuracy": 0.47822445561139026,
+        "accuracy_wilson_95": [
+          0.45000543179181396,
+          0.5065831522079403
+        ],
+        "false_negative": 570,
+        "false_positive": 53,
+        "high_confidence_errors_at_0_1_0_9": 81,
+        "macro_f1": 0.4683156703717549,
+        "n": 1194,
+        "origin_program": "su2random_indep_qiskit_6"
+      },
+      {
+        "accuracy": 0.5104895104895105,
+        "accuracy_wilson_95": [
+          0.4934028837229249,
+          0.5275516620408311
+        ],
+        "false_negative": 26,
+        "false_positive": 1584,
+        "high_confidence_errors_at_0_1_0_9": 0,
+        "macro_f1": 0.46923069829577757,
+        "n": 3289,
+        "origin_program": "grover-noancilla_indep_qiskit_5"
+      },
+      {
+        "accuracy": 0.4774774774774775,
+        "accuracy_wilson_95": [
+          0.4127141677905484,
+          0.5430070102386542
+        ],
+        "false_negative": 1,
+        "false_positive": 115,
+        "high_confidence_errors_at_0_1_0_9": 27,
+        "macro_f1": 0.4747491229501509,
+        "n": 222,
+        "origin_program": "graphstate_indep_qiskit_3"
+      },
+      {
+        "accuracy": 0.5181623931623932,
+        "accuracy_wilson_95": [
+          0.4861423959834662,
+          0.5500339128753885
+        ],
+        "false_negative": 36,
+        "false_positive": 415,
+        "high_confidence_errors_at_0_1_0_9": 0,
+        "macro_f1": 0.5133581648215971,
+        "n": 936,
+        "origin_program": "qaoa_indep_qiskit_6"
+      },
+      {
+        "accuracy": 0.5295288652952886,
+        "accuracy_wilson_95": [
+          0.5042851368565406,
+          0.5546224283044927
+        ],
+        "false_negative": 621,
+        "false_positive": 88,
+        "high_confidence_errors_at_0_1_0_9": 1,
+        "macro_f1": 0.5283292565620126,
+        "n": 1507,
+        "origin_program": "grover-v-chain_indep_qiskit_5"
+      }
+    ]
+  },
+  "feature_ablation": {
+    "excluded_features": [
+      "qasm_diff_removed_gate",
+      "qasm_diff_added_gate",
+      "qasm_diff_alignment_class",
+      "qasm_diff_local_prev_gate",
+      "qasm_diff_local_next_gate"
+    ],
+    "features": [
+      "algorithm",
+      "operation",
+      "gate",
+      "dominant_state",
+      "qubits",
+      "gates",
+      "Position_int",
+      "position_fraction",
+      "qasm_diff_orig_span",
+      "qasm_diff_mut_span",
+      "qasm_diff_total_span",
+      "qasm_diff_expected_gate_match",
+      "qasm_diff_qubit_set_equal",
+      "qasm_diff_qubits_touched",
+      "qasm_diff_removed_arity",
+      "qasm_diff_added_arity",
+      "qasm_diff_exact_single_edit",
+      "qasm_diff_is_local"
+    ],
+    "fold_macro_f1": [
+      0.7668347013209293,
+      0.7655280003709661,
+      0.7618136487461971
+    ],
+    "fold_macro_f1_delta_vs_baseline": [
+      0.0037610850551146324,
+      -0.0045922504606372705,
+      -0.0038454691591899293
+    ],
+    "full_candidate_60_tree_fold_macro_f1": [
+      0.7839771004072607,
+      0.8015300098072328,
+      0.7802173792257376
+    ],
+    "full_candidate_60_tree_macro_f1": 0.7885594340039961,
+    "interpretation": "Group ablation preserves numeric edit geometry and flags while removing all five learned gate/alignment category fields; compare on exact same grouped folds and threshold.",
+    "matched_60_tree_baseline_metrics": {
+      "accuracy": 0.766289522709071,
+      "average_precision": 0.8753780958709905,
+      "balanced_accuracy": 0.7675382843037618,
+      "brier_score": 0.15602510103753164,
+      "confusion_matrix_labels_0_1": [
+        [
+          223133,
+          55280
+        ],
+        [
+          79832,
+          219872
+        ]
+      ],
+      "macro_f1": 0.7662820863197629,
+      "per_class": {
+        "detected_1": {
+          "f1": 0.7649637474428379,
+          "precision": 0.7990928650345991,
+          "recall": 0.7336305154419027,
+          "support": 299704
+        },
+        "survivor_0": {
+          "f1": 0.7676004251966879,
+          "precision": 0.7364976152360834,
+          "recall": 0.8014460531656209,
+          "support": 278413
+        }
+      },
+      "roc_auc": 0.8615334067639526
+    },
+    "pooled_macro_f1_delta_vs_baseline": -0.0015335411081377481,
+    "pooled_metrics": {
+      "accuracy": 0.7647552312075238,
+      "average_precision": 0.8733525842040993,
+      "balanced_accuracy": 0.7659904905457182,
+      "brier_score": 0.156968286269824,
+      "confusion_matrix_labels_0_1": [
+        [
+          222600,
+          55813
+        ],
+        [
+          80186,
+          219518
+        ]
+      ],
+      "macro_f1": 0.7647485452116252,
+      "per_class": {
+        "detected_1": {
+          "f1": 0.7634943959932874,
+          "precision": 0.7972876283455187,
+          "recall": 0.7324493500253584,
+          "support": 299704
+        },
+        "survivor_0": {
+          "f1": 0.7660026944299629,
+          "precision": 0.7351726962276988,
+          "recall": 0.799531631066078,
+          "support": 278413
+        }
+      },
+      "roc_auc": 0.8584402992011911
+    },
+    "runtime_seconds_by_fold": [
+      194.68250609999814,
+      187.47618050000165,
+      198.86732089999714
+    ],
+    "schema": "qmutbench-feature-ablation-v1",
+    "source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+    "status": "complete",
+    "trees": 60
+  },
+  "incumbent": {
+    "bundle": "data/qmutbench_ml/position_fraction_v1/",
+    "fold_metrics": [
+      {
+        "accuracy": 0.7620927682749178,
+        "average_precision": 0.871160483666636,
+        "balanced_accuracy": 0.7633232841976509,
+        "brier_score": 0.1578018858599766,
+        "confusion_matrix_labels_0_1": [
+          [
+            74520,
+            19025
+          ],
+          [
+            27193,
+            73531
+          ]
+        ],
+        "macro_f1": 0.762086602261389,
+        "per_class": {
+          "detected_1": {
+            "f1": 0.7608754139072847,
+            "precision": 0.7944487661523835,
+            "recall": 0.7300246217386125,
+            "support": 100724
+          },
+          "survivor_0": {
+            "f1": 0.7632977906154933,
+            "precision": 0.7326497104598232,
+            "recall": 0.7966219466566893,
+            "support": 93545
+          }
+        },
+        "roc_auc": 0.85712744380851
+      },
+      {
+        "accuracy": 0.7727616474650172,
+        "average_precision": 0.882427617672718,
+        "balanced_accuracy": 0.7740508586882708,
+        "brier_score": 0.15435699569407516,
+        "confusion_matrix_labels_0_1": [
+          [
+            74891,
+            17552
+          ],
+          [
+            26018,
+            73276
+          ]
+        ],
+        "macro_f1": 0.7727455244728719,
+        "per_class": {
+          "detected_1": {
+            "f1": 0.7708313609156227,
+            "precision": 0.8067556260184084,
+            "recall": 0.7379700686849155,
+            "support": 99294
+          },
+          "survivor_0": {
+            "f1": 0.7746596880301212,
+            "precision": 0.7421637316790376,
+            "recall": 0.8101316486916262,
+            "support": 92443
+          }
+        },
+        "roc_auc": 0.866661063365378
+      },
+      {
+        "accuracy": 0.7699923481737121,
+        "average_precision": 0.8771628886036067,
+        "balanced_accuracy": 0.7717751755660189,
+        "brier_score": 0.15509768093858264,
+        "confusion_matrix_labels_0_1": [
+          [
+            75691,
+            16734
+          ],
+          [
+            27453,
+            72233
+          ]
+        ],
+        "macro_f1": 0.7699178014551525,
+        "per_class": {
+          "detected_1": {
+            "f1": 0.7657763194860405,
+            "precision": 0.8119077860330235,
+            "recall": 0.7246052605180267,
+            "support": 99686
+          },
+          "survivor_0": {
+            "f1": 0.7740592834242646,
+            "precision": 0.7338381292174048,
+            "recall": 0.8189450906140113,
+            "support": 92425
+          }
+        },
+        "roc_auc": 0.8648524152150983
+      }
+    ],
+    "metrics": {
+      "accuracy": 0.7682562526270634,
+      "average_precision": 0.8766680119539187,
+      "balanced_accuracy": 0.769686361723433,
+      "brier_score": 0.15576074121729466,
+      "confusion_matrix_labels_0_1": [
+        [
+          225102,
+          53311
+        ],
+        [
+          80664,
+          219040
+        ]
+      ],
+      "macro_f1": 0.7682307692979792,
+      "per_class": {
+        "detected_1": {
+          "f1": 0.7658004912115094,
+          "precision": 0.8042562722369295,
+          "recall": 0.7308544430504764,
+          "support": 299704
+        },
+        "survivor_0": {
+          "f1": 0.770661047384449,
+          "precision": 0.7361904201251938,
+          "recall": 0.8085182803963895,
+          "support": 278413
+        }
+      },
+      "roc_auc": 0.862495487980846
+    },
+    "model": "100-tree ExtraTreesClassifier",
+    "model_sha256": "641a18b67448f910ea0126c914e7e5f17bc946a3fa940b0486c045b845f8ee45",
+    "threshold": 0.5
+  },
+  "inference": {
+    "api": "qmutbench_ml/inference.py",
+    "input_contract": "Existing eight raw metadata inputs plus original and mutant OpenQASM 2.0 text; derives position_fraction and 15 QASM features.",
+    "qasm_inputs": [
+      "original_qasm",
+      "mutant_qasm"
+    ],
+    "single_and_batch_smoke": "Passed using an actual development circuit pair; probabilities are uncalibrated."
+  },
+  "limitations": [
+    "85% aspirational macro-F1 was not reached (79.33% in the additional grouped CV).",
+    "The additional five-fold CV reused development rows that informed feature selection; it is a stability confirmation, not an independent test.",
+    "No new nested threshold/calibration analysis or inner-fold stacking was run.",
+    "Common-prefix/suffix alignment marks large/reordered edits complex and withholds local context.",
+    "QASM source text is required at inference, and parsing cost scales with circuit size.",
+    "Some origins remain substantially harder; see subgroup sample counts and intervals in the error-analysis JSON."
+  ],
+  "mutation_diff_extraction": {
+    "alignment_class_fraction": {
+      "complex_or_unaligned": 0.11886,
+      "near_multi_edit": 0.00019,
+      "single_delete": 0.02118,
+      "single_insert": 0.71517,
+      "single_replace": 0.1446
+    },
+    "cache": "data/qmutbench_ml/qasm_mutation_diff_v1/ (ignored)",
+    "exact_single_edit_fraction": 0.8809514337063259,
+    "expected_gate_match_fraction": 0.9474967869825658,
+    "feature_inventory": [
+      {
+        "coverage_rows": 578117,
+        "definition": "Original changed instruction count after common-prefix/suffix alignment.",
+        "feature": "qasm_diff_orig_span",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "numeric",
+        "used_in_final_model": true
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Mutant changed instruction count after common-prefix/suffix alignment.",
+        "feature": "qasm_diff_mut_span",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "numeric",
+        "used_in_final_model": true
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Sum of original and mutant changed instruction counts.",
+        "feature": "qasm_diff_total_span",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "numeric",
+        "used_in_final_model": true
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Fraction of original gate/wire signatures identical before the first differing signature.",
+        "feature": "qasm_diff_common_prefix_fraction",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "numeric",
+        "used_in_final_model": false
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Fraction of original gate/wire signatures identical after the aligned changed interval.",
+        "feature": "qasm_diff_common_suffix_fraction",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "numeric",
+        "used_in_final_model": false
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Common-prefix fraction used as a QASM-derived position estimate; excluded from final model because the target-blind pilot agreed with coarse position bands only 59.67% of the time.",
+        "feature": "qasm_diff_position_fraction",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "numeric",
+        "used_in_final_model": false
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Expected mutation gate name appears on the operation-appropriate changed side.",
+        "feature": "qasm_diff_expected_gate_match",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "numeric",
+        "used_in_final_model": true
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "For one-to-one edits, whether removed and added wire sets match; -1 when inapplicable.",
+        "feature": "qasm_diff_qubit_set_equal",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "numeric",
+        "used_in_final_model": true
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Distinct wire count in the changed intervals.",
+        "feature": "qasm_diff_qubits_touched",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "numeric",
+        "used_in_final_model": true
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Removed instruction wire count; -1 none, -2 multiple.",
+        "feature": "qasm_diff_removed_arity",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "numeric",
+        "used_in_final_model": true
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Added instruction wire count; -1 none, -2 multiple.",
+        "feature": "qasm_diff_added_arity",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "numeric",
+        "used_in_final_model": true
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Whether expected gate matches and Add is 0\u21921, Remove 1\u21920, or Replace 1\u21921.",
+        "feature": "qasm_diff_exact_single_edit",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "numeric",
+        "used_in_final_model": true
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Whether the changed spans total at most three instructions and expected gate matches.",
+        "feature": "qasm_diff_is_local",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "numeric",
+        "used_in_final_model": true
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Single removed gate name or none/multi sentinel.",
+        "feature": "qasm_diff_removed_gate",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "categorical",
+        "used_in_final_model": true
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Single added gate name or none/multi sentinel.",
+        "feature": "qasm_diff_added_gate",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "categorical",
+        "used_in_final_model": true
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Exact insert/delete/replace, near edit, complex/un-aligned, or no detected edit.",
+        "feature": "qasm_diff_alignment_class",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "categorical",
+        "used_in_final_model": true
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Previous gate if local; circuit_start or unknown_complex otherwise.",
+        "feature": "qasm_diff_local_prev_gate",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "categorical",
+        "used_in_final_model": true
+      },
+      {
+        "coverage_rows": 578117,
+        "definition": "Next gate if local; circuit_end or unknown_complex otherwise.",
+        "feature": "qasm_diff_local_next_gate",
+        "leakage_risk": "Outcome independent; parser uses no labels, origin IDs, or row IDs. Operation and gate are pre-outcome metadata already available in the incumbent model.",
+        "missing_rows": 0,
+        "prediction_availability": "Requires original_qasm, mutant_qasm, operation and gate inputs.",
+        "source": "Original/mutant OpenQASM 2.0 sequences; operation/gate metadata as applicable",
+        "type": "categorical",
+        "used_in_final_model": true
+      }
+    ],
+    "local_context_fraction": 0.8811382471022302,
+    "manifest": {
+      "alignment": "linear common-prefix/common-suffix on gate name and wire tuple",
+      "cache_key": "876b07b1b1f3bb438d811b1e2d2f0a60c47a677903c1e727ed094952daa1b98d",
+      "chunk_rows": 10000,
+      "chunks": [
+        {
+          "error_file": "errors_00000.jsonl",
+          "errors": 0,
+          "file": "diff_00000.csv.gz",
+          "rows": 10000,
+          "sha256": "ee22ceebe139312cc5c2e555dd171e6d29b9bc0d19b409257eaf3c54ccefa611"
+        },
+        {
+          "error_file": "errors_00001.jsonl",
+          "errors": 0,
+          "file": "diff_00001.csv.gz",
+          "rows": 10000,
+          "sha256": "76e6c173791853f16a2e2e3aeb54f55dfc029e179449c848b114b8dfc521d680"
+        },
+        {
+          "error_file": "errors_00002.jsonl",
+          "errors": 0,
+          "file": "diff_00002.csv.gz",
+          "rows": 10000,
+          "sha256": "99517e0b282a131204f6ea1714a80d803ad07d43d79741e5b73af7a99e4a307b"
+        },
+        {
+          "error_file": "errors_00003.jsonl",
+          "errors": 0,
+          "file": "diff_00003.csv.gz",
+          "rows": 10000,
+          "sha256": "ad3330b0c7e68e82ddf8894dbfb48004118bc5597013fa2d7e3aab913a69a051"
+        },
+        {
+          "error_file": "errors_00004.jsonl",
+          "errors": 0,
+          "file": "diff_00004.csv.gz",
+          "rows": 10000,
+          "sha256": "039f8912dc5f763edb94aa47172d6f80c25be4670c5b9d5501f7e85d03de584e"
+        },
+        {
+          "error_file": "errors_00005.jsonl",
+          "errors": 0,
+          "file": "diff_00005.csv.gz",
+          "rows": 10000,
+          "sha256": "cf45fecbee114a1049241be372ef1f83130cc4f4c2815213008c7cb84e5281d0"
+        },
+        {
+          "error_file": "errors_00006.jsonl",
+          "errors": 0,
+          "file": "diff_00006.csv.gz",
+          "rows": 10000,
+          "sha256": "d5bf991330d0c9947c0b6c77b8f36764f778c5f3c0009a7cb46f14755264fbcd"
+        },
+        {
+          "error_file": "errors_00007.jsonl",
+          "errors": 0,
+          "file": "diff_00007.csv.gz",
+          "rows": 10000,
+          "sha256": "82c29d9d1ccdec5a80edb4fc809dc8c378a047540837d8e4a9fcf0692c4b9974"
+        },
+        {
+          "error_file": "errors_00008.jsonl",
+          "errors": 0,
+          "file": "diff_00008.csv.gz",
+          "rows": 10000,
+          "sha256": "3492f932578471fd6a50ea1cb939dbe066f7265a6af0164781ba3cc2f06d196b"
+        },
+        {
+          "error_file": "errors_00009.jsonl",
+          "errors": 0,
+          "file": "diff_00009.csv.gz",
+          "rows": 10000,
+          "sha256": "ffc8804af9a9050f46196150aa32bc21e2df2e6ffd3d2cb1246dd3f25e03fa6a"
+        },
+        {
+          "error_file": "errors_00010.jsonl",
+          "errors": 0,
+          "file": "diff_00010.csv.gz",
+          "rows": 10000,
+          "sha256": "86790a84a34bb28f94922fcfe874f9e2dcf627d0d33864ad45a5d8c38c97fb20"
+        },
+        {
+          "error_file": "errors_00011.jsonl",
+          "errors": 0,
+          "file": "diff_00011.csv.gz",
+          "rows": 10000,
+          "sha256": "008558eaba9d59de9ed4e66493ac9dbbfa2a9814d7133367270c4390e2d2c8c0"
+        },
+        {
+          "error_file": "errors_00012.jsonl",
+          "errors": 0,
+          "file": "diff_00012.csv.gz",
+          "rows": 10000,
+          "sha256": "1a9e3edbb2355a6dd7a1424692880bad83f0910523392963024217faf689ac11"
+        },
+        {
+          "error_file": "errors_00013.jsonl",
+          "errors": 0,
+          "file": "diff_00013.csv.gz",
+          "rows": 10000,
+          "sha256": "f5be139cdf12e1a4c79f4f5dd3704de2ddef0fdf0cd688f4ef561dbf4a276fa4"
+        },
+        {
+          "error_file": "errors_00014.jsonl",
+          "errors": 0,
+          "file": "diff_00014.csv.gz",
+          "rows": 10000,
+          "sha256": "5668bb211c99f0dbeafe52b2254c1b65d85eed9a410159ff50c36fe3f3bf15af"
+        },
+        {
+          "error_file": "errors_00015.jsonl",
+          "errors": 0,
+          "file": "diff_00015.csv.gz",
+          "rows": 10000,
+          "sha256": "a7c5a56521a3e2ce621ed1c25f86dde82b6e36daf4cfeefdc5849b821d758ada"
+        },
+        {
+          "error_file": "errors_00016.jsonl",
+          "errors": 0,
+          "file": "diff_00016.csv.gz",
+          "rows": 10000,
+          "sha256": "1211a36b08ba360abbc8a094e9aac82404336e0452032606d01f140341ffed30"
+        },
+        {
+          "error_file": "errors_00017.jsonl",
+          "errors": 0,
+          "file": "diff_00017.csv.gz",
+          "rows": 10000,
+          "sha256": "edcafacd917723da2431daab79f43ec874c9ef4ce67bbc4db79daa1f23ed9e54"
+        },
+        {
+          "error_file": "errors_00018.jsonl",
+          "errors": 0,
+          "file": "diff_00018.csv.gz",
+          "rows": 10000,
+          "sha256": "2abc0ebe6a7a4655d31cb911ca9f7e56aec05a870ec8bf76125a05dc0edc2369"
+        },
+        {
+          "error_file": "errors_00019.jsonl",
+          "errors": 0,
+          "file": "diff_00019.csv.gz",
+          "rows": 10000,
+          "sha256": "147baabd641de31ae23e86203451564dc8e093cc8a0e49db0aeda578c1ee1fd4"
+        },
+        {
+          "error_file": "errors_00020.jsonl",
+          "errors": 0,
+          "file": "diff_00020.csv.gz",
+          "rows": 10000,
+          "sha256": "5317965796e1f0ce026225085d6faef0d72fbdf1adc0afc5cd7b7ee1c51f6d47"
+        },
+        {
+          "error_file": "errors_00021.jsonl",
+          "errors": 0,
+          "file": "diff_00021.csv.gz",
+          "rows": 10000,
+          "sha256": "fac7aaa80f2479f355a1caf71b9e915a14150bb885bfa4fbaec0d6fee1764b2e"
+        },
+        {
+          "error_file": "errors_00022.jsonl",
+          "errors": 0,
+          "file": "diff_00022.csv.gz",
+          "rows": 10000,
+          "sha256": "50e8a175167993d93678e2092a7ca9d723fbf53599a2d87af9943a29b8e07d84"
+        },
+        {
+          "error_file": "errors_00023.jsonl",
+          "errors": 0,
+          "file": "diff_00023.csv.gz",
+          "rows": 10000,
+          "sha256": "8244adbf054f474722ff8ce9fc8d754b4c3a2a9dd030e81689f65de5fed898a0"
+        },
+        {
+          "error_file": "errors_00024.jsonl",
+          "errors": 0,
+          "file": "diff_00024.csv.gz",
+          "rows": 10000,
+          "sha256": "58b254b82791c06d534638db1251c68fffed3104f247ed6ab3b93b247905b6d7"
+        },
+        {
+          "error_file": "errors_00025.jsonl",
+          "errors": 0,
+          "file": "diff_00025.csv.gz",
+          "rows": 10000,
+          "sha256": "a4fb1ac2d49b02d33fd809f3b01b2cd09f85e8127d74a75b9604d3a4a34160e1"
+        },
+        {
+          "error_file": "errors_00026.jsonl",
+          "errors": 0,
+          "file": "diff_00026.csv.gz",
+          "rows": 10000,
+          "sha256": "8679ef06530b0a3d7bf8e3e22a90942ac77c4e2be827822b2e928ea1b56b3bce"
+        },
+        {
+          "error_file": "errors_00027.jsonl",
+          "errors": 0,
+          "file": "diff_00027.csv.gz",
+          "rows": 10000,
+          "sha256": "78a0a8b583000a64722af67612e92718be6e167c16f2e5f186d8b3411ea10fd3"
+        },
+        {
+          "error_file": "errors_00028.jsonl",
+          "errors": 0,
+          "file": "diff_00028.csv.gz",
+          "rows": 10000,
+          "sha256": "2794e119e424f461093785952f654717470cd9bb826cc5ecf4e0e298d15e71f5"
+        },
+        {
+          "error_file": "errors_00029.jsonl",
+          "errors": 0,
+          "file": "diff_00029.csv.gz",
+          "rows": 10000,
+          "sha256": "c7cb629394e3e69523a567ce2ff2b5d27277b91101b8658d3c1819c33a0e662b"
+        },
+        {
+          "error_file": "errors_00030.jsonl",
+          "errors": 0,
+          "file": "diff_00030.csv.gz",
+          "rows": 10000,
+          "sha256": "384f4c5befc6b9f2497fa59fb6faf20c9bd9a19f6461af4d969070eaf2997cd4"
+        },
+        {
+          "error_file": "errors_00031.jsonl",
+          "errors": 0,
+          "file": "diff_00031.csv.gz",
+          "rows": 10000,
+          "sha256": "fa24a84195065571fb2d8bb5311f3739e602b2ed7249edfb55df447ef911ca66"
+        },
+        {
+          "error_file": "errors_00032.jsonl",
+          "errors": 0,
+          "file": "diff_00032.csv.gz",
+          "rows": 10000,
+          "sha256": "3f8ff633b429cf0c3964ace87c990cfa1519a62277635347cc6415263a581f50"
+        },
+        {
+          "error_file": "errors_00033.jsonl",
+          "errors": 0,
+          "file": "diff_00033.csv.gz",
+          "rows": 10000,
+          "sha256": "e0f712adce1bbef5430723f64582a71314f6f4c83c40fd986ee0e618619d7863"
+        },
+        {
+          "error_file": "errors_00034.jsonl",
+          "errors": 0,
+          "file": "diff_00034.csv.gz",
+          "rows": 10000,
+          "sha256": "0cc3611854a866ccc69e0e001cf4075da8052219e7ffc43b068cb17ed7e0ca09"
+        },
+        {
+          "error_file": "errors_00035.jsonl",
+          "errors": 0,
+          "file": "diff_00035.csv.gz",
+          "rows": 10000,
+          "sha256": "824c864462f1c91c38f83758e9fdbacbea1958dff013d1aeef9be31f31a2f2b0"
+        },
+        {
+          "error_file": "errors_00036.jsonl",
+          "errors": 0,
+          "file": "diff_00036.csv.gz",
+          "rows": 10000,
+          "sha256": "0b5583ffc825546eeb59bbd9da4bd6da4bee3674dcffc4d325e0a0b77763b30b"
+        },
+        {
+          "error_file": "errors_00037.jsonl",
+          "errors": 0,
+          "file": "diff_00037.csv.gz",
+          "rows": 10000,
+          "sha256": "49cd886751ea4625da9f6bed2cc2d08fadcc9b565b251b5ad4fba8950b11305c"
+        },
+        {
+          "error_file": "errors_00038.jsonl",
+          "errors": 0,
+          "file": "diff_00038.csv.gz",
+          "rows": 10000,
+          "sha256": "40182c184de17a02fdfe917952f898c749da7e3691589e9454337f47285a2f27"
+        },
+        {
+          "error_file": "errors_00039.jsonl",
+          "errors": 0,
+          "file": "diff_00039.csv.gz",
+          "rows": 10000,
+          "sha256": "d9c430fbc5a7e9d5e96a3152deed463e3622b0d580ce91cc500e76b02d2af781"
+        },
+        {
+          "error_file": "errors_00040.jsonl",
+          "errors": 0,
+          "file": "diff_00040.csv.gz",
+          "rows": 10000,
+          "sha256": "b37d0a26dfc047a626e348a9592fa58f67bc9fa599792832e4e0387e8ef1eec9"
+        },
+        {
+          "error_file": "errors_00041.jsonl",
+          "errors": 0,
+          "file": "diff_00041.csv.gz",
+          "rows": 10000,
+          "sha256": "16553d2d503c66049fecf7b70fd4499f6e2b9a18da03674fb84224ab0d4d2492"
+        },
+        {
+          "error_file": "errors_00042.jsonl",
+          "errors": 0,
+          "file": "diff_00042.csv.gz",
+          "rows": 10000,
+          "sha256": "5e88547a10fed11cd02f65ffc44644aad814dde10d33f0994621155448204ca4"
+        },
+        {
+          "error_file": "errors_00043.jsonl",
+          "errors": 0,
+          "file": "diff_00043.csv.gz",
+          "rows": 10000,
+          "sha256": "504d16a3a1ce2402b4df6099b40ee56dd8ec19ee3b9917387211de4750e6196b"
+        },
+        {
+          "error_file": "errors_00044.jsonl",
+          "errors": 0,
+          "file": "diff_00044.csv.gz",
+          "rows": 10000,
+          "sha256": "b5d7a4819743acd7352c181b341e4edec1578d9cdc29514ddfb424d377010103"
+        },
+        {
+          "error_file": "errors_00045.jsonl",
+          "errors": 0,
+          "file": "diff_00045.csv.gz",
+          "rows": 10000,
+          "sha256": "df921cb3b714934fb85a0b3eb99b63a4c1eb5521269b81946572e5678907c019"
+        },
+        {
+          "error_file": "errors_00046.jsonl",
+          "errors": 0,
+          "file": "diff_00046.csv.gz",
+          "rows": 10000,
+          "sha256": "c6eb0d9034b1eb1edd3214bc93ae2ff0169ab6f232136faaa6099cb5ef3b63ca"
+        },
+        {
+          "error_file": "errors_00047.jsonl",
+          "errors": 0,
+          "file": "diff_00047.csv.gz",
+          "rows": 10000,
+          "sha256": "72c9bbbb32f8381ec9889a42ecf46fd8721ed81c522974766070b73ccdab8f6e"
+        },
+        {
+          "error_file": "errors_00048.jsonl",
+          "errors": 0,
+          "file": "diff_00048.csv.gz",
+          "rows": 10000,
+          "sha256": "028afa483979b1d8b2a4c665584d2a11871600d5665c913a0fe1d55239e4843d"
+        },
+        {
+          "error_file": "errors_00049.jsonl",
+          "errors": 0,
+          "file": "diff_00049.csv.gz",
+          "rows": 10000,
+          "sha256": "5bc848636fef150e7225f857fe8dce12eed44957c5469c654107e8c734488d66"
+        },
+        {
+          "error_file": "errors_00050.jsonl",
+          "errors": 0,
+          "file": "diff_00050.csv.gz",
+          "rows": 10000,
+          "sha256": "5eb8c93986eab367989ab49ee05e56612892b4df3366048f5bb83ff5fec96042"
+        },
+        {
+          "error_file": "errors_00051.jsonl",
+          "errors": 0,
+          "file": "diff_00051.csv.gz",
+          "rows": 10000,
+          "sha256": "7523231ae57642e74b1b87a0b30424a53d7e1efe35167bbbbfb8e01b9b5f91b9"
+        },
+        {
+          "error_file": "errors_00052.jsonl",
+          "errors": 0,
+          "file": "diff_00052.csv.gz",
+          "rows": 10000,
+          "sha256": "e17d278f5476d61fad828b27bf61f88352e25b09ee0d9a8bbfd6fb88ca9852e3"
+        },
+        {
+          "error_file": "errors_00053.jsonl",
+          "errors": 0,
+          "file": "diff_00053.csv.gz",
+          "rows": 10000,
+          "sha256": "8199060c8a0890ac17267108164a771f5f4003fe3f1b687f0a90ff008c857293"
+        },
+        {
+          "error_file": "errors_00054.jsonl",
+          "errors": 0,
+          "file": "diff_00054.csv.gz",
+          "rows": 10000,
+          "sha256": "d319d9e7502dd2a946d8d9dc21ef163cba8f6d1e793af199d8379a9f9db181e1"
+        },
+        {
+          "error_file": "errors_00055.jsonl",
+          "errors": 0,
+          "file": "diff_00055.csv.gz",
+          "rows": 10000,
+          "sha256": "ec017e3c576f9db6c8fefc619272e27ed34f3002442fef03fe907dae0caf66c9"
+        },
+        {
+          "error_file": "errors_00056.jsonl",
+          "errors": 0,
+          "file": "diff_00056.csv.gz",
+          "rows": 10000,
+          "sha256": "7e1f3cb71f879d0d367a7b9dead588596a8e499297a84ba9ee592cdd705897e5"
+        },
+        {
+          "error_file": "errors_00057.jsonl",
+          "errors": 0,
+          "file": "diff_00057.csv.gz",
+          "rows": 8117,
+          "sha256": "7c4c7ff41c61ce480eb58b73395fa0c8ddb135df9bc4e409de535eaf7e32ff93"
+        }
+      ],
+      "development_oof_sha256": "7d203ac4cd6878a1caaf19eb768bb9a1e4f322b42fc56475cdc603591cc250ce",
+      "development_rows": 578117,
+      "error_rows": 0,
+      "extractor_sha256": "9d3d55cc7f5b48e795f2ecb9ea932e4dabc3c35a0c8c035c4900a9f7a369cbae",
+      "feature_columns": [
+        "qasm_diff_orig_span",
+        "qasm_diff_mut_span",
+        "qasm_diff_total_span",
+        "qasm_diff_common_prefix_fraction",
+        "qasm_diff_common_suffix_fraction",
+        "qasm_diff_position_fraction",
+        "qasm_diff_expected_gate_match",
+        "qasm_diff_qubit_set_equal",
+        "qasm_diff_qubits_touched",
+        "qasm_diff_removed_arity",
+        "qasm_diff_added_arity",
+        "qasm_diff_exact_single_edit",
+        "qasm_diff_is_local",
+        "qasm_diff_removed_gate",
+        "qasm_diff_added_gate",
+        "qasm_diff_alignment_class",
+        "qasm_diff_local_prev_gate",
+        "qasm_diff_local_next_gate"
+      ],
+      "feature_rows": 578117,
+      "features": [
+        "qasm_diff_orig_span",
+        "qasm_diff_mut_span",
+        "qasm_diff_total_span",
+        "qasm_diff_common_prefix_fraction",
+        "qasm_diff_common_suffix_fraction",
+        "qasm_diff_position_fraction",
+        "qasm_diff_expected_gate_match",
+        "qasm_diff_qubit_set_equal",
+        "qasm_diff_qubits_touched",
+        "qasm_diff_removed_arity",
+        "qasm_diff_added_arity",
+        "qasm_diff_exact_single_edit",
+        "qasm_diff_is_local",
+        "qasm_diff_removed_gate",
+        "qasm_diff_added_gate",
+        "qasm_diff_alignment_class",
+        "qasm_diff_local_prev_gate",
+        "qasm_diff_local_next_gate"
+      ],
+      "original_signatures_sha256": "3e794b9ff72494be10e2544a5bdea28b0a0e1b1a6b832083a142dfc03c99d438",
+      "parser_sha256": "15c3993e1899a8607b80dcf6ed70573467669ecfe18a1bc994c6fd3655863de1",
+      "qasm_commit": "01f5e7700c051fe715fc368b307deaa7e6869ba8",
+      "runtime_features_sha256": "edc06d622e7011f6b7f721ec82795a297cc8fc92edf07ebe05f2ffffe5afddfd",
+      "schema": "qmutbench-qasm-mutation-diff-v1",
+      "shared_feature_function_revalidation": {
+        "checked_rows": 20,
+        "max_numeric_difference": 1.1102230246251565e-16,
+        "mismatches": 0,
+        "status": "equivalent"
+      },
+      "source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+      "status": "complete",
+      "worker_count": 1
+    },
+    "runtime_module": "qmutbench_ml/qasm_mutation_diff.py",
+    "script": "experiments/qmutbench_qasm_mutation_diff.py",
+    "span_summary": {
+      "max": 780,
+      "median": 1,
+      "p90": 2,
+      "p99": 617
+    },
+    "target_blind_3600_row_pilot": {
+      "add_exact_shape": 0.9583,
+      "expected_gate_match": 0.9228,
+      "position_band_agreement": 0.5967,
+      "remove_exact_shape": 0.6325,
+      "replace_exact_shape": 0.9242
+    }
+  },
+  "other_model_family": {
+    "catboost_xgboost_lightgbm": "Not installed; no dependency installation attempted.",
+    "hist_gradient_boosting": {
+      "baseline_fold_macro_f1": [
+        0.7580238440016627,
+        0.7733086367324873,
+        0.7738727358933446
+      ],
+      "baseline_pooled_metrics": {
+        "accuracy": 0.7689706408910307,
+        "average_precision": 0.8740556322516673,
+        "balanced_accuracy": 0.7683015552159818,
+        "brier_score": 0.15277678202261863,
+        "confusion_matrix_labels_0_1": [
+          [
+            208847,
+            69566
+          ],
+          [
+            63996,
+            235708
+          ]
+        ],
+        "macro_f1": 0.768470815153209,
+        "per_class": {
+          "detected_1": {
+            "f1": 0.7792283355758391,
+            "precision": 0.772119472998028,
+            "recall": 0.7864693163921737,
+            "support": 299704
+          },
+          "survivor_0": {
+            "f1": 0.7577132947305789,
+            "precision": 0.765447528432102,
+            "recall": 0.7501337940397899,
+            "support": 278413
+          }
+        },
+        "roc_auc": 0.8602064198138264
+      },
+      "fold_macro_f1_deltas": [
+        0.012526409466802502,
+        0.007870666233287915,
+        0.005692736071131077
+      ],
+      "folds": {
+        "baseline_fold1": {
+          "fold": 1,
+          "metrics": {
+            "accuracy": 0.75854099212947,
+            "average_precision": 0.8669386355667177,
+            "balanced_accuracy": 0.7578675610133756,
+            "brier_score": 0.16093130938181913,
+            "confusion_matrix_labels_0_1": [
+              [
+                69190,
+                24355
+              ],
+              [
+                22553,
+                78171
+              ]
+            ],
+            "macro_f1": 0.7580238440016627,
+            "per_class": {
+              "detected_1": {
+                "f1": 0.769210332103321,
+                "precision": 0.762450500360884,
+                "recall": 0.776091100432866,
+                "support": 100724
+              },
+              "survivor_0": {
+                "f1": 0.7468373559000043,
+                "precision": 0.7541719804235746,
+                "recall": 0.7396440215938853,
+                "support": 93545
+              }
+            },
+            "roc_auc": 0.8486485084611497
+          },
+          "origins": 91,
+          "rows": 194269,
+          "seconds": 5.421312400008901,
+          "stage": "baseline_fold1"
+        },
+        "baseline_fold2": {
+          "fold": 2,
+          "metrics": {
+            "accuracy": 0.7745401252757683,
+            "average_precision": 0.8780254698318444,
+            "balanced_accuracy": 0.7728933192824536,
+            "brier_score": 0.1494487750009395,
+            "confusion_matrix_labels_0_1": [
+              [
+                67188,
+                25255
+              ],
+              [
+                17974,
+                81320
+              ]
+            ],
+            "macro_f1": 0.7733086367324873,
+            "per_class": {
+              "detected_1": {
+                "f1": 0.7900169525280639,
+                "precision": 0.7630307295331926,
+                "recall": 0.8189820130118638,
+                "support": 99294
+              },
+              "survivor_0": {
+                "f1": 0.7566003209369105,
+                "precision": 0.7889434254714544,
+                "recall": 0.7268046255530435,
+                "support": 92443
+              }
+            },
+            "roc_auc": 0.8653680590150196
+          },
+          "origins": 101,
+          "rows": 191737,
+          "seconds": 5.613838999997824,
+          "stage": "baseline_fold2"
+        },
+        "baseline_fold3": {
+          "fold": 3,
+          "metrics": {
+            "accuracy": 0.7739588050658214,
+            "average_precision": 0.8798061554154479,
+            "balanced_accuracy": 0.7743275724563335,
+            "brier_score": 0.14785218221714766,
+            "confusion_matrix_labels_0_1": [
+              [
+                72469,
+                19956
+              ],
+              [
+                23469,
+                76217
+              ]
+            ],
+            "macro_f1": 0.7738727358933446,
+            "per_class": {
+              "detected_1": {
+                "f1": 0.778284378047473,
+                "precision": 0.7924989342123049,
+                "recall": 0.764570752161788,
+                "support": 99686
+              },
+              "survivor_0": {
+                "f1": 0.7694610937392163,
+                "precision": 0.7553732618983093,
+                "recall": 0.784084392750879,
+                "support": 92425
+              }
+            },
+            "roc_auc": 0.8704198268307686
+          },
+          "origins": 113,
+          "rows": 192111,
+          "seconds": 5.635450300003868,
+          "stage": "baseline_fold3"
+        },
+        "mutation_diff_fold1": {
+          "fold": 1,
+          "metrics": {
+            "accuracy": 0.7708486685986956,
+            "average_precision": 0.8757432154910623,
+            "balanced_accuracy": 0.7705682666251483,
+            "brier_score": 0.15269931690711436,
+            "confusion_matrix_labels_0_1": [
+              [
+                71373,
+                22172
+              ],
+              [
+                22345,
+                78379
+              ]
+            ],
+            "macro_f1": 0.7705502534684652,
+            "per_class": {
+              "detected_1": {
+                "f1": 0.778824990684387,
+                "precision": 0.7794949826456227,
+                "recall": 0.7781561494777809,
+                "support": 100724
+              },
+              "survivor_0": {
+                "f1": 0.7622755162525432,
+                "precision": 0.7615719498922299,
+                "recall": 0.7629803837725159,
+                "support": 93545
+              }
+            },
+            "roc_auc": 0.8627611207901986
+          },
+          "origins": 91,
+          "rows": 194269,
+          "seconds": 10.192112799995812,
+          "stage": "mutation_diff_fold1"
+        },
+        "mutation_diff_fold2": {
+          "fold": 2,
+          "metrics": {
+            "accuracy": 0.7826241153246374,
+            "average_precision": 0.8879675726405699,
+            "balanced_accuracy": 0.7807174558726898,
+            "brier_score": 0.14350511731599394,
+            "confusion_matrix_labels_0_1": [
+              [
+                67239,
+                25204
+              ],
+              [
+                16475,
+                82819
+              ]
+            ],
+            "macro_f1": 0.7811793029657752,
+            "per_class": {
+              "detected_1": {
+                "f1": 0.7989600466917812,
+                "precision": 0.7666793182933265,
+                "recall": 0.8340785948798517,
+                "support": 99294
+              },
+              "survivor_0": {
+                "f1": 0.7633985592397691,
+                "precision": 0.8031989870272594,
+                "recall": 0.7273563168655279,
+                "support": 92443
+              }
+            },
+            "roc_auc": 0.8767582033759012
+          },
+          "origins": 101,
+          "rows": 191737,
+          "seconds": 10.425729900001897,
+          "stage": "mutation_diff_fold2"
+        },
+        "mutation_diff_fold3": {
+          "fold": 3,
+          "metrics": {
+            "accuracy": 0.7798199998958936,
+            "average_precision": 0.884525184737181,
+            "balanced_accuracy": 0.7796494333836594,
+            "brier_score": 0.1440400681609954,
+            "confusion_matrix_labels_0_1": [
+              [
+                71642,
+                20783
+              ],
+              [
+                21516,
+                78170
+              ]
+            ],
+            "macro_f1": 0.7795654719644757,
+            "per_class": {
+              "detected_1": {
+                "f1": 0.7870559155050116,
+                "precision": 0.7899709963315917,
+                "recall": 0.7841622695263126,
+                "support": 99686
+              },
+              "survivor_0": {
+                "f1": 0.7720750284239397,
+                "precision": 0.769037549110114,
+                "recall": 0.7751365972410063,
+                "support": 92425
+              }
+            },
+            "roc_auc": 0.8758551059957697
+          },
+          "origins": 113,
+          "rows": 192111,
+          "seconds": 10.13822269999946,
+          "stage": "mutation_diff_fold3"
+        }
+      },
+      "model": "HistGradientBoostingClassifier",
+      "mutation_diff_fold_macro_f1": [
+        0.7705502534684652,
+        0.7811793029657752,
+        0.7795654719644757
+      ],
+      "mutation_diff_pooled_metrics": {
+        "accuracy": 0.7777353027155403,
+        "average_precision": 0.8820084549910289,
+        "balanced_accuracy": 0.7769344014911495,
+        "brier_score": 0.14677247998159873,
+        "confusion_matrix_labels_0_1": [
+          [
+            210254,
+            68159
+          ],
+          [
+            60336,
+            239368
+          ]
+        ],
+        "macro_f1": 0.7771701763216003,
+        "per_class": {
+          "detected_1": {
+            "f1": 0.7883918969881314,
+            "precision": 0.7783641761536385,
+            "recall": 0.7986813656140725,
+            "support": 299704
+          },
+          "survivor_0": {
+            "f1": 0.7659484556550693,
+            "precision": 0.777020584648361,
+            "recall": 0.7551874373682264,
+            "support": 278413
+          }
+        },
+        "roc_auc": 0.8705764835204042
+      },
+      "params": {
+        "categorical_features": "from_dtype",
+        "class_weight": "balanced",
+        "early_stopping": false,
+        "l2_regularization": 1.0,
+        "learning_rate": 0.1,
+        "max_iter": 100,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 30
+      },
+      "pooled_macro_f1_delta": 0.008699361168391317,
+      "status": "complete"
+    },
+    "random_forest": "Prior matched 60-tree grouped screen macro F1 0.75891 vs Extra Trees 0.76628; not promoted."
+  },
+  "prior_feature_ablation": [
+    {
+      "balanced_accuracy_mean": 0.756436,
+      "decision": "no material difference from selected model",
+      "macro_f1_fold_sd": 0.000985,
+      "macro_f1_mean": 0.754799,
+      "name": "Extra Trees, no class weights"
+    },
+    {
+      "balanced_accuracy_mean": 0.73191,
+      "decision": "below selected model",
+      "macro_f1_fold_sd": 0.010927,
+      "macro_f1_mean": 0.731447,
+      "name": "Unweighted Random Forest"
+    },
+    {
+      "balanced_accuracy_mean": 0.709964,
+      "decision": "below full-development model",
+      "macro_f1_fold_sd": 0.020619,
+      "macro_f1_mean": 0.709284,
+      "name": "Extra Trees on selected-v3 subset"
+    }
+  ],
+  "prior_qasm_candidate": {
+    "accuracy_delta": 0.003215612064685791,
+    "balanced_accuracy_delta": 0.002256173116749638,
+    "decision": "not promoted: below the predeclared 0.5 pp materiality bar at 0.32 pp, and not consistent across folds",
+    "feature_set": "current position_fraction model inputs plus 12 mutant QASM gate-name fractions and the multi-qubit gate fraction",
+    "fold_macro_f1": [
+      0.7594198894052107,
+      0.7776544599379804,
+      0.7770117696704794
+    ],
+    "fold_macro_f1_deltas": [
+      -0.002666712856178366,
+      0.00490893546510851,
+      0.007093968215326818
+    ],
+    "folds_won": 2,
+    "macro_f1_delta": 0.003185116573073521,
+    "macro_f1_delta_percentage_points": 0.3185116573073521,
+    "metrics_at_0_5": {
+      "accuracy": 0.7714718646917492,
+      "average_precision": 0.8776388805897062,
+      "balanced_accuracy": 0.7719425348401826,
+      "brier_score": 0.15453516192177635,
+      "confusion_matrix_labels_0_1": [
+        [
+          218477,
+          59936
+        ],
+        [
+          72180,
+          227524
+        ]
+      ],
+      "macro_f1": 0.7714158858710527,
+      "per_class": {
+        "detected_1": {
+          "f1": 0.7749930172830759,
+          "precision": 0.7914979475405274,
+          "recall": 0.7591623735418946,
+          "support": 299704
+        },
+        "survivor_0": {
+          "f1": 0.7678387544590296,
+          "precision": 0.7516660531141517,
+          "recall": 0.7847226961384706,
+          "support": 278413
+        }
+      },
+      "roc_auc": 0.8628895426543391
+    },
+    "nested_threshold_delta_vs_current": 0.0024201328063954,
+    "nested_threshold_mean_macro_f1": 0.7703201849883303,
+    "nested_thresholds": [
+      0.5,
+      0.48,
+      0.5
+    ],
+    "origin_level_macro_f1": {
+      "mean_delta": -0.0032965594417569423,
+      "median_delta": -0.0011122574609345737,
+      "origins_improved": 135,
+      "origins_with_both_classes": 305,
+      "origins_worsened": 166
+    }
+  },
+  "prior_threshold_study": {
+    "final_threshold": 0.5,
+    "full_oof_macro_f1_selected_threshold_descriptive": {
+      "objective": "macro F1",
+      "score": 0.769710812640964,
+      "selection_bias_note": "same OOF predictions were used to choose and score this threshold; nested fold results are the less-biased assessment",
+      "threshold": 0.47500000000000003
+    },
+    "nested_grouped_results": {
+      "development_oof_final_thresholds_for_future_fit": {
+        "balanced_accuracy": {
+          "accuracy": 0.7690848046329722,
+          "balanced_accuracy": 0.7702210093206007,
+          "development_oof_threshold": 0.495,
+          "macro_f1": 0.7690833779178927
+        },
+        "macro_f1": {
+          "accuracy": 0.7699047078705522,
+          "balanced_accuracy": 0.7698802788448565,
+          "development_oof_threshold": 0.47500000000000003,
+          "macro_f1": 0.769710812640964
+        }
+      },
+      "folds": [
+        {
+          "default_threshold": {
+            "accuracy": 0.7620927682749178,
+            "balanced_accuracy": 0.7633232841976509,
+            "macro_f1": 0.762086602261389,
+            "threshold": 0.5
+          },
+          "held_fold": 1,
+          "nested_threshold_metrics": {
+            "balanced_accuracy": {
+              "accuracy": 0.762036145756657,
+              "balanced_accuracy": 0.7630427697165398,
+              "macro_f1": 0.762035927619187,
+              "threshold_fit_on_other_folds": 0.495
+            },
+            "macro_f1": {
+              "accuracy": 0.762036145756657,
+              "balanced_accuracy": 0.7630427697165398,
+              "macro_f1": 0.762035927619187,
+              "threshold_fit_on_other_folds": 0.495
+            }
+          },
+          "validation_groups": 91
+        },
+        {
+          "default_threshold": {
+            "accuracy": 0.7727616474650172,
+            "balanced_accuracy": 0.7740508586882708,
+            "macro_f1": 0.772745524472872,
+            "threshold": 0.5
+          },
+          "held_fold": 2,
+          "nested_threshold_metrics": {
+            "balanced_accuracy": {
+              "accuracy": 0.7725843212316872,
+              "balanced_accuracy": 0.7721644808126558,
+              "macro_f1": 0.7722318128687273,
+              "threshold_fit_on_other_folds": 0.47500000000000003
+            },
+            "macro_f1": {
+              "accuracy": 0.7719793258473847,
+              "balanced_accuracy": 0.7706276095480755,
+              "macro_f1": 0.7710008907643293,
+              "threshold_fit_on_other_folds": 0.46
+            }
+          },
+          "validation_groups": 101
+        },
+        {
+          "default_threshold": {
+            "accuracy": 0.7699923481737121,
+            "balanced_accuracy": 0.7717751755660189,
+            "macro_f1": 0.7699178014551527,
+            "threshold": 0.5
+          },
+          "held_fold": 3,
+          "nested_threshold_metrics": {
+            "balanced_accuracy": {
+              "accuracy": 0.7703150782620464,
+              "balanced_accuracy": 0.7712464479553165,
+              "macro_f1": 0.7703104108877565,
+              "threshold_fit_on_other_folds": 0.485
+            },
+            "macro_f1": {
+              "accuracy": 0.7706898615904347,
+              "balanced_accuracy": 0.7713853420758222,
+              "macro_f1": 0.7706633381622887,
+              "threshold_fit_on_other_folds": 0.48
+            }
+          },
+          "validation_groups": 113
+        }
+      ],
+      "note": "Final OOF thresholds are for a future deployment fit only; same-OOF metrics are descriptive and not unbiased performance estimates.",
+      "objective": "Nested leave-one-development-fold-out threshold selection; each fold threshold fitted only on the other two folds"
+    },
+    "reason": "Nested fold thresholds (0.495, 0.460, 0.480) did not improve mean held-fold macro F1 over using 0.5 directly; the all-OOF selected threshold is optimistic."
+  },
+  "reports": {
+    "error_analysis": "reports/experiments/qmutbench_exhaustive_error_analysis_20261026.json",
+    "json": "reports/experiments/qmutbench_exhaustive_optimization_20261026.json",
+    "markdown": "reports/experiments/qmutbench_exhaustive_optimization_20261026.md"
+  },
+  "schema": "qmutbench-exhaustive-optimization-campaign-v1",
+  "screening_60_trees": {
+    "fold_macro_f1": [
+      0.7839771004072607,
+      0.8015300098072328,
+      0.7802173792257376
+    ],
+    "fold_macro_f1_deltas_vs_matched_baseline": [
+      0.020903484141445938,
+      0.031409758975629365,
+      0.014558261320350652
+    ],
+    "pooled_macro_f1_delta_vs_matched_baseline": 0.020328664706016908,
+    "pooled_metrics": {
+      "accuracy": 0.7885635606633259,
+      "average_precision": 0.8883170888710021,
+      "balanced_accuracy": 0.7894716338453325,
+      "brier_score": 0.14697428586161293,
+      "confusion_matrix_labels_0_1": [
+        [
+          226664,
+          51749
+        ],
+        [
+          70486,
+          229218
+        ]
+      ],
+      "macro_f1": 0.7885594340039961,
+      "per_class": {
+        "detected_1": {
+          "f1": 0.7894935342043946,
+          "precision": 0.8158182277634028,
+          "recall": 0.764814617088861,
+          "support": 299704
+        },
+        "survivor_0": {
+          "f1": 0.7876253338035976,
+          "precision": 0.7627932020864883,
+          "recall": 0.8141286506018038,
+          "support": 278413
+        }
+      },
+      "roc_auc": 0.8781832618555763
+    }
+  },
+  "selection": {
+    "decision": "Select the mutation-aware Extra Trees as the new versioned development model.",
+    "promotion_bar": "+0.5 percentage points grouped macro F1, fold support, and no material safeguard degradation.",
+    "qualification": "The development labels informed feature selection, so neither confirmation is an independent external test. The previously examined historical frozen set was not used.",
+    "result": "+2.067 points on saved three-fold OOF and +1.993 points on additional five-fold grouped CV; every paired fold improved.",
+    "target_85_percent_reached": false
+  },
+  "source": {
+    "all_rows": 723079,
+    "csv": "data/qmutbench_ingestion/raw/official_all_data_20261015.csv",
+    "development_origins": 305,
+    "development_rows": 578117,
+    "frozen_test_used": false,
+    "historical_frozen_rows": 144962,
+    "qasm_commit": "01f5e7700c051fe715fc368b307deaa7e6869ba8",
+    "sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778"
+  },
+  "starting_branch": "qmutbench-master-optimization",
+  "starting_commit": "13a45194961fe4293b1b300ca4611df7e4a5900a",
+  "target": "WOO/OPO=detected (1); Survivor=not detected (0). This is historical benchmark outcome prediction, not hardware-noise detection or fault localization.",
+  "tests": {
+    "command": "$qmutbenchTests = Get-ChildItem tests -Filter 'test_qmutbench_*.py' | ForEach-Object { $_.FullName }; .venv/Scripts/python.exe -m pytest @qmutbenchTests -q",
+    "focused": "15 passed in 2.27s",
+    "remaining": "Final compile, git diff --check, review, commit/push pending.",
+    "result": "88 passed in 17.15s"
+  }
+}

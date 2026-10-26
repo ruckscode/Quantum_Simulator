@@ -23,6 +23,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from qmutbench_validation import QMutBenchParseError, parse_qasm_file  # noqa: E402
+from qmutbench_ml.qasm_mutation_diff import PARSER_ARITY  # noqa: E402
 
 EXPECTED_DATA_SHA = "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778"
 EXPECTED_REPO_COMMIT = "01f5e7700c051fe715fc368b307deaa7e6869ba8"
@@ -31,16 +32,6 @@ OFFICIAL_CHECKOUT = ROOT / "data/qmutbench_full"
 QASM_ROOT = OFFICIAL_CHECKOUT / "data"
 BASELINE_OOF = ROOT / "data/qmutbench_ml/master_optimization_v1/oof_predictions.csv"
 DEFAULT_OUTPUT = ROOT / "data/qmutbench_ml/qasm_structural_v4"
-PARSER_ARITY = {
-    "id": (1, 0), "x": (1, 0), "y": (1, 0), "z": (1, 0), "h": (1, 0),
-    "s": (1, 0), "sdg": (1, 0), "t": (1, 0), "tdg": (1, 0), "sx": (1, 0),
-    "sxdg": (1, 0), "rx": (1, 1), "ry": (1, 1), "rz": (1, 1), "p": (1, 1),
-    "u1": (1, 1), "u2": (1, 2), "u3": (1, 3), "u": (1, 3),
-    "cx": (2, 0), "cy": (2, 0), "cz": (2, 0), "ch": (2, 0), "swap": (2, 0),
-    "cp": (2, 1), "cu1": (2, 1), "cu2": (2, 2), "cu3": (2, 3), "cu": (2, 4),
-    "crx": (2, 1), "cry": (2, 1), "crz": (2, 1), "rxx": (2, 1), "ryy": (2, 1),
-    "rzz": (2, 1), "rzx": (2, 1), "ccx": (3, 0), "rccx": (3, 0), "cswap": (3, 0),
-}
 COUNT_GATES = ("cx", "cz", "cp", "u", "h", "ry", "rx", "rz", "ccx", "swap", "rzz", "rxx")
 FEATURE_COLUMNS = [
     "qasm_mut_gate_count", "qasm_mut_depth", "qasm_mut_depth_per_qubit",

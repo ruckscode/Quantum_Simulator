@@ -98,3 +98,36 @@ def test_source_position_category_derivation_and_validation(tmp_path):
     assert result["model_version"] == "qmutbench-outcome-v1"
     with pytest.raises(ValueError, match="Unsupported.*position"):
         predictor.predict({"size": 5, "position": "unknown"})
+
+
+def test_qasm_mutation_features_are_derived_for_single_and_batch_inputs(tmp_path):
+    x = pd.DataFrame({"operation": ["Add", "Remove", "Add", "Remove"],
+                      "gate": ["x", "cx", "x", "cx"],
+                      "qasm_diff_exact_single_edit": [1, 1, 0, 0]})
+    prep = ColumnTransformer([
+        ("categorical", OneHotEncoder(handle_unknown="ignore"), ["operation", "gate"]),
+        ("numeric", "passthrough", ["qasm_diff_exact_single_edit"]),
+    ])
+    model = Pipeline([("preprocess", prep), ("model", DummyClassifier(strategy="prior"))]).fit(x, [0, 1, 0, 1])
+    model_path = tmp_path / "qasm_model.joblib"
+    joblib.dump(model, model_path)
+    original = 'OPENQASM 2.0; include "qelib1.inc"; qreg q[2]; h q[0]; cx q[0],q[1];'
+    mutant = 'OPENQASM 2.0; include "qelib1.inc"; qreg q[2]; h q[0]; x q[0]; cx q[0],q[1];'
+    metadata = {
+        "feature_schema": ["operation", "gate", "qasm_diff_exact_single_edit"],
+        "input_feature_schema": ["operation", "gate", "original_qasm", "mutant_qasm"],
+        "qasm_feature_derivation": {"original_column":"original_qasm", "mutant_column":"mutant_qasm",
+                                     "operation_column":"operation", "gate_column":"gate",
+                                     "output_features":["qasm_diff_exact_single_edit"],
+                                     "source_format":"OpenQASM 2.0 text"},
+        "target_map":{"OPO":1,"Survivor":0,"WOO":1}, "inference_threshold":0.5,
+        "model_sha256":hashlib.sha256(model_path.read_bytes()).hexdigest(), "model_version":"qasm-test-v1",
+    }
+    metadata_path=tmp_path/"qasm_model_metadata.json"
+    metadata_path.write_text(json.dumps(metadata),encoding="utf-8")
+    predictor=QMutBenchOutcomeModel(model_path,metadata_path)
+    record={"operation":"Add","gate":"x","original_qasm":original,"mutant_qasm":mutant}
+    assert predictor.predict(record)["model_version"]=="qasm-test-v1"
+    assert len(predictor.predict([record,record]))==2
+    with pytest.raises(ValueError,match="non-empty OpenQASM"):
+        predictor.predict({**record,"mutant_qasm":""})
