@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Iterator
 
 EXPECTED_SOURCE_SHA256 = "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778"
+EXPECTED_QASM_COMMIT = "01f5e7700c051fe715fc368b307deaa7e6869ba8"
 EXPECTED_REFERENCE_ROWS = 578_117
 EXPECTED_REFERENCE_ORIGINS = 305
 METADATA_FIELDS = ["algorithm", "operation", "gate", "dominant_state", "qubits", "gates",
@@ -174,7 +175,8 @@ class DevelopmentStream:
                 raise ValueError("Saved development fold lacks one of the binary classes")
             connection.commit()
             cache_manifest = json.loads((self.cache_path / "manifest.json").read_text(encoding="utf-8"))
-            if (cache_manifest.get("source_sha256") != raw_sha or
+            if (cache_manifest.get("qasm_commit") != EXPECTED_QASM_COMMIT or
+                    cache_manifest.get("source_sha256") != raw_sha or
                     cache_manifest.get("feature_rows") != self.expected_rows or
                     cache_manifest.get("error_rows") != 0 or cache_manifest.get("status") != "complete"):
                 raise ValueError("QASM mutation-diff cache is incomplete or has a different source")

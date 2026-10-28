@@ -63,7 +63,8 @@ def _fixture(root: Path, *, duplicate_raw=False, archive_fold_mismatch=False, mi
         path = cache / f"diff_{ix:05d}.csv.gz"
         pd.DataFrame(rows).to_csv(path, index=False, compression="gzip")
         chunks.append({"file": path.name, "rows": len(rows), "errors": 0, "sha256": sha256(path)})
-    (cache / "manifest.json").write_text(json.dumps({"status": "complete", "source_sha256": raw_sha,
+    (cache / "manifest.json").write_text(json.dumps({"status": "complete",
+        "qasm_commit": "01f5e7700c051fe715fc368b307deaa7e6869ba8", "source_sha256": raw_sha,
         "feature_rows": 6, "error_rows": 0, "chunks": chunks}), encoding="utf-8")
     return root
 

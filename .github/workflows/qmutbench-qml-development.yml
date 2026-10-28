@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       reference_release_tag:
-        description: Release tag containing qmutbench_qml_reference_dev_bundle.zip
+        description: Release tag containing the development split and QASM cache
         required: false
         default: qmutbench-qml-reference-dev-20261028
         type: string
@@ -57,8 +57,9 @@ jobs:
           repository: EnautMendi/QMutBench
           ref: 01f5e7700c051fe715fc368b307deaa7e6869ba8
           path: data/qmutbench_full
-          sparse-checkout: data
-          sparse-checkout-cone-mode: true
+          sparse-checkout: |
+            /data/all_data.csv
+          sparse-checkout-cone-mode: false
           persist-credentials: false
 
       - name: Set up Python
@@ -111,6 +112,11 @@ jobs:
           mv .qml-input/qmutbench_qml_reference_dev_bundle.zip .qml-input/reference_bundle.zip
           echo "$BUNDLE_SHA256  .qml-input/reference_bundle.zip" | sha256sum --check --status
           echo "reference_bundle_sha256=$BUNDLE_SHA256" >> "$GITHUB_STEP_SUMMARY"
+          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
+            --pattern qmutbench_qml_qasm_dev_cache_20261028.zip --dir .qml-input
+          echo "d6ad2d5f8416a93b62cb195d4f06c2c44f61bba24a309f5be754337efcf7791f  .qml-input/qmutbench_qml_qasm_dev_cache_20261028.zip" | sha256sum --check --status
+          mkdir -p data/qmutbench_ml
+          unzip -oq .qml-input/qmutbench_qml_qasm_dev_cache_20261028.zip -d data/qmutbench_ml
 
       - name: Restore checkpoints from prior workflow run
         if: ${{ inputs.resume_run_id != '' }}
@@ -129,11 +135,29 @@ jobs:
           --official-checkout data/qmutbench_full
           --bundle .qml-input/reference_bundle.zip
 
-      - name: Regenerate development mutation-difference features
-        run: >-
-          python experiments/qmutbench_qasm_mutation_diff.py
-          --output-dir data/qmutbench_ml/qasm_mutation_diff_v1
-          --workers 2 --chunk-rows 10000
+      - name: Validate cached development-only QASM feature inputs
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path("data/qmutbench_ml/qasm_mutation_diff_v1")
+          manifest_path = root / "manifest.json"
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+          expected = {"qasm_commit": "01f5e7700c051fe715fc368b307deaa7e6869ba8",
+                      "source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+                      "development_rows": 578117, "feature_rows": 578117,
+                      "error_rows": 0, "status": "complete"}
+          if any(manifest.get(k) != v for k, v in expected.items()):
+              raise SystemExit("QASM feature cache provenance or coverage mismatch")
+          for part in manifest["chunks"]:
+              path = root / part["file"]
+              digest = hashlib.sha256(path.read_bytes()).hexdigest()
+              if digest != part["sha256"] or part["errors"] != 0:
+                  raise SystemExit(f"QASM feature chunk failed checksum/error validation: {path}")
+          if sum(part["rows"] for part in manifest["chunks"]) != 578117:
+              raise SystemExit("QASM feature cache does not cover every development record")
+          print(f"Validated {len(manifest['chunks'])} development-only QASM chunks.")
+          PY
 
       - name: Validate campaign configuration
         env:
