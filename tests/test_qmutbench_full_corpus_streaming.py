@@ -38,7 +38,7 @@ def test_ram_floor_stops_before_work(monkeypatch):
 
 
 def test_feature_rows_do_not_include_target_or_group_as_predictors():
-    result = stream._feature_row(
+    result = stream.make_feature_row(
         4, "origin-a", "origin.qasm", "mutant.qasm",
         {"gate_count": 2, "depth": 2, "two_plus_fraction": 0.5},
         {"gate_count": 3, "depth": 3, "two_plus_fraction": 1.0},
@@ -52,9 +52,10 @@ def test_feature_rows_do_not_include_target_or_group_as_predictors():
     assert result["qasm_delta_gate_count"] == 1
 
 
-def test_one_chunk_extracts_features_and_resumes_without_labels(tmp_path, monkeypatch):
+def test_one_chunk_extracts_development_features_and_resumes(tmp_path, monkeypatch):
     monkeypatch.setattr(stream, "available_ram_bytes", lambda: 4 * 1024**3)
     metadata = tmp_path / "metadata.csv"
+    development_ids = tmp_path / "oof_predictions.csv"
     qasm_root = tmp_path / "data"
     output = tmp_path / "features"
 
@@ -71,17 +72,22 @@ h q[0];
 x q[1];
 cx q[0],q[1];
 ''')
-    pd.DataFrame([{
-        "Unnamed: 0": 0, "Origin_program": "ghz_2_qubits",
-        "algorithm": "ghz", "qubits": 2, "gates": 3,
-        "operation": "Add", "gate": "x", "Position_int": 1,
-        "Killed": "WOO",
-    }]).to_csv(metadata, index=False)
+    # A second row represents a frozen-test record. Its QASM file is intentionally absent.
+    pd.DataFrame([
+        {"Unnamed: 0": 0, "Origin_program": "ghz_2_qubits",
+         "algorithm": "ghz", "qubits": 2, "gates": 3,
+         "operation": "Add", "gate": "x", "Position_int": 1, "Killed": "WOO"},
+        {"Unnamed: 0": 1, "Origin_program": "test_only",
+         "algorithm": "not_present", "qubits": 2, "gates": 3,
+         "operation": "Add", "gate": "x", "Position_int": 1, "Killed": "Survivor"},
+    ]).to_csv(metadata, index=False)
+    pd.DataFrame({"record_id": [0], "y": [1], "prediction": [1]}).to_csv(development_ids, index=False)
 
-    result = stream.extract(metadata, qasm_root, output, chunk_rows=1,
-                            min_available_mib=1024, max_chunks=1)
+    result = stream.extract(metadata, qasm_root, development_ids, output,
+                            chunk_rows=1, min_available_mib=1024, max_chunks=2,
+                            expected_dev_rows=1)
     assert result["status"] == "partial"
-    assert result["records_requested"] == 1
+    assert result["development_rows_seen"] == 1
     assert result["feature_rows"] == 1
     assert result["parse_error_rows"] == 0
 
@@ -91,12 +97,15 @@ cx q[0],q[1];
     assert part.loc[0, "qasm_mut_gate_count"] == 3
     assert "Killed" not in part.columns
     assert "label" not in part.columns
+    # The frozen-test row's missing mutant file was never opened or reported as an error.
+    test_chunk = pd.read_csv(output / "features_00001.csv.gz")
+    assert test_chunk.empty
 
     manifest_before = json.loads((output / "manifest.json").read_text(encoding="utf-8"))
     assert manifest_before["chunks"][0]["sha256"]
 
-    # Same inputs and configuration: completed chunk is reused, not overwritten.
-    result2 = stream.extract(metadata, qasm_root, output, chunk_rows=1,
-                             min_available_mib=1024, max_chunks=1)
+    result2 = stream.extract(metadata, qasm_root, development_ids, output,
+                             chunk_rows=1, min_available_mib=1024, max_chunks=2,
+                             expected_dev_rows=1)
     assert result2["feature_rows"] == 1
     assert result2["parse_error_rows"] == 0
