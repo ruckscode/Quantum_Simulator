@@ -199,7 +199,10 @@ def extract(metadata: Path, qasm_root: Path, dev_ids_path: Path, output: Path, *
             numeric_ids = pd.to_numeric(frame["Unnamed: 0"], errors="raise").astype("int64")
             selected_mask = numeric_ids.isin(dev_ids)
             selected = frame.loc[selected_mask].copy()
-            selected_ids = set(numeric_ids.loc[selected_mask].tolist())
+            selected_id_series = numeric_ids.loc[selected_mask]
+            if selected_id_series.duplicated().any():
+                raise ValueError(f"Duplicate development record IDs within metadata chunk {chunk_index}")
+            selected_ids = set(selected_id_series.tolist())
             overlap = selected_ids & seen_dev_ids
             if overlap:
                 raise ValueError(f"Duplicate development record IDs encountered: {sorted(overlap)[:5]}")
