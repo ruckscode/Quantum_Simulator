@@ -1,9 +1,8 @@
 """Memory-bounded, resumable QMutBench DEVELOPMENT-only QASM feature extraction.
 
 Frozen test origins are excluded using only record_id values from saved grouped
-development OOF predictions. The extractor reads metadata columns needed to map
-development records to files, but never reads the Killed target column and never
-opens a frozen-test QASM file. Feature chunks contain no labels.
+development OOF predictions. The extractor never reads the Killed target column
+and never opens a frozen-test QASM file. Feature chunks contain no labels.
 
 Run from the repository root:
   python experiments/qmutbench_full_corpus_streaming.py
@@ -131,7 +130,8 @@ def make_feature_row(record_id: int, origin: str, original_rel: str, mutant_rel:
 
 
 def extract(metadata: Path, qasm_root: Path, dev_ids_path: Path, output: Path, *,
-            chunk_rows: int, min_available_mib: int, max_chunks: int | None = None) -> dict[str, Any]:
+            chunk_rows: int, min_available_mib: int, max_chunks: int | None = None,
+            expected_dev_rows: int = EXPECTED_DEV_ROWS) -> dict[str, Any]:
     if chunk_rows < 1:
         raise ValueError("chunk_rows must be >= 1")
     for path in (metadata, dev_ids_path):
@@ -141,24 +141,21 @@ def extract(metadata: Path, qasm_root: Path, dev_ids_path: Path, output: Path, *
         raise FileNotFoundError(f"QASM root not found: {qasm_root}")
     output.mkdir(parents=True, exist_ok=True)
 
-    # Read only the row identifier from saved development predictions. No labels,
-    # probabilities, fold metrics, or frozen-test identifiers are loaded.
+    # Read only record_id from saved development OOF predictions; no labels or probabilities.
     dev_id_frame = pd.read_csv(dev_ids_path, usecols=["record_id"])
     dev_id_series = pd.to_numeric(dev_id_frame["record_id"], errors="raise").astype("int64")
     if dev_id_series.duplicated().any():
         raise ValueError("Saved development OOF record_id values are not unique")
     dev_ids = set(dev_id_series.tolist())
-    if len(dev_ids) != EXPECTED_DEV_ROWS:
-        raise ValueError(f"Expected {EXPECTED_DEV_ROWS} development IDs, found {len(dev_ids)}")
+    if len(dev_ids) != expected_dev_rows:
+        raise ValueError(f"Expected {expected_dev_rows} development IDs, found {len(dev_ids)}")
 
-    metadata_sha = sha256_file(metadata)
-    dev_ids_sha = sha256_file(dev_ids_path)
-    parser_sha = sha256_file(ROOT / "qmutbench_validation.py")
-    extractor_sha = sha256_file(Path(__file__))
     config = {
         "schema": "qmutbench-development-qasm-features-v2",
-        "metadata_sha256": metadata_sha, "development_ids_sha256": dev_ids_sha,
-        "parser_sha256": parser_sha, "extractor_sha256": extractor_sha,
+        "metadata_sha256": sha256_file(metadata),
+        "development_ids_sha256": sha256_file(dev_ids_path),
+        "parser_sha256": sha256_file(ROOT / "qmutbench_validation.py"),
+        "extractor_sha256": sha256_file(Path(__file__)),
         "metadata_path": str(metadata.resolve()), "qasm_root": str(qasm_root.resolve()),
         "development_rows_expected": len(dev_ids), "chunk_rows": chunk_rows,
         "feature_columns": OUTPUT_COLUMNS,
@@ -173,9 +170,9 @@ def extract(metadata: Path, qasm_root: Path, dev_ids_path: Path, output: Path, *
         if manifest.get("cache_key") != cache_key:
             raise ValueError("Output manifest has different source/config hashes; choose a new output directory")
     else:
-        manifest = {**config, "cache_key": cache_key, "status": "in_progress",
-                    "chunks": [], "development_rows_seen": 0, "feature_rows": 0,
-                    "parse_error_rows": 0, "started_at_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+        manifest = {**config, "cache_key": cache_key, "status": "in_progress", "chunks": [],
+                    "development_rows_seen": 0, "feature_rows": 0, "parse_error_rows": 0,
+                    "started_at_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
         atomic_json(manifest_path, manifest)
 
     completed: dict[int, dict[str, Any]] = {}
@@ -202,10 +199,12 @@ def extract(metadata: Path, qasm_root: Path, dev_ids_path: Path, output: Path, *
             numeric_ids = pd.to_numeric(frame["Unnamed: 0"], errors="raise").astype("int64")
             selected_mask = numeric_ids.isin(dev_ids)
             selected = frame.loc[selected_mask].copy()
-            selected_ids = numeric_ids.loc[selected_mask].tolist()
+            selected_ids = set(numeric_ids.loc[selected_mask].tolist())
+            overlap = selected_ids & seen_dev_ids
+            if overlap:
+                raise ValueError(f"Duplicate development record IDs encountered: {sorted(overlap)[:5]}")
             seen_dev_ids.update(selected_ids)
-            if len(seen_dev_ids) != len(set(seen_dev_ids)):
-                raise ValueError("Duplicate development record IDs encountered while scanning metadata")
+            origins_seen.update(selected["Origin_program"].astype(str).unique())
             chunk_name = f"features_{chunk_index:05d}.csv.gz"
             error_name = f"errors_{chunk_index:05d}.jsonl"
             if chunk_index in completed:
@@ -213,14 +212,13 @@ def extract(metadata: Path, qasm_root: Path, dev_ids_path: Path, output: Path, *
 
             rows: list[dict[str, Any]] = []
             errors: list[dict[str, Any]] = []
-            for row_index, raw_series in enumerate(selected.to_dict(orient="records")):
+            for row_index, raw in enumerate(selected.to_dict(orient="records")):
                 if row_index % 25 == 0:
                     require_ram_floor(min_available_mib)
-                record_id = int(raw_series["Unnamed: 0"])
-                origin = str(raw_series["Origin_program"])
-                origins_seen.add(origin)
+                record_id = int(raw["Unnamed: 0"])
+                origin = str(raw["Origin_program"])
                 try:
-                    original_rel, mutant_rel = safe_relative_paths(raw_series)
+                    original_rel, mutant_rel = safe_relative_paths(raw)
                     original_path, mutant_path = qasm_root / original_rel, qasm_root / mutant_rel
                     if not original_path.is_file():
                         raise FileNotFoundError(f"Missing original QASM: {original_rel}")
@@ -236,10 +234,8 @@ def extract(metadata: Path, qasm_root: Path, dev_ids_path: Path, output: Path, *
                     if original_features is None:
                         raise ValueError(f"Original QASM parse failure: {original_failures[original_rel]}")
                     mutant_features = circuit_features(mutant_path)
-                    rows.append(make_feature_row(
-                        record_id, origin, original_rel, mutant_rel, original_features,
-                        mutant_features, int(raw_series["gates"]),
-                    ))
+                    rows.append(make_feature_row(record_id, origin, original_rel, mutant_rel,
+                                                 original_features, mutant_features, int(raw["gates"])))
                 except Exception as exc:
                     errors.append({"record_id": record_id, "origin_program": origin,
                                    "error_type": type(exc).__name__, "error": str(exc)})
@@ -249,7 +245,7 @@ def extract(metadata: Path, qasm_root: Path, dev_ids_path: Path, output: Path, *
             tmp_error = error_path.with_suffix(error_path.suffix + ".tmp")
             tmp_error.write_text("".join(json.dumps(item, sort_keys=True) + "\n" for item in errors), encoding="utf-8")
             os.replace(tmp_error, error_path)
-            record = {
+            completed[chunk_index] = {
                 "chunk_index": chunk_index, "file": chunk_name, "error_file": error_name,
                 "metadata_rows_scanned": int(len(frame)), "development_rows_seen": int(len(selected)),
                 "feature_rows": int(len(rows)), "parse_error_rows": int(len(errors)),
@@ -257,13 +253,12 @@ def extract(metadata: Path, qasm_root: Path, dev_ids_path: Path, output: Path, *
                 "available_ram_mib_after": round(available_ram_bytes() / 1024**2, 1),
                 "elapsed_seconds": round(time.monotonic() - started, 3),
             }
-            completed[chunk_index] = record
             manifest["chunks"] = [completed[i] for i in sorted(completed)]
             manifest.update({
                 "development_rows_seen": sum(x["development_rows_seen"] for x in completed.values()),
                 "feature_rows": sum(x["feature_rows"] for x in completed.values()),
                 "parse_error_rows": sum(x["parse_error_rows"] for x in completed.values()),
-                "origins_seen_in_completed_chunks": len(origins_seen),
+                "development_origins_seen_so_far": len(origins_seen),
                 "original_parse_failures": len(original_failures),
                 "original_parse_failure_examples": dict(list(original_failures.items())[:25]),
                 "elapsed_seconds_this_run": round(time.monotonic() - started, 3),
@@ -281,11 +276,10 @@ def extract(metadata: Path, qasm_root: Path, dev_ids_path: Path, output: Path, *
         print(f"PAUSED SAFELY: {exc}", file=sys.stderr, flush=True)
         return manifest
 
+    finished_scan = max_chunks is None
     total_dev_rows = sum(item["development_rows_seen"] for item in completed.values())
     total_features = sum(item["feature_rows"] for item in completed.values())
     total_errors = sum(item["parse_error_rows"] for item in completed.values())
-    all_source_chunks = max(completed.keys(), default=-1) + 1
-    finished_scan = max_chunks is None and all_source_chunks == (len(pd.read_csv(metadata, usecols=["Unnamed: 0"], chunksize=chunk_rows)))
     missing_dev_ids = len(dev_ids - seen_dev_ids) if finished_scan else None
     if finished_scan and missing_dev_ids:
         raise ValueError(f"{missing_dev_ids} saved development IDs were absent from the metadata scan")
@@ -294,7 +288,7 @@ def extract(metadata: Path, qasm_root: Path, dev_ids_path: Path, output: Path, *
     manifest.update({
         "status": status, "development_rows_seen": total_dev_rows, "feature_rows": total_features,
         "parse_error_rows": total_errors, "development_origins_seen": len(origins_seen),
-        "original_parse_failures": len(original_failures), "missing_development_ids": missing_dev_ids,
+        "missing_development_ids": missing_dev_ids,
         "finished_at_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "elapsed_seconds_this_run": round(time.monotonic() - started, 3),
         "chunks": [completed[i] for i in sorted(completed)],
