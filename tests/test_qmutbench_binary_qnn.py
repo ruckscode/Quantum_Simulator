@@ -263,3 +263,155 @@ def test_in_run_memory_floor_stops_at_1024_mib(monkeypatch):
     monkeypatch.setattr(psutil, "virtual_memory",
                         lambda: SimpleNamespace(available=1024 * 1024 * 1024))
     assert binary.require_memory_floor(psutil, binary.RAM_FLOOR_MIB, "test stage") == 1024
+
+
+def _chunk_state(chunk, weight, processed, cursor):
+    return {"chunk_index": chunk, "epoch": 0, "next_batch": cursor,
+        "batch_order": [2, 0, 3, 1], "weights": [[[weight, 0.0, 0.0], [0.0, 0.0, 0.0]]],
+        "readout_scale": 1.0, "readout_bias": 0.0,
+        "optimizer_accumulation": {"fm": [0.1, 0.2, 3], "sm": [0.01, 0.04, 3], "t": 3},
+        "rng_state": {"bit_generator": "PCG64", "state": {"state": 7, "inc": 9}},
+        "processed_records": processed, "chunk_records": 2,
+        "chunk_loss_sum": 1.25, "chunk_loss_records": 2, "chunk_loss_mean": 0.625,
+        "processed_range": {"epoch": 0, "first_batch": cursor - 1,
+            "next_batch": cursor, "records": 2, "record_id_min": processed - 1,
+            "record_id_max": processed, "record_id_sha256": "a" * 64},
+        "loss_history": [], "training_seconds": 1.2, "peak_rss_bytes": 123456,
+        "available_ram_bytes": 999999999}
+
+
+def test_chunk_checkpoint_resume_preserves_model_optimizer_and_cursor(tmp_path):
+    config = {**binary.DEFAULT_CONFIG, "qubits": 2, "depth": 1}
+    fp = "dataset-fold-source-schema"
+    binary.initialize_qnn_chunk_manifest(tmp_path, 1, fp, 2)
+    first = _chunk_state(1, 0.25, 2, 1)
+    path = binary.save_qnn_chunk_checkpoint(tmp_path, 1, fp, config, first)
+    restored = binary.load_latest_qnn_chunk_checkpoint(tmp_path, 1, fp, config)
+    assert restored == first
+    assert restored["weights"][0][0][0] == 0.25
+    assert restored["optimizer_accumulation"]["t"] == 3
+    assert restored["next_batch"] == 1
+    second = _chunk_state(2, 0.125, 4, 2)
+    assert second["weights"] != first["weights"]
+    binary.save_qnn_chunk_checkpoint(tmp_path, 1, fp, config, second)
+    assert binary.load_latest_qnn_chunk_checkpoint(tmp_path, 1, fp, config) == second
+    manifest = json.loads((tmp_path / "fold_01_campaign_manifest.json").read_text())
+    assert [item["status"] for item in manifest["chunks"]] == ["completed", "completed"]
+    assert manifest["chunks"][0]["sha256"]
+    assert not path.with_suffix(".tmp").exists()
+    with pytest.raises(ValueError, match="Refusing to rerun completed"):
+        binary.mark_qnn_chunk_running(tmp_path, 1, fp, 1)
+
+
+def test_chunk_checkpoint_rejects_checksum_and_configuration_mismatch(tmp_path):
+    config = {**binary.DEFAULT_CONFIG, "qubits": 2, "depth": 1}
+    fp = "fingerprint"
+    path = binary.save_qnn_chunk_checkpoint(tmp_path, 2, fp, config,
+                                            _chunk_state(1, 0.3, 2, 1))
+    with pytest.raises(ValueError, match="Stale"):
+        binary.load_qnn_chunk_checkpoint(path, 2, 1, fp, {**config, "seed": 8})
+    body = json.loads(path.read_text())
+    body["state"]["weights"][0][0][0] = 0.4
+    path.write_text(json.dumps(body), encoding="utf-8")
+    with pytest.raises(ValueError, match="Corrupt"):
+        binary.load_qnn_chunk_checkpoint(path, 2, 1, fp, config)
+
+
+def test_chunk_resume_skips_committed_chunk_and_rejects_repeated_records(tmp_path):
+    config = {**binary.DEFAULT_CONFIG, "qubits": 2, "depth": 1}
+    fp = "fingerprint"
+    binary.save_qnn_chunk_checkpoint(tmp_path, 1, fp, config,
+                                    _chunk_state(1, 0.2, 2, 1))
+    assert binary.load_latest_qnn_chunk_checkpoint(tmp_path, 1, fp, config)["chunk_index"] == 1
+    binary.save_qnn_chunk_checkpoint(tmp_path, 1, fp, config,
+                                    _chunk_state(2, 0.1, 4, 2))
+    assert len(list(tmp_path.glob("fold_01_qnn_chunk_*.json"))) == 2
+    with pytest.raises(ValueError, match="repeats"):
+        binary.validate_chunk_ids([4, 5], [1, 2, 3, 4, 5], [5])
+
+
+def test_resume_reconciles_checkpoint_committed_before_manifest_write(tmp_path):
+    config = {**binary.DEFAULT_CONFIG, "qubits": 2, "depth": 1}
+    fp = "fingerprint"
+    binary.save_qnn_chunk_checkpoint(tmp_path, 1, fp, config,
+                                    _chunk_state(1, 0.2, 2, 1))
+    manifest_path = tmp_path / "fold_01_campaign_manifest.json"
+    manifest_path.unlink()  # Simulate interruption after checkpoint fsync/replace.
+    state = binary.load_latest_qnn_chunk_checkpoint(tmp_path, 1, fp, config)
+    manifest = json.loads(manifest_path.read_text())
+    assert state["chunk_index"] == 1
+    assert manifest["chunks"][0]["status"] == "completed"
+    assert manifest["chunks"][0]["sha256"]
+
+
+def test_pre_receipt_chunk_checkpoint_remains_resumable(tmp_path):
+    config = {**binary.DEFAULT_CONFIG, "qubits": 2, "depth": 1}
+    fp = "legacy-fingerprint"
+    state = _chunk_state(1, 0.2, 2, 1)
+    for key in ("chunk_loss_sum", "chunk_loss_records", "chunk_loss_mean", "processed_range"):
+        state.pop(key)
+    body = {"schema": binary.CHUNK_CHECKPOINT_SCHEMA, "fold": 1, "chunk": 1,
+            "fingerprint": fp, "configuration": config, "state": state}
+    body["payload_sha256"] = binary.canonical_hash(body)
+    (tmp_path / "fold_01_qnn_chunk_00000001.json").write_text(json.dumps(body), encoding="utf-8")
+    loaded = binary.load_latest_qnn_chunk_checkpoint(tmp_path, 1, fp, config)
+    assert loaded["weights"] == state["weights"]
+    manifest = json.loads((tmp_path / "fold_01_campaign_manifest.json").read_text())
+    assert manifest["chunks"][0]["status"] == "completed"
+
+
+def test_chunk_and_fold_validation_reject_duplicates_and_leakage():
+    with pytest.raises(ValueError, match="duplicate"):
+        binary.validate_chunk_ids([1, 1], [1, 2])
+    fold_by_id = {1: 1, 2: 1, 3: 2, 4: 2}
+    assert binary.validate_fold_records([3, 4], [1, 2], fold_by_id, 1)
+    with pytest.raises(ValueError, match="held-out"):
+        binary.validate_fold_records([1, 3], [2], fold_by_id, 1)
+
+
+def test_chunk_receipts_cover_disjoint_deterministic_record_ranges():
+    import hashlib
+    import numpy as np
+    from qmutbench_qml.models.binary_vqc import BinaryVQC
+
+    ids = np.array([11, 22, 33, 44], dtype=np.int64)
+    rng = np.random.default_rng(27)
+    shuffle_state = BinaryVQC._plain(rng.bit_generator.state)
+    order = rng.permutation(len(ids))
+    order_digest = hashlib.sha256(order.astype(np.int64).tobytes()).hexdigest()
+    order_ref = {"algorithm": "numpy-pcg64-permutation-v1", "length": len(ids),
+                 "sha256": order_digest}
+    first = {"epoch": 0, "next_batch": 1, "batch_order": order_ref,
+        "shuffle_rng_state": shuffle_state, "chunk_records": 2}
+    binary.attach_chunk_record_receipt(first, None, ids, 2)
+    second = {"epoch": 0, "next_batch": 2, "batch_order": order_ref,
+        "shuffle_rng_state": shuffle_state, "chunk_records": 2}
+    binary.attach_chunk_record_receipt(second, first, ids, 2)
+    assert first["processed_range"]["record_id_sha256"] != second["processed_range"]["record_id_sha256"]
+    assert first["processed_range"]["first_batch"] == 0
+    assert second["processed_range"]["first_batch"] == 1
+
+
+def test_real_pennylane_chunk_resume_gradient_and_update_when_ram_allows():
+    import psutil
+    if psutil.virtual_memory().available // (1024 * 1024) < binary.STARTUP_FLOOR_MIB:
+        pytest.skip("Real QNN chunk smoke requires the unchanged 2048 MiB startup reserve")
+    import numpy as np
+    from qmutbench_qml.models.binary_vqc import BinaryVQC
+
+    x = np.array([[.1, .2], [.8, .9], [.25, .7], [.95, .3]])
+    y = np.array([0, 1, 0, 1])
+    model = BinaryVQC(n_qubits=2, depth=1, epochs=1, batch_size=2, seed=91)
+    initial = np.random.default_rng(91).normal(0, .12, (1, 2, 3))
+    state = None
+    committed = []
+    while True:
+        model.fit(x, y, resume_state=state, max_batches_per_chunk=1,
+                  checkpoint_callback=lambda value: committed.append(value.copy()))
+        if model.training_complete:
+            break
+        state = model.resume_state
+    assert model.gradient_check_result["passed"]
+    assert not np.allclose(np.asarray(model.weights), initial)
+    assert model.resume_state["processed_records"] == len(y)
+    assert len(committed) == 2

@@ -1,5 +1,15 @@
 # Separate QMutBench QML research pilot
 
+## Chunk checkpointing and full-development mode
+
+The binary VQC runner now commits an immutable, checksum-validated checkpoint after each configured batch chunk (`--chunk-batches`, default 8 for the sampled pilot and 128 for full mode). Checkpoints preserve the deterministic epoch permutation reference and next batch, PennyLane Adam moments/step, RNG state, weights/readout, partial-epoch and chunk loss, processed-record ID receipt, elapsed time, and RAM readings. A fold manifest tracks pending/running/completed chunks. Resume validates the source/data/configuration fingerprint, reconciles the manifest from valid checkpoint files, and continues from the next batch. An interruption can repeat work only inside the not-yet-committed chunk.
+
+Run `python -m qmutbench_qml.training.run_binary_development --mode sampled-pilot` for the capped pilot or use `--mode full-development` for all 578,117 development records. Full mode scans the verified metadata CSV sequentially, retains only compact reference arrays and a disk-backed SQLite index, joins QASM cache chunks by ID, and writes fold features/labels/IDs to temporary memory-mapped files. Preprocessing is fitted on a deterministic, class-balanced sample (up to 5,000 rows) drawn only from that fold's training partition; the QNN still trains on every training record in that fold. Validation predictions are generated in mini-batches and written incrementally. At completion, unique held-out IDs are reconciled against the complete development reference. The frozen test is not used.
+
+Hosted full-development runs use `--max-chunks-per-invocation` to stop after a bounded number of committed chunks, save an invocation summary, upload the verified checkpoint artifact, then dispatch the next run with the completed run ID and attempt. The next run restores that artifact and resumes at the checkpoint's `next_batch`; completed chunks are not repeated. A full run can exceed a single hosted job's time limit, so each invocation finishes cleanly before handing off to the next.
+
+Full mode requires the exact source metadata, saved reference CSV/NPZ, and complete QASM-diff cache. It reports per-fold record/class/origin counts, chunk receipts, selected features, resource measurements, and feature/data fingerprints. Temporary memory maps are recreated after interruption; committed QNN chunks remain in the output directory or downloaded workflow artifact. GitHub artifact retention is 30 days; select a prior run ID and attempt to resume. Hosted standard-runner time limits can require multiple manual dispatches. Do not switch to full-development mode unless the workflow artifact contains the previous full-mode output and all required inputs revalidate. The guarded PennyLane smoke and full-mode preflight keep the 2,048 MiB startup reserve and 1,024 MiB in-run floor unchanged.
+
 This package is isolated from `qmutbench_ml/` and `src/quantum_simulator/`. It reuses the verified metadata CSV and QASM mutation-diff cache by read-only access; it does not copy the dataset or alter the existing model, simulator, or historical research artifacts.
 
 ## Research target and data adapter
@@ -55,3 +65,15 @@ The report separates metrics by protocol. Full-feature mutation-aware Extra Tree
 `kaggle_confirmation/` contains a data-free, development-only workflow for the predeclared three-class confirmation. `training/write_confirmation_origin_manifest.py` records the 36 unused OPO-bearing origins separately from the 12-origin exploration sample. `training/export_confirmation_data.py` exports only compact sampled development features when a conservative RAM preflight passes; it does not package source rows or test data. See `kaggle_confirmation/README.md` for private-dataset and notebook UI steps. The runner compares the selected QNN with matched 4-feature Logistic Regression, RBF SVC, and Extra Trees, and writes metrics, predictions, feature names, origin bootstrap intervals, and model parameters.
 
 The backend smoke checks forward and gradient agreement before fitting. `default.qubit` is the local supported path. The Kaggle GPU path is optional, uses adjoint differentiation, and only proceeds when the installed Lightning-GPU backend passes parity; the local Windows environment did not have the GPU plugin and could not load the CPU Lightning binary. The 2026-10-28 campaign resume has the exact origin manifest and resource/test results in the linked campaign report. No confirmation fit or Kaggle GPU run is claimed. The frozen test remains untouched.
+
+## GitHub Actions development run
+
+`.github/workflows/qmutbench-qml-development.yml` runs the existing bounded binary QNN campaign on `ubuntu-24.04`, checks the real circuit gradient/update and checkpoint recovery path, regenerates the development QASM-difference cache from the pinned public QMutBench commit, then saves campaign checkpoints, predictions, fold metrics, and resource snapshots as a workflow artifact. It does not evaluate the frozen test.
+
+The established five-fold development assignment is project-generated and is not in the public QMutBench repository. Export only its development records with:
+
+```powershell
+qmutbench_qml/.venv/Scripts/python.exe -m qmutbench_qml.training.export_reference_bundle --output reports/experiments/qmutbench_qml_reference_dev_bundle.zip
+```
+
+Upload that small ZIP as a GitHub Release asset named `qmutbench_qml_reference_dev_bundle.zip`. Start **Actions → QMutBench binary QML development → Run workflow**, providing the release tag and the SHA-256 printed by the exporter. To resume, provide the previous run ID (and its attempt number if that run was retried); the workflow restores validated QNN epoch/fold checkpoints and the chunked QASM cache from that run before continuing. The bundle contains only development IDs, origin groups, binary labels, and fold assignments, not the source dataset or frozen-test rows.

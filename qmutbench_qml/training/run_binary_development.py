@@ -23,6 +23,7 @@ from typing import Any, Callable
 
 SCHEMA = "qmutbench-binary-qnn-development-v1"
 EPOCH_CHECKPOINT_SCHEMA = "qmutbench-binary-qnn-epoch-v1"
+CHUNK_CHECKPOINT_SCHEMA = "qmutbench-binary-qnn-chunk-v1"
 LABEL_MAP = {"Survivor": 0, "WOO": 1, "OPO": 1}
 DEVELOPMENT_ROWS = 578_117
 DEVELOPMENT_ORIGINS = 305
@@ -38,12 +39,14 @@ DEFAULT_CONFIG = {
     "learning_rate": 0.02,
     "epochs": 8,
     "batch_size": 32,
+    "chunk_batches": 8,
     "max_train_per_class_per_fold": 256,
     "max_validation_per_class_per_fold": 256,
     "per_origin_class_cap": 32,
     "encoding": "angle_reupload",
     "classical_estimators": 100,
 }
+FULL_DEFAULT_CHUNK_BATCHES = 128
 
 
 def canonical_hash(value: Any) -> str:
@@ -104,6 +107,79 @@ def stratified_origin_sample(rows_by_stratum: dict[tuple[int, int, str], list[in
     if len(selected) != len(set(selected)):
         raise ValueError("Sampling produced duplicate record IDs")
     return selected
+
+
+def validate_chunk_ids(record_ids, allowed_ids, completed_ids=()) -> list[int]:
+    """Reject duplicate, out-of-plan, or already committed records before training."""
+    ids = [int(value) for value in record_ids]
+    if len(ids) != len(set(ids)):
+        raise ValueError("Training chunk contains duplicate record IDs")
+    allowed, completed = set(map(int, allowed_ids)), set(map(int, completed_ids))
+    if not set(ids) <= allowed:
+        raise ValueError("Training chunk contains records outside its fold plan")
+    if set(ids) & completed:
+        raise ValueError("Training chunk repeats previously committed records")
+    return ids
+
+
+def validate_fold_records(train_ids, validation_ids, fold_by_id, fold):
+    train, valid = list(map(int, train_ids)), list(map(int, validation_ids))
+    if len(train) != len(set(train)) or len(valid) != len(set(valid)):
+        raise ValueError("Fold plan contains duplicate record IDs")
+    if set(train) & set(valid):
+        raise ValueError(f"Fold {fold} training and validation IDs overlap")
+    if any(int(fold_by_id[rid]) == fold for rid in train):
+        raise ValueError(f"Fold {fold} training plan contains held-out records")
+    if any(int(fold_by_id[rid]) != fold for rid in valid):
+        raise ValueError(f"Fold {fold} validation plan contains records from another fold")
+    return True
+
+
+def attach_chunk_record_receipt(state: dict[str, Any], previous_state: dict[str, Any] | None,
+                                record_ids, batch_size: int) -> dict[str, Any]:
+    """Bind a committed cursor interval to the exact ordered record IDs it consumed."""
+    import numpy as np
+    epoch = int(state["epoch"])
+    next_batch = int(state["next_batch"])
+    ids_count = len(record_ids)
+    batch_count = math.ceil(ids_count / batch_size)
+    order_epoch = epoch if next_batch else max(0, epoch - 1)
+    start_batch = (int(previous_state.get("next_batch", 0))
+                   if previous_state and int(previous_state.get("epoch", -1)) == order_epoch else 0)
+    end_batch = next_batch if next_batch else batch_count
+    if end_batch <= start_batch:
+        raise ValueError("Chunk receipt has an empty or reversed batch interval")
+    order_state = state.get("batch_order")
+    if isinstance(order_state, dict):
+        shuffle_state = state.get("shuffle_rng_state")
+        if not shuffle_state:
+            raise ValueError("Compact permutation receipt is missing its RNG boundary")
+        order_rng = np.random.default_rng()
+        order_rng.bit_generator.state = shuffle_state
+        order = order_rng.permutation(ids_count)
+        digest = hashlib.sha256(order.astype(np.int64, copy=False).tobytes()).hexdigest()
+        if digest != order_state.get("sha256") or len(order) != int(order_state.get("length", -1)):
+            raise ValueError("Chunk receipt permutation does not match the saved digest")
+    elif order_state is None:
+        shuffle_state = state.get("shuffle_rng_state")
+        if not shuffle_state:
+            raise ValueError("Epoch-end chunk lacks the shuffle RNG boundary")
+        order_rng = np.random.default_rng()
+        order_rng.bit_generator.state = shuffle_state
+        order = order_rng.permutation(ids_count)
+    else:
+        order = np.asarray(order_state, dtype=np.int64)
+    first = start_batch * batch_size
+    last = min(ids_count, end_batch * batch_size)
+    positions = order[first:last]
+    consumed_ids = np.asarray(record_ids[positions], dtype=np.int64)
+    if len(consumed_ids) != int(state["chunk_records"]):
+        raise ValueError("Chunk record receipt count differs from the training progress counter")
+    state["processed_range"] = {"epoch": order_epoch, "first_batch": start_batch,
+        "next_batch": end_batch, "records": int(len(consumed_ids)),
+        "record_id_min": int(consumed_ids.min()), "record_id_max": int(consumed_ids.max()),
+        "record_id_sha256": hashlib.sha256(consumed_ids.tobytes()).hexdigest()}
+    return state
 
 
 def save_completed_fold(output: Path, fold: int, fingerprint: str,
@@ -250,6 +326,190 @@ def load_latest_qnn_epoch_checkpoint(output: Path, fold: int, fingerprint: str,
     return loaded[-1]["state"]
 
 
+def save_qnn_chunk_checkpoint(output: Path, fold: int, fingerprint: str,
+                              configuration: dict[str, Any], state: dict[str, Any]) -> Path:
+    """Durably commit and validate one optimizer-continuous training chunk."""
+    chunk = int(state.get("chunk_index", 0))
+    if chunk < 1 or not {"epoch", "next_batch", "weights", "readout_scale", "readout_bias",
+            "optimizer_accumulation", "rng_state", "batch_order", "processed_records",
+            "loss_history", "training_seconds", "peak_rss_bytes", "chunk_records",
+            "chunk_loss_mean", "chunk_loss_sum", "chunk_loss_records",
+            "processed_range"} <= set(state):
+        raise ValueError("Chunk checkpoint is missing required continuation state")
+    output.mkdir(parents=True, exist_ok=True)
+    path = output / f"fold_{fold:02d}_qnn_chunk_{chunk:08d}.json"
+    if path.exists():
+        raise FileExistsError(f"QNN chunk checkpoint already exists: {path}")
+    body = {"schema": CHUNK_CHECKPOINT_SCHEMA, "fold": fold, "chunk": chunk,
+            "fingerprint": fingerprint, "configuration": configuration, "state": state}
+    body["payload_sha256"] = canonical_hash(body)
+    raw = (json.dumps(body, sort_keys=True, indent=2, ensure_ascii=False) + "\n").encode("utf-8")
+    with tempfile.NamedTemporaryFile(dir=output, prefix=f"fold_{fold:02d}_chunk_{chunk:08d}_",
+                                     suffix=".tmp", delete=False) as tmp:
+        temp_path = Path(tmp.name)
+        tmp.write(raw); tmp.flush(); os.fsync(tmp.fileno())
+    try:
+        os.replace(temp_path, path)
+    finally:
+        if temp_path.exists():
+            temp_path.unlink()
+    load_qnn_chunk_checkpoint(path, fold, chunk, fingerprint, configuration)
+    manifest_path = output / f"fold_{fold:02d}_campaign_manifest.json"
+    manifest = {"schema": "qmutbench-qnn-chunk-manifest-v1", "fold": fold,
+                "fingerprint": fingerprint, "chunks": []}
+    if manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if manifest.get("fold") != fold or manifest.get("fingerprint") != fingerprint:
+            raise ValueError("Campaign manifest fingerprint mismatch")
+    record = {"fold": fold, "epoch": int(state["epoch"]), "chunk": chunk,
+              "records": int(state["chunk_records"]),
+              "chunk_loss_mean": float(state["chunk_loss_mean"]),
+              "processed_range": state["processed_range"],
+              "processed_records_total": int(state["processed_records"]), "status": "completed",
+              "gradient_check_passed": bool(state.get("gradient_check_result", {}).get("passed", False)),
+              "parameter_update_verified": bool(state.get("parameter_update_verified", False)),
+              "checkpoint": path.name, "sha256": file_sha256(path),
+              "elapsed_seconds": float(state["training_seconds"]),
+              "peak_rss_bytes": int(state["peak_rss_bytes"]),
+              "available_ram_bytes": int(state.get("available_ram_bytes", 0))}
+    existing = [item for item in manifest["chunks"] if item.get("chunk") == chunk]
+    if existing:
+        if existing[0].get("status") == "completed" and existing[0] != record:
+            raise ValueError("Campaign manifest contains a conflicting completed chunk")
+        manifest["chunks"] = [record if item.get("chunk") == chunk else item
+                               for item in manifest["chunks"]]
+    else:
+        manifest["chunks"].append(record)
+    manifest["chunks"].sort(key=lambda item: item["chunk"])
+    temp_manifest = manifest_path.with_suffix(".json.tmp")
+    with temp_manifest.open("w", encoding="utf-8", newline="") as stream:
+        stream.write(json.dumps(manifest, sort_keys=True, indent=2))
+        stream.flush()
+        os.fsync(stream.fileno())
+    os.replace(temp_manifest, manifest_path)
+    return path
+
+
+def initialize_qnn_chunk_manifest(output: Path, fold: int, fingerprint: str,
+                                  total_chunks: int) -> None:
+    """Create pending chunk entries once; completed entries survive resume."""
+    path = output / f"fold_{fold:02d}_campaign_manifest.json"
+    if path.exists():
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+        if manifest.get("fold") != fold or manifest.get("fingerprint") != fingerprint:
+            raise ValueError("Campaign manifest fingerprint mismatch")
+    else:
+        manifest = {"schema": "qmutbench-qnn-chunk-manifest-v1", "fold": fold,
+                    "fingerprint": fingerprint, "chunks": []}
+    existing = {int(item["chunk"]): item for item in manifest["chunks"]}
+    for chunk in range(1, total_chunks + 1):
+        existing.setdefault(chunk, {"fold": fold, "chunk": chunk, "status": "pending",
+                                    "records": None, "checkpoint": None,
+                                    "elapsed_seconds": None, "peak_rss_bytes": None})
+    manifest["chunks"] = [existing[key] for key in sorted(existing)]
+    temp = path.with_suffix(".json.tmp")
+    with temp.open("w", encoding="utf-8", newline="") as stream:
+        stream.write(json.dumps(manifest, sort_keys=True, indent=2))
+        stream.flush()
+        os.fsync(stream.fileno())
+    os.replace(temp, path)
+
+
+def mark_qnn_chunk_running(output: Path, fold: int, fingerprint: str, chunk: int) -> None:
+    path = output / f"fold_{fold:02d}_campaign_manifest.json"
+    if path.exists():
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+        if manifest.get("fold") != fold or manifest.get("fingerprint") != fingerprint:
+            raise ValueError("Campaign manifest fingerprint mismatch")
+    else:
+        manifest = {"schema": "qmutbench-qnn-chunk-manifest-v1", "fold": fold,
+                    "fingerprint": fingerprint, "chunks": []}
+    item = next((value for value in manifest["chunks"] if int(value["chunk"]) == chunk), None)
+    if item is None:
+        item = {"fold": fold, "chunk": chunk, "records": None,
+                "checkpoint": None, "status": "pending"}
+        manifest["chunks"].append(item)
+    if item["status"] == "completed":
+        raise ValueError(f"Refusing to rerun completed QNN chunk {chunk}")
+    item["status"] = "running"
+    manifest["chunks"].sort(key=lambda value: int(value["chunk"]))
+    temp = path.with_suffix(".json.tmp")
+    with temp.open("w", encoding="utf-8", newline="") as stream:
+        stream.write(json.dumps(manifest, sort_keys=True, indent=2))
+        stream.flush(); os.fsync(stream.fileno())
+    os.replace(temp, path)
+
+
+def load_qnn_chunk_checkpoint(path: Path, fold: int, chunk: int, fingerprint: str,
+                              configuration: dict[str, Any]) -> dict[str, Any]:
+    try:
+        body = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ValueError(f"Unreadable QNN chunk checkpoint: {path}") from exc
+    expected = body.pop("payload_sha256", None)
+    if (body.get("schema") != CHUNK_CHECKPOINT_SCHEMA or body.get("fold") != fold or
+            body.get("chunk") != chunk or not isinstance(expected, str) or
+            canonical_hash(body) != expected):
+        raise ValueError(f"Corrupt or incompatible QNN chunk checkpoint: {path}")
+    if body.get("fingerprint") != fingerprint or body.get("configuration") != configuration:
+        raise ValueError(f"Stale QNN chunk checkpoint rejected: {path}")
+    state = body.get("state")
+    if not isinstance(state, dict) or int(state.get("chunk_index", -1)) != chunk:
+        raise ValueError(f"Incomplete QNN chunk state: {path}")
+    record_range = state.get("processed_range")
+    if record_range is not None and (not isinstance(record_range, dict) or
+            int(record_range.get("records", -1)) != int(state.get("chunk_records", -2)) or
+            int(record_range.get("next_batch", -1)) <= int(record_range.get("first_batch", -1)) or
+            len(str(record_range.get("record_id_sha256", ""))) != 64):
+        raise ValueError(f"Invalid processed-record receipt in QNN chunk: {path}")
+    return body
+
+
+def load_latest_qnn_chunk_checkpoint(output: Path, fold: int, fingerprint: str,
+                                     configuration: dict[str, Any]) -> dict[str, Any] | None:
+    prefix = f"fold_{fold:02d}_qnn_chunk_"
+    paths = sorted(output.glob(f"{prefix}*.json"))
+    if not paths:
+        return None
+    chunks = [int(path.stem.removeprefix(prefix)) for path in paths]
+    if chunks != list(range(1, len(chunks) + 1)):
+        raise ValueError("QNN chunk checkpoint history has a gap")
+    loaded = [load_qnn_chunk_checkpoint(path, fold, chunk, fingerprint, configuration)
+              for path, chunk in zip(paths, chunks)]
+    manifest_path = output / f"fold_{fold:02d}_campaign_manifest.json"
+    manifest = {"schema": "qmutbench-qnn-chunk-manifest-v1", "fold": fold,
+                "fingerprint": fingerprint, "chunks": []}
+    if manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if manifest.get("fold") != fold or manifest.get("fingerprint") != fingerprint:
+            raise ValueError("Campaign manifest fingerprint mismatch")
+    items = {int(item["chunk"]): item for item in manifest["chunks"]}
+    for path, body in zip(paths, loaded):
+        state, chunk = body["state"], int(body["chunk"])
+        digest = file_sha256(path)
+        existing = items.get(chunk, {})
+        if existing.get("status") == "completed" and existing.get("sha256") != digest:
+            raise ValueError("Campaign manifest checksum does not match its checkpoint")
+        items[chunk] = {"fold": fold, "epoch": int(state["epoch"]), "chunk": chunk,
+            "records": int(state["chunk_records"]),
+            "chunk_loss_mean": float(state["chunk_loss_mean"]) if "chunk_loss_mean" in state else None,
+            "processed_range": state.get("processed_range"),
+            "processed_records_total": int(state["processed_records"]), "status": "completed",
+            "gradient_check_passed": bool(state.get("gradient_check_result", {}).get("passed", False)),
+            "parameter_update_verified": bool(state.get("parameter_update_verified", False)),
+            "checkpoint": path.name, "sha256": digest,
+            "elapsed_seconds": float(state["training_seconds"]),
+            "peak_rss_bytes": int(state["peak_rss_bytes"]),
+            "available_ram_bytes": int(state.get("available_ram_bytes", 0))}
+    manifest["chunks"] = [items[key] for key in sorted(items)]
+    temp = manifest_path.with_suffix(".json.tmp")
+    with temp.open("w", encoding="utf-8", newline="") as stream:
+        stream.write(json.dumps(manifest, sort_keys=True, indent=2))
+        stream.flush(); os.fsync(stream.fileno())
+    os.replace(temp, manifest_path)
+    return loaded[-1]["state"]
+
+
 def load_or_train_fold(output: Path, fold: int, fingerprint: str,
                        configuration: dict[str, Any], trainer: Callable[[], dict[str, Any]],
                        resume: bool) -> tuple[dict[str, Any], bool]:
@@ -271,8 +531,8 @@ def validate_config(config: dict[str, Any]) -> None:
         raise ValueError("This trainer requires the established five-fold reference split")
     if not 2 <= config["qubits"] <= 8:
         raise ValueError("qubits must be between 2 and 8")
-    if config["depth"] < 1 or config["epochs"] < 1 or config["batch_size"] < 1:
-        raise ValueError("depth, epochs, and batch_size must be positive")
+    if config["depth"] < 1 or config["epochs"] < 1 or config["batch_size"] < 1 or config["chunk_batches"] < 1:
+        raise ValueError("depth, epochs, batch_size, and chunk_batches must be positive")
     if config["optimizer"] not in {"adam", "gd"}:
         raise ValueError("optimizer must be adam or gd")
     if config["encoding"] != "angle_reupload":
@@ -285,11 +545,13 @@ def validate_config(config: dict[str, Any]) -> None:
             raise ValueError(f"{key} must be positive")
 
 
-def memory_preflight(config: dict[str, Any]) -> dict[str, int]:
+def memory_preflight(config: dict[str, Any], mode: str = "sampled-pilot") -> dict[str, int]:
     """Estimate working memory and require the 1 GiB floor plus headroom."""
     validate_config(config)
     import psutil
     avail = int(psutil.virtual_memory().available // (1024 * 1024))
+    if mode not in {"sampled-pilot", "full-development"}:
+        raise ValueError("mode must be sampled-pilot or full-development")
     sampled_rows = config["fold_count"] * 2 * (
         config["max_train_per_class_per_fold"] + config["max_validation_per_class_per_fold"])
     # Complex128 statevector/autodiff tape bound: one state plus an estimated
@@ -301,16 +563,18 @@ def memory_preflight(config: dict[str, Any]) -> dict[str, int]:
                                      (1024 * 1024))
     # Reserve 700 MiB for Python/scientific runtimes and bounded source join,
     # plus sampled dense arrays, the estimated QNN state/tape, and the 1 GiB floor.
-    sample_working_set = math.ceil(sampled_rows * 64 / (1024 * 1024))
+    sample_working_set = (math.ceil(sampled_rows * 64 / (1024 * 1024)) if mode == "sampled-pilot"
+                          else 350)  # Bounded 10k joins plus train-only encoder-fit sample.
     estimated_peak = (RAM_FLOOR_MIB + 700 + sample_working_set + quantum_working_set +
                       parameter_working_set)
     required = max(STARTUP_FLOOR_MIB, estimated_peak)
     if avail < required:
         raise MemoryError(f"Only {avail} MiB available; estimated peak requires {required} MiB "
                           f"to preserve the {RAM_FLOOR_MIB} MiB floor")
-    return {"available_mib": avail, "estimated_peak_mib": estimated_peak,
+    return {"mode": mode, "available_mib": avail, "estimated_peak_mib": estimated_peak,
             "required_start_mib": required, "sampled_rows_upper_bound": sampled_rows,
             "estimated_sample_working_set_mib": sample_working_set,
+            "bounded_streaming_working_set_mib": sample_working_set if mode == "full-development" else 0,
             "estimated_quantum_state_and_gradient_working_set_mib": quantum_working_set,
             "estimated_optimizer_parameter_working_set_mib": parameter_working_set}
 
@@ -461,39 +725,20 @@ def _summary_metrics(all_predictions: list[dict[str, Any]], fold_metrics: list[d
     return summaries
 
 
-def has_resume_candidates(output: Path) -> bool:
-    """Return whether the output contains a named completed-fold or epoch checkpoint candidate.
-
-    This is only a cheap directory gate, not a trust decision. The corresponding
-    checkpoint loaders still validate schema, checksum, configuration, fold,
-    data fingerprint, and epoch continuity before any state is reused.
-    """
-    checkpoint_dir = output / "fold_checkpoints"
-    if not checkpoint_dir.is_dir():
-        return False
-    for path in checkpoint_dir.glob("fold_*.json"):
-        parts = path.stem.split("_")
-        if (len(parts) == 2 and parts[0] == "fold" and parts[1].isdigit()
-                and 1 <= int(parts[1]) <= 5):
-            return True
-        if (len(parts) == 5 and parts[0] == "fold" and parts[1].isdigit()
-                and 1 <= int(parts[1]) <= 5 and parts[2] == "qnn"
-                and parts[3] == "epoch" and parts[4].isdigit()
-                and int(parts[4]) >= 1):
-            return True
-    return False
-
-
 def run_campaign(root: Path, output: Path, config: dict[str, Any], resume: bool = False) -> dict[str, Any]:
     """Run bounded sampled 5-fold OOF; not a full-row fit or frozen-test run."""
     root, output = root.resolve(), output.resolve()
     required_start = memory_preflight(config)
     if output.exists() and any(output.iterdir()):
-        has_checkpoints = has_resume_candidates(output)
+        checkpoint_dir = output / "fold_checkpoints"
+        has_checkpoints = checkpoint_dir.is_dir() and any(
+            checkpoint_dir.glob("fold_??.json")) or checkpoint_dir.is_dir() and any(
+            checkpoint_dir.glob("fold_*_qnn_chunk_*.json")) or checkpoint_dir.is_dir() and any(
+            checkpoint_dir.glob("fold_*_qnn_epoch_*.json"))
         if not resume:
             raise FileExistsError("Output exists; use a new directory or pass --resume to validate fold checkpoints")
         if not has_checkpoints:
-            raise FileExistsError("Cannot resume: existing output has no completed fold or QNN epoch checkpoints; choose a new directory")
+            raise FileExistsError("Cannot resume: existing output has no completed fold or valid QNN chunk/epoch checkpoints; choose a new directory")
     elif output.exists() and not resume:
         # An empty directory is harmless; permit the first invocation to use it.
         pass
@@ -514,6 +759,7 @@ def run_campaign(root: Path, output: Path, config: dict[str, Any], resume: bool 
                                       cfg["max_validation_per_class_per_fold"], cfg["seed"] + 13)
         if set(tr) & set(va):
             raise ValueError(f"Fold {fold} sampled overlapping train and validation IDs")
+        validate_fold_records(tr, va, split["fold_by_id"], fold)
         train_ids.append(tr); valid_ids.append(va)
         for rid in tr:
             sample_rows.append({"record_id": rid, "fold": fold, "role": "train"})
@@ -550,6 +796,7 @@ def run_campaign(root: Path, output: Path, config: dict[str, Any], resume: bool 
         require_memory_floor(psutil, RAM_FLOOR_MIB, f"Fold {fold} before preprocessing")
         train = frame[frame.record_id.isin(train_ids[fold - 1])].copy().reset_index(drop=True)
         valid = frame[frame.record_id.isin(valid_ids[fold - 1])].copy().reset_index(drop=True)
+        validate_fold_records(train.record_id, valid.record_id, fold_by_id, fold)
         if set(train.reference_fold.unique()) & {fold} or set(valid.reference_fold.unique()) != {fold}:
             raise ValueError(f"Fold {fold} no longer matches the reference origin-grouped split")
         if set(train.y.astype(int)) != {0, 1} or set(valid.y.astype(int)) != {0, 1}:
@@ -584,7 +831,7 @@ def run_campaign(root: Path, output: Path, config: dict[str, Any], resume: bool 
                               "software_versions": versions}
         checkpoint_dir = output / "fold_checkpoints"
         epoch_configuration = {**fold_configuration, "fold": fold,
-                               "checkpoint_schema": EPOCH_CHECKPOINT_SCHEMA}
+                               "checkpoint_schema": CHUNK_CHECKPOINT_SCHEMA}
 
         def train_fold() -> dict[str, Any]:
             require_memory_floor(psutil, RAM_FLOOR_MIB, f"Fold {fold} before QNN fit")
@@ -593,15 +840,38 @@ def run_campaign(root: Path, output: Path, config: dict[str, Any], resume: bool 
             qnn = qnn_class(n_qubits=cfg["qubits"], depth=cfg["depth"], epochs=cfg["epochs"],
                 learning_rate=cfg["learning_rate"], batch_size=cfg["batch_size"], seed=cfg["seed"] + fold,
                 optimizer=cfg["optimizer"], encoding=cfg["encoding"])
-            epoch_state = load_latest_qnn_epoch_checkpoint(
+            chunk_state = load_latest_qnn_chunk_checkpoint(
                 checkpoint_dir, fold, fingerprint, epoch_configuration) if resume else None
+            batches_per_epoch = math.ceil(len(y_train) / cfg["batch_size"])
+            chunks_per_epoch = math.ceil(batches_per_epoch / cfg["chunk_batches"])
+            initialize_qnn_chunk_manifest(checkpoint_dir, fold, fingerprint,
+                                          cfg["epochs"] * chunks_per_epoch)
 
-            def persist_epoch(state: dict[str, Any]) -> None:
-                save_qnn_epoch_checkpoint(checkpoint_dir, fold, fingerprint,
+            prior_chunk_state = [chunk_state]
+            ordered_train_ids = train.record_id.to_numpy(dtype="int64")
+
+            def persist_chunk(state: dict[str, Any]) -> None:
+                attach_chunk_record_receipt(state, prior_chunk_state[0],
+                                            ordered_train_ids, cfg["batch_size"])
+                save_qnn_chunk_checkpoint(checkpoint_dir, fold, fingerprint,
                                           epoch_configuration, state)
+                prior_chunk_state[0] = state
 
-            qnn.fit(x_train, y_train, resume_state=epoch_state,
-                    checkpoint_callback=persist_epoch)
+            while True:
+                if not (chunk_state and int(chunk_state.get("completed_epochs", 0)) >= cfg["epochs"]):
+                    next_chunk = int(chunk_state.get("chunk_index", 0)) + 1 if chunk_state else 1
+                    mark_qnn_chunk_running(checkpoint_dir, fold, fingerprint, next_chunk)
+                qnn.fit(x_train, y_train, resume_state=chunk_state,
+                        checkpoint_callback=persist_chunk,
+                        max_batches_per_chunk=cfg["chunk_batches"])
+                if qnn.training_complete:
+                    break
+                chunk_state = qnn.resume_state
+            initial_weights = np.random.default_rng(cfg["seed"] + fold).normal(
+                0, .12, (cfg["depth"], cfg["qubits"], 3))
+            parameter_update_verified = not np.allclose(np.asarray(qnn.weights), initial_weights)
+            if not qnn.gradient_check_result.get("passed") or not parameter_update_verified:
+                raise ArithmeticError(f"Fold {fold} failed quantum gradient/update verification")
             qnn_probability = qnn.predict_proba(x_valid)
             outputs = [("binary_vqc", qnn_probability),
                 ("logistic_4f", stack["LogisticRegression"](C=1.0, class_weight="balanced",
@@ -626,7 +896,11 @@ def run_campaign(root: Path, output: Path, config: dict[str, Any], resume: bool 
                         if model_name == "binary_vqc" else time.perf_counter() - model_started),
                     "rss_before_bytes": int(rss_before),
                     "rss_after_bytes": int(process.memory_info().rss),
-                    "qnn_peak_rss_bytes": int(qnn.peak_rss_bytes) if model_name == "binary_vqc" else None})
+                    "qnn_peak_rss_bytes": int(qnn.peak_rss_bytes) if model_name == "binary_vqc" else None,
+                    "gradient_check_passed": bool(qnn.gradient_check_result["passed"]) if model_name == "binary_vqc" else None,
+                    "parameter_update_verified": parameter_update_verified if model_name == "binary_vqc" else None,
+                    "completed_chunks": int(qnn.resume_state["chunk_index"]) if model_name == "binary_vqc" else None,
+                    "qnn_records_processed": int(qnn.resume_state["processed_records"]) if model_name == "binary_vqc" else None})
                 for i, row in valid.iterrows():
                     predictions.append({"record_id": int(row.record_id), "origin_program": str(row.origin_program),
                         "fold": fold, "y_true": int(y_valid[i]), "model": model_name,
@@ -643,6 +917,9 @@ def run_campaign(root: Path, output: Path, config: dict[str, Any], resume: bool 
                     "loss_history": [float(x) for x in qnn.loss_history]},
                 "qnn_configuration": qnn.configuration(),
                 "gradient_check": qnn.gradient_check_result,
+                "parameter_update_verified": parameter_update_verified,
+                "completed_chunks": int(qnn.resume_state["chunk_index"]),
+                "qnn_records_processed": int(qnn.resume_state["processed_records"]),
                 "train_records": len(train), "validation_records": len(valid),
                 "train_origins": len(groups_train), "validation_origins": len(groups_valid),
                 "elapsed_seconds": elapsed, "rss_bytes": process.memory_info().rss,
@@ -655,7 +932,8 @@ def run_campaign(root: Path, output: Path, config: dict[str, Any], resume: bool 
             train_fold, resume=resume)
         payload = completed["payload"]
         required_payload = {"predictions", "metrics", "qnn_state", "qnn_configuration",
-                            "gradient_check", "feature_names", "train_ids", "validation_ids",
+                            "gradient_check", "parameter_update_verified", "completed_chunks",
+                            "qnn_records_processed", "feature_names", "train_ids", "validation_ids",
                             "software_versions", "train_records", "validation_records"}
         expected_models = {"binary_vqc", "logistic_4f", "extra_trees_4f"}
         if (not required_payload <= set(payload) or not payload.get("predictions") or
@@ -697,6 +975,10 @@ def run_campaign(root: Path, output: Path, config: dict[str, Any], resume: bool 
     report = {"schema": SCHEMA, "status": "completed_development_sampled_oof",
         "task": "QMutBench killed-vs-survived binary outcome; WOO=1, OPO=1, Survivor=0",
         "development_only": True, "frozen_test_accessed": False,
+        "genuine_quantum_gradient_update_occurred": bool(fold_metrics) and all(
+            row.get("model") != "binary_vqc" or
+            (row.get("gradient_check_passed") is True and row.get("parameter_update_verified") is True)
+            for row in fold_metrics),
         "reference_fold_source": split["archive"], "reference_rows": split["rows"],
         "reference_fold_archive_sha256": split["archive_sha256"],
         "reference_origins": split["origins"], "reference_fold_counts": split["fold_counts"],
@@ -723,7 +1005,9 @@ def run_campaign(root: Path, output: Path, config: dict[str, Any], resume: bool 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=Path("reports/experiments/qmutbench_binary_qnn_development"))
+    parser.add_argument("--output", type=Path, default=None)
+    parser.add_argument("--mode", choices=("sampled-pilot", "full-development"),
+                        default="sampled-pilot", help="sampled pilot or all-record streaming campaign")
     parser.add_argument("--resume", action="store_true", help="validate and reuse completed fold checkpoints")
     parser.add_argument("--seed", type=int, default=DEFAULT_CONFIG["seed"])
     parser.add_argument("--qubits", type=int, default=DEFAULT_CONFIG["qubits"])
@@ -732,31 +1016,52 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--learning-rate", type=float, default=DEFAULT_CONFIG["learning_rate"])
     parser.add_argument("--epochs", type=int, default=DEFAULT_CONFIG["epochs"])
     parser.add_argument("--batch-size", type=int, default=DEFAULT_CONFIG["batch_size"])
+    parser.add_argument("--chunk-batches", type=int, default=None)
+    parser.add_argument("--max-chunks-per-invocation", type=int, default=None,
+                        help="checkpoint and return after this many full-development chunks")
     parser.add_argument("--max-train-per-class", type=int, default=DEFAULT_CONFIG["max_train_per_class_per_fold"])
     parser.add_argument("--max-validation-per-class", type=int, default=DEFAULT_CONFIG["max_validation_per_class_per_fold"])
     parser.add_argument("--per-origin-cap", type=int, default=DEFAULT_CONFIG["per_origin_class_cap"])
     parser.add_argument("--validate-config", action="store_true", help="validate configuration without ML imports or training")
     args = parser.parse_args(argv)
+    chunk_batches = args.chunk_batches if args.chunk_batches is not None else (
+        FULL_DEFAULT_CHUNK_BATCHES if args.mode == "full-development" else DEFAULT_CONFIG["chunk_batches"])
     config = {**DEFAULT_CONFIG, "seed": args.seed, "qubits": args.qubits, "depth": args.depth,
         "optimizer": args.optimizer, "learning_rate": args.learning_rate, "epochs": args.epochs,
-        "batch_size": args.batch_size, "max_train_per_class_per_fold": args.max_train_per_class,
+        "batch_size": args.batch_size, "chunk_batches": chunk_batches,
+        "max_train_per_class_per_fold": args.max_train_per_class,
         "max_validation_per_class_per_fold": args.max_validation_per_class,
         "per_origin_class_cap": args.per_origin_cap}
     validate_config(config)
     if args.validate_config:
         print(json.dumps({"schema": SCHEMA, "configuration": config,
-                          "target_map": LABEL_MAP, "folds": 5,
+                          "target_map": LABEL_MAP, "folds": 5, "mode": args.mode,
                           "status": "configuration_validated_no_data_loaded"}, indent=2))
         return 0
     root = Path.cwd()
+    output = args.output or Path("reports/experiments/" + (
+        "qmutbench_binary_qnn_full_development" if args.mode == "full-development"
+        else "qmutbench_binary_qnn_development"))
     try:
-        report = run_campaign(root, args.output, config, resume=args.resume)
+        if args.mode == "full-development":
+            from qmutbench_qml.training.run_full_streaming import run_full_streaming_campaign
+            report = run_full_streaming_campaign(root, output, config, resume=args.resume,
+                max_chunks_per_invocation=args.max_chunks_per_invocation)
+        else:
+            if args.max_chunks_per_invocation is not None:
+                raise ValueError("--max-chunks-per-invocation is supported only in full-development mode")
+            report = run_campaign(root, output, config, resume=args.resume)
     except MemoryError as exc:
         print(json.dumps({"status": "blocked_memory_guard", "error": str(exc),
                           "frozen_test_accessed": False}, indent=2))
         return 3
-    print(json.dumps({"status": report["status"], "output": str(args.output),
-                      "pooled_oof_metrics": report["pooled_oof_metrics"]}, indent=2))
+    print(json.dumps({"status": report["status"], "output": str(output),
+                      "pooled_oof_metrics": report.get("pooled_oof_metrics"),
+                      "chunks_committed_this_invocation": report.get("chunks_committed_this_invocation"),
+                      "records_processed_this_invocation": report.get("records_processed_this_invocation"),
+                      "optimizer_updates_this_invocation": report.get("optimizer_updates_this_invocation"),
+                      "next_chunk": report.get("next_chunk"), "next_epoch": report.get("next_epoch"),
+                      "next_batch": report.get("next_batch")}, indent=2))
     return 0
 
 
