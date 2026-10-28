@@ -1,0 +1,58 @@
+{
+  "status": "verified",
+  "archive_sha256": "ca70cb1ba495aacce4784ecd1669c5a82f81bc95f947f0fb49a4dbcd56cf804f",
+  "archive_bytes": 266538,
+  "entries": 15,
+  "input_hashes_checked": 14,
+  "python_scripts_compiled": 3,
+  "notebook_compiled": true,
+  "manifest_checks": [
+    {
+      "path": "workspace/reports/bugs4q_standalone/normalized_manifest.csv",
+      "rows": 62,
+      "groups": 31
+    },
+    {
+      "path": "workspace/reports/bugs4q_na/normalized_manifest.csv",
+      "rows": 62,
+      "groups": 31
+    },
+    {
+      "path": "workspace/reports/bugs4q_joint/normalized_manifest.csv",
+      "rows": 124,
+      "groups": 62
+    },
+    {
+      "path": "workspace/reports/qbugs/normalized_manifest.csv",
+      "rows": 1500,
+      "groups": 750
+    },
+    {
+      "path": "workspace/reports/quantum_platform_223_comment_only/normalized_manifest.csv",
+      "rows": 319,
+      "groups": 314
+    },
+    {
+      "path": "workspace/reports/qolumbina_detection_ideal/normalized_manifest.csv",
+      "rows": 182,
+      "groups": 26
+    },
+    {
+      "path": "workspace/reports/lintq_warning_triage/normalized_manifest.csv",
+      "rows": 290,
+      "groups": 228
+    },
+    {
+      "path": "workspace/reports/bugs4q_robust_execution/normalized_manifest.csv",
+      "rows": 2220,
+      "groups": 37
+    },
+    {
+      "path": "workspace/reports/qsimbench_backend_fingerprint/normalized_manifest.csv",
+      "rows": 300,
+      "groups": 150
+    }
+  ],
+  "training_executed": false,
+  "frozen_test_accessed": false
+}

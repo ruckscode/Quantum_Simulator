@@ -1,0 +1,86 @@
+{
+  "system_ram_mib_total": 7488,
+  "memory_safety_floor_mib": 500,
+  "reported_process_peak_rss_mib": null,
+  "process_peak_rss_note": "Peak process RSS was not sampled; do not infer it from available-RAM snapshots.",
+  "completed_qnn_runs": [
+    {
+      "run": "Bugs4Q core",
+      "records": 62,
+      "available_ram_floor_respected": true
+    },
+    {
+      "run": "Bugs4Q-NA",
+      "records": 62,
+      "available_ram_floor_respected": true
+    },
+    {
+      "run": "QBugs",
+      "records": 1500,
+      "available_ram_floor_respected": true
+    },
+    {
+      "run": "quantum platform comments",
+      "records": 319,
+      "available_ram_floor_respected": true
+    },
+    {
+      "run": "Bugs4Q pooled and transfer",
+      "records": 124,
+      "available_ram_floor_respected": true
+    },
+    {
+      "run": "Qolumbina ideal backend",
+      "records": 182,
+      "available_ram_floor_respected": true
+    },
+    {
+      "run": "LintQ warning triage",
+      "records": 290,
+      "available_ram_floor_respected": true
+    }
+  ],
+  "Bugs4Q_Robust": {
+    "first_local_attempt": "stopped during first QNN optimizer/validation iteration at the 500 MiB guard",
+    "checkpoint_written": false,
+    "normalized_task_manifest_written": true,
+    "kaggle_notebook_prepared": true,
+    "notebook_execution_status": "not_run"
+  },
+  "QSimBench_backend_fingerprint": {
+    "task_manifest_written": true,
+    "records": 300,
+    "groups": 150,
+    "local_attempt": "stopped at pre-fit RAM guard after heavy model imports",
+    "available_after_import_mib": 449.5,
+    "checkpoint_written": false,
+    "kaggle_notebook_prepared": true,
+    "notebook_execution_status": "not_run"
+  },
+  "Qolumbina_multibackend": {
+    "status": "partial",
+    "note": "Low-memory attempts produced fold checkpoints but no complete OOF evaluation; the independently defined ideal-backend task is complete."
+  },
+  "QMutBench_three_class": {
+    "development_oof_status": "metrics_recalculated_and_grouped_validation_manifest_matches",
+    "real_data_parameter_checkpoint": false,
+    "frozen_test_accessed": false
+  },
+  "external_bundle": {
+    "status": "prepared_not_executed",
+    "qnn_tasks": [
+      "Bugs4Q-Robust",
+      "QSimBench"
+    ],
+    "classical_suite_tasks": 9,
+    "classical_estimators": 14,
+    "imbalance_methods": [
+      "random_over",
+      "random_under",
+      "continuous_space_smote"
+    ],
+    "execution_environment": "Kaggle CPU; pinned PennyLane default.qubit; GPU not required",
+    "input_hashes": "embedded and verified by notebook before execution"
+  },
+  "local_policy": "No local model suite was started because the installed PennyLane import may consume enough RAM to cross the 500 MiB floor; the external bundle is the safe execution path."
+}

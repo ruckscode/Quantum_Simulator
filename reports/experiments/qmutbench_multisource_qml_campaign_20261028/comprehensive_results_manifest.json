@@ -1,0 +1,16 @@
+{
+  "status": "completed_streaming_oof_recalculation",
+  "results_rows": 85,
+  "task_rows": 12,
+  "fold_metric_rows": 327,
+  "metrics_recomputed_from": "saved development OOF predictions only",
+  "frozen_test_accessed": false,
+  "smote": "not evaluated in saved runs; training-fold-only resampling suite is bundled for external execution and remains unrun",
+  "cross_source_rows": 24,
+  "peak_memory": "not sampled by this standard-library streaming script",
+  "limitations": [
+    "AUC, Brier, calibration, fold SD, and inference runtime are not recomputed for every candidate here.",
+    "Model configurations and feature protocols differ by task; see each run summary and task_definition.json.",
+    "Only recorded candidates are listed; absent baselines are marked unrun in campaign_completion_matrix.csv."
+  ]
+}

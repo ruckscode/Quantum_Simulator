@@ -1,0 +1,25 @@
+﻿training_source,evaluation_source,model,records,groups,accuracy,balanced_accuracy,macro_f1,confusion_matrix,evaluation_protocol
+pooled_core_plus_na,Bugs4Q_NA_additional,angle_hybrid_readout,62,31,0.5161290322580645,0.5161290322580645,0.515625,"[[17, 14], [16, 15]]",shared issue-group 5-fold OOF; source results reported separately
+pooled_core_plus_na,Bugs4Q_core,angle_hybrid_readout,62,31,0.4838709677419355,0.4838709677419355,0.4789915966386554,"[[18, 13], [19, 12]]",shared issue-group 5-fold OOF; source results reported separately
+pooled_core_plus_na,Bugs4Q_NA_additional,extra_trees_4d,62,31,0.5483870967741935,0.5483870967741935,0.5441176470588236,"[[20, 11], [17, 14]]",shared issue-group 5-fold OOF; source results reported separately
+pooled_core_plus_na,Bugs4Q_core,extra_trees_4d,62,31,0.5,0.5,0.4892373106563912,"[[11, 20], [11, 20]]",shared issue-group 5-fold OOF; source results reported separately
+pooled_core_plus_na,Bugs4Q_NA_additional,logistic_4d,62,31,0.5,0.5,0.49882659713168187,"[[17, 14], [17, 14]]",shared issue-group 5-fold OOF; source results reported separately
+pooled_core_plus_na,Bugs4Q_core,logistic_4d,62,31,0.5161290322580645,0.5161290322580645,0.5079365079365079,"[[12, 19], [11, 20]]",shared issue-group 5-fold OOF; source results reported separately
+pooled_core_plus_na,Bugs4Q_NA_additional,random_forest_4d,62,31,0.4838709677419355,0.4838709677419355,0.48333333333333334,"[[16, 15], [17, 14]]",shared issue-group 5-fold OOF; source results reported separately
+pooled_core_plus_na,Bugs4Q_core,random_forest_4d,62,31,0.45161290322580644,0.45161290322580644,0.4464285714285714,"[[11, 20], [14, 17]]",shared issue-group 5-fold OOF; source results reported separately
+train_core_only,Bugs4Q_NA_additional,angle_hybrid_readout,62,31,0.4838709677419355,0.4838709677419355,0.46378378378378377,"[[9, 22], [10, 21]]",shared issue-group 5-fold OOF; source results reported separately
+train_core_only,Bugs4Q_core,angle_hybrid_readout,62,31,0.5161290322580645,0.5161290322580645,0.4901315789473684,"[[9, 22], [8, 23]]",shared issue-group 5-fold OOF; source results reported separately
+train_core_only,Bugs4Q_NA_additional,extra_trees_4d,62,31,0.46774193548387094,0.467741935483871,0.43465045592705165,"[[7, 24], [9, 22]]",shared issue-group 5-fold OOF; source results reported separately
+train_core_only,Bugs4Q_core,extra_trees_4d,62,31,0.45161290322580644,0.4516129032258065,0.4124860646599777,"[[6, 25], [9, 22]]",shared issue-group 5-fold OOF; source results reported separately
+train_core_only,Bugs4Q_NA_additional,logistic_4d,62,31,0.5,0.5,0.49354413702239786,"[[12, 19], [12, 19]]",shared issue-group 5-fold OOF; source results reported separately
+train_core_only,Bugs4Q_core,logistic_4d,62,31,0.5,0.5,0.49882659713168187,"[[14, 17], [14, 17]]",shared issue-group 5-fold OOF; source results reported separately
+train_core_only,Bugs4Q_NA_additional,random_forest_4d,62,31,0.4838709677419355,0.4838709677419355,0.4789915966386554,"[[12, 19], [13, 18]]",shared issue-group 5-fold OOF; source results reported separately
+train_core_only,Bugs4Q_core,random_forest_4d,62,31,0.5483870967741935,0.5483870967741935,0.5483870967741935,"[[17, 14], [14, 17]]",shared issue-group 5-fold OOF; source results reported separately
+train_na_only,Bugs4Q_NA_additional,angle_hybrid_readout,62,31,0.5161290322580645,0.5161290322580645,0.5079365079365079,"[[12, 19], [11, 20]]",shared issue-group 5-fold OOF; source results reported separately
+train_na_only,Bugs4Q_core,angle_hybrid_readout,62,31,0.5161290322580645,0.5161290322580645,0.5115546218487395,"[[19, 12], [18, 13]]",shared issue-group 5-fold OOF; source results reported separately
+train_na_only,Bugs4Q_NA_additional,extra_trees_4d,62,31,0.4838709677419355,0.4838709677419355,0.4751322751322751,"[[11, 20], [12, 19]]",shared issue-group 5-fold OOF; source results reported separately
+train_na_only,Bugs4Q_core,extra_trees_4d,62,31,0.46774193548387094,0.467741935483871,0.4244725738396624,"[[6, 25], [8, 23]]",shared issue-group 5-fold OOF; source results reported separately
+train_na_only,Bugs4Q_NA_additional,logistic_4d,62,31,0.5161290322580645,0.5161290322580645,0.515625,"[[15, 16], [14, 17]]",shared issue-group 5-fold OOF; source results reported separately
+train_na_only,Bugs4Q_core,logistic_4d,62,31,0.5161290322580645,0.5161290322580645,0.4901315789473684,"[[23, 8], [22, 9]]",shared issue-group 5-fold OOF; source results reported separately
+train_na_only,Bugs4Q_NA_additional,random_forest_4d,62,31,0.45161290322580644,0.45161290322580644,0.4464285714285714,"[[11, 20], [14, 17]]",shared issue-group 5-fold OOF; source results reported separately
+train_na_only,Bugs4Q_core,random_forest_4d,62,31,0.45161290322580644,0.4516129032258065,0.43696581196581197,"[[9, 22], [12, 19]]",shared issue-group 5-fold OOF; source results reported separately
