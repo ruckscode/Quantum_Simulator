@@ -17,7 +17,7 @@ CAMPAIGN = ROOT / "reports/experiments/qmutbench_multisource_qml_campaign_202610
 FLOOR_MIB = 500
 STEPS = int(os.environ.get("LIGHT_QNN_EPOCHS", "12"))
 BATCH = int(os.environ.get("LIGHT_QNN_BATCH", "64"))
-SEED = 28102026
+SEED = int(os.environ.get("LIGHT_QNN_SEED", "28102026"))
 
 
 def check_ram():
@@ -268,6 +268,11 @@ def task_run(name, manifest, group_name):
             {"name":"amplitude_hybrid_3q_depth2","qubits":3,"features":8,"encoding":"amplitude","depth":2,"reupload":False,"learning_rate":.04},
             {"name":"angle_reupload_hybrid_4q_depth2","qubits":4,"features":4,"encoding":"angle","depth":2,"reupload":True,"learning_rate":.035},
         ]
+    config_filter={v.strip() for v in os.environ.get("LIGHT_QNN_CONFIG_FILTER", "").split(",") if v.strip()}
+    if config_filter:
+        unknown=config_filter-{cfg["name"] for cfg in configs}
+        if unknown: raise ValueError(f"unknown QNN config filter values: {sorted(unknown)}")
+        configs=[cfg for cfg in configs if cfg["name"] in config_filter]
     output=CAMPAIGN/name/os.environ.get("LIGHT_QNN_OUT_DIR","resource_light_qnn"); output.mkdir(parents=True,exist_ok=True)
     all_predictions=[]; fold_summaries=[]; start_task=time.perf_counter()
     for fold,(tr,va) in enumerate(grouped_folds(y,groups),1):
@@ -317,6 +322,11 @@ def main():
     if check_ram()<650: raise MemoryError("NumPy import left less than 650 MiB available; stopping before training")
     tasks=[("bugs4q_robust_execution","bugs4q_robust_execution/normalized_manifest.csv","bug_id"),
            ("qsimbench_backend_fingerprint","qsimbench_backend_fingerprint/normalized_manifest.csv","bug_id")]
+    selected={v.strip() for v in os.environ.get("LIGHT_QNN_TASK_FILTER", "").split(",") if v.strip()}
+    if selected:
+        unknown=selected-{name for name,_,_ in tasks}
+        if unknown: raise ValueError(f"unknown task filter values: {sorted(unknown)}")
+        tasks=[task for task in tasks if task[0] in selected]
     for name,relative,group in tasks:
         task_run(name,CAMPAIGN/relative,group)
 

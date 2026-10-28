@@ -1,0 +1,45 @@
+{
+  "task": "Bugs4Q-NA",
+  "model": "amplitude_3q_depth1_lr004",
+  "fold": 1,
+  "records": 14,
+  "groups": 7,
+  "train_records": 48,
+  "training_seconds": 0.027689200003806036,
+  "available_ram_mib": 605.0,
+  "gradient_check": {
+    "parameter_shift": -0.00013573009090970503,
+    "finite_difference": -0.00013573008827982846,
+    "absolute_error": 2.6298765682525316e-12,
+    "passed": true
+  },
+  "metrics": {
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "macro_f1": 0.4759358288770053,
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.2857142857142857,
+        "f1": 0.36363636363636365,
+        "support": 7
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.7142857142857143,
+        "f1": 0.588235294117647,
+        "support": 7
+      }
+    },
+    "confusion_matrix": [
+      [
+        2,
+        5
+      ],
+      [
+        2,
+        5
+      ]
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "status": "partial_stopped_by_ram_guard",
+  "completed_tasks": [
+    {
+      "task": "Bugs4Q core",
+      "status": "completed_grouped_qnn_sweep",
+      "models": [
+        {
+          "accuracy_percent": 45.1613,
+          "model": "amplitude_3q_depth1_lr004"
+        },
+        {
+          "accuracy_percent": 50.0,
+          "model": "angle_reupload_4q_depth2_lr0035"
+        }
+      ],
+      "baseline_accuracy_percent": 51.6129,
+      "selected_incumbent_preserved": true
+    }
+  ],
+  "blocked_task": "Bugs4Q-NA",
+  "reason": "The runner stopped when available RAM reached 494.1 MiB, below the 500 MiB floor. Subsequent availability measured approximately 12 MiB. The Bugs4Q-NA task has partial fold checkpoints but no complete summary/OOF result and is not scored.",
+  "frozen_test_accessed": false
+}

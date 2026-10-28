@@ -1,0 +1,565 @@
+{
+  "status": "completed_grouped_qnn_sweep",
+  "task": "Bugs4Q core",
+  "records": 62,
+  "groups": 31,
+  "label_distribution": {
+    "0": 31,
+    "1": 31
+  },
+  "results": [
+    {
+      "model": "amplitude_3q_depth1_lr004",
+      "configuration": {
+        "name": "amplitude_3q_depth1_lr004",
+        "qubits": 3,
+        "features": 8,
+        "encoding": "amplitude",
+        "depth": 1,
+        "reupload": false,
+        "learning_rate": 0.04
+      },
+      "accuracy": 0.45161290322580644,
+      "balanced_accuracy": 0.45161290322580644,
+      "macro_f1": 0.4493207941483804,
+      "per_class": {
+        "0": {
+          "precision": 0.4444444444444444,
+          "recall": 0.3870967741935484,
+          "f1": 0.41379310344827586,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.45714285714285713,
+          "recall": 0.5161290322580645,
+          "f1": 0.4848484848484849,
+          "support": 31
+        }
+      },
+      "confusion_matrix": [
+        [
+          12,
+          19
+        ],
+        [
+          15,
+          16
+        ]
+      ],
+      "records": 62,
+      "folds": 5,
+      "training_seconds": 0.2003342000025441,
+      "checkpoint_paths": [
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz"
+      ]
+    },
+    {
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "configuration": {
+        "name": "angle_reupload_4q_depth2_lr0035",
+        "qubits": 4,
+        "features": 4,
+        "encoding": "angle",
+        "depth": 2,
+        "reupload": true,
+        "learning_rate": 0.035
+      },
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.49882659713168187,
+      "per_class": {
+        "0": {
+          "precision": 0.5,
+          "recall": 0.5483870967741935,
+          "f1": 0.5230769230769231,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.5,
+          "recall": 0.45161290322580644,
+          "f1": 0.47457627118644063,
+          "support": 31
+        }
+      },
+      "confusion_matrix": [
+        [
+          17,
+          14
+        ],
+        [
+          17,
+          14
+        ]
+      ],
+      "records": 62,
+      "folds": 5,
+      "training_seconds": 0.9801045999920461,
+      "checkpoint_paths": [
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz"
+      ]
+    }
+  ],
+  "fold_results": [
+    {
+      "task": "Bugs4Q core",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 1,
+      "records": 14,
+      "groups": 7,
+      "train_records": 48,
+      "training_seconds": 0.06472889999713516,
+      "available_ram_mib": 688.38671875,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.35714285714285715,
+        "balanced_accuracy": 0.3571428571428571,
+        "macro_f1": 0.3262032085561497,
+        "per_class": {
+          "0": {
+            "precision": 0.4,
+            "recall": 0.5714285714285714,
+            "f1": 0.47058823529411764,
+            "support": 7
+          },
+          "1": {
+            "precision": 0.25,
+            "recall": 0.14285714285714285,
+            "f1": 0.18181818181818182,
+            "support": 7
+          }
+        },
+        "confusion_matrix": [
+          [
+            4,
+            3
+          ],
+          [
+            6,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 2,
+      "records": 12,
+      "groups": 6,
+      "train_records": 50,
+      "training_seconds": 0.03832120000151917,
+      "available_ram_mib": 678.19921875,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.3333333333333333,
+        "balanced_accuracy": 0.3333333333333333,
+        "macro_f1": 0.25,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 6
+          },
+          "1": {
+            "precision": 0.4,
+            "recall": 0.6666666666666666,
+            "f1": 0.5,
+            "support": 6
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            6
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 3,
+      "records": 12,
+      "groups": 6,
+      "train_records": 50,
+      "training_seconds": 0.03194909999729134,
+      "available_ram_mib": 675.73046875,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.4375,
+        "per_class": {
+          "0": {
+            "precision": 0.5,
+            "recall": 0.16666666666666666,
+            "f1": 0.25,
+            "support": 6
+          },
+          "1": {
+            "precision": 0.5,
+            "recall": 0.8333333333333334,
+            "f1": 0.625,
+            "support": 6
+          }
+        },
+        "confusion_matrix": [
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            5
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 4,
+      "records": 12,
+      "groups": 6,
+      "train_records": 50,
+      "training_seconds": 0.0346923000033712,
+      "available_ram_mib": 675.2578125,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.5,
+        "per_class": {
+          "0": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "support": 6
+          },
+          "1": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "support": 6
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 5,
+      "records": 12,
+      "groups": 6,
+      "train_records": 50,
+      "training_seconds": 0.03064270000322722,
+      "available_ram_mib": 676.71875,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.5833333333333334,
+        "balanced_accuracy": 0.5833333333333333,
+        "macro_f1": 0.5804195804195804,
+        "per_class": {
+          "0": {
+            "precision": 0.5714285714285714,
+            "recall": 0.6666666666666666,
+            "f1": 0.6153846153846153,
+            "support": 6
+          },
+          "1": {
+            "precision": 0.6,
+            "recall": 0.5,
+            "f1": 0.5454545454545454,
+            "support": 6
+          }
+        },
+        "confusion_matrix": [
+          [
+            4,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 1,
+      "records": 14,
+      "groups": 7,
+      "train_records": 48,
+      "training_seconds": 0.17659809999895515,
+      "available_ram_mib": 662.8671875,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.4269005847953216,
+        "per_class": {
+          "0": {
+            "precision": 0.5,
+            "recall": 0.14285714285714285,
+            "f1": 0.22222222222222224,
+            "support": 7
+          },
+          "1": {
+            "precision": 0.5,
+            "recall": 0.8571428571428571,
+            "f1": 0.631578947368421,
+            "support": 7
+          }
+        },
+        "confusion_matrix": [
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            6
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 2,
+      "records": 12,
+      "groups": 6,
+      "train_records": 50,
+      "training_seconds": 0.20787389999895822,
+      "available_ram_mib": 646.859375,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.4166666666666667,
+        "balanced_accuracy": 0.41666666666666663,
+        "macro_f1": 0.37777777777777777,
+        "per_class": {
+          "0": {
+            "precision": 0.4444444444444444,
+            "recall": 0.6666666666666666,
+            "f1": 0.5333333333333333,
+            "support": 6
+          },
+          "1": {
+            "precision": 0.3333333333333333,
+            "recall": 0.16666666666666666,
+            "f1": 0.2222222222222222,
+            "support": 6
+          }
+        },
+        "confusion_matrix": [
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 3,
+      "records": 12,
+      "groups": 6,
+      "train_records": 50,
+      "training_seconds": 0.2400737999996636,
+      "available_ram_mib": 631.953125,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.48571428571428577,
+        "per_class": {
+          "0": {
+            "precision": 0.5,
+            "recall": 0.6666666666666666,
+            "f1": 0.5714285714285715,
+            "support": 6
+          },
+          "1": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "support": 6
+          }
+        },
+        "confusion_matrix": [
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 4,
+      "records": 12,
+      "groups": 6,
+      "train_records": 50,
+      "training_seconds": 0.1601548999969964,
+      "available_ram_mib": 626.4453125,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.5833333333333334,
+        "balanced_accuracy": 0.5833333333333333,
+        "macro_f1": 0.5804195804195804,
+        "per_class": {
+          "0": {
+            "precision": 0.5714285714285714,
+            "recall": 0.6666666666666666,
+            "f1": 0.6153846153846153,
+            "support": 6
+          },
+          "1": {
+            "precision": 0.6,
+            "recall": 0.5,
+            "f1": 0.5454545454545454,
+            "support": 6
+          }
+        },
+        "confusion_matrix": [
+          [
+            4,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 5,
+      "records": 12,
+      "groups": 6,
+      "train_records": 50,
+      "training_seconds": 0.19540389999747276,
+      "available_ram_mib": 618.3515625,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.48571428571428577,
+        "per_class": {
+          "0": {
+            "precision": 0.5,
+            "recall": 0.6666666666666666,
+            "f1": 0.5714285714285715,
+            "support": 6
+          },
+          "1": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "support": 6
+          }
+        },
+        "confusion_matrix": [
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            2
+          ]
+        ]
+      }
+    }
+  ],
+  "runtime_seconds": 1.357836800001678,
+  "frozen_test_accessed": false,
+  "source_manifest_sha256": "cef4b2378b97610b498917f6412f18e716c2ab91369ea709fc98541952008cdb"
+}

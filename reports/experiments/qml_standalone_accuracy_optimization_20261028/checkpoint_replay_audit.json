@@ -1,0 +1,79 @@
+{
+  "status": "verified",
+  "runs": [
+    {
+      "task": "bugs4q_robust_execution",
+      "run": "standalone_optimization_sweep4",
+      "seed": 28102026,
+      "replayed_predictions": 13320,
+      "models": 6,
+      "folds": 5,
+      "errors": []
+    },
+    {
+      "task": "bugs4q_robust_execution",
+      "run": "standalone_replicate_seed4321",
+      "seed": 4321,
+      "replayed_predictions": 2220,
+      "models": 1,
+      "folds": 5,
+      "errors": []
+    },
+    {
+      "task": "bugs4q_robust_execution",
+      "run": "standalone_replicate_seed2027",
+      "seed": 2027,
+      "replayed_predictions": 2220,
+      "models": 1,
+      "folds": 5,
+      "errors": []
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "run": "standalone_optimization_sweep4",
+      "seed": 28102026,
+      "replayed_predictions": 1800,
+      "models": 6,
+      "folds": 5,
+      "errors": []
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "run": "standalone_replicate_seed4321",
+      "seed": 4321,
+      "replayed_predictions": 300,
+      "models": 1,
+      "folds": 5,
+      "errors": []
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "run": "standalone_replicate_seed2027",
+      "seed": 2027,
+      "replayed_predictions": 300,
+      "models": 1,
+      "folds": 5,
+      "errors": []
+    },
+    {
+      "task": "QMutBench three-class research",
+      "run": "qmutbench_threeclass_qnn_sweep24",
+      "model": "amplitude_hybrid_2q_d2_lr008",
+      "replayed_predictions": 205,
+      "folds": 3,
+      "errors": []
+    },
+    {
+      "task": "QMutBench three-class research",
+      "run": "qmutbench_threeclass_standalone_seed4321",
+      "model": "amplitude_hybrid_2q_d2_lr008",
+      "replayed_predictions": 205,
+      "folds": 3,
+      "errors": []
+    }
+  ],
+  "total_replayed_predictions": 20570,
+  "max_probability_tolerance": 2e-07,
+  "errors": [],
+  "frozen_test_accessed": false
+}

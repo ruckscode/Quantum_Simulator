@@ -7,7 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'experiments'))
 from train_resource_light_qnn_tasks import (CAMPAIGN,FLOOR_MIB,features_from_text,
     minmax_fit_apply,q_expectations,check_ram)
-EPOCHS=int(os.environ.get('QUT_EPOCHS','12'));BATCH=32;SEED=28102026
+EPOCHS=int(os.environ.get('QUT_EPOCHS','12'));BATCH=32;SEED=int(os.environ.get('QUT_SEED','28102026'))
 NUMERIC=['qubits','gates','Position_int','position_fraction','qasm_diff_orig_span','qasm_diff_mut_span','qasm_diff_total_span','qasm_diff_expected_gate_match','qasm_diff_qubit_set_equal','qasm_diff_qubits_touched','qasm_diff_removed_arity','qasm_diff_added_arity','qasm_diff_exact_single_edit','qasm_diff_is_local']
 CATEGORICAL=['algorithm','operation','gate','dominant_state','qasm_diff_removed_gate','qasm_diff_added_gate','qasm_diff_alignment_class','qasm_diff_local_prev_gate','qasm_diff_local_next_gate']
 
@@ -123,6 +123,11 @@ def main():
   configs=[{'name':'amplitude_hybrid_2q_depth2','qubits':2,'features':4,'encoding':'amplitude','depth':2,'reupload':False,'learning_rate':.04},
    {'name':'angle_hybrid_4q_depth2','qubits':4,'features':4,'encoding':'angle','depth':2,'reupload':False,'learning_rate':.04},
    {'name':'angle_reupload_hybrid_4q_depth2','qubits':4,'features':4,'encoding':'angle','depth':2,'reupload':True,'learning_rate':.035}]
+ config_filter={v.strip() for v in os.environ.get('QUT_CONFIG_FILTER','').split(',') if v.strip()}
+ if config_filter:
+  unknown=config_filter-{cfg['name'] for cfg in configs}
+  if unknown:raise ValueError('unknown QUT config filter values: '+repr(sorted(unknown)))
+  configs=[cfg for cfg in configs if cfg['name'] in config_filter]
  out=CAMPAIGN/os.environ.get('QUT_OUT_DIR','qmutbench_threeclass_resource_light_qnn');out.mkdir(parents=True,exist_ok=True);predictions=[];foldrows=[];started=time.perf_counter()
  split=list(csv.DictReader((CAMPAIGN.parent/'qmutbench_three_class_qnn_campaign_20261027/grouped_split_manifest.csv').open(encoding='utf-8-sig',newline='')))
  fold_features=json.loads((CAMPAIGN.parent/'qmutbench_three_class_qnn_campaign_20261027/features_by_fold.json').read_text(encoding='utf-8'))

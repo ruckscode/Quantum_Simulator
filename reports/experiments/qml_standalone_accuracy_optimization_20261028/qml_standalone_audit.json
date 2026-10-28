@@ -1,0 +1,1074 @@
+{
+  "status": "verified",
+  "standalone_tasks": 12,
+  "candidate_rows": 151,
+  "prediction_artifacts": [
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\Bugs4Q core\\existing_best\\oof_predictions.csv",
+      "rows": 62,
+      "unique_groups": 31,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\Bugs4Q core-only transfer\\existing_best\\oof_predictions.csv",
+      "rows": 124,
+      "unique_groups": 62,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\Bugs4Q pooled\\existing_best\\oof_predictions.csv",
+      "rows": 124,
+      "unique_groups": 62,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\Bugs4Q-NA\\existing_best\\ensemble_oof_predictions.csv",
+      "rows": 62,
+      "unique_groups": 31,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\Bugs4Q-NA-only transfer\\existing_best\\oof_predictions.csv",
+      "rows": 124,
+      "unique_groups": 62,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\LintQ\\existing_best\\oof_predictions.csv",
+      "rows": 290,
+      "unique_groups": 228,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\QBugs HornBro subset\\existing_best\\oof_predictions.csv",
+      "rows": 1500,
+      "unique_groups": 750,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\QMutBench three-class research\\existing_best\\equal_probability_ensemble_oof.csv",
+      "rows": 205,
+      "unique_groups": 12,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\Qolumbina ideal\\existing_best\\oof_predictions.csv",
+      "rows": 182,
+      "unique_groups": 26,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\Quantum platform comment task\\existing_best\\oof_predictions.csv",
+      "rows": 319,
+      "unique_groups": 314,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\bugs4q_robust_execution\\existing_best\\oof_predictions.csv",
+      "rows": 2220,
+      "unique_groups": 37,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\qsimbench_backend_fingerprint\\existing_best\\oof_predictions.csv",
+      "rows": 300,
+      "unique_groups": 150,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\bugs4q_robust_execution\\standalone_optimization_sweep4_amplitude_hybrid_3q_depth1_lr004\\oof_predictions.csv",
+      "rows": 2220,
+      "unique_groups": 37,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\bugs4q_robust_execution\\standalone_optimization_sweep4_amplitude_hybrid_3q_depth2_lr004\\oof_predictions.csv",
+      "rows": 2220,
+      "unique_groups": 37,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\bugs4q_robust_execution\\standalone_optimization_sweep4_angle_reupload_4q_depth2_lr002\\oof_predictions.csv",
+      "rows": 2220,
+      "unique_groups": 37,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\bugs4q_robust_execution\\standalone_optimization_sweep4_angle_reupload_4q_depth2_lr0035\\oof_predictions.csv",
+      "rows": 2220,
+      "unique_groups": 37,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\bugs4q_robust_execution\\standalone_optimization_sweep4_angle_reupload_4q_depth2_lr007\\oof_predictions.csv",
+      "rows": 2220,
+      "unique_groups": 37,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\bugs4q_robust_execution\\standalone_optimization_sweep4_angle_4q_depth2_lr004\\oof_predictions.csv",
+      "rows": 2220,
+      "unique_groups": 37,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\bugs4q_robust_execution\\standalone_replicate_seed4321_angle_reupload_4q_depth2_lr007\\oof_predictions.csv",
+      "rows": 2220,
+      "unique_groups": 37,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\bugs4q_robust_execution\\standalone_replicate_seed2027_angle_reupload_4q_depth2_lr007\\oof_predictions.csv",
+      "rows": 2220,
+      "unique_groups": 37,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\qsimbench_backend_fingerprint\\standalone_optimization_sweep4_amplitude_hybrid_3q_depth1_lr004\\oof_predictions.csv",
+      "rows": 300,
+      "unique_groups": 150,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\qsimbench_backend_fingerprint\\standalone_optimization_sweep4_amplitude_hybrid_3q_depth2_lr004\\oof_predictions.csv",
+      "rows": 300,
+      "unique_groups": 150,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\qsimbench_backend_fingerprint\\standalone_optimization_sweep4_angle_reupload_4q_depth2_lr002\\oof_predictions.csv",
+      "rows": 300,
+      "unique_groups": 150,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\qsimbench_backend_fingerprint\\standalone_optimization_sweep4_angle_reupload_4q_depth2_lr0035\\oof_predictions.csv",
+      "rows": 300,
+      "unique_groups": 150,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\qsimbench_backend_fingerprint\\standalone_optimization_sweep4_angle_reupload_4q_depth2_lr007\\oof_predictions.csv",
+      "rows": 300,
+      "unique_groups": 150,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\qsimbench_backend_fingerprint\\standalone_optimization_sweep4_angle_4q_depth2_lr004\\oof_predictions.csv",
+      "rows": 300,
+      "unique_groups": 150,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\qsimbench_backend_fingerprint\\standalone_replicate_seed4321_angle_reupload_4q_depth2_lr007\\oof_predictions.csv",
+      "rows": 300,
+      "unique_groups": 150,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\qsimbench_backend_fingerprint\\standalone_replicate_seed2027_angle_reupload_4q_depth2_lr007\\oof_predictions.csv",
+      "rows": 300,
+      "unique_groups": 150,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\QMutBench three-class research\\qmutbench_threeclass_qnn_sweep24\\oof_predictions.csv",
+      "rows": 205,
+      "unique_groups": 12,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\QMutBench three-class research\\qmutbench_threeclass_standalone_seed4321\\oof_predictions.csv",
+      "rows": 205,
+      "unique_groups": 12,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\QMutBench three-class research\\multi_seed_probability_ensemble_oof.csv",
+      "rows": 205,
+      "unique_groups": 12,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\bugs4q_robust_execution\\three_seed_probability_ensemble_oof.csv",
+      "rows": 2220,
+      "unique_groups": 37,
+      "has_fold": true,
+      "development_only": true
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_predictions\\qsimbench_backend_fingerprint\\three_seed_probability_ensemble_oof.csv",
+      "rows": 300,
+      "unique_groups": 150,
+      "has_fold": true,
+      "development_only": true
+    }
+  ],
+  "prediction_group_leakage": [],
+  "winner_metric_recalculation_errors": [],
+  "checkpoint_artifacts": [
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\Bugs4Q core\\existing_best\\fold_checkpoints.json",
+      "type": "weight_manifest_json",
+      "integrity": "json_parsed",
+      "fold_entries": 20
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\Bugs4Q core-only transfer\\existing_best\\fold_checkpoints.json",
+      "type": "weight_manifest_json",
+      "integrity": "json_parsed",
+      "fold_entries": 5
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\Bugs4Q pooled\\existing_best\\fold_checkpoints.json",
+      "type": "weight_manifest_json",
+      "integrity": "json_parsed",
+      "fold_entries": 5
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\Bugs4Q-NA\\existing_best\\fold_checkpoints.json",
+      "type": "weight_manifest_json",
+      "integrity": "json_parsed",
+      "fold_entries": 20
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\Bugs4Q-NA-only transfer\\existing_best\\fold_checkpoints.json",
+      "type": "weight_manifest_json",
+      "integrity": "json_parsed",
+      "fold_entries": 5
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\amplitude_hybrid_3q_depth1_lr004_seed28102026\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\amplitude_hybrid_3q_depth1_lr004_seed28102026\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\amplitude_hybrid_3q_depth1_lr004_seed28102026\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\amplitude_hybrid_3q_depth1_lr004_seed28102026\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\amplitude_hybrid_3q_depth1_lr004_seed28102026\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\amplitude_hybrid_3q_depth2_lr004_seed28102026\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\amplitude_hybrid_3q_depth2_lr004_seed28102026\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\amplitude_hybrid_3q_depth2_lr004_seed28102026\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\amplitude_hybrid_3q_depth2_lr004_seed28102026\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\amplitude_hybrid_3q_depth2_lr004_seed28102026\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_4q_depth2_lr004_seed28102026\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_4q_depth2_lr004_seed28102026\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_4q_depth2_lr004_seed28102026\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_4q_depth2_lr004_seed28102026\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_4q_depth2_lr004_seed28102026\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr002_seed28102026\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr002_seed28102026\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr002_seed28102026\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr002_seed28102026\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr002_seed28102026\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr0035_seed28102026\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr0035_seed28102026\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr0035_seed28102026\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr0035_seed28102026\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr0035_seed28102026\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed2027\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed2027\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed2027\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed2027\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed2027\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed28102026\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed28102026\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed28102026\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed28102026\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed28102026\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed4321\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed4321\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed4321\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed4321\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\bugs4q_robust_execution\\angle_reupload_4q_depth2_lr007_seed4321\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\LintQ\\existing_best\\fold_checkpoints.json",
+      "type": "weight_manifest_json",
+      "integrity": "json_parsed",
+      "fold_entries": 20
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\QBugs HornBro subset\\existing_best\\fold_checkpoints.json",
+      "type": "weight_manifest_json",
+      "integrity": "json_parsed",
+      "fold_entries": 5
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\QMutBench three-class research\\amplitude_hybrid_2q_d2_lr008_seed28102026\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\QMutBench three-class research\\amplitude_hybrid_2q_d2_lr008_seed28102026\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\QMutBench three-class research\\amplitude_hybrid_2q_d2_lr008_seed28102026\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\QMutBench three-class research\\amplitude_hybrid_2q_d2_lr008_seed4321\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\QMutBench three-class research\\amplitude_hybrid_2q_d2_lr008_seed4321\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\QMutBench three-class research\\amplitude_hybrid_2q_d2_lr008_seed4321\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\Qolumbina ideal\\existing_best\\fold_checkpoints.json",
+      "type": "weight_manifest_json",
+      "integrity": "json_parsed",
+      "fold_entries": 20
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\amplitude_hybrid_3q_depth1_lr004_seed28102026\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\amplitude_hybrid_3q_depth1_lr004_seed28102026\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\amplitude_hybrid_3q_depth1_lr004_seed28102026\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\amplitude_hybrid_3q_depth1_lr004_seed28102026\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\amplitude_hybrid_3q_depth1_lr004_seed28102026\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\amplitude_hybrid_3q_depth2_lr004_seed28102026\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\amplitude_hybrid_3q_depth2_lr004_seed28102026\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\amplitude_hybrid_3q_depth2_lr004_seed28102026\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\amplitude_hybrid_3q_depth2_lr004_seed28102026\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\amplitude_hybrid_3q_depth2_lr004_seed28102026\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_4q_depth2_lr004_seed28102026\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_4q_depth2_lr004_seed28102026\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_4q_depth2_lr004_seed28102026\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_4q_depth2_lr004_seed28102026\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_4q_depth2_lr004_seed28102026\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr002_seed28102026\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr002_seed28102026\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr002_seed28102026\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr002_seed28102026\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr002_seed28102026\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr0035_seed28102026\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr0035_seed28102026\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr0035_seed28102026\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr0035_seed28102026\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr0035_seed28102026\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed2027\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed2027\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed2027\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed2027\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed2027\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed28102026\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed28102026\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed28102026\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed28102026\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed28102026\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed4321\\fold_1\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed4321\\fold_2\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed4321\\fold_3\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed4321\\fold_4\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\qsimbench_backend_fingerprint\\angle_reupload_4q_depth2_lr007_seed4321\\fold_5\\checkpoint.npz",
+      "type": "npz",
+      "integrity": "crc_ok",
+      "loadable_arrays": [
+        "theta",
+        "head"
+      ]
+    },
+    {
+      "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\qml_standalone_checkpoints\\Quantum platform comment task\\existing_best\\fold_checkpoints.json",
+      "type": "weight_manifest_json",
+      "integrity": "json_parsed",
+      "fold_entries": 5
+    }
+  ],
+  "checkpoint_replay_status": "verified",
+  "checkpoint_replayed_predictions": 20570,
+  "frozen_test_accessed": false,
+  "final_test_accuracy": "not evaluated"
+}
