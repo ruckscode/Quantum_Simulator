@@ -1,0 +1,71 @@
+[
+  {
+    "model": "quantum_equal_probability_mean",
+    "members": [
+      "angle_hybrid_readout"
+    ],
+    "macro_f1": 0.4770068027210884,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_class0_class1": [
+      [
+        18,
+        44
+      ],
+      [
+        18,
+        44
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.2903225806451613,
+        "f1": 0.3673469387755102,
+        "support": 62
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.7096774193548387,
+        "f1": 0.5866666666666667,
+        "support": 62
+      }
+    }
+  },
+  {
+    "model": "all_candidates_equal_probability_mean",
+    "members": [
+      "angle_hybrid_readout",
+      "logistic_4d",
+      "random_forest_4d",
+      "extra_trees_4d"
+    ],
+    "macro_f1": 0.46709642761214076,
+    "accuracy": 0.4838709677419355,
+    "balanced_accuracy": 0.4838709677419355,
+    "confusion_matrix_labels_class0_class1": [
+      [
+        19,
+        43
+      ],
+      [
+        21,
+        41
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.475,
+        "recall": 0.3064516129032258,
+        "f1": 0.37254901960784315,
+        "support": 62
+      },
+      "1": {
+        "precision": 0.4880952380952381,
+        "recall": 0.6612903225806451,
+        "f1": 0.5616438356164384,
+        "support": 62
+      }
+    }
+  }
+]

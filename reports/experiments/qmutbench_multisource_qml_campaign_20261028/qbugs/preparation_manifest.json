@@ -1,0 +1,142 @@
+{
+  "dataset": "QBugs circuit pairs distributed with HornBro v3",
+  "source_archive": "data/external_quantum_datasets/hornbro_qbugs_source.rar",
+  "source_readme": "data/external_quantum_datasets/qbugs_hornbro/provenance/README.md",
+  "label_map": {
+    "correct": 0,
+    "buggy": 1
+  },
+  "pair_rule": "The README states first half of each qcs.pkl list is original, second half buggy; pair index i in first half is paired with i+half in second half.",
+  "group_rule": "scenario path plus pair index; both paired circuits stay in one fold",
+  "rows": 1500,
+  "groups": 750,
+  "source_files": [
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\10\\10\\qcs.pkl",
+      "sha256": "2d988f7a8208edde16caccb83b8d36f56ebb1f3e2e0440f61b37b9e002337392",
+      "bytes": 232067,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "10/10"
+    },
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\10\\2\\qcs.pkl",
+      "sha256": "d180c6eaa15481bfbf70e7a7f26422021ff0524fda90ba3096b4619a88cc9a20",
+      "bytes": 222931,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "10/2"
+    },
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\10\\4\\qcs.pkl",
+      "sha256": "f09651beb0ae7c8e88bc6f86ff51b8f58f77ebdce4893add58a82dc4260f11c0",
+      "bytes": 224758,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "10/4"
+    },
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\10\\6\\qcs.pkl",
+      "sha256": "38d8d9b5e8919ab18d581fb495ddb9618061cd214e2a58dc9bdd0de482bb1715",
+      "bytes": 230141,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "10/6"
+    },
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\10\\8\\qcs.pkl",
+      "sha256": "c0f36b44b606dcf2eac082535b5238af6b3c754f2f4d69af3ae650f4c614c99e",
+      "bytes": 228538,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "10/8"
+    },
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\15\\10\\qcs.pkl",
+      "sha256": "36c79821d8a7016bcc37310931a6a025f0d66d9869bfecd7ac5b83213b042101",
+      "bytes": 333040,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "15/10"
+    },
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\15\\2\\qcs.pkl",
+      "sha256": "fc33539fc69f4f8b0e2e132d9b9b19102556ecec0c6e652b7c01a6e9386e133b",
+      "bytes": 329050,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "15/2"
+    },
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\15\\4\\qcs.pkl",
+      "sha256": "59752e3c3e664daa794019b152e86ff12bcc26a3b9ce08b4946fee2c0f3de98f",
+      "bytes": 326591,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "15/4"
+    },
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\15\\6\\qcs.pkl",
+      "sha256": "4ab66afaf53db20ab34f0191973f55a744734daba9bd079ae573fff6677b44e5",
+      "bytes": 330274,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "15/6"
+    },
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\15\\8\\qcs.pkl",
+      "sha256": "5e166aaa6cea809d972966850f07bf4c73afe51f4e773a60380905c2d77795d9",
+      "bytes": 336068,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "15/8"
+    },
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\20\\10\\qcs.pkl",
+      "sha256": "63810a4d6749f3ab7733abdd11e373f79f21dbe192637a154f6533b09214851f",
+      "bytes": 438140,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "20/10"
+    },
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\20\\2\\qcs.pkl",
+      "sha256": "258da17e99b380edfb7ec9abcd9bc474d9e3a281cc8c7252e51e23c39d93f4f0",
+      "bytes": 427224,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "20/2"
+    },
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\20\\4\\qcs.pkl",
+      "sha256": "abcd227bae2cc65aa1d2dde5bcbfda0768a56d840e128eeda94eb040d0d8e30d",
+      "bytes": 429345,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "20/4"
+    },
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\20\\6\\qcs.pkl",
+      "sha256": "b0e1d145bfafea332f8821393a5e1ef8e956fb93b45dd24aca812dd5d505f938",
+      "bytes": 430147,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "20/6"
+    },
+    {
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs\\20\\8\\qcs.pkl",
+      "sha256": "acb5de1ac15b8f6abbd1d5fee4c0d35d945bcc3f5a669bbf8ad105634520754a",
+      "bytes": 436784,
+      "circuits": 100,
+      "pairs": 50,
+      "scenario": "20/8"
+    }
+  ],
+  "class_counts": {
+    "0": 750,
+    "1": 750
+  },
+  "feature_policy": "Qiskit circuit gate/operand sequence plus depth and size tokens; no label, scenario, or pair identifiers enter text features.",
+  "qiskit_pickle_environment": "Qiskit 1.4.5 isolated environment; restricted unpickler allows only Qiskit and numeric/container modules.",
+  "limitations": "This QBugs delivery is the repair paper's circuit-pair derivative, not a distinct issue-level catalogue count. Group by generated pair origin and do not mix with Bugs4Q."
+}

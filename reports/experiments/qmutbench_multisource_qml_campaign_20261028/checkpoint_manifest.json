@@ -1,0 +1,10 @@
+{
+  "qmutbench_binary_production_model": "data/qmutbench_ml/master_optimization_v1/best_model.joblib",
+  "qmutbench_binary_model_sha256": "8cd332a309e27ef09cc46c5bf8a8788da35c05aa6ed25ed5de21d26ced076175",
+  "bugs4q_best_classical": "bugs4q_standalone/best_classical_checkpoint.joblib",
+  "bugs4q_qnn_checkpoint": null,
+  "qmutbench_three_class_qnn_checkpoint": null,
+  "reason": "Existing QMutBench confirmation QNN fit and the new Bugs4Q QNN fit were stopped before model updates by memory guards; no checkpoint is claimed.",
+  "bugs4q_classical_sha256": "78de73112229656e2e14481fe41efaa2eff945e7697bbb2bda94630421958b7e",
+  "production_model_final_sha256": "8cd332a309e27ef09cc46c5bf8a8788da35c05aa6ed25ed5de21d26ced076175"
+}

@@ -1,0 +1,7 @@
+{
+  "status": "invalid_due_label_construction_leakage",
+  "task_attempted": "Quantum platform issue bug versus false-positive classification",
+  "invalidating_issue": "component, symptom, and pattern annotation fields are populated for bug rows and absent for false-positive rows, allowing label recovery from missingness",
+  "use_in_metrics_or_model_selection": false,
+  "disposition": "Retained for audit only. The corrected comment-only experiment is stored in ../quantum_platform_223_comment_only/."
+}

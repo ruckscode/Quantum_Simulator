@@ -1,5 +1,5 @@
 {
-  "status": "development_evidence_audited_external_training_pending",
+  "status": "qml_development_runs_completed_with_further_sweep_blocked_by_ram",
   "completed": [
     "Audited dataset integrity for 19 local quantum dataset sources and 19 archives; recorded download, extraction, and data status separately.",
     "Completed grouped QNN training for Bugs4Q, Bugs4Q-NA, QBugs, quantum platform comments, Qolumbina ideal-backend detection, and LintQ warning triage.",
@@ -7,18 +7,18 @@
     "Replayed 4,575 saved QNN out-of-fold probabilities across nine completed source runs; all checkpoints reproduce within 1.2e-16 absolute probability error.",
     "Recalculated QMutBench three-class development OOF metrics against its grouped validation manifest; no parameter checkpoint exists.",
     "Prepared grouped Bugs4Q-Robust pass/fail and QSimBench backend fingerprint tasks; local QNN attempts hit the RAM floor before checkpointing; packaged both for one external CPU notebook run.",
-    "Recomputed 85 candidate/ensemble rows and 327 fold rows from saved development OOF predictions; generated 24 source-specific Bugs4Q transfer rows and a dataset/task inventory."
+    "Recomputed 85 candidate/ensemble rows and 327 fold rows from saved development OOF predictions; generated 24 source-specific Bugs4Q transfer rows and a dataset/task inventory.",
+    "Trained two pending binary QNN tasks with five issue/program-group folds and two architectures each; 20 fold checkpoints saved and gradients audited.",
+    "Recreated QMutBench three-class QNN checkpoints on the saved three origin folds using the fold-specific selected features; completed a six-configuration 24-epoch QNN sweep and validation-only equal-probability ensemble."
   ],
   "not_completed": [
-    "Bugs4Q-Robust QNN training: task is prepared, but its local attempt stopped below the 500 MiB floor before saving a trained checkpoint.",
     "Qolumbina multi-backend 546-row run: partial checkpoints exist, but no complete OOF result; only the separate ideal-backend task is complete.",
-    "QSimBench backend fingerprint: task prepared and leakage-grouped, but local QNN training stopped at the memory floor before checkpointing.",
     "Mute-Alg: legacy circuit pickle deserialization fails on the installed Qiskit versions.",
     "Bug-Pattern and QChecker: no validated supervised task manifest was created.",
     "QML platform workbooks: labels, duplicates, and licensing need normalization before training.",
-    "QMutBench three-class QNN checkpoint recovery: OOF development predictions exist, but saved model weights are unavailable.",
     "Broad 14-model classical and training-fold-only random over/under/SMOTE suite across nine binary tasks: bundle is hash-verified and notebook is syntax/ZIP validated, but remote execution has not occurred.",
-    "Borderline-SMOTE, boosted external libraries, and stacking were not run; no scores are claimed."
+    "Borderline-SMOTE, boosted external libraries, and stacking were not run; no scores are claimed.",
+    "Expanded six-configuration 20-epoch sweep for Bugs4Q-Robust/QSimBench stopped when available RAM measured 473.4 MiB, below 500 MiB; partial binary-sweep checkpoints are not scored. The QML-only remote sweep bundle is prepared but unexecuted."
   ],
   "integration": "Completed Bugs4Q pooled and source-only transfer experiments; equal-probability ensemble diagnostics for Qolumbina and LintQ did not beat the best classical specialist. No model promoted.",
   "safety": {
@@ -26,5 +26,5 @@
     "production_model_modified": false,
     "local_ram_floor_mib": 500
   },
-  "external_training_bundle": "Remaining_Source_QNN_Training.ipynb with remaining_source_qnn_training_bundle.zip; notebook input SHA-256 checks pass; it must be run in Kaggle CPU and its result ZIP retrieved before these tasks can be marked complete."
+  "external_training_bundle": "QML_Only_External_Sweeps.ipynb with qml_only_external_sweep_bundle.zip; notebook syntax, ZIP integrity, and all seven embedded input hashes were verified; no Kaggle execution has occurred."
 }

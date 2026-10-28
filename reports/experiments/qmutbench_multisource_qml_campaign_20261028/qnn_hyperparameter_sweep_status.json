@@ -1,0 +1,24 @@
+{
+  "status": "partial_stopped_by_ram_guard",
+  "sweep": "6 configs x 20 epochs across two grouped binary tasks",
+  "completed_checkpoints_by_task": {
+    "bugs4q_robust_execution": {
+      "checkpoint_count": 10,
+      "fold_result_count": 9,
+      "summary_exists": false,
+      "oof_exists": false
+    },
+    "qsimbench_backend_fingerprint": {
+      "checkpoint_count": 0,
+      "fold_result_count": 0,
+      "summary_exists": false,
+      "oof_exists": false
+    }
+  },
+  "stop_reason": "runner detected only 473.4 MiB available, below the mandatory 500 MiB floor, during training; no sweep summary or OOF outputs were produced and partial checkpoints are not scored.",
+  "frozen_test_accessed": false,
+  "complete_baseline_runs_preserved": [
+    "bugs4q_robust_execution/resource_light_qnn",
+    "qsimbench_backend_fingerprint/resource_light_qnn"
+  ]
+}

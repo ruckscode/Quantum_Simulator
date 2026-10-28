@@ -82,5 +82,46 @@
     "execution_environment": "Kaggle CPU; pinned PennyLane default.qubit; GPU not required",
     "input_hashes": "embedded and verified by notebook before execution"
   },
-  "local_policy": "No local model suite was started because the installed PennyLane import may consume enough RAM to cross the 500 MiB floor; the external bundle is the safe execution path."
+  "local_policy": "No local model suite was started because the installed PennyLane import may consume enough RAM to cross the 500 MiB floor; the external bundle is the safe execution path.",
+  "completed_additional_qnn_runs": [
+    {
+      "task": "Bugs4Q-Robust pass/fail",
+      "records": 2220,
+      "groups": 37,
+      "architectures": 2,
+      "folds": 5,
+      "checkpoints": 10,
+      "runtime_seconds": 90.8,
+      "lowest_fold_end_available_ram_mib": null
+    },
+    {
+      "task": "QSimBench backend fingerprint",
+      "records": 300,
+      "groups": 150,
+      "architectures": 2,
+      "folds": 5,
+      "checkpoints": 10,
+      "runtime_seconds": 12.7,
+      "lowest_fold_end_available_ram_mib": null
+    },
+    {
+      "task": "QMutBench three-class development",
+      "records": 205,
+      "groups": 12,
+      "architectures": 9,
+      "folds": 3,
+      "checkpoints": 27,
+      "sweep_epochs": 24,
+      "runtime_seconds": 60.2,
+      "lowest_fold_end_available_ram_mib": null
+    }
+  ],
+  "incomplete_additional_qnn_sweep": {
+    "status": "stopped_by_ram_guard",
+    "available_ram_mib_at_guard": 473.4,
+    "floor_mib": 500,
+    "partial_checkpoints": 10,
+    "scored": false
+  },
+  "memory_note": "Per-run peak RSS was not measured. The QNN trainer checks system-available RAM at batch/epoch boundaries; OS availability later fell below 500 MiB and the expanded binary sweep stopped."
 }

@@ -1,0 +1,53 @@
+{
+  "fold": 1,
+  "model": "angle_hybrid_4q_depth2",
+  "records": 67,
+  "origins": 4,
+  "training_seconds": 1.218038200000592,
+  "gradient_check": {
+    "parameter_shift": -0.0001429778900057316,
+    "finite_difference": -0.00014297787398476203,
+    "absolute_error": 1.602096957160036e-11,
+    "passed": true
+  },
+  "accuracy": 0.3582089552238806,
+  "macro_f1": 0.25555555555555554,
+  "balanced_accuracy": 0.34795321637426896,
+  "per_class": {
+    "0": {
+      "precision": 0.35714285714285715,
+      "recall": 0.8333333333333334,
+      "f1": 0.5,
+      "support": 24
+    },
+    "1": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 24
+    },
+    "2": {
+      "precision": 0.36363636363636365,
+      "recall": 0.21052631578947367,
+      "f1": 0.26666666666666666,
+      "support": 19
+    }
+  },
+  "confusion_matrix": [
+    [
+      20,
+      0,
+      4
+    ],
+    [
+      21,
+      0,
+      3
+    ],
+    [
+      15,
+      0,
+      4
+    ]
+  ]
+}

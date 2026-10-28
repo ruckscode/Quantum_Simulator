@@ -1,0 +1,7 @@
+# Bugs4Q standalone stage
+
+Task: classify the source snapshot state in the Qiskit subset, fixed=0 and buggy=1. This source-native target is separate from QMutBench outcomes. Retained 31 issue groups (62 records) with buggy and fixed source, metadata, and both associated trigger-test files. Comments and docstrings were stripped while executable string literals were retained; issue IDs and file paths were not predictors. Five-fold GroupKFold kept both variants of each issue together. Fold-local TF-IDF, TruncatedSVD, and scaling were used.
+
+The best OOF candidate was RBF SVC on word/bigram TF-IDF: macro F1 0.5321, accuracy 0.5323, balanced accuracy 0.5323. Its issue-group bootstrap 95% interval for macro F1 was 0.4901–0.5802. Other controls included Logistic Regression, Linear SVC, decision tree, random forest, Extra Trees, histogram gradient boosting, a small MLP, and a majority baseline. RBF SVC scored 0.5156; Logistic Regression on the four-dimensional projection scored 0.5222; histogram gradient boosting 0.4676; the small MLP 0.5156. Results are near chance and not evidence of a strong bug detector. A full-eligible-data checkpoint is saved after OOF evaluation. No QNN was fitted: the pre-QNN guard observed 684 MiB versus the 700 MiB requirement before PennyLane/model import or any optimizer update.
+
+Detailed predictions, fold metrics, per-issue metrics, schema, and license notes are in `../bugs4q_standalone/`.

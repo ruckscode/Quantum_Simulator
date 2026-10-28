@@ -1,0 +1,70 @@
+{
+  "status": "task_manifest_prepared",
+  "task": "predict whether Qolumbina DOSS detects a seeded buggy variant on a backend in a majority of available random-seed runs",
+  "positive_label": "detected in at least half of report runs; each report is positive if any of its named tests has test_result=fail",
+  "negative_label": "not detected in a majority of report runs",
+  "source_artifact": "data\\external_quantum_datasets\\qolumbina\\verified_extracted\\qolumbina-empirical-study-main\\analysis\\rq3",
+  "published_reports_read": 10913,
+  "bugless_control_reports_excluded": 13,
+  "raw_test_result_counts": {
+    "fail": 72004,
+    "pass": 28726
+  },
+  "observations_after_variant_backend_aggregation": 546,
+  "program_groups": 26,
+  "group_split_unit": "original Qolumbina program; all variants and backends of a program remain together",
+  "class_counts": {
+    "1": 506,
+    "0": 40
+  },
+  "variants": 182,
+  "backends": [
+    "fake_algiers",
+    "fake_brooklyn",
+    "ideal"
+  ],
+  "rows_with_fewer_than_20_seed_reports": [
+    {
+      "program": "draper_adder",
+      "version": 7,
+      "backend": "ideal",
+      "unique_seeds": 19
+    },
+    {
+      "program": "integer_comparator_old",
+      "version": 1,
+      "backend": "ideal",
+      "unique_seeds": 19
+    },
+    {
+      "program": "integer_comparator_old",
+      "version": 2,
+      "backend": "fake_brooklyn",
+      "unique_seeds": 19
+    },
+    {
+      "program": "is_two_power_qubit",
+      "version": 1,
+      "backend": "ideal",
+      "unique_seeds": 18
+    },
+    {
+      "program": "less_than_qubit",
+      "version": 1,
+      "backend": "ideal",
+      "unique_seeds": 19
+    },
+    {
+      "program": "less_than_qubit",
+      "version": 2,
+      "backend": "ideal",
+      "unique_seeds": 19
+    }
+  ],
+  "feature_policy": "mutant Python source with comments/docstrings removed plus pre-run backend token; no test report output, measured circuit statistic, seed-specific output, or program identity token appended",
+  "limitations": [
+    "26 program groups limit the precision of grouped-fold estimates",
+    "label is the majority empirical DOSS detection rate over available seeds, not a ground-truth semantic bug-fix label",
+    "Qolumbina variants are seeded synthetic mutations, not real bug reports"
+  ]
+}

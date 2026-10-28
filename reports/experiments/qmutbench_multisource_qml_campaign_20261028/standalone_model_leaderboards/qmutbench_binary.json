@@ -1,0 +1,9 @@
+{
+  "task":"QMutBench binary production; WOO/OPO=detected 1, Survivor=undetected 0",
+  "best_model":"mutation-aware Extra Trees 23 features",
+  "folds":5,"records":578117,"origins":305,
+  "macro_f1":0.7933135654,"accuracy":0.7933290320,"balanced_accuracy":0.7940874828,
+  "per_class":{"0":{"precision":0.7696494437,"recall":0.8146817857,"f1":0.7915256248,"support":278413},"1":{"precision":0.8179518302,"recall":0.7734931799,"f1":0.7951015060,"support":299704}},
+  "source_report":"reports/experiments/qmutbench_final_classical_campaign_20261027.md",
+  "decision":"retain incumbent; no replacement authorized"
+}

@@ -1,0 +1,431 @@
+{
+  "status": "verified",
+  "runs": [
+    {
+      "task": "bugs4q_robust_execution",
+      "summary_status": "completed_resource_light_grouped_qnn",
+      "records": 2220,
+      "groups": 37,
+      "models": {
+        "amplitude_hybrid_3q_depth2": {
+          "oof_rows": 2220,
+          "metrics_recomputed": {
+            "accuracy": 0.5135135135135135,
+            "macro_f1": 0.513157894736842,
+            "balanced_accuracy": 0.5135135135135136,
+            "per_class": {
+              "0": {
+                "precision": 0.5128205128205128,
+                "recall": 0.5405405405405406,
+                "f1": 0.5263157894736842,
+                "support": 1110
+              },
+              "1": {
+                "precision": 0.5142857142857142,
+                "recall": 0.4864864864864865,
+                "f1": 0.5,
+                "support": 1110
+              }
+            }
+          },
+          "metrics_match_summary": true,
+          "checkpoint_files": 5,
+          "checkpoint_archives_valid": true,
+          "gradient_checks_passed": 5
+        },
+        "angle_reupload_hybrid_4q_depth2": {
+          "oof_rows": 2220,
+          "metrics_recomputed": {
+            "accuracy": 0.47297297297297297,
+            "macro_f1": 0.4721053594293031,
+            "balanced_accuracy": 0.47297297297297297,
+            "per_class": {
+              "0": {
+                "precision": 0.475,
+                "recall": 0.5135135135135135,
+                "f1": 0.4935064935064935,
+                "support": 1110
+              },
+              "1": {
+                "precision": 0.47058823529411764,
+                "recall": 0.43243243243243246,
+                "f1": 0.4507042253521127,
+                "support": 1110
+              }
+            }
+          },
+          "metrics_match_summary": true,
+          "checkpoint_files": 5,
+          "checkpoint_archives_valid": true,
+          "gradient_checks_passed": 5
+        }
+      }
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "summary_status": "completed_resource_light_grouped_qnn",
+      "records": 300,
+      "groups": 150,
+      "models": {
+        "amplitude_hybrid_3q_depth2": {
+          "oof_rows": 300,
+          "metrics_recomputed": {
+            "accuracy": 0.61,
+            "macro_f1": 0.6097875509999888,
+            "balanced_accuracy": 0.61,
+            "per_class": {
+              "0": {
+                "precision": 0.6153846153846154,
+                "recall": 0.5866666666666667,
+                "f1": 0.6006825938566553,
+                "support": 150
+              },
+              "1": {
+                "precision": 0.6050955414012739,
+                "recall": 0.6333333333333333,
+                "f1": 0.6188925081433224,
+                "support": 150
+              }
+            }
+          },
+          "metrics_match_summary": true,
+          "checkpoint_files": 5,
+          "checkpoint_archives_valid": true,
+          "gradient_checks_passed": 5
+        },
+        "angle_reupload_hybrid_4q_depth2": {
+          "oof_rows": 300,
+          "metrics_recomputed": {
+            "accuracy": 0.66,
+            "macro_f1": 0.6599848882172541,
+            "balanced_accuracy": 0.6599999999999999,
+            "per_class": {
+              "0": {
+                "precision": 0.6621621621621622,
+                "recall": 0.6533333333333333,
+                "f1": 0.6577181208053691,
+                "support": 150
+              },
+              "1": {
+                "precision": 0.6578947368421053,
+                "recall": 0.6666666666666666,
+                "f1": 0.6622516556291391,
+                "support": 150
+              }
+            }
+          },
+          "metrics_match_summary": true,
+          "checkpoint_files": 5,
+          "checkpoint_archives_valid": true,
+          "gradient_checks_passed": 5
+        }
+      }
+    },
+    {
+      "task": "qmutbench_threeclass_resource_light_qnn",
+      "summary_status": "completed_development_oof_with_reloadable_checkpoints",
+      "records": 205,
+      "groups": 12,
+      "models": {
+        "amplitude_hybrid_2q_depth2": {
+          "oof_rows": 205,
+          "metrics_recomputed": {
+            "accuracy": 0.43414634146341463,
+            "macro_f1": 0.3862985808740526,
+            "balanced_accuracy": 0.4240531255237137,
+            "per_class": {
+              "0": {
+                "precision": 0.4338235294117647,
+                "recall": 0.8194444444444444,
+                "f1": 0.5673076923076923,
+                "support": 72
+              },
+              "1": {
+                "precision": 0.4642857142857143,
+                "recall": 0.19117647058823528,
+                "f1": 0.27083333333333337,
+                "support": 68
+              },
+              "2": {
+                "precision": 0.4146341463414634,
+                "recall": 0.26153846153846155,
+                "f1": 0.32075471698113206,
+                "support": 65
+              }
+            }
+          },
+          "metrics_match_summary": true,
+          "checkpoint_files": 3,
+          "checkpoint_archives_valid": true,
+          "gradient_checks_passed": 3
+        },
+        "angle_hybrid_4q_depth2": {
+          "oof_rows": 205,
+          "metrics_recomputed": {
+            "accuracy": 0.3463414634146341,
+            "macro_f1": 0.3290190483738871,
+            "balanced_accuracy": 0.34244176302999835,
+            "per_class": {
+              "0": {
+                "precision": 0.336283185840708,
+                "recall": 0.5277777777777778,
+                "f1": 0.41081081081081083,
+                "support": 72
+              },
+              "1": {
+                "precision": 0.48,
+                "recall": 0.17647058823529413,
+                "f1": 0.25806451612903225,
+                "support": 68
+              },
+              "2": {
+                "precision": 0.31343283582089554,
+                "recall": 0.3230769230769231,
+                "f1": 0.31818181818181823,
+                "support": 65
+              }
+            }
+          },
+          "metrics_match_summary": true,
+          "checkpoint_files": 3,
+          "checkpoint_archives_valid": true,
+          "gradient_checks_passed": 3
+        },
+        "angle_reupload_hybrid_4q_depth2": {
+          "oof_rows": 205,
+          "metrics_recomputed": {
+            "accuracy": 0.4585365853658537,
+            "macro_f1": 0.44487179487179485,
+            "balanced_accuracy": 0.4540933467404056,
+            "per_class": {
+              "0": {
+                "precision": 0.47959183673469385,
+                "recall": 0.6527777777777778,
+                "f1": 0.5529411764705882,
+                "support": 72
+              },
+              "1": {
+                "precision": 0.5555555555555556,
+                "recall": 0.29411764705882354,
+                "f1": 0.3846153846153846,
+                "support": 68
+              },
+              "2": {
+                "precision": 0.38028169014084506,
+                "recall": 0.4153846153846154,
+                "f1": 0.39705882352941174,
+                "support": 65
+              }
+            }
+          },
+          "metrics_match_summary": true,
+          "checkpoint_files": 3,
+          "checkpoint_archives_valid": true,
+          "gradient_checks_passed": 3
+        }
+      }
+    },
+    {
+      "task": "qmutbench_threeclass_qnn_sweep24",
+      "summary_status": "completed_development_oof_with_reloadable_checkpoints",
+      "records": 205,
+      "groups": 12,
+      "models": {
+        "amplitude_hybrid_2q_d2_lr004": {
+          "oof_rows": 205,
+          "metrics_recomputed": {
+            "accuracy": 0.45365853658536587,
+            "macro_f1": 0.41070192646175935,
+            "balanced_accuracy": 0.44275599128540305,
+            "per_class": {
+              "0": {
+                "precision": 0.45384615384615384,
+                "recall": 0.8194444444444444,
+                "f1": 0.5841584158415842,
+                "support": 72
+              },
+              "1": {
+                "precision": 0.5121951219512195,
+                "recall": 0.3088235294117647,
+                "f1": 0.3853211009174312,
+                "support": 68
+              },
+              "2": {
+                "precision": 0.38235294117647056,
+                "recall": 0.2,
+                "f1": 0.26262626262626265,
+                "support": 65
+              }
+            }
+          },
+          "metrics_match_summary": true,
+          "checkpoint_files": 3,
+          "checkpoint_archives_valid": true,
+          "gradient_checks_passed": 3
+        },
+        "amplitude_hybrid_2q_d2_lr008": {
+          "oof_rows": 205,
+          "metrics_recomputed": {
+            "accuracy": 0.4634146341463415,
+            "macro_f1": 0.4363924082881671,
+            "balanced_accuracy": 0.45523294788000673,
+            "per_class": {
+              "0": {
+                "precision": 0.4661016949152542,
+                "recall": 0.7638888888888888,
+                "f1": 0.5789473684210525,
+                "support": 72
+              },
+              "1": {
+                "precision": 0.5714285714285714,
+                "recall": 0.29411764705882354,
+                "f1": 0.38834951456310673,
+                "support": 68
+              },
+              "2": {
+                "precision": 0.38461538461538464,
+                "recall": 0.3076923076923077,
+                "f1": 0.3418803418803419,
+                "support": 65
+              }
+            }
+          },
+          "metrics_match_summary": true,
+          "checkpoint_files": 3,
+          "checkpoint_archives_valid": true,
+          "gradient_checks_passed": 3
+        },
+        "angle_reupload_4q_d2_lr002": {
+          "oof_rows": 205,
+          "metrics_recomputed": {
+            "accuracy": 0.4585365853658537,
+            "macro_f1": 0.4175230587992595,
+            "balanced_accuracy": 0.4482905982905983,
+            "per_class": {
+              "0": {
+                "precision": 0.4316546762589928,
+                "recall": 0.8333333333333334,
+                "f1": 0.5687203791469193,
+                "support": 72
+              },
+              "1": {
+                "precision": 0.5862068965517241,
+                "recall": 0.25,
+                "f1": 0.35051546391752575,
+                "support": 68
+              },
+              "2": {
+                "precision": 0.4594594594594595,
+                "recall": 0.26153846153846155,
+                "f1": 0.3333333333333333,
+                "support": 65
+              }
+            }
+          },
+          "metrics_match_summary": true,
+          "checkpoint_files": 3,
+          "checkpoint_archives_valid": true,
+          "gradient_checks_passed": 3
+        },
+        "angle_reupload_4q_d2_lr0035": {
+          "oof_rows": 205,
+          "metrics_recomputed": {
+            "accuracy": 0.4292682926829268,
+            "macro_f1": 0.3931520320077074,
+            "balanced_accuracy": 0.4204667337020278,
+            "per_class": {
+              "0": {
+                "precision": 0.4263565891472868,
+                "recall": 0.7638888888888888,
+                "f1": 0.5472636815920399,
+                "support": 72
+              },
+              "1": {
+                "precision": 0.5769230769230769,
+                "recall": 0.22058823529411764,
+                "f1": 0.3191489361702128,
+                "support": 68
+              },
+              "2": {
+                "precision": 0.36,
+                "recall": 0.27692307692307694,
+                "f1": 0.31304347826086953,
+                "support": 65
+              }
+            }
+          },
+          "metrics_match_summary": true,
+          "checkpoint_files": 3,
+          "checkpoint_archives_valid": true,
+          "gradient_checks_passed": 3
+        },
+        "angle_reupload_4q_d2_lr006": {
+          "oof_rows": 205,
+          "metrics_recomputed": {
+            "accuracy": 0.45365853658536587,
+            "macro_f1": 0.41647861951861814,
+            "balanced_accuracy": 0.44438578850343563,
+            "per_class": {
+              "0": {
+                "precision": 0.42962962962962964,
+                "recall": 0.8055555555555556,
+                "f1": 0.5603864734299517,
+                "support": 72
+              },
+              "1": {
+                "precision": 0.6153846153846154,
+                "recall": 0.23529411764705882,
+                "f1": 0.3404255319148936,
+                "support": 68
+              },
+              "2": {
+                "precision": 0.4318181818181818,
+                "recall": 0.2923076923076923,
+                "f1": 0.3486238532110092,
+                "support": 65
+              }
+            }
+          },
+          "metrics_match_summary": true,
+          "checkpoint_files": 3,
+          "checkpoint_archives_valid": true,
+          "gradient_checks_passed": 3
+        },
+        "angle_4q_d2_lr004": {
+          "oof_rows": 205,
+          "metrics_recomputed": {
+            "accuracy": 0.3902439024390244,
+            "macro_f1": 0.3623062941320341,
+            "balanced_accuracy": 0.38315736551030666,
+            "per_class": {
+              "0": {
+                "precision": 0.41025641025641024,
+                "recall": 0.6666666666666666,
+                "f1": 0.5079365079365079,
+                "support": 72
+              },
+              "1": {
+                "precision": 0.4827586206896552,
+                "recall": 0.20588235294117646,
+                "f1": 0.28865979381443296,
+                "support": 68
+              },
+              "2": {
+                "precision": 0.3050847457627119,
+                "recall": 0.27692307692307694,
+                "f1": 0.29032258064516137,
+                "support": 65
+              }
+            }
+          },
+          "metrics_match_summary": true,
+          "checkpoint_files": 3,
+          "checkpoint_archives_valid": true,
+          "gradient_checks_passed": 3
+        }
+      }
+    }
+  ],
+  "frozen_test_accessed": false,
+  "test_accuracy": "not evaluated; these are development OOF metrics"
+}

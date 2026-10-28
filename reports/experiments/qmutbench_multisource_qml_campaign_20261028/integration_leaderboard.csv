@@ -1,0 +1,9 @@
+task,source_or_system,model_or_strategy,macro_f1,accuracy,balanced_accuracy,eligible_records,groups,validation,decision
+qmutbench_binary,QMutBench,mutation-aware Extra Trees 23f,0.793314,0.793329,0.794087,578117,305,5-fold grouped OOF,Best validated binary development champion retained
+qmutbench_three_class,QMutBench,Extra Trees 4f,0.466887,0.492683,0.484553,205,12,3-fold GroupKFold exploratory,Best standalone model in matched pilot
+qmutbench_three_class,QMutBench,all-six equal probability mean,0.491890,0.507317,0.500666,205,12,3-fold OOF exploratory same-origin blend inspection,Not promoted; untouched-origin confirmation not run
+qmutbench_three_class,QMutBench,outer-fold logistic stacker,0.421216,0.434146,0.428410,205,12,outer-fold-held-out stacker,Rejected
+bugs4q_bugfix,Bugs4Q,Random Forest 4D projection,0.531160,0.532258,0.532258,62,31,5-fold GroupKFold by bug id,Best standalone Bugs4Q classical candidate; near chance and source-specific
+bugs4q_bugfix,Bugs4Q,Logistic Regression 4D,0.522190,0.532258,0.532258,62,31,5-fold GroupKFold by bug id,Matched 4D control
+cross_source,all available,transfer or multitask,—,—,—,0,0,not run,No compatible task labels/features; no false label mapping
+qmutbench_ensemble_confirm,QMutBench,six-model blend on reserved 36 origins,—,—,—,0,36,reserved protocol not run,Blocked by exporter preflight RAM; 792 MiB below 900 MiB requirement

@@ -1,0 +1,12 @@
+{
+  "campaign_scripts_py_compile":"passed for all three campaign scripts",
+  "bugs4q_classical_run":"completed; ten classical candidates; five-fold GroupKFold; checkpoint and artifact outputs validated",
+  "bugs4q_qnn":"skipped by preflight memory guard; no training fit started",
+  "qmutbench_confirmation_export":"stopped before import/data access; no output directory created",
+  "pytest":"26 passed in 7.85 seconds: tests/test_bugs4q_validation.py and tests/test_bugs4q_integration.py",
+  "historical_qmutbench_qnn_suite":"prior campaign report: 10 passed; 2 QNN fits stopped at the existing 500 MiB guard; 1 deselected",
+  "artifact_validation":"passed: all campaign JSON parsed; 620 Bugs4Q OOF prediction rows cover 62 unique records and 10 models; 5 issue-group folds have zero group overlap; checkpoint and source hashes verified",
+  "production_model_hash":"verified unchanged at 8cd332a309e27ef09cc46c5bf8a8788da35c05aa6ed25ed5de21d26ced076175",
+  "frozen_test":"not accessed",
+  "git_diff_check":"passed"
+}

@@ -1,0 +1,673 @@
+{
+  "status": "completed_grouped_supervised_qnn_benchmark",
+  "task": "Qolumbina synthetic seeded-mutant detection on the ideal simulator: majority DOSS detection label",
+  "data": "182 seeded mutant variants from 26 original programs, ideal backend only",
+  "group_split": "5-fold GroupKFold by original Qolumbina program",
+  "qnn_candidates": [
+    "angle_vqc",
+    "angle_reupload_vqc",
+    "angle_hybrid_readout",
+    "amplitude_vqc"
+  ],
+  "matched_classical_controls": [
+    "logistic_4d",
+    "random_forest_4d",
+    "extra_trees_4d",
+    "mlp_4d"
+  ],
+  "folds": 5,
+  "records": 182,
+  "origins": 26,
+  "gradient_checks_passed": 20,
+  "gradient_checks_expected": 20,
+  "optimizer_runs": 20,
+  "optimizer_steps_per_run": 15,
+  "all_loss_histories_decreased": false,
+  "device": "PennyLane default.qubit CPU statevector with analytic backpropagation; no GPU or hardware claim",
+  "pennylane_version": "0.45.1",
+  "bootstrap_replicates": 2000,
+  "resource_use": {
+    "available_ram_mib_at_summary_start": 1311.3,
+    "local_ram_floor_mib": 500,
+    "sampled_peak_training_process_rss_mib": null,
+    "checkpoint_count": 20
+  },
+  "ensemble_diagnostics": [
+    {
+      "model": "quantum_equal_probability_mean",
+      "members": [
+        "angle_vqc",
+        "angle_reupload_vqc",
+        "angle_hybrid_readout",
+        "amplitude_vqc"
+      ],
+      "macro_f1": 0.41254341164453523,
+      "accuracy": 0.5659340659340659,
+      "balanced_accuracy": 0.40479166666666666,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          5,
+          27
+        ],
+        [
+          52,
+          98
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.08771929824561403,
+          "recall": 0.15625,
+          "f1": 0.11235955056179775,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.784,
+          "recall": 0.6533333333333333,
+          "f1": 0.7127272727272728,
+          "support": 150
+        }
+      }
+    },
+    {
+      "model": "all_candidates_equal_probability_mean",
+      "members": [
+        "angle_vqc",
+        "angle_reupload_vqc",
+        "angle_hybrid_readout",
+        "amplitude_vqc",
+        "logistic_4d",
+        "random_forest_4d",
+        "extra_trees_4d",
+        "mlp_4d"
+      ],
+      "macro_f1": 0.4755564387917329,
+      "accuracy": 0.6813186813186813,
+      "balanced_accuracy": 0.47479166666666667,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          5,
+          27
+        ],
+        [
+          31,
+          119
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.1388888888888889,
+          "recall": 0.15625,
+          "f1": 0.14705882352941177,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.815068493150685,
+          "recall": 0.7933333333333333,
+          "f1": 0.8040540540540541,
+          "support": 150
+        }
+      }
+    }
+  ],
+  "per_source_oof_performance": [
+    {
+      "model": "amplitude_vqc",
+      "source": "dataset",
+      "records": 182,
+      "origins": 26,
+      "macro_f1": 0.32437490412639974,
+      "accuracy": 0.33516483516483514,
+      "balanced_accuracy": 0.436875,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          19,
+          13
+        ],
+        [
+          108,
+          42
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.14960629921259844,
+          "recall": 0.59375,
+          "f1": 0.2389937106918239,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.7636363636363637,
+          "recall": 0.28,
+          "f1": 0.4097560975609756,
+          "support": 150
+        }
+      }
+    },
+    {
+      "model": "angle_hybrid_readout",
+      "source": "dataset",
+      "records": 182,
+      "origins": 26,
+      "macro_f1": 0.4812291434927697,
+      "accuracy": 0.5494505494505495,
+      "balanced_accuracy": 0.5422916666666666,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          17,
+          15
+        ],
+        [
+          67,
+          83
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.20238095238095238,
+          "recall": 0.53125,
+          "f1": 0.29310344827586204,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8469387755102041,
+          "recall": 0.5533333333333333,
+          "f1": 0.6693548387096774,
+          "support": 150
+        }
+      }
+    },
+    {
+      "model": "angle_reupload_vqc",
+      "source": "dataset",
+      "records": 182,
+      "origins": 26,
+      "macro_f1": 0.387067804220925,
+      "accuracy": 0.5054945054945055,
+      "balanced_accuracy": 0.3804166666666667,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          6,
+          26
+        ],
+        [
+          64,
+          86
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.08571428571428572,
+          "recall": 0.1875,
+          "f1": 0.11764705882352941,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.7678571428571429,
+          "recall": 0.5733333333333334,
+          "f1": 0.6564885496183206,
+          "support": 150
+        }
+      }
+    },
+    {
+      "model": "angle_vqc",
+      "source": "dataset",
+      "records": 182,
+      "origins": 26,
+      "macro_f1": 0.5017259850017854,
+      "accuracy": 0.6208791208791209,
+      "balanced_accuracy": 0.5241666666666667,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          12,
+          20
+        ],
+        [
+          49,
+          101
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.19672131147540983,
+          "recall": 0.375,
+          "f1": 0.25806451612903225,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8347107438016529,
+          "recall": 0.6733333333333333,
+          "f1": 0.7453874538745388,
+          "support": 150
+        }
+      }
+    },
+    {
+      "model": "extra_trees_4d",
+      "source": "dataset",
+      "records": 182,
+      "origins": 26,
+      "macro_f1": 0.5048196517412935,
+      "accuracy": 0.6153846153846154,
+      "balanced_accuracy": 0.5331250000000001,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          13,
+          19
+        ],
+        [
+          51,
+          99
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.203125,
+          "recall": 0.40625,
+          "f1": 0.2708333333333333,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8389830508474576,
+          "recall": 0.66,
+          "f1": 0.7388059701492538,
+          "support": 150
+        }
+      }
+    },
+    {
+      "model": "logistic_4d",
+      "source": "dataset",
+      "records": 182,
+      "origins": 26,
+      "macro_f1": 0.47242404848849906,
+      "accuracy": 0.5769230769230769,
+      "balanced_accuracy": 0.4975,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          12,
+          20
+        ],
+        [
+          57,
+          93
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.17391304347826086,
+          "recall": 0.375,
+          "f1": 0.2376237623762376,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8230088495575221,
+          "recall": 0.62,
+          "f1": 0.7072243346007605,
+          "support": 150
+        }
+      }
+    },
+    {
+      "model": "mlp_4d",
+      "source": "dataset",
+      "records": 182,
+      "origins": 26,
+      "macro_f1": 0.45180722891566266,
+      "accuracy": 0.8241758241758241,
+      "balanced_accuracy": 0.5,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          0,
+          32
+        ],
+        [
+          0,
+          150
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8241758241758241,
+          "recall": 1.0,
+          "f1": 0.9036144578313253,
+          "support": 150
+        }
+      }
+    },
+    {
+      "model": "random_forest_4d",
+      "source": "dataset",
+      "records": 182,
+      "origins": 26,
+      "macro_f1": 0.45739278576810927,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5491666666666667,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          20,
+          12
+        ],
+        [
+          79,
+          71
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.20202020202020202,
+          "recall": 0.625,
+          "f1": 0.3053435114503817,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8554216867469879,
+          "recall": 0.47333333333333333,
+          "f1": 0.6094420600858369,
+          "support": 150
+        }
+      }
+    }
+  ],
+  "training_source_filter": "all pooled sources",
+  "results": [
+    {
+      "macro_f1": 0.5017259850017854,
+      "accuracy": 0.6208791208791209,
+      "balanced_accuracy": 0.5241666666666667,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          12,
+          20
+        ],
+        [
+          49,
+          101
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.19672131147540983,
+          "recall": 0.375,
+          "f1": 0.25806451612903225,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8347107438016529,
+          "recall": 0.6733333333333333,
+          "f1": 0.7453874538745388,
+          "support": 150
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.40390769114934305,
+        0.5973334997747156
+      ],
+      "measured_fit_runtime_seconds_sum": 46.11504789999999,
+      "model": "angle_vqc",
+      "family": "quantum_or_hybrid"
+    },
+    {
+      "macro_f1": 0.387067804220925,
+      "accuracy": 0.5054945054945055,
+      "balanced_accuracy": 0.3804166666666667,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          6,
+          26
+        ],
+        [
+          64,
+          86
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.08571428571428572,
+          "recall": 0.1875,
+          "f1": 0.11764705882352941,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.7678571428571429,
+          "recall": 0.5733333333333334,
+          "f1": 0.6564885496183206,
+          "support": 150
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.31138192719810653,
+        0.45170068027210886
+      ],
+      "measured_fit_runtime_seconds_sum": 48.07921880000001,
+      "model": "angle_reupload_vqc",
+      "family": "quantum_or_hybrid"
+    },
+    {
+      "macro_f1": 0.4812291434927697,
+      "accuracy": 0.5494505494505495,
+      "balanced_accuracy": 0.5422916666666666,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          17,
+          15
+        ],
+        [
+          67,
+          83
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.20238095238095238,
+          "recall": 0.53125,
+          "f1": 0.29310344827586204,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8469387755102041,
+          "recall": 0.5533333333333333,
+          "f1": 0.6693548387096774,
+          "support": 150
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.3680443633404177,
+        0.579677712366763
+      ],
+      "measured_fit_runtime_seconds_sum": 45.913355800000005,
+      "model": "angle_hybrid_readout",
+      "family": "quantum_or_hybrid"
+    },
+    {
+      "macro_f1": 0.32437490412639974,
+      "accuracy": 0.33516483516483514,
+      "balanced_accuracy": 0.436875,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          19,
+          13
+        ],
+        [
+          108,
+          42
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.14960629921259844,
+          "recall": 0.59375,
+          "f1": 0.2389937106918239,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.7636363636363637,
+          "recall": 0.28,
+          "f1": 0.4097560975609756,
+          "support": 150
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.21937483157469356,
+        0.4175905678026089
+      ],
+      "measured_fit_runtime_seconds_sum": 25.419434000000003,
+      "model": "amplitude_vqc",
+      "family": "quantum_or_hybrid"
+    },
+    {
+      "macro_f1": 0.47242404848849906,
+      "accuracy": 0.5769230769230769,
+      "balanced_accuracy": 0.4975,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          12,
+          20
+        ],
+        [
+          57,
+          93
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.17391304347826086,
+          "recall": 0.375,
+          "f1": 0.2376237623762376,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8230088495575221,
+          "recall": 0.62,
+          "f1": 0.7072243346007605,
+          "support": 150
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.36528791565287916,
+        0.5803870736977961
+      ],
+      "measured_fit_runtime_seconds_sum": 0.0487162,
+      "model": "logistic_4d",
+      "family": "classical"
+    },
+    {
+      "macro_f1": 0.45739278576810927,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5491666666666667,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          20,
+          12
+        ],
+        [
+          79,
+          71
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.20202020202020202,
+          "recall": 0.625,
+          "f1": 0.3053435114503817,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8554216867469879,
+          "recall": 0.47333333333333333,
+          "f1": 0.6094420600858369,
+          "support": 150
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.35363339518050213,
+        0.5561733274802942
+      ],
+      "measured_fit_runtime_seconds_sum": 0.980735,
+      "model": "random_forest_4d",
+      "family": "classical"
+    },
+    {
+      "macro_f1": 0.5048196517412935,
+      "accuracy": 0.6153846153846154,
+      "balanced_accuracy": 0.5331250000000001,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          13,
+          19
+        ],
+        [
+          51,
+          99
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.203125,
+          "recall": 0.40625,
+          "f1": 0.2708333333333333,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8389830508474576,
+          "recall": 0.66,
+          "f1": 0.7388059701492538,
+          "support": 150
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.4206907242063492,
+        0.5928411633109619
+      ],
+      "measured_fit_runtime_seconds_sum": 0.7722365,
+      "model": "extra_trees_4d",
+      "family": "classical"
+    },
+    {
+      "macro_f1": 0.45180722891566266,
+      "accuracy": 0.8241758241758241,
+      "balanced_accuracy": 0.5,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          0,
+          32
+        ],
+        [
+          0,
+          150
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8241758241758241,
+          "recall": 1.0,
+          "f1": 0.9036144578313253,
+          "support": 150
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.42946708463949845,
+        0.46938775510204084
+      ],
+      "measured_fit_runtime_seconds_sum": 0.5987864999999999,
+      "model": "mlp_4d",
+      "family": "classical"
+    }
+  ],
+  "finalization_note": "Training and OOF export completed. The original pandas bootstrap pass was interrupted when available RAM fell under the 500 MiB floor; this summary uses vectorized NumPy issue-group resampling.",
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}

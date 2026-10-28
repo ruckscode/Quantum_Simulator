@@ -1,0 +1,552 @@
+{
+  "status": "completed_resource_light_grouped_qnn",
+  "task": "qsimbench_backend_fingerprint",
+  "records": 300,
+  "groups": 150,
+  "folds": 5,
+  "features": "8-bin BLAKE2b hashed token counts, train-fold min-max scaling",
+  "split": "five deterministic group-disjoint folds; all paired/source variants held by bug_id",
+  "results": {
+    "amplitude_hybrid_3q_depth2": {
+      "accuracy": 0.61,
+      "balanced_accuracy": 0.61,
+      "macro_f1": 0.6097875509999888,
+      "per_class": {
+        "0": {
+          "precision": 0.6153846153846154,
+          "recall": 0.5866666666666667,
+          "f1": 0.6006825938566553,
+          "support": 150
+        },
+        "1": {
+          "precision": 0.6050955414012739,
+          "recall": 0.6333333333333333,
+          "f1": 0.6188925081433224,
+          "support": 150
+        }
+      },
+      "confusion_matrix": [
+        [
+          88,
+          62
+        ],
+        [
+          55,
+          95
+        ]
+      ],
+      "folds": 5,
+      "records": 300,
+      "training_seconds": 1.8386824000190245,
+      "architecture": {
+        "name": "amplitude_hybrid_3q_depth2",
+        "qubits": 3,
+        "features": 8,
+        "encoding": "amplitude",
+        "depth": 2,
+        "reupload": false,
+        "learning_rate": 0.04
+      },
+      "checkpoint_paths": [
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\resource_light_qnn\\amplitude_hybrid_3q_depth2\\fold_1\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\resource_light_qnn\\amplitude_hybrid_3q_depth2\\fold_2\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\resource_light_qnn\\amplitude_hybrid_3q_depth2\\fold_3\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\resource_light_qnn\\amplitude_hybrid_3q_depth2\\fold_4\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\resource_light_qnn\\amplitude_hybrid_3q_depth2\\fold_5\\checkpoint.npz"
+      ]
+    },
+    "angle_reupload_hybrid_4q_depth2": {
+      "accuracy": 0.66,
+      "balanced_accuracy": 0.6599999999999999,
+      "macro_f1": 0.6599848882172541,
+      "per_class": {
+        "0": {
+          "precision": 0.6621621621621622,
+          "recall": 0.6533333333333333,
+          "f1": 0.6577181208053691,
+          "support": 150
+        },
+        "1": {
+          "precision": 0.6578947368421053,
+          "recall": 0.6666666666666666,
+          "f1": 0.6622516556291391,
+          "support": 150
+        }
+      },
+      "confusion_matrix": [
+        [
+          98,
+          52
+        ],
+        [
+          50,
+          100
+        ]
+      ],
+      "folds": 5,
+      "records": 300,
+      "training_seconds": 10.838154900004156,
+      "architecture": {
+        "name": "angle_reupload_hybrid_4q_depth2",
+        "qubits": 4,
+        "features": 4,
+        "encoding": "angle",
+        "depth": 2,
+        "reupload": true,
+        "learning_rate": 0.035
+      },
+      "checkpoint_paths": [
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\resource_light_qnn\\angle_reupload_hybrid_4q_depth2\\fold_1\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\resource_light_qnn\\angle_reupload_hybrid_4q_depth2\\fold_2\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\resource_light_qnn\\angle_reupload_hybrid_4q_depth2\\fold_3\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\resource_light_qnn\\angle_reupload_hybrid_4q_depth2\\fold_4\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\resource_light_qnn\\angle_reupload_hybrid_4q_depth2\\fold_5\\checkpoint.npz"
+      ]
+    }
+  },
+  "fold_results": [
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "amplitude_hybrid_3q_depth2",
+      "fold": 1,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 0.3682336000056239,
+      "gradient_check": {
+        "parameter_shift": -0.0010594112459433765,
+        "finite_difference": -0.0010594112587192228,
+        "absolute_error": 1.2775846353063613e-11,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.6666666666666666,
+        "balanced_accuracy": 0.6666666666666667,
+        "macro_f1": 0.6606334841628959,
+        "per_class": {
+          "0": {
+            "precision": 0.631578947368421,
+            "recall": 0.8,
+            "f1": 0.7058823529411765,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.7272727272727273,
+            "recall": 0.5333333333333333,
+            "f1": 0.6153846153846153,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            24,
+            6
+          ],
+          [
+            14,
+            16
+          ]
+        ]
+      },
+      "available_ram_mib": 1077.3359375
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "angle_reupload_hybrid_4q_depth2",
+      "fold": 1,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 2.111665800002811,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.6166666666666667,
+        "balanced_accuracy": 0.6166666666666667,
+        "macro_f1": 0.6033342914630642,
+        "per_class": {
+          "0": {
+            "precision": 0.5853658536585366,
+            "recall": 0.8,
+            "f1": 0.676056338028169,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.6842105263157895,
+            "recall": 0.43333333333333335,
+            "f1": 0.5306122448979592,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            24,
+            6
+          ],
+          [
+            17,
+            13
+          ]
+        ]
+      },
+      "available_ram_mib": 1067.73046875
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "amplitude_hybrid_3q_depth2",
+      "fold": 2,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 0.3671775000038906,
+      "gradient_check": {
+        "parameter_shift": -0.0010594112459433765,
+        "finite_difference": -0.0010594112587192228,
+        "absolute_error": 1.2775846353063613e-11,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7166666666666667,
+        "balanced_accuracy": 0.7166666666666667,
+        "macro_f1": 0.7146853146853147,
+        "per_class": {
+          "0": {
+            "precision": 0.76,
+            "recall": 0.6333333333333333,
+            "f1": 0.6909090909090909,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.6857142857142857,
+            "recall": 0.8,
+            "f1": 0.7384615384615385,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            19,
+            11
+          ],
+          [
+            6,
+            24
+          ]
+        ]
+      },
+      "available_ram_mib": 1071.7109375
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "angle_reupload_hybrid_4q_depth2",
+      "fold": 2,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 2.134933799999999,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7333333333333333,
+        "balanced_accuracy": 0.7333333333333334,
+        "macro_f1": 0.7321428571428572,
+        "per_class": {
+          "0": {
+            "precision": 0.7692307692307693,
+            "recall": 0.6666666666666666,
+            "f1": 0.7142857142857142,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.7058823529411765,
+            "recall": 0.8,
+            "f1": 0.7500000000000001,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            20,
+            10
+          ],
+          [
+            6,
+            24
+          ]
+        ]
+      },
+      "available_ram_mib": 1046.28125
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "amplitude_hybrid_3q_depth2",
+      "fold": 3,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 0.37093470000399975,
+      "gradient_check": {
+        "parameter_shift": -0.0010594112459433765,
+        "finite_difference": -0.0010594112587192228,
+        "absolute_error": 1.2775846353063613e-11,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.5833333333333334,
+        "balanced_accuracy": 0.5833333333333333,
+        "macro_f1": 0.5832175604334537,
+        "per_class": {
+          "0": {
+            "precision": 0.5806451612903226,
+            "recall": 0.6,
+            "f1": 0.5901639344262295,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.5862068965517241,
+            "recall": 0.5666666666666667,
+            "f1": 0.576271186440678,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            18,
+            12
+          ],
+          [
+            13,
+            17
+          ]
+        ]
+      },
+      "available_ram_mib": 1047.58984375
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "angle_reupload_hybrid_4q_depth2",
+      "fold": 3,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 2.1710329999987152,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.65,
+        "balanced_accuracy": 0.6499999999999999,
+        "macro_f1": 0.6499027507641011,
+        "per_class": {
+          "0": {
+            "precision": 0.6451612903225806,
+            "recall": 0.6666666666666666,
+            "f1": 0.6557377049180327,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.6551724137931034,
+            "recall": 0.6333333333333333,
+            "f1": 0.6440677966101694,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            20,
+            10
+          ],
+          [
+            11,
+            19
+          ]
+        ]
+      },
+      "available_ram_mib": 1056.40625
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "amplitude_hybrid_3q_depth2",
+      "fold": 4,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 0.38116399999853456,
+      "gradient_check": {
+        "parameter_shift": -0.0010594112459433765,
+        "finite_difference": -0.0010594112587192228,
+        "absolute_error": 1.2775846353063613e-11,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.5333333333333333,
+        "balanced_accuracy": 0.5333333333333333,
+        "macro_f1": 0.5248868778280543,
+        "per_class": {
+          "0": {
+            "precision": 0.5454545454545454,
+            "recall": 0.4,
+            "f1": 0.4615384615384615,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.5263157894736842,
+            "recall": 0.6666666666666666,
+            "f1": 0.5882352941176471,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            12,
+            18
+          ],
+          [
+            10,
+            20
+          ]
+        ]
+      },
+      "available_ram_mib": 1062.11328125
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "angle_reupload_hybrid_4q_depth2",
+      "fold": 4,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 2.214049000001978,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.6333333333333333,
+        "balanced_accuracy": 0.6333333333333333,
+        "macro_f1": 0.6228571428571429,
+        "per_class": {
+          "0": {
+            "precision": 0.7,
+            "recall": 0.4666666666666667,
+            "f1": 0.56,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.6,
+            "recall": 0.8,
+            "f1": 0.6857142857142857,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            14,
+            16
+          ],
+          [
+            6,
+            24
+          ]
+        ]
+      },
+      "available_ram_mib": 1057.86328125
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "amplitude_hybrid_3q_depth2",
+      "fold": 5,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 0.3511726000069757,
+      "gradient_check": {
+        "parameter_shift": -0.0010594112459433765,
+        "finite_difference": -0.0010594112587192228,
+        "absolute_error": 1.2775846353063613e-11,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.55,
+        "balanced_accuracy": 0.55,
+        "macro_f1": 0.5488721804511277,
+        "per_class": {
+          "0": {
+            "precision": 0.5555555555555556,
+            "recall": 0.5,
+            "f1": 0.5263157894736842,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.5454545454545454,
+            "recall": 0.6,
+            "f1": 0.5714285714285713,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            15,
+            15
+          ],
+          [
+            12,
+            18
+          ]
+        ]
+      },
+      "available_ram_mib": 1050.02734375
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "angle_reupload_hybrid_4q_depth2",
+      "fold": 5,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 2.2064733000006527,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.6666666666666666,
+        "balanced_accuracy": 0.6666666666666666,
+        "macro_f1": 0.6666666666666666,
+        "per_class": {
+          "0": {
+            "precision": 0.6666666666666666,
+            "recall": 0.6666666666666666,
+            "f1": 0.6666666666666666,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.6666666666666666,
+            "recall": 0.6666666666666666,
+            "f1": 0.6666666666666666,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            20,
+            10
+          ],
+          [
+            10,
+            20
+          ]
+        ]
+      },
+      "available_ram_mib": 1044.58984375
+    }
+  ],
+  "runtime_seconds": 12.796987499998068,
+  "minimum_ram_floor_mib": 500,
+  "frozen_test_accessed": false
+}

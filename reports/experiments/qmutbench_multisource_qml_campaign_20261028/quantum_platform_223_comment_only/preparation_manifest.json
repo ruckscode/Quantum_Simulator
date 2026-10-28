@@ -1,0 +1,16 @@
+{
+  "dataset": "Quantum Computing Platforms bug annotations (Paltenghi & Pradel)",
+  "task": "classify manually annotated real bug versus false positive from nonempty commit/annotator comments, with explicit bug/fix terms masked",
+  "label_map": {
+    "fp": 0,
+    "bug": 1
+  },
+  "rows": 319,
+  "real_bug_rows": 223,
+  "false_positive_rows": 96,
+  "commit_groups": 314,
+  "group_split": "grouped by fix commit hash",
+  "feature_policy": "Only nonempty comment text is used; explicit bug, defect, fix, or false-positive terms are replaced with a neutral token. Repository and commit fields identify groups but are excluded from model text.",
+  "limitations": "This predicts curator real/false-positive labels from comment text; it is not source-code classification. Rows without comments are excluded. Remaining semantic clues may still be present in the prose.",
+  "source_csv": "data\\external_quantum_datasets\\quantum_platform_bugs_223\\extracted\\artifacts\\annotation_bugs.csv"
+}

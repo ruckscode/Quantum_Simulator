@@ -1,0 +1,44 @@
+{
+  "task": "bugs4q_robust_execution",
+  "model": "amplitude_hybrid_3q_depth1_lr004",
+  "fold": 1,
+  "records": 420,
+  "groups": 7,
+  "training_seconds": 1.4533357999971486,
+  "gradient_check": {
+    "parameter_shift": -0.00013573009090970503,
+    "finite_difference": -0.00013573008827982846,
+    "absolute_error": 2.6298765682525316e-12,
+    "passed": true
+  },
+  "metrics": {
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.43333333333333335,
+    "macro_f1": 0.4269005847953216,
+    "per_class": {
+      "0": {
+        "precision": 0.6,
+        "recall": 0.6666666666666666,
+        "f1": 0.631578947368421,
+        "support": 270
+      },
+      "1": {
+        "precision": 0.25,
+        "recall": 0.2,
+        "f1": 0.22222222222222224,
+        "support": 150
+      }
+    },
+    "confusion_matrix": [
+      [
+        180,
+        90
+      ],
+      [
+        120,
+        30
+      ]
+    ]
+  },
+  "available_ram_mib": 705.29296875
+}

@@ -1,0 +1,222 @@
+{
+  "status": "prepared_grouped_buggy_fixed_source_task",
+  "dataset": "Bugs4Q-NA",
+  "source_readme": "data\\external_quantum_datasets\\bugs4q_na\\README.md",
+  "label_map": {
+    "fixed": 0,
+    "buggy": 1
+  },
+  "group_key": "source issue URL hash",
+  "core_overlap_issue_urls_excluded": 33,
+  "rows": 62,
+  "paired_issue_groups": 31,
+  "class_counts": {
+    "0": 31,
+    "1": 31
+  },
+  "syntax_valid": 60,
+  "exact_duplicate_or_invalid_groups_removed": [],
+  "skipped": [
+    {
+      "line": 30,
+      "issue_url": "https://github.com/qiskit/qiskit-terra/issues/5098",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 34,
+      "issue_url": "https://github.com/qiskit/qiskit-terra/issues/1446",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 36,
+      "issue_url": "https://github.com/qiskit/qiskit-terra/issues/3799",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 37,
+      "issue_url": "https://github.com/qiskit/qiskit-terra/issues/5580",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 38,
+      "issue_url": "https://github.com/qiskit/qiskit-terra/issues/5249",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 39,
+      "issue_url": "https://github.com/qiskit/qiskit-terra/issues/4144",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 40,
+      "issue_url": "https://github.com/qiskit/qiskit-terra/issues/6892",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 41,
+      "issue_url": "https://github.com/qiskit/qiskit-terra/issues/6571",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 42,
+      "issue_url": "https://github.com/qiskit/qiskit-terra/issues/6540",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 43,
+      "issue_url": "https://github.com/qiskit/qiskit-terra/issues/6255",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 44,
+      "issue_url": "https://github.com/qiskit/qiskit-terra/issues/7032",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 45,
+      "issue_url": "https://github.com/qiskit/qiskit-aer/issues/135",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 46,
+      "issue_url": "https://github.com/qiskit/qiskit-aer/issues/664",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 62,
+      "issue_url": "https://github.com/qiskit/qiskit/issues/11950",
+      "reason": "missing or non-Python source pair"
+    },
+    {
+      "line": 63,
+      "issue_url": "https://github.com/qiskit/qiskit/issues/12801",
+      "reason": "missing or non-Python source pair"
+    },
+    {
+      "line": 64,
+      "issue_url": "https://github.com/qiskit/qiskit/issues/14407",
+      "reason": "missing or non-Python source pair"
+    },
+    {
+      "line": 65,
+      "issue_url": "https://github.com/qiskit/qiskit/issues/14635",
+      "reason": "missing or non-Python source pair"
+    },
+    {
+      "line": 66,
+      "issue_url": "https://github.com/qiskit/qiskit/issues/14645",
+      "reason": "missing or non-Python source pair"
+    },
+    {
+      "line": 74,
+      "issue_url": "https://stackoverflow.com/questions/60918011/implement-quantum-teleportation-in-qiskit",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 75,
+      "issue_url": "https://stackoverflow.com/questions/69598995/qiskits-draw-only-shows-the-circuits-name-and-not-the-architecture",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 76,
+      "issue_url": "https://stackoverflow.com/questions/69245836/getting-figure-x-when-drawing-quantum-circuit-with-qiskit-mpl-output-mo",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 77,
+      "issue_url": "https://stackoverflow.com/questions/64707625/visualizing-circuits-in-qiskit-with-matplotlib",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 78,
+      "issue_url": "https://stackoverflow.com/questions/63283443/my-qiskit-codes-output-differ-from-the-lecturer-ryan-o-donnell",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 79,
+      "issue_url": "https://stackoverflow.com/questions/62661255/2-entangle-qubit-gives-all-states-with-25",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 80,
+      "issue_url": "https://stackoverflow.com/questions/63342432/python-quantum-fourier-transform",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 86,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/9246/quantum-phase-estimation-implementation",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 89,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/12076/real-device-error-mitigation-with-qiskit",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 90,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/4260/how-to-create-a-condition-on-only-one-classical-bit-when-we-have-a-total-of-2-cl",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 91,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/5557/wait-gate-throws-an-error-notimplementederror-no-decomposition-rules-defin",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 92,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/5959/grovers-algorithm-returns-skewed-probability-distribution",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 94,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/6697/creating-and-running-parallel-circuits-in-qiskit",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 96,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/8893/why-is-the-order-reversed-on-measurement",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 97,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/9209/how-to-use-parallel-executions-of-circuits",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 98,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/20894/saving-statevector-on-more-than-one-location-in-a-quantum-circuit-in-qiskit",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 99,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/18448/how-to-perform-a-plot-histogram-for-a-circuit",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 100,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/17651/setting-initial-state-in-qiskit-unitary-simulator",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 101,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/15966/was-the-quantum-circuit-attribute-iden-renamed",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 102,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/15925/q-sphere-representation-of-bell-states",
+      "reason": "overlaps official 31-issue core subset"
+    },
+    {
+      "line": 108,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/4142/how-does-one-obtain-amplitude-information-in-q",
+      "reason": "missing or non-Python source pair"
+    },
+    {
+      "line": 109,
+      "issue_url": "https://quantumcomputing.stackexchange.com/questions/12770/microsoft-q-namespace-declarations-can-only-occur-at-a-global-scope-error",
+      "reason": "missing or non-Python source pair"
+    }
+  ],
+  "limitations": "Only README-linked Python pairs are used; Q#, Cirq files in other languages, notebook ambiguity, and undocumented files are excluded. Exact duplicate source states are removed. Pair labels are repository-documented, not independently revalidated."
+}

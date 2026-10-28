@@ -1,0 +1,16 @@
+{
+  "dataset": "Quantum Computing Platforms bug annotations (Paltenghi & Pradel)",
+  "task": "classify manually annotated real bug versus false positive from annotation metadata text",
+  "label_map": {
+    "fp": 0,
+    "bug": 1
+  },
+  "rows": 358,
+  "real_bug_rows": 223,
+  "false_positive_rows": 135,
+  "commit_groups": 353,
+  "group_split": "grouped by fix commit hash",
+  "feature_policy": "Only component, symptom, bug pattern, and annotator comment are used; repository and commit fields identify groups but are excluded from text features.",
+  "limitations": "This task predicts the annotation-bugs.csv real/false-positive distinction from metadata; it is not source-code classification. The repository also includes 223 curated bug cases, while the annotation table contains additional false positives.",
+  "source_csv": "data\\external_quantum_datasets\\quantum_platform_bugs_223\\extracted\\artifacts\\annotation_bugs.csv"
+}

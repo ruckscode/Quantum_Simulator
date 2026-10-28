@@ -1,0 +1,23 @@
+{
+  "status": "task_manifest_prepared",
+  "task": "distinguish ideal Aer simulator output from fake_kyiv backend output after execution",
+  "target": {
+    "aer_simulator": 0,
+    "fake_kyiv": 1
+  },
+  "records": 300,
+  "circuit_groups": 150,
+  "algorithm_size_groups": 150,
+  "class_counts": {
+    "0": 150,
+    "1": 150
+  },
+  "group_split_unit": "algorithm-size circuit setting; both backend variants remain in the same fold",
+  "feature_policy": "quantized descriptors of history_circuit measurement counts only; backend metadata, file paths, timestamps, stats traces, mirror-circuit traces, and circuit identity excluded",
+  "trace_records_aggregated": 120000,
+  "limitations": [
+    "Backend identity is predicted from post-execution measurement output; this is backend fingerprinting, not bug prediction.",
+    "Only the predeclared pair aer_simulator and fake_kyiv is used.",
+    "All 150 algorithm-size settings are grouped to measure generalization to held-out settings."
+  ]
+}

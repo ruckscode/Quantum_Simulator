@@ -1,0 +1,266 @@
+[
+  {
+    "model": "amplitude_vqc",
+    "source": "dataset",
+    "records": 182,
+    "origins": 26,
+    "macro_f1": 0.32437490412639974,
+    "accuracy": 0.33516483516483514,
+    "balanced_accuracy": 0.436875,
+    "confusion_matrix_labels_class0_class1": [
+      [
+        19,
+        13
+      ],
+      [
+        108,
+        42
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.14960629921259844,
+        "recall": 0.59375,
+        "f1": 0.2389937106918239,
+        "support": 32
+      },
+      "1": {
+        "precision": 0.7636363636363637,
+        "recall": 0.28,
+        "f1": 0.4097560975609756,
+        "support": 150
+      }
+    }
+  },
+  {
+    "model": "angle_hybrid_readout",
+    "source": "dataset",
+    "records": 182,
+    "origins": 26,
+    "macro_f1": 0.4812291434927697,
+    "accuracy": 0.5494505494505495,
+    "balanced_accuracy": 0.5422916666666666,
+    "confusion_matrix_labels_class0_class1": [
+      [
+        17,
+        15
+      ],
+      [
+        67,
+        83
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.20238095238095238,
+        "recall": 0.53125,
+        "f1": 0.29310344827586204,
+        "support": 32
+      },
+      "1": {
+        "precision": 0.8469387755102041,
+        "recall": 0.5533333333333333,
+        "f1": 0.6693548387096774,
+        "support": 150
+      }
+    }
+  },
+  {
+    "model": "angle_reupload_vqc",
+    "source": "dataset",
+    "records": 182,
+    "origins": 26,
+    "macro_f1": 0.387067804220925,
+    "accuracy": 0.5054945054945055,
+    "balanced_accuracy": 0.3804166666666667,
+    "confusion_matrix_labels_class0_class1": [
+      [
+        6,
+        26
+      ],
+      [
+        64,
+        86
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.08571428571428572,
+        "recall": 0.1875,
+        "f1": 0.11764705882352941,
+        "support": 32
+      },
+      "1": {
+        "precision": 0.7678571428571429,
+        "recall": 0.5733333333333334,
+        "f1": 0.6564885496183206,
+        "support": 150
+      }
+    }
+  },
+  {
+    "model": "angle_vqc",
+    "source": "dataset",
+    "records": 182,
+    "origins": 26,
+    "macro_f1": 0.5017259850017854,
+    "accuracy": 0.6208791208791209,
+    "balanced_accuracy": 0.5241666666666667,
+    "confusion_matrix_labels_class0_class1": [
+      [
+        12,
+        20
+      ],
+      [
+        49,
+        101
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.19672131147540983,
+        "recall": 0.375,
+        "f1": 0.25806451612903225,
+        "support": 32
+      },
+      "1": {
+        "precision": 0.8347107438016529,
+        "recall": 0.6733333333333333,
+        "f1": 0.7453874538745388,
+        "support": 150
+      }
+    }
+  },
+  {
+    "model": "extra_trees_4d",
+    "source": "dataset",
+    "records": 182,
+    "origins": 26,
+    "macro_f1": 0.5048196517412935,
+    "accuracy": 0.6153846153846154,
+    "balanced_accuracy": 0.5331250000000001,
+    "confusion_matrix_labels_class0_class1": [
+      [
+        13,
+        19
+      ],
+      [
+        51,
+        99
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.203125,
+        "recall": 0.40625,
+        "f1": 0.2708333333333333,
+        "support": 32
+      },
+      "1": {
+        "precision": 0.8389830508474576,
+        "recall": 0.66,
+        "f1": 0.7388059701492538,
+        "support": 150
+      }
+    }
+  },
+  {
+    "model": "logistic_4d",
+    "source": "dataset",
+    "records": 182,
+    "origins": 26,
+    "macro_f1": 0.47242404848849906,
+    "accuracy": 0.5769230769230769,
+    "balanced_accuracy": 0.4975,
+    "confusion_matrix_labels_class0_class1": [
+      [
+        12,
+        20
+      ],
+      [
+        57,
+        93
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.17391304347826086,
+        "recall": 0.375,
+        "f1": 0.2376237623762376,
+        "support": 32
+      },
+      "1": {
+        "precision": 0.8230088495575221,
+        "recall": 0.62,
+        "f1": 0.7072243346007605,
+        "support": 150
+      }
+    }
+  },
+  {
+    "model": "mlp_4d",
+    "source": "dataset",
+    "records": 182,
+    "origins": 26,
+    "macro_f1": 0.45180722891566266,
+    "accuracy": 0.8241758241758241,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_class0_class1": [
+      [
+        0,
+        32
+      ],
+      [
+        0,
+        150
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 32
+      },
+      "1": {
+        "precision": 0.8241758241758241,
+        "recall": 1.0,
+        "f1": 0.9036144578313253,
+        "support": 150
+      }
+    }
+  },
+  {
+    "model": "random_forest_4d",
+    "source": "dataset",
+    "records": 182,
+    "origins": 26,
+    "macro_f1": 0.45739278576810927,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5491666666666667,
+    "confusion_matrix_labels_class0_class1": [
+      [
+        20,
+        12
+      ],
+      [
+        79,
+        71
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.20202020202020202,
+        "recall": 0.625,
+        "f1": 0.3053435114503817,
+        "support": 32
+      },
+      "1": {
+        "precision": 0.8554216867469879,
+        "recall": 0.47333333333333333,
+        "f1": 0.6094420600858369,
+        "support": 150
+      }
+    }
+  }
+]

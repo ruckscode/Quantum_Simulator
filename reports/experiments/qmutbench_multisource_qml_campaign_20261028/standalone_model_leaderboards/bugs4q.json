@@ -1,0 +1,16 @@
+{
+  "task": "Bugs4Q buggy source state=1 vs fixed source state=0",
+  "protocol": "62 source snapshots / 31 issue groups / 5-fold GroupKFold",
+  "best_classical": {
+    "model": "Random Forest 4D projection",
+    "macro_f1": 0.5311603651,
+    "accuracy": 0.5322580645,
+    "balanced_accuracy": 0.5322580645
+  },
+  "group_bootstrap_95ci_macro_f1": [
+    0.4637109283,
+    0.5941345902
+  ],
+  "best_qml": "not run; 684 MiB available below the 700 MiB preflight gate",
+  "checkpoint": "bugs4q_standalone/best_classical_checkpoint.joblib; random_forest_4d with fold-independent preprocessing stored"
+}

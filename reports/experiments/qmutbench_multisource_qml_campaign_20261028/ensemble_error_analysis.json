@@ -1,0 +1,23 @@
+{
+  "qmutbench_three_class": {
+    "source_campaign": "reports/experiments/qmutbench_multisource_ensemble_20261028",
+    "records": 205,
+    "origins": 12,
+    "pairwise_errors": "../qmutbench_multisource_ensemble_20261028/pairwise_error_complementarity.csv",
+    "per_origin_metrics": "../qmutbench_multisource_ensemble_20261028/per_origin_metrics.json",
+    "class_metrics": "../qmutbench_multisource_ensemble_20261028/candidate_metrics.json",
+    "equal_six_blend_macro_f1": 0.4918898285,
+    "best_single_macro_f1": 0.4668874808,
+    "stacker_macro_f1": 0.4212158461,
+    "uncertainty": "../qmutbench_multisource_ensemble_20261028/origin_bootstrap_intervals.json",
+    "decision": "exploratory only; same 12 origins influenced candidate inspection"
+  },
+  "bugs4q": {
+    "oof_predictions": "bugs4q_standalone/oof_predictions.csv",
+    "per_bug_metrics": "bugs4q_standalone/per_bug_metrics.json",
+    "group": "bug_id; buggy/fixed variants kept together",
+    "best_model": "random_forest_4d",
+    "unique_bug_groups": 31,
+    "best_macro_f1": 0.5311603651
+  }
+}

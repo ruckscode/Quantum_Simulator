@@ -1,0 +1,30 @@
+{
+  "status": "task_manifest_prepared",
+  "task": "predict whether the published Bugs4Q-Robust test passes or fails on a program snapshot",
+  "label_map": {
+    "Pass": 0,
+    "Fail": 1
+  },
+  "source_artifact": "data/Bugs4Q_Robust_replication/bugs4q-robust_snapshot/bugs4q-robust/<issue>/{buggy,fixed,test}.py",
+  "execution_records": 1110,
+  "paired_execution_records": 1110,
+  "observations": 2220,
+  "issues": 37,
+  "class_counts": {
+    "0": 1110,
+    "1": 1110
+  },
+  "group_split_unit": "issue id; all buggy/fixed snapshots and repeated runs for an issue remain together",
+  "feature_policy": "test harness source plus the tested program snapshot; comments/docstrings stripped; issue id, run index, and outcome log excluded",
+  "outcome_pair_counts_by_label": {
+    "buggy_fail_fixed_pass": 870,
+    "buggy_pass_fixed_fail": 0,
+    "both_fail": 120,
+    "both_pass": 120
+  },
+  "limitations": [
+    "Task predicts the harness execution result, not a universal bug label.",
+    "Repeated runs for a given issue are dependent and therefore grouped together in all folds.",
+    "Only the 37 issues with execution rows in this artifact are included."
+  ]
+}

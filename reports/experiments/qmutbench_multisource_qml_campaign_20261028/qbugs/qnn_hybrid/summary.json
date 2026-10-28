@@ -1,0 +1,251 @@
+{
+  "status": "completed_grouped_supervised_qnn_benchmark",
+  "task": "QBugs benchmark circuit pairs distributed with HornBro: correct=0 versus buggy=1, grouped by scenario and pair index",
+  "data": "31 issue groups / 62 paired snapshots; comments and docstrings stripped; executable strings retained",
+  "group_split": "5-fold GroupKFold by bug_id; buggy/fixed pair stays within the same fold",
+  "qnn_candidates": [
+    "angle_hybrid_readout"
+  ],
+  "matched_classical_controls": [
+    "logistic_4d",
+    "random_forest_4d",
+    "extra_trees_4d"
+  ],
+  "folds": 5,
+  "records": 1500,
+  "origins": 750,
+  "gradient_checks_passed": 5,
+  "gradient_checks_expected": 5,
+  "optimizer_runs": 5,
+  "optimizer_steps_per_run": 15,
+  "all_loss_histories_decreased": true,
+  "device": "PennyLane default.qubit CPU statevector with analytic backpropagation; no GPU or hardware claim",
+  "pennylane_version": "0.45.1",
+  "bootstrap_replicates": 2000,
+  "resource_use": {
+    "available_ram_mib_at_summary_start": 516.3,
+    "local_ram_floor_mib": 500,
+    "sampled_peak_training_process_rss_mib": null,
+    "checkpoint_count": 5
+  },
+  "ensemble_diagnostics": [
+    {
+      "model": "quantum_equal_probability_mean",
+      "members": [
+        "angle_hybrid_readout"
+      ],
+      "macro_f1": 0.77408672218103,
+      "accuracy": 0.7746666666666666,
+      "balanced_accuracy": 0.7746666666666666,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          543,
+          207
+        ],
+        [
+          131,
+          619
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.8056379821958457,
+          "recall": 0.724,
+          "f1": 0.7626404494382022,
+          "support": 750
+        },
+        "1": {
+          "precision": 0.7493946731234867,
+          "recall": 0.8253333333333334,
+          "f1": 0.7855329949238579,
+          "support": 750
+        }
+      }
+    },
+    {
+      "model": "all_candidates_equal_probability_mean",
+      "members": [
+        "angle_hybrid_readout",
+        "logistic_4d",
+        "random_forest_4d",
+        "extra_trees_4d"
+      ],
+      "macro_f1": 0.8359813383211601,
+      "accuracy": 0.836,
+      "balanced_accuracy": 0.8360000000000001,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          635,
+          115
+        ],
+        [
+          131,
+          619
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.8289817232375979,
+          "recall": 0.8466666666666667,
+          "f1": 0.837730870712401,
+          "support": 750
+        },
+        "1": {
+          "precision": 0.8433242506811989,
+          "recall": 0.8253333333333334,
+          "f1": 0.8342318059299192,
+          "support": 750
+        }
+      }
+    }
+  ],
+  "results": [
+    {
+      "macro_f1": 0.77408672218103,
+      "accuracy": 0.7746666666666666,
+      "balanced_accuracy": 0.7746666666666666,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          543,
+          207
+        ],
+        [
+          131,
+          619
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.8056379821958457,
+          "recall": 0.724,
+          "f1": 0.7626404494382022,
+          "support": 750
+        },
+        "1": {
+          "precision": 0.7493946731234867,
+          "recall": 0.8253333333333334,
+          "f1": 0.7855329949238579,
+          "support": 750
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.7562074261309045,
+        0.792303445057727
+      ],
+      "measured_fit_runtime_seconds_sum": 240.76087180000002,
+      "model": "angle_hybrid_readout",
+      "family": "quantum_or_hybrid"
+    },
+    {
+      "macro_f1": 0.8099931597537511,
+      "accuracy": 0.81,
+      "balanced_accuracy": 0.81,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          603,
+          147
+        ],
+        [
+          138,
+          612
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.8137651821862348,
+          "recall": 0.804,
+          "f1": 0.8088531187122736,
+          "support": 750
+        },
+        "1": {
+          "precision": 0.8063241106719368,
+          "recall": 0.816,
+          "f1": 0.8111332007952287,
+          "support": 750
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.791999602487985,
+        0.826635992790169
+      ],
+      "measured_fit_runtime_seconds_sum": 0.11755279999999999,
+      "model": "logistic_4d",
+      "family": "classical"
+    },
+    {
+      "macro_f1": 0.8432379523363327,
+      "accuracy": 0.8433333333333334,
+      "balanced_accuracy": 0.8433333333333333,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          651,
+          99
+        ],
+        [
+          136,
+          614
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.8271918678526048,
+          "recall": 0.868,
+          "f1": 0.8471047495120364,
+          "support": 750
+        },
+        "1": {
+          "precision": 0.8611500701262272,
+          "recall": 0.8186666666666667,
+          "f1": 0.8393711551606289,
+          "support": 750
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.8257824991289124,
+        0.8599704754532691
+      ],
+      "measured_fit_runtime_seconds_sum": 1.2505302,
+      "model": "random_forest_4d",
+      "family": "classical"
+    },
+    {
+      "macro_f1": 0.8359857125331807,
+      "accuracy": 0.836,
+      "balanced_accuracy": 0.8360000000000001,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          634,
+          116
+        ],
+        [
+          130,
+          620
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.8298429319371727,
+          "recall": 0.8453333333333334,
+          "f1": 0.8375165125495376,
+          "support": 750
+        },
+        "1": {
+          "precision": 0.842391304347826,
+          "recall": 0.8266666666666667,
+          "f1": 0.8344549125168237,
+          "support": 750
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.8185725580643464,
+        0.8526555994650264
+      ],
+      "measured_fit_runtime_seconds_sum": 0.9247069,
+      "model": "extra_trees_4d",
+      "family": "classical"
+    }
+  ],
+  "finalization_note": "Training and OOF export completed. The original pandas bootstrap pass was interrupted when available RAM fell under the 500 MiB floor; this summary uses vectorized NumPy issue-group resampling.",
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}

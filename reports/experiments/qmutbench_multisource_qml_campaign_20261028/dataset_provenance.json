@@ -1,0 +1,31 @@
+{
+  "campaign_date": "2026-10-28",
+  "qmutbench": {
+    "dataset_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+    "development_rows": 578117,
+    "development_origins": 305,
+    "split_evidence": "data/qmutbench_ml/master_optimization_v1/oof_predictions.csv and reports/experiments/qmutbench_three_class_qnn_campaign_20261027/confirmation_origin_manifest.json"
+  },
+  "bugs4q": {
+    "official_url": "https://github.com/Z-928/Bugs4Q",
+    "database_archive": "data/Bugs4Q_official/Bugs4Q-Database.zip",
+    "database_sha256": "e06a0fdf258c7c8596782cabdb2e1846d51c8866ed8a12129375fe07ea7ed9b1",
+    "framework_archive_sha256": "8c1b024b194d1ed8bf8bbf513d06dcdcfd47b75016f006b97e3f41ec8c979035",
+    "normalized_manifest": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/bugs4q_standalone/normalized_manifest.csv",
+    "framework_license": "Apache-2.0",
+    "normalized_manifest_sha256": "cef4b2378b97610b498917f6412f18e716c2ab91369ea709fc98541952008cdb",
+    "oof_predictions_sha256": "1ff679dce32f291a159491adceff426cc54285943c009bf18d6704e044874c6f",
+    "leaderboard_sha256": "dafdaa5babb3c78ab840e0c9ea42a76e7635838d37aa51d93fa88c6a1cf1a3df"
+  },
+  "bugs4q_robust": {
+    "official_url": "https://github.com/kusumotolab/quantum-defect-reproducibility",
+    "commit": "c7048476e5e76e95412b3640a3fa5651f51c01a4",
+    "execution_results_sha256": "14b51c977254db7bf936f33b2eb868fe818755ae3f8fe3221ba6529fcf607b03",
+    "count_results_sha256": "167b9416f12f97484c408b73ce88809d8fb5ac7f11cf21a0ae6246b94816f8a4",
+    "license_scope": "MIT scripts; CC BY 4.0 generated logs/results; third-party program snapshots retain upstream rights",
+    "rows": 1110,
+    "artifact_ids": 37,
+    "runs_per_artifact": 30
+  },
+  "frozen_test_accessed": false
+}

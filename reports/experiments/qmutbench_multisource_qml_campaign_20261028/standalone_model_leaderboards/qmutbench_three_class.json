@@ -1,0 +1,8 @@
+{
+  "task":"QMutBench three-class research; Survivor=0, WOO=1, OPO=2",
+  "protocol":"205 records / 12 origins / 3-fold GroupKFold; exploratory, balanced sample",
+  "best_classical":{"model":"Extra Trees 4 features","macro_f1":0.4668874808,"accuracy":0.4926829268,"balanced_accuracy":0.48455253896},
+  "best_qnn_hybrid":{"model":"angle VQC with trainable linear readout","macro_f1":0.3217975889,"accuracy":0.35609756098,"balanced_accuracy":0.3649363164},
+  "best_qnn_or_hybrid_did_not_beat_classical":true,
+  "source_report":"reports/experiments/qmutbench_three_class_qnn_campaign_20261027/research_report.md"
+}

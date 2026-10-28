@@ -1,0 +1,30 @@
+{
+  "status": "task_manifest_prepared",
+  "task": "classify manually annotated LintQ warnings as true positive versus false positive",
+  "label_map": {
+    "TP": 1,
+    "FP": 0
+  },
+  "excluded_label_counts": {
+    "NW": 55
+  },
+  "source_artifact": "data\\external_quantum_datasets\\lintq",
+  "annotation_file": "data\\external_quantum_datasets\\lintq\\bug_reports\\Inspection_LintQ_on_LintQ_dataset.csv",
+  "annotation_rows": 345,
+  "selected_rows": 290,
+  "class_counts": {
+    "1": 216,
+    "0": 74
+  },
+  "groups": 228,
+  "group_unit": "shared issue_local annotation group where supplied, otherwise source file; no source file can cross folds",
+  "source_files": 227,
+  "missing_source_files": [],
+  "feature_policy": "rule identifier, warning message, and a 21-line code context centered on the warning; code comments/docstrings stripped; annotation reason, reported_as, label_resolution, and issue_local excluded from features",
+  "limitations": [
+    "228 annotation groups and 290 selected warnings",
+    "Manual TP/FP labels are not a full-corpus program label",
+    "NW cases are ambiguous and excluded",
+    "This task evaluates warning triage, not buggy-versus-fixed program classification"
+  ]
+}

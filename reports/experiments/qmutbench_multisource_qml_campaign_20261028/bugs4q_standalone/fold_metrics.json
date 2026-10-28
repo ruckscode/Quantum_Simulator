@@ -1,0 +1,1652 @@
+[
+  {
+    "model": "majority",
+    "fold": 1,
+    "macro_f1": 0.3333333333333333,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        7,
+        0
+      ],
+      [
+        7,
+        0
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 7
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 7
+      }
+    },
+    "runtime_seconds": 0.005738800000472111,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "logistic_tfidf",
+    "fold": 1,
+    "macro_f1": 0.49743589743589745,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        3
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.5714285714285714,
+        "f1": 0.5333333333333333,
+        "support": 7
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.42857142857142855,
+        "f1": 0.46153846153846156,
+        "support": 7
+      }
+    },
+    "runtime_seconds": 0.009105999999519554,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "linear_svc_tfidf",
+    "fold": 1,
+    "macro_f1": 0.5714285714285714,
+    "accuracy": 0.5714285714285714,
+    "balanced_accuracy": 0.5714285714285714,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        3
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5714285714285714,
+        "recall": 0.5714285714285714,
+        "f1": 0.5714285714285714,
+        "support": 7
+      },
+      "1": {
+        "precision": 0.5714285714285714,
+        "recall": 0.5714285714285714,
+        "f1": 0.5714285714285714,
+        "support": 7
+      }
+    },
+    "runtime_seconds": 0.006265400001211674,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "rbf_svc_tfidf",
+    "fold": 1,
+    "macro_f1": 0.49743589743589745,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        3
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.5714285714285714,
+        "f1": 0.5333333333333333,
+        "support": 7
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.42857142857142855,
+        "f1": 0.46153846153846156,
+        "support": 7
+      }
+    },
+    "runtime_seconds": 0.008034200000111014,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "decision_tree_4d",
+    "fold": 1,
+    "macro_f1": 0.37777777777777777,
+    "accuracy": 0.42857142857142855,
+    "balanced_accuracy": 0.4285714285714286,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        5,
+        2
+      ],
+      [
+        6,
+        1
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.45454545454545453,
+        "recall": 0.7142857142857143,
+        "f1": 0.5555555555555556,
+        "support": 7
+      },
+      "1": {
+        "precision": 0.3333333333333333,
+        "recall": 0.14285714285714285,
+        "f1": 0.2,
+        "support": 7
+      }
+    },
+    "runtime_seconds": 0.005781099998785066,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "random_forest_4d",
+    "fold": 1,
+    "macro_f1": 0.7142857142857143,
+    "accuracy": 0.7142857142857143,
+    "balanced_accuracy": 0.7142857142857143,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        5,
+        2
+      ],
+      [
+        2,
+        5
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7142857142857143,
+        "recall": 0.7142857142857143,
+        "f1": 0.7142857142857143,
+        "support": 7
+      },
+      "1": {
+        "precision": 0.7142857142857143,
+        "recall": 0.7142857142857143,
+        "f1": 0.7142857142857143,
+        "support": 7
+      }
+    },
+    "runtime_seconds": 0.10034809999888239,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "extra_trees_4d",
+    "fold": 1,
+    "macro_f1": 0.49743589743589745,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.42857142857142855,
+        "f1": 0.46153846153846156,
+        "support": 7
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.5714285714285714,
+        "f1": 0.5333333333333333,
+        "support": 7
+      }
+    },
+    "runtime_seconds": 0.08370909999939613,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "logistic_4d",
+    "fold": 1,
+    "macro_f1": 0.47593582887700536,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        5,
+        2
+      ],
+      [
+        5,
+        2
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.7142857142857143,
+        "f1": 0.5882352941176471,
+        "support": 7
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.2857142857142857,
+        "f1": 0.36363636363636365,
+        "support": 7
+      }
+    },
+    "runtime_seconds": 0.008509900000717607,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "hist_gradient_boosting_4d",
+    "fold": 1,
+    "macro_f1": 0.49743589743589745,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        3
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.5714285714285714,
+        "f1": 0.5333333333333333,
+        "support": 7
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.42857142857142855,
+        "f1": 0.46153846153846156,
+        "support": 7
+      }
+    },
+    "runtime_seconds": 0.04017799999928684,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "small_mlp_4d",
+    "fold": 1,
+    "macro_f1": 0.49743589743589745,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.42857142857142855,
+        "f1": 0.46153846153846156,
+        "support": 7
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.5714285714285714,
+        "f1": 0.5333333333333333,
+        "support": 7
+      }
+    },
+    "runtime_seconds": 0.04158789999928558,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "majority",
+    "fold": 2,
+    "macro_f1": 0.3333333333333333,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        0
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.0058845000003202586,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "logistic_tfidf",
+    "fold": 2,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.00890599999911501,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "linear_svc_tfidf",
+    "fold": 2,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.00635590000092634,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "rbf_svc_tfidf",
+    "fold": 2,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.008346500000698143,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "decision_tree_4d",
+    "fold": 2,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.005538900000829017,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "random_forest_4d",
+    "fold": 2,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.10029209999993327,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "extra_trees_4d",
+    "fold": 2,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.08383120000144118,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "logistic_4d",
+    "fold": 2,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.007671100000152364,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "hist_gradient_boosting_4d",
+    "fold": 2,
+    "macro_f1": 0.29411764705882354,
+    "accuracy": 0.4166666666666667,
+    "balanced_accuracy": 0.4166666666666667,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        5,
+        1
+      ],
+      [
+        6,
+        0
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.45454545454545453,
+        "recall": 0.8333333333333334,
+        "f1": 0.5882352941176471,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.03880309999840392,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "small_mlp_4d",
+    "fold": 2,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.03291739999986021,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "majority",
+    "fold": 3,
+    "macro_f1": 0.3333333333333333,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        0
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.0058119000004808186,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "logistic_tfidf",
+    "fold": 3,
+    "macro_f1": 0.4125874125874126,
+    "accuracy": 0.4166666666666667,
+    "balanced_accuracy": 0.41666666666666663,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        3
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.4,
+        "recall": 0.3333333333333333,
+        "f1": 0.36363636363636365,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.42857142857142855,
+        "recall": 0.5,
+        "f1": 0.46153846153846156,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.008738500000617933,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "linear_svc_tfidf",
+    "fold": 3,
+    "macro_f1": 0.4125874125874126,
+    "accuracy": 0.4166666666666667,
+    "balanced_accuracy": 0.41666666666666663,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.42857142857142855,
+        "recall": 0.5,
+        "f1": 0.46153846153846156,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.4,
+        "recall": 0.3333333333333333,
+        "f1": 0.36363636363636365,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.006098399999245885,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "rbf_svc_tfidf",
+    "fold": 3,
+    "macro_f1": 0.4957983193277311,
+    "accuracy": 0.5833333333333334,
+    "balanced_accuracy": 0.5833333333333334,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        1,
+        5
+      ],
+      [
+        0,
+        6
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 1.0,
+        "recall": 0.16666666666666666,
+        "f1": 0.2857142857142857,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5454545454545454,
+        "recall": 1.0,
+        "f1": 0.7058823529411765,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.007988899998963461,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "decision_tree_4d",
+    "fold": 3,
+    "macro_f1": 0.3333333333333333,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        0
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.005907999999180902,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "random_forest_4d",
+    "fold": 3,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.10095240000009653,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "extra_trees_4d",
+    "fold": 3,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.0831994999989547,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "logistic_4d",
+    "fold": 3,
+    "macro_f1": 0.5804195804195804,
+    "accuracy": 0.5833333333333334,
+    "balanced_accuracy": 0.5833333333333333,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        2
+      ],
+      [
+        3,
+        3
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5714285714285714,
+        "recall": 0.6666666666666666,
+        "f1": 0.6153846153846154,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.6,
+        "recall": 0.5,
+        "f1": 0.5454545454545454,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.0077330000003712485,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "hist_gradient_boosting_4d",
+    "fold": 3,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.03884939999989001,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "small_mlp_4d",
+    "fold": 3,
+    "macro_f1": 0.5555555555555556,
+    "accuracy": 0.5833333333333334,
+    "balanced_accuracy": 0.5833333333333334,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        2,
+        4
+      ],
+      [
+        1,
+        5
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6666666666666666,
+        "recall": 0.3333333333333333,
+        "f1": 0.4444444444444444,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5555555555555556,
+        "recall": 0.8333333333333334,
+        "f1": 0.6666666666666666,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.055438900000808644,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "majority",
+    "fold": 4,
+    "macro_f1": 0.3333333333333333,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        0
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.0070418999985122355,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "logistic_tfidf",
+    "fold": 4,
+    "macro_f1": 0.37777777777777777,
+    "accuracy": 0.4166666666666667,
+    "balanced_accuracy": 0.41666666666666663,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        1
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.4444444444444444,
+        "recall": 0.6666666666666666,
+        "f1": 0.5333333333333333,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.3333333333333333,
+        "recall": 0.16666666666666666,
+        "f1": 0.2222222222222222,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.009272900000723894,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "linear_svc_tfidf",
+    "fold": 4,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.00689310000052501,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "rbf_svc_tfidf",
+    "fold": 4,
+    "macro_f1": 0.3333333333333333,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        0
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.009822699999858742,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "decision_tree_4d",
+    "fold": 4,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.007669900000109919,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "random_forest_4d",
+    "fold": 4,
+    "macro_f1": 0.5,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        3
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.11608370000067225,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "extra_trees_4d",
+    "fold": 4,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.09710749999976542,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "logistic_4d",
+    "fold": 4,
+    "macro_f1": 0.5555555555555556,
+    "accuracy": 0.5833333333333334,
+    "balanced_accuracy": 0.5833333333333334,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        5,
+        1
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5555555555555556,
+        "recall": 0.8333333333333334,
+        "f1": 0.6666666666666666,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.6666666666666666,
+        "recall": 0.3333333333333333,
+        "f1": 0.4444444444444444,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.008221100000810111,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "hist_gradient_boosting_4d",
+    "fold": 4,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.042090700000699144,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "small_mlp_4d",
+    "fold": 4,
+    "macro_f1": 0.4375,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        5,
+        1
+      ],
+      [
+        5,
+        1
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.8333333333333334,
+        "f1": 0.625,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.16666666666666666,
+        "f1": 0.25,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.0575431999986904,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "majority",
+    "fold": 5,
+    "macro_f1": 0.3333333333333333,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        0
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.007446499999787193,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "logistic_tfidf",
+    "fold": 5,
+    "macro_f1": 0.4375,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        1,
+        5
+      ],
+      [
+        1,
+        5
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.16666666666666666,
+        "f1": 0.25,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.8333333333333334,
+        "f1": 0.625,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.011646999999356922,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "linear_svc_tfidf",
+    "fold": 5,
+    "macro_f1": 0.4375,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        1,
+        5
+      ],
+      [
+        1,
+        5
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.16666666666666666,
+        "f1": 0.25,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.8333333333333334,
+        "f1": 0.625,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.008200700000088545,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "rbf_svc_tfidf",
+    "fold": 5,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.010329400000046007,
+    "features": "fold-local TF-IDF 1-2 grams"
+  },
+  {
+    "model": "decision_tree_4d",
+    "fold": 5,
+    "macro_f1": 0.4375,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        1,
+        5
+      ],
+      [
+        1,
+        5
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.16666666666666666,
+        "f1": 0.25,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.8333333333333334,
+        "f1": 0.625,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.007867699998314492,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "random_forest_4d",
+    "fold": 5,
+    "macro_f1": 0.37777777777777777,
+    "accuracy": 0.4166666666666667,
+    "balanced_accuracy": 0.41666666666666663,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        1
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.4444444444444444,
+        "recall": 0.6666666666666666,
+        "f1": 0.5333333333333333,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.3333333333333333,
+        "recall": 0.16666666666666666,
+        "f1": 0.2222222222222222,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.12762290000137,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "extra_trees_4d",
+    "fold": 5,
+    "macro_f1": 0.4857142857142857,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285714,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.15063019999979588,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "logistic_4d",
+    "fold": 5,
+    "macro_f1": 0.5,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        3
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.010204199999861885,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "hist_gradient_boosting_4d",
+    "fold": 5,
+    "macro_f1": 0.4125874125874126,
+    "accuracy": 0.4166666666666667,
+    "balanced_accuracy": 0.41666666666666663,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        3
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.4,
+        "recall": 0.3333333333333333,
+        "f1": 0.36363636363636365,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.42857142857142855,
+        "recall": 0.5,
+        "f1": 0.46153846153846156,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.055397799998900155,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  },
+  {
+    "model": "small_mlp_4d",
+    "fold": 5,
+    "macro_f1": 0.5,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_fixed0_buggy1": [
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        3
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "support": 6
+      },
+      "1": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "support": 6
+      }
+    },
+    "runtime_seconds": 0.050208099999508704,
+    "features": "fold-local TF-IDF + TruncatedSVD(4) + MinMax"
+  }
+]

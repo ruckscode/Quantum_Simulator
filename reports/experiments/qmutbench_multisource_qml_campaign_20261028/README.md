@@ -1,14 +1,14 @@
 # Multi-source quantum ML campaign status
 
-**Status: nine supervised tasks have complete grouped-fold training artifacts; QMutBench has development OOF results but no recoverable model checkpoint.** Bugs4Q-Robust and QSimBench have defensible task manifests, but local QNN attempts stopped at the 500 MiB guard before producing checkpoints. The combined CPU training notebook is prepared but not run. The campaign remains incomplete. No model is promoted to production. The QMutBench frozen test was not opened.
+**QML status:** the nine prior grouped QNN run families remain complete; new grouped QNN runs now cover Bugs4Q-Robust and QSimBench, and QMutBench three-class has been retrained with reloadable checkpoints on its saved development folds. An expanded binary QNN search stopped below the 500 MiB RAM floor and is unscored. The frozen QMutBench test remains untouched; no model is promoted to production.
 
-## 2026-10-28 execution audit and bundle readiness
+The QML-only accuracy benchmark is in `qml_accuracy_benchmark.md`, `qml_model_accuracy_benchmark.csv`, and `best_qml_model_by_task.csv`. All reported accuracies are development OOF validation results; no final test score exists.
+
+## QML execution audit and bundle readiness
 
 The refreshed standard-library audit recomputes 85 saved model/ensemble OOF rows and 327 fold rows from development predictions. It separately records the 578,117-record QMutBench binary champion and the 205-record three-class research task; neither is pooled with Bugs4Q or the other source tasks. The cross-source file contains 24 source-specific transfer results for the Bugs4Q core/NA pooled and source-restricted runs. These are small, within-task grouped OOF comparisons, not a universal cross-dataset score.
 
-The external notebook now embeds SHA-256 hashes for every bundled task manifest, the QNN runner, and the classical runner, and verifies them before installing dependencies or training. It pins the versions recorded by the existing QNN environment (`numpy 2.5.3`, `pandas 3.0.6`, `PennyLane 0.45.1`, `scikit-learn 1.9.1`, `psutil 7.2.2`) and explicitly uses CPU `default.qubit`; a GPU is unnecessary. Notebook syntax and ZIP integrity were checked locally, but **the notebook has not been executed**.
-
-The bundled broad classical suite has 14 baseline models plus training-fold-only random over/undersampling and continuous-space SMOTE variants, using the same five grouped outer folds for each task. Those results do not exist yet. The suite reports fold/aggregate classification metrics and sampled process RSS, but Kaggle must run it before any baseline or imbalance method can be called evaluated. Borderline-SMOTE, XGBoost, LightGBM, CatBoost, stacking, and QMutBench's separate binary champion are not part of that unrun suite. See `campaign_completion_matrix.csv` for the task-level split between completed evidence and external work still pending.
+The new QML-only external bundle embeds seven SHA-256-verified manifests/scripts and uses a NumPy statevector implementation with CPU-only parameter-shift gradients. It has no PennyLane, GPU, or classical-ML runtime dependency. Notebook syntax, archive integrity, and embedded hashes were checked locally; **the notebook has not been executed**.
 
 ## Completed trained tasks
 
@@ -20,9 +20,9 @@ The bundled broad classical suite has 14 baseline models plus training-fold-only
 | Quantum platform bug annotation comments | 319 comments, grouped by 314 commits (223 bug / 96 FP after filtering) | Angle hybrid: macro F1 0.819, accuracy 0.853, balanced accuracy 0.809 | Random forest: macro F1 0.897, accuracy 0.915, balanced accuracy 0.889 | Metadata comment task; classical control leads |
 | Qolumbina ideal-backend seeded-mutant detection | 182 variants, 26 program groups, 5 folds | Angle VQC: macro F1 0.502, accuracy 0.621, balanced accuracy 0.524 | Extra Trees: macro F1 0.505, accuracy 0.615, balanced accuracy 0.533 | Synthetic mutant detection; essentially tied, not real bug classification |
 | LintQ warning triage | 290 TP/FP warnings, 228 issue/file groups, 5 folds | Angle hybrid: macro F1 0.526, accuracy 0.566, balanced accuracy 0.557 | Random forest: macro F1 0.640, accuracy 0.672, balanced accuracy 0.691 | Classical control leads; warning-level task, not program state |
-| QSimBench backend fingerprint | 300 Aer/fake_kyiv observations, 150 algorithm-size groups | Not trained; import-time RAM floor stopped local execution | Not trained | Derived backend identification task; no bug/fix semantics |
-| Bugs4Q-Robust execution outcome | 2,220 repeated-run observations, 37 issue groups | Not trained; first optimizer step hit RAM guard | Not trained | Predict pass/fail from program and test harness; execution outcome, not source-state target |
-| QMutBench three-class mutation task | 205 records, 12 origins, 3 grouped folds | QNN: macro F1 0.300, accuracy 0.322, balanced accuracy 0.318 | Extra Trees: macro F1 0.467, accuracy 0.493, balanced accuracy 0.485 | Development-only research result; predictions and curves exist, but no parameter checkpoint |
+| QSimBench backend fingerprint | 300 Aer/fake_kyiv observations, 150 algorithm-size groups | Angle re-upload hybrid (4 qubits, depth 2): accuracy 0.660, macro F1 0.660, balanced accuracy 0.660 | No matched baseline in this task run | Five grouped folds; ten fold checkpoints; backend identification only |
+| Bugs4Q-Robust execution outcome | 2,220 repeated-run observations, 37 issue groups | Amplitude hybrid (3 qubits, depth 2): accuracy 0.514, macro F1 0.513, balanced accuracy 0.514 | No matched baseline in this task run | Five issue-group folds; ten fold checkpoints; pass/fail prediction |
+| QMutBench three-class mutation task | 205 records, 12 origins, 3 grouped folds | Equal-probability QNN ensemble: accuracy 0.468, macro F1 0.434, balanced accuracy 0.459; best single QNN accuracy 0.463 | Extra Trees: accuracy 0.493, macro F1 0.467 | Development-only result; three-fold member checkpoints saved |
 
 The Bugs4Q core and Bugs4Q-NA standalone runs used four QNN encodings/architectures with matched classical controls, gradient checks, and grouped folds. The source-only transfer runs and pooled run used identical five-fold group partitions across the same 124-record, 62-issue combined manifest. In the pooled run, the hybrid QNN macro F1 was 0.498 and Extra Trees was 0.524. Training only on core yielded hybrid macro F1 0.477 overall (0.464 on held-out NA and 0.490 on held-out core); training only on NA yielded 0.516 overall (0.508 on held-out NA and 0.512 on held-out core). These small samples do not establish robust transfer gains. The source-specific OOF diagnostics are reported in each `source_performance.json`.
 
@@ -34,18 +34,22 @@ The binary QNN models optimize supervised class-weighted binary cross-entropy wi
 - `bugs4q_joint/qnn_train_core/` is an interrupted early attempt after RAM fell below 500 MiB. Its partial artifacts are not scored. The complete rerun is separately stored and finished above the 500 MiB floor.
 - `hornbro_mute_alg/` contains 169 extracted pickles, but restricted loading fails (`state is not a dictionary`) under Qiskit 1.4.5; Qiskit 2.5 also rejects the legacy circuit register state. No examples were counted or trained.
 - Qolumbina's ideal-backend DOSS task is now trained from mutant source code and pre-run backend features, with held-out labels derived only from the study's repeated test outcomes. It is a synthetic seeded-mutant detection task, not a real-bug task. The broader 546-row multi-backend attempt remains partial and is not scored.
-- QSimBench supplies circuit execution traces rather than bug/fix labels. We prepared an Aer-versus-fake_kyiv fingerprint task from output histograms and group by algorithm-size setting; its QNN did not train locally because post-import available RAM fell below the runner's safe floor.
+- QSimBench supplies circuit execution traces rather than bug/fix labels. Its Aer-versus-fake_kyiv fingerprint QNN completed on grouped output histograms; the expanded 20-epoch search stopped below the RAM floor and its partial checkpoints are not scored.
 - LintQ's manually annotated TP/FP warning triage task is trained with issue/file-grouped folds. The 55 ambiguous NW records are excluded; results do not establish program-level bug/fix classification.
-- Bugs4Q-Robust now has a separate program-plus-test pass/fail task. Its local QNN attempt stopped below the 500 MiB floor before saving any checkpoint; the repeated runs for each issue are grouped together.
+- Bugs4Q-Robust now has a separate program-plus-test pass/fail task. Two QNN architectures completed issue-grouped folds; the expanded search stopped at 473.4 MiB available and its partial checkpoints are not scored.
 - QML platform issue workbooks were downloaded but not deduplicated/schema-normalized; license and label validation remain open. They were not trained.
 
-Other acquired sources remain incomplete or unsuitable for a current supervised task: Bugs4Q-Robust and QSimBench have valid tasks but local fits hit the memory floor before checkpoints; Mute-Alg legacy pickle deserialization fails on the available Qiskit versions; QML platform workbooks need label/license normalization; and Bug-Pattern/QChecker have no validated supervised manifest yet. The QMutBench three-class artifacts lack a recoverable parameter checkpoint. These branches remain explicitly uncompleted in `campaign_completion_matrix.csv`; inspection is not counted as training.
+Other acquired sources remain incomplete or unsuitable for a current supervised task: Mute-Alg legacy pickle deserialization fails on the available Qiskit versions; QML platform workbooks need label/license normalization; and Bug-Pattern/QChecker have no validated supervised manifest yet. The retrained QMutBench three-class statevector QNN uses the saved fold-selected four-feature inputs; its architecture differs from the earlier PennyLane pilot. See the QML benchmark for exact checkpoint paths and results.
 
 ## Reproducibility and key artifacts
 
 - Integrity-checked dataset inventory: `verified_dataset_inventory.json` (download, extraction, and data status fields; archive hashes/CRC and completeness checks).
 - Dataset/task registry: `dataset_task_inventory.json` (source status joined to task definitions, model status, and caveats).
 - External bundle validation: `external_bundle_validation.json` (archive CRC, embedded input hashes, manifest schemas/counts, and notebook syntax; training remains explicitly unexecuted).
+- QML-only results: `qml_accuracy_benchmark.md`, `qml_model_accuracy_benchmark.csv`, and `best_qml_model_by_task.csv`.
+- Completed QNN output audit: `completed_qnn_artifact_audit.json` (OOF metric recalculation, group alignment, gradient checks, checkpoint archive integrity).
+- RAM-stopped binary sweep: `qnn_hyperparameter_sweep_status.json`; partial checkpoints are retained but not scored.
+- QML-only remote sweep bundle validation: `qml_external_bundle_validation.json`; the notebook and archive are verified but unexecuted.
 - Source/task status matrix: `campaign_completion_matrix.csv`.
 - Recomputed model comparison: `comprehensive_results.csv`; task winners: `best_model_by_task.csv`; fold scores: `fold_level_results.csv`.
 - Source-specific Bugs4Q transfer results: `cross_source_generalization.csv`.
@@ -58,7 +62,7 @@ Other acquired sources remain incomplete or unsuitable for a current supervised 
 - LintQ warning triage QNN: `lintq_warning_triage/qnn/`.
 - Bugs4Q-Robust task manifest: `bugs4q_robust_execution/normalized_manifest.csv`.
 - QSimBench task manifest: `qsimbench_backend_fingerprint/normalized_manifest.csv`.
-- Self-contained external runner: `Remaining_Source_QNN_Training.ipynb` (bundle: `remaining_source_qnn_training_bundle.zip`). It has not been executed. Required external step: import/open the notebook and run all cells in a compatible Kaggle CPU session; then retrieve `remaining_source_qnn_results.zip` from Kaggle output to verify the two QNNs and nine-task classical/imbalance suite.
+- QML-only external sweep: `QML_Only_External_Sweeps.ipynb` (bundle: `qml_only_external_sweep_bundle.zip`). It has not been executed. Import/open it in Kaggle CPU, run all cells, then retrieve `qml_only_sweep_results.zip` to finish the memory-stopped QNN search.
 - QMutBench research-only QNN campaign: `reports/experiments/qmutbench_three_class_qnn_campaign_20261027/`.
 
 All completed evaluations use development folds only. No frozen-test data was used for feature selection, training, or ensemble selection. Production model files were not changed. The local runner enforces a 500 MiB available-RAM floor; incomplete attempts are retained with their partial logs for audit.

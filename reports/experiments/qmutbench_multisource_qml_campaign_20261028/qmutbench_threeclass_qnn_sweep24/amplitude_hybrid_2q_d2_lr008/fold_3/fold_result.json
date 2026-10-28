@@ -1,0 +1,53 @@
+{
+  "fold": 3,
+  "model": "amplitude_hybrid_2q_d2_lr008",
+  "records": 70,
+  "origins": 4,
+  "training_seconds": 0.4023834999970859,
+  "gradient_check": {
+    "parameter_shift": 0.00012980856487187587,
+    "finite_difference": 0.00011082237350024114,
+    "absolute_error": 1.8986191371634723e-05,
+    "passed": true
+  },
+  "accuracy": 0.4857142857142857,
+  "macro_f1": 0.44005021971123665,
+  "balanced_accuracy": 0.47601010101010094,
+  "per_class": {
+    "0": {
+      "precision": 0.45714285714285713,
+      "recall": 0.6666666666666666,
+      "f1": 0.5423728813559322,
+      "support": 24
+    },
+    "1": {
+      "precision": 0.5,
+      "recall": 0.625,
+      "f1": 0.5555555555555556,
+      "support": 24
+    },
+    "2": {
+      "precision": 0.6,
+      "recall": 0.13636363636363635,
+      "f1": 0.22222222222222218,
+      "support": 22
+    }
+  },
+  "confusion_matrix": [
+    [
+      16,
+      7,
+      1
+    ],
+    [
+      8,
+      15,
+      1
+    ],
+    [
+      11,
+      8,
+      3
+    ]
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "status": "completed_grouped_supervised_qnn_benchmark",
+  "task": "Source-only training transfer: Bugs4Q-NA additional; evaluation across common pooled GroupKFold held-out records",
+  "data": "62 issue groups / 124 paired snapshots; comments and docstrings stripped; executable strings retained",
+  "group_split": "5-fold GroupKFold by bug_id; buggy/fixed pair stays within the same fold",
+  "qnn_candidates": [
+    "angle_hybrid_readout"
+  ],
+  "matched_classical_controls": [
+    "logistic_4d",
+    "random_forest_4d",
+    "extra_trees_4d"
+  ],
+  "steps_per_fold": 15,
+  "optimizer": "PennyLane Adam, learning rate 0.06; full-batch class-weighted binary cross entropy",
+  "gradient_validation": "one-coordinate centered finite-difference check for each architecture/fold before training; all checks must pass",
+  "device": "PennyLane default.qubit CPU statevector, analytic backpropagation; no GPU/hardware claim",
+  "pennylane_version": "0.45.1",
+  "runtime_seconds": 463.1721333000023,
+  "available_ram_start_mib": 637.91015625,
+  "available_ram_after_import_mib": 780.3671875,
+  "available_ram_end_mib": 947.1953125,
+  "training_source_filter": "Bugs4Q_NA_additional",
+  "folds": 5,
+  "origins": 62,
+  "records": 124,
+  "results": [
+    {
+      "model": "logistic_4d",
+      "family": "classical",
+      "macro_f1": 0.5115546218487395,
+      "accuracy": 0.5161290322580645,
+      "balanced_accuracy": 0.5161290322580645,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          38,
+          24
+        ],
+        [
+          36,
+          26
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.5135135135135135,
+          "recall": 0.6129032258064516,
+          "f1": 0.5588235294117647,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.52,
+          "recall": 0.41935483870967744,
+          "f1": 0.4642857142857143,
+          "support": 62
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.48374966424926136,
+        0.537888198757764
+      ]
+    },
+    {
+      "model": "random_forest_4d",
+      "family": "classical",
+      "macro_f1": 0.4423280423280423,
+      "accuracy": 0.45161290322580644,
+      "balanced_accuracy": 0.4516129032258065,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          20,
+          42
+        ],
+        [
+          26,
+          36
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.43478260869565216,
+          "recall": 0.3225806451612903,
+          "f1": 0.37037037037037035,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.46153846153846156,
+          "recall": 0.5806451612903226,
+          "f1": 0.5142857142857142,
+          "support": 62
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.3845173862047074,
+        0.4903112155020552
+      ]
+    },
+    {
+      "model": "extra_trees_4d",
+      "family": "classical",
+      "macro_f1": 0.4535963663480442,
+      "accuracy": 0.47580645161290325,
+      "balanced_accuracy": 0.4758064516129032,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          17,
+          45
+        ],
+        [
+          20,
+          42
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.4594594594594595,
+          "recall": 0.27419354838709675,
+          "f1": 0.3434343434343434,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.4827586206896552,
+          "recall": 0.6774193548387096,
+          "f1": 0.5637583892617449,
+          "support": 62
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.4004834810636584,
+        0.4972972972972973
+      ]
+    },
+    {
+      "model": "angle_hybrid_readout",
+      "family": "quantum_or_hybrid",
+      "macro_f1": 0.5160031225604996,
+      "accuracy": 0.5161290322580645,
+      "balanced_accuracy": 0.5161290322580645,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          31,
+          31
+        ],
+        [
+          29,
+          33
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.5166666666666667,
+          "recall": 0.5,
+          "f1": 0.5081967213114754,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.515625,
+          "recall": 0.532258064516129,
+          "f1": 0.5238095238095238,
+          "support": 62
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.48333333333333334,
+        0.5479166666666666
+      ]
+    }
+  ],
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}

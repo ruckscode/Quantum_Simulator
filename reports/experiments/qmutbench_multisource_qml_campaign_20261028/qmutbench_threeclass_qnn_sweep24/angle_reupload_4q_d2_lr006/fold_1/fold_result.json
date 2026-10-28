@@ -1,0 +1,53 @@
+{
+  "fold": 1,
+  "model": "angle_reupload_4q_d2_lr006",
+  "records": 67,
+  "origins": 4,
+  "training_seconds": 3.907462899995153,
+  "gradient_check": {
+    "parameter_shift": 4.683024591842569e-06,
+    "finite_difference": 4.6830206379411266e-06,
+    "absolute_error": 3.953901442366181e-12,
+    "passed": true
+  },
+  "accuracy": 0.31343283582089554,
+  "macro_f1": 0.2474236874236874,
+  "balanced_accuracy": 0.30628654970760233,
+  "per_class": {
+    "0": {
+      "precision": 0.34782608695652173,
+      "recall": 0.6666666666666666,
+      "f1": 0.4571428571428571,
+      "support": 24
+    },
+    "1": {
+      "precision": 1.0,
+      "recall": 0.041666666666666664,
+      "f1": 0.07999999999999999,
+      "support": 24
+    },
+    "2": {
+      "precision": 0.2,
+      "recall": 0.21052631578947367,
+      "f1": 0.20512820512820512,
+      "support": 19
+    }
+  },
+  "confusion_matrix": [
+    [
+      16,
+      0,
+      8
+    ],
+    [
+      15,
+      1,
+      8
+    ],
+    [
+      15,
+      0,
+      4
+    ]
+  ]
+}

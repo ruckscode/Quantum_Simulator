@@ -1,0 +1,18 @@
+{
+  "dataset": "Pooled Bugs4Q core + non-overlapping Bugs4Q-NA Python issue pairs",
+  "target_semantics": "fixed=0, buggy=1, source-native meaning shared by both sources",
+  "features": "Same source-code tokenization and feature pipeline; comments and docstrings excluded",
+  "rows": 124,
+  "groups": 62,
+  "per_source_rows": {
+    "Bugs4Q_core": 62,
+    "Bugs4Q_NA_additional": 62
+  },
+  "per_source_groups": {
+    "Bugs4Q_core": 31,
+    "Bugs4Q_NA_additional": 31
+  },
+  "overlap_control": "Bugs4Q-NA pairs with exact README issue URL overlap against the original core subset were excluded during source-specific preparation; group IDs are namespaced by source.",
+  "split": "5-fold GroupKFold across the pooled set; each buggy/fixed pair remains within its issue group.",
+  "integration_question": "Does jointly fitting on both compatible sources improve pooled development-fold OOF performance versus the separate-source runs?"
+}

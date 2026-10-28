@@ -1,0 +1,545 @@
+{
+  "verified_at_local": "2026-10-28T14:20:54.132436+05:30",
+  "datasets": [
+    {
+      "dataset": "Bugs4Q official download cache",
+      "path": "data\\Bugs4Q_official",
+      "exists": true,
+      "files_excluding_git": 1241,
+      "bytes": 30619191,
+      "zero_byte_files": 0,
+      "status": "DATA_PRESENT",
+      "extraction_manifest": null,
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "Bugs4Q official GitHub archive extraction",
+      "path": "data\\Bugs4Q_official\\extracted\\GitHub-Framework",
+      "exists": true,
+      "files_excluding_git": 301,
+      "bytes": 308700,
+      "zero_byte_files": 0,
+      "status": "DATA_PRESENT",
+      "extraction_manifest": null,
+      "download_status": "COMPLETE",
+      "extraction_status": "COMPLETE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "Bugs4Q official Zenodo database extraction",
+      "path": "data\\Bugs4Q_official\\extracted\\Zenodo-Database",
+      "exists": true,
+      "files_excluding_git": 296,
+      "bytes": 177433,
+      "zero_byte_files": 0,
+      "status": "DATA_PRESENT",
+      "extraction_manifest": null,
+      "download_status": "COMPLETE",
+      "extraction_status": "PARTIAL",
+      "data_status": "PRESENT",
+      "overall_status": "PARTIAL"
+    },
+    {
+      "dataset": "Bugs4Q official Zenodo database verified extraction",
+      "path": "data\\Bugs4Q_official\\extracted\\Zenodo-Database-safe",
+      "exists": true,
+      "files_excluding_git": 297,
+      "bytes": 177712,
+      "zero_byte_files": 0,
+      "status": "DATA_PRESENT",
+      "extraction_manifest": {
+        "manifest_files_extracted": 337,
+        "manifest_uncompressed_bytes": 29288166,
+        "actual_files_including_manifest": 297,
+        "actual_bytes_including_manifest": 177712,
+        "actual_zero_byte_files": 0,
+        "manifest_mapping_count": 0,
+        "manifest_counts_agree_with_tree": false
+      },
+      "download_status": "COMPLETE",
+      "extraction_status": "COMPLETE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "Bugs4Q official Zenodo framework extraction",
+      "path": "data\\Bugs4Q_official\\extracted\\Zenodo-Framework",
+      "exists": true,
+      "files_excluding_git": 343,
+      "bytes": 303788,
+      "zero_byte_files": 0,
+      "status": "DATA_PRESENT",
+      "extraction_manifest": null,
+      "download_status": "COMPLETE",
+      "extraction_status": "COMPLETE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "Bugs4Q framework",
+      "path": "data\\external_quantum_datasets\\bugs4q_full\\official_framework",
+      "exists": true,
+      "files_excluding_git": 237,
+      "bytes": 175133,
+      "zero_byte_files": 0,
+      "status": "DOWNLOAD_COMPLETE; EXTRACTION_COMPLETE; DATA_PRESENT",
+      "git": {
+        "is_git_checkout": true,
+        "commit": "e596a251ec723e58a042557277d584d56ffa1781",
+        "tracked_files": 237,
+        "lfs_files": 0,
+        "lfs_pointer_files": 0
+      },
+      "extraction_manifest": null,
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "Bugs4Q database",
+      "path": "data\\external_quantum_datasets\\bugs4q_full\\official_database",
+      "exists": true,
+      "files_excluding_git": 224,
+      "bytes": 178370,
+      "zero_byte_files": 0,
+      "status": "DOWNLOAD_COMPLETE; EXTRACTION_COMPLETE; DATA_PRESENT",
+      "git": {
+        "is_git_checkout": true,
+        "commit": "7a719839662f94614872d65f9e9fbcd07408437c",
+        "tracked_files": 224,
+        "lfs_files": 0,
+        "lfs_pointer_files": 0
+      },
+      "extraction_manifest": null,
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "Bugs4Q-NA",
+      "path": "data\\external_quantum_datasets\\bugs4q_na",
+      "exists": true,
+      "files_excluding_git": 279,
+      "bytes": 207845,
+      "zero_byte_files": 1,
+      "status": "DOWNLOAD_COMPLETE; EXTRACTION_COMPLETE; DATA_PRESENT",
+      "git": {
+        "is_git_checkout": true,
+        "commit": "bb853b888c752f90f2a6515c6776e020e2e59d01",
+        "tracked_files": 279,
+        "lfs_files": 0,
+        "lfs_pointer_files": 0
+      },
+      "extraction_manifest": null,
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "Bug-Pattern",
+      "path": "data\\external_quantum_datasets\\bug_pattern",
+      "exists": true,
+      "files_excluding_git": 20,
+      "bytes": 88040,
+      "zero_byte_files": 0,
+      "status": "DOWNLOAD_COMPLETE; EXTRACTION_COMPLETE; DATA_PRESENT",
+      "git": {
+        "is_git_checkout": true,
+        "commit": "d09eb6eb23a5997efbaa64223fea0fdcbc7bacfc",
+        "tracked_files": 20,
+        "lfs_files": 0,
+        "lfs_pointer_files": 0
+      },
+      "extraction_manifest": null,
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "QChecker",
+      "path": "data\\external_quantum_datasets\\qchecker",
+      "exists": true,
+      "files_excluding_git": 39,
+      "bytes": 338204,
+      "zero_byte_files": 0,
+      "status": "DOWNLOAD_COMPLETE; EXTRACTION_COMPLETE; DATA_PRESENT",
+      "git": {
+        "is_git_checkout": true,
+        "commit": "b342c85f2986cf476ce282104692c8f430382422",
+        "tracked_files": 39,
+        "lfs_files": 0,
+        "lfs_pointer_files": 0
+      },
+      "extraction_manifest": null,
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "Bugs4Q-Robust",
+      "path": "data\\Bugs4Q_Robust_replication",
+      "exists": true,
+      "files_excluding_git": 80599,
+      "bytes": 143962391,
+      "zero_byte_files": 0,
+      "status": "DATA_PRESENT",
+      "extraction_manifest": null,
+      "download_status": "PARTIAL",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "overall_status": "PARTIAL"
+    },
+    {
+      "dataset": "QMutBench",
+      "path": "data\\qmutbench_full\\data",
+      "exists": true,
+      "files_excluding_git": 723456,
+      "bytes": 3302599152,
+      "zero_byte_files": 0,
+      "status": "DATA_PRESENT",
+      "extraction_manifest": null,
+      "download_status": "PARTIAL",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "overall_status": "PARTIAL"
+    },
+    {
+      "dataset": "QSimBench",
+      "path": "data\\external_quantum_datasets\\qsimbench\\dataset",
+      "exists": true,
+      "files_excluding_git": 5414,
+      "bytes": 13637094598,
+      "zero_byte_files": 0,
+      "status": "DOWNLOAD_COMPLETE; EXTRACTION_COMPLETE; DATA_PRESENT",
+      "git": {
+        "is_git_checkout": true,
+        "commit": "fb2056243df7fd45a37a5d4bc6bc01b84db9e932",
+        "tracked_files": 5415,
+        "lfs_files": 900,
+        "lfs_pointer_files": 0
+      },
+      "extraction_manifest": null,
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "LintQ",
+      "path": "data\\external_quantum_datasets\\lintq\\extracted",
+      "exists": true,
+      "files_excluding_git": 89641,
+      "bytes": 2407157972,
+      "zero_byte_files": 1,
+      "status": "DATA_PRESENT",
+      "git_source": {
+        "is_git_checkout": true,
+        "commit": "481ca24dfabf032eb93cdf728369242b25a5216e",
+        "tracked_files": 432,
+        "lfs_files": 0,
+        "lfs_pointer_files": 0
+      },
+      "extraction_manifest": {
+        "manifest_files_extracted": 89640,
+        "manifest_uncompressed_bytes": 2407157140,
+        "actual_files_including_manifest": 89641,
+        "actual_bytes_including_manifest": 2407157972,
+        "actual_zero_byte_files": 1,
+        "manifest_mapping_count": 3,
+        "manifest_counts_agree_with_tree": true
+      },
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "Qolumbina empirical study",
+      "path": "data\\external_quantum_datasets\\qolumbina\\verified_extracted",
+      "exists": true,
+      "files_excluding_git": 15881,
+      "bytes": 201639595,
+      "zero_byte_files": 1,
+      "status": "DATA_PRESENT",
+      "extraction_manifest": {
+        "manifest_files_extracted": 15880,
+        "manifest_uncompressed_bytes": 201639269,
+        "actual_files_including_manifest": 15881,
+        "actual_bytes_including_manifest": 201639595,
+        "actual_zero_byte_files": 1,
+        "manifest_mapping_count": 0,
+        "manifest_counts_agree_with_tree": true
+      },
+      "download_status": "COMPLETE",
+      "extraction_status": "COMPLETE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "Quantum platform bug corpus",
+      "path": "data\\external_quantum_datasets\\quantum_platform_bugs_223\\case_safe_extracted",
+      "exists": true,
+      "files_excluding_git": 11789,
+      "bytes": 153924088,
+      "zero_byte_files": 202,
+      "status": "DATA_PRESENT",
+      "extraction_manifest": {
+        "manifest_files_extracted": 11788,
+        "manifest_uncompressed_bytes": 153762125,
+        "actual_files_including_manifest": 11789,
+        "actual_bytes_including_manifest": 153924088,
+        "actual_zero_byte_files": 202,
+        "manifest_mapping_count": 484,
+        "manifest_counts_agree_with_tree": true
+      },
+      "download_status": "COMPLETE",
+      "extraction_status": "COMPLETE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "QML platform issues",
+      "path": "data\\external_quantum_datasets\\qml_platform_bugs\\extracted_source",
+      "exists": true,
+      "files_excluding_git": 44,
+      "bytes": 1476433,
+      "zero_byte_files": 0,
+      "status": "DATA_PRESENT",
+      "extraction_manifest": {
+        "manifest_files_extracted": 43,
+        "manifest_uncompressed_bytes": 1473716,
+        "actual_files_including_manifest": 44,
+        "actual_bytes_including_manifest": 1476433,
+        "actual_zero_byte_files": 0,
+        "manifest_mapping_count": 17,
+        "manifest_counts_agree_with_tree": true
+      },
+      "download_status": "COMPLETE",
+      "extraction_status": "COMPLETE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "QBugs HornBro subset",
+      "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs",
+      "exists": true,
+      "files_excluding_git": 15,
+      "bytes": 4955098,
+      "zero_byte_files": 0,
+      "status": "DATA_PRESENT",
+      "extraction_manifest": null,
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "overall_status": "COMPLETE"
+    },
+    {
+      "dataset": "Mute-Alg",
+      "path": "data\\external_quantum_datasets\\hornbro_mute_alg",
+      "exists": true,
+      "files_excluding_git": 169,
+      "bytes": 324105511,
+      "zero_byte_files": 0,
+      "status": "DATA_PRESENT",
+      "extraction_manifest": null,
+      "download_status": "PARTIAL",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "overall_status": "PARTIAL"
+    }
+  ],
+  "archives": {
+    "Bugs4Q official database ZIP": {
+      "exists": true,
+      "bytes": 29276112,
+      "members": 337,
+      "member_bytes": 29288166,
+      "crc_check": "PASS",
+      "sha256": "e06a0fdf258c7c8596782cabdb2e1846d51c8866ed8a12129375fe07ea7ed9b1"
+    },
+    "Bugs4Q official GitHub framework ZIP": {
+      "exists": true,
+      "bytes": 119936,
+      "members": 237,
+      "member_bytes": 170063,
+      "crc_check": "PASS",
+      "sha256": "8c1b024b194d1ed8bf8bbf513d06dcdcfd47b75016f006b97e3f41ec8c979035"
+    },
+    "Bugs4Q official Zenodo framework ZIP": {
+      "exists": true,
+      "bytes": 250426,
+      "members": 322,
+      "member_bytes": 291538,
+      "crc_check": "PASS",
+      "sha256": "8cf4b590cbdae87752ec69efba0420657efd67c8e8da2ac93c84adf775c5be40"
+    },
+    "Qolumbina empirical ZIP": {
+      "exists": true,
+      "bytes": 29870691,
+      "members": 15880,
+      "member_bytes": 201639269,
+      "crc_check": "PASS",
+      "sha256": "4d93a1acdbc2dafec1db40fa376e292736280745d66b868145ae3d41546a78cc"
+    },
+    "Quantum platform source ZIP": {
+      "exists": true,
+      "bytes": 157031819,
+      "members": 11788,
+      "member_bytes": 153762125,
+      "crc_check": "PASS",
+      "sha256": "52e781afaa91cf6536372f03843b670d02bd4d5d4c1a8aa937317ebd746b1c8d"
+    },
+    "QML platform source ZIP": {
+      "exists": true,
+      "bytes": 1480120,
+      "members": 43,
+      "member_bytes": 1473716,
+      "crc_check": "PASS",
+      "sha256": "2996616e28dcc5ce02581c520d5d5df2da8be54793f821782c03d8d0c26a7782"
+    },
+    "QML platform classified ZIP": {
+      "exists": true,
+      "bytes": 259009,
+      "members": 33,
+      "member_bytes": 473778,
+      "crc_check": "PASS",
+      "sha256": "307f3628016ec086ae895782638562e8a184da6bf0a9ae1210a53055d9f06ebb"
+    },
+    "QML platform original ZIP": {
+      "exists": true,
+      "bytes": 270826,
+      "members": 45,
+      "member_bytes": 395872,
+      "crc_check": "PASS",
+      "sha256": "db0b119e772ca742dabc7715a136c6ad828327e2aac1e3a8319ae14f5041f427"
+    },
+    "QML platform duplicate original-issues ZIP": {
+      "exists": true,
+      "bytes": 270826,
+      "members": 45,
+      "member_bytes": 395872,
+      "crc_check": "PASS",
+      "sha256": "db0b119e772ca742dabc7715a136c6ad828327e2aac1e3a8319ae14f5041f427"
+    },
+    "LintQ Figshare TAR": {
+      "exists": true,
+      "bytes": 2484695040,
+      "sha256": "aae0912764481140ed8156f8425992b7c82c2c99a4d059a3f9a9aedbb6ee0807"
+    },
+    "Qolumbina verified extraction": {
+      "archive_regular_files": 15880,
+      "archive_member_bytes": 201639269,
+      "mapped_member_count": 0,
+      "missing_extracted_members": 0,
+      "missing_examples": [],
+      "complete": true
+    },
+    "Quantum platform verified case-safe extraction": {
+      "archive_regular_files": 11788,
+      "archive_member_bytes": 153762125,
+      "mapped_member_count": 484,
+      "missing_extracted_members": 0,
+      "missing_examples": [],
+      "complete": true
+    },
+    "QML platform extraction": {
+      "archive_regular_files": 43,
+      "archive_member_bytes": 1473716,
+      "mapped_member_count": 17,
+      "missing_extracted_members": 0,
+      "missing_examples": [],
+      "complete": true
+    },
+    "QML classified extraction": {
+      "archive_regular_files": 33,
+      "archive_member_bytes": 473778,
+      "mapped_member_count": 33,
+      "missing_extracted_members": 0,
+      "missing_examples": [],
+      "complete": true
+    },
+    "QML original extraction": {
+      "archive_regular_files": 45,
+      "archive_member_bytes": 395872,
+      "mapped_member_count": 0,
+      "missing_extracted_members": 0,
+      "missing_examples": [],
+      "complete": true
+    },
+    "Bugs4Q official GitHub framework extraction": {
+      "archive_regular_files": 237,
+      "archive_member_bytes": 170063,
+      "mapped_member_count": 0,
+      "missing_extracted_members": 0,
+      "missing_examples": [],
+      "complete": true
+    },
+    "Bugs4Q official Zenodo database extraction": {
+      "archive_regular_files": 337,
+      "archive_member_bytes": 29288166,
+      "mapped_member_count": 0,
+      "missing_extracted_members": 1,
+      "missing_examples": [
+        "Bugs4Q-Database/Terra-6000-7100/6927_Bug/\u00b5\u00ec\u00f2\u03a6\u00c4\u2556.PNG"
+      ],
+      "complete": false
+    },
+    "Bugs4Q official Zenodo database verified extraction": {
+      "archive_regular_files": 337,
+      "archive_member_bytes": 29288166,
+      "mapped_member_count": 0,
+      "missing_extracted_members": 0,
+      "missing_examples": [],
+      "complete": true
+    },
+    "Bugs4Q official Zenodo framework extraction": {
+      "archive_regular_files": 322,
+      "archive_member_bytes": 291538,
+      "mapped_member_count": 0,
+      "missing_extracted_members": 0,
+      "missing_examples": [],
+      "complete": true
+    }
+  },
+  "rar_archives": {
+    "hornbro_qbugs_source.rar": {
+      "exists": true,
+      "bytes": 49259382,
+      "md5": "8836278a06f21411ccf35cb8ff872353",
+      "archive_test": "PASS"
+    },
+    "qbugs_hornbro.rar": {
+      "exists": true,
+      "bytes": 33723792,
+      "md5": "2a50048144bd41dacc2f6fb99ee8e99c",
+      "archive_test": "FAIL_EXIT_3"
+    }
+  },
+  "Bugs4Q_Robust_execution_csv": {
+    "execution_rows": 1110,
+    "issues": 37,
+    "runs": 30,
+    "buggy_outcomes": [
+      "Fail",
+      "Pass"
+    ],
+    "fixed_outcomes": [
+      "Fail",
+      "Pass"
+    ]
+  },
+  "QSimBench_jsonl": {
+    "trace_files": 4500,
+    "nonempty_records": 1669597,
+    "trace_bytes": 11635095749
+  }
+}

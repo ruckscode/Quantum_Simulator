@@ -1,0 +1,56 @@
+{
+  "status": "completed_grouped_supervised_qnn_benchmark",
+  "qnn_training_completed": true,
+  "local_attempts": [
+    {
+      "result": "gradient_check_failed_before_optimizer_step",
+      "artifacts_preserved": [
+        "qnn_partial_gradient_failure_20261028/preprocessing_fold1.joblib"
+      ]
+    },
+    {
+      "result": "preflight_refused_before_imports",
+      "available_mib": 625.9,
+      "required_preflight_mib": 700,
+      "optimizer_steps": 0
+    },
+    {
+      "result": "preflight_refused_before_imports",
+      "available_mib": 653.2,
+      "required_preflight_mib": 700,
+      "optimizer_steps": 0
+    }
+  ],
+  "dataset": {
+    "rows": 62,
+    "bug_groups": 31,
+    "sha256": "cef4b2378b97610b498917f6412f18e716c2ab91369ea709fc98541952008cdb",
+    "label_mapping": {
+      "fixed": 0,
+      "buggy": 1
+    }
+  },
+  "training_bundle": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_standalone\\bugs4q_qnn_kaggle_bundle.zip",
+  "notebook": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_standalone\\qnn_kaggle_bundle\\Bugs4Q_grouped_QNN_training.ipynb",
+  "bundle_sha256": "ec1a41728d81ee41cdf5fa23c14d17cf9ebbfc5f674ca13df37acf2b32122380",
+  "planned_training": "5-fold GroupKFold by bug_id; four supervised PennyLane default.qubit variants; three matched classical controls; validated parameter gradients; incremental fold metrics, OOF predictions, histories and checkpoints",
+  "external_session": "No Kaggle browser session available in this execution environment; notebook has not been run.",
+  "production_model_modified": false,
+  "frozen_test_accessed": false,
+  "verified_artifacts": [
+    "qnn_gradient_fix/fold_checkpoints.json",
+    "qnn_gradient_fix/training_history.json",
+    "qnn_gradient_fix/fold_metrics.json",
+    "qnn_gradient_fix/oof_predictions.csv",
+    "qnn_gradient_fix/leaderboard.json",
+    "qnn_gradient_fix/per_class_metrics.json",
+    "qnn_gradient_fix/per_bug_metrics.json",
+    "qnn_gradient_fix/pairwise_error_complementarity.json",
+    "qnn_gradient_fix/ensemble_oof_predictions.csv",
+    "qnn_gradient_fix/ensemble_summary.json",
+    "qnn_gradient_fix/summary.json"
+  ],
+  "training_results": "qnn_gradient_fix/summary.json",
+  "device": "PennyLane default.qubit CPU analytic backpropagation",
+  "kaggle_used": false
+}

@@ -1,0 +1,16 @@
+{
+  "status": "no_valid_transfer_fit",
+  "target_task": "QMutBench three-class Survivor/WOO/OPO",
+  "sources_screened": ["Bugs4Q", "Bugs4Q-Robust", "QBugs", "Qolumbina", "quantum ecosystem defect reports", "Kaggle Quantum competition"],
+  "findings": [
+    "Bugs4Q has source-native buggy/fixed examples and a separately evaluated issue-level detection task, not QMutBench mutation outcomes.",
+    "Bugs4Q-Robust contains repeated test-run outcomes; its grouped artifacts describe reproducibility, not a compatible mutation target.",
+    "Qolumbina is documented as test-ready programs and infrastructure without mutation labels.",
+    "The ecosystem bug-report paper states its supporting data can be shared upon request; no public row-level artifact was verified.",
+    "Kaggle's public Quantum competition describes a separate simulated run-stability target; its dataset was not downloaded or independently verified."
+  ],
+  "multi_task": "not run; no validated common representation and labeled source rows were assembled for a joint task",
+  "compatible_source_combinations_tested": [],
+  "label_remapping": false,
+  "frozen_test_accessed": false
+}

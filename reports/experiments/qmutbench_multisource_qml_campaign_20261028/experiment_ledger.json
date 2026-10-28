@@ -1,0 +1,106 @@
+{
+  "schema": "qmutbench-multisource-qml-campaign-v1",
+  "repository_branch": "qmutbench-master-optimization",
+  "repository_head": "869aa55034d5016eb4bb4661f5390a7ff38cb8b7",
+  "entries": [
+    {
+      "id": "qmb-binary-reuse",
+      "dataset": "QMutBench",
+      "task": "binary production",
+      "status": "completed_reused",
+      "result": "macro F1 0.793314 five-fold OOF",
+      "artifact": "reports/experiments/qmutbench_final_classical_campaign_20261027.md"
+    },
+    {
+      "id": "qmb-threeclass-reuse",
+      "dataset": "QMutBench",
+      "task": "three-class research",
+      "status": "completed_reused",
+      "result": "matched classical/QNN pilot; no QNN advantage",
+      "artifact": "reports/experiments/qmutbench_three_class_qnn_campaign_20261027/research_report.md"
+    },
+    {
+      "id": "qmb-blend-screen",
+      "dataset": "QMutBench",
+      "task": "three-class research",
+      "status": "completed_exploratory",
+      "result": "all-six blend macro F1 0.4919 on same 12-origin pilot; no promotion",
+      "artifact": "../qmutbench_multisource_ensemble_20261028/research_report.md"
+    },
+    {
+      "id": "bugs4q-classical",
+      "dataset": "Bugs4Q",
+      "task": "buggy/fixed source-state",
+      "status": "completed",
+      "result": "31 groups / 62 rows; best Random Forest 4D macro F1 0.5312; ten candidates evaluated",
+      "artifact": "bugs4q_standalone/standalone_summary.json"
+    },
+    {
+      "id": "bugs4q-qnn",
+      "dataset": "Bugs4Q",
+      "task": "buggy/fixed source-state",
+      "status": "resource_blocked_before_fit",
+      "result": "684 MiB available vs 700 MiB guard; no model update",
+      "artifact": "resource_usage.json"
+    },
+    {
+      "id": "qmb-confirm-export",
+      "dataset": "QMutBench",
+      "task": "three-class 36-origin confirmation",
+      "status": "resource_blocked_before_import",
+      "result": "792 MiB available vs 900 MiB exporter gate; no data loaded/output created",
+      "artifact": "resource_usage.json"
+    },
+    {
+      "id": "bugs4q-robust-audit",
+      "dataset": "Bugs4Q-Robust",
+      "task": "test reproducibility outcomes",
+      "status": "completed_artifact_audit",
+      "result": "Published 37-artifact run summaries; not trained as row-level supervised set",
+      "artifact": "dataset_provenance.json"
+    },
+    {
+      "id": "qolumbina-screen",
+      "dataset": "Qolumbina",
+      "task": "program-level testing",
+      "status": "not_used_no_local_artifact_or_mutation_labels",
+      "result": "Official docs describe program/test infrastructure, not compatible mutation labels",
+      "artifact": "source_inventory.csv"
+    },
+    {
+      "id": "qbugs-screen",
+      "dataset": "QBugs",
+      "task": "bug catalog",
+      "status": "not_used_no_local_row_release",
+      "result": "Located 2021 proposal paper; no verified local labeled table",
+      "artifact": "source_inventory.csv"
+    },
+    {
+      "id": "ecosystem-report-screen",
+      "dataset": "32,296 issue paper",
+      "task": "issue taxonomy",
+      "status": "no_public_rows_verified",
+      "result": "Paper data availability says share upon request; no contact performed",
+      "artifact": "source_inventory.csv"
+    },
+    {
+      "id": "kaggle-screen",
+      "dataset": "Quantum competition",
+      "task": "simulated run stability",
+      "status": "not_downloaded",
+      "result": "No Kaggle CLI/session; separate target and no cross-source compatibility",
+      "artifact": "source_inventory.csv"
+    },
+    {
+      "id": "cross-source-transfer",
+      "dataset": "multiple",
+      "task": "QMutBench transfer",
+      "status": "not_run_incompatible_labels",
+      "result": "No defensible common target or feature schema",
+      "artifact": "transfer_learning_results.json"
+    }
+  ],
+  "production_model_initial_sha256": "8cd332a309e27ef09cc46c5bf8a8788da35c05aa6ed25ed5de21d26ced076175",
+  "frozen_test_touched": false,
+  "production_model_final_sha256": "8cd332a309e27ef09cc46c5bf8a8788da35c05aa6ed25ed5de21d26ced076175"
+}

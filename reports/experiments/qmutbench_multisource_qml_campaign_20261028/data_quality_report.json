@@ -1,0 +1,47 @@
+{
+  "qmutbench": {
+    "source_sha256_verified": true,
+    "development_records": 578117,
+    "origins": 305,
+    "label_counts": {
+      "Survivor": 278413,
+      "WOO": 294802,
+      "OPO": 4902
+    },
+    "binary_target_mapping": "Survivor=0, WOO/OPO=1",
+    "development_manifest": "data/qmutbench_ml/master_optimization_v1/oof_predictions.csv"
+  },
+  "bugs4q": {
+    "source_archive_sha256_verified": true,
+    "upstream_listed_qiskit_bugs": 42,
+    "paired_source_cases_found": 40,
+    "complete_bug_fixed_metadata_and_both_trigger_test_pairs": 31,
+    "included_snapshots": 62,
+    "missing_or_incomplete_cases_excluded": 11,
+    "duplicate_record_ids": 0,
+    "both_classes_per_issue": true,
+    "python_source_ast_valid": true,
+    "issue_metadata_or_paths_used_as_predictors": false,
+    "exact_raw_source_hash_duplicates": 0,
+    "exact_sanitized_feature_body_duplicates": 0,
+    "comments_and_docstrings_removed": true,
+    "executable_string_literals_retained": true
+  },
+  "bugs4q_robust": {
+    "official_snapshot_commit": "c7048476e5e76e95412b3640a3fa5651f51c01a4",
+    "execution_rows": 1110,
+    "artifact_groups": 37,
+    "runs_per_artifact": 30,
+    "complete_success_artifacts": 29,
+    "partial_success_artifacts": 4,
+    "failure_artifacts": 4,
+    "paired_run_labels": true,
+    "used_as_ml_rows": false
+  },
+  "frozen_test_records_loaded": false,
+  "limitations": [
+    "Bugs4Q sample is small and Qiskit-only.",
+    "Bugs4Q trigger files were required to exist but were not executed for this ML benchmark.",
+    "QMutBench three-class pilot is class-balanced and exploratory, not population-representative."
+  ]
+}

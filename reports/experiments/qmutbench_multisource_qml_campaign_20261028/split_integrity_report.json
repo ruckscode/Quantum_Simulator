@@ -1,0 +1,7 @@
+{
+  "qmutbench_binary": {"status":"reused validated grouped OOF","group":"Origin_program","folds":5,"development_origins":305,"frozen_test_used":false},
+  "qmutbench_three_class_exploration": {"status":"reused saved OOF","group":"Origin_program","folds":3,"origins":12,"records":205,"reserved_confirmation_overlap":0},
+  "qmutbench_reserved_confirmation": {"status":"not run","reserved_origins":36,"overlap_with_exploration":0,"data_read":false,"reason":"exporter memory gate stopped before import and source scan"},
+  "bugs4q": {"status":"passed","group":"bug_id","folds":5,"groups":31,"group_overlap_by_fold":0,"buggy_fixed_variants_kept_together":true},
+  "bugs4q_robust": {"status":"artifact-level repeated runs audited","group":"artifact id","rows":1110,"groups":37,"repeats_per_group":30,"not_treated_as_independent_ml_rows":true}
+}

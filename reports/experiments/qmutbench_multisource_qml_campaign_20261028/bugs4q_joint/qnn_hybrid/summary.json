@@ -1,0 +1,517 @@
+{
+  "status": "completed_grouped_supervised_qnn_benchmark",
+  "task": "Joint Bugs4Q core and non-overlapping Bugs4Q-NA fixed=0 versus buggy=1 source-state classification; train and evaluate on identical pooled five-fold grouped origins",
+  "data": "31 issue groups / 62 paired snapshots; comments and docstrings stripped; executable strings retained",
+  "group_split": "5-fold GroupKFold by bug_id; buggy/fixed pair stays within the same fold",
+  "qnn_candidates": [
+    "angle_hybrid_readout"
+  ],
+  "matched_classical_controls": [
+    "logistic_4d",
+    "random_forest_4d",
+    "extra_trees_4d"
+  ],
+  "folds": 5,
+  "records": 124,
+  "origins": 62,
+  "gradient_checks_passed": 5,
+  "gradient_checks_expected": 5,
+  "optimizer_runs": 5,
+  "optimizer_steps_per_run": 15,
+  "all_loss_histories_decreased": false,
+  "device": "PennyLane default.qubit CPU statevector with analytic backpropagation; no GPU or hardware claim",
+  "pennylane_version": "0.45.1",
+  "bootstrap_replicates": 2000,
+  "resource_use": {
+    "available_ram_mib_at_summary_start": 942.8,
+    "local_ram_floor_mib": 500,
+    "sampled_peak_training_process_rss_mib": null,
+    "checkpoint_count": 5
+  },
+  "ensemble_diagnostics": [
+    {
+      "model": "quantum_equal_probability_mean",
+      "members": [
+        "angle_hybrid_readout"
+      ],
+      "macro_f1": 0.4979101358411703,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          35,
+          27
+        ],
+        [
+          35,
+          27
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.5,
+          "recall": 0.5645161290322581,
+          "f1": 0.5303030303030303,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.5,
+          "recall": 0.43548387096774194,
+          "f1": 0.46551724137931033,
+          "support": 62
+        }
+      }
+    },
+    {
+      "model": "all_candidates_equal_probability_mean",
+      "members": [
+        "angle_hybrid_readout",
+        "logistic_4d",
+        "random_forest_4d",
+        "extra_trees_4d"
+      ],
+      "macro_f1": 0.514993481095176,
+      "accuracy": 0.5161290322580645,
+      "balanced_accuracy": 0.5161290322580645,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          29,
+          33
+        ],
+        [
+          27,
+          35
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.5178571428571429,
+          "recall": 0.46774193548387094,
+          "f1": 0.4915254237288136,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.5147058823529411,
+          "recall": 0.5645161290322581,
+          "f1": 0.5384615384615384,
+          "support": 62
+        }
+      }
+    }
+  ],
+  "per_source_oof_performance": [
+    {
+      "model": "angle_hybrid_readout",
+      "source": "Bugs4Q_NA_additional",
+      "records": 62,
+      "origins": 31,
+      "macro_f1": 0.515625,
+      "accuracy": 0.5161290322580645,
+      "balanced_accuracy": 0.5161290322580645,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          17,
+          14
+        ],
+        [
+          16,
+          15
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.5151515151515151,
+          "recall": 0.5483870967741935,
+          "f1": 0.53125,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.5172413793103449,
+          "recall": 0.4838709677419355,
+          "f1": 0.5,
+          "support": 31
+        }
+      }
+    },
+    {
+      "model": "angle_hybrid_readout",
+      "source": "Bugs4Q_core",
+      "records": 62,
+      "origins": 31,
+      "macro_f1": 0.4789915966386554,
+      "accuracy": 0.4838709677419355,
+      "balanced_accuracy": 0.4838709677419355,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          18,
+          13
+        ],
+        [
+          19,
+          12
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.4864864864864865,
+          "recall": 0.5806451612903226,
+          "f1": 0.5294117647058824,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.48,
+          "recall": 0.3870967741935484,
+          "f1": 0.42857142857142855,
+          "support": 31
+        }
+      }
+    },
+    {
+      "model": "extra_trees_4d",
+      "source": "Bugs4Q_NA_additional",
+      "records": 62,
+      "origins": 31,
+      "macro_f1": 0.5441176470588236,
+      "accuracy": 0.5483870967741935,
+      "balanced_accuracy": 0.5483870967741935,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          20,
+          11
+        ],
+        [
+          17,
+          14
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.5405405405405406,
+          "recall": 0.6451612903225806,
+          "f1": 0.5882352941176471,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.56,
+          "recall": 0.45161290322580644,
+          "f1": 0.5,
+          "support": 31
+        }
+      }
+    },
+    {
+      "model": "extra_trees_4d",
+      "source": "Bugs4Q_core",
+      "records": 62,
+      "origins": 31,
+      "macro_f1": 0.4892373106563912,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          11,
+          20
+        ],
+        [
+          11,
+          20
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.5,
+          "recall": 0.3548387096774194,
+          "f1": 0.41509433962264153,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.5,
+          "recall": 0.6451612903225806,
+          "f1": 0.5633802816901409,
+          "support": 31
+        }
+      }
+    },
+    {
+      "model": "logistic_4d",
+      "source": "Bugs4Q_NA_additional",
+      "records": 62,
+      "origins": 31,
+      "macro_f1": 0.49882659713168187,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          17,
+          14
+        ],
+        [
+          17,
+          14
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.5,
+          "recall": 0.5483870967741935,
+          "f1": 0.5230769230769231,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.5,
+          "recall": 0.45161290322580644,
+          "f1": 0.4745762711864407,
+          "support": 31
+        }
+      }
+    },
+    {
+      "model": "logistic_4d",
+      "source": "Bugs4Q_core",
+      "records": 62,
+      "origins": 31,
+      "macro_f1": 0.5079365079365079,
+      "accuracy": 0.5161290322580645,
+      "balanced_accuracy": 0.5161290322580645,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          12,
+          19
+        ],
+        [
+          11,
+          20
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.5217391304347826,
+          "recall": 0.3870967741935484,
+          "f1": 0.4444444444444444,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.5128205128205128,
+          "recall": 0.6451612903225806,
+          "f1": 0.5714285714285714,
+          "support": 31
+        }
+      }
+    },
+    {
+      "model": "random_forest_4d",
+      "source": "Bugs4Q_NA_additional",
+      "records": 62,
+      "origins": 31,
+      "macro_f1": 0.48333333333333334,
+      "accuracy": 0.4838709677419355,
+      "balanced_accuracy": 0.4838709677419355,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          16,
+          15
+        ],
+        [
+          17,
+          14
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.48484848484848486,
+          "recall": 0.5161290322580645,
+          "f1": 0.5,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.4827586206896552,
+          "recall": 0.45161290322580644,
+          "f1": 0.4666666666666667,
+          "support": 31
+        }
+      }
+    },
+    {
+      "model": "random_forest_4d",
+      "source": "Bugs4Q_core",
+      "records": 62,
+      "origins": 31,
+      "macro_f1": 0.4464285714285714,
+      "accuracy": 0.45161290322580644,
+      "balanced_accuracy": 0.45161290322580644,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          11,
+          20
+        ],
+        [
+          14,
+          17
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.44,
+          "recall": 0.3548387096774194,
+          "f1": 0.39285714285714285,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.4594594594594595,
+          "recall": 0.5483870967741935,
+          "f1": 0.5,
+          "support": 31
+        }
+      }
+    }
+  ],
+  "results": [
+    {
+      "macro_f1": 0.4979101358411703,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          35,
+          27
+        ],
+        [
+          35,
+          27
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.5,
+          "recall": 0.5645161290322581,
+          "f1": 0.5303030303030303,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.5,
+          "recall": 0.43548387096774194,
+          "f1": 0.46551724137931033,
+          "support": 62
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.4632034632034632,
+        0.5303030303030303
+      ],
+      "measured_fit_runtime_seconds_sum": 243.97170849999998,
+      "model": "angle_hybrid_readout",
+      "family": "quantum_or_hybrid"
+    },
+    {
+      "macro_f1": 0.5072633704644649,
+      "accuracy": 0.5080645161290323,
+      "balanced_accuracy": 0.5080645161290323,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          29,
+          33
+        ],
+        [
+          28,
+          34
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.5087719298245614,
+          "recall": 0.46774193548387094,
+          "f1": 0.48739495798319327,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.5074626865671642,
+          "recall": 0.5483870967741935,
+          "f1": 0.5271317829457365,
+          "support": 62
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.47577235772357723,
+        0.532258064516129
+      ],
+      "measured_fit_runtime_seconds_sum": 0.0523258,
+      "model": "logistic_4d",
+      "family": "classical"
+    },
+    {
+      "macro_f1": 0.4671875,
+      "accuracy": 0.46774193548387094,
+      "balanced_accuracy": 0.467741935483871,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          27,
+          35
+        ],
+        [
+          31,
+          31
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.46551724137931033,
+          "recall": 0.43548387096774194,
+          "f1": 0.45,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.4696969696969697,
+          "recall": 0.5,
+          "f1": 0.484375,
+          "support": 62
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.4094082338357148,
+        0.5234186697934988
+      ],
+      "measured_fit_runtime_seconds_sum": 0.8926992,
+      "model": "random_forest_4d",
+      "family": "classical"
+    },
+    {
+      "macro_f1": 0.5239148825405089,
+      "accuracy": 0.5241935483870968,
+      "balanced_accuracy": 0.5241935483870968,
+      "confusion_matrix_labels_class0_class1": [
+        [
+          31,
+          31
+        ],
+        [
+          28,
+          34
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.5254237288135594,
+          "recall": 0.5,
+          "f1": 0.512396694214876,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.5230769230769231,
+          "recall": 0.5483870967741935,
+          "f1": 0.5354330708661418,
+          "support": 62
+        }
+      },
+      "bug_group_bootstrap_95ci_macro_f1": [
+        0.4664928292046936,
+        0.5802165259888108
+      ],
+      "measured_fit_runtime_seconds_sum": 0.631505,
+      "model": "extra_trees_4d",
+      "family": "classical"
+    }
+  ],
+  "finalization_note": "Training and OOF export completed. The original pandas bootstrap pass was interrupted when available RAM fell under the 500 MiB floor; this summary uses vectorized NumPy issue-group resampling.",
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}

@@ -1,0 +1,9 @@
+{
+  "tasks": [
+    {"id": "qmutbench_binary_production", "source": "QMutBench", "labels": {"Survivor": 0, "WOO": 1, "OPO": 1}, "status": "existing champion retained", "score": "macro F1 0.793314; five-fold grouped OOF on 578117 development records / 305 origins"},
+    {"id": "qmutbench_three_class_research", "source": "QMutBench", "labels": {"Survivor": 0, "WOO": 1, "OPO": 2}, "status": "existing exploratory matched pilot plus ensemble analysis", "scope": "205 records, 12 origins, class-balanced sample; never compare directly with binary task"},
+    {"id": "bugs4q_buggy_fixed_state", "source": "Bugs4Q", "labels": {"fixed": 0, "buggy": 1}, "status": "standalone classical benchmark completed", "scope": "31 paired Qiskit bug issues; issue-grouped five-fold OOF"},
+    {"id": "bugs4q_robust_trigger_reproducibility", "source": "Bugs4Q-Robust", "labels": {"test_pass": "Pass", "test_fail": "Fail", "aggregates": ["Complete Success", "Partial Success", "Failure"]}, "status": "existing published run logs audited; not used as supervised task"}
+  ],
+  "compatibility_policy": "Never map buggy/fixed or test reproducibility labels to QMutBench Survivor/WOO/OPO."
+}

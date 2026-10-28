@@ -1,0 +1,44 @@
+{
+  "task": "qsimbench_backend_fingerprint",
+  "model": "amplitude_hybrid_3q_depth2",
+  "fold": 3,
+  "records": 60,
+  "groups": 30,
+  "training_seconds": 0.37093470000399975,
+  "gradient_check": {
+    "parameter_shift": -0.0010594112459433765,
+    "finite_difference": -0.0010594112587192228,
+    "absolute_error": 1.2775846353063613e-11,
+    "passed": true
+  },
+  "metrics": {
+    "accuracy": 0.5833333333333334,
+    "balanced_accuracy": 0.5833333333333333,
+    "macro_f1": 0.5832175604334537,
+    "per_class": {
+      "0": {
+        "precision": 0.5806451612903226,
+        "recall": 0.6,
+        "f1": 0.5901639344262295,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.5862068965517241,
+        "recall": 0.5666666666666667,
+        "f1": 0.576271186440678,
+        "support": 30
+      }
+    },
+    "confusion_matrix": [
+      [
+        18,
+        12
+      ],
+      [
+        13,
+        17
+      ]
+    ]
+  },
+  "available_ram_mib": 1047.58984375
+}
