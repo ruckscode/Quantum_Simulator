@@ -1,0 +1,30 @@
+{
+  "status": "verified",
+  "archive": "data/qmutbench_ml/exhaustive_campaign_v1/five_fold_confirmation/mutation_diff_oof.npz",
+  "archive_sha256": "bfc1affdd40ac1032b65e417548075ce066407297fc603085ba6519403f56367",
+  "oof_csv": "data/qmutbench_ml/master_optimization_v1/oof_predictions.csv",
+  "records": 578117,
+  "origins": 305,
+  "fold_counts": {
+    "1": 114961,
+    "2": 117775,
+    "3": 115280,
+    "4": 114906,
+    "5": 115195
+  },
+  "class_counts_by_fold": {
+    "fold=1,label=0": 55305,
+    "fold=1,label=1": 59656,
+    "fold=2,label=0": 56857,
+    "fold=2,label=1": 60918,
+    "fold=3,label=0": 55481,
+    "fold=3,label=1": 59799,
+    "fold=4,label=0": 55310,
+    "fold=4,label=1": 59596,
+    "fold=5,label=0": 55460,
+    "fold=5,label=1": 59735
+  },
+  "origin_cross_fold_count": 0,
+  "numeric_arrays_only": true,
+  "frozen_test_accessed": false
+}
