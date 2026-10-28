@@ -300,6 +300,8 @@ class BinaryVQC:
                             prior_training_executions + int(tracker.totals.get("executions", 0)),
                             self.peak_rss_bytes, self.loss_history, compact_batch_order,
                             shuffle_rng_state, initial_weights)
+                        self.training_seconds = self.resume_state["training_seconds"]
+                        self.training_executions = self.resume_state["training_executions"]
                         self.training_complete = epoch >= self.epochs
                         self.weights, self.readout_scale, self.readout_bias = weights, scale, bias
                         return self

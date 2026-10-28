@@ -414,4 +414,6 @@ def test_real_pennylane_chunk_resume_gradient_and_update_when_ram_allows():
     assert model.gradient_check_result["passed"]
     assert not np.allclose(np.asarray(model.weights), initial)
     assert model.resume_state["processed_records"] == len(y)
+    assert model.training_executions == model.resume_state["training_executions"] > 0
+    assert model.training_seconds == model.resume_state["training_seconds"]
     assert len(committed) == 2
