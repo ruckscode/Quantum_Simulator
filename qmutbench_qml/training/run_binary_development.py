@@ -461,14 +461,35 @@ def _summary_metrics(all_predictions: list[dict[str, Any]], fold_metrics: list[d
     return summaries
 
 
+def has_resume_candidates(output: Path) -> bool:
+    """Return whether the output contains a named completed-fold or epoch checkpoint candidate.
+
+    This is only a cheap directory gate, not a trust decision. The corresponding
+    checkpoint loaders still validate schema, checksum, configuration, fold,
+    data fingerprint, and epoch continuity before any state is reused.
+    """
+    checkpoint_dir = output / "fold_checkpoints"
+    if not checkpoint_dir.is_dir():
+        return False
+    for path in checkpoint_dir.glob("fold_*.json"):
+        parts = path.stem.split("_")
+        if (len(parts) == 2 and parts[0] == "fold" and parts[1].isdigit()
+                and 1 <= int(parts[1]) <= 5):
+            return True
+        if (len(parts) == 5 and parts[0] == "fold" and parts[1].isdigit()
+                and 1 <= int(parts[1]) <= 5 and parts[2] == "qnn"
+                and parts[3] == "epoch" and parts[4].isdigit()
+                and int(parts[4]) >= 1):
+            return True
+    return False
+
+
 def run_campaign(root: Path, output: Path, config: dict[str, Any], resume: bool = False) -> dict[str, Any]:
     """Run bounded sampled 5-fold OOF; not a full-row fit or frozen-test run."""
     root, output = root.resolve(), output.resolve()
     required_start = memory_preflight(config)
     if output.exists() and any(output.iterdir()):
-        checkpoint_dir = output / "fold_checkpoints"
-        has_checkpoints = checkpoint_dir.is_dir() and any(
-            checkpoint_dir.glob("fold_*.json"))
+        has_checkpoints = has_resume_candidates(output)
         if not resume:
             raise FileExistsError("Output exists; use a new directory or pass --resume to validate fold checkpoints")
         if not has_checkpoints:
