@@ -198,6 +198,32 @@ def test_qnn_epoch_checkpoint_restores_only_complete_validated_boundaries(tmp_pa
         binary.load_latest_qnn_epoch_checkpoint(tmp_path, 1, "fp", config)
 
 
+def test_qnn_epoch_checkpoint_rejects_wrong_fold_split_and_configuration(tmp_path):
+    config = {**binary.DEFAULT_CONFIG, "epochs": 8, "qubits": 2, "depth": 1}
+    path = binary.save_qnn_epoch_checkpoint(tmp_path, 1, "fold-1-split-A", config,
+                                            _epoch_state(1))
+    with pytest.raises(ValueError, match="Incompatible QNN epoch checkpoint"):
+        binary.load_qnn_epoch_checkpoint(path, 2, 1, "fold-1-split-A", config)
+    with pytest.raises(ValueError, match="Stale QNN epoch checkpoint"):
+        binary.load_qnn_epoch_checkpoint(path, 1, 1, "fold-1-split-B", config)
+    changed_config = {**config, "seed": config["seed"] + 1}
+    with pytest.raises(ValueError, match="Stale QNN epoch checkpoint"):
+        binary.load_qnn_epoch_checkpoint(path, 1, 1, "fold-1-split-A", changed_config)
+
+
+def test_incomplete_epoch_is_never_written_or_reported_complete(tmp_path):
+    config = {**binary.DEFAULT_CONFIG, "epochs": 8, "qubits": 2, "depth": 1}
+    completed = _epoch_state(1)
+    binary.save_qnn_epoch_checkpoint(tmp_path, 1, "split-fingerprint", config, completed)
+    incomplete = _epoch_state(2)
+    incomplete["loss_history"] = incomplete["loss_history"][:-1]
+    with pytest.raises(ValueError, match="complete loss history"):
+        binary.save_qnn_epoch_checkpoint(tmp_path, 1, "split-fingerprint", config, incomplete)
+    assert not (tmp_path / "fold_01_qnn_epoch_0002.json").exists()
+    assert binary.load_latest_qnn_epoch_checkpoint(
+        tmp_path, 1, "split-fingerprint", config) == completed
+
+
 def test_failed_epoch_checkpoint_replace_preserves_previous_boundary(tmp_path, monkeypatch):
     config = {**binary.DEFAULT_CONFIG, "epochs": 8, "qubits": 2, "depth": 1}
     binary.save_qnn_epoch_checkpoint(tmp_path, 1, "fp", config, _epoch_state(1))
