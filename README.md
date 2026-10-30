@@ -193,7 +193,18 @@ result = circuit.run(shots=1000, seed=42)
 print(result.get_counts())
 ```
 
-`QuantumCircuit` supports the gates and special operations implemented in the package, including single-qubit gates and rotations, `cx`, `cz`, `swap`, `ccx`, `reset`, barriers, and measurement. See `src/quantum_simulator/quantum_circuit.py` for the current builder methods.
+`QuantumCircuit` exposes direct builder methods for the supported gates, so circuits can be written without manually constructing instruction tuples. It includes single-qubit gates and rotations (`i`, `x`, `h`, `rx`, `p`, `u2`, `u3`, and others), controlled/two-qubit gates (`cx`, `cz`, `ch`, `cp`, `crx`, `rxx`, and others), three-qubit gates (`ccx`, `toffoli`, `rccx`, `cswap`, and `fredkin`), reset, barriers, and measurement. Common aliases such as `hadamard` and `cnot` are also available.
+
+```python
+circuit = QuantumCircuit(3)
+circuit.h(0)
+circuit.cx(0, 1)
+circuit.ry(0.4, 2)
+circuit.cp(0.2, 1, 2)
+circuit.ccx(0, 1, 2)
+circuit.measure_all()
+counts = circuit.run(shots=2048, seed=7).get_counts()
+```
 
 ## 8. Running Simulations
 
@@ -467,3 +478,4 @@ The generic calibration contract distinguishes caller-reported acquisition time 
 ## Finalization report
 
 The authoritative current-tree research and software finalization report is [final_research_report.md](final_research_report.md). It records the bounded validation result, frozen 7/45 failure and case explanations, claim boundaries, evidence limitations, and release disposition. The separate [independent research handoff](reports/independent_research_handoff_20261015.md) defines a blocked, planning-only follow-up protocol and its provenance gates. Historical status entries above remain dated snapshots; use the report's finalization section for the current milestone verdict.
+
