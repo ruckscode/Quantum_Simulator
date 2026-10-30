@@ -1,0 +1,28 @@
+{
+  "status": "completed_grouped_classical_suite",
+  "task": {
+    "class_counts": {
+      "0": 73,
+      "1": 214
+    },
+    "groups": 216,
+    "input": "reports/experiments/qml_source_preprocessing_20261029/classical_nine_source_v2_inputs/lintq_context_v2_conflict_excluded.csv",
+    "name": "lintq_context_v2_conflict_excluded",
+    "rows": 287,
+    "sha256": "a36841ca65dc79eb8ea9027b7f05c6c1e3a8c70964aea62b3b0c4390e11fe603",
+    "source_contract": "experiments/source_task_contracts/lintq_warning_triage_context_v2.json",
+    "source_contract_sha256": "5c29e8206861057356f51f66e25e5829e4cd689b408af47c0faf588d39b79f83",
+    "source_id": "lintq",
+    "target_semantics": "Manual LintQ true-positive (1) versus false-positive (0) warning triage using the rule, warning text, and source-code context. Not hardware diagnosis.",
+    "task_id": "warning_triage_context_v2"
+  },
+  "rows": 287,
+  "groups": 216,
+  "folds": 5,
+  "runtime_seconds": 59.69167089999246,
+  "sampling_policy": "all sampling fitted only inside each training fold, after SVD and scaling",
+  "max_observed_process_rss_mib": 155.76953125,
+  "memory_measurement_note": "RSS sampled after model fits; maximum observed, not guaranteed OS peak",
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}

@@ -1,0 +1,31 @@
+{
+  "status": "completed_grouped_classical_suite",
+  "task": {
+    "class_counts": {
+      "0": 96,
+      "1": 223
+    },
+    "groups": 304,
+    "input": "reports/experiments/qml_source_preprocessing_20261029/classical_nine_source_v2_inputs/quantum_platform_comment_v2.csv",
+    "name": "quantum_platform_comment_v2",
+    "rows": 319,
+    "sha256": "921c79b9078670e7201cf48444d1efc27e54f5f418d985412ffadcedb776db93",
+    "source_contract": "experiments/source_task_contracts/quantum_platform_comment_v2.json",
+    "source_contract_sha256": "8bab8a38d8a290dfcfde6850e67d0c26274837777fdddf67d399a56722aeff9f",
+    "source_id": "quantum_platform_bugs",
+    "source_input_sha256": "f3c42e773f13b80a01f64f64df60508924a2fd6098eed9da4cee705aa2109ee8",
+    "source_processed_manifest_sha256": "aefbf26084e3901d0239a00700493373a9bbbbdeb4f08f60940ff9b0c8037110",
+    "source_split_sha256": "04996f4ea8a0207d60a557689cb015ccfb492ee6d450c38c0e1365cdeb57b3ac",
+    "target_semantics": "Curated issue-comment annotation classification; labels do not denote hardware faults.",
+    "task_id": "comment_only_classification_v2"
+  },
+  "rows": 319,
+  "groups": 304,
+  "folds": 5,
+  "runtime_seconds": 83.81467610000254,
+  "sampling_policy": "all sampling fitted only inside each training fold, after SVD and scaling",
+  "max_observed_process_rss_mib": 148.06640625,
+  "memory_measurement_note": "RSS sampled after model fits; maximum observed, not guaranteed OS peak",
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}

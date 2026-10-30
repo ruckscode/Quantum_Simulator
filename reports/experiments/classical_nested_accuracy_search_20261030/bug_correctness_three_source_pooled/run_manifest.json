@@ -1,0 +1,221 @@
+{
+  "status": "complete",
+  "task": "bug_correctness_three_source_pooled",
+  "input": "reports\\experiments\\qml_source_preprocessing_20261029\\classical_nine_source_v2_inputs\\bug_correctness_three_source_pooled.csv",
+  "input_sha256": "1f7f2f45a5d35cc9681b2ef550579a9a51a9084bff2e6378d95b123a1a9b15e0",
+  "records": 1620,
+  "groups": 810,
+  "fit_rows": 1620,
+  "exact_duplicate_compression": false,
+  "class_counts": {
+    "0": 810,
+    "1": 810
+  },
+  "outer_split": "GroupKFold(5)",
+  "inner_split": "GroupKFold(3) within each outer training partition",
+  "selection_metric": "inner-CV accuracy (fold-level macro-F1 and balanced accuracy reported on outer held-out groups)",
+  "search_candidates": 104,
+  "representations": [
+    "word TF-IDF (1-3 grams)",
+    "character TF-IDF (2-5 grams)",
+    "character-boundary TF-IDF (3-5 grams)",
+    "combined word + character TF-IDF"
+  ],
+  "classifiers": [
+    "LinearSVC",
+    "LogisticRegression",
+    "SGD modified-huber",
+    "ComplementNB"
+  ],
+  "frozen_test_accessed": false,
+  "folds": [
+    {
+      "fold": 1,
+      "train_records": 1296,
+      "fit_rows": 1296,
+      "validation_records": 324,
+      "train_groups": 648,
+      "validation_groups": 162,
+      "selected_params": {
+        "clf": "LinearSVC(max_iter=100000, random_state=20261030)",
+        "clf__C": 3,
+        "clf__class_weight": null,
+        "features": "TfidfVectorizer(analyzer='char', dtype=<class 'numpy.float32'>,\n                max_features=50000, ngram_range=(2, 5), strip_accents='unicode',\n                sublinear_tf=True)"
+      },
+      "best_inner_accuracy": 0.8966049382716049,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.8888888888888888,
+        "macro_f1": 0.8883742296060942,
+        "balanced_accuracy": 0.8888888888888888,
+        "confusion_matrix_labels_0_1": [
+          [
+            155,
+            7
+          ],
+          [
+            29,
+            133
+          ]
+        ]
+      },
+      "fit_seconds": 230.809,
+      "prediction_file": "fold_1_oof.csv"
+    },
+    {
+      "fold": 2,
+      "train_records": 1296,
+      "fit_rows": 1296,
+      "validation_records": 324,
+      "train_groups": 648,
+      "validation_groups": 162,
+      "selected_params": {
+        "clf": "LinearSVC(max_iter=100000, random_state=20261030)",
+        "clf__C": 3,
+        "clf__class_weight": null,
+        "features": "TfidfVectorizer(analyzer='char', dtype=<class 'numpy.float32'>,\n                max_features=50000, ngram_range=(2, 5), strip_accents='unicode',\n                sublinear_tf=True)"
+      },
+      "best_inner_accuracy": 0.8950617283950617,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.9104938271604939,
+        "macro_f1": 0.9103494995563274,
+        "balanced_accuracy": 0.9104938271604939,
+        "confusion_matrix_labels_0_1": [
+          [
+            154,
+            8
+          ],
+          [
+            21,
+            141
+          ]
+        ]
+      },
+      "fit_seconds": 231.732,
+      "prediction_file": "fold_2_oof.csv"
+    },
+    {
+      "fold": 3,
+      "train_records": 1296,
+      "fit_rows": 1296,
+      "validation_records": 324,
+      "train_groups": 648,
+      "validation_groups": 162,
+      "selected_params": {
+        "clf": "LinearSVC(max_iter=100000, random_state=20261030)",
+        "clf__C": 30,
+        "clf__class_weight": null,
+        "features": "TfidfVectorizer(dtype=<class 'numpy.float32'>, max_features=30000,\n                ngram_range=(1, 3), strip_accents='unicode', sublinear_tf=True,\n                token_pattern='(?u)\\\\b\\\\w+\\\\b')"
+      },
+      "best_inner_accuracy": 0.8912037037037037,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.904320987654321,
+        "macro_f1": 0.9039908234956746,
+        "balanced_accuracy": 0.904320987654321,
+        "confusion_matrix_labels_0_1": [
+          [
+            156,
+            6
+          ],
+          [
+            25,
+            137
+          ]
+        ]
+      },
+      "fit_seconds": 231.297,
+      "prediction_file": "fold_3_oof.csv"
+    },
+    {
+      "fold": 4,
+      "train_records": 1296,
+      "fit_rows": 1296,
+      "validation_records": 324,
+      "train_groups": 648,
+      "validation_groups": 162,
+      "selected_params": {
+        "clf": "LinearSVC(max_iter=100000, random_state=20261030)",
+        "clf__C": 3,
+        "clf__class_weight": null,
+        "features": "TfidfVectorizer(analyzer='char', dtype=<class 'numpy.float32'>,\n                max_features=50000, ngram_range=(2, 5), strip_accents='unicode',\n                sublinear_tf=True)"
+      },
+      "best_inner_accuracy": 0.888888888888889,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.904320987654321,
+        "macro_f1": 0.9042471042471043,
+        "balanced_accuracy": 0.904320987654321,
+        "confusion_matrix_labels_0_1": [
+          [
+            151,
+            11
+          ],
+          [
+            20,
+            142
+          ]
+        ]
+      },
+      "fit_seconds": 233.823,
+      "prediction_file": "fold_4_oof.csv"
+    },
+    {
+      "fold": 5,
+      "train_records": 1296,
+      "fit_rows": 1296,
+      "validation_records": 324,
+      "train_groups": 648,
+      "validation_groups": 162,
+      "selected_params": {
+        "clf": "LinearSVC(max_iter=100000, random_state=20261030)",
+        "clf__C": 3,
+        "clf__class_weight": null,
+        "features": "TfidfVectorizer(dtype=<class 'numpy.float32'>, max_features=30000,\n                ngram_range=(1, 3), strip_accents='unicode', sublinear_tf=True,\n                token_pattern='(?u)\\\\b\\\\w+\\\\b')"
+      },
+      "best_inner_accuracy": 0.8919753086419754,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.8734567901234568,
+        "macro_f1": 0.8724348201853362,
+        "balanced_accuracy": 0.8734567901234568,
+        "confusion_matrix_labels_0_1": [
+          [
+            156,
+            6
+          ],
+          [
+            35,
+            127
+          ]
+        ]
+      },
+      "fit_seconds": 231.434,
+      "prediction_file": "fold_5_oof.csv"
+    }
+  ],
+  "completed_folds": 5,
+  "runtime_seconds": 1159.095,
+  "pooled_metrics": {
+    "records": 1620,
+    "accuracy": 0.8962962962962963,
+    "macro_f1": 0.8959607574497236,
+    "balanced_accuracy": 0.8962962962962963,
+    "confusion_matrix_labels_0_1": [
+      [
+        772,
+        38
+      ],
+      [
+        130,
+        680
+      ]
+    ],
+    "outer_fold_accuracy_mean": 0.8962962962962961,
+    "outer_fold_macro_f1_mean": 0.8958792954181074,
+    "outer_fold_macro_f1_sd": 0.015420549211492331,
+    "majority_accuracy_baseline": 0.5,
+    "majority_macro_f1_baseline": 0.3333333333333333
+  }
+}

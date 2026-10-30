@@ -1,0 +1,16 @@
+{
+  "status": "completed_grouped_classical_suite",
+  "task": {
+    "name": "qolumbina_ideal",
+    "input": "C:/Users/pcm/OneDrive/Desktop/Quantum_Simulator/reports/experiments/qmutbench_multisource_qml_campaign_20261028/qolumbina_detection_ideal/normalized_manifest.csv"
+  },
+  "rows": 182,
+  "groups": 26,
+  "folds": 5,
+  "runtime_seconds": 64.06670239999949,
+  "sampling_policy": "all sampling fitted only inside each training fold, after SVD and scaling",
+  "max_observed_process_rss_mib": 145.57421875,
+  "memory_measurement_note": "RSS sampled after model fits; maximum observed, not guaranteed OS peak",
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}

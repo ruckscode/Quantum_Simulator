@@ -46,6 +46,8 @@ The 57.00% matched-feature result is not directly interchangeable with the 79.33
 
 - This report: `reports/experiments/classical_ml_benchmarks_20261030/report.md`
 - Per-task pooled OOF metrics and fold-selection manifests: `reports/experiments/classical_ml_benchmarks_20261030/source_tasks/`
+- Fold-level OOF predictions for the nested source/classifier searches: `reports/experiments/classical_nested_combined_search_v2_20261030/` and `reports/experiments/classical_sparse_knn_nested_20261030/`
+- Historical grouped classical suite fold predictions and summaries: `reports/experiments/local_grouped_classical_suite_*/`
 - Matched-feature QMutBench metrics and audit: `reports/experiments/classical_ml_benchmarks_20261030/qmutbench_matched_control/`
 - Nested source model search: `experiments/run_classical_source_nested_search.py`
 - Sparse cosine KNN search: `experiments/run_classical_sparse_knn_nested.py`
@@ -54,5 +56,7 @@ The 57.00% matched-feature result is not directly interchangeable with the 79.33
 Raw external datasets, cached features, and row-level OOF prediction files are not part of this publication update. The manifests retain task protocols and source hashes; rerunning the source searches requires the matching locally prepared input CSVs. QMutBench raw data and model artifacts remain governed by their existing local-data rules.
 
 ## Reliability limits
+
+A separate controlled simulator integration run classified 80/80 constructed synthetic scenarios correctly across its recorded seeds. This is a simulator-only synthetic control; it is not a learned-model benchmark or evidence of real-hardware accuracy. Its record is `reports/experiments/classical_simulator_fault_accuracy_20261030.json`.
 
 Scores estimate performance on held-out groups from these prepared datasets, not on arbitrary future circuits or real hardware. Tiny group counts make the Bugs4Q estimates noisy. Qolumbina's high accuracy hides weak minority-class performance. QSimBench is exploratory due to collisions. Hardware-anomaly accuracy cannot be inferred from these program/classical-ML datasets; that requires a separately validated calibration-backed hardware benchmark.

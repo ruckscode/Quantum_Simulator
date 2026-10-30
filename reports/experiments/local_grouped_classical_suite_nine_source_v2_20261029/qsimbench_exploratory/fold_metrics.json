@@ -1,0 +1,4032 @@
+[
+  {
+    "task": "qsimbench_exploratory",
+    "model": "dummy_prior",
+    "fold": 1,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0002701999983401038,
+    "inference_seconds": 5.810000584460795e-05,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "macro_f1": 0.3333333333333333,
+    "weighted_f1": 0.3333333333333333,
+    "confusion_matrix": [
+      [
+        30,
+        0
+      ],
+      [
+        30,
+        0
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "dummy_stratified",
+    "fold": 1,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0001697999978205189,
+    "inference_seconds": 0.0003077000001212582,
+    "accuracy": 0.55,
+    "balanced_accuracy": 0.55,
+    "macro_f1": 0.5488721804511278,
+    "weighted_f1": 0.5488721804511277,
+    "confusion_matrix": [
+      [
+        18,
+        12
+      ],
+      [
+        15,
+        15
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5454545454545454,
+        "recall": 0.6,
+        "f1": 0.5714285714285714,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.5555555555555556,
+        "recall": 0.5,
+        "f1": 0.5263157894736842,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_unweighted",
+    "fold": 1,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0034892000039690174,
+    "inference_seconds": 0.00019109999993816018,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666667,
+    "macro_f1": 0.6632996632996633,
+    "weighted_f1": 0.6632996632996633,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6388888888888888,
+        "recall": 0.7666666666666667,
+        "f1": 0.696969696969697,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7083333333333334,
+        "recall": 0.5666666666666667,
+        "f1": 0.6296296296296297,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_weighted",
+    "fold": 1,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.004094299998541828,
+    "inference_seconds": 0.00029379999614320695,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666667,
+    "macro_f1": 0.6632996632996633,
+    "weighted_f1": 0.6632996632996633,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6388888888888888,
+        "recall": 0.7666666666666667,
+        "f1": 0.696969696969697,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7083333333333334,
+        "recall": 0.5666666666666667,
+        "f1": 0.6296296296296297,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "linear_svm_weighted",
+    "fold": 1,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.002345599998079706,
+    "inference_seconds": 0.0002803999959724024,
+    "accuracy": 0.75,
+    "balanced_accuracy": 0.75,
+    "macro_f1": 0.7499305362600722,
+    "weighted_f1": 0.7499305362600722,
+    "confusion_matrix": [
+      [
+        22,
+        8
+      ],
+      [
+        7,
+        23
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7586206896551724,
+        "recall": 0.7333333333333333,
+        "f1": 0.7457627118644068,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7419354838709677,
+        "recall": 0.7666666666666667,
+        "f1": 0.7540983606557377,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "rbf_svm_weighted",
+    "fold": 1,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0020377000037115067,
+    "inference_seconds": 0.0005908999955863692,
+    "accuracy": 0.7,
+    "balanced_accuracy": 0.7,
+    "macro_f1": 0.7,
+    "weighted_f1": 0.7,
+    "confusion_matrix": [
+      [
+        21,
+        9
+      ],
+      [
+        9,
+        21
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7,
+        "recall": 0.7,
+        "f1": 0.7,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7,
+        "recall": 0.7,
+        "f1": 0.7,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "decision_tree_weighted",
+    "fold": 1,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0013784000038867816,
+    "inference_seconds": 0.0001436000020476058,
+    "accuracy": 0.7833333333333333,
+    "balanced_accuracy": 0.7833333333333333,
+    "macro_f1": 0.7818181818181819,
+    "weighted_f1": 0.7818181818181817,
+    "confusion_matrix": [
+      [
+        26,
+        4
+      ],
+      [
+        9,
+        21
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7428571428571429,
+        "recall": 0.8666666666666667,
+        "f1": 0.8,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.84,
+        "recall": 0.7,
+        "f1": 0.7636363636363637,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "random_forest_weighted",
+    "fold": 1,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.10744749999867054,
+    "inference_seconds": 0.005938199996307958,
+    "accuracy": 0.8166666666666667,
+    "balanced_accuracy": 0.8166666666666667,
+    "macro_f1": 0.8162071846282373,
+    "weighted_f1": 0.8162071846282372,
+    "confusion_matrix": [
+      [
+        26,
+        4
+      ],
+      [
+        7,
+        23
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7878787878787878,
+        "recall": 0.8666666666666667,
+        "f1": 0.8253968253968254,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8518518518518519,
+        "recall": 0.7666666666666667,
+        "f1": 0.8070175438596491,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_weighted",
+    "fold": 1,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.08116830000653863,
+    "inference_seconds": 0.010503899997274857,
+    "accuracy": 0.7833333333333333,
+    "balanced_accuracy": 0.7833333333333333,
+    "macro_f1": 0.7827903091060986,
+    "weighted_f1": 0.7827903091060985,
+    "confusion_matrix": [
+      [
+        25,
+        5
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7575757575757576,
+        "recall": 0.8333333333333334,
+        "f1": 0.7936507936507936,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8148148148148148,
+        "recall": 0.7333333333333333,
+        "f1": 0.7719298245614035,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "gradient_boosting",
+    "fold": 1,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.05871620000107214,
+    "inference_seconds": 0.00035429999843472615,
+    "accuracy": 0.75,
+    "balanced_accuracy": 0.75,
+    "macro_f1": 0.7482517482517483,
+    "weighted_f1": 0.7482517482517482,
+    "confusion_matrix": [
+      [
+        25,
+        5
+      ],
+      [
+        10,
+        20
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7142857142857143,
+        "recall": 0.8333333333333334,
+        "f1": 0.7692307692307693,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8,
+        "recall": 0.6666666666666666,
+        "f1": 0.7272727272727273,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "hist_gradient_boosting",
+    "fold": 1,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.058315700000093784,
+    "inference_seconds": 0.0012419999984558672,
+    "accuracy": 0.8,
+    "balanced_accuracy": 0.8,
+    "macro_f1": 0.7997775305895439,
+    "weighted_f1": 0.799777530589544,
+    "confusion_matrix": [
+      [
+        25,
+        5
+      ],
+      [
+        7,
+        23
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.78125,
+        "recall": 0.8333333333333334,
+        "f1": 0.8064516129032258,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8214285714285714,
+        "recall": 0.7666666666666667,
+        "f1": 0.7931034482758621,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "knn_5",
+    "fold": 1,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0007128000070224516,
+    "inference_seconds": 0.0008167000050889328,
+    "accuracy": 0.75,
+    "balanced_accuracy": 0.75,
+    "macro_f1": 0.7493734335839599,
+    "weighted_f1": 0.7493734335839598,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        9,
+        21
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7272727272727273,
+        "recall": 0.8,
+        "f1": 0.7619047619047619,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7777777777777778,
+        "recall": 0.7,
+        "f1": 0.7368421052631579,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "gaussian_nb",
+    "fold": 1,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0008472999979858287,
+    "inference_seconds": 0.00020519999816315249,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666667,
+    "macro_f1": 0.6632996632996633,
+    "weighted_f1": 0.6632996632996633,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6388888888888888,
+        "recall": 0.7666666666666667,
+        "f1": 0.696969696969697,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7083333333333334,
+        "recall": 0.5666666666666667,
+        "f1": 0.6296296296296297,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "mlp",
+    "fold": 1,
+    "balance_method": "class_weight_via_resampling",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.12027920000400627,
+    "inference_seconds": 0.0003806000022450462,
+    "accuracy": 0.6333333333333333,
+    "balanced_accuracy": 0.6333333333333333,
+    "macro_f1": 0.6266968325791855,
+    "weighted_f1": 0.6266968325791855,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        15,
+        15
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6052631578947368,
+        "recall": 0.7666666666666667,
+        "f1": 0.6764705882352942,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6818181818181818,
+        "recall": 0.5,
+        "f1": 0.5769230769230769,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_random_over",
+    "fold": 1,
+    "balance_method": "random_over",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.004397700002300553,
+    "inference_seconds": 0.0002027000009547919,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666667,
+    "macro_f1": 0.6632996632996633,
+    "weighted_f1": 0.6632996632996633,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6388888888888888,
+        "recall": 0.7666666666666667,
+        "f1": 0.696969696969697,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7083333333333334,
+        "recall": 0.5666666666666667,
+        "f1": 0.6296296296296297,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_random_over",
+    "fold": 1,
+    "balance_method": "random_over",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.11059940000268398,
+    "inference_seconds": 0.008862799993949011,
+    "accuracy": 0.7833333333333333,
+    "balanced_accuracy": 0.7833333333333333,
+    "macro_f1": 0.7827903091060986,
+    "weighted_f1": 0.7827903091060985,
+    "confusion_matrix": [
+      [
+        25,
+        5
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7575757575757576,
+        "recall": 0.8333333333333334,
+        "f1": 0.7936507936507936,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8148148148148148,
+        "recall": 0.7333333333333333,
+        "f1": 0.7719298245614035,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_random_under",
+    "fold": 1,
+    "balance_method": "random_under",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.004194599998299964,
+    "inference_seconds": 0.0002271999983349815,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666667,
+    "macro_f1": 0.6632996632996633,
+    "weighted_f1": 0.6632996632996633,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6388888888888888,
+        "recall": 0.7666666666666667,
+        "f1": 0.696969696969697,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7083333333333334,
+        "recall": 0.5666666666666667,
+        "f1": 0.6296296296296297,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_random_under",
+    "fold": 1,
+    "balance_method": "random_under",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.10577339999872493,
+    "inference_seconds": 0.010380399995483458,
+    "accuracy": 0.7833333333333333,
+    "balanced_accuracy": 0.7833333333333333,
+    "macro_f1": 0.7827903091060986,
+    "weighted_f1": 0.7827903091060985,
+    "confusion_matrix": [
+      [
+        25,
+        5
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7575757575757576,
+        "recall": 0.8333333333333334,
+        "f1": 0.7936507936507936,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8148148148148148,
+        "recall": 0.7333333333333333,
+        "f1": 0.7719298245614035,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_smote",
+    "fold": 1,
+    "balance_method": "smote",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.004146599996602163,
+    "inference_seconds": 0.00019459999748505652,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666667,
+    "macro_f1": 0.6632996632996633,
+    "weighted_f1": 0.6632996632996633,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6388888888888888,
+        "recall": 0.7666666666666667,
+        "f1": 0.696969696969697,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7083333333333334,
+        "recall": 0.5666666666666667,
+        "f1": 0.6296296296296297,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_smote",
+    "fold": 1,
+    "balance_method": "smote",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.10778520000167191,
+    "inference_seconds": 0.01001199999882374,
+    "accuracy": 0.7833333333333333,
+    "balanced_accuracy": 0.7833333333333333,
+    "macro_f1": 0.7827903091060986,
+    "weighted_f1": 0.7827903091060985,
+    "confusion_matrix": [
+      [
+        25,
+        5
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7575757575757576,
+        "recall": 0.8333333333333334,
+        "f1": 0.7936507936507936,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8148148148148148,
+        "recall": 0.7333333333333333,
+        "f1": 0.7719298245614035,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "dummy_prior",
+    "fold": 2,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0003265999985160306,
+    "inference_seconds": 6.549999670824036e-05,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "macro_f1": 0.3333333333333333,
+    "weighted_f1": 0.3333333333333333,
+    "confusion_matrix": [
+      [
+        30,
+        0
+      ],
+      [
+        30,
+        0
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "dummy_stratified",
+    "fold": 2,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.00037460000021383166,
+    "inference_seconds": 0.000614199998381082,
+    "accuracy": 0.5166666666666667,
+    "balanced_accuracy": 0.5166666666666666,
+    "macro_f1": 0.5099971838918614,
+    "weighted_f1": 0.5099971838918614,
+    "confusion_matrix": [
+      [
+        12,
+        18
+      ],
+      [
+        11,
+        19
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5217391304347826,
+        "recall": 0.4,
+        "f1": 0.4528301886792453,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.5135135135135135,
+        "recall": 0.6333333333333333,
+        "f1": 0.5671641791044776,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_unweighted",
+    "fold": 2,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.00474219999887282,
+    "inference_seconds": 0.0004327000060584396,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666666,
+    "macro_f1": 0.6651785714285714,
+    "weighted_f1": 0.6651785714285715,
+    "confusion_matrix": [
+      [
+        22,
+        8
+      ],
+      [
+        12,
+        18
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6470588235294118,
+        "recall": 0.7333333333333333,
+        "f1": 0.6875,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6923076923076923,
+        "recall": 0.6,
+        "f1": 0.6428571428571429,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_weighted",
+    "fold": 2,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.004859500004386064,
+    "inference_seconds": 0.00046290000318549573,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666666,
+    "macro_f1": 0.6651785714285714,
+    "weighted_f1": 0.6651785714285715,
+    "confusion_matrix": [
+      [
+        22,
+        8
+      ],
+      [
+        12,
+        18
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6470588235294118,
+        "recall": 0.7333333333333333,
+        "f1": 0.6875,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6923076923076923,
+        "recall": 0.6,
+        "f1": 0.6428571428571429,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "linear_svm_weighted",
+    "fold": 2,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0021347999936551787,
+    "inference_seconds": 0.000301799998851493,
+    "accuracy": 0.7166666666666667,
+    "balanced_accuracy": 0.7166666666666666,
+    "macro_f1": 0.7165879410947485,
+    "weighted_f1": 0.7165879410947485,
+    "confusion_matrix": [
+      [
+        21,
+        9
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7241379310344828,
+        "recall": 0.7,
+        "f1": 0.711864406779661,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7096774193548387,
+        "recall": 0.7333333333333333,
+        "f1": 0.7213114754098361,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "rbf_svm_weighted",
+    "fold": 2,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0032605000014882535,
+    "inference_seconds": 0.0010413000054541044,
+    "accuracy": 0.75,
+    "balanced_accuracy": 0.75,
+    "macro_f1": 0.7499305362600722,
+    "weighted_f1": 0.7499305362600722,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7419354838709677,
+        "recall": 0.7666666666666667,
+        "f1": 0.7540983606557377,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7586206896551724,
+        "recall": 0.7333333333333333,
+        "f1": 0.7457627118644068,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "decision_tree_weighted",
+    "fold": 2,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0020769999973708764,
+    "inference_seconds": 0.0002578999992692843,
+    "accuracy": 0.7833333333333333,
+    "balanced_accuracy": 0.7833333333333333,
+    "macro_f1": 0.7818181818181819,
+    "weighted_f1": 0.7818181818181817,
+    "confusion_matrix": [
+      [
+        21,
+        9
+      ],
+      [
+        4,
+        26
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.84,
+        "recall": 0.7,
+        "f1": 0.7636363636363637,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7428571428571429,
+        "recall": 0.8666666666666667,
+        "f1": 0.8,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "random_forest_weighted",
+    "fold": 2,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.10196649999852525,
+    "inference_seconds": 0.010374199999205302,
+    "accuracy": 0.8166666666666667,
+    "balanced_accuracy": 0.8166666666666667,
+    "macro_f1": 0.8162071846282373,
+    "weighted_f1": 0.8162071846282372,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        4,
+        26
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.8518518518518519,
+        "recall": 0.7666666666666667,
+        "f1": 0.8070175438596491,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7878787878787878,
+        "recall": 0.8666666666666667,
+        "f1": 0.8253968253968254,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_weighted",
+    "fold": 2,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.11390319999918574,
+    "inference_seconds": 0.006296499996096827,
+    "accuracy": 0.8166666666666667,
+    "balanced_accuracy": 0.8166666666666667,
+    "macro_f1": 0.8166157265907197,
+    "weighted_f1": 0.8166157265907198,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        5,
+        25
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.8275862068965517,
+        "recall": 0.8,
+        "f1": 0.8135593220338984,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8064516129032258,
+        "recall": 0.8333333333333334,
+        "f1": 0.819672131147541,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "gradient_boosting",
+    "fold": 2,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.05946430000039982,
+    "inference_seconds": 0.0005687000011675991,
+    "accuracy": 0.7666666666666667,
+    "balanced_accuracy": 0.7666666666666666,
+    "macro_f1": 0.765625,
+    "weighted_f1": 0.765625,
+    "confusion_matrix": [
+      [
+        21,
+        9
+      ],
+      [
+        5,
+        25
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.8076923076923077,
+        "recall": 0.7,
+        "f1": 0.75,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7352941176470589,
+        "recall": 0.8333333333333334,
+        "f1": 0.78125,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "hist_gradient_boosting",
+    "fold": 2,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.05787140000029467,
+    "inference_seconds": 0.0012410999988787808,
+    "accuracy": 0.8166666666666667,
+    "balanced_accuracy": 0.8166666666666667,
+    "macro_f1": 0.8166157265907197,
+    "weighted_f1": 0.8166157265907198,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        5,
+        25
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.8275862068965517,
+        "recall": 0.8,
+        "f1": 0.8135593220338984,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8064516129032258,
+        "recall": 0.8333333333333334,
+        "f1": 0.819672131147541,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "knn_5",
+    "fold": 2,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0007281999933184125,
+    "inference_seconds": 0.0008668000009492971,
+    "accuracy": 0.85,
+    "balanced_accuracy": 0.8500000000000001,
+    "macro_f1": 0.8499583217560434,
+    "weighted_f1": 0.8499583217560432,
+    "confusion_matrix": [
+      [
+        25,
+        5
+      ],
+      [
+        4,
+        26
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.8620689655172413,
+        "recall": 0.8333333333333334,
+        "f1": 0.847457627118644,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8387096774193549,
+        "recall": 0.8666666666666667,
+        "f1": 0.8524590163934426,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "gaussian_nb",
+    "fold": 2,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0008366999973077327,
+    "inference_seconds": 0.00020570000197039917,
+    "accuracy": 0.65,
+    "balanced_accuracy": 0.65,
+    "macro_f1": 0.6451703745423825,
+    "weighted_f1": 0.6451703745423825,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        14,
+        16
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6216216216216216,
+        "recall": 0.7666666666666667,
+        "f1": 0.6865671641791045,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6956521739130435,
+        "recall": 0.5333333333333333,
+        "f1": 0.6037735849056604,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "mlp",
+    "fold": 2,
+    "balance_method": "class_weight_via_resampling",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.11047990000224672,
+    "inference_seconds": 0.00036189999809721485,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666667,
+    "macro_f1": 0.660633484162896,
+    "weighted_f1": 0.6606334841628959,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        14,
+        16
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.631578947368421,
+        "recall": 0.8,
+        "f1": 0.7058823529411765,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7272727272727273,
+        "recall": 0.5333333333333333,
+        "f1": 0.6153846153846154,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_random_over",
+    "fold": 2,
+    "balance_method": "random_over",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.0032242000015685335,
+    "inference_seconds": 0.0001871999993454665,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666666,
+    "macro_f1": 0.6651785714285714,
+    "weighted_f1": 0.6651785714285715,
+    "confusion_matrix": [
+      [
+        22,
+        8
+      ],
+      [
+        12,
+        18
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6470588235294118,
+        "recall": 0.7333333333333333,
+        "f1": 0.6875,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6923076923076923,
+        "recall": 0.6,
+        "f1": 0.6428571428571429,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_random_over",
+    "fold": 2,
+    "balance_method": "random_over",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.06597900000633672,
+    "inference_seconds": 0.005734800004574936,
+    "accuracy": 0.8166666666666667,
+    "balanced_accuracy": 0.8166666666666667,
+    "macro_f1": 0.8166157265907197,
+    "weighted_f1": 0.8166157265907198,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        5,
+        25
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.8275862068965517,
+        "recall": 0.8,
+        "f1": 0.8135593220338984,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8064516129032258,
+        "recall": 0.8333333333333334,
+        "f1": 0.819672131147541,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_random_under",
+    "fold": 2,
+    "balance_method": "random_under",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.003006699997058604,
+    "inference_seconds": 0.00017700000171316788,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666666,
+    "macro_f1": 0.6651785714285714,
+    "weighted_f1": 0.6651785714285715,
+    "confusion_matrix": [
+      [
+        22,
+        8
+      ],
+      [
+        12,
+        18
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6470588235294118,
+        "recall": 0.7333333333333333,
+        "f1": 0.6875,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6923076923076923,
+        "recall": 0.6,
+        "f1": 0.6428571428571429,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_random_under",
+    "fold": 2,
+    "balance_method": "random_under",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.06499220000114292,
+    "inference_seconds": 0.005725899995013606,
+    "accuracy": 0.8166666666666667,
+    "balanced_accuracy": 0.8166666666666667,
+    "macro_f1": 0.8166157265907197,
+    "weighted_f1": 0.8166157265907198,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        5,
+        25
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.8275862068965517,
+        "recall": 0.8,
+        "f1": 0.8135593220338984,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8064516129032258,
+        "recall": 0.8333333333333334,
+        "f1": 0.819672131147541,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_smote",
+    "fold": 2,
+    "balance_method": "smote",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.0028321999998297542,
+    "inference_seconds": 0.00018319999799132347,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666666,
+    "macro_f1": 0.6651785714285714,
+    "weighted_f1": 0.6651785714285715,
+    "confusion_matrix": [
+      [
+        22,
+        8
+      ],
+      [
+        12,
+        18
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6470588235294118,
+        "recall": 0.7333333333333333,
+        "f1": 0.6875,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6923076923076923,
+        "recall": 0.6,
+        "f1": 0.6428571428571429,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_smote",
+    "fold": 2,
+    "balance_method": "smote",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.07050580000213813,
+    "inference_seconds": 0.00596600000426406,
+    "accuracy": 0.8166666666666667,
+    "balanced_accuracy": 0.8166666666666667,
+    "macro_f1": 0.8166157265907197,
+    "weighted_f1": 0.8166157265907198,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        5,
+        25
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.8275862068965517,
+        "recall": 0.8,
+        "f1": 0.8135593220338984,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8064516129032258,
+        "recall": 0.8333333333333334,
+        "f1": 0.819672131147541,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "dummy_prior",
+    "fold": 3,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.00018429999909130856,
+    "inference_seconds": 3.979999746661633e-05,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "macro_f1": 0.3333333333333333,
+    "weighted_f1": 0.3333333333333333,
+    "confusion_matrix": [
+      [
+        30,
+        0
+      ],
+      [
+        30,
+        0
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "dummy_stratified",
+    "fold": 3,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.00016199999663513154,
+    "inference_seconds": 0.00030300000071292743,
+    "accuracy": 0.5333333333333333,
+    "balanced_accuracy": 0.5333333333333333,
+    "macro_f1": 0.53125,
+    "weighted_f1": 0.53125,
+    "confusion_matrix": [
+      [
+        18,
+        12
+      ],
+      [
+        16,
+        14
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5294117647058824,
+        "recall": 0.6,
+        "f1": 0.5625,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.5384615384615384,
+        "recall": 0.4666666666666667,
+        "f1": 0.5,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_unweighted",
+    "fold": 3,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0032686999984434806,
+    "inference_seconds": 0.00017459999799029902,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666666,
+    "macro_f1": 0.6651785714285714,
+    "weighted_f1": 0.6651785714285715,
+    "confusion_matrix": [
+      [
+        18,
+        12
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6923076923076923,
+        "recall": 0.6,
+        "f1": 0.6428571428571429,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6470588235294118,
+        "recall": 0.7333333333333333,
+        "f1": 0.6875,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_weighted",
+    "fold": 3,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.003607500002544839,
+    "inference_seconds": 0.00016799999866634607,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666666,
+    "macro_f1": 0.6651785714285714,
+    "weighted_f1": 0.6651785714285715,
+    "confusion_matrix": [
+      [
+        18,
+        12
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6923076923076923,
+        "recall": 0.6,
+        "f1": 0.6428571428571429,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6470588235294118,
+        "recall": 0.7333333333333333,
+        "f1": 0.6875,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "linear_svm_weighted",
+    "fold": 3,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.001292100001592189,
+    "inference_seconds": 0.00016930000128922984,
+    "accuracy": 0.65,
+    "balanced_accuracy": 0.6499999999999999,
+    "macro_f1": 0.6475524475524476,
+    "weighted_f1": 0.6475524475524476,
+    "confusion_matrix": [
+      [
+        17,
+        13
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.68,
+        "recall": 0.5666666666666667,
+        "f1": 0.6181818181818182,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6285714285714286,
+        "recall": 0.7333333333333333,
+        "f1": 0.676923076923077,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "rbf_svm_weighted",
+    "fold": 3,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.00196200000209501,
+    "inference_seconds": 0.000589900002523791,
+    "accuracy": 0.7333333333333333,
+    "balanced_accuracy": 0.7333333333333334,
+    "macro_f1": 0.7330367074527253,
+    "weighted_f1": 0.7330367074527253,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        9,
+        21
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.71875,
+        "recall": 0.7666666666666667,
+        "f1": 0.7419354838709677,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.75,
+        "recall": 0.7,
+        "f1": 0.7241379310344828,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "decision_tree_weighted",
+    "fold": 3,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0020912999971187674,
+    "inference_seconds": 0.00020460000087041408,
+    "accuracy": 0.7166666666666667,
+    "balanced_accuracy": 0.7166666666666666,
+    "macro_f1": 0.7165879410947485,
+    "weighted_f1": 0.7165879410947485,
+    "confusion_matrix": [
+      [
+        21,
+        9
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7241379310344828,
+        "recall": 0.7,
+        "f1": 0.711864406779661,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7096774193548387,
+        "recall": 0.7333333333333333,
+        "f1": 0.7213114754098361,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "random_forest_weighted",
+    "fold": 3,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.14011730000493117,
+    "inference_seconds": 0.006425600004149601,
+    "accuracy": 0.8,
+    "balanced_accuracy": 0.8,
+    "macro_f1": 0.8,
+    "weighted_f1": 0.8,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        6,
+        24
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.8,
+        "recall": 0.8,
+        "f1": 0.8,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8,
+        "recall": 0.8,
+        "f1": 0.8,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_weighted",
+    "fold": 3,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0789227999994182,
+    "inference_seconds": 0.005675899999914691,
+    "accuracy": 0.7666666666666667,
+    "balanced_accuracy": 0.7666666666666666,
+    "macro_f1": 0.7664071190211346,
+    "weighted_f1": 0.7664071190211346,
+    "confusion_matrix": [
+      [
+        22,
+        8
+      ],
+      [
+        6,
+        24
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7857142857142857,
+        "recall": 0.7333333333333333,
+        "f1": 0.7586206896551724,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.75,
+        "recall": 0.8,
+        "f1": 0.7741935483870968,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "gradient_boosting",
+    "fold": 3,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.04956789999414468,
+    "inference_seconds": 0.0004428999964147806,
+    "accuracy": 0.8166666666666667,
+    "balanced_accuracy": 0.8166666666666667,
+    "macro_f1": 0.8162071846282373,
+    "weighted_f1": 0.8162071846282372,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        4,
+        26
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.8518518518518519,
+        "recall": 0.7666666666666667,
+        "f1": 0.8070175438596491,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7878787878787878,
+        "recall": 0.8666666666666667,
+        "f1": 0.8253968253968254,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "hist_gradient_boosting",
+    "fold": 3,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.058465399997658096,
+    "inference_seconds": 0.0012601999987964518,
+    "accuracy": 0.8166666666666667,
+    "balanced_accuracy": 0.8166666666666667,
+    "macro_f1": 0.8166157265907197,
+    "weighted_f1": 0.8166157265907198,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        5,
+        25
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.8275862068965517,
+        "recall": 0.8,
+        "f1": 0.8135593220338984,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8064516129032258,
+        "recall": 0.8333333333333334,
+        "f1": 0.819672131147541,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "knn_5",
+    "fold": 3,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0007247999965329655,
+    "inference_seconds": 0.000796199994510971,
+    "accuracy": 0.8,
+    "balanced_accuracy": 0.8,
+    "macro_f1": 0.7997775305895439,
+    "weighted_f1": 0.799777530589544,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        5,
+        25
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.8214285714285714,
+        "recall": 0.7666666666666667,
+        "f1": 0.7931034482758621,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.78125,
+        "recall": 0.8333333333333334,
+        "f1": 0.8064516129032258,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "gaussian_nb",
+    "fold": 3,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0008613000027253293,
+    "inference_seconds": 0.00020339999900897965,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666666,
+    "macro_f1": 0.6662958843159066,
+    "weighted_f1": 0.6662958843159065,
+    "confusion_matrix": [
+      [
+        19,
+        11
+      ],
+      [
+        9,
+        21
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6785714285714286,
+        "recall": 0.6333333333333333,
+        "f1": 0.6551724137931034,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.65625,
+        "recall": 0.7,
+        "f1": 0.6774193548387096,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "mlp",
+    "fold": 3,
+    "balance_method": "class_weight_via_resampling",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.11210790000041015,
+    "inference_seconds": 0.0003338999958941713,
+    "accuracy": 0.6333333333333333,
+    "balanced_accuracy": 0.6333333333333333,
+    "macro_f1": 0.6333333333333333,
+    "weighted_f1": 0.6333333333333333,
+    "confusion_matrix": [
+      [
+        19,
+        11
+      ],
+      [
+        11,
+        19
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6333333333333333,
+        "recall": 0.6333333333333333,
+        "f1": 0.6333333333333333,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6333333333333333,
+        "recall": 0.6333333333333333,
+        "f1": 0.6333333333333333,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_random_over",
+    "fold": 3,
+    "balance_method": "random_over",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.003493900003377348,
+    "inference_seconds": 0.00017359999765176326,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666666,
+    "macro_f1": 0.6651785714285714,
+    "weighted_f1": 0.6651785714285715,
+    "confusion_matrix": [
+      [
+        18,
+        12
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6923076923076923,
+        "recall": 0.6,
+        "f1": 0.6428571428571429,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6470588235294118,
+        "recall": 0.7333333333333333,
+        "f1": 0.6875,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_random_over",
+    "fold": 3,
+    "balance_method": "random_over",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.07288600000174483,
+    "inference_seconds": 0.006234099993889686,
+    "accuracy": 0.7666666666666667,
+    "balanced_accuracy": 0.7666666666666666,
+    "macro_f1": 0.7664071190211346,
+    "weighted_f1": 0.7664071190211346,
+    "confusion_matrix": [
+      [
+        22,
+        8
+      ],
+      [
+        6,
+        24
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7857142857142857,
+        "recall": 0.7333333333333333,
+        "f1": 0.7586206896551724,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.75,
+        "recall": 0.8,
+        "f1": 0.7741935483870968,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_random_under",
+    "fold": 3,
+    "balance_method": "random_under",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.003436499995586928,
+    "inference_seconds": 0.00025770000502234325,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666666,
+    "macro_f1": 0.6651785714285714,
+    "weighted_f1": 0.6651785714285715,
+    "confusion_matrix": [
+      [
+        18,
+        12
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6923076923076923,
+        "recall": 0.6,
+        "f1": 0.6428571428571429,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6470588235294118,
+        "recall": 0.7333333333333333,
+        "f1": 0.6875,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_random_under",
+    "fold": 3,
+    "balance_method": "random_under",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.11070230000041192,
+    "inference_seconds": 0.010612400001264177,
+    "accuracy": 0.7666666666666667,
+    "balanced_accuracy": 0.7666666666666666,
+    "macro_f1": 0.7664071190211346,
+    "weighted_f1": 0.7664071190211346,
+    "confusion_matrix": [
+      [
+        22,
+        8
+      ],
+      [
+        6,
+        24
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7857142857142857,
+        "recall": 0.7333333333333333,
+        "f1": 0.7586206896551724,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.75,
+        "recall": 0.8,
+        "f1": 0.7741935483870968,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_smote",
+    "fold": 3,
+    "balance_method": "smote",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.004410200002894271,
+    "inference_seconds": 0.0001880999989225529,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666666,
+    "macro_f1": 0.6651785714285714,
+    "weighted_f1": 0.6651785714285715,
+    "confusion_matrix": [
+      [
+        18,
+        12
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6923076923076923,
+        "recall": 0.6,
+        "f1": 0.6428571428571429,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6470588235294118,
+        "recall": 0.7333333333333333,
+        "f1": 0.6875,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_smote",
+    "fold": 3,
+    "balance_method": "smote",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.0866634999983944,
+    "inference_seconds": 0.00558929999533575,
+    "accuracy": 0.7666666666666667,
+    "balanced_accuracy": 0.7666666666666666,
+    "macro_f1": 0.7664071190211346,
+    "weighted_f1": 0.7664071190211346,
+    "confusion_matrix": [
+      [
+        22,
+        8
+      ],
+      [
+        6,
+        24
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7857142857142857,
+        "recall": 0.7333333333333333,
+        "f1": 0.7586206896551724,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.75,
+        "recall": 0.8,
+        "f1": 0.7741935483870968,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "dummy_prior",
+    "fold": 4,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.00017949999892152846,
+    "inference_seconds": 3.51999988197349e-05,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "macro_f1": 0.3333333333333333,
+    "weighted_f1": 0.3333333333333333,
+    "confusion_matrix": [
+      [
+        30,
+        0
+      ],
+      [
+        30,
+        0
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "dummy_stratified",
+    "fold": 4,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0002494999935152009,
+    "inference_seconds": 0.0003192000003764406,
+    "accuracy": 0.5833333333333334,
+    "balanced_accuracy": 0.5833333333333333,
+    "macro_f1": 0.5822890559732665,
+    "weighted_f1": 0.5822890559732665,
+    "confusion_matrix": [
+      [
+        19,
+        11
+      ],
+      [
+        14,
+        16
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5757575757575758,
+        "recall": 0.6333333333333333,
+        "f1": 0.6031746031746031,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.5925925925925926,
+        "recall": 0.5333333333333333,
+        "f1": 0.5614035087719298,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_unweighted",
+    "fold": 4,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.003538100005243905,
+    "inference_seconds": 0.00018869999621529132,
+    "accuracy": 0.7333333333333333,
+    "balanced_accuracy": 0.7333333333333334,
+    "macro_f1": 0.7330367074527253,
+    "weighted_f1": 0.7330367074527253,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        9,
+        21
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.71875,
+        "recall": 0.7666666666666667,
+        "f1": 0.7419354838709677,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.75,
+        "recall": 0.7,
+        "f1": 0.7241379310344828,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_weighted",
+    "fold": 4,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.003873499998007901,
+    "inference_seconds": 0.0001795999996829778,
+    "accuracy": 0.7333333333333333,
+    "balanced_accuracy": 0.7333333333333334,
+    "macro_f1": 0.7330367074527253,
+    "weighted_f1": 0.7330367074527253,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        9,
+        21
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.71875,
+        "recall": 0.7666666666666667,
+        "f1": 0.7419354838709677,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.75,
+        "recall": 0.7,
+        "f1": 0.7241379310344828,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "linear_svm_weighted",
+    "fold": 4,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0018901000003097579,
+    "inference_seconds": 0.00019669999892357737,
+    "accuracy": 0.7166666666666667,
+    "balanced_accuracy": 0.7166666666666667,
+    "macro_f1": 0.7127569698676429,
+    "weighted_f1": 0.7127569698676429,
+    "confusion_matrix": [
+      [
+        18,
+        12
+      ],
+      [
+        5,
+        25
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.782608695652174,
+        "recall": 0.6,
+        "f1": 0.6792452830188679,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6756756756756757,
+        "recall": 0.8333333333333334,
+        "f1": 0.746268656716418,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "rbf_svm_weighted",
+    "fold": 4,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0030771000019740313,
+    "inference_seconds": 0.0010637000013957731,
+    "accuracy": 0.8,
+    "balanced_accuracy": 0.8,
+    "macro_f1": 0.797979797979798,
+    "weighted_f1": 0.7979797979797979,
+    "confusion_matrix": [
+      [
+        21,
+        9
+      ],
+      [
+        3,
+        27
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.875,
+        "recall": 0.7,
+        "f1": 0.7777777777777778,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.75,
+        "recall": 0.9,
+        "f1": 0.8181818181818182,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "decision_tree_weighted",
+    "fold": 4,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0020150999989709817,
+    "inference_seconds": 0.00022920000628801063,
+    "accuracy": 0.7333333333333333,
+    "balanced_accuracy": 0.7333333333333333,
+    "macro_f1": 0.7333333333333333,
+    "weighted_f1": 0.7333333333333333,
+    "confusion_matrix": [
+      [
+        22,
+        8
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7333333333333333,
+        "recall": 0.7333333333333333,
+        "f1": 0.7333333333333333,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7333333333333333,
+        "recall": 0.7333333333333333,
+        "f1": 0.7333333333333333,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "random_forest_weighted",
+    "fold": 4,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.11162020000483608,
+    "inference_seconds": 0.005765900001279078,
+    "accuracy": 0.75,
+    "balanced_accuracy": 0.75,
+    "macro_f1": 0.7493734335839599,
+    "weighted_f1": 0.7493734335839598,
+    "confusion_matrix": [
+      [
+        21,
+        9
+      ],
+      [
+        6,
+        24
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7777777777777778,
+        "recall": 0.7,
+        "f1": 0.7368421052631579,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7272727272727273,
+        "recall": 0.8,
+        "f1": 0.7619047619047619,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_weighted",
+    "fold": 4,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.07473240000399528,
+    "inference_seconds": 0.006032999997842126,
+    "accuracy": 0.75,
+    "balanced_accuracy": 0.75,
+    "macro_f1": 0.7493734335839599,
+    "weighted_f1": 0.7493734335839598,
+    "confusion_matrix": [
+      [
+        21,
+        9
+      ],
+      [
+        6,
+        24
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7777777777777778,
+        "recall": 0.7,
+        "f1": 0.7368421052631579,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7272727272727273,
+        "recall": 0.8,
+        "f1": 0.7619047619047619,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "gradient_boosting",
+    "fold": 4,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.03921229999832576,
+    "inference_seconds": 0.00044519999937620014,
+    "accuracy": 0.8,
+    "balanced_accuracy": 0.8,
+    "macro_f1": 0.797979797979798,
+    "weighted_f1": 0.7979797979797979,
+    "confusion_matrix": [
+      [
+        21,
+        9
+      ],
+      [
+        3,
+        27
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.875,
+        "recall": 0.7,
+        "f1": 0.7777777777777778,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.75,
+        "recall": 0.9,
+        "f1": 0.8181818181818182,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "hist_gradient_boosting",
+    "fold": 4,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.05799530000513187,
+    "inference_seconds": 0.0012642000001505949,
+    "accuracy": 0.6833333333333333,
+    "balanced_accuracy": 0.6833333333333333,
+    "macro_f1": 0.6825396825396826,
+    "weighted_f1": 0.6825396825396824,
+    "confusion_matrix": [
+      [
+        19,
+        11
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7037037037037037,
+        "recall": 0.6333333333333333,
+        "f1": 0.6666666666666666,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6666666666666666,
+        "recall": 0.7333333333333333,
+        "f1": 0.6984126984126984,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "knn_5",
+    "fold": 4,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0007079000060912222,
+    "inference_seconds": 0.0007841000042390078,
+    "accuracy": 0.7,
+    "balanced_accuracy": 0.7,
+    "macro_f1": 0.699666295884316,
+    "weighted_f1": 0.6996662958843161,
+    "confusion_matrix": [
+      [
+        20,
+        10
+      ],
+      [
+        8,
+        22
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7142857142857143,
+        "recall": 0.6666666666666666,
+        "f1": 0.6896551724137931,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.6875,
+        "recall": 0.7333333333333333,
+        "f1": 0.7096774193548387,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "gaussian_nb",
+    "fold": 4,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.000835999999253545,
+    "inference_seconds": 0.0001984999980777502,
+    "accuracy": 0.7333333333333333,
+    "balanced_accuracy": 0.7333333333333334,
+    "macro_f1": 0.7321428571428572,
+    "weighted_f1": 0.7321428571428572,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        10,
+        20
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7058823529411765,
+        "recall": 0.8,
+        "f1": 0.75,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7692307692307693,
+        "recall": 0.6666666666666666,
+        "f1": 0.7142857142857143,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "mlp",
+    "fold": 4,
+    "balance_method": "class_weight_via_resampling",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.10338279999996303,
+    "inference_seconds": 0.0003815000018221326,
+    "accuracy": 0.6833333333333333,
+    "balanced_accuracy": 0.6833333333333333,
+    "macro_f1": 0.6789636722050126,
+    "weighted_f1": 0.6789636722050126,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6486486486486487,
+        "recall": 0.8,
+        "f1": 0.7164179104477612,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7391304347826086,
+        "recall": 0.5666666666666667,
+        "f1": 0.6415094339622641,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_random_over",
+    "fold": 4,
+    "balance_method": "random_over",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.0030489000055240467,
+    "inference_seconds": 0.0002900000035879202,
+    "accuracy": 0.7333333333333333,
+    "balanced_accuracy": 0.7333333333333334,
+    "macro_f1": 0.7330367074527253,
+    "weighted_f1": 0.7330367074527253,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        9,
+        21
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.71875,
+        "recall": 0.7666666666666667,
+        "f1": 0.7419354838709677,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.75,
+        "recall": 0.7,
+        "f1": 0.7241379310344828,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_random_over",
+    "fold": 4,
+    "balance_method": "random_over",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.07735360000515357,
+    "inference_seconds": 0.006766600003174972,
+    "accuracy": 0.75,
+    "balanced_accuracy": 0.75,
+    "macro_f1": 0.7493734335839599,
+    "weighted_f1": 0.7493734335839598,
+    "confusion_matrix": [
+      [
+        21,
+        9
+      ],
+      [
+        6,
+        24
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7777777777777778,
+        "recall": 0.7,
+        "f1": 0.7368421052631579,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7272727272727273,
+        "recall": 0.8,
+        "f1": 0.7619047619047619,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_random_under",
+    "fold": 4,
+    "balance_method": "random_under",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.002595500001916662,
+    "inference_seconds": 0.0002657000004546717,
+    "accuracy": 0.7333333333333333,
+    "balanced_accuracy": 0.7333333333333334,
+    "macro_f1": 0.7330367074527253,
+    "weighted_f1": 0.7330367074527253,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        9,
+        21
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.71875,
+        "recall": 0.7666666666666667,
+        "f1": 0.7419354838709677,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.75,
+        "recall": 0.7,
+        "f1": 0.7241379310344828,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_random_under",
+    "fold": 4,
+    "balance_method": "random_under",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.06921359999978449,
+    "inference_seconds": 0.010575299995252863,
+    "accuracy": 0.75,
+    "balanced_accuracy": 0.75,
+    "macro_f1": 0.7493734335839599,
+    "weighted_f1": 0.7493734335839598,
+    "confusion_matrix": [
+      [
+        21,
+        9
+      ],
+      [
+        6,
+        24
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7777777777777778,
+        "recall": 0.7,
+        "f1": 0.7368421052631579,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7272727272727273,
+        "recall": 0.8,
+        "f1": 0.7619047619047619,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_smote",
+    "fold": 4,
+    "balance_method": "smote",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.002794099993479904,
+    "inference_seconds": 0.00017050000315066427,
+    "accuracy": 0.7333333333333333,
+    "balanced_accuracy": 0.7333333333333334,
+    "macro_f1": 0.7330367074527253,
+    "weighted_f1": 0.7330367074527253,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        9,
+        21
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.71875,
+        "recall": 0.7666666666666667,
+        "f1": 0.7419354838709677,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.75,
+        "recall": 0.7,
+        "f1": 0.7241379310344828,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_smote",
+    "fold": 4,
+    "balance_method": "smote",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.06557469999825116,
+    "inference_seconds": 0.005882700002985075,
+    "accuracy": 0.75,
+    "balanced_accuracy": 0.75,
+    "macro_f1": 0.7493734335839599,
+    "weighted_f1": 0.7493734335839598,
+    "confusion_matrix": [
+      [
+        21,
+        9
+      ],
+      [
+        6,
+        24
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.7777777777777778,
+        "recall": 0.7,
+        "f1": 0.7368421052631579,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7272727272727273,
+        "recall": 0.8,
+        "f1": 0.7619047619047619,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "dummy_prior",
+    "fold": 5,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.00022399999579647556,
+    "inference_seconds": 4.1600003896746784e-05,
+    "accuracy": 0.5,
+    "balanced_accuracy": 0.5,
+    "macro_f1": 0.3333333333333333,
+    "weighted_f1": 0.3333333333333333,
+    "confusion_matrix": [
+      [
+        30,
+        0
+      ],
+      [
+        30,
+        0
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "dummy_stratified",
+    "fold": 5,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0002007000002777204,
+    "inference_seconds": 0.0003133999998681247,
+    "accuracy": 0.45,
+    "balanced_accuracy": 0.45,
+    "macro_f1": 0.44984717977215893,
+    "weighted_f1": 0.449847179772159,
+    "confusion_matrix": [
+      [
+        14,
+        16
+      ],
+      [
+        17,
+        13
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.45161290322580644,
+        "recall": 0.4666666666666667,
+        "f1": 0.45901639344262296,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.4482758620689655,
+        "recall": 0.43333333333333335,
+        "f1": 0.4406779661016949,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_unweighted",
+    "fold": 5,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0032044999970821664,
+    "inference_seconds": 0.00017600000137463212,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666667,
+    "macro_f1": 0.6632996632996633,
+    "weighted_f1": 0.6632996632996633,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6388888888888888,
+        "recall": 0.7666666666666667,
+        "f1": 0.696969696969697,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7083333333333334,
+        "recall": 0.5666666666666667,
+        "f1": 0.6296296296296297,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_weighted",
+    "fold": 5,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.003484300003037788,
+    "inference_seconds": 0.00020909999875584617,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666667,
+    "macro_f1": 0.6632996632996633,
+    "weighted_f1": 0.6632996632996633,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6388888888888888,
+        "recall": 0.7666666666666667,
+        "f1": 0.696969696969697,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7083333333333334,
+        "recall": 0.5666666666666667,
+        "f1": 0.6296296296296297,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "linear_svm_weighted",
+    "fold": 5,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0012302999966777861,
+    "inference_seconds": 0.00015929999790387228,
+    "accuracy": 0.7166666666666667,
+    "balanced_accuracy": 0.7166666666666667,
+    "macro_f1": 0.7159565580618212,
+    "weighted_f1": 0.7159565580618211,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        10,
+        20
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.696969696969697,
+        "recall": 0.7666666666666667,
+        "f1": 0.7301587301587301,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7407407407407407,
+        "recall": 0.6666666666666666,
+        "f1": 0.7017543859649122,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "rbf_svm_weighted",
+    "fold": 5,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.001983200003451202,
+    "inference_seconds": 0.0007989000005181879,
+    "accuracy": 0.65,
+    "balanced_accuracy": 0.6499999999999999,
+    "macro_f1": 0.6475524475524476,
+    "weighted_f1": 0.6475524475524476,
+    "confusion_matrix": [
+      [
+        22,
+        8
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6285714285714286,
+        "recall": 0.7333333333333333,
+        "f1": 0.676923076923077,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.68,
+        "recall": 0.5666666666666667,
+        "f1": 0.6181818181818182,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "decision_tree_weighted",
+    "fold": 5,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0013633999988087453,
+    "inference_seconds": 0.00013549999857787043,
+    "accuracy": 0.6833333333333333,
+    "balanced_accuracy": 0.6833333333333333,
+    "macro_f1": 0.6811188811188811,
+    "weighted_f1": 0.6811188811188811,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        12,
+        18
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6571428571428571,
+        "recall": 0.7666666666666667,
+        "f1": 0.7076923076923077,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.72,
+        "recall": 0.6,
+        "f1": 0.6545454545454545,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "random_forest_weighted",
+    "fold": 5,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.13900119999743765,
+    "inference_seconds": 0.008067999995546415,
+    "accuracy": 0.7,
+    "balanced_accuracy": 0.7,
+    "macro_f1": 0.696969696969697,
+    "weighted_f1": 0.696969696969697,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        12,
+        18
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6666666666666666,
+        "recall": 0.8,
+        "f1": 0.7272727272727273,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.75,
+        "recall": 0.6,
+        "f1": 0.6666666666666666,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_weighted",
+    "fold": 5,
+    "balance_method": "class_weight",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.08618420000129845,
+    "inference_seconds": 0.006536999993841164,
+    "accuracy": 0.6833333333333333,
+    "balanced_accuracy": 0.6833333333333333,
+    "macro_f1": 0.6811188811188811,
+    "weighted_f1": 0.6811188811188811,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        12,
+        18
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6571428571428571,
+        "recall": 0.7666666666666667,
+        "f1": 0.7076923076923077,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.72,
+        "recall": 0.6,
+        "f1": 0.6545454545454545,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "gradient_boosting",
+    "fold": 5,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.04864429999724962,
+    "inference_seconds": 0.00034579999919515103,
+    "accuracy": 0.6833333333333333,
+    "balanced_accuracy": 0.6833333333333333,
+    "macro_f1": 0.6789636722050126,
+    "weighted_f1": 0.6789636722050126,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6486486486486487,
+        "recall": 0.8,
+        "f1": 0.7164179104477612,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7391304347826086,
+        "recall": 0.5666666666666667,
+        "f1": 0.6415094339622641,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "hist_gradient_boosting",
+    "fold": 5,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.057502100004057866,
+    "inference_seconds": 0.001233199996931944,
+    "accuracy": 0.6833333333333333,
+    "balanced_accuracy": 0.6833333333333333,
+    "macro_f1": 0.6811188811188811,
+    "weighted_f1": 0.6811188811188811,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        12,
+        18
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6571428571428571,
+        "recall": 0.7666666666666667,
+        "f1": 0.7076923076923077,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.72,
+        "recall": 0.6,
+        "f1": 0.6545454545454545,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "knn_5",
+    "fold": 5,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0007240999984787777,
+    "inference_seconds": 0.0008122999934130348,
+    "accuracy": 0.7,
+    "balanced_accuracy": 0.7,
+    "macro_f1": 0.6986607142857143,
+    "weighted_f1": 0.6986607142857143,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        11,
+        19
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6764705882352942,
+        "recall": 0.7666666666666667,
+        "f1": 0.71875,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7307692307692307,
+        "recall": 0.6333333333333333,
+        "f1": 0.6785714285714286,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "gaussian_nb",
+    "fold": 5,
+    "balance_method": "none",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.0008368999988306314,
+    "inference_seconds": 0.0002027000009547919,
+    "accuracy": 0.7,
+    "balanced_accuracy": 0.7,
+    "macro_f1": 0.696969696969697,
+    "weighted_f1": 0.696969696969697,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        12,
+        18
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6666666666666666,
+        "recall": 0.8,
+        "f1": 0.7272727272727273,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.75,
+        "recall": 0.6,
+        "f1": 0.6666666666666666,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "mlp",
+    "fold": 5,
+    "balance_method": "class_weight_via_resampling",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "fit_seconds": 0.11223379999864846,
+    "inference_seconds": 0.00033069999335566536,
+    "accuracy": 0.6833333333333333,
+    "balanced_accuracy": 0.6833333333333333,
+    "macro_f1": 0.6789636722050126,
+    "weighted_f1": 0.6789636722050126,
+    "confusion_matrix": [
+      [
+        24,
+        6
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6486486486486487,
+        "recall": 0.8,
+        "f1": 0.7164179104477612,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7391304347826086,
+        "recall": 0.5666666666666667,
+        "f1": 0.6415094339622641,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_random_over",
+    "fold": 5,
+    "balance_method": "random_over",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.0037274000060278922,
+    "inference_seconds": 0.0001793000046745874,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666667,
+    "macro_f1": 0.6632996632996633,
+    "weighted_f1": 0.6632996632996633,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6388888888888888,
+        "recall": 0.7666666666666667,
+        "f1": 0.696969696969697,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7083333333333334,
+        "recall": 0.5666666666666667,
+        "f1": 0.6296296296296297,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_random_over",
+    "fold": 5,
+    "balance_method": "random_over",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.08694549999927403,
+    "inference_seconds": 0.0076945000037085265,
+    "accuracy": 0.6833333333333333,
+    "balanced_accuracy": 0.6833333333333333,
+    "macro_f1": 0.6811188811188811,
+    "weighted_f1": 0.6811188811188811,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        12,
+        18
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6571428571428571,
+        "recall": 0.7666666666666667,
+        "f1": 0.7076923076923077,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.72,
+        "recall": 0.6,
+        "f1": 0.6545454545454545,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_random_under",
+    "fold": 5,
+    "balance_method": "random_under",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.0030547000060323626,
+    "inference_seconds": 0.00017050000315066427,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666667,
+    "macro_f1": 0.6632996632996633,
+    "weighted_f1": 0.6632996632996633,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6388888888888888,
+        "recall": 0.7666666666666667,
+        "f1": 0.696969696969697,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7083333333333334,
+        "recall": 0.5666666666666667,
+        "f1": 0.6296296296296297,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_random_under",
+    "fold": 5,
+    "balance_method": "random_under",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.08803479999914998,
+    "inference_seconds": 0.010520499999984168,
+    "accuracy": 0.6833333333333333,
+    "balanced_accuracy": 0.6833333333333333,
+    "macro_f1": 0.6811188811188811,
+    "weighted_f1": 0.6811188811188811,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        12,
+        18
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6571428571428571,
+        "recall": 0.7666666666666667,
+        "f1": 0.7076923076923077,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.72,
+        "recall": 0.6,
+        "f1": 0.6545454545454545,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "logistic_smote",
+    "fold": 5,
+    "balance_method": "smote",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.004454999994777609,
+    "inference_seconds": 0.00025800000003073364,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.6666666666666667,
+    "macro_f1": 0.6632996632996633,
+    "weighted_f1": 0.6632996632996633,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        13,
+        17
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6388888888888888,
+        "recall": 0.7666666666666667,
+        "f1": 0.696969696969697,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.7083333333333334,
+        "recall": 0.5666666666666667,
+        "f1": 0.6296296296296297,
+        "support": 30
+      }
+    }
+  },
+  {
+    "task": "qsimbench_exploratory",
+    "model": "extra_trees_smote",
+    "fold": 5,
+    "balance_method": "smote",
+    "train_groups": 120,
+    "validation_groups": 30,
+    "train_records": 240,
+    "validation_records": 60,
+    "resampled_train_records": 240,
+    "fit_seconds": 0.10910549999971408,
+    "inference_seconds": 0.00828400000318652,
+    "accuracy": 0.6833333333333333,
+    "balanced_accuracy": 0.6833333333333333,
+    "macro_f1": 0.6811188811188811,
+    "weighted_f1": 0.6811188811188811,
+    "confusion_matrix": [
+      [
+        23,
+        7
+      ],
+      [
+        12,
+        18
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6571428571428571,
+        "recall": 0.7666666666666667,
+        "f1": 0.7076923076923077,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.72,
+        "recall": 0.6,
+        "f1": 0.6545454545454545,
+        "support": 30
+      }
+    }
+  }
+]

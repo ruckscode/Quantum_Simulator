@@ -1,0 +1,31 @@
+{
+  "status": "completed_grouped_classical_suite",
+  "task": {
+    "class_counts": {
+      "0": 748,
+      "1": 748
+    },
+    "groups": 748,
+    "input": "reports/experiments/qml_source_preprocessing_20261029/classical_nine_source_v2_inputs/qbugs_qasm_v2.csv",
+    "name": "qbugs_qasm_v2",
+    "rows": 1496,
+    "sha256": "b89030898ad97be2862961ab724f9714cd5c58bde607f671e951a260e47535d8",
+    "source_contract": "experiments/source_task_contracts/qbugs_correct_buggy_circuit_state_qasm_v2.json",
+    "source_contract_sha256": "2e51045dc2c3ac815d797bcadac2a907b449f010390c5d83b28d8edd99c9c497",
+    "source_id": "qbugs_hornbro",
+    "source_input_sha256": "809a4492d02246bdb6e182ac670e803b24ec9ae563fb133663384c7e2e336120",
+    "source_processed_manifest_sha256": "8dc9d618a7fdd3962299e99273827cb6498577468eefd8421c48e42b96918a2e",
+    "source_split_sha256": "03ed9fa4234951abc6c1cc36e24fbde72f09c58ab7f0ae92f0cc2c14e95d63c8",
+    "target_semantics": "Upstream paired correct (0) versus buggy (1) QBugs circuits represented as OpenQASM 2; not hardware diagnosis.",
+    "task_id": "correct_buggy_circuit_state_qasm_v2"
+  },
+  "rows": 1496,
+  "groups": 748,
+  "folds": 5,
+  "runtime_seconds": 95.72185149999859,
+  "sampling_policy": "all sampling fitted only inside each training fold, after SVD and scaling",
+  "max_observed_process_rss_mib": 150.83984375,
+  "memory_measurement_note": "RSS sampled after model fits; maximum observed, not guaranteed OS peak",
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}

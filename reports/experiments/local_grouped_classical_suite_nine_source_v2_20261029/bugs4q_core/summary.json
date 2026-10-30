@@ -1,0 +1,31 @@
+{
+  "status": "completed_grouped_classical_suite",
+  "task": {
+    "class_counts": {
+      "0": 31,
+      "1": 31
+    },
+    "groups": 31,
+    "input": "reports/experiments/qml_source_preprocessing_20261029/classical_nine_source_v2_inputs/bugs4q_core.csv",
+    "name": "bugs4q_core",
+    "rows": 62,
+    "sha256": "56818ae8623718c9dfd3040b6f235026c5afdeae3251171fca4d85e5f1363982",
+    "source_contract": "experiments/source_task_contracts/bugs4q_core_source_state.json",
+    "source_contract_sha256": "8a91e79e80f183de9bf9673f4ff575ddf99fcdbc499cc3d09a0557985b5ba99b",
+    "source_id": "bugs4q_core",
+    "source_input_sha256": "cef4b2378b97610b498917f6412f18e716c2ab91369ea709fc98541952008cdb",
+    "source_processed_manifest_sha256": "949b13d965deebe8d1c860e918671c73e3d644b8a8a7f15387667a441acd5841",
+    "source_split_sha256": "d7915240b10f912e7d7d5622f87f8c5080b47a0214e5ed1943f1963286ddf260",
+    "target_semantics": "Buggy (1) versus fixed (0) Qiskit source snapshots grouped by issue; not hardware fault localization.",
+    "task_id": "source_state"
+  },
+  "rows": 62,
+  "groups": 31,
+  "folds": 5,
+  "runtime_seconds": 74.80156030000217,
+  "sampling_policy": "all sampling fitted only inside each training fold, after SVD and scaling",
+  "max_observed_process_rss_mib": 152.6328125,
+  "memory_measurement_note": "RSS sampled after model fits; maximum observed, not guaranteed OS peak",
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}

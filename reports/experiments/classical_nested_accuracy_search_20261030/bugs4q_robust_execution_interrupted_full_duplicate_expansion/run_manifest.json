@@ -1,0 +1,30 @@
+{
+  "status": "running",
+  "task": "bugs4q_robust_execution",
+  "input": "reports\\experiments\\qml_source_preprocessing_20261029\\classical_nine_source_v2_inputs\\bugs4q_robust_execution.csv",
+  "input_sha256": "9058d88726f42169098ce1c59edd2bb7a02ffbb5f5ba29e860fcda6998ae57d1",
+  "records": 2220,
+  "groups": 37,
+  "class_counts": {
+    "1": 1110,
+    "0": 1110
+  },
+  "outer_split": "GroupKFold(5)",
+  "inner_split": "GroupKFold(3) within each outer training partition",
+  "selection_metric": "inner-CV accuracy (macro-F1 and balanced accuracy also reported)",
+  "search_candidates": 104,
+  "representations": [
+    "word TF-IDF (1-3 grams)",
+    "character TF-IDF (2-5 grams)",
+    "character-boundary TF-IDF (3-5 grams)",
+    "combined word + character TF-IDF"
+  ],
+  "classifiers": [
+    "LinearSVC",
+    "LogisticRegression",
+    "SGD modified-huber",
+    "ComplementNB"
+  ],
+  "frozen_test_accessed": false,
+  "folds": []
+}

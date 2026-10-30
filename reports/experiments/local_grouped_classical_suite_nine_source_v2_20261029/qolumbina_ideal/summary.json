@@ -1,0 +1,31 @@
+{
+  "status": "completed_grouped_classical_suite",
+  "task": {
+    "class_counts": {
+      "0": 32,
+      "1": 150
+    },
+    "groups": 26,
+    "input": "reports/experiments/qml_source_preprocessing_20261029/classical_nine_source_v2_inputs/qolumbina_ideal.csv",
+    "name": "qolumbina_ideal",
+    "rows": 182,
+    "sha256": "8b1e15729f56f08138b12aea76db17276af449a0cea5d1c57685842bc4b02bed",
+    "source_contract": "experiments/source_task_contracts/qolumbina_ideal_detection.json",
+    "source_contract_sha256": "7c412f025d15d013aef52295ec23ca1e83e1dec4a1ba390c52fbc6cb82408090",
+    "source_id": "qolumbina_ideal",
+    "source_input_sha256": "9b607e93eaf3912cc20610b30341573ff709abaf59086febc8f570eb12b0104e",
+    "source_processed_manifest_sha256": "770da183948f87e4ea948b48c909f81f5d98f56a9cc83a2f76220828bbfa9599",
+    "source_split_sha256": "ade374599c0ac8b3fcc24b15e3ebdc0dafa7271af25017c12a79385a0b1d5359",
+    "target_semantics": "Predict whether DOSS detects a seeded mutant in a majority of available ideal-backend report seeds; not a ground-truth repair label or hardware diagnosis.",
+    "task_id": "seeded_mutant_detection_ideal"
+  },
+  "rows": 182,
+  "groups": 26,
+  "folds": 5,
+  "runtime_seconds": 72.92897500000254,
+  "sampling_policy": "all sampling fitted only inside each training fold, after SVD and scaling",
+  "max_observed_process_rss_mib": 147.30078125,
+  "memory_measurement_note": "RSS sampled after model fits; maximum observed, not guaranteed OS peak",
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}
