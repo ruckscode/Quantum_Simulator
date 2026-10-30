@@ -1,5 +1,9 @@
 # Hardware-Aware Data-Driven Testing and Fault Localization for Quantum Programs
 
+## Classical ML benchmark update (2026-10-30)
+
+Nested, group-disjoint classical ML benchmarks are now documented with source-by-source pooled OOF scores, model-selection protocols, matched QMutBench controls, limits, and compact result manifests: [classical ML benchmark report](reports/experiments/classical_ml_benchmarks_20261030/report.md). These tasks use different labels, so their scores are reported separately rather than combined into one accuracy.
+
 ## 1. Project Overview
 
 This project provides a statevector quantum simulator, a circuit-building API, distribution comparison, and an evidence-based diagnosis workflow. It compares expected and observed execution behavior, applies a configured finite-shot tolerance, and combines circuit-level and hardware-calibration evidence to identify a likely program fault or hardware anomaly. When the evidence cannot distinguish plausible causes, the diagnosis can remain ambiguous or report insufficient evidence.

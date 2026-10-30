@@ -1,0 +1,138 @@
+[
+  {
+    "model": "extra_trees",
+    "records": 578117,
+    "accuracy": 0.5699936172089732,
+    "macro_f1": 0.5661382560482973,
+    "balanced_accuracy": 0.5672913832397799,
+    "confusion_matrix_labels_0_1": [
+      [
+        137513,
+        140900
+      ],
+      [
+        107694,
+        192010
+      ]
+    ]
+  },
+  {
+    "model": "hist_gradient_boosting",
+    "records": 578117,
+    "accuracy": 0.5693363108159767,
+    "macro_f1": 0.564821439574482,
+    "balanced_accuracy": 0.5663532726879111,
+    "confusion_matrix_labels_0_1": [
+      [
+        135129,
+        143284
+      ],
+      [
+        105690,
+        194014
+      ]
+    ]
+  },
+  {
+    "model": "random_forest",
+    "records": 578117,
+    "accuracy": 0.5678625606927318,
+    "macro_f1": 0.5645809045292978,
+    "balanced_accuracy": 0.5654322406302572,
+    "confusion_matrix_labels_0_1": [
+      [
+        139051,
+        139362
+      ],
+      [
+        110464,
+        189240
+      ]
+    ]
+  },
+  {
+    "model": "sgd_logistic",
+    "records": 578117,
+    "accuracy": 0.5583022121819632,
+    "macro_f1": 0.5539342290951428,
+    "balanced_accuracy": 0.5554111641911232,
+    "confusion_matrix_labels_0_1": [
+      [
+        132778,
+        145635
+      ],
+      [
+        109718,
+        189986
+      ]
+    ]
+  },
+  {
+    "model": "logistic",
+    "records": 578117,
+    "accuracy": 0.5573041443168079,
+    "macro_f1": 0.5500351626969305,
+    "balanced_accuracy": 0.5533738103159076,
+    "confusion_matrix_labels_0_1": [
+      [
+        124354,
+        154059
+      ],
+      [
+        101871,
+        197833
+      ]
+    ]
+  },
+  {
+    "model": "linear_svc",
+    "records": 578117,
+    "accuracy": 0.5569287877713335,
+    "macro_f1": 0.5495098007993868,
+    "balanced_accuracy": 0.552952589139195,
+    "confusion_matrix_labels_0_1": [
+      [
+        123890,
+        154523
+      ],
+      [
+        101624,
+        198080
+      ]
+    ]
+  },
+  {
+    "model": "logistic_balanced",
+    "records": 578117,
+    "accuracy": 0.5547025948034741,
+    "macro_f1": 0.554121467074068,
+    "balanced_accuracy": 0.5567873336284295,
+    "confusion_matrix_labels_0_1": [
+      [
+        170777,
+        107636
+      ],
+      [
+        149798,
+        149906
+      ]
+    ]
+  },
+  {
+    "model": "dummy_prior",
+    "records": 578117,
+    "accuracy": 0.5184140926490658,
+    "macro_f1": 0.3414181251075105,
+    "balanced_accuracy": 0.5,
+    "confusion_matrix_labels_0_1": [
+      [
+        0,
+        278413
+      ],
+      [
+        0,
+        299704
+      ]
+    ]
+  }
+]
