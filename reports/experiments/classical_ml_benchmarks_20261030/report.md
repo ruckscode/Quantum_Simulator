@@ -53,7 +53,7 @@ The 57.00% matched-feature result is not directly interchangeable with the 79.33
 - Sparse cosine KNN search: `experiments/run_classical_sparse_knn_nested.py`
 - Source-task configuration and expected input hashes: `reports/experiments/classical_ml_benchmarks_20261030/inputs/classical_nine_source_v2_config.json`
 
-Raw external datasets, cached features, and row-level OOF prediction files are not part of this publication update. The manifests retain task protocols and source hashes; rerunning the source searches requires the matching locally prepared input CSVs. QMutBench raw data and model artifacts remain governed by their existing local-data rules.
+Raw external datasets and cached feature tensors are not part of this publication update. Fold-level OOF prediction CSVs for the nested source searches and grouped classical suites are included beside their metrics and manifests. Large QMutBench per-record prediction files and model intermediates remain local-only. The manifests retain task protocols and source hashes; rerunning source searches requires the matching locally prepared input CSVs. QMutBench raw data and model artifacts remain governed by their existing local-data rules.
 
 ## Reliability limits
 
