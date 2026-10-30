@@ -1,8 +1,9 @@
-"""Train/export the genuine final deployable observable-only Logistic Regression.
+"""Train/export an observable-only Logistic Regression development candidate.
 
 Run in an environment where sklearn's native extensions load successfully.
-This fits all 270 audited records after the separately completed grouped-CV
-evaluation; it does not compute or report training-set generalization metrics.
+This legacy full-dataset route does not establish independent deployment
+validation or calibrated probabilities. Its strict provenance preflight must
+pass before fitting; a successful export is still only a development candidate.
 """
 from __future__ import annotations
 
@@ -64,7 +65,7 @@ def export_model(output_path: Path = DEFAULT_ARTIFACT_PATH) -> Path:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     artifact = {
         "artifact_type": ARTIFACT_TYPE,
-        "training_status": "FINAL DEPLOYABLE MODEL",
+        "training_status": "DEVELOPMENT CANDIDATE; NOT VALIDATED FOR DEPLOYMENT",
         "model_type": "sklearn.linear_model.LogisticRegression",
         "feature_names": list(FEATURE_NAMES),
         "class_names": list(CLASSES),
@@ -87,6 +88,7 @@ def export_model(output_path: Path = DEFAULT_ARTIFACT_PATH) -> Path:
             "random_seed": None,
             "inference_features_only": True,
             "labels_or_row_metadata_in_artifact": False,
+            "deployment_validation": "NOT_PERFORMED",
         },
     }
     output_path.parent.mkdir(parents=True, exist_ok=True)

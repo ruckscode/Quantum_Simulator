@@ -48,6 +48,7 @@
   "metadata": {
     "class_order_source": "quantum_simulator.ml_diagnosis.CLASSES",
     "dataset_source": "Phase 5 prepared training rows",
+    "deployment_validation": "NOT_PERFORMED",
     "evaluation_methodology": "development-family-only fit; no probability calibration",
     "excluded_families": [
       "F3_SWAP_ROUTING",
@@ -87,5 +88,5 @@
   },
   "probabilities_calibrated": false,
   "probability_calibration": "none",
-  "training_status": "FINAL DEPLOYABLE MODEL"
+  "training_status": "DEVELOPMENT CANDIDATE; NOT VALIDATED FOR DEPLOYMENT"
 }

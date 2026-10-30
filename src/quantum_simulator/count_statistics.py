@@ -115,4 +115,100 @@ def compare_count_samples(
     )
 
 
-__all__ = ["CountSampleComparisonResult", "compare_count_samples"]
+def compare_counts_to_distribution(
+    expected_distribution: Mapping[str, float],
+    observed_counts: Mapping[str, int],
+    *,
+    threshold: float = 0.05,
+    alpha: float = 0.05,
+    simulations: int = 1999,
+    seed: int = 0,
+) -> CountSampleComparisonResult:
+    """Test one observed count sample against an exact expected distribution.
+
+    A seeded multinomial parametric bootstrap estimates the null distribution
+    of TVD. Statistical significance and the practical effect threshold are
+    separate gates, avoiding the conservative 1/sqrt(shots) rule when the
+    reference probabilities are exact rather than another finite-shot sample.
+    """
+    if not isinstance(expected_distribution, Mapping) or not expected_distribution:
+        raise TypeError("expected_distribution must be a non-empty probability mapping")
+    if not isinstance(observed_counts, Mapping) or not observed_counts:
+        raise TypeError("observed_counts must be a non-empty count mapping")
+    for name, value in (("alpha", alpha), ("threshold", threshold)):
+        if isinstance(value, (bool, np.bool_)) or not isinstance(value, (int, float, np.integer, np.floating)):
+            raise TypeError(f"{name} must be numeric")
+        if not isfinite(float(value)) or float(value) < 0 or (name == "alpha" and float(value) > 1):
+            raise ValueError(f"{name} is outside its valid range")
+    if isinstance(simulations, (bool, np.bool_)) or not isinstance(simulations, (int, np.integer)) or simulations <= 0:
+        raise ValueError("simulations must be a positive integer")
+    if isinstance(seed, (bool, np.bool_)) or not isinstance(seed, (int, np.integer)):
+        raise TypeError("seed must be an integer")
+
+    def normalized_probabilities(values: Mapping[str, float]) -> dict[str, float]:
+        result: dict[str, float] = {}
+        for raw_key, raw_value in values.items():
+            key = str(raw_key)
+            if key in result:
+                raise ValueError("outcome keys must be unique after string conversion")
+            if isinstance(raw_value, (bool, np.bool_)) or not isinstance(raw_value, (int, float, np.integer, np.floating)):
+                raise TypeError("expected probabilities must be numeric")
+            value = float(raw_value)
+            if not isfinite(value) or value < 0:
+                raise ValueError("expected probabilities must be finite and non-negative")
+            result[key] = value
+        total = sum(result.values())
+        if total <= 0:
+            raise ValueError("expected probabilities must have positive total mass")
+        return {key: value / total for key, value in result.items()}
+
+    probabilities = normalized_probabilities(expected_distribution)
+    counts: dict[str, int] = {}
+    for raw_key, raw_value in observed_counts.items():
+        key = str(raw_key)
+        if key in counts:
+            raise ValueError("outcome keys must be unique after string conversion")
+        if isinstance(raw_value, (bool, np.bool_)) or not isinstance(raw_value, (int, np.integer)) or raw_value < 0:
+            raise ValueError("observed_counts must contain non-negative integer values")
+        counts[key] = int(raw_value)
+    shots = sum(counts.values())
+    if shots <= 0:
+        raise ValueError("observed_counts must contain positive total shots")
+
+    keys = sorted(set(probabilities) | set(counts))
+    p = np.asarray([probabilities.get(key, 0.0) for key in keys], dtype=float)
+    observed = np.asarray([counts.get(key, 0) for key in keys], dtype=np.int64)
+    observed_probability = observed / shots
+    tvd = float(0.5 * np.abs(observed_probability - p).sum())
+    rng = np.random.default_rng(int(seed))
+    extreme = 0
+    for _ in range(int(simulations)):
+        simulated = rng.multinomial(shots, p)
+        simulated_tvd = 0.5 * np.abs(simulated / shots - p).sum()
+        extreme += simulated_tvd >= tvd - 1e-12
+    p_value = (extreme + 1) / (int(simulations) + 1)
+    detected = bool(p_value <= float(alpha) and tvd > float(threshold))
+    observed_mapping = {key: float(value) for key, value in zip(keys, observed_probability)}
+    expected_mapping = {key: float(value) for key, value in zip(keys, p)}
+    base = compare_distributions(expected_mapping, observed_mapping, threshold=float(threshold))
+    base.threshold = float(threshold)
+    base.finite_shot_guard = 0.0
+    base.shots = shots
+    base.anomaly_detected = detected
+    base.reason = (
+        "Multinomial goodness-of-fit rejects the exact reference and TVD exceeds the practical-effect threshold"
+        if detected else
+        "No significant distribution change above the practical-effect threshold"
+    )
+    base.message = (
+        f"Observed TVD={tvd:.6f}, multinomial-bootstrap p={p_value:.4f}, "
+        f"effect threshold={float(threshold):.6f}, shots={shots}."
+    )
+    return CountSampleComparisonResult(
+        **{name: getattr(base, name) for name in DistributionComparisonResult.__dataclass_fields__},
+        p_value=float(p_value),
+        method="multinomial_parametric_bootstrap",
+    )
+
+
+__all__ = ["CountSampleComparisonResult", "compare_count_samples", "compare_counts_to_distribution"]
