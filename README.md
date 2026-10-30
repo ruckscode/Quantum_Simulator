@@ -148,21 +148,25 @@ For live IBM Quantum execution, install the optional extra directly from Git:
 %pip install "quantum-simulator[ibm] @ git+https://github.com/ruckscode/Quantum_Simulator.git@simulator-python-package"
 ```
 
-Pass the key explicitly to the call; it is not read from a default environment variable by this Python API:
+Pass the current IBM Quantum Platform API key and instance explicitly to the call. For the `ibm_quantum_platform` channel, the current IBM client expects its 44-character API key; the adapter checks the length before making a network request. The adapter passes the key in memory to the IBM client, does not save it to disk or include it in reports, and redacts it from captured upstream exception text. No `save_account()` call is made. The current IBM Platform quick-start documents the API key and instance CRN requirements: https://quantum.cloud.ibm.com/docs/en/guides/initialize-account.
 
 ```python
 from getpass import getpass
 from ibm_validation import execute_on_ibm_backend
 
-api_key = getpass("IBM Quantum API key: ")
-live = execute_on_ibm_backend(
-    submitted.instructions,
-    reference_circuit=intended.instructions,
-    backend_name="YOUR_BACKEND_NAME",
-    token=api_key,
-    shots=2048,
-)
-del api_key
+api_key = getpass("IBM Quantum Platform API key (hidden): ")
+instance_crn = input("IBM instance CRN: ").strip()
+try:
+    live = execute_on_ibm_backend(
+        submitted.instructions,
+        reference_circuit=intended.instructions,
+        backend_name="YOUR_BACKEND_NAME",
+        token=api_key,
+        instance=instance_crn,
+        shots=2048,
+    )
+finally:
+    del api_key
 print(live.diagnosis)
 ```
 
@@ -478,4 +482,3 @@ The generic calibration contract distinguishes caller-reported acquisition time 
 ## Finalization report
 
 The authoritative current-tree research and software finalization report is [final_research_report.md](final_research_report.md). It records the bounded validation result, frozen 7/45 failure and case explanations, claim boundaries, evidence limitations, and release disposition. The separate [independent research handoff](reports/independent_research_handoff_20261015.md) defines a blocked, planning-only follow-up protocol and its provenance gates. Historical status entries above remain dated snapshots; use the report's finalization section for the current milestone verdict.
-
