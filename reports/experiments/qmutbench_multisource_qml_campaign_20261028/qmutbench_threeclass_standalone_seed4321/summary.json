@@ -1,0 +1,229 @@
+{
+  "status": "completed_development_oof_with_reloadable_checkpoints",
+  "task": "QMutBench Survivor/WOO/OPO three-class exploratory pilot",
+  "records": 205,
+  "origins": 12,
+  "folds": 3,
+  "features": "reconstructed original four fold-selected metadata/QASM-diff features from train-fold-only selection manifests; numeric scaling fit on training fold",
+  "split": "reused saved three-fold origin-group validation manifest",
+  "results": [
+    {
+      "model": "amplitude_hybrid_2q_d2_lr008",
+      "accuracy": 0.4634146341463415,
+      "macro_f1": 0.41324761806689514,
+      "balanced_accuracy": 0.4516088486676722,
+      "per_class": {
+        "0": {
+          "precision": 0.43478260869565216,
+          "recall": 0.8333333333333334,
+          "f1": 0.5714285714285714,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.5102040816326531,
+          "recall": 0.36764705882352944,
+          "f1": 0.4273504273504274,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.5555555555555556,
+          "recall": 0.15384615384615385,
+          "f1": 0.24096385542168675,
+          "support": 65
+        }
+      },
+      "confusion_matrix": [
+        [
+          60,
+          11,
+          1
+        ],
+        [
+          36,
+          25,
+          7
+        ],
+        [
+          42,
+          13,
+          10
+        ]
+      ],
+      "folds": 3,
+      "records": 205,
+      "training_seconds": 0.93187670000043,
+      "configuration": {
+        "name": "amplitude_hybrid_2q_d2_lr008",
+        "qubits": 2,
+        "features": 4,
+        "encoding": "amplitude",
+        "depth": 2,
+        "reupload": false,
+        "learning_rate": 0.08
+      }
+    }
+  ],
+  "fold_results": [
+    {
+      "fold": 1,
+      "model": "amplitude_hybrid_2q_d2_lr008",
+      "records": 67,
+      "origins": 4,
+      "training_seconds": 0.3311939000050188,
+      "gradient_check": {
+        "parameter_shift": 0.00012980856487187587,
+        "finite_difference": 0.00011082237350024114,
+        "absolute_error": 1.8986191371634723e-05,
+        "passed": true
+      },
+      "accuracy": 0.417910447761194,
+      "macro_f1": 0.3053738764582138,
+      "balanced_accuracy": 0.3925438596491228,
+      "per_class": {
+        "0": {
+          "precision": 0.3898305084745763,
+          "recall": 0.9583333333333334,
+          "f1": 0.5542168674698795,
+          "support": 24
+        },
+        "1": {
+          "precision": 0.6666666666666666,
+          "recall": 0.16666666666666666,
+          "f1": 0.26666666666666666,
+          "support": 24
+        },
+        "2": {
+          "precision": 0.5,
+          "recall": 0.05263157894736842,
+          "f1": 0.09523809523809525,
+          "support": 19
+        }
+      },
+      "confusion_matrix": [
+        [
+          23,
+          1,
+          0
+        ],
+        [
+          19,
+          4,
+          1
+        ],
+        [
+          17,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "fold": 2,
+      "model": "amplitude_hybrid_2q_d2_lr008",
+      "records": 68,
+      "origins": 4,
+      "training_seconds": 0.2967410999990534,
+      "gradient_check": {
+        "parameter_shift": 0.00012980856487187587,
+        "finite_difference": 0.00011082237350024114,
+        "absolute_error": 1.8986191371634723e-05,
+        "passed": true
+      },
+      "accuracy": 0.5294117647058824,
+      "macro_f1": 0.4740740740740741,
+      "balanced_accuracy": 0.5111111111111112,
+      "per_class": {
+        "0": {
+          "precision": 0.4791666666666667,
+          "recall": 0.9583333333333334,
+          "f1": 0.638888888888889,
+          "support": 24
+        },
+        "1": {
+          "precision": 1.0,
+          "recall": 0.2,
+          "f1": 0.33333333333333337,
+          "support": 20
+        },
+        "2": {
+          "precision": 0.5625,
+          "recall": 0.375,
+          "f1": 0.45,
+          "support": 24
+        }
+      },
+      "confusion_matrix": [
+        [
+          23,
+          0,
+          1
+        ],
+        [
+          10,
+          4,
+          6
+        ],
+        [
+          15,
+          0,
+          9
+        ]
+      ]
+    },
+    {
+      "fold": 3,
+      "model": "amplitude_hybrid_2q_d2_lr008",
+      "records": 70,
+      "origins": 4,
+      "training_seconds": 0.3039416999963578,
+      "gradient_check": {
+        "parameter_shift": 0.00012980856487187587,
+        "finite_difference": 0.00011082237350024114,
+        "absolute_error": 1.8986191371634723e-05,
+        "passed": true
+      },
+      "accuracy": 0.44285714285714284,
+      "macro_f1": 0.3495911495911496,
+      "balanced_accuracy": 0.4305555555555556,
+      "per_class": {
+        "0": {
+          "precision": 0.45161290322580644,
+          "recall": 0.5833333333333334,
+          "f1": 0.509090909090909,
+          "support": 24
+        },
+        "1": {
+          "precision": 0.4358974358974359,
+          "recall": 0.7083333333333334,
+          "f1": 0.5396825396825398,
+          "support": 24
+        },
+        "2": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 22
+        }
+      },
+      "confusion_matrix": [
+        [
+          14,
+          10,
+          0
+        ],
+        [
+          7,
+          17,
+          0
+        ],
+        [
+          10,
+          12,
+          0
+        ]
+      ]
+    }
+  ],
+  "runtime_seconds": 0.9669987000015681,
+  "frozen_test_accessed": false
+}

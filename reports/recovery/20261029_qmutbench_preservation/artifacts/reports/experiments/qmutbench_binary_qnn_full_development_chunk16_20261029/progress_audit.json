@@ -1,0 +1,92 @@
+{
+  "schema": "qmutbench-full-development-progress-audit-v1",
+  "status": "VERIFIED",
+  "issues": [],
+  "campaign_status": "paused_checkpointed",
+  "mode": "full-development",
+  "active_fold": 1,
+  "committed_chunks": 51,
+  "latest_checkpoint": "fold_01_qnn_chunk_00000051.json",
+  "next_epoch": 0,
+  "next_batch": 816,
+  "processed_training_records": 26112,
+  "optimizer_updates": 816,
+  "cumulative_training_seconds": 837.3080003000214,
+  "cumulative_circuit_executions": 26112,
+  "estimated_total_optimizer_updates": 578136,
+  "observed_training_seconds_per_optimizer_update": 1.0261127454657124,
+  "estimated_total_qnn_training_hours_at_observed_rate": 164.78686617015697,
+  "estimate_note": "Extrapolation from the current fold-1 chunked QNN update rate; excludes streaming/preprocessing and classical evaluation; not an observed completion time.",
+  "all_committed_chunks_have_gradient_and_parameter_update_checks": true,
+  "minimum_available_ram_mib": 1747.95703125,
+  "maximum_checkpointed_peak_rss_mib": 468.03125,
+  "source_audit": {
+    "class_counts": {
+      "0": 278413,
+      "1": 299704
+    },
+    "development_origins": 305,
+    "development_rows_indexed": 578117,
+    "fold_class_counts": {
+      "1": {
+        "0": 55305,
+        "1": 59656
+      },
+      "2": {
+        "0": 56857,
+        "1": 60918
+      },
+      "3": {
+        "0": 55481,
+        "1": 59799
+      },
+      "4": {
+        "0": 55310,
+        "1": 59596
+      },
+      "5": {
+        "0": 55460,
+        "1": 59735
+      }
+    },
+    "fold_origin_counts": {
+      "1": 60,
+      "2": 59,
+      "3": 58,
+      "4": 69,
+      "5": 59
+    },
+    "fold_record_counts": {
+      "1": 114961,
+      "2": 117775,
+      "3": 115280,
+      "4": 114906,
+      "5": 115195
+    },
+    "frozen_test_rows_retained": 0,
+    "qasm_manifest_sha256": "284188822b6b846a12bcf791fc5122146d3ed78be29588b97b39595534abda01",
+    "reference_archive_sha256": "bfc1affdd40ac1032b65e417548075ce066407297fc603085ba6519403f56367",
+    "reference_authority": "numeric five-fold development archive",
+    "reference_sha256": null,
+    "source_chunk_rows": 10000,
+    "source_rows_scanned": 723079,
+    "source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778"
+  },
+  "frozen_test_accessed": false,
+  "preflight_configuration": {
+    "batch_size": 32,
+    "chunk_batches": 16,
+    "classical_estimators": 100,
+    "depth": 2,
+    "encoding": "angle_reupload",
+    "epochs": 8,
+    "fold_count": 5,
+    "learning_rate": 0.02,
+    "max_train_per_class_per_fold": 256,
+    "max_validation_per_class_per_fold": 256,
+    "optimizer": "adam",
+    "per_origin_class_cap": 32,
+    "qubits": 4,
+    "seed": 20261028
+  }
+}

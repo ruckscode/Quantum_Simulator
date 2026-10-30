@@ -1,0 +1,16 @@
+{
+  "status": "passed_for_prediction_comparison",
+  "records": 205,
+  "origins": 12,
+  "folds": 3,
+  "class_counts": {"0": 72, "1": 68, "2": 65},
+  "all_candidates_same_ids_labels_origins_folds": true,
+  "duplicate_record_model_pairs": 0,
+  "missing_candidate_probabilities": 0,
+  "frozen_test_rows_loaded": false,
+  "limitations": [
+    "Class-balanced exploratory sample is not prevalence representative.",
+    "Only 12 origins; results are exploratory and underpowered for routing or stable stacking.",
+    "Candidate folds and exploratory origin selection predate this ensemble analysis."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "status": "no_real_data_qnn_parameter_checkpoint",
+  "why": "Initial real-data confirmation stopped at the 500 MiB floor. A memory-efficient exact-gradient path passed toy equivalence, but was not launched on real data because available RAM was 663 MiB, below its 700 MiB preflight. No real-data weights are fabricated.",
+  "saved": [
+    "predictions.csv.gz",
+    "amplitude_encoding/predictions.csv.gz",
+    "trainable_readout/predictions.csv.gz",
+    "grouped_split_manifest.csv",
+    "sample_manifest.csv",
+    "features_by_fold.json",
+    "training_curves.csv",
+    "amplitude_encoding/training_curves.csv",
+    "trainable_readout/training_curves.csv"
+  ],
+  "training_candidate_checkpoint": null,
+  "frozen_test_accessed": false,
+  "chunked_gradient_smoke": "chunked_gradient_smoke.json; toy only, not a QMutBench model checkpoint"
+}

@@ -1,0 +1,16 @@
+{
+  "status": "completed_grouped_classical_suite",
+  "task": {
+    "name": "bugs4q_robust_execution",
+    "input": "C:/Users/pcm/OneDrive/Desktop/Quantum_Simulator/reports/experiments/qmutbench_multisource_qml_campaign_20261028/bugs4q_robust_execution/normalized_manifest.csv"
+  },
+  "rows": 2220,
+  "groups": 37,
+  "folds": 5,
+  "runtime_seconds": 77.81642990000182,
+  "sampling_policy": "all sampling fitted only inside each training fold, after SVD and scaling",
+  "max_observed_process_rss_mib": 151.51953125,
+  "memory_measurement_note": "RSS sampled after model fits; maximum observed, not guaranteed OS peak",
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}

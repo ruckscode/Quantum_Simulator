@@ -1,0 +1,286 @@
+{
+  "status": "completed_resource_light_grouped_qnn",
+  "task": "qsimbench_backend_fingerprint",
+  "records": 300,
+  "groups": 150,
+  "folds": 5,
+  "features": "8-bin BLAKE2b hashed token counts, train-fold min-max scaling",
+  "split": "five deterministic group-disjoint folds; all paired/source variants held by bug_id",
+  "results": {
+    "angle_reupload_4q_depth2_lr007": {
+      "accuracy": 0.6333333333333333,
+      "balanced_accuracy": 0.6333333333333333,
+      "macro_f1": 0.6330724070450098,
+      "per_class": {
+        "0": {
+          "precision": 0.6265822784810127,
+          "recall": 0.66,
+          "f1": 0.6428571428571429,
+          "support": 150
+        },
+        "1": {
+          "precision": 0.6408450704225352,
+          "recall": 0.6066666666666667,
+          "f1": 0.6232876712328768,
+          "support": 150
+        }
+      },
+      "confusion_matrix": [
+        [
+          99,
+          51
+        ],
+        [
+          59,
+          91
+        ]
+      ],
+      "folds": 5,
+      "records": 300,
+      "training_seconds": 4.4899713000049815,
+      "architecture": {
+        "name": "angle_reupload_4q_depth2_lr007",
+        "qubits": 4,
+        "features": 4,
+        "encoding": "angle",
+        "depth": 2,
+        "reupload": true,
+        "learning_rate": 0.07
+      },
+      "checkpoint_paths": [
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\standalone_replicate_seed2027\\angle_reupload_4q_depth2_lr007\\fold_1\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\standalone_replicate_seed2027\\angle_reupload_4q_depth2_lr007\\fold_2\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\standalone_replicate_seed2027\\angle_reupload_4q_depth2_lr007\\fold_3\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\standalone_replicate_seed2027\\angle_reupload_4q_depth2_lr007\\fold_4\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qsimbench_backend_fingerprint\\standalone_replicate_seed2027\\angle_reupload_4q_depth2_lr007\\fold_5\\checkpoint.npz"
+      ]
+    }
+  },
+  "fold_results": [
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "angle_reupload_4q_depth2_lr007",
+      "fold": 1,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 0.975034199997026,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.6,
+        "balanced_accuracy": 0.6,
+        "macro_f1": 0.595959595959596,
+        "per_class": {
+          "0": {
+            "precision": 0.5833333333333334,
+            "recall": 0.7,
+            "f1": 0.6363636363636365,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.625,
+            "recall": 0.5,
+            "f1": 0.5555555555555556,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            21,
+            9
+          ],
+          [
+            15,
+            15
+          ]
+        ]
+      },
+      "available_ram_mib": 784.828125
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "angle_reupload_4q_depth2_lr007",
+      "fold": 2,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 0.8876611000014236,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.6666666666666666,
+        "balanced_accuracy": 0.6666666666666666,
+        "macro_f1": 0.6662958843159066,
+        "per_class": {
+          "0": {
+            "precision": 0.65625,
+            "recall": 0.7,
+            "f1": 0.6774193548387096,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.6785714285714286,
+            "recall": 0.6333333333333333,
+            "f1": 0.6551724137931035,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            21,
+            9
+          ],
+          [
+            11,
+            19
+          ]
+        ]
+      },
+      "available_ram_mib": 787.41015625
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "angle_reupload_4q_depth2_lr007",
+      "fold": 3,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 0.7658462000035797,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.5666666666666667,
+        "balanced_accuracy": 0.5666666666666667,
+        "macro_f1": 0.5542857142857143,
+        "per_class": {
+          "0": {
+            "precision": 0.55,
+            "recall": 0.7333333333333333,
+            "f1": 0.6285714285714286,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.6,
+            "recall": 0.4,
+            "f1": 0.48,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            22,
+            8
+          ],
+          [
+            18,
+            12
+          ]
+        ]
+      },
+      "available_ram_mib": 796.1484375
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "angle_reupload_4q_depth2_lr007",
+      "fold": 4,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 0.9570429000013974,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.6833333333333333,
+        "balanced_accuracy": 0.6833333333333333,
+        "macro_f1": 0.6789636722050126,
+        "per_class": {
+          "0": {
+            "precision": 0.7391304347826086,
+            "recall": 0.5666666666666667,
+            "f1": 0.6415094339622641,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.6486486486486487,
+            "recall": 0.8,
+            "f1": 0.7164179104477612,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            17,
+            13
+          ],
+          [
+            6,
+            24
+          ]
+        ]
+      },
+      "available_ram_mib": 817.00390625
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "model": "angle_reupload_4q_depth2_lr007",
+      "fold": 5,
+      "records": 60,
+      "groups": 30,
+      "training_seconds": 0.9043869000015547,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.65,
+        "balanced_accuracy": 0.6499999999999999,
+        "macro_f1": 0.6491228070175439,
+        "per_class": {
+          "0": {
+            "precision": 0.6666666666666666,
+            "recall": 0.6,
+            "f1": 0.631578947368421,
+            "support": 30
+          },
+          "1": {
+            "precision": 0.6363636363636364,
+            "recall": 0.7,
+            "f1": 0.6666666666666666,
+            "support": 30
+          }
+        },
+        "confusion_matrix": [
+          [
+            18,
+            12
+          ],
+          [
+            9,
+            21
+          ]
+        ]
+      },
+      "available_ram_mib": 787.7421875
+    }
+  ],
+  "optimizer_steps_per_fold": 4,
+  "batch_size": 64,
+  "runtime_seconds": 4.618546300000162,
+  "minimum_ram_floor_mib": 500,
+  "frozen_test_accessed": false
+}

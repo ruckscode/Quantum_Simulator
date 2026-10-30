@@ -1,0 +1,6088 @@
+{
+  "root": "data\\external_quantum_datasets\\qml_platform_bugs\\extracted_source",
+  "xlsx_count": 39,
+  "workbooks": [
+    {
+      "name": "Classified/Conclusion.xlsx",
+      "sha256": "7198fc8bb9bd3769c9b0eb28133586721b2bf5462d88b128f1fe844da5fa8423",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "工作表 1 - pennlane-issues",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 482,
+          "nonempty_cells": 4765,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "pennlane-issues",
+                "",
+                "",
+                "",
+                "",
+                "Warning-style error",
+                "Locate",
+                "",
+                "0: not quantum\n1: quantum-related",
+                " processing",
+                "",
+                "reason",
+                "",
+                "",
+                "0: agree\n1: disagree",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/677",
+                "677.0",
+                "cirq-ops parallelization for non-QuantumEngine backends",
+                "",
+                "Block",
+                "operations(ops)",
+                "",
+                "0.0",
+                "Corner cases",
+                "",
+                "0.0",
+                "",
+                "",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3490",
+                "3490.0",
+                "[BUG] qchem.electron_integrals IndexError: list index out of range",
+                "bug :bug:",
+                "Crash",
+                "",
+                "",
+                "",
+                "？",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3482",
+                "3482.0",
+                "[BUG] pauli_word_to_string doesn't work for Hamiltonians",
+                "enhancement :sparkles:",
+                "Crash",
+                "",
+                "",
+                "",
+                "？",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3475",
+                "3475.0",
+                "[BUG] Incorrect results with `diff_method=\"adjoint\"` for jitted jacobian when `mode=\"backward\"`",
+                "bug :bug:",
+                "Crash",
+                "",
+                "",
+                "",
+                "？",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3474",
+                "3474.0",
+                "[BUG] Setting `shots` on QNode evaluation is incompatible with `jax.jit`",
+                "bug :bug:",
+                "Crash",
+                "interfaces",
+                "",
+                "",
+                "？",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3473",
+                "3473.0",
+                "[BUG] PL forbids non-`Observable` generators",
+                "bug :bug:",
+                "Crash",
+                "operations(ops)",
+                "",
+                "1.0",
+                "？",
+                "function/generator",
+                "Algorithm",
+                "",
+                "",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3428",
+                "3428.0",
+                "[BUG] [Return-types] Some tests raise `VisibleDeprecationWarning` (perhaps due to param-shift)",
+                "bug :bug:",
+                "Crash",
+                "Tests",
+                "",
+                "",
+                "？",
+                "",
+                "",
+                "",
+                "",
+                "Not a bug",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane/issues/3412",
+                "3412.0",
+                "[BUG] `qml.sample` produces incorrect results with shot vectors",
+                "bug :bug:",
+                "Crash",
+                "quantum",
+                "",
+                "1.0",
+                "？",
+                "measurement",
+                "Algorithm",
+                "",
+                "",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3407",
+                "3407.0",
+                "[BUG] Operator.pow does not queue its constituents",
+                "bug :bug:",
+                "Crash",
+                "operations(ops)",
+                "",
+                "1.0",
+                "？",
+                "funtion for unitory",
+                "Processing",
+                "",
+                "",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane/issues/3398",
+                "3398.0",
+                "[BUG] Finite difference does not work with special object observable",
+                "bug :bug:",
+                "Crash",
+                "gradient",
+                "",
+                "0.0",
+                "？",
+                "Custom data",
+                "Configuration error",
+                "",
+                "",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane/issues/3395",
+                "3395.0",
+                "[BUG] `_obs_sharing_wires` is not updated in original tape after expansion",
+                "bug :bug:",
+                "Crash",
+                "quantum",
+                "",
+                "1.0",
+                "？",
+                "rotations",
+                "Algorithm",
+                "",
+                "",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": null,
+      "created": null,
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/MLADS2018-QuantumML.xlsx",
+      "sha256": "3f31e1ac584da9041ce6021ef453a310963334bf53a091b5e6fc1ba6b53533aa",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "MLADS2018-QuantumML",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 22,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "CLOSED",
+                "https://github.com/microsoft/MLADS2018-QuantumML/issues/3",
+                "3.0",
+                "Error generating data angles",
+                "Function error",
+                "Processing",
+                "0.0",
+                "0.0",
+                "0.0"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/microsoft/MLADS2018-QuantumML/issues/2",
+                "2.0",
+                "Wrong definition of SaveAsCsv",
+                "Crash",
+                "type confusion",
+                "Built failure",
+                "0.0",
+                "0.0"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/microsoft/MLADS2018-QuantumML/issues/1",
+                "1.0",
+                "Inconsistency between documentation and code"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-08T00:38:20Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/PaddlePaddle-Quantum.xlsx",
+      "sha256": "2ba9043beb697a9c46632ca9f2e434e185add9e5c89aacaa85cc291596b09be8",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "工作表 1 - PaddlePaddle-Quantum",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 126,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "PaddlePaddle-Quantum",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PaddlePaddle/Quantum/issues/40",
+                "40.0",
+                "Integration on OSX with the M1 chip (arm64)?",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/PaddlePaddle/Quantum/issues/38",
+                "38.0",
+                "现在使用量子计算来训练模型，会有速度上的优势吗？",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PaddlePaddle/Quantum/issues/37",
+                "37.0",
+                "(NotFound) There are no kernels which are registered in the einsum operator.",
+                "",
+                "Crash",
+                "Dimension mismatch",
+                "",
+                "0.0",
+                "Configuration error",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PaddlePaddle/Quantum/issues/36",
+                "36.0",
+                "There are no kernels which are registered in the einsum operator.   [Hint: Expected kernels_iter != all_op_kernels.end(), but received kernels_iter == all_op_kernels.end().] ",
+                "",
+                "Crash",
+                "Inconsistency",
+                "",
+                "0.0",
+                "0.0",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "CLOSED",
+                "https://github.com/PaddlePaddle/Quantum/issues/35",
+                "35.0",
+                "ImportError: cannot import name 'State' from 'sre_parse'",
+                "",
+                "Crash",
+                "Referenced types error",
+                "python version",
+                "0.0",
+                "0.0",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/PaddlePaddle/Quantum/issues/34",
+                "34.0",
+                "相关数学推导咨询",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/PaddlePaddle/Quantum/issues/33",
+                "33.0",
+                "量桨2.1.3版本导入化学分子库报错",
+                "",
+                "Crash",
+                "Forget Catalog",
+                "",
+                "0.0",
+                "Configuration error",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "OPEN",
+                "https://github.com/PaddlePaddle/Quantum/issues/19",
+                "19.0",
+                "【PaddlePaddle Hackathon】Paddle Quantum 任务合集",
+                "PaddlePaddle Hackathon",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "OPEN",
+                "https://github.com/PaddlePaddle/Quantum/issues/18",
+                "18.0",
+                "【PaddlePaddle Hackathon】82 基于量子卷积神经网络的图片分类",
+                "PaddlePaddle Hackathon",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "OPEN",
+                "https://github.com/PaddlePaddle/Quantum/issues/17",
+                "17.0",
+                "【PaddlePaddle Hackathon】81 时间演化电路的性能优化",
+                "PaddlePaddle Hackathon",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "OPEN",
+                "https://github.com/PaddlePaddle/Quantum/issues/16",
+                "16.0",
+                "【PaddlePaddle Hackathon】80 多量子比特独立系统的 Bloch 球展示",
+                "PaddlePaddle Hackathon",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": null,
+      "created": null,
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/pennlane_github_issues.xlsx",
+      "sha256": "fcf440c8cd3e1057b703406c80dadc5e9bd42dcd0a9e74278471073414e84ea4",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "工作表 1 - pennlane-issues",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 5607,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "pennlane-issues",
+                "",
+                "",
+                "",
+                "0: agree\n1: disagree",
+                "reason",
+                "0: not quantum\n1: quantum-related",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3492",
+                "3492.0",
+                "[BUG] Nested `jax.vmap` does not work",
+                "bug :bug:",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3490",
+                "3490.0",
+                "[BUG] qchem.electron_integrals IndexError: list index out of range",
+                "bug :bug:",
+                "Crash",
+                "User",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3482",
+                "3482.0",
+                "[BUG] pauli_word_to_string doesn't work for Hamiltonians",
+                "enhancement :sparkles:",
+                "Crash",
+                "User",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3480",
+                "3480.0",
+                "[BUG] `jax.vjp` of a qnode is broken for all but scalar vectors (aka, for the grad case)",
+                "bug :bug:",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3475",
+                "3475.0",
+                "[BUG] Incorrect results with `diff_method=\"adjoint\"` for jitted jacobian when `mode=\"backward\"`",
+                "bug :bug:",
+                "Function error",
+                "User",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3474",
+                "3474.0",
+                "[BUG] Setting `shots` on QNode evaluation is incompatible with `jax.jit`",
+                "bug :bug:",
+                "Crash",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3473",
+                "3473.0",
+                "[BUG] PL forbids non-`Observable` generators",
+                "bug :bug:",
+                "Crash",
+                "defination",
+                "function/generator",
+                "0.0",
+                "Algorithm",
+                "1.0",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3428",
+                "3428.0",
+                "[BUG] [Return-types] Some tests raise `VisibleDeprecationWarning` (perhaps due to param-shift)",
+                "bug :bug:",
+                "Warning-style error",
+                "test",
+                "",
+                "Not a bug",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane/issues/3412",
+                "3412.0",
+                "[BUG] `qml.sample` produces incorrect results with shot vectors",
+                "bug :bug:",
+                "Function error",
+                "Algorithm",
+                "measurement",
+                "0.0",
+                "Algorithm",
+                "1.0",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3407",
+                "3407.0",
+                "[BUG] Operator.pow does not queue its constituents",
+                "bug :bug:",
+                "Function error",
+                "Algorithm",
+                "funtion for unitory",
+                "0.0",
+                "Processing",
+                "1.0",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3403",
+                "3403.0",
+                "Allow skipping `QNode.construct` in `QNode.__call__` when QNode has already been constructed",
+                "enhancement :sparkles:",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": null,
+      "created": null,
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/pennylane-aqt.xlsx",
+      "sha256": "23e945027a1ba3b46a159f8fefbfeed5cb74dfeaee2cd1a8047cd84afc9e8a36",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-aqt",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 46,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-aqt/issues/24",
+                "24.0",
+                "CNOT gate doesn't work with aqt.sim",
+                "bug",
+                "Function error",
+                "Value error ",
+                "device",
+                "Cnot gate",
+                "0.0",
+                "Algorithm",
+                "1.0"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-aqt/issues/23",
+                "23.0",
+                "TypeError: Object of type tensor is not JSON serializable",
+                "bug",
+                "Crash",
+                "Inconsistency",
+                "Conda",
+                "0.0",
+                "User"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-aqt/issues/17",
+                "17.0",
+                "execution of a quantum circuit with pennylane-aqt",
+                "bug",
+                "Crash",
+                "Exception Handling",
+                "device",
+                "single qubit for CNot gate",
+                "0.0",
+                "Algorithm",
+                "1.0"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-aqt/issues/14",
+                "14.0",
+                "gate CNOT not supported ",
+                "bug",
+                "Crash",
+                "Gate unsupport",
+                "device",
+                "CNot gate Unsupported",
+                "0.0",
+                "Algorithm",
+                "1.0"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:35:47Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/pennylane-cirq.xlsx",
+      "sha256": "b3f45f0e344fec62dcd80a916c767057492103e6ac316cc809fdb304b1c6a72a",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-cirq",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 77,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/88",
+                "88.0",
+                "`cirq.pasqal` is deprecated",
+                "Warning-style error",
+                "Inconsistency",
+                "0.0",
+                "0.0",
+                "0.0"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/70",
+                "70.0",
+                "Add support for the latest Cirq version, as well as additional simulators",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/69",
+                "69.0",
+                "The latest pennylane-cirq requires `simulate` method without `analytic` argument.",
+                ""
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/60",
+                "60.0",
+                "Incorrect state preparations for multiple qubits",
+                "bug",
+                "Function error",
+                "Basisc State",
+                "device",
+                "0.0",
+                "Processing",
+                "1.0"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/53",
+                "53.0",
+                "Update expectation value computation logic ",
+                ""
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/32",
+                "32.0",
+                "Incompatible requirements for `protobuf` in Cirq",
+                ""
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/17",
+                "17.0",
+                "Certain formulae have problems with rendering in the documentation",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/14",
+                "14.0",
+                "Add support for inverse operations",
+                ""
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/9",
+                "9.0",
+                "Add support for parametrized quantum circuits",
+                "good first issue",
+                ""
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/8",
+                "8.0",
+                "Add support for Cirq devices",
+                ""
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/7",
+                "7.0",
+                "Add PennyLane Operations for all Cirq gates",
+                ""
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/6",
+                "6.0",
+                "Revise sampling behaviour in analytic mode",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:32:36Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/pennylane-lightning.xlsx",
+      "sha256": "f0bd55954779c9ed1ada7ecdf54a396b814e6c5633ee0293155229c786835aed",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-lightning",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 346,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/397",
+                "397.0",
+                "Unable to build from pypi source tarball",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/395",
+                "395.0",
+                "Gate SingleExcitation not supported on device lightning.qubit",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/375",
+                "375.0",
+                "Bug with probability returned by lightning",
+                "bug",
+                "Function error",
+                "Corner case",
+                "returned probability",
+                "0.0",
+                "0.0",
+                "1.0"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/368",
+                "368.0",
+                "Update wheel-builder compiler from GCC 10.x to GCC 11.x",
+                "good first issue/hacktoberfest",
+                ""
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/367",
+                "367.0",
+                "Update GCC 10.x to 11.x in CI tests",
+                "good first issue/hacktoberfest",
+                ""
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/366",
+                "366.0",
+                "Ensure templated floating-point values are used throughout",
+                "good first issue/hacktoberfest",
+                ""
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/352",
+                "352.0",
+                "Improve tests and checks workflows",
+                "enhancement",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/347",
+                "347.0",
+                "Don't use brew for llvm path",
+                ""
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/338",
+                "338.0",
+                "CodeCov report different coverage depending on the runner",
+                ""
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/329",
+                "329.0",
+                "Docker Creation Fail GCC version and Test Fail",
+                "Crash",
+                "test",
+                "Docker",
+                "Not a bug"
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/320",
+                "320.0",
+                "Update MacOS min version support to MacOS 11",
+                ""
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/315",
+                "315.0",
+                "Add LM implementations of CSWAP & Toffoli  gates",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:33:34Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/pennylane-pq.xlsx",
+      "sha256": "17e15a00043198d3088ff0c86666006e232938e326702164f78bba4380c986e3",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-pq",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 73,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/63",
+                "63.0",
+                "Port the plugin to QubitDevice, and refactor the tests",
+                "enhancement",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/61",
+                "61.0",
+                "Tests for IBM device failing.",
+                "bug",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/52",
+                "52.0",
+                "pip3 install pennylane_pq fails on osx, dockerhub & ubuntu",
+                "bug",
+                "",
+                "pip"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/40",
+                "40.0",
+                "Set `pennylane>=0.2` in  setup.py before next release",
+                "in progress",
+                ""
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/37",
+                "37.0",
+                "Verbose argument is passed on to Backends but not to Engines ",
+                "bug",
+                "Function error",
+                "passed error",
+                "Unknown",
+                "Algorithm"
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/30",
+                "30.0",
+                "Increase coverage",
+                "enhancement",
+                ""
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/29",
+                "29.0",
+                "Update PQ plugin to work with abstract plugin attributes",
+                "bug",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/25",
+                "25.0",
+                "Remaining todos before the release:",
+                ""
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/24",
+                "24.0",
+                "Test should not cause costs even when testing on the IBM backends",
+                ""
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/19",
+                "19.0",
+                "StatePreparation doesn't work on the IBM backend for 4 qubits and more",
+                ""
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/13",
+                "13.0",
+                "Examples",
+                ""
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/7",
+                "7.0",
+                "Naming conventions in device.py",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:37:12Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/pennylane-qiskit.xlsx",
+      "sha256": "3c4c7ce57c57a1ebec99947164130983df3f4cbcf47539490baa90729bd71b6a",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-qiskit",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 194,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/218",
+                "218.0",
+                "Issue with inverse of QubitStateVector",
+                "Crash",
+                "plugin inherits",
+                "QubitStateVector ",
+                "0.0",
+                "Algorithm",
+                "1.0"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/208",
+                "208.0",
+                "Problem with equal parameters in vqe_runner",
+                "enhancement",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/189",
+                "189.0",
+                "Circuits always measure all qubits",
+                "enhancement",
+                "Crash",
+                "equal parameters",
+                "Function error",
+                "Algorithm",
+                "1.0"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/173",
+                "173.0",
+                "Tests using IBMQ are not run with forked PRs",
+                "enhancement",
+                ""
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/171",
+                "171.0",
+                "The upload GitHub action fails as Flaky is not installed",
+                "bug",
+                ""
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/165",
+                "165.0",
+                "Add caching capabilities to `QiskitDevice`.",
+                "enhancement",
+                ""
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/164",
+                "164.0",
+                "Problem with qiskit version 0.33.0 related to the function `measure`",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/153",
+                "153.0",
+                "Better support for the Identity gate",
+                ""
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/149",
+                "149.0",
+                "Update qiskit requirements",
+                ""
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/147",
+                "147.0",
+                "Support for Qiskit `ParameterVector`",
+                ""
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/145",
+                "145.0",
+                "`UserWarning: verbose is not a recognized runtime option and may be ignored by the backend`",
+                "Warning-style error",
+                "device",
+                "Not a bug"
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/143",
+                "143.0",
+                "Variational Quantum Algorithm Parameters are getting updated",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:34:37Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/pennylane-qulacs.xlsx",
+      "sha256": "6a5afd233baad15d507e6c2b4fecea14e71ffeb7230d745813752180400b5fd5",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-qulacs",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 24,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qulacs/issues/32",
+                "32.0",
+                "pennylane-qulacs with GPU (enhancement)"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qulacs/issues/24",
+                "24.0",
+                "Incorrect state preparations for multiple qubits",
+                "bug",
+                "Function error",
+                "qulacs_device.py",
+                "wrong initialize",
+                "0.0",
+                "Processing",
+                "1.0"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qulacs/issues/16",
+                "16.0",
+                "Add support for noise channels",
+                "good first issue"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qulacs/issues/8",
+                "8.0",
+                "Rot gate"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:32:04Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/pennylane-rigetti.xlsx",
+      "sha256": "bc753e63de35cd7b5576b74a488fda309a12b36cc5221f827d798d3a21e5f10e",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-rigetti",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 153,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/89",
+                "89.0",
+                "Support for QPU?",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/76",
+                "76.0",
+                "Pennylane Forest plugin ",
+                "Crash",
+                "Inconsistency",
+                "0.0",
+                "0.0",
+                "0.0"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/66",
+                "66.0",
+                "[BUG] Circuits \"stick\" when run on forest.qvm devices in tape mode",
+                "bug",
+                "Hang",
+                "Corner case",
+                "Function error",
+                "Processing",
+                "0.0"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/61",
+                "61.0",
+                "Gate object has no attribute 'params'",
+                ""
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/52",
+                "52.0",
+                "PennyLane commit breaking the plugin",
+                "bug",
+                "",
+                "pip"
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/48",
+                "48.0",
+                "Returning probabilities for QVM & QPU",
+                "bug",
+                "Function error",
+                "estimating probability",
+                "plugins/guibit",
+                "0.0",
+                "Algorithm",
+                "0.0"
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/47",
+                "47.0",
+                "Update the lattices used in the documentation",
+                "documentation",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/45",
+                "45.0",
+                "Remove sample collection redundancy in `QPUDevice.expval`",
+                "enhancement/code quality",
+                ""
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/34",
+                "34.0",
+                "QNodes with 2-qubit gates fail on the QPU",
+                "bug",
+                "Crash",
+                "qpu for 2-qubits gate",
+                "0.0",
+                "Processing",
+                "1.0"
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/32",
+                "32.0",
+                "Exception due to wires not being integers",
+                "bug",
+                "Crash",
+                "Type confusion",
+                "device do not support int",
+                "0.0",
+                "0.0",
+                "0.0"
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/29",
+                "29.0",
+                "Remove custom gates that are now native in PL Core",
+                "code quality",
+                ""
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/28",
+                "28.0",
+                "Merge QVMDevice / QPUDevice into same class",
+                "design",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:35:24Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/pennylane-sf.xlsx",
+      "sha256": "a5312ddea22cf28250f80e5cfc9de6c73f999120b476870bdac2456690084b50",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-sf",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 124,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/113",
+                "113.0",
+                "Error trying to acess 鈥榮imulon_gausian鈥 in pennylane",
+                "Crash"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/95",
+                "95.0",
+                "Update documentation for hardware access",
+                "documentation",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/91",
+                "91.0",
+                "Python 3.10: TensorFlow not compatible",
+                ""
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/89",
+                "89.0",
+                "GBS device (with device jacobian) incompatible with the new QNode",
+                "bug",
+                ""
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/75",
+                "75.0",
+                "PL qml.state() not supported on a simulator",
+                "enhancement",
+                ""
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/74",
+                "74.0",
+                "Devices do not support shot batching",
+                "bug",
+                ""
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/73",
+                "73.0",
+                "Error in `FockStateVector` for multiple wires.",
+                "Function error",
+                " NO Function",
+                "User"
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/69",
+                "69.0",
+                "Get probabilites of fock outputs from averages of samples",
+                "bug",
+                "Function error",
+                "Logic error",
+                "0.0",
+                "0.0",
+                "1.0"
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/67",
+                "67.0",
+                "Error when using `GaussianState` with `strawberryfields.fock` device",
+                "bug",
+                "Crash",
+                "sf_device",
+                "paramaters of gaussian",
+                "0.0",
+                "Algorithm",
+                "0.0"
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/27",
+                "27.0",
+                "Incomplete initialization of the class StrawberryFieldsSimulator: missing _capabilities",
+                "bug",
+                "Crash",
+                "type confusion",
+                "simulator",
+                "0.0",
+                "Processing",
+                "0.0"
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/26",
+                "26.0",
+                "Add support for inverse operations",
+                "enhancement",
+                ""
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/23",
+                "23.0",
+                "Device 'Shots=0' argument breaks down for the SF plugin",
+                "bug",
+                "Crash",
+                "Inconsistency",
+                "0.0",
+                "0.0",
+                "0.0"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:33:02Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/pytorch.xlsx",
+      "sha256": "e65fa73fcd9331eb44d9af73c6f7d35b6dd63e122fbc81897141c8f1103e6849",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "torchquantum-issues",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 143,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "torchquantum-issues",
+                "Symptoms(Zhao)",
+                "Root Cases(Zhao)",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/mit-han-lab/torchquantum/issues/49",
+                "49.0",
+                "How to save the QNN model like a normal pytorch model?",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/mit-han-lab/torchquantum/issues/48",
+                "48.0",
+                "A simple way to improve the regression example",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "OPEN",
+                "https://github.com/mit-han-lab/torchquantum/issues/45",
+                "45.0",
+                "Support for fake backends",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/mit-han-lab/torchquantum/issues/44",
+                "44.0",
+                "Getting issue while running sec2_gate.ipynb notebook colab.",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "CLOSED",
+                "https://github.com/mit-han-lab/torchquantum/issues/41",
+                "41.0",
+                "Got stuck while running .\\artifact\\example2",
+                "",
+                "stick",
+                "Users",
+                "",
+                "",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "OPEN",
+                "https://github.com/mit-han-lab/torchquantum/issues/40",
+                "40.0",
+                "Train data label and image are different",
+                "open",
+                "Function error",
+                "Dataset",
+                "",
+                "0.0",
+                "Unknown",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/mit-han-lab/torchquantum/issues/39",
+                "39.0",
+                "Cannot use Qiskit simulation when running example1",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/mit-han-lab/torchquantum/issues/38",
+                "38.0",
+                "Testing of mnist_example_no_binding.py file produces error",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "OPEN",
+                "https://github.com/mit-han-lab/torchquantum/issues/37",
+                "37.0",
+                "Density matrix and mixed state",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/mit-han-lab/torchquantum/issues/36",
+                "36.0",
+                "support controled unitary",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/mit-han-lab/torchquantum/issues/33",
+                "33.0",
+                "No CX gate in torchquantum",
+                "",
+                "",
+                "Users",
+                "",
+                "",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": null,
+      "created": null,
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/qiskit.xlsx",
+      "sha256": "217da765595eb71fc27fece047309e907f83d661dd377874371411a5770f22a6",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "工作表 1 - qiskit-ml-issues",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 973,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "qiskit-ml-issues",
+                "Symptoms(Zhao)",
+                "Root Cases(Zhao)",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/527",
+                "527.0",
+                "Error when running TorchRuntimeClient",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/508",
+                "508.0",
+                "Reconsider model serialization and serialize only required properties",
+                "type: enhancement",
+                "Crash",
+                "Other Library",
+                "",
+                "0.0",
+                "0.0",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "OPEN",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/505",
+                "505.0",
+                "Add a handy blueprint circuit that wraps feature map and ansatz circuits",
+                "good first issue/priority: low/type: enhancement",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "OPEN",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/504",
+                "504.0",
+                "Add unit tests that run on either backend-based primitives or Aer primitives",
+                "priority: medium/type: enhancement",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "CLOSED",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/500",
+                "500.0",
+                "Loss Function Feature",
+                "type: feature request",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "OPEN",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/497",
+                "497.0",
+                "Usage with qiskit runtime",
+                "type: feature request",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "OPEN",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/494",
+                "494.0",
+                "Make VQC & QNN Scikit-learn compliant",
+                "type: enhancement",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "OPEN",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/493",
+                "493.0",
+                "TypeError: unhashable type: 'numpy.ndarray'",
+                "type: bug/on hold",
+                "Crash",
+                "deprecated ",
+                "",
+                "0.0",
+                "Inconsistency",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "OPEN",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/492",
+                "492.0",
+                "Add more classifier",
+                "type: feature request",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/490",
+                "490.0",
+                "Update documentation for primitives based function",
+                "documentation",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/486",
+                "486.0",
+                "Reshape error on training",
+                "",
+                "",
+                "User",
+                "",
+                "",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": null,
+      "created": null,
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/tensorflow_quantum_github_issues.xlsx",
+      "sha256": "766f7b87e79e061929cb3c165f7e897dc3228bb700886a45951651531d89b316",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "工作表 1 - issue",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 1417,
+          "formula_cells": 1,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "issue",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/tensorflow/quantum/issues/732",
+                "732.0",
+                "Does `tensorflow-quantum` supports multiple GPU?",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/tensorflow/quantum/issues/731",
+                "731.0",
+                "How to use a QNN with encrypted data?",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/730",
+                "730.0",
+                "Warning while importing `tensorflow-quantum` framework.",
+                "",
+                "Warning-style error",
+                "User",
+                "0.0",
+                "0.0",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/729",
+                "729.0",
+                "TypeError: __init__() got an unexpected keyword argument 'gate_getter'",
+                "",
+                "Crash",
+                "Referenced types error",
+                "0.0",
+                "Inconsistency",
+                "0.0",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "OPEN",
+                "https://github.com/tensorflow/quantum/issues/726",
+                "726.0",
+                "Permission to use the data from the MNIST tutorial",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/725",
+                "725.0",
+                "How are the predictions done?",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/724",
+                "724.0",
+                "Batching for sampler backends",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/723",
+                "723.0",
+                "How to simulate a QNN ?",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/722",
+                "722.0",
+                "Encoding the images to 0s and 1s",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/721",
+                "721.0",
+                "Query regarding cirq.Simulator",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/720",
+                "720.0",
+                "Query regarding the MNIST tutorial",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": null,
+      "created": null,
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/XanaduAI-quantum-nueral-networks.xlsx",
+      "sha256": "1dda82f786f4677e73cb36b3f4f62eff0473b8c3068ea0f499c1c02566cbd3c0",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "quantum-nueral-networks",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 50,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/18",
+                "18.0",
+                "Number of hidden and output neurons for different dataset",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/16",
+                "16.0",
+                "Basics",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/9",
+                "9.0",
+                "TypeError: backend must be a string or a BaseBackend instance.",
+                "",
+                "Crash",
+                "Inconsistency",
+                "0.0",
+                "0.0",
+                "0.0"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/8",
+                "8.0",
+                "AttributeError: module 'strawberryfields' has no attribute 'Program'",
+                "",
+                "Crash",
+                "User",
+                "0.0",
+                "Inconsistency",
+                "0.0"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/7",
+                "7.0",
+                "Files not found error",
+                "",
+                "Crash",
+                "User",
+                "0.0",
+                "0.0"
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/6",
+                "6.0",
+                "Error running the roc.py file",
+                "",
+                "Crash",
+                "User",
+                "0.0",
+                "0.0"
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/5",
+                "5.0",
+                "Error running the fraud_detection.py file",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/4",
+                "4.0",
+                "Notice of license infringment",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-08T00:39:39Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Classified%20/XanaduAI-quantum-transfer-learning.xlsx",
+      "sha256": "7370281d1ec93a912f59d6ff45351d7ac42c044e598613b414c4bb9ba7f04d84",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "XanaduAI-quantum-transfer-learn",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 38,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/XanaduAI/quantum-transfer-learning/issues/14",
+                "14.0",
+                "I got error when I execute \"run_on_QPU.py\"",
+                "",
+                "Crash",
+                "User",
+                "0.0",
+                "0.0"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/XanaduAI/quantum-transfer-learning/issues/13",
+                "13.0",
+                "A relatively simple question",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-transfer-learning/issues/9",
+                "9.0",
+                "'tensorflow' has no attribute 'reset_default_graph'",
+                "",
+                "Crash",
+                "Inconsistency",
+                "0.0",
+                "0.0",
+                "0.0"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "OPEN",
+                "https://github.com/XanaduAI/quantum-transfer-learning/issues/6",
+                "6.0",
+                " RuntimeError: CUDA error: device-side assert triggered",
+                "",
+                "Crash",
+                "User",
+                "0.0",
+                "Cause unknown"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-transfer-learning/issues/4",
+                "4.0",
+                "Error running c2q_transfer_learning_ants_bees.ipynb w/ GPU",
+                "",
+                "Crash",
+                "User",
+                "0.0",
+                "Inconsistency",
+                "0.0"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-08T00:41:33Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Original issues/mindquantum.xlsx",
+      "sha256": "4be2ed0d2478cd58b79cef319886480f033e692e99cda730cf9772bb3ed913fc",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "mindquantum",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 8,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/mindspore-ai/mindquantum/issues/5",
+                "5.0",
+                "CMake Error in ccsrc/mqbackend/Cmakelist.txt"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/mindspore-ai/mindquantum/issues/1",
+                "1.0",
+                "There is no package called mqbackend"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-08T00:47:54Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Original issues/MLADS2018-QuantumML.xlsx",
+      "sha256": "867e5b1d6ea1b6c73382c7cf3cd75d160125f128a940d441bd889b0186cb2970",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "MLADS2018-QuantumML",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 12,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "CLOSED",
+                "https://github.com/microsoft/MLADS2018-QuantumML/issues/3",
+                "3.0",
+                "Error generating data angles"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/microsoft/MLADS2018-QuantumML/issues/2",
+                "2.0",
+                "Wrong definition of SaveAsCsv"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/microsoft/MLADS2018-QuantumML/issues/1",
+                "1.0",
+                "Inconsistency between documentation and code"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-08T00:38:20Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Original issues/PaddlePaddle-Quantum.xlsx",
+      "sha256": "f4b4b012f3811fa4bb96ce1aa97cdde6b41b03cd436565d3d0e1b9faf09d28f2",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "工作表 1 - PaddlePaddle-Quantum",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": "A2:E25",
+          "rows_with_xml": 25,
+          "nonempty_cells": 105,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "PaddlePaddle-Quantum",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PaddlePaddle/Quantum/issues/40",
+                "40",
+                "Integration on OSX with the M1 chip (arm64)?",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/PaddlePaddle/Quantum/issues/38",
+                "38",
+                "现在使用量子计算来训练模型，会有速度上的优势吗？",
+                ""
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PaddlePaddle/Quantum/issues/37",
+                "37",
+                "(NotFound) There are no kernels which are registered in the einsum operator.",
+                ""
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PaddlePaddle/Quantum/issues/36",
+                "36",
+                "There are no kernels which are registered in the einsum operator.   [Hint: Expected kernels_iter != all_op_kernels.end(), but received kernels_iter == all_op_kernels.end().] ",
+                ""
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "CLOSED",
+                "https://github.com/PaddlePaddle/Quantum/issues/35",
+                "35",
+                "ImportError: cannot import name 'State' from 'sre_parse'",
+                ""
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/PaddlePaddle/Quantum/issues/34",
+                "34",
+                "相关数学推导咨询",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/PaddlePaddle/Quantum/issues/33",
+                "33",
+                "量桨2.1.3版本导入化学分子库报错",
+                ""
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "OPEN",
+                "https://github.com/PaddlePaddle/Quantum/issues/19",
+                "19",
+                "【PaddlePaddle Hackathon】Paddle Quantum 任务合集",
+                "PaddlePaddle Hackathon"
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "OPEN",
+                "https://github.com/PaddlePaddle/Quantum/issues/18",
+                "18",
+                "【PaddlePaddle Hackathon】82 基于量子卷积神经网络的图片分类",
+                "PaddlePaddle Hackathon"
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "OPEN",
+                "https://github.com/PaddlePaddle/Quantum/issues/17",
+                "17",
+                "【PaddlePaddle Hackathon】81 时间演化电路的性能优化",
+                "PaddlePaddle Hackathon"
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "OPEN",
+                "https://github.com/PaddlePaddle/Quantum/issues/16",
+                "16",
+                "【PaddlePaddle Hackathon】80 多量子比特独立系统的 Bloch 球展示",
+                "PaddlePaddle Hackathon"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": null,
+      "created": null,
+      "archive_members": 11
+    },
+    {
+      "name": "Original issues/pennlane_github_issues.xlsx",
+      "sha256": "790c57719ae0b0d2aa9b34ffb47de59f9fbdbde51dd05fb6f3dae177ae30641d",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "工作表 1 - pennlane-issues",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": "A2:E845",
+          "rows_with_xml": 845,
+          "nonempty_cells": 4076,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "pennlane-issues",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3492",
+                "3492",
+                "[BUG] Nested `jax.vmap` does not work",
+                "bug :bug:"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3490",
+                "3490",
+                "[BUG] qchem.electron_integrals IndexError: list index out of range",
+                "bug :bug:"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3482",
+                "3482",
+                "[BUG] pauli_word_to_string doesn't work for Hamiltonians",
+                "enhancement :sparkles:"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3480",
+                "3480",
+                "[BUG] `jax.vjp` of a qnode is broken for all but scalar vectors (aka, for the grad case)",
+                "bug :bug:"
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3475",
+                "3475",
+                "[BUG] Incorrect results with `diff_method=\"adjoint\"` for jitted jacobian when `mode=\"backward\"`",
+                "bug :bug:"
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3474",
+                "3474",
+                "[BUG] Setting `shots` on QNode evaluation is incompatible with `jax.jit`",
+                "bug :bug:"
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3473",
+                "3473",
+                "[BUG] PL forbids non-`Observable` generators",
+                "bug :bug:"
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3428",
+                "3428",
+                "[BUG] [Return-types] Some tests raise `VisibleDeprecationWarning` (perhaps due to param-shift)",
+                "bug :bug:"
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane/issues/3412",
+                "3412",
+                "[BUG] `qml.sample` produces incorrect results with shot vectors",
+                "bug :bug:"
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3407",
+                "3407",
+                "[BUG] Operator.pow does not queue its constituents",
+                "bug :bug:"
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane/issues/3403",
+                "3403",
+                "Allow skipping `QNode.construct` in `QNode.__call__` when QNode has already been constructed",
+                "enhancement :sparkles:"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": null,
+      "created": null,
+      "archive_members": 11
+    },
+    {
+      "name": "Original issues/pennylane-aqt.xlsx",
+      "sha256": "c378e6b8070a6904234da64ac90ca538a5fe7ef4643483afff85e16ed16a0a5b",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-aqt",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 20,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-aqt/issues/24",
+                "24.0",
+                "CNOT gate doesn't work with aqt.sim",
+                "bug"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-aqt/issues/23",
+                "23.0",
+                "TypeError: Object of type tensor is not JSON serializable",
+                "bug"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-aqt/issues/17",
+                "17.0",
+                "execution of a quantum circuit with pennylane-aqt",
+                "bug"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-aqt/issues/14",
+                "14.0",
+                "gate CNOT not supported ",
+                "bug"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:35:47Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Original issues/pennylane-cirq.xlsx",
+      "sha256": "7e49d5efa9ef7ef2cf40f99fdf8aa72301d413ab8fa7254b6f176749dfbc189a",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-cirq",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": "A1:E16",
+          "rows_with_xml": 16,
+          "nonempty_cells": 66,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/88",
+                "88",
+                "`cirq.pasqal` is deprecated"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/70",
+                "70",
+                "Add support for the latest Cirq version, as well as additional simulators"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/69",
+                "69",
+                "The latest pennylane-cirq requires `simulate` method without `analytic` argument."
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/60",
+                "60",
+                "Incorrect state preparations for multiple qubits",
+                "bug"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/53",
+                "53",
+                "Update expectation value computation logic "
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/32",
+                "32",
+                "Incompatible requirements for `protobuf` in Cirq"
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/17",
+                "17",
+                "Certain formulae have problems with rendering in the documentation"
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/14",
+                "14",
+                "Add support for inverse operations"
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/9",
+                "9",
+                "Add support for parametrized quantum circuits",
+                "good first issue"
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/8",
+                "8",
+                "Add support for Cirq devices"
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/7",
+                "7",
+                "Add PennyLane Operations for all Cirq gates"
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-cirq/issues/6",
+                "6",
+                "Revise sampling behaviour in analytic mode"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:32:36Z",
+      "archive_members": 10
+    },
+    {
+      "name": "Original issues/pennylane-honeywell.xlsx",
+      "sha256": "e0299d70ebdb056268ccd6b31349ce6dd709d71bd041852bec9f35f6d16fcaad",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-honeywell",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 4,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-honeywell/issues/15",
+                "15.0",
+                "Getting device Error "
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:35:05Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Original issues/pennylane-Ionq.xlsx",
+      "sha256": "45e3b9f02980d02b80421bf1899c0cc3d65716a416b183ad5e6d04b99b82dd90",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-Ionq",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": "A1:E14",
+          "rows_with_xml": 14,
+          "nonempty_cells": 65,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/PennyLane-IonQ/issues/56",
+                "56",
+                "Retry retriable http errors"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/PennyLane-IonQ/issues/40",
+                "40",
+                "Support for PennyLane's Ising gates",
+                "enhancement/good first issue"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/PennyLane-IonQ/issues/38",
+                "38",
+                "Link to wrong github page"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/PennyLane-IonQ/issues/26",
+                "26",
+                "Requests don't seem to have a timeout, this can lead to indefinite hanging"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/PennyLane-IonQ/issues/23",
+                "23",
+                "v0.1 API Upgrade"
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/PennyLane-IonQ/issues/19",
+                "19",
+                "Keep probabilities sparse",
+                "enhancement"
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/PennyLane-IonQ/issues/18",
+                "18",
+                "Choose a sensible default value for shots"
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/PennyLane-IonQ/issues/14",
+                "14",
+                "API client requires a test",
+                "tests"
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/PennyLane-IonQ/issues/13",
+                "13",
+                "Docstrings include undefined latex macros",
+                "documentation"
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/PennyLane-IonQ/issues/12",
+                "12",
+                "Naming conventions for IonQ provided gates",
+                "documentation/code quality"
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/PennyLane-IonQ/issues/11",
+                "11",
+                "Are the ising gate definitions correct?",
+                "bug/documentation"
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/PennyLane-IonQ/issues/10",
+                "10",
+                "conftest.py, test_device.py use CRLF line endings, should be normalized to LF.",
+                "code quality"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:36:42Z",
+      "archive_members": 10
+    },
+    {
+      "name": "Original issues/pennylane-lightning.xlsx",
+      "sha256": "b989ed9bc04b2d43f208ebf8a939659548024c2c736c693eda623fe2a1ddbfd0",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-lightning",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": "A1:E59",
+          "rows_with_xml": 59,
+          "nonempty_cells": 261,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/397",
+                "397",
+                "Unable to build from pypi source tarball"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/395",
+                "395",
+                "Gate SingleExcitation not supported on device lightning.qubit"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/375",
+                "375",
+                "Bug with probability returned by lightning",
+                "bug"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/368",
+                "368",
+                "Update wheel-builder compiler from GCC 10.x to GCC 11.x",
+                "good first issue/hacktoberfest"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/367",
+                "367",
+                "Update GCC 10.x to 11.x in CI tests",
+                "good first issue/hacktoberfest"
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/366",
+                "366",
+                "Ensure templated floating-point values are used throughout",
+                "good first issue/hacktoberfest"
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/352",
+                "352",
+                "Improve tests and checks workflows",
+                "enhancement"
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/347",
+                "347",
+                "Don't use brew for llvm path"
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/338",
+                "338",
+                "CodeCov report different coverage depending on the runner"
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/329",
+                "329",
+                "Docker Creation Fail GCC version and Test Fail"
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/320",
+                "320",
+                "Update MacOS min version support to MacOS 11"
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-lightning/issues/315",
+                "315",
+                "Add LM implementations of CSWAP & Toffoli  gates"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:33:34Z",
+      "archive_members": 10
+    },
+    {
+      "name": "Original issues/pennylane-orquestra.xlsx",
+      "sha256": "34924d07bb388ca8f868186694b0a36f44487475b4cb80c93ce7105e27742b6e",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-orquestra",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 20,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-orquestra/issues/16",
+                "16.0",
+                "Add support for the qHipster backend",
+                "enhancement"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-orquestra/issues/9",
+                "9.0",
+                "Use Jinja for workflow generation",
+                "enhancement"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-orquestra/issues/8",
+                "8.0",
+                "Add sampling support",
+                "enhancement"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-orquestra/issues/7",
+                "7.0",
+                "Add noise model support for Qiskit simulators",
+                "enhancement"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:36:16Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Original issues/pennylane-pq.xlsx",
+      "sha256": "7205cc6665eea1fccf3e15751dcd13bc191a3c07bfe0682bf63f42738a0f6a32",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-pq",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": "A1:E15",
+          "rows_with_xml": 15,
+          "nonempty_cells": 68,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/63",
+                "63",
+                "Port the plugin to QubitDevice, and refactor the tests",
+                "enhancement"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/61",
+                "61",
+                "Tests for IBM device failing.",
+                "bug"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/52",
+                "52",
+                "pip3 install pennylane_pq fails on osx, dockerhub & ubuntu",
+                "bug"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/40",
+                "40",
+                "Set `pennylane>=0.2` in  setup.py before next release",
+                "in progress"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/37",
+                "37",
+                "Verbose argument is passed on to Backends but not to Engines ",
+                "bug"
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/30",
+                "30",
+                "Increase coverage",
+                "enhancement"
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/29",
+                "29",
+                "Update PQ plugin to work with abstract plugin attributes",
+                "bug"
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/25",
+                "25",
+                "Remaining todos before the release:"
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/24",
+                "24",
+                "Test should not cause costs even when testing on the IBM backends"
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/19",
+                "19",
+                "StatePreparation doesn't work on the IBM backend for 4 qubits and more"
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/13",
+                "13",
+                "Examples"
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-pq/issues/7",
+                "7",
+                "Naming conventions in device.py"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:37:12Z",
+      "archive_members": 10
+    },
+    {
+      "name": "Original issues/pennylane-qiskit.xlsx",
+      "sha256": "dfe938e07fe9f250cc406c7e3afcec22271c9e7e84a85ab2f71ea2550b05064e",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-qiskit",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 163,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/218",
+                "218.0",
+                "Issue with inverse of QubitStateVector"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/208",
+                "208.0",
+                "Problem with equal parameters in vqe_runner",
+                "enhancement"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/189",
+                "189.0",
+                "Circuits always measure all qubits",
+                "enhancement"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/173",
+                "173.0",
+                "Tests using IBMQ are not run with forked PRs",
+                "enhancement"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/171",
+                "171.0",
+                "The upload GitHub action fails as Flaky is not installed",
+                "bug"
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/165",
+                "165.0",
+                "Add caching capabilities to `QiskitDevice`.",
+                "enhancement"
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/164",
+                "164.0",
+                "Problem with qiskit version 0.33.0 related to the function `measure`"
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/153",
+                "153.0",
+                "Better support for the Identity gate"
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/149",
+                "149.0",
+                "Update qiskit requirements"
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/147",
+                "147.0",
+                "Support for Qiskit `ParameterVector`"
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/145",
+                "145.0",
+                "`UserWarning: verbose is not a recognized runtime option and may be ignored by the backend`"
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qiskit/issues/143",
+                "143.0",
+                "Variational Quantum Algorithm Parameters are getting updated"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:34:37Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Original issues/pennylane-qsharp.xlsx",
+      "sha256": "74cd8b9f32b1e52910f59626879b032584857a0e13aa39bf1e6b21aab5cdcf48",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-qsharp",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 14,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/PennyLane-qsharp/issues/17",
+                "17.0",
+                "convert a pennylane quantum circuit to qsharp"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/PennyLane-qsharp/issues/5",
+                "5.0",
+                "Improve plugin efficiency",
+                "enhancement"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/PennyLane-qsharp/issues/3",
+                "3.0",
+                "Support sampling",
+                "enhancement"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:34:13Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Original issues/pennylane-qulacs.xlsx",
+      "sha256": "f140c4277f9189ee8c85231fb20a3581af2b9d995fad81248a3c9ba2243ecf66",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-qulacs",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 18,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qulacs/issues/32",
+                "32.0",
+                "pennylane-qulacs with GPU (enhancement)"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qulacs/issues/24",
+                "24.0",
+                "Incorrect state preparations for multiple qubits",
+                "bug"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-qulacs/issues/16",
+                "16.0",
+                "Add support for noise channels",
+                "good first issue"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-qulacs/issues/8",
+                "8.0",
+                "Rot gate"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:32:04Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Original issues/pennylane-rigetti.xlsx",
+      "sha256": "a64fbed5bd791f23db400de284db4b06d58713dab9365059ad45702f5b04b4a1",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-rigetti",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": "A1:E22",
+          "rows_with_xml": 22,
+          "nonempty_cells": 103,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/89",
+                "89",
+                "Support for QPU?"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/76",
+                "76",
+                "Pennylane Forest plugin "
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/66",
+                "66",
+                "[BUG] Circuits \"stick\" when run on forest.qvm devices in tape mode",
+                "bug"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/61",
+                "61",
+                "Gate object has no attribute 'params'"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/52",
+                "52",
+                "PennyLane commit breaking the plugin",
+                "bug"
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/48",
+                "48",
+                "Returning probabilities for QVM & QPU",
+                "bug"
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/47",
+                "47",
+                "Update the lattices used in the documentation",
+                "documentation"
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/45",
+                "45",
+                "Remove sample collection redundancy in `QPUDevice.expval`",
+                "enhancement/code quality"
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/34",
+                "34",
+                "QNodes with 2-qubit gates fail on the QPU",
+                "bug"
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/32",
+                "32",
+                "Exception due to wires not being integers",
+                "bug"
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/29",
+                "29",
+                "Remove custom gates that are now native in PL Core",
+                "code quality"
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-rigetti/issues/28",
+                "28",
+                "Merge QVMDevice / QPUDevice into same class",
+                "design"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:35:24Z",
+      "archive_members": 10
+    },
+    {
+      "name": "Original issues/pennylane-sf.xlsx",
+      "sha256": "32cd554af796a8af432a7628e2ad2daa87285a3ead0cbd18dc075d950d0d0bbd",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "pennylane-sf",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 98,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/113",
+                "113.0",
+                "Error trying to acess 鈥榮imulon_gausian鈥 in pennylane"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/95",
+                "95.0",
+                "Update documentation for hardware access",
+                "documentation"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/91",
+                "91.0",
+                "Python 3.10: TensorFlow not compatible"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/89",
+                "89.0",
+                "GBS device (with device jacobian) incompatible with the new QNode",
+                "bug"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/75",
+                "75.0",
+                "PL qml.state() not supported on a simulator",
+                "enhancement"
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/74",
+                "74.0",
+                "Devices do not support shot batching",
+                "bug"
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/73",
+                "73.0",
+                "Error in `FockStateVector` for multiple wires."
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/69",
+                "69.0",
+                "Get probabilites of fock outputs from averages of samples",
+                "bug"
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/67",
+                "67.0",
+                "Error when using `GaussianState` with `strawberryfields.fock` device",
+                "bug"
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/27",
+                "27.0",
+                "Incomplete initialization of the class StrawberryFieldsSimulator: missing _capabilities",
+                "bug"
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "OPEN",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/26",
+                "26.0",
+                "Add support for inverse operations",
+                "enhancement"
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/PennyLaneAI/pennylane-sf/issues/23",
+                "23.0",
+                "Device 'Shots=0' argument breaks down for the SF plugin",
+                "bug"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-07T04:33:02Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Original issues/qiskit_ml_github_issues.xlsx",
+      "sha256": "c885a33d0984b31c3bf3d39b5e7e6dca64e482ac2463f0865305ee4e48483b6b",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "工作表 1 - qiskit-ml-issues",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": "A2:E162",
+          "rows_with_xml": 162,
+          "nonempty_cells": 776,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "qiskit-ml-issues",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/527",
+                "527",
+                "Error when running TorchRuntimeClient",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/508",
+                "508",
+                "Reconsider model serialization and serialize only required properties",
+                "type: enhancement"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "OPEN",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/505",
+                "505",
+                "Add a handy blueprint circuit that wraps feature map and ansatz circuits",
+                "good first issue/priority: low/type: enhancement"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "OPEN",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/504",
+                "504",
+                "Add unit tests that run on either backend-based primitives or Aer primitives",
+                "priority: medium/type: enhancement"
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "CLOSED",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/500",
+                "500",
+                "Loss Function Feature",
+                "type: feature request"
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "OPEN",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/497",
+                "497",
+                "Usage with qiskit runtime",
+                "type: feature request"
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "OPEN",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/494",
+                "494",
+                "Make VQC & QNN Scikit-learn compliant",
+                "type: enhancement"
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "OPEN",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/493",
+                "493",
+                "TypeError: unhashable type: 'numpy.ndarray'",
+                "type: bug/on hold"
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "OPEN",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/492",
+                "492",
+                "Add more classifier",
+                "type: feature request"
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/490",
+                "490",
+                "Update documentation for primitives based function",
+                "documentation"
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/Qiskit/qiskit-machine-learning/issues/486",
+                "486",
+                "Reshape error on training",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": null,
+      "created": null,
+      "archive_members": 11
+    },
+    {
+      "name": "Original issues/Tencent-tensorcircuit.xlsx",
+      "sha256": "1603d018494c5d1931edd7b4a51a75b6f3717e5e6a27e1503a320564e22875b5",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "Tencent-tensorcircuit",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": "A1:E32",
+          "rows_with_xml": 32,
+          "nonempty_cells": 158,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/tencent-quantum-lab/tensorcircuit/issues/95",
+                "95",
+                "Can't convert qiskit circuit with complex Instructions",
+                "bug"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "CLOSED",
+                "https://github.com/tencent-quantum-lab/tensorcircuit/issues/93",
+                "93",
+                "Can't import tensorcircuit in nightly build",
+                "bug"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/tencent-quantum-lab/tensorcircuit/issues/92",
+                "92",
+                "Unexpected warning using parameter shift gradient with NumPy backend",
+                "bug"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/tencent-quantum-lab/tensorcircuit/issues/89",
+                "89",
+                "Unexpected warning when calculating expectation with readout error",
+                "bug"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "OPEN",
+                "https://github.com/tencent-quantum-lab/tensorcircuit/issues/73",
+                "73",
+                "SPSA optimization example",
+                "good first issue"
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "OPEN",
+                "https://github.com/tencent-quantum-lab/tensorcircuit/issues/71",
+                "71",
+                "Add circuit pruning method to delete nearly identity gates",
+                "good first issue"
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "OPEN",
+                "https://github.com/tencent-quantum-lab/tensorcircuit/issues/68",
+                "68",
+                "Add circuit ``to_cirq`` and ``from_cirq`` functionality",
+                "good first issue"
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/tencent-quantum-lab/tensorcircuit/issues/63",
+                "63",
+                "Hybird loss backward when sums up the classical and quantum loss in pytorch interface with tf backend.",
+                "bug"
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/tencent-quantum-lab/tensorcircuit/issues/61",
+                "61",
+                "Failed to reproduce 600-qubit VQE because of being out of memory"
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "OPEN",
+                "https://github.com/tencent-quantum-lab/tensorcircuit/issues/55",
+                "55",
+                "Add example scripts on noisy machine learning with both KerasLayer and TorchLayer",
+                "good first issue"
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/tencent-quantum-lab/tensorcircuit/issues/52",
+                "52",
+                "How to get accurate expectation value of a circuit with conditional gates"
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/tencent-quantum-lab/tensorcircuit/issues/51",
+                "51",
+                "Add parameterized_local_measurements in templates/measurements",
+                "good first issue"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-08T00:43:18Z",
+      "archive_members": 10
+    },
+    {
+      "name": "Original issues/tensorflow_quantum_github_issues.xlsx",
+      "sha256": "c0fc04147479aea7aa591be2794bf83849afb2126c01e1b53c2f21b7f082b8e1",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "工作表 1 - issue",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 1231,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "issue",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/tensorflow/quantum/issues/732",
+                "732.0",
+                "Does `tensorflow-quantum` supports multiple GPU?",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/tensorflow/quantum/issues/731",
+                "731.0",
+                "How to use a QNN with encrypted data?",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/730",
+                "730.0",
+                "Warning while importing `tensorflow-quantum` framework.",
+                "",
+                "Warning-style error",
+                "User",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/729",
+                "729.0",
+                "TypeError: __init__() got an unexpected keyword argument 'gate_getter'",
+                "",
+                "Crash",
+                "Referenced types error",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "OPEN",
+                "https://github.com/tensorflow/quantum/issues/726",
+                "726.0",
+                "Permission to use the data from the MNIST tutorial",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/725",
+                "725.0",
+                "How are the predictions done?",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/724",
+                "724.0",
+                "Batching for sampler backends",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/723",
+                "723.0",
+                "How to simulate a QNN ?",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/722",
+                "722.0",
+                "Encoding the images to 0s and 1s",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/721",
+                "721.0",
+                "Query regarding cirq.Simulator",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/tensorflow/quantum/issues/720",
+                "720.0",
+                "Query regarding the MNIST tutorial",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": null,
+      "created": null,
+      "archive_members": 12
+    },
+    {
+      "name": "Original issues/torchquatum_github_issues.xlsx",
+      "sha256": "43be9d40b01bda595c83f0f865d5b51cfb3320695a884b9f91ec8763def5a8c2",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "工作表 1 - torchquantum-issues",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 114,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "p",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/mit-han-lab/torchquantum/issues/49",
+                "49.0",
+                "How to save the QNN model like a normal pytorch model?",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "OPEN",
+                "https://github.com/mit-han-lab/torchquantum/issues/48",
+                "48.0",
+                "A simple way to improve the regression example",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "OPEN",
+                "https://github.com/mit-han-lab/torchquantum/issues/45",
+                "45.0",
+                "Support for fake backends",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/mit-han-lab/torchquantum/issues/44",
+                "44.0",
+                "Getting issue while running sec2_gate.ipynb notebook colab.",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "CLOSED",
+                "https://github.com/mit-han-lab/torchquantum/issues/41",
+                "41.0",
+                "Got stuck while running .\\artifact\\example2",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "OPEN",
+                "https://github.com/mit-han-lab/torchquantum/issues/40",
+                "40.0",
+                "Train data label and image are different",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/mit-han-lab/torchquantum/issues/39",
+                "39.0",
+                "Cannot use Qiskit simulation when running example1",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "9",
+              "values": [
+                "CLOSED",
+                "https://github.com/mit-han-lab/torchquantum/issues/38",
+                "38.0",
+                "Testing of mnist_example_no_binding.py file produces error",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "10",
+              "values": [
+                "OPEN",
+                "https://github.com/mit-han-lab/torchquantum/issues/37",
+                "37.0",
+                "Density matrix and mixed state",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "11",
+              "values": [
+                "CLOSED",
+                "https://github.com/mit-han-lab/torchquantum/issues/36",
+                "36.0",
+                "support controled unitary",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "row": "12",
+              "values": [
+                "CLOSED",
+                "https://github.com/mit-han-lab/torchquantum/issues/33",
+                "33.0",
+                "No CX gate in torchquantum",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": null,
+      "created": null,
+      "archive_members": 12
+    },
+    {
+      "name": "Original issues/XanaduAI-quantum-nueral-networks.xlsx",
+      "sha256": "c8f330817a4a8a07ae6000fea03614d0b9511d6d691d9141cf5d84160cf02048",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "quantum-nueral-networks",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 32,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/18",
+                "18.0",
+                "Number of hidden and output neurons for different dataset"
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/16",
+                "16.0",
+                "Basics"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/9",
+                "9.0",
+                "TypeError: backend must be a string or a BaseBackend instance."
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/8",
+                "8.0",
+                "AttributeError: module 'strawberryfields' has no attribute 'Program'"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/7",
+                "7.0",
+                "Files not found error"
+              ]
+            },
+            {
+              "row": "6",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/6",
+                "6.0",
+                "Error running the roc.py file"
+              ]
+            },
+            {
+              "row": "7",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/5",
+                "5.0",
+                "Error running the fraud_detection.py file"
+              ]
+            },
+            {
+              "row": "8",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-neural-networks/issues/4",
+                "4.0",
+                "Notice of license infringment"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-08T00:39:39Z",
+      "archive_members": 12
+    },
+    {
+      "name": "Original issues/XanaduAI-quantum-transfer-learning.xlsx",
+      "sha256": "0bb477644c9b76c4fbcbf76f6ec6fc2e4a860a324ddca4572d0806b1eea020ce",
+      "status": "READ",
+      "sheets": [
+        {
+          "sheet": "XanaduAI-quantum-transfer-learn",
+          "state": "visible",
+          "path": "xl/worksheets/sheet1.xml",
+          "dimension": null,
+          "rows_with_xml": 1000,
+          "nonempty_cells": 20,
+          "formula_cells": 0,
+          "preview_rows": [
+            {
+              "row": "1",
+              "values": [
+                "OPEN",
+                "https://github.com/XanaduAI/quantum-transfer-learning/issues/14",
+                "14.0",
+                "I got error when I execute \"run_on_QPU.py\""
+              ]
+            },
+            {
+              "row": "2",
+              "values": [
+                "OPEN",
+                "https://github.com/XanaduAI/quantum-transfer-learning/issues/13",
+                "13.0",
+                "A relatively simple question"
+              ]
+            },
+            {
+              "row": "3",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-transfer-learning/issues/9",
+                "9.0",
+                "'tensorflow' has no attribute 'reset_default_graph'"
+              ]
+            },
+            {
+              "row": "4",
+              "values": [
+                "OPEN",
+                "https://github.com/XanaduAI/quantum-transfer-learning/issues/6",
+                "6.0",
+                " RuntimeError: CUDA error: device-side assert triggered"
+              ]
+            },
+            {
+              "row": "5",
+              "values": [
+                "CLOSED",
+                "https://github.com/XanaduAI/quantum-transfer-learning/issues/4",
+                "4.0",
+                "Error running c2q_transfer_learning_ants_bees.ipynb w/ GPU"
+              ]
+            }
+          ]
+        }
+      ],
+      "has_external_links": false,
+      "creator": "Microsoft Office User",
+      "created": "2023-01-08T00:41:33Z",
+      "archive_members": 12
+    }
+  ],
+  "nested_archives": [
+    {
+      "archive": "Classified%20/Classified .zip",
+      "sha256": "307f3628016ec086ae895782638562e8a184da6bf0a9ae1210a53055d9f06ebb",
+      "members": 34,
+      "xlsx_members": 32,
+      "names": [
+        "Classified /PaddlePaddle-Quantum.xlsx",
+        "__MACOSX/Classified /._PaddlePaddle-Quantum.xlsx",
+        "Classified /pennlane_github_issues.xlsx",
+        "__MACOSX/Classified /._pennlane_github_issues.xlsx",
+        "Classified /MLADS2018-QuantumML.xlsx",
+        "__MACOSX/Classified /._MLADS2018-QuantumML.xlsx",
+        "Classified /pennylane-qiskit.xlsx",
+        "__MACOSX/Classified /._pennylane-qiskit.xlsx",
+        "Classified /pennylane-aqt.xlsx",
+        "__MACOSX/Classified /._pennylane-aqt.xlsx",
+        "Classified /qiskit.xlsx",
+        "__MACOSX/Classified /._qiskit.xlsx",
+        "Classified /pennylane-sf.xlsx",
+        "__MACOSX/Classified /._pennylane-sf.xlsx",
+        "Classified /pennylane-rigetti.xlsx",
+        "__MACOSX/Classified /._pennylane-rigetti.xlsx",
+        "Classified /pennylane-qulacs.xlsx",
+        "__MACOSX/Classified /._pennylane-qulacs.xlsx",
+        "Classified /tensorflow_quantum_github_issues.xlsx",
+        "__MACOSX/Classified /._tensorflow_quantum_github_issues.xlsx",
+        "Classified /XanaduAI-quantum-transfer-learning.xlsx",
+        "__MACOSX/Classified /._XanaduAI-quantum-transfer-learning.xlsx",
+        "Classified /pennylane-pq.xlsx",
+        "__MACOSX/Classified /._pennylane-pq.xlsx",
+        "Classified /pennylane-cirq.xlsx",
+        "__MACOSX/Classified /._pennylane-cirq.xlsx",
+        "Classified /pennylane-lightning.xlsx",
+        "__MACOSX/Classified /._pennylane-lightning.xlsx",
+        "Classified /pytorch.xlsx",
+        "__MACOSX/Classified /._pytorch.xlsx",
+        "Classified /XanaduAI-quantum-nueral-networks.xlsx",
+        "__MACOSX/Classified /._XanaduAI-quantum-nueral-networks.xlsx"
+      ]
+    },
+    {
+      "archive": "Original issues/Original issues.zip",
+      "sha256": "db0b119e772ca742dabc7715a136c6ad828327e2aac1e3a8319ae14f5041f427",
+      "members": 46,
+      "xlsx_members": 44,
+      "names": [
+        "Original issues/PaddlePaddle-Quantum.xlsx",
+        "__MACOSX/Original issues/._PaddlePaddle-Quantum.xlsx",
+        "Original issues/pennlane_github_issues.xlsx",
+        "__MACOSX/Original issues/._pennlane_github_issues.xlsx",
+        "Original issues/pennylane-honeywell.xlsx",
+        "__MACOSX/Original issues/._pennylane-honeywell.xlsx",
+        "Original issues/MLADS2018-QuantumML.xlsx",
+        "__MACOSX/Original issues/._MLADS2018-QuantumML.xlsx",
+        "Original issues/pennylane-qiskit.xlsx",
+        "__MACOSX/Original issues/._pennylane-qiskit.xlsx",
+        "Original issues/pennylane-orquestra.xlsx",
+        "__MACOSX/Original issues/._pennylane-orquestra.xlsx",
+        "Original issues/pennylane-aqt.xlsx",
+        "__MACOSX/Original issues/._pennylane-aqt.xlsx",
+        "Original issues/pennylane-sf.xlsx",
+        "__MACOSX/Original issues/._pennylane-sf.xlsx",
+        "Original issues/qiskit_ml_github_issues.xlsx",
+        "__MACOSX/Original issues/._qiskit_ml_github_issues.xlsx",
+        "Original issues/pennylane-rigetti.xlsx",
+        "__MACOSX/Original issues/._pennylane-rigetti.xlsx",
+        "Original issues/pennylane-qulacs.xlsx",
+        "__MACOSX/Original issues/._pennylane-qulacs.xlsx",
+        "Original issues/tensorflow_quantum_github_issues.xlsx",
+        "__MACOSX/Original issues/._tensorflow_quantum_github_issues.xlsx",
+        "Original issues/XanaduAI-quantum-transfer-learning.xlsx",
+        "__MACOSX/Original issues/._XanaduAI-quantum-transfer-learning.xlsx",
+        "Original issues/torchquatum_github_issues.xlsx",
+        "__MACOSX/Original issues/._torchquatum_github_issues.xlsx",
+        "Original issues/mindquantum.xlsx",
+        "__MACOSX/Original issues/._mindquantum.xlsx",
+        "Original issues/Tencent-tensorcircuit.xlsx",
+        "__MACOSX/Original issues/._Tencent-tensorcircuit.xlsx",
+        "Original issues/pennylane-Ionq.xlsx",
+        "__MACOSX/Original issues/._pennylane-Ionq.xlsx",
+        "Original issues/pennylane-pq.xlsx",
+        "__MACOSX/Original issues/._pennylane-pq.xlsx",
+        "Original issues/pennylane-cirq.xlsx",
+        "__MACOSX/Original issues/._pennylane-cirq.xlsx",
+        "Original issues/pennylane-lightning.xlsx",
+        "__MACOSX/Original issues/._pennylane-lightning.xlsx",
+        "Original issues/pennylane-qsharp.xlsx",
+        "__MACOSX/Original issues/._pennylane-qsharp.xlsx",
+        "Original issues/XanaduAI-quantum-nueral-networks.xlsx",
+        "__MACOSX/Original issues/._XanaduAI-quantum-nueral-networks.xlsx"
+      ]
+    }
+  ],
+  "sheet_count": 39,
+  "workbook_status_counts": {
+    "READ": 39
+  },
+  "readme": "# An Empirical Study of Bugs in Quantum Machine Learning Frameworks  \n\n## Dataset \n[Original issues](./Original%20issues/Original%20issues.zip)  \n[Classified](./Classified%20/Classified%20.zip)  \n\nData files need to be downloaded for viewing\n"
+}

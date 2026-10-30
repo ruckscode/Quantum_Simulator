@@ -1,0 +1,21 @@
+{
+  "records": 1620,
+  "accuracy": 0.8962962962962963,
+  "macro_f1": 0.8959607574497236,
+  "balanced_accuracy": 0.8962962962962963,
+  "confusion_matrix_labels_0_1": [
+    [
+      772,
+      38
+    ],
+    [
+      130,
+      680
+    ]
+  ],
+  "outer_fold_accuracy_mean": 0.8962962962962961,
+  "outer_fold_macro_f1_mean": 0.8958792954181074,
+  "outer_fold_macro_f1_sd": 0.015420549211492331,
+  "majority_accuracy_baseline": 0.5,
+  "majority_macro_f1_baseline": 0.3333333333333333
+}

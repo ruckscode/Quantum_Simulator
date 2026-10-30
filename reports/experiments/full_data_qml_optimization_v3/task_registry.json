@@ -1,0 +1,126 @@
+{
+  "tasks": [
+    {
+      "id": "qmutbench_binary_production",
+      "source": "QMutBench",
+      "labels": {
+        "Survivor": 0,
+        "WOO": 1,
+        "OPO": 1
+      },
+      "status": "existing champion retained",
+      "score": "macro F1 0.793314; five-fold grouped OOF on 578117 development records / 305 origins",
+      "mapping_verified_against_saved_development_oof": true,
+      "development_feature_status": "578117 records / 305 origins; structural and mutation-difference caches verified; no parse errors",
+      "new_qml_status": "NOT_RUN; below RAM safety floor"
+    },
+    {
+      "id": "qmutbench_three_class_research",
+      "source": "QMutBench",
+      "labels": {
+        "Survivor": 0,
+        "WOO": 1,
+        "OPO": 2
+      },
+      "status": "existing exploratory matched pilot plus ensemble analysis",
+      "scope": "205 records, 12 origins, class-balanced sample; never compare directly with binary task"
+    },
+    {
+      "id": "bugs4q_buggy_fixed_state",
+      "source": "Bugs4Q",
+      "labels": {
+        "fixed": 0,
+        "buggy": 1
+      },
+      "status": "standalone classical benchmark completed",
+      "scope": "31 paired Qiskit bug issues; issue-grouped five-fold OOF"
+    },
+    {
+      "id": "bugs4q_robust_trigger_reproducibility",
+      "source": "Bugs4Q-Robust",
+      "labels": {
+        "test_pass": "Pass",
+        "test_fail": "Fail",
+        "aggregates": [
+          "Complete Success",
+          "Partial Success",
+          "Failure"
+        ]
+      },
+      "status": "existing published run logs audited; not used as supervised task"
+    }
+  ],
+  "compatibility_policy": "Never map buggy/fixed or test reproducibility labels to QMutBench Survivor/WOO/OPO.",
+  "campaign_id": "full_data_qml_optimization_v3",
+  "new_full_data_qmutbench_audit": {
+    "metadata_path": "data/qmutbench_full/data/all_data.csv",
+    "metadata_exists": true,
+    "metadata_columns": [
+      "",
+      "Origin_program",
+      "algorithm",
+      "qubits",
+      "gates",
+      "operation",
+      "Position_int",
+      "Killed",
+      "gate",
+      "algorithm_group",
+      "dominant_state",
+      "position"
+    ],
+    "metadata_rows": 723079,
+    "independent_origin_groups": 375,
+    "raw_label_counts": {
+      "WOO": 368568,
+      "Survivor": 348299,
+      "OPO": 6212
+    },
+    "metadata_bytes": 60636991,
+    "metadata_sha256": "d8adabf58173f1ae7c28954832e1b9607bc315eb1269a9cb57237343dfa95934",
+    "origin_qasm_files": 375,
+    "origin_qasm_bytes": 986131,
+    "origin_zero_byte_files": 0,
+    "mutant_qasm_files": 723079,
+    "mutant_qasm_bytes": 3236969583,
+    "mutant_zero_byte_files": 0,
+    "metadata_to_qasm_row_count_match": true,
+    "ingestion_snapshot": {
+      "path": "data/qmutbench_ingestion/raw/official_all_data_20261015.csv",
+      "bytes": 59913911,
+      "sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+      "byte_identical_to_checkout_metadata": false
+    }
+  },
+  "status_policy": [
+    "NOT_STARTED",
+    "DOWNLOADING",
+    "EXTRACTING",
+    "VALIDATING",
+    "READY",
+    "RUNNING",
+    "PARTIAL",
+    "COMPLETED",
+    "BLOCKED",
+    "INVALIDATED"
+  ],
+  "frozen_test_accessed": false,
+  "full_data_v3_update": {
+    "development_extraction": "COMPLETED_AND_REHASHED",
+    "records": 578117,
+    "origins": 305,
+    "structural_feature_rows": 578117,
+    "structural_parse_errors": 0,
+    "mutation_diff_feature_rows": 578117,
+    "mutation_diff_parse_errors": null,
+    "metadata_binary_mapping": {
+      "WOO": 1,
+      "OPO": 1,
+      "Survivor": 0
+    },
+    "mapping_mismatches": 0,
+    "available_ram_mib_at_report": 487.5,
+    "new_qml_training_started": false,
+    "overall_cache_integrity": true
+  }
+}

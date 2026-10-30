@@ -1,0 +1,130 @@
+{
+  "environment": {
+    "python": "3.12.10",
+    "pennylane": "0.45.1",
+    "scikit_learn": "1.9.1",
+    "hardware": "CPU only",
+    "device_total_ram_mib": 7488
+  },
+  "runs": {
+    "angle_reupload": {
+      "elapsed_seconds": 142.6318797999993,
+      "rss_at_start_bytes": 624795648,
+      "available_before_bytes": 837988352,
+      "available_after_bytes": 1274281984,
+      "qnn_fold_runtime_seconds": [
+        50.35254920000443,
+        46.63830850002705,
+        44.41184459999204
+      ],
+      "qnn_train_circuit_evaluations": [
+        1380,
+        1370,
+        1350
+      ],
+      "qnn_validation_circuit_evaluations": [
+        67,
+        68,
+        70
+      ],
+      "qnn_qubits": 4,
+      "compiled_circuit_depth": 12,
+      "trainable_parameters": 24,
+      "simulator": "PennyLane default.qubit analytic CPU statevector"
+    },
+    "amplitude": {
+      "elapsed_seconds": 68.73284959999728,
+      "rss_at_start_bytes": 472629248,
+      "available_before_bytes": 1603502080,
+      "available_after_bytes": 1051037696,
+      "qnn_fold_runtime_seconds": [
+        23.64576440001838,
+        21.156736899982207,
+        22.81612380000297
+      ],
+      "qnn_train_circuit_evaluations": [
+        1380,
+        1370,
+        1350
+      ],
+      "qnn_validation_circuit_evaluations": [
+        67,
+        68,
+        70
+      ],
+      "qnn_qubits": 2,
+      "compiled_circuit_depth": 8,
+      "trainable_parameters": 12,
+      "simulator": "PennyLane default.qubit analytic CPU statevector"
+    },
+    "angle_linear": {
+      "elapsed_seconds": 139.15523449998,
+      "rss_at_start_bytes": 676888576,
+      "available_before_bytes": 1211125760,
+      "available_after_bytes": 1200943104,
+      "qnn_fold_runtime_seconds": [
+        47.52350279997336,
+        46.41798120003659,
+        44.11902789998567
+      ],
+      "qnn_train_circuit_evaluations": [
+        1380,
+        1370,
+        1350
+      ],
+      "qnn_validation_circuit_evaluations": [
+        67,
+        68,
+        70
+      ],
+      "qnn_qubits": 4,
+      "compiled_circuit_depth": 12,
+      "trainable_parameters": 36,
+      "simulator": "PennyLane default.qubit analytic CPU statevector"
+    }
+  },
+  "observed_available_ram_min_mib": 547,
+  "confirmation": {
+    "status": "stopped",
+    "stop_floor_mib": 500,
+    "reason": "available RAM was observed below 500 MiB during QNN fit; no retry"
+  },
+  "earlier_24_origin_attempt": "Stopped below 450 MiB before producing fold metrics.",
+  "process_peak_rss": "not measured",
+  "full_scale_qnn_training": "not attempted",
+  "memory_optimized_confirmation": {
+    "latest_available_mib": 663,
+    "status": "not launched",
+    "required_preflight_mib": 700,
+    "reason": "Avoided starting after system headroom fell below the experiment preflight requirement."
+  },
+  "chunked_gradient_smoke": {
+    "status": "passed_toy_exact_gradient_equivalence",
+    "records": 6,
+    "classes": 3,
+    "encoding": "four-feature angle; four qubits",
+    "depth_layers": 1,
+    "trainable_readout": true,
+    "optimizer": "PennyLane Adam",
+    "steps": 1,
+    "seed": 33,
+    "chunk_size": 2,
+    "full_batch_loss": 0.8948835826279525,
+    "chunked_loss": 0.8948835826279523,
+    "loss_abs_difference": 2.220446049250313E-16,
+    "circuit_weights_max_abs_difference": 2.392641640369675E-12,
+    "readout_weights_max_abs_difference": 6.938893903907228E-18,
+    "training_circuit_executions_full_batch": 6,
+    "training_circuit_executions_chunked": 6,
+    "qmutbench_data_used": false,
+    "real_confirmation_launched": false
+  },
+  "resume_memory_probe": {
+    "measurement": "standalone Python psutil probe before loading PennyLane/scikit-learn",
+    "available_mib": 853,
+    "optimized_confirmation_launched": false,
+    "post_import_available_mib": "not measured",
+    "required_post_import_preflight_mib": 700,
+    "total_mib": 7488
+  }
+}

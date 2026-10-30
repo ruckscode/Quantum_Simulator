@@ -1,0 +1,489 @@
+{
+  "bug_pattern": {
+    "eligibility": "INELIGIBLE_FOR_CURRENT_SUPERVISED_TASK",
+    "label_evidence": "README taxonomy and notebook titles provide bug-pattern context, but labels and explanatory text can occur in notebook markdown/title and no clean negatives are supplied.",
+    "notebook_count": 9,
+    "notebooks_with_outputs": 5,
+    "reason": "Only 9 local notebooks across 4 categories are present; most external issue/StackOverflow examples linked in the README are not local training rows. Titles/markdown expose the category, there are no clean negatives, and the sample is too small and sparse for a leakage-safe grouped split.",
+    "rows": [
+      {
+        "cell_count": 5,
+        "code_cell_count": 2,
+        "code_cells_with_outputs": 0,
+        "code_chars": 104,
+        "code_sha256": "6aad18d2eada52311fde46f7ea203f387aea3176f7ab382d290fba1568828ecd",
+        "markdown_chars": 249,
+        "path": "Deallocation/Examples/Unsafely reset and deallocate the qubits.ipynb",
+        "sha256": "9aa6f413d111d24341be2ec822e1b7ee70e323483a37dbf96ce6d42f1fd34021",
+        "top_directory_label": "Deallocation",
+        "validation_reason": "Notebook path/title/markdown expose pattern context; no clean negatives are supplied, and this category has insufficient independent examples for a leakage-safe held-out split.",
+        "validation_status": "UNRESOLVED_LABEL_LEAKAGE_AND_GROUP_COVERAGE"
+      },
+      {
+        "cell_count": 4,
+        "code_cell_count": 2,
+        "code_cells_with_outputs": 1,
+        "code_chars": 336,
+        "code_sha256": "0773f75eedce4ecfc321871805e06cf07d19d3e68c58baab2e620b33e051471a",
+        "markdown_chars": 101,
+        "path": "Gate-Operation/Examples/Gate {}in line {}s not understood ({}).ipynb",
+        "sha256": "69fc7831c34836148f5cd0afabf5d83b6ac64c4e6fbe1ac63a92c34ffc895d17",
+        "top_directory_label": "Gate-Operation",
+        "validation_reason": "Notebook path/title/markdown expose pattern context; no clean negatives are supplied, and this category has insufficient independent examples for a leakage-safe held-out split.",
+        "validation_status": "UNRESOLVED_LABEL_LEAKAGE_AND_GROUP_COVERAGE"
+      },
+      {
+        "cell_count": 6,
+        "code_cell_count": 2,
+        "code_cells_with_outputs": 2,
+        "code_chars": 144,
+        "code_sha256": "ea1c5416d14ae171da7d95a3c74c35ab41ac60e87a696948e6d714f802eee296",
+        "markdown_chars": 298,
+        "path": "Gate-Operation/Examples/Instruction not in basis gates. instruction, qubits, params.ipynb",
+        "sha256": "5b3693f30c9e5d8761804a4dc7e83a241972f101f08279252a237efe21cef9ea",
+        "top_directory_label": "Gate-Operation",
+        "validation_reason": "Notebook path/title/markdown expose pattern context; no clean negatives are supplied, and this category has insufficient independent examples for a leakage-safe held-out split.",
+        "validation_status": "UNRESOLVED_LABEL_LEAKAGE_AND_GROUP_COVERAGE"
+      },
+      {
+        "cell_count": 5,
+        "code_cell_count": 2,
+        "code_cells_with_outputs": 1,
+        "code_chars": 3630,
+        "code_sha256": "41dba9914924a277417369881eda6db27bc99b9be206fd97f9d23d45fa1909bd",
+        "markdown_chars": 366,
+        "path": "Gate-Operation/Examples/Qiskit Aer.ipynb",
+        "sha256": "4302cb85f34c7b0d7e8ffb62f372eca99e309e3771113afabc5b22f1f1f45cd0",
+        "top_directory_label": "Gate-Operation",
+        "validation_reason": "Notebook path/title/markdown expose pattern context; no clean negatives are supplied, and this category has insufficient independent examples for a leakage-safe held-out split.",
+        "validation_status": "UNRESOLVED_LABEL_LEAKAGE_AND_GROUP_COVERAGE"
+      },
+      {
+        "cell_count": 13,
+        "code_cell_count": 7,
+        "code_cells_with_outputs": 0,
+        "code_chars": 2285,
+        "code_sha256": "a9eaeed0ebc863af164082462309cf8a13c6d59c9dad54c3565ad9507b5c65d6",
+        "markdown_chars": 579,
+        "path": "Gate-Operation/Examples/The Qobj uses gates that are not among the backend\u2019s basis gates.ipynb",
+        "sha256": "1636988a9842b0a43360d372f6d11161a119aea2190c86bfc099222a296d3560",
+        "top_directory_label": "Gate-Operation",
+        "validation_reason": "Notebook path/title/markdown expose pattern context; no clean negatives are supplied, and this category has insufficient independent examples for a leakage-safe held-out split.",
+        "validation_status": "UNRESOLVED_LABEL_LEAKAGE_AND_GROUP_COVERAGE"
+      },
+      {
+        "cell_count": 6,
+        "code_cell_count": 2,
+        "code_cells_with_outputs": 0,
+        "code_chars": 936,
+        "code_sha256": "f13a3c634e0a50077917fa88aa3b5db3046c007a14eb3e96861539e2903f0c3a",
+        "markdown_chars": 106,
+        "path": "Initialize/Examples/Number of registers exceed the number of qubits.ipynb",
+        "sha256": "e82dcfbdc9543140867953056e8114a00d7ca1fc0c4045d329a1c212ffb61dcf",
+        "top_directory_label": "Initialize",
+        "validation_reason": "Notebook path/title/markdown expose pattern context; no clean negatives are supplied, and this category has insufficient independent examples for a leakage-safe held-out split.",
+        "validation_status": "UNRESOLVED_LABEL_LEAKAGE_AND_GROUP_COVERAGE"
+      },
+      {
+        "cell_count": 5,
+        "code_cell_count": 2,
+        "code_cells_with_outputs": 0,
+        "code_chars": 1086,
+        "code_sha256": "bbcfc3c5bbf37b0491ec7f65df14ad58d16f7c4f98a9922cc463cc13cbc672cf",
+        "markdown_chars": 98,
+        "path": "Initialize/Examples/Qubits and classical bits do not have equal lengths.ipynb",
+        "sha256": "6718868494e5894d05ebca6d0d5107fab15fb4d842e83616262296d5a4ea9347",
+        "top_directory_label": "Initialize",
+        "validation_reason": "Notebook path/title/markdown expose pattern context; no clean negatives are supplied, and this category has insufficient independent examples for a leakage-safe held-out split.",
+        "validation_status": "UNRESOLVED_LABEL_LEAKAGE_AND_GROUP_COVERAGE"
+      },
+      {
+        "cell_count": 6,
+        "code_cell_count": 3,
+        "code_cells_with_outputs": 1,
+        "code_chars": 892,
+        "code_sha256": "790c5588feaf2b47ed26324649f8108e624e0ef9deb460f66d4d6bd2cd1c28d9",
+        "markdown_chars": 127,
+        "path": "Initialize/Examples/The number of qubits used in the Qobj is higher than the number of quantum registers defined in the Qobj.ipynb",
+        "sha256": "583ca3437c6ece929dc0131a9e11f45c202f52985e2deb727cb80b58212d2db1",
+        "top_directory_label": "Initialize",
+        "validation_reason": "Notebook path/title/markdown expose pattern context; no clean negatives are supplied, and this category has insufficient independent examples for a leakage-safe held-out split.",
+        "validation_status": "UNRESOLVED_LABEL_LEAKAGE_AND_GROUP_COVERAGE"
+      },
+      {
+        "cell_count": 9,
+        "code_cell_count": 4,
+        "code_cells_with_outputs": 3,
+        "code_chars": 903,
+        "code_sha256": "4487ed97ba3240111cacc81fc657c0401dadac36b28bf55986b8d78b694a2860",
+        "markdown_chars": 319,
+        "path": "Measurement/Examples/Qubit measurement is followed by instructions.ipynb",
+        "sha256": "86d1c3ba24125b84fa70aab702ce1b68f981b9c84d18355408dd8cef6f9ed966",
+        "top_directory_label": "Measurement",
+        "validation_reason": "Notebook path/title/markdown expose pattern context; no clean negatives are supplied, and this category has insufficient independent examples for a leakage-safe held-out split.",
+        "validation_status": "UNRESOLVED_LABEL_LEAKAGE_AND_GROUP_COVERAGE"
+      }
+    ],
+    "top_directory_counts": {
+      "Deallocation": 1,
+      "Gate-Operation": 4,
+      "Initialize": 3,
+      "Measurement": 1
+    },
+    "unique_code_hashes": 9,
+    "unique_notebook_hashes": 9
+  },
+  "frozen_test_accessed": false,
+  "qchecker": {
+    "directory_label_counts": {
+      "CE": 5,
+      "CM": 3,
+      "DO": 3,
+      "IG": 5,
+      "IIS": 4,
+      "IM": 2,
+      "PE": 7,
+      "QE": 1,
+      "others": 1
+    },
+    "eligibility": "INELIGIBLE_FOR_CURRENT_SUPERVISED_TASK",
+    "instance_count": 31,
+    "label_evidence": "The directory taxonomy supplies folder labels; QChecker README enumerates rule codes, but does not certify each file's actual detector outcome or a clean negative label.",
+    "reason": "No clean negatives or verified per-example detector outcomes are included; one example is syntactically invalid; category counts are imbalanced and there are only 31 examples across 9 directories. A random row split would not establish source-group generalization, and grouping by directory would strand rare labels.",
+    "rows": [
+      {
+        "bytes": 1283,
+        "directory_label": "CE",
+        "non_whitespace_chars": 1283,
+        "path": "instances/CE/case1.py",
+        "sha256": "8f02bd442e9985b761edef457706bae05484ec64a01e03bec2ac1b6bc3d69c60",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 1701,
+        "directory_label": "CE",
+        "non_whitespace_chars": 1699,
+        "path": "instances/CE/case2.py",
+        "sha256": "e5e376a76faa08af5704e7299866a8c4a45177671e292211abafd2050394bbb8",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 439,
+        "directory_label": "CE",
+        "non_whitespace_chars": 437,
+        "path": "instances/CE/case3.py",
+        "sha256": "66b1a895fa0faa897fea9b629957f2387a46eec2a49dbd9945d895d65f9ea9aa",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 527,
+        "directory_label": "CE",
+        "non_whitespace_chars": 525,
+        "path": "instances/CE/case4.py",
+        "sha256": "0063889c0743ec6de73ca8ff1908517109d1e80f3d08bf661539c7f0ece5a83f",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 866,
+        "directory_label": "CE",
+        "non_whitespace_chars": 864,
+        "path": "instances/CE/case5.py",
+        "sha256": "1a28337c6a48f0fd4575ff553c8f98cf78d713dad0433e203d4958d9c60b1a34",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 783,
+        "directory_label": "CM",
+        "non_whitespace_chars": 783,
+        "path": "instances/CM/case1.py",
+        "sha256": "cf14f4380b45aac77e06c2c32c48210cfb5e807f16d0dbe99680bbf64c7a5a96",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 381,
+        "directory_label": "CM",
+        "non_whitespace_chars": 379,
+        "path": "instances/CM/case2.py",
+        "sha256": "4fefd2360275384d2c70d2687f63dc786a627b7d8c30db77fd952daab03832b6",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 535,
+        "directory_label": "CM",
+        "non_whitespace_chars": 529,
+        "path": "instances/CM/case3.py",
+        "sha256": "b1f84661250721425dafcfb1eb022eb23653c512198b2ca83cb6f2963c1b9393",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 140,
+        "directory_label": "DO",
+        "non_whitespace_chars": 138,
+        "path": "instances/DO/case1.py",
+        "sha256": "422d7b67a331387eab8eb5fa2b140901c6e9046bdbdb2aa1ceb7dac4c5d396a8",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 950,
+        "directory_label": "DO",
+        "non_whitespace_chars": 948,
+        "path": "instances/DO/case2.py",
+        "sha256": "4f7b5c59e9e8bdcaa310cf6385020da2941484a5a93a4ebb98eea1647f679483",
+        "syntax": "SYNTAX_ERROR:3:invalid syntax",
+        "validation_reason": "The instance does not parse as Python.",
+        "validation_status": "REJECTED_SYNTAX_ERROR"
+      },
+      {
+        "bytes": 4530,
+        "directory_label": "DO",
+        "non_whitespace_chars": 4512,
+        "path": "instances/DO/case3.py",
+        "sha256": "fd9a37908c41df15cafbf026485d0950d02ad947d46199ef53bf21e840f16a4e",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 397,
+        "directory_label": "IG",
+        "non_whitespace_chars": 397,
+        "path": "instances/IG/case1.py",
+        "sha256": "dcd3fb2d50ed8598214b4d0cfdb8b3ba8023d5d1bcd35e6ca0371305e2f9c24d",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 768,
+        "directory_label": "IG",
+        "non_whitespace_chars": 764,
+        "path": "instances/IG/case2.py",
+        "sha256": "309f73e0da028ddf81da647b73e9cbefc66a5aef9ecda4a595be3e02c3083144",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 589,
+        "directory_label": "IG",
+        "non_whitespace_chars": 585,
+        "path": "instances/IG/case3.py",
+        "sha256": "b6b8b241ac53b67ee16e0d911fbcd0f9b33f800075812e9e2c5f5f668a521826",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 799,
+        "directory_label": "IG",
+        "non_whitespace_chars": 797,
+        "path": "instances/IG/case4.py",
+        "sha256": "450e6f96d75ad2e5d76c75b00a0361495b9a028d64d37aae076186056d261108",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 3527,
+        "directory_label": "IG",
+        "non_whitespace_chars": 3525,
+        "path": "instances/IG/case5.py",
+        "sha256": "f94e42f5ad0bbff745abacd25eed73ef6418d02a5ce99e1472f2645f80165c49",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 921,
+        "directory_label": "IIS",
+        "non_whitespace_chars": 921,
+        "path": "instances/IIS/case1.py",
+        "sha256": "a6cb89c2c0d9a5e106bcc55e3c63eb93362238ad4ee8796e184163881c5569c4",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 985,
+        "directory_label": "IIS",
+        "non_whitespace_chars": 985,
+        "path": "instances/IIS/case2.py",
+        "sha256": "105b9e52fa9534fceca60e6de5ec9e8d59cc194b4c8b19a3eb1510c166a86204",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 1141,
+        "directory_label": "IIS",
+        "non_whitespace_chars": 1141,
+        "path": "instances/IIS/case3.py",
+        "sha256": "e59c9f21f93cbd711830efbcaaac0f3d691a5bcf5498502eca4f5fd6cd6cab59",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 170,
+        "directory_label": "IIS",
+        "non_whitespace_chars": 168,
+        "path": "instances/IIS/case_right.py",
+        "sha256": "8912c026763a9439c829b1ac876e3a97bbcb3e148693a978e3eb81263dbc4b3f",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 307,
+        "directory_label": "IM",
+        "non_whitespace_chars": 305,
+        "path": "instances/IM/case1.py",
+        "sha256": "e450849392a350b1afa48dca11b73901bf5e3d670ea419b395a52bf4fdee2c56",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 659,
+        "directory_label": "IM",
+        "non_whitespace_chars": 657,
+        "path": "instances/IM/case2.py",
+        "sha256": "60c64cf19bf48db425db3b2e781d7d98c027fef39a82216c42fac4476d6136c4",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 239,
+        "directory_label": "others",
+        "non_whitespace_chars": 237,
+        "path": "instances/others/case1.py",
+        "sha256": "3202b4b1225db273ab0b389ae23eb8315c26027c8e56e101a710dcdcc7f6ba3c",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 205,
+        "directory_label": "PE",
+        "non_whitespace_chars": 203,
+        "path": "instances/PE/case1.py",
+        "sha256": "65beb541239710a605ec1851d0b21e165508f134538371aa7912638fea5fcaae",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 260,
+        "directory_label": "PE",
+        "non_whitespace_chars": 258,
+        "path": "instances/PE/case2.py",
+        "sha256": "5ba9decb33e9bfa49fc6fc1ed2f7e2eb8fe47aeea6fd8f76303c9f3b069aa71f",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 445,
+        "directory_label": "PE",
+        "non_whitespace_chars": 443,
+        "path": "instances/PE/case3.py",
+        "sha256": "d518e2f89f263890faa4982869dae4772e1f09d851a26a5635a0e462b4784551",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 1121,
+        "directory_label": "PE",
+        "non_whitespace_chars": 1119,
+        "path": "instances/PE/case4.py",
+        "sha256": "935d1749dae7c500d9647b80648218a2cb37750e02ff33d05d8b217b4bf03c42",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 1419,
+        "directory_label": "PE",
+        "non_whitespace_chars": 1413,
+        "path": "instances/PE/case5.py",
+        "sha256": "90f408cf1a36b02bc6303b9741bad9bd6c71b91be3802325e8a7b57b2060020a",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 379,
+        "directory_label": "PE",
+        "non_whitespace_chars": 377,
+        "path": "instances/PE/case6.py",
+        "sha256": "b22c5f430c64cdf2880d9462b13dab67cc8309fb2f7994556cb27e36f7b6ac96",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 581,
+        "directory_label": "PE",
+        "non_whitespace_chars": 579,
+        "path": "instances/PE/case7.py",
+        "sha256": "c6a51efd7aedfac3eadcfd1f56f399aaf8dfc6c75ceaf0c2dfc318f8be14ef85",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      },
+      {
+        "bytes": 915,
+        "directory_label": "QE",
+        "non_whitespace_chars": 913,
+        "path": "instances/QE/case1.py",
+        "sha256": "c03f612fd7591b11144e8871022c2b5a375bef1b8193ad14603a958b0a6a50c8",
+        "syntax": "PARSE_OK",
+        "validation_reason": "Folder taxonomy alone does not establish an observed detector outcome or a clean negative; group provenance is not sufficient for leakage-safe evaluation.",
+        "validation_status": "UNRESOLVED_NO_VERIFIED_DETECTOR_OUTCOME"
+      }
+    ],
+    "syntax_errors": [
+      {
+        "bytes": 950,
+        "directory_label": "DO",
+        "non_whitespace_chars": 948,
+        "path": "instances/DO/case2.py",
+        "sha256": "4f7b5c59e9e8bdcaa310cf6385020da2941484a5a93a4ebb98eea1647f679483",
+        "syntax": "SYNTAX_ERROR:3:invalid syntax",
+        "validation_reason": "The instance does not parse as Python.",
+        "validation_status": "REJECTED_SYNTAX_ERROR"
+      }
+    ],
+    "syntax_valid_count": 30,
+    "unique_source_hashes": 31
+  },
+  "schema": "bug-pattern-qchecker-source-audit-v1",
+  "source_execution_performed": false,
+  "source_hashes": {
+    "bug_pattern_license": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+    "bug_pattern_readme": "3b1c54895422da6b94c0cd488f963c380d5d6b7275d243f3a90becab960331f7",
+    "qchecker_license": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+    "qchecker_readme": "de2aaebc961d85ab607acf0936da5b691dca9b5fd11241aa7dcd414ed5000ffa",
+    "qchecker_rules": "7f681670072c60280701d69fdb1272b1630985fca86fe1ce5728e377f17dc92f"
+  }
+}

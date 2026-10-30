@@ -1,0 +1,631 @@
+{
+  "class_counts": {
+    "0": 62,
+    "1": 62
+  },
+  "classical": {
+    "accuracy": 0.5080645161290323,
+    "balanced_accuracy": 0.5080645161290323,
+    "confusion_matrix": [
+      [
+        28,
+        34
+      ],
+      [
+        27,
+        35
+      ]
+    ],
+    "features": "same 8 hashed-text features; fold-local train-only minmax scaling",
+    "macro_f1": 0.5064918118353233,
+    "model": "balanced LogisticRegression",
+    "per_class": {
+      "0": {
+        "f1": 0.4786324786324786,
+        "precision": 0.509090909090909,
+        "recall": 0.45161290322580644,
+        "support": 62
+      },
+      "1": {
+        "f1": 0.534351145038168,
+        "precision": 0.5072463768115942,
+        "recall": 0.5645161290322581,
+        "support": 62
+      }
+    },
+    "predictions_sha256": "16634bfaee77776dc6905c5005b81b92a55296aec3aa1ae28b5830878056adac"
+  },
+  "classical_metrics_by_source": {
+    "Bugs4Q_NA_additional": {
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "confusion_matrix": [
+        [
+          14,
+          17
+        ],
+        [
+          14,
+          17
+        ]
+      ],
+      "macro_f1": 0.49882659713168187,
+      "per_class": {
+        "0": {
+          "f1": 0.47457627118644063,
+          "precision": 0.5,
+          "recall": 0.45161290322580644,
+          "support": 31
+        },
+        "1": {
+          "f1": 0.5230769230769231,
+          "precision": 0.5,
+          "recall": 0.5483870967741935,
+          "support": 31
+        }
+      }
+    },
+    "Bugs4Q_core": {
+      "accuracy": 0.5161290322580645,
+      "balanced_accuracy": 0.5161290322580645,
+      "confusion_matrix": [
+        [
+          14,
+          17
+        ],
+        [
+          13,
+          18
+        ]
+      ],
+      "macro_f1": 0.5141065830721003,
+      "per_class": {
+        "0": {
+          "f1": 0.48275862068965514,
+          "precision": 0.5185185185185185,
+          "recall": 0.45161290322580644,
+          "support": 31
+        },
+        "1": {
+          "f1": 0.5454545454545455,
+          "precision": 0.5142857142857142,
+          "recall": 0.5806451612903226,
+          "support": 31
+        }
+      }
+    }
+  },
+  "config": {
+    "batch_size": 64,
+    "contract_sha256": "a88eaab36f9a75ee040d1ceff90dfff3f1b20e2070fe14771caf0e5457a7c163",
+    "final_epochs": 4,
+    "learning_rate": 0.04,
+    "model": {
+      "depth": 1,
+      "encoding": "amplitude",
+      "features": 8,
+      "learning_rate": 0.04,
+      "name": "amplitude_3q_depth1_lr004",
+      "qubits": 3,
+      "reupload": false
+    },
+    "optimizer": "Adam",
+    "processed_manifest_sha256": "851cfabadd210a4f2d6ce0513825bef31bcfefb39dd4bea2cf33fce35b954400",
+    "scaler": "minmax fitted on each fold's training rows only",
+    "seed": 28102026,
+    "source_hash": "2f1a561ba5301b8252ad4c07b0593e87ad59d63122aecb6d9500beac3e42d453",
+    "split": "reused saved 5-fold assignments grouped by source issue group",
+    "split_sha256": "74e5b25385d1006e40fd3e888cd17097db6d697819263b6f47eff8fe0f35fe89",
+    "target_semantics": "Train each grouped fold on Bugs4Q_NA_additional only; evaluate on its held-out fold across Bugs4Q_NA_additional and Bugs4Q_core, reporting the core transfer subset separately. Grouped buggy/fixed source-state prediction, not hardware diagnosis.",
+    "task_id": "bugs4q_na_only_transfer_source_restricted_v2",
+    "text_features": "8-dimensional deterministic BLAKE2 hashed-token counts of code only",
+    "training_source_filter": "Bugs4Q_NA_additional",
+    "transfer_target_source": "Bugs4Q_core"
+  },
+  "config_sha256": "bdeab02b9bb4286e958972015b199108ec8e110a566b834213dd6f5e6cc63c9a",
+  "evaluation_scope": "development grouped OOF only",
+  "folds": 5,
+  "frozen_test_accessed": false,
+  "groups": 62,
+  "paired_group_bootstrap_95_percentile": {
+    "groups_resampled": 62,
+    "iterations": 1000,
+    "macro_f1_difference_qnn_minus_classical": -0.01522431016202226,
+    "percentile_95_ci": [
+      -0.06567717731930017,
+      0.03885716162510989
+    ]
+  },
+  "qnn": {
+    "accuracy": 0.49193548387096775,
+    "balanced_accuracy": 0.49193548387096775,
+    "checkpoints": [
+      {
+        "checkpoint_sha256": "1258c00d9faf94b4390f3155a3e9563f9a881e5bf332dcd173e1c6f01dd9cf8f",
+        "epoch": 4,
+        "fold": 1,
+        "history_sha256": "eb19fa3c93872b44f9749078965bd5b79acb6ca40f30665dd371a445b57ad4e9"
+      },
+      {
+        "checkpoint_sha256": "af46ae3863b12a5f6e97441d68ac3b14d51b7a8f53b00e585cb775806c18a43b",
+        "epoch": 4,
+        "fold": 2,
+        "history_sha256": "e9d333f6ec776c1d18d80afe5008bf741b705f55a39af2e610f36107e2392743"
+      },
+      {
+        "checkpoint_sha256": "acc13d5324676bd951e509ed8d15cc5e80a9de1c28be947067d14c839b511c48",
+        "epoch": 4,
+        "fold": 3,
+        "history_sha256": "5c0832a5d124f8c26017ad7359efa10e89ebf9e43419ee4f0e7991d002b4f593"
+      },
+      {
+        "checkpoint_sha256": "7e17721108c9da4934a845bf31909b7da9382b8140306fe969f5443f79befa47",
+        "epoch": 4,
+        "fold": 4,
+        "history_sha256": "d7989f8a3e10aaafc83cd1f3b827c14d68e585301b80cf67552bd76194a4fe71"
+      },
+      {
+        "checkpoint_sha256": "b84c84c3946c1c168989aad265c6b8d46964dc1cece62e8b17f7dabad08978c4",
+        "epoch": 4,
+        "fold": 5,
+        "history_sha256": "2baf67e0a1406ce367325eec6933fd6d22e2f493260c54d5cd823b723f9780bc"
+      }
+    ],
+    "confusion_matrix": [
+      [
+        30,
+        32
+      ],
+      [
+        31,
+        31
+      ]
+    ],
+    "fold_metrics": [
+      {
+        "classical": {
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "confusion_matrix": [
+            [
+              8,
+              5
+            ],
+            [
+              8,
+              5
+            ]
+          ],
+          "macro_f1": 0.49325337331334335,
+          "per_class": {
+            "0": {
+              "f1": 0.5517241379310345,
+              "precision": 0.5,
+              "recall": 0.6153846153846154,
+              "support": 13
+            },
+            "1": {
+              "f1": 0.4347826086956522,
+              "precision": 0.5,
+              "recall": 0.38461538461538464,
+              "support": 13
+            }
+          }
+        },
+        "fold": 1,
+        "qnn": {
+          "accuracy": 0.5384615384615384,
+          "balanced_accuracy": 0.5384615384615384,
+          "confusion_matrix": [
+            [
+              7,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ],
+          "macro_f1": 0.5384615384615384,
+          "per_class": {
+            "0": {
+              "f1": 0.5384615384615384,
+              "precision": 0.5384615384615384,
+              "recall": 0.5384615384615384,
+              "support": 13
+            },
+            "1": {
+              "f1": 0.5384615384615384,
+              "precision": 0.5384615384615384,
+              "recall": 0.5384615384615384,
+              "support": 13
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.5384615384615384,
+          "balanced_accuracy": 0.5384615384615384,
+          "confusion_matrix": [
+            [
+              7,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ],
+          "macro_f1": 0.5384615384615384,
+          "per_class": {
+            "0": {
+              "f1": 0.5384615384615384,
+              "precision": 0.5384615384615384,
+              "recall": 0.5384615384615384,
+              "support": 13
+            },
+            "1": {
+              "f1": 0.5384615384615384,
+              "precision": 0.5384615384615384,
+              "recall": 0.5384615384615384,
+              "support": 13
+            }
+          }
+        },
+        "fold": 2,
+        "qnn": {
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "confusion_matrix": [
+            [
+              8,
+              5
+            ],
+            [
+              8,
+              5
+            ]
+          ],
+          "macro_f1": 0.49325337331334335,
+          "per_class": {
+            "0": {
+              "f1": 0.5517241379310345,
+              "precision": 0.5,
+              "recall": 0.6153846153846154,
+              "support": 13
+            },
+            "1": {
+              "f1": 0.4347826086956522,
+              "precision": 0.5,
+              "recall": 0.38461538461538464,
+              "support": 13
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "confusion_matrix": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          "macro_f1": 0.49650349650349646,
+          "per_class": {
+            "0": {
+              "f1": 0.45454545454545453,
+              "precision": 0.5,
+              "recall": 0.4166666666666667,
+              "support": 12
+            },
+            "1": {
+              "f1": 0.5384615384615384,
+              "precision": 0.5,
+              "recall": 0.5833333333333334,
+              "support": 12
+            }
+          }
+        },
+        "fold": 3,
+        "qnn": {
+          "accuracy": 0.5833333333333334,
+          "balanced_accuracy": 0.5833333333333334,
+          "confusion_matrix": [
+            [
+              5,
+              7
+            ],
+            [
+              3,
+              9
+            ]
+          ],
+          "macro_f1": 0.5714285714285714,
+          "per_class": {
+            "0": {
+              "f1": 0.5,
+              "precision": 0.625,
+              "recall": 0.4166666666666667,
+              "support": 12
+            },
+            "1": {
+              "f1": 0.6428571428571429,
+              "precision": 0.5625,
+              "recall": 0.75,
+              "support": 12
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "confusion_matrix": [
+            [
+              4,
+              8
+            ],
+            [
+              4,
+              8
+            ]
+          ],
+          "macro_f1": 0.48571428571428577,
+          "per_class": {
+            "0": {
+              "f1": 0.4,
+              "precision": 0.5,
+              "recall": 0.3333333333333333,
+              "support": 12
+            },
+            "1": {
+              "f1": 0.5714285714285715,
+              "precision": 0.5,
+              "recall": 0.6666666666666666,
+              "support": 12
+            }
+          }
+        },
+        "fold": 4,
+        "qnn": {
+          "accuracy": 0.4583333333333333,
+          "balanced_accuracy": 0.45833333333333337,
+          "confusion_matrix": [
+            [
+              5,
+              7
+            ],
+            [
+              6,
+              6
+            ]
+          ],
+          "macro_f1": 0.4573913043478261,
+          "per_class": {
+            "0": {
+              "f1": 0.43478260869565216,
+              "precision": 0.45454545454545453,
+              "recall": 0.4166666666666667,
+              "support": 12
+            },
+            "1": {
+              "f1": 0.48000000000000004,
+              "precision": 0.46153846153846156,
+              "recall": 0.5,
+              "support": 12
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "confusion_matrix": [
+            [
+              4,
+              8
+            ],
+            [
+              4,
+              8
+            ]
+          ],
+          "macro_f1": 0.48571428571428577,
+          "per_class": {
+            "0": {
+              "f1": 0.4,
+              "precision": 0.5,
+              "recall": 0.3333333333333333,
+              "support": 12
+            },
+            "1": {
+              "f1": 0.5714285714285715,
+              "precision": 0.5,
+              "recall": 0.6666666666666666,
+              "support": 12
+            }
+          }
+        },
+        "fold": 5,
+        "qnn": {
+          "accuracy": 0.375,
+          "balanced_accuracy": 0.375,
+          "confusion_matrix": [
+            [
+              5,
+              7
+            ],
+            [
+              8,
+              4
+            ]
+          ],
+          "macro_f1": 0.3739130434782609,
+          "per_class": {
+            "0": {
+              "f1": 0.4,
+              "precision": 0.38461538461538464,
+              "recall": 0.4166666666666667,
+              "support": 12
+            },
+            "1": {
+              "f1": 0.34782608695652173,
+              "precision": 0.36363636363636365,
+              "recall": 0.3333333333333333,
+              "support": 12
+            }
+          }
+        }
+      }
+    ],
+    "macro_f1": 0.49190243902439024,
+    "model": {
+      "depth": 1,
+      "encoding": "amplitude",
+      "features": 8,
+      "learning_rate": 0.04,
+      "name": "amplitude_3q_depth1_lr004",
+      "qubits": 3,
+      "reupload": false
+    },
+    "per_class": {
+      "0": {
+        "f1": 0.4878048780487805,
+        "precision": 0.4918032786885246,
+        "recall": 0.4838709677419355,
+        "support": 62
+      },
+      "1": {
+        "f1": 0.49599999999999994,
+        "precision": 0.49206349206349204,
+        "recall": 0.5,
+        "support": 62
+      }
+    },
+    "predictions_sha256": "0aef9beaf07d59d4788483480d660aca89dd60b1345a6862edb45a6044b0ad1e"
+  },
+  "qnn_metrics_by_source": {
+    "Bugs4Q_NA_additional": {
+      "accuracy": 0.46774193548387094,
+      "balanced_accuracy": 0.467741935483871,
+      "confusion_matrix": [
+        [
+          13,
+          18
+        ],
+        [
+          15,
+          16
+        ]
+      ],
+      "macro_f1": 0.4664928292046936,
+      "per_class": {
+        "0": {
+          "f1": 0.44067796610169496,
+          "precision": 0.4642857142857143,
+          "recall": 0.41935483870967744,
+          "support": 31
+        },
+        "1": {
+          "f1": 0.4923076923076923,
+          "precision": 0.47058823529411764,
+          "recall": 0.5161290322580645,
+          "support": 31
+        }
+      }
+    },
+    "Bugs4Q_core": {
+      "accuracy": 0.5161290322580645,
+      "balanced_accuracy": 0.5161290322580645,
+      "confusion_matrix": [
+        [
+          17,
+          14
+        ],
+        [
+          16,
+          15
+        ]
+      ],
+      "macro_f1": 0.515625,
+      "per_class": {
+        "0": {
+          "f1": 0.53125,
+          "precision": 0.5151515151515151,
+          "recall": 0.5483870967741935,
+          "support": 31
+        },
+        "1": {
+          "f1": 0.5000000000000001,
+          "precision": 0.5172413793103449,
+          "recall": 0.4838709677419355,
+          "support": 31
+        }
+      }
+    }
+  },
+  "resume_verification": {
+    "all_group_folds_preserved": true,
+    "all_optimizer_states_present": true,
+    "checkpoint_epochs": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "resume_events": 1,
+    "status": "verified",
+    "uninterrupted_reference_parity": {
+      "bias": true,
+      "head": true,
+      "m_b": true,
+      "m_h": true,
+      "m_t": true,
+      "rng_state": true,
+      "theta": true,
+      "v_b": true,
+      "v_h": true,
+      "v_t": true
+    }
+  },
+  "rows": 124,
+  "runtime": {
+    "batch_size": 64,
+    "elapsed_seconds_this_invocation": 0.512,
+    "memory_available_end_mib": 1983.8,
+    "memory_available_start_mib": 1998.6,
+    "memory_floor_mib": 500
+  },
+  "source_audit": {
+    "contract_sha256": "a88eaab36f9a75ee040d1ceff90dfff3f1b20e2070fe14771caf0e5457a7c163",
+    "fold_path": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\data\\processed\\bugs4q_joint\\na_only_transfer\\manifests\\group_folds.csv",
+    "fold_sha256": "74e5b25385d1006e40fd3e888cd17097db6d697819263b6f47eff8fe0f35fe89",
+    "group_count": 62,
+    "partition_sha256": [
+      "c47b5f2e4c4eb686c1e2f642d901277990c1c15aaabd98dc8ffaf46306006b41",
+      "2ec05ad3a769d0187aece8a11a9757690d4804cc6677428d64783596e1bc9795"
+    ],
+    "processed_manifest": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\data\\processed\\bugs4q_joint\\na_only_transfer\\manifest.json",
+    "processed_manifest_sha256": "851cfabadd210a4f2d6ce0513825bef31bcfefb39dd4bea2cf33fce35b954400",
+    "raw_snapshot_hashes": 1,
+    "record_count": 124,
+    "source_path": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_joint\\normalized_manifest.csv",
+    "source_sha256": "2f1a561ba5301b8252ad4c07b0593e87ad59d63122aecb6d9500beac3e42d453"
+  },
+  "status": "completed",
+  "target_semantics": "Train each grouped fold on Bugs4Q_NA_additional only; evaluate on its held-out fold across Bugs4Q_NA_additional and Bugs4Q_core, reporting the core transfer subset separately. Grouped buggy/fixed source-state prediction, not hardware diagnosis.",
+  "task": "bugs4q_na_only_transfer_source_restricted_v2",
+  "training_source_filter": "Bugs4Q_NA_additional",
+  "transfer_target_source": "Bugs4Q_core"
+}

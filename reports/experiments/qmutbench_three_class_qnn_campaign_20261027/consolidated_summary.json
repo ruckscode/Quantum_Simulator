@@ -1,0 +1,497 @@
+{
+  "status": "completed_no_qml_candidate_approached_matched_controls",
+  "label_map": {
+    "Survivor": 0,
+    "WOO": 1,
+    "OPO": 2
+  },
+  "qnn_results": [
+    {
+      "encoding": "angle_reupload",
+      "model": "three_class_vqc",
+      "macro_f1": 0.2997533196871884,
+      "accuracy": 0.32195121951219513,
+      "balanced_accuracy": 0.31797804591922235,
+      "per_class": {
+        "0": {
+          "precision": 0.3627450980392157,
+          "recall": 0.5138888888888888,
+          "f1": 0.42528735632183906,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.4090909090909091,
+          "recall": 0.1323529411764706,
+          "f1": 0.2,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.24691358024691357,
+          "recall": 0.3076923076923077,
+          "f1": 0.273972602739726,
+          "support": 65
+        }
+      },
+      "confusion_matrix": [
+        [
+          37,
+          8,
+          27
+        ],
+        [
+          25,
+          9,
+          34
+        ],
+        [
+          40,
+          5,
+          20
+        ]
+      ],
+      "validation_log_loss": 1.1366967424665246
+    },
+    {
+      "encoding": "amplitude",
+      "model": "three_class_vqc_amplitude",
+      "macro_f1": 0.3085925868719243,
+      "accuracy": 0.33658536585365856,
+      "balanced_accuracy": 0.3445198592257415,
+      "per_class": {
+        "0": {
+          "precision": 0.2608695652173913,
+          "recall": 0.08333333333333333,
+          "f1": 0.12631578947368421,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.3835616438356164,
+          "recall": 0.4117647058823529,
+          "f1": 0.3971631205673759,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.3211009174311927,
+          "recall": 0.5384615384615384,
+          "f1": 0.40229885057471265,
+          "support": 65
+        }
+      },
+      "confusion_matrix": [
+        [
+          6,
+          18,
+          48
+        ],
+        [
+          14,
+          28,
+          26
+        ],
+        [
+          3,
+          27,
+          35
+        ]
+      ],
+      "validation_log_loss": 1.219754785104732
+    },
+    {
+      "encoding": "angle_linear",
+      "model": "three_class_vqc_angle_linear",
+      "macro_f1": 0.32179758891284416,
+      "accuracy": 0.35609756097560974,
+      "balanced_accuracy": 0.36493631640690466,
+      "per_class": {
+        "0": {
+          "precision": 0.3939393939393939,
+          "recall": 0.18055555555555555,
+          "f1": 0.24761904761904763,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.37142857142857144,
+          "recall": 0.19117647058823528,
+          "f1": 0.2524271844660194,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.34306569343065696,
+          "recall": 0.7230769230769231,
+          "f1": 0.46534653465346537,
+          "support": 65
+        }
+      },
+      "confusion_matrix": [
+        [
+          13,
+          15,
+          44
+        ],
+        [
+          9,
+          13,
+          46
+        ],
+        [
+          11,
+          7,
+          47
+        ]
+      ],
+      "validation_log_loss": 1.121309974826131
+    }
+  ],
+  "paired_origin_bootstrap": [
+    {
+      "qnn": "three_class_vqc",
+      "control": "extra_trees_4f",
+      "delta_macro_f1": -0.16713416116189805,
+      "origin_bootstrap_95_ci": [
+        -0.2562898807260084,
+        -0.08531935681622224
+      ],
+      "bootstrap_replicates": 2000,
+      "origin_count": 12
+    },
+    {
+      "qnn": "three_class_vqc",
+      "control": "logistic_4f",
+      "delta_macro_f1": -0.14093221857011828,
+      "origin_bootstrap_95_ci": [
+        -0.22993475045983414,
+        -0.0375953272630083
+      ],
+      "bootstrap_replicates": 2000,
+      "origin_count": 12
+    },
+    {
+      "qnn": "three_class_vqc",
+      "control": "rbf_svc_4f",
+      "delta_macro_f1": -0.13089407614277837,
+      "origin_bootstrap_95_ci": [
+        -0.22730029137084792,
+        -0.04019063293745513
+      ],
+      "bootstrap_replicates": 2000,
+      "origin_count": 12
+    },
+    {
+      "qnn": "three_class_vqc_amplitude",
+      "control": "extra_trees_4f",
+      "delta_macro_f1": -0.15829489397716212,
+      "origin_bootstrap_95_ci": [
+        -0.2280367603344931,
+        -0.09301143522408983
+      ],
+      "bootstrap_replicates": 2000,
+      "origin_count": 12
+    },
+    {
+      "qnn": "three_class_vqc_amplitude",
+      "control": "logistic_4f",
+      "delta_macro_f1": -0.13209295138538235,
+      "origin_bootstrap_95_ci": [
+        -0.21991924950679476,
+        -0.010088998740361265
+      ],
+      "bootstrap_replicates": 2000,
+      "origin_count": 12
+    },
+    {
+      "qnn": "three_class_vqc_amplitude",
+      "control": "rbf_svc_4f",
+      "delta_macro_f1": -0.12205480895804244,
+      "origin_bootstrap_95_ci": [
+        -0.2318946984988671,
+        0.015225426189499793
+      ],
+      "bootstrap_replicates": 2000,
+      "origin_count": 12
+    },
+    {
+      "qnn": "three_class_vqc_angle_linear",
+      "control": "extra_trees_4f",
+      "delta_macro_f1": -0.14508989193624228,
+      "origin_bootstrap_95_ci": [
+        -0.2263474890541144,
+        -0.07858329489643918
+      ],
+      "bootstrap_replicates": 2000,
+      "origin_count": 12
+    },
+    {
+      "qnn": "three_class_vqc_angle_linear",
+      "control": "logistic_4f",
+      "delta_macro_f1": -0.1188879493444625,
+      "origin_bootstrap_95_ci": [
+        -0.18433912142647335,
+        -0.05541027972160569
+      ],
+      "bootstrap_replicates": 2000,
+      "origin_count": 12
+    },
+    {
+      "qnn": "three_class_vqc_angle_linear",
+      "control": "rbf_svc_4f",
+      "delta_macro_f1": -0.1088498069171226,
+      "origin_bootstrap_95_ci": [
+        -0.20574118225014393,
+        -0.005241394061954972
+      ],
+      "bootstrap_replicates": 2000,
+      "origin_count": 12
+    }
+  ],
+  "matched_controls": {
+    "extra_trees_4f": {
+      "macro_f1": 0.46688748084908643,
+      "accuracy": 0.4926829268292683,
+      "balanced_accuracy": 0.4845525389643037
+    },
+    "logistic_4f": {
+      "macro_f1": 0.44068553825730666,
+      "accuracy": 0.4634146341463415,
+      "balanced_accuracy": 0.457181163063516
+    },
+    "rbf_svc_4f": {
+      "macro_f1": 0.43064739582996675,
+      "accuracy": 0.43902439024390244,
+      "balanced_accuracy": 0.4348081112786995
+    },
+    "three_class_vqc": {
+      "macro_f1": 0.2997533196871884,
+      "accuracy": 0.32195121951219513,
+      "balanced_accuracy": 0.31797804591922235
+    }
+  },
+  "binary_champion_same_record_context": {
+    "metrics": {
+      "macro_f1": 0.9229819665092314,
+      "accuracy": 0.9317073170731708,
+      "balanced_accuracy": 0.9123329156223893,
+      "confusion_matrix_labels_0_1": [
+        [
+          61,
+          11
+        ],
+        [
+          3,
+          130
+        ]
+      ]
+    },
+    "records": 205,
+    "origins": 12,
+    "paired_qnn_collapsed": [
+      {
+        "encoding": "angle_reupload",
+        "macro_f1": 0.5007792713812586,
+        "accuracy": 0.5121951219512195,
+        "balanced_accuracy": 0.5125835421888053,
+        "confusion_matrix_labels_0_1": [
+          [
+            37,
+            35
+          ],
+          [
+            65,
+            68
+          ]
+        ]
+      },
+      {
+        "encoding": "amplitude",
+        "macro_f1": 0.43141186299081036,
+        "accuracy": 0.5951219512195122,
+        "balanced_accuracy": 0.47775689223057644,
+        "confusion_matrix_labels_0_1": [
+          [
+            6,
+            66
+          ],
+          [
+            17,
+            116
+          ]
+        ]
+      },
+      {
+        "encoding": "angle_linear",
+        "macro_f1": 0.49430132708821234,
+        "accuracy": 0.6146341463414634,
+        "balanced_accuracy": 0.5150898078529658,
+        "confusion_matrix_labels_0_1": [
+          [
+            13,
+            59
+          ],
+          [
+            20,
+            113
+          ]
+        ]
+      }
+    ],
+    "comparison_note": "Saved champion is a different binary target, trained on far more records and existing five-fold OOF splits; same records are shown only as protocol context, not a matched three-class comparison."
+  },
+  "sample": {
+    "development_label_counts": {
+      "WOO": 294802,
+      "Survivor": 278413,
+      "OPO": 4902
+    },
+    "development_origins_with_OPO": 48,
+    "selected_origins": [
+      "graphstate_indep_qiskit_10",
+      "graphstate_indep_qiskit_11",
+      "graphstate_indep_qiskit_8",
+      "groundstate_small_indep_qiskit_4",
+      "qftentangled_indep_qiskit_11",
+      "qftentangled_indep_qiskit_13",
+      "qgan_indep_qiskit_2",
+      "qgan_indep_qiskit_5",
+      "wstate_indep_qiskit_2",
+      "wstate_indep_qiskit_20",
+      "wstate_indep_qiskit_25",
+      "wstate_indep_qiskit_6"
+    ],
+    "sample_label_counts": {
+      "0": 72,
+      "1": 68,
+      "2": 65
+    },
+    "sampling": "Seeded within-origin and within-label subsample; up to six records per class per OPO-bearing origin. Exploratory balanced rare-class-origin sample, not prevalence representative."
+  },
+  "resources": {
+    "angle_reupload": {
+      "elapsed_seconds": 142.6318797999993,
+      "available_before_mib": 799.16796875,
+      "available_after_mib": 1215.25,
+      "rss_before_mib": 595.8515625,
+      "qnn_folds": [
+        {
+          "fold": 1,
+          "runtime_seconds": 50.35254920000443,
+          "train_executions": 1380,
+          "validation_executions": 67,
+          "qubits": 4,
+          "depth": 2,
+          "parameters": 24
+        },
+        {
+          "fold": 2,
+          "runtime_seconds": 46.63830850002705,
+          "train_executions": 1370,
+          "validation_executions": 68,
+          "qubits": 4,
+          "depth": 2,
+          "parameters": 24
+        },
+        {
+          "fold": 3,
+          "runtime_seconds": 44.41184459999204,
+          "train_executions": 1350,
+          "validation_executions": 70,
+          "qubits": 4,
+          "depth": 2,
+          "parameters": 24
+        }
+      ]
+    },
+    "amplitude": {
+      "elapsed_seconds": 68.73284959999728,
+      "available_before_mib": 1529.21875,
+      "available_after_mib": 1002.34765625,
+      "rss_before_mib": 450.734375,
+      "qnn_folds": [
+        {
+          "fold": 1,
+          "runtime_seconds": 23.64576440001838,
+          "train_executions": 1380,
+          "validation_executions": 67,
+          "qubits": 2,
+          "depth": 2,
+          "parameters": 12
+        },
+        {
+          "fold": 2,
+          "runtime_seconds": 21.156736899982207,
+          "train_executions": 1370,
+          "validation_executions": 68,
+          "qubits": 2,
+          "depth": 2,
+          "parameters": 12
+        },
+        {
+          "fold": 3,
+          "runtime_seconds": 22.81612380000297,
+          "train_executions": 1350,
+          "validation_executions": 70,
+          "qubits": 2,
+          "depth": 2,
+          "parameters": 12
+        }
+      ]
+    },
+    "angle_linear": {
+      "elapsed_seconds": 139.15523449998,
+      "available_before_mib": 1155.01953125,
+      "available_after_mib": 1145.30859375,
+      "rss_before_mib": 645.53125,
+      "qnn_folds": [
+        {
+          "fold": 1,
+          "runtime_seconds": 47.52350279997336,
+          "train_executions": 1380,
+          "validation_executions": 67,
+          "qubits": 4,
+          "depth": 2,
+          "parameters": 36
+        },
+        {
+          "fold": 2,
+          "runtime_seconds": 46.41798120003659,
+          "train_executions": 1370,
+          "validation_executions": 68,
+          "qubits": 4,
+          "depth": 2,
+          "parameters": 36
+        },
+        {
+          "fold": 3,
+          "runtime_seconds": 44.11902789998567,
+          "train_executions": 1350,
+          "validation_executions": 70,
+          "qubits": 4,
+          "depth": 2,
+          "parameters": 36
+        }
+      ]
+    }
+  },
+  "confirmation_attempt": {
+    "status": "stopped_at_memory_safety_floor",
+    "reason": "The single fit using the 12-origin training sample and 36 reserved OPO-bearing development origins crossed below 500 MiB available RAM before completing; no predictions or metrics were written and no retry was made.",
+    "checkpoint_saved": false
+  },
+  "test_integrity": {
+    "frozen_test_accessed": false,
+    "production_model_modified": false,
+    "source_and_split_manifests_modified": false
+  },
+  "next_search_decision": "Do not scale. Three distinct encoding/readout hypotheses failed to beat matched classical controls on the conditional class-balanced sample. A single-candidate holdout fit using the remaining 36 OPO-bearing development origins hit the 500 MiB safety floor and stopped before metrics; further training requires a larger-memory host.",
+  "optimized_confirmation_followup": {
+    "status": "not launched",
+    "reason": "available RAM 663 MiB was below the 700 MiB preflight",
+    "chunked_exact_gradient_smoke": "passed toy equivalence; see chunked_gradient_smoke.json"
+  },
+  "resume_memory_probe": {
+    "measurement": "standalone Python psutil probe before loading PennyLane/scikit-learn",
+    "available_mib": 853,
+    "optimized_confirmation_launched": false,
+    "post_import_available_mib": "not measured",
+    "required_post_import_preflight_mib": 700,
+    "total_mib": 7488
+  }
+}

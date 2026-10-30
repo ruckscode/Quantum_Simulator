@@ -1,0 +1,45 @@
+{
+  "task": "Quantum platform comment task",
+  "model": "angle_reupload_4q_depth2_lr0035",
+  "fold": 1,
+  "records": 64,
+  "groups": 63,
+  "train_records": 255,
+  "training_seconds": 0.43470329999763635,
+  "available_ram_mib": 970.29296875,
+  "gradient_check": {
+    "parameter_shift": 1.2688029387617622e-05,
+    "finite_difference": 1.2688028405705152e-05,
+    "absolute_error": 9.81912469695122e-13,
+    "passed": true
+  },
+  "metrics": {
+    "accuracy": 0.921875,
+    "balanced_accuracy": 0.894927536231884,
+    "macro_f1": 0.901689708141321,
+    "per_class": {
+      "0": {
+        "precision": 0.8823529411764706,
+        "recall": 0.8333333333333334,
+        "f1": 0.8571428571428571,
+        "support": 18
+      },
+      "1": {
+        "precision": 0.9361702127659575,
+        "recall": 0.9565217391304348,
+        "f1": 0.9462365591397849,
+        "support": 46
+      }
+    },
+    "confusion_matrix": [
+      [
+        15,
+        3
+      ],
+      [
+        2,
+        44
+      ]
+    ]
+  }
+}

@@ -1,0 +1,398 @@
+{
+  "status": "completed_matched_classical_grouped_oof",
+  "task": "Bugs4Q core-only transfer",
+  "target": "Bugs4Q core-only transfer",
+  "records": 124,
+  "groups": 62,
+  "folds": 5,
+  "feature_policy": "same deterministic 8-bin BLAKE2b token counts as QNN; fold-local min-max; compare 4-feature and 8-feature controls",
+  "split_source": "saved development QNN grouped out-of-fold fold assignment",
+  "source_manifest_sha256": "2f1a561ba5301b8252ad4c07b0593e87ad59d63122aecb6d9500beac3e42d453",
+  "scikit_learn": "1.9.1",
+  "models": [
+    {
+      "task": "Bugs4Q core-only transfer",
+      "model": "majority_dummy",
+      "feature_count": 4,
+      "records": 124,
+      "folds": 5,
+      "accuracy": 0.5,
+      "macro_f1": 0.3333333333333333,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 62
+        }
+      },
+      "confusion_matrix": [
+        [
+          62,
+          0
+        ],
+        [
+          62,
+          0
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core-only transfer",
+      "model": "logistic_balanced",
+      "feature_count": 4,
+      "records": 124,
+      "folds": 5,
+      "accuracy": 0.5,
+      "macro_f1": 0.4892373106563912,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.5,
+          "recall": 0.3548387096774194,
+          "f1": 0.41509433962264153,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.5,
+          "recall": 0.6451612903225806,
+          "f1": 0.5633802816901409,
+          "support": 62
+        }
+      },
+      "confusion_matrix": [
+        [
+          22,
+          40
+        ],
+        [
+          22,
+          40
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core-only transfer",
+      "model": "decision_tree_balanced",
+      "feature_count": 4,
+      "records": 124,
+      "folds": 5,
+      "accuracy": 0.49193548387096775,
+      "macro_f1": 0.4580645161290323,
+      "balanced_accuracy": 0.49193548387096775,
+      "per_class": {
+        "0": {
+          "precision": 0.4946236559139785,
+          "recall": 0.7419354838709677,
+          "f1": 0.5935483870967743,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.4838709677419355,
+          "recall": 0.24193548387096775,
+          "f1": 0.32258064516129037,
+          "support": 62
+        }
+      },
+      "confusion_matrix": [
+        [
+          46,
+          16
+        ],
+        [
+          47,
+          15
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core-only transfer",
+      "model": "random_forest_balanced",
+      "feature_count": 4,
+      "records": 124,
+      "folds": 5,
+      "accuracy": 0.5080645161290323,
+      "macro_f1": 0.5054593004249754,
+      "balanced_accuracy": 0.5080645161290323,
+      "per_class": {
+        "0": {
+          "precision": 0.5070422535211268,
+          "recall": 0.5806451612903226,
+          "f1": 0.5413533834586466,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.5094339622641509,
+          "recall": 0.43548387096774194,
+          "f1": 0.46956521739130436,
+          "support": 62
+        }
+      },
+      "confusion_matrix": [
+        [
+          36,
+          26
+        ],
+        [
+          35,
+          27
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core-only transfer",
+      "model": "extra_trees_balanced",
+      "feature_count": 4,
+      "records": 124,
+      "folds": 5,
+      "accuracy": 0.49193548387096775,
+      "macro_f1": 0.47972027972027975,
+      "balanced_accuracy": 0.49193548387096775,
+      "per_class": {
+        "0": {
+          "precision": 0.49382716049382713,
+          "recall": 0.6451612903225806,
+          "f1": 0.5594405594405595,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.4883720930232558,
+          "recall": 0.3387096774193548,
+          "f1": 0.4,
+          "support": 62
+        }
+      },
+      "confusion_matrix": [
+        [
+          40,
+          22
+        ],
+        [
+          41,
+          21
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core-only transfer",
+      "model": "majority_dummy",
+      "feature_count": 8,
+      "records": 124,
+      "folds": 5,
+      "accuracy": 0.5,
+      "macro_f1": 0.3333333333333333,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 62
+        }
+      },
+      "confusion_matrix": [
+        [
+          62,
+          0
+        ],
+        [
+          62,
+          0
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core-only transfer",
+      "model": "logistic_balanced",
+      "feature_count": 8,
+      "records": 124,
+      "folds": 5,
+      "accuracy": 0.5080645161290323,
+      "macro_f1": 0.5064918118353233,
+      "balanced_accuracy": 0.5080645161290323,
+      "per_class": {
+        "0": {
+          "precision": 0.509090909090909,
+          "recall": 0.45161290322580644,
+          "f1": 0.4786324786324786,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.5072463768115942,
+          "recall": 0.5645161290322581,
+          "f1": 0.534351145038168,
+          "support": 62
+        }
+      },
+      "confusion_matrix": [
+        [
+          28,
+          34
+        ],
+        [
+          27,
+          35
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core-only transfer",
+      "model": "decision_tree_balanced",
+      "feature_count": 8,
+      "records": 124,
+      "folds": 5,
+      "accuracy": 0.4838709677419355,
+      "macro_f1": 0.46013605442176875,
+      "balanced_accuracy": 0.4838709677419355,
+      "per_class": {
+        "0": {
+          "precision": 0.48863636363636365,
+          "recall": 0.6935483870967742,
+          "f1": 0.5733333333333334,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.4722222222222222,
+          "recall": 0.27419354838709675,
+          "f1": 0.3469387755102041,
+          "support": 62
+        }
+      },
+      "confusion_matrix": [
+        [
+          43,
+          19
+        ],
+        [
+          45,
+          17
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core-only transfer",
+      "model": "random_forest_balanced",
+      "feature_count": 8,
+      "records": 124,
+      "folds": 5,
+      "accuracy": 0.5080645161290323,
+      "macro_f1": 0.48722120534201074,
+      "balanced_accuracy": 0.5080645161290323,
+      "per_class": {
+        "0": {
+          "precision": 0.5057471264367817,
+          "recall": 0.7096774193548387,
+          "f1": 0.5906040268456376,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.5135135135135135,
+          "recall": 0.3064516129032258,
+          "f1": 0.3838383838383838,
+          "support": 62
+        }
+      },
+      "confusion_matrix": [
+        [
+          44,
+          18
+        ],
+        [
+          43,
+          19
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core-only transfer",
+      "model": "extra_trees_balanced",
+      "feature_count": 8,
+      "records": 124,
+      "folds": 5,
+      "accuracy": 0.5,
+      "macro_f1": 0.4892373106563912,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.5,
+          "recall": 0.6451612903225806,
+          "f1": 0.5633802816901409,
+          "support": 62
+        },
+        "1": {
+          "precision": 0.5,
+          "recall": 0.3548387096774194,
+          "f1": 0.41509433962264153,
+          "support": 62
+        }
+      },
+      "confusion_matrix": [
+        [
+          40,
+          22
+        ],
+        [
+          40,
+          22
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    }
+  ],
+  "fold_metrics_path": "fold_metrics.csv",
+  "oof_predictions_path": "oof_predictions.csv",
+  "tuning": "fixed published-in-this-run configurations; no hyperparameter selection on validation folds",
+  "frozen_test_accessed": false
+}

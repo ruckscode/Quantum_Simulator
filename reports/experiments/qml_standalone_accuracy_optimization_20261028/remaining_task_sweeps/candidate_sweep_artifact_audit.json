@@ -1,0 +1,1836 @@
+{
+  "schema": "qml-candidate-sweep-artifact-audit-v1",
+  "status": "verified",
+  "scope": "nine grouped development QNN candidate sweeps; fixed four-epoch configurations",
+  "tasks": [
+    {
+      "task": "bugs4q_core",
+      "status": "completed_grouped_qnn_sweep",
+      "records": 62,
+      "groups": 31,
+      "source_manifest_sha256": "cef4b2378b97610b498917f6412f18e716c2ab91369ea709fc98541952008cdb",
+      "oof_prediction_sha256": "b48bf79bd40d9bd46f1eafcabc3d28ae0202f687b141b644a7c6e499e9c38e05",
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "records": 62,
+          "metrics": {
+            "accuracy": 0.45161290322580644,
+            "macro_f1": 0.4493207941483804,
+            "balanced_accuracy": 0.45161290322580644,
+            "per_class": {
+              "0": {
+                "precision": 0.4444444444444444,
+                "recall": 0.3870967741935484,
+                "f1": 0.41379310344827586,
+                "support": 31
+              },
+              "1": {
+                "precision": 0.45714285714285713,
+                "recall": 0.5161290322580645,
+                "f1": 0.4848484848484849,
+                "support": 31
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+              "sha256": "c2d870abe9faacf6aa7fdd76ddb43fbdd3bea1466b16936a1818d9d72a13c56e",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+              "sha256": "da5433ba960d9b518e18278a749d16c0b92ee7ef9146ae96486203b4673235b0",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+              "sha256": "33ea38c848984c5a64b21126ffaaccafb45e12ee6111b7e9188ed4705abf3637",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+              "sha256": "d6860f493b406ba8b1c654f1a3cd9b9bb4b79d22b1f5b1a8f7b1d5fd0466a623",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz",
+              "sha256": "714a6984b336ead906aaa4856329b71ee78b15677150f6fbac171a6ed74c97af",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            }
+          ]
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "records": 62,
+          "metrics": {
+            "accuracy": 0.5,
+            "macro_f1": 0.49882659713168187,
+            "balanced_accuracy": 0.5,
+            "per_class": {
+              "0": {
+                "precision": 0.5,
+                "recall": 0.5483870967741935,
+                "f1": 0.5230769230769231,
+                "support": 31
+              },
+              "1": {
+                "precision": 0.5,
+                "recall": 0.45161290322580644,
+                "f1": 0.47457627118644063,
+                "support": 31
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+              "sha256": "3952c1da72b020ed138068c61eb5d347e41ceac05931d2613e16597f8d14ffdb",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+              "sha256": "cd7239d8ac6df61a6dc6655f283a4cd0b296fdbed0076732a108c2e5ec3a160b",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+              "sha256": "ea60600028abafc1448f00857bd5f7106324b664bd0bffc3df0de26cae5bd41a",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+              "sha256": "55273657f01e3e439532a605bd5314fb70aad8aaece6794822d8882de70e0edc",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz",
+              "sha256": "0b2033aaff945ac6685bfec2a7383d96a21c0b63fd9521d2d6f287c37634981e",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "bugs4q_na",
+      "status": "completed_grouped_qnn_sweep_resumed",
+      "records": 62,
+      "groups": 31,
+      "source_manifest_sha256": "00eb36aaea95733650b60866c6d09dad5d11b978370b16901570375f2dbc3711",
+      "oof_prediction_sha256": "62efb520d6b764052a17947d21c6d59c14cf423a5c1fb018a05b35ba2aa16382",
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "records": 62,
+          "metrics": {
+            "accuracy": 0.46774193548387094,
+            "macro_f1": 0.4608695652173913,
+            "balanced_accuracy": 0.467741935483871,
+            "per_class": {
+              "0": {
+                "precision": 0.4583333333333333,
+                "recall": 0.3548387096774194,
+                "f1": 0.39999999999999997,
+                "support": 31
+              },
+              "1": {
+                "precision": 0.47368421052631576,
+                "recall": 0.5806451612903226,
+                "f1": 0.5217391304347826,
+                "support": 31
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+              "sha256": "736e40fbf5a2e14a4f608b8b6b1bf545805eff4b7f6ee1602ad96b284f98aad8",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+              "sha256": "9d7d637ac490860f52b5cd17ad9ca1de0cd13a9a495bc9d373ea53a83102452d",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+              "sha256": "cadcefc2ce0e95b1a8168a867a81b83dfead5c2fda162543b700b7985d49528e",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+              "sha256": "b766ebfc155ae3d659ba99bfe6d388b198ece02e9e033a8666587f9a280ea94c",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz",
+              "sha256": "4df11a98f17c0e98bc099d5df588f68911fa76b901379f116b4c276eb31b82a4",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            }
+          ]
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "records": 62,
+          "metrics": {
+            "accuracy": 0.4838709677419355,
+            "macro_f1": 0.4700854700854701,
+            "balanced_accuracy": 0.4838709677419355,
+            "per_class": {
+              "0": {
+                "precision": 0.4878048780487805,
+                "recall": 0.6451612903225806,
+                "f1": 0.5555555555555556,
+                "support": 31
+              },
+              "1": {
+                "precision": 0.47619047619047616,
+                "recall": 0.3225806451612903,
+                "f1": 0.3846153846153846,
+                "support": 31
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+              "sha256": "92bf8789b901fb24bd0bad74d7b69eb958748b4927e9192fd38023d0c21ba1fa",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+              "sha256": "df58e690f29ccc7ea62e8829f82d55edf40b2a389686bbacb05d4c018af6f677",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+              "sha256": "ca002f750da1265d8167280bd12f16f714ac373d978a780fa722b17d12a33e14",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+              "sha256": "07fee9a939f668edee70948a3a32710a85c7af8617f05c99418f9ecfaf2497b5",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz",
+              "sha256": "e5722f646668db391821cca40c2aa90321f0faa051177b2d6dfeeac9f4c69fd8",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "bugs4q_pooled",
+      "status": "completed_grouped_qnn_sweep",
+      "records": 124,
+      "groups": 62,
+      "source_manifest_sha256": "2f1a561ba5301b8252ad4c07b0593e87ad59d63122aecb6d9500beac3e42d453",
+      "oof_prediction_sha256": "cdb812639829b3f15b45950bec9db9fad311d3fa302c3ae7e6b3054bc7cb24f0",
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "records": 124,
+          "metrics": {
+            "accuracy": 0.5,
+            "macro_f1": 0.49354413702239797,
+            "balanced_accuracy": 0.5,
+            "per_class": {
+              "0": {
+                "precision": 0.5,
+                "recall": 0.6129032258064516,
+                "f1": 0.5507246376811595,
+                "support": 62
+              },
+              "1": {
+                "precision": 0.5,
+                "recall": 0.3870967741935484,
+                "f1": 0.43636363636363634,
+                "support": 62
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_pooled\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+              "sha256": "2ef308cf2853d985eb5e6702686545c341b4a5f17de102dadcdd9f6fc04a88e7",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_pooled\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+              "sha256": "c022a1797c79d3206c1df103f8e628ba689a8fa458f47ea170b314675d5da399",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_pooled\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+              "sha256": "9d1b7586a8b3ed5daaf86b43a3e81710f71e04fde1b24614891bd4645140e7b1",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_pooled\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+              "sha256": "b018c46e68e6c399b1994309161c778c5b6ca89adc2ce402b3d2cff4dd77f6e1",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_pooled\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz",
+              "sha256": "5895aa4438ff54c1182261910c604777e3fa27f670105f6840a3bae9601b303e",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            }
+          ]
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "records": 124,
+          "metrics": {
+            "accuracy": 0.46774193548387094,
+            "macro_f1": 0.4587301587301587,
+            "balanced_accuracy": 0.467741935483871,
+            "per_class": {
+              "0": {
+                "precision": 0.47435897435897434,
+                "recall": 0.5967741935483871,
+                "f1": 0.5285714285714286,
+                "support": 62
+              },
+              "1": {
+                "precision": 0.45652173913043476,
+                "recall": 0.3387096774193548,
+                "f1": 0.38888888888888884,
+                "support": 62
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_pooled\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+              "sha256": "f8af547c40a6e5172001623543d546bf3873b6189398952b75a3d6b007d07651",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_pooled\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+              "sha256": "e78789984e65938f7c9b0571e3781329ddb2052af0fdb468a68122fba7351eff",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_pooled\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+              "sha256": "629a20dcd25c4c4c16f49a87c6ed6a8970a32aee6f8f0c9568a48d66c41cb7bb",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_pooled\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+              "sha256": "eee831f6c6416cd9976168b82fa63742827e4ae474a8ece81837ec9482b44506",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_pooled\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz",
+              "sha256": "c814775c8876f2f1a4971806178c5be7d7fdfe4b54cabeb156c724f24c4fcb5d",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "bugs4q_core_only_transfer",
+      "status": "completed_grouped_qnn_sweep",
+      "records": 124,
+      "groups": 62,
+      "source_manifest_sha256": "2f1a561ba5301b8252ad4c07b0593e87ad59d63122aecb6d9500beac3e42d453",
+      "oof_prediction_sha256": "8520ae78ce54c95ff7843bca6fc0f4f82166dccdd70e4986490ab718177f1c43",
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "records": 124,
+          "metrics": {
+            "accuracy": 0.5403225806451613,
+            "macro_f1": 0.5402926829268293,
+            "balanced_accuracy": 0.5403225806451613,
+            "per_class": {
+              "0": {
+                "precision": 0.5396825396825397,
+                "recall": 0.5483870967741935,
+                "f1": 0.544,
+                "support": 62
+              },
+              "1": {
+                "precision": 0.5409836065573771,
+                "recall": 0.532258064516129,
+                "f1": 0.5365853658536586,
+                "support": 62
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core_only_transfer\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+              "sha256": "9b5de9b286d4f4f7b47ccd19782e76e513775a20df9e017a66a8c1bbdf0b8863",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core_only_transfer\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+              "sha256": "e7ed4215d9f53609735b32e0fbbee82f8b0ea570c1a6e007cc6b3629c6b1c564",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core_only_transfer\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+              "sha256": "0954072012f6c648b41afc6402094df4d4b11303f0edd571aa014c7267d16148",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core_only_transfer\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+              "sha256": "1a6857102640beaa64444417c82c7178fd4899a5d1fd25388da12c3cb8e160eb",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core_only_transfer\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz",
+              "sha256": "1a035c9ede8544733cd47ecd373c93c95b8e86ae51481b9764fdbf9cd4d2659f",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            }
+          ]
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "records": 124,
+          "metrics": {
+            "accuracy": 0.46774193548387094,
+            "macro_f1": 0.46760343481654953,
+            "balanced_accuracy": 0.467741935483871,
+            "per_class": {
+              "0": {
+                "precision": 0.46875,
+                "recall": 0.4838709677419355,
+                "f1": 0.47619047619047616,
+                "support": 62
+              },
+              "1": {
+                "precision": 0.4666666666666667,
+                "recall": 0.45161290322580644,
+                "f1": 0.45901639344262296,
+                "support": 62
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core_only_transfer\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+              "sha256": "5c09d104800e6e41e7a79bd663e55f82d6ff248ab0805df85d70e622b258af00",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core_only_transfer\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+              "sha256": "651e6dbac79f0bb0159564c54ccf291ceae5e694cce961ea8da479b94721cc75",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core_only_transfer\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+              "sha256": "d675ecef2a8fca3711a832b81a40cb66b591d0ead39c39a8e52e2a874b39da6c",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core_only_transfer\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+              "sha256": "720b3be54c54cf3ae4e4aff5f5fff40a090db79bf80f3d2e68726ebdd6d3e831",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_core_only_transfer\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz",
+              "sha256": "8ae56e9928ff1486084c43897e4c0d92834213fe1ae29cd5ad0581b52ec0fa33",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "bugs4q_na_only_transfer",
+      "status": "completed_grouped_qnn_sweep",
+      "records": 124,
+      "groups": 62,
+      "source_manifest_sha256": "2f1a561ba5301b8252ad4c07b0593e87ad59d63122aecb6d9500beac3e42d453",
+      "oof_prediction_sha256": "80c86ed09fc3b497118f294b6e68040b44d0c9b2ffbd341faacdae34638dfadf",
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "records": 124,
+          "metrics": {
+            "accuracy": 0.49193548387096775,
+            "macro_f1": 0.49190243902439024,
+            "balanced_accuracy": 0.49193548387096775,
+            "per_class": {
+              "0": {
+                "precision": 0.4918032786885246,
+                "recall": 0.4838709677419355,
+                "f1": 0.4878048780487805,
+                "support": 62
+              },
+              "1": {
+                "precision": 0.49206349206349204,
+                "recall": 0.5,
+                "f1": 0.49599999999999994,
+                "support": 62
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na_only_transfer\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+              "sha256": "a1589c623eb49eae8c2dd0b69b95cae0d233fafab4a4cf1e080db2294866744e",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na_only_transfer\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+              "sha256": "abcb5701c07d48f3b248ce0733a10ba50be9409ba4d07e8a4b13b343d117648f",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na_only_transfer\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+              "sha256": "a072d9c0ae3d07d943cb5eb66509797443c3ed162d4f06de2391ae5edfe4bf87",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na_only_transfer\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+              "sha256": "a24c7f3a5c12eed8c3cc86f9f1f7b0265bd5a9fb02e69927ff521c0d0947ef41",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na_only_transfer\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz",
+              "sha256": "28b095196c82244a1d4824e0194ec73f1ace05ad6bd784d38dd495fbf6de4434",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            }
+          ]
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "records": 124,
+          "metrics": {
+            "accuracy": 0.5161290322580645,
+            "macro_f1": 0.5098814229249012,
+            "balanced_accuracy": 0.5161290322580645,
+            "per_class": {
+              "0": {
+                "precision": 0.5131578947368421,
+                "recall": 0.6290322580645161,
+                "f1": 0.5652173913043479,
+                "support": 62
+              },
+              "1": {
+                "precision": 0.5208333333333334,
+                "recall": 0.4032258064516129,
+                "f1": 0.45454545454545453,
+                "support": 62
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na_only_transfer\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+              "sha256": "afc6422abee40bbf421d6c305c5fcf6132b002e7bd5c4e6c49958b6ccc16e62d",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na_only_transfer\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+              "sha256": "2f0c430e1aeec36ae2f98e4345aea47e1569628ff734efec07b0753851aad2a8",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na_only_transfer\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+              "sha256": "47452ed1892cd69e3b2a6c6a8414354b38b89b54f679486b1a37870900fd1467",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na_only_transfer\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+              "sha256": "844949b437f93bb6fb36f4591d0b5db279b06cfeb332797a97c714ee92b190ec",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\bugs4q_na_only_transfer\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz",
+              "sha256": "c06f96dc549d3e1ebc7bca746ecd5ef7dd97a1abe86f4d3de4f136df1fa3bd25",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "lintq",
+      "status": "completed_grouped_qnn_sweep",
+      "records": 290,
+      "groups": 228,
+      "source_manifest_sha256": "8903aba9cce7d2bfc3fc7430a39f3b87fa6e1463df9b93b3dc4865212efa14ab",
+      "oof_prediction_sha256": "24dc287871524230a3a4e317f3ca4e9684aa85c016d13a029bc23260cade665e",
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "records": 290,
+          "metrics": {
+            "accuracy": 0.7413793103448276,
+            "macro_f1": 0.42574257425742573,
+            "balanced_accuracy": 0.4976851851851852,
+            "per_class": {
+              "0": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 74
+              },
+              "1": {
+                "precision": 0.7439446366782007,
+                "recall": 0.9953703703703703,
+                "f1": 0.8514851485148515,
+                "support": 216
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+              "sha256": "0a9502bb0d1ed6800e3f59f5311b0f0c2756c569255be24b58cfe767997736f3",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+              "sha256": "3529b11132d8337744ef8331e15dbf5999e64535d8c77a2499571963174863e6",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+              "sha256": "85ddc17aaba73f1d52d9a04a394af527d582a2e06aeafa680274200d3f3b9dc8",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+              "sha256": "65edc35bd0dd7fe8f86b4f35e39c5cd02b9d69ed60dbfe7cc1a3324da81f3f9a",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz",
+              "sha256": "3e3df8d3af989f4b77b9b8b25f511f24a35186b98e5571096df980b5d27eec41",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            }
+          ]
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "records": 290,
+          "metrics": {
+            "accuracy": 0.7413793103448276,
+            "macro_f1": 0.42574257425742573,
+            "balanced_accuracy": 0.4976851851851852,
+            "per_class": {
+              "0": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 74
+              },
+              "1": {
+                "precision": 0.7439446366782007,
+                "recall": 0.9953703703703703,
+                "f1": 0.8514851485148515,
+                "support": 216
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+              "sha256": "22ca062637f7fded4569134158831daeb213666f97f896751fb4c2c1d4e03c3e",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+              "sha256": "c3120c251c5c52b9532cc2761692649b7b40883067b6a7fa0c15078ce7fb7a4f",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+              "sha256": "33767438eaae72302846f143f42dfe912f420179e1b002060725f39d216bce66",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+              "sha256": "6575e479000a389b4ad7cd1a9cda579c7e58bf7682f82bf88820a8235590fbc8",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz",
+              "sha256": "d3b52c44c246ebdf9f4fe63755f7d3b7b8515c7c5ac5a9941744698bb7e48fbb",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "qbugs_hornbro_subset",
+      "status": "completed_grouped_qnn_sweep",
+      "records": 1500,
+      "groups": 750,
+      "source_manifest_sha256": "2664b9bc3f009534fd9ea99b0fe1d9db5254d40070b8e30d45f0bef09b91f474",
+      "oof_prediction_sha256": "66dfd6b79a9be922472ab4248e63fcdcbe2707211639dd6fa7088d0c8de23039",
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "records": 1500,
+          "metrics": {
+            "accuracy": 0.7073333333333334,
+            "macro_f1": 0.7063905206719354,
+            "balanced_accuracy": 0.7073333333333334,
+            "per_class": {
+              "0": {
+                "precision": 0.6862275449101797,
+                "recall": 0.764,
+                "f1": 0.7230283911671924,
+                "support": 750
+              },
+              "1": {
+                "precision": 0.7338345864661654,
+                "recall": 0.6506666666666666,
+                "f1": 0.6897526501766784,
+                "support": 750
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+              "sha256": "6b29d4abc84f431f836812be03c11e97821ae14b484402615daf26cc0cce72cd",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+              "sha256": "8b28ff336ec2caac04ab0ecc11dc5945d0ccaaee7962333a8ceed81560fe6287",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+              "sha256": "e4442b6d12789e986acca339f936404fcefba96a21bb5269b6582229f40a6477",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+              "sha256": "ae97133fedb859e7a50e5be415e852e47a5a11ceb219db8f5b5bf93d75715c62",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz",
+              "sha256": "67fe3002ccc11d63ab45d684c2cce98e894a7379a6253cddfe38d7d282e52466",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            }
+          ]
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "records": 1500,
+          "metrics": {
+            "accuracy": 0.718,
+            "macro_f1": 0.7179848338510648,
+            "balanced_accuracy": 0.718,
+            "per_class": {
+              "0": {
+                "precision": 0.7212449255751014,
+                "recall": 0.7106666666666667,
+                "f1": 0.7159167226326393,
+                "support": 750
+              },
+              "1": {
+                "precision": 0.7148488830486203,
+                "recall": 0.7253333333333334,
+                "f1": 0.7200529450694904,
+                "support": 750
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+              "sha256": "951da57596e80bae0d2fcf28588f9452856ff2ceea7a21864ad058890ef342f7",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+              "sha256": "dca98a2df1288f3c601d72a621f3beae9f9b49623e46ed8af6c0b404e7c0d897",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+              "sha256": "fd00588cc9f0e1fc13b160b38b545e52362670eb0feb2e0f869a533a1c63a6e2",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+              "sha256": "2cdaa3135fe6004d5ea1c48c97a7dd6b2e0472452bcc56649e15834b9f1be9a0",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz",
+              "sha256": "38bafdd94a0061d3c4df1fb1014cfae034d5ec9f617ef09792f9bc16a02de435",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "qolumbina_ideal",
+      "status": "completed_grouped_qnn_sweep",
+      "records": 182,
+      "groups": 26,
+      "source_manifest_sha256": "9b607e93eaf3912cc20610b30341573ff709abaf59086febc8f570eb12b0104e",
+      "oof_prediction_sha256": "b0d65d19d6d8e6733a509fea01c9e81964135aae6a8d0d64a4823701de6bd8a4",
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "records": 182,
+          "metrics": {
+            "accuracy": 0.8241758241758241,
+            "macro_f1": 0.45180722891566266,
+            "balanced_accuracy": 0.5,
+            "per_class": {
+              "0": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 32
+              },
+              "1": {
+                "precision": 0.8241758241758241,
+                "recall": 1.0,
+                "f1": 0.9036144578313253,
+                "support": 150
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qolumbina_ideal\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+              "sha256": "bc6e24b3520497ffef8ea562da57b41e3fe96cec09bc45e06b90a0e312528bc9",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qolumbina_ideal\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+              "sha256": "516835f053cd4a973c33c796b56bd4d4b4f2ce3fc5242bdc55256024da930a2f",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qolumbina_ideal\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+              "sha256": "bc8e2e4dca1097129a1a50e313e25de3bcd65507c684b43f7b32499d494b50d1",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qolumbina_ideal\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+              "sha256": "f278ea4ab1059a3a78ffe472ddcd1fecc285d96d8be9d544dfe2583be8d69096",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qolumbina_ideal\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz",
+              "sha256": "258e9042c8a0fb7635e23eb5d518606ad45dfa1d58c4ecfa236f89dceace88dc",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            }
+          ]
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "records": 182,
+          "metrics": {
+            "accuracy": 0.7857142857142857,
+            "macro_f1": 0.44,
+            "balanced_accuracy": 0.4766666666666667,
+            "per_class": {
+              "0": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 32
+              },
+              "1": {
+                "precision": 0.8171428571428572,
+                "recall": 0.9533333333333334,
+                "f1": 0.88,
+                "support": 150
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qolumbina_ideal\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+              "sha256": "10b767abcf18af6df6616603c875c177b50ecab7406c25b9c812d4589ef61fed",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qolumbina_ideal\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+              "sha256": "aea8753a3e3b446b98f7b47b73c5f7e1a65b9e6a7c0af7c783363a994136df7a",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qolumbina_ideal\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+              "sha256": "38bcd367d4c27785836a934069c4c3c9578ef6cab1918779dcae2bb6883a9106",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qolumbina_ideal\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+              "sha256": "dbf84a3a7481a39fd58b65bd5365b7c40c575c03546ac94eb1b26cb86bdcebe2",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qolumbina_ideal\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz",
+              "sha256": "8659ccd84a1836b0292429213568233520b1daf4a83d9ad2d327dbf41ef19afe",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "quantum_platform_comment_task",
+      "status": "completed_grouped_qnn_sweep",
+      "records": 319,
+      "groups": 314,
+      "source_manifest_sha256": "f7490974d64dacd39d28957effabdff9f71b116a05ecc6e2ae178727bf7df651",
+      "oof_prediction_sha256": "5d10573e5d8cd87d34e189207a0264cf82fce07a40e4918e17543a82c79c77e8",
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "records": 319,
+          "metrics": {
+            "accuracy": 0.7178683385579937,
+            "macro_f1": 0.483038029386344,
+            "balanced_accuracy": 0.5342161808669657,
+            "per_class": {
+              "0": {
+                "precision": 0.875,
+                "recall": 0.07291666666666667,
+                "f1": 0.13461538461538464,
+                "support": 96
+              },
+              "1": {
+                "precision": 0.7138263665594855,
+                "recall": 0.9955156950672646,
+                "f1": 0.8314606741573033,
+                "support": 223
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+              "sha256": "09468c784e4a3709ff4e939094ab4c4b8adbeb162400909b879ae067d9fe00e7",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+              "sha256": "2514390a67a78133f45b7a28874c1de3ae40919637129541f7f1c1bea15db61f",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+              "sha256": "f043028822208af0e4bb2ee305ce21832927bfce7ba7c5ca22462ba421f0cc76",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+              "sha256": "400a6a5e4abf2f5fcbb1bfac4f367e9443208b6972da9f3408b692f37c4b8663",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz",
+              "sha256": "03ad38b594ab0670fc85b03d7a9e6fa55e27a412fbcbceefcef7b8b5206ed140",
+              "epoch": 4,
+              "configuration": {
+                "name": "amplitude_3q_depth1_lr004",
+                "qubits": 3,
+                "features": 8,
+                "encoding": "amplitude",
+                "depth": 1,
+                "reupload": false,
+                "learning_rate": 0.04
+              }
+            }
+          ]
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "records": 319,
+          "metrics": {
+            "accuracy": 0.9122257053291536,
+            "macro_f1": 0.8944208037825059,
+            "balanced_accuracy": 0.8897608370702541,
+            "per_class": {
+              "0": {
+                "precision": 0.8695652173913043,
+                "recall": 0.8333333333333334,
+                "f1": 0.851063829787234,
+                "support": 96
+              },
+              "1": {
+                "precision": 0.9295154185022027,
+                "recall": 0.9461883408071748,
+                "f1": 0.9377777777777777,
+                "support": 223
+              }
+            }
+          },
+          "gradient_checks_passed": 5,
+          "checkpoints": [
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+              "sha256": "641fe7498d47299a2ebbb6f53fba20cfab97ed15f528e27a48ce1474f3eda20a",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+              "sha256": "c2c9a08b3231c16067dcfe2b6dd1a4eb3c05dd28c46c71a7163c4ff4fde69dc3",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+              "sha256": "85ff8eaa6ebf5d725e27087249cc65b46a70464a48143d2dc54104036c1323a3",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+              "sha256": "ec0a3919f55a6491c7fef5bc041ab4288ebee9a241ba2e6cb34d1379ab0642c6",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            },
+            {
+              "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz",
+              "sha256": "5763c288d954c1ca8594e5dd4cbfb8b66df3e55f2e28c8da85a105e1ea9da2fe",
+              "epoch": 4,
+              "configuration": {
+                "name": "angle_reupload_4q_depth2_lr0035",
+                "qubits": 4,
+                "features": 4,
+                "encoding": "angle",
+                "depth": 2,
+                "reupload": true,
+                "learning_rate": 0.035
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "task_count": 9,
+  "checkpoint_count": 90,
+  "gradient_checks_passed": 90,
+  "frozen_test_accessed": false,
+  "production_model_modified": false,
+  "matched_classical_controls": "Pending; historical scores use different hashed/SVD/metadata representations and are not substituted.",
+  "out_of_scope": [
+    "Full-data QMutBench binary QNN",
+    "Qolumbina multi-backend incomplete task",
+    "Nine-task 14-model classical and imbalance-method bundle not executed"
+  ]
+}

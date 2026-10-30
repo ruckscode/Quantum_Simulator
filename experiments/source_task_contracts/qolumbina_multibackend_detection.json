@@ -1,0 +1,59 @@
+{
+  "source_id": "qolumbina",
+  "task_id": "seeded_mutant_detection_multibackend",
+  "target_semantics": "Predict whether DOSS detects a seeded Qolumbina mutant in a majority of available report seeds for one of ideal, fake_algiers, or fake_brooklyn. This is an empirical mutation-outcome target, not ground-truth repair or hardware diagnosis. Group all variants and backends by original program.",
+  "required": [
+    "record_id",
+    "bug_id",
+    "program",
+    "variant_version",
+    "backend",
+    "label",
+    "detection_rate",
+    "runs",
+    "unique_random_seeds",
+    "test_executions",
+    "code"
+  ],
+  "record_id_column": "record_id",
+  "group_column": "bug_id",
+  "label_column": "label",
+  "feature_column": "code",
+  "allowed_labels": [
+    "0",
+    "1"
+  ],
+  "fold_record_column": "record_id",
+  "fold_group_column": "bug_id",
+  "fold_column": "fold",
+  "fold_model_column": "model",
+  "fold_model_value": "angle_vqc",
+  "required_values": {},
+  "positive_integer_columns": [
+    "runs",
+    "unique_random_seeds",
+    "test_executions"
+  ],
+  "numeric_ranges": {
+    "detection_rate": [
+      0,
+      1
+    ]
+  },
+  "derived_label_rule": {
+    "column": "detection_rate",
+    "threshold": 0.5,
+    "positive": "1",
+    "negative": "0"
+  },
+  "input_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/qolumbina_detection/normalized_manifest.csv",
+  "fold_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/qolumbina_detection_multibackend/group_folds.csv",
+  "output_path": "data/processed/qolumbina/seeded_mutant_detection_multibackend",
+  "source_manifest_sha256": "b580ad932945d713ad00ade2210e58ff980bdd66a45e67ad4d9b9283ca1c6898",
+  "fold_source_sha256": "ffa0828395eaf706ba133b9e0a4a70232114fca535a8fe1f3692053254f6660e",
+  "feature_fields": [
+    "code",
+    "backend"
+  ],
+  "frozen_test_accessed": false
+}

@@ -1,0 +1,31 @@
+{
+  "status": "completed_grouped_classical_suite",
+  "task": {
+    "class_counts": {
+      "0": 1110,
+      "1": 1110
+    },
+    "groups": 37,
+    "input": "reports/experiments/qml_source_preprocessing_20261029/classical_nine_source_v2_inputs/bugs4q_robust_execution.csv",
+    "name": "bugs4q_robust_execution",
+    "rows": 2220,
+    "sha256": "9058d88726f42169098ce1c59edd2bb7a02ffbb5f5ba29e860fcda6998ae57d1",
+    "source_contract": "experiments/source_task_contracts/bugs4q_robust_execution.json",
+    "source_contract_sha256": "299562fd39bd020e3c35eed98dbd1f5469875f0b509d7b3b7bc68bab7d7f7ead",
+    "source_id": "bugs4q_robust",
+    "source_input_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205",
+    "source_processed_manifest_sha256": "8bc2df4bb3761011cf6e1f7c8926271ee931ce093c1e48c3bc799775d34dd731",
+    "source_split_sha256": "ed3f6d58324654d3d8a7ffd0dc1db48e3f8f25ce7b0945e72e335c0cbad4b12e",
+    "target_semantics": "Predict observed test-harness Pass (0) or Fail (1) for a program snapshot; repeated execution records are grouped by issue. Not a universal bug label or hardware diagnosis.",
+    "task_id": "harness_execution_outcome"
+  },
+  "rows": 2220,
+  "groups": 37,
+  "folds": 5,
+  "runtime_seconds": 96.85264669999742,
+  "sampling_policy": "all sampling fitted only inside each training fold, after SVD and scaling",
+  "max_observed_process_rss_mib": 154.97265625,
+  "memory_measurement_note": "RSS sampled after model fits; maximum observed, not guaranteed OS peak",
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}

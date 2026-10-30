@@ -1,0 +1,8 @@
+{
+  "schema": "pilot-split-provenance-correction-v1",
+  "run_manifest_sha256": "af3907ac5b83c4e948205ba0983c7238f2a21f3d2c356ed03a8084cc78daee1c",
+  "split_manifest_sha256": "03ed9fa4234951abc6c1cc36e24fbde72f09c58ab7f0ae92f0cc2c14e95d63c8",
+  "task": "qbugs_qasm_v2_source_state",
+  "correction": "The run manifest's generic phrase 'issue-group' is inaccurate for QBugs. The verified split groups each complete upstream correct/buggy source pair and connects any exact OpenQASM repeats; the processed split manifest, task preparation report, and semantic audit record the actual grouping.",
+  "frozen_test_accessed": false
+}

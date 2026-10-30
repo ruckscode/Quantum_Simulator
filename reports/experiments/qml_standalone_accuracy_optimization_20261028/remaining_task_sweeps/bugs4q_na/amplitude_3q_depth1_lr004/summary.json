@@ -38,8 +38,8 @@
   ],
   "folds": 5,
   "records": 62,
-  "training_seconds": 0.17578400000638794,
-  "split": "reused existing selected-model grouped OOF fold assignments",
+  "training_seconds": 6.60000296193175e-06,
+  "split": "reused Bugs4Q-NA saved grouped OOF folds",
   "group_unit": "bug_id",
   "epochs": 4,
   "batch_size": 64,
@@ -47,6 +47,5 @@
   "text_fields": [
     "code"
   ],
-  "train_source_restriction": null,
   "frozen_test_accessed": false
 }

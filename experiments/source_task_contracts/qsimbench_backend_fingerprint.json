@@ -1,0 +1,29 @@
+{
+  "source_id": "qsimbench",
+  "task_id": "backend_fingerprint",
+  "target_semantics": "Post-execution Aer versus fake_kyiv backend identity from measurement-output descriptors; not fault prediction or hardware diagnosis.",
+  "required": ["record_id", "bug_id", "label", "code", "source", "algorithm", "size"],
+  "record_id_column": "record_id",
+  "group_column": "bug_id",
+  "label_column": "label",
+  "feature_column": "code",
+  "allowed_labels": ["0", "1"],
+  "fold_record_column": "record_id",
+  "fold_group_column": "group_id",
+  "fold_column": "fold",
+  "fold_model_column": "model",
+  "fold_model_value": "amplitude_hybrid_3q_depth2",
+  "source_label_column": "source",
+  "source_label_map": {"aer_simulator": "0", "fake_kyiv": "1"},
+  "positive_integer_columns": ["size"],
+  "json_numeric_ranges": {
+    "histogram_features": {
+      "entropy": [0, 1], "max_probability": [0, 1], "support_fraction": [0, 1],
+      "mean_hamming_weight": [0, 1], "hamming_variance": [0, 1],
+      "all_ones_probability": [0, 1], "bits": [1, 1000000], "shots": [1, 1000000000000]
+    }
+  },
+  "input_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/qsimbench_backend_fingerprint/normalized_manifest.csv",
+  "fold_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/qsimbench_backend_fingerprint/resource_light_qnn/oof_predictions.csv",
+  "output_path": "data/processed/qsimbench/backend_fingerprint_v3"
+}

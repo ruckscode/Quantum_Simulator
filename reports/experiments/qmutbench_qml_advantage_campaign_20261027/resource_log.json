@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-27",
+  "system": {
+    "os": "Windows 11",
+    "cpu_logical_count": 12,
+    "ram_total_mib": 7488,
+    "available_ram_before_campaign_mib": 752,
+    "disk_free_gib": 31.21,
+    "gpu_used": false,
+    "device": "PennyLane default.qubit analytic CPU simulator"
+  },
+  "qml_environment": {
+    "python": "3.12.10",
+    "pennylane": "0.45.1",
+    "scikit_learn": "1.9.1",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "torch": "not installed",
+    "tensorflow": "not installed",
+    "qiskit": "not installed in default environment"
+  },
+  "existing_extension": {
+    "elapsed_seconds": 115.31675950001227,
+    "rss_before_mib": 185.0625,
+    "rss_after_mib": 573.1484375,
+    "peak_rss_measured": false,
+    "24_origin_attempt": "stopped below 450 MiB, no metrics"
+  },
+  "guarded_focused_tests": {
+    "tests": "8 passed, 1 full-development-data adapter test deselected",
+    "duration_seconds": 6.61,
+    "minimum_available_ram_mib": 653,
+    "stop_floor_mib": 500
+  },
+  "campaign_training": "No new QML model training; fixed-probability blend used saved predictions only.",
+  "existing_original_pilot": {
+    "elapsed_seconds": 105.06841619999614,
+    "rss_before_mib": 185.4765625,
+    "rss_after_mib": 747.546875,
+    "peak_rss_measured": false,
+    "seed": 20261026,
+    "n_qubits": 4,
+    "depth": 2
+  },
+  "existing_extension_seed": 20261026
+}

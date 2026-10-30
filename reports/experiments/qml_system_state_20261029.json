@@ -1,0 +1,1309 @@
+{
+  "schema": "quantum-simulator-qml-system-state-v1",
+  "audit_date": "2026-10-29",
+  "scope": "read-only reconciliation of local source, task, training, artifact, and repository manifests",
+  "repository": {
+    "branch": "qmutbench-master-optimization",
+    "head": "a2d51be22fd985bbdd10655f7e31dc77b9d19ed6",
+    "branches": {
+      "main": "989a430cf9318e4b2c349154edeb060658c406b0",
+      "qmutbench-learning-curve": "ca4a35abadd0db7f3df5352f75a45b13364bf328",
+      "qmutbench-master-optimization": "a2d51be22fd985bbdd10655f7e31dc77b9d19ed6",
+      "qmutbench/full-streaming-20261028": "87365a9dab415b6db7c4d211af10c337a6cf3e4d",
+      "origin/backup/qmutbench-binary-qnn-20261028": "95821f0c55d21e3d6978cfbdf7ea7703a47c4cd1",
+      "origin/main": "989a430cf9318e4b2c349154edeb060658c406b0",
+      "origin/qmutbench-learning-curve": "ca4a35abadd0db7f3df5352f75a45b13364bf328",
+      "origin/qmutbench-master-optimization": "8965d3cfa9d40a53f841e99268d72eedd50fbe56",
+      "origin/qmutbench/full-streaming-20261028": "87365a9dab415b6db7c4d211af10c337a6cf3e4d"
+    },
+    "working_tree": "pre-existing tracked edits and many untracked datasets, scripts, reports, and artifacts preserved",
+    "remote_freshness": "local remote-tracking refs inspected; no fetch or branch switch performed in this audit"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "psutil_version": "7.2.2"
+  },
+  "resources": {
+    "available_ram_mib_at_audit": 1115.0,
+    "total_ram_mib": 7488.0,
+    "qnn_training_floor_mib": 500,
+    "qmutbench_binary_startup_requirement_mib": 2048
+  },
+  "source_inventory": {
+    "inventory_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/verified_dataset_inventory.json",
+    "inventory_date": "2026-10-28T14:20:54.132436+05:30",
+    "listed_sources": 19,
+    "listed_archives": 19,
+    "listed_rar_archives": 2,
+    "sources": [
+      {
+        "dataset": "Bugs4Q official download cache",
+        "path": "data\\Bugs4Q_official",
+        "exists": true,
+        "files_excluding_git": 1241,
+        "bytes": 30619191,
+        "zero_byte_files": 0,
+        "status": "DATA_PRESENT",
+        "extraction_manifest": null,
+        "download_status": "COMPLETE",
+        "extraction_status": "NOT_APPLICABLE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "Bugs4Q official GitHub archive extraction",
+        "path": "data\\Bugs4Q_official\\extracted\\GitHub-Framework",
+        "exists": true,
+        "files_excluding_git": 301,
+        "bytes": 308700,
+        "zero_byte_files": 0,
+        "status": "DATA_PRESENT",
+        "extraction_manifest": null,
+        "download_status": "COMPLETE",
+        "extraction_status": "COMPLETE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "Bugs4Q official Zenodo database extraction",
+        "path": "data\\Bugs4Q_official\\extracted\\Zenodo-Database",
+        "exists": true,
+        "files_excluding_git": 296,
+        "bytes": 177433,
+        "zero_byte_files": 0,
+        "status": "DATA_PRESENT",
+        "extraction_manifest": null,
+        "download_status": "COMPLETE",
+        "extraction_status": "PARTIAL",
+        "data_status": "PRESENT",
+        "overall_status": "PARTIAL",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "Bugs4Q official Zenodo database verified extraction",
+        "path": "data\\Bugs4Q_official\\extracted\\Zenodo-Database-safe",
+        "exists": true,
+        "files_excluding_git": 297,
+        "bytes": 177712,
+        "zero_byte_files": 0,
+        "status": "DATA_PRESENT",
+        "extraction_manifest": {
+          "manifest_files_extracted": 337,
+          "manifest_uncompressed_bytes": 29288166,
+          "actual_files_including_manifest": 297,
+          "actual_bytes_including_manifest": 177712,
+          "actual_zero_byte_files": 0,
+          "manifest_mapping_count": 0,
+          "manifest_counts_agree_with_tree": false
+        },
+        "download_status": "COMPLETE",
+        "extraction_status": "COMPLETE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "Bugs4Q official Zenodo framework extraction",
+        "path": "data\\Bugs4Q_official\\extracted\\Zenodo-Framework",
+        "exists": true,
+        "files_excluding_git": 343,
+        "bytes": 303788,
+        "zero_byte_files": 0,
+        "status": "DATA_PRESENT",
+        "extraction_manifest": null,
+        "download_status": "COMPLETE",
+        "extraction_status": "COMPLETE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "Bugs4Q framework",
+        "path": "data\\external_quantum_datasets\\bugs4q_full\\official_framework",
+        "exists": true,
+        "files_excluding_git": 237,
+        "bytes": 175133,
+        "zero_byte_files": 0,
+        "status": "DOWNLOAD_COMPLETE; EXTRACTION_COMPLETE; DATA_PRESENT",
+        "git": {
+          "is_git_checkout": true,
+          "commit": "e596a251ec723e58a042557277d584d56ffa1781",
+          "tracked_files": 237,
+          "lfs_files": 0,
+          "lfs_pointer_files": 0
+        },
+        "extraction_manifest": null,
+        "download_status": "COMPLETE",
+        "extraction_status": "NOT_APPLICABLE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "Bugs4Q database",
+        "path": "data\\external_quantum_datasets\\bugs4q_full\\official_database",
+        "exists": true,
+        "files_excluding_git": 224,
+        "bytes": 178370,
+        "zero_byte_files": 0,
+        "status": "DOWNLOAD_COMPLETE; EXTRACTION_COMPLETE; DATA_PRESENT",
+        "git": {
+          "is_git_checkout": true,
+          "commit": "7a719839662f94614872d65f9e9fbcd07408437c",
+          "tracked_files": 224,
+          "lfs_files": 0,
+          "lfs_pointer_files": 0
+        },
+        "extraction_manifest": null,
+        "download_status": "COMPLETE",
+        "extraction_status": "NOT_APPLICABLE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "Bugs4Q-NA",
+        "path": "data\\external_quantum_datasets\\bugs4q_na",
+        "exists": true,
+        "files_excluding_git": 279,
+        "bytes": 207845,
+        "zero_byte_files": 1,
+        "status": "DOWNLOAD_COMPLETE; EXTRACTION_COMPLETE; DATA_PRESENT",
+        "git": {
+          "is_git_checkout": true,
+          "commit": "bb853b888c752f90f2a6515c6776e020e2e59d01",
+          "tracked_files": 279,
+          "lfs_files": 0,
+          "lfs_pointer_files": 0
+        },
+        "extraction_manifest": null,
+        "download_status": "COMPLETE",
+        "extraction_status": "NOT_APPLICABLE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "Bug-Pattern",
+        "path": "data\\external_quantum_datasets\\bug_pattern",
+        "exists": true,
+        "files_excluding_git": 20,
+        "bytes": 88040,
+        "zero_byte_files": 0,
+        "status": "DOWNLOAD_COMPLETE; EXTRACTION_COMPLETE; DATA_PRESENT",
+        "git": {
+          "is_git_checkout": true,
+          "commit": "d09eb6eb23a5997efbaa64223fea0fdcbc7bacfc",
+          "tracked_files": 20,
+          "lfs_files": 0,
+          "lfs_pointer_files": 0
+        },
+        "extraction_manifest": null,
+        "download_status": "COMPLETE",
+        "extraction_status": "NOT_APPLICABLE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "QChecker",
+        "path": "data\\external_quantum_datasets\\qchecker",
+        "exists": true,
+        "files_excluding_git": 39,
+        "bytes": 338204,
+        "zero_byte_files": 0,
+        "status": "DOWNLOAD_COMPLETE; EXTRACTION_COMPLETE; DATA_PRESENT",
+        "git": {
+          "is_git_checkout": true,
+          "commit": "b342c85f2986cf476ce282104692c8f430382422",
+          "tracked_files": 39,
+          "lfs_files": 0,
+          "lfs_pointer_files": 0
+        },
+        "extraction_manifest": null,
+        "download_status": "COMPLETE",
+        "extraction_status": "NOT_APPLICABLE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "Bugs4Q-Robust",
+        "path": "data\\Bugs4Q_Robust_replication",
+        "exists": true,
+        "files_excluding_git": 80599,
+        "bytes": 143962391,
+        "zero_byte_files": 0,
+        "status": "DATA_PRESENT",
+        "extraction_manifest": null,
+        "download_status": "PARTIAL",
+        "extraction_status": "NOT_APPLICABLE",
+        "data_status": "PRESENT",
+        "overall_status": "PARTIAL",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "QMutBench",
+        "path": "data\\qmutbench_full\\data",
+        "exists": true,
+        "files_excluding_git": 723456,
+        "bytes": 3302599152,
+        "zero_byte_files": 0,
+        "status": "DATA_PRESENT",
+        "extraction_manifest": null,
+        "download_status": "PARTIAL",
+        "extraction_status": "NOT_APPLICABLE",
+        "data_status": "PRESENT",
+        "overall_status": "PARTIAL",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "QSimBench",
+        "path": "data\\external_quantum_datasets\\qsimbench\\dataset",
+        "exists": true,
+        "files_excluding_git": 5414,
+        "bytes": 13637094598,
+        "zero_byte_files": 0,
+        "status": "DOWNLOAD_COMPLETE; EXTRACTION_COMPLETE; DATA_PRESENT",
+        "git": {
+          "is_git_checkout": true,
+          "commit": "fb2056243df7fd45a37a5d4bc6bc01b84db9e932",
+          "tracked_files": 5415,
+          "lfs_files": 900,
+          "lfs_pointer_files": 0
+        },
+        "extraction_manifest": null,
+        "download_status": "COMPLETE",
+        "extraction_status": "NOT_APPLICABLE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "LintQ",
+        "path": "data\\external_quantum_datasets\\lintq\\extracted",
+        "exists": true,
+        "files_excluding_git": 89641,
+        "bytes": 2407157972,
+        "zero_byte_files": 1,
+        "status": "DATA_PRESENT",
+        "git_source": {
+          "is_git_checkout": true,
+          "commit": "481ca24dfabf032eb93cdf728369242b25a5216e",
+          "tracked_files": 432,
+          "lfs_files": 0,
+          "lfs_pointer_files": 0
+        },
+        "extraction_manifest": {
+          "manifest_files_extracted": 89640,
+          "manifest_uncompressed_bytes": 2407157140,
+          "actual_files_including_manifest": 89641,
+          "actual_bytes_including_manifest": 2407157972,
+          "actual_zero_byte_files": 1,
+          "manifest_mapping_count": 3,
+          "manifest_counts_agree_with_tree": true
+        },
+        "download_status": "COMPLETE",
+        "extraction_status": "NOT_APPLICABLE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "Qolumbina empirical study",
+        "path": "data\\external_quantum_datasets\\qolumbina\\verified_extracted",
+        "exists": true,
+        "files_excluding_git": 15881,
+        "bytes": 201639595,
+        "zero_byte_files": 1,
+        "status": "DATA_PRESENT",
+        "extraction_manifest": {
+          "manifest_files_extracted": 15880,
+          "manifest_uncompressed_bytes": 201639269,
+          "actual_files_including_manifest": 15881,
+          "actual_bytes_including_manifest": 201639595,
+          "actual_zero_byte_files": 1,
+          "manifest_mapping_count": 0,
+          "manifest_counts_agree_with_tree": true
+        },
+        "download_status": "COMPLETE",
+        "extraction_status": "COMPLETE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "Quantum platform bug corpus",
+        "path": "data\\external_quantum_datasets\\quantum_platform_bugs_223\\case_safe_extracted",
+        "exists": true,
+        "files_excluding_git": 11789,
+        "bytes": 153924088,
+        "zero_byte_files": 202,
+        "status": "DATA_PRESENT",
+        "extraction_manifest": {
+          "manifest_files_extracted": 11788,
+          "manifest_uncompressed_bytes": 153762125,
+          "actual_files_including_manifest": 11789,
+          "actual_bytes_including_manifest": 153924088,
+          "actual_zero_byte_files": 202,
+          "manifest_mapping_count": 484,
+          "manifest_counts_agree_with_tree": true
+        },
+        "download_status": "COMPLETE",
+        "extraction_status": "COMPLETE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "QML platform issues",
+        "path": "data\\external_quantum_datasets\\qml_platform_bugs\\extracted_source",
+        "exists": true,
+        "files_excluding_git": 44,
+        "bytes": 1476433,
+        "zero_byte_files": 0,
+        "status": "DATA_PRESENT",
+        "extraction_manifest": {
+          "manifest_files_extracted": 43,
+          "manifest_uncompressed_bytes": 1473716,
+          "actual_files_including_manifest": 44,
+          "actual_bytes_including_manifest": 1476433,
+          "actual_zero_byte_files": 0,
+          "manifest_mapping_count": 17,
+          "manifest_counts_agree_with_tree": true
+        },
+        "download_status": "COMPLETE",
+        "extraction_status": "COMPLETE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "QBugs HornBro subset",
+        "path": "data\\external_quantum_datasets\\qbugs_hornbro\\hornbro\\datasets\\Qbugs",
+        "exists": true,
+        "files_excluding_git": 15,
+        "bytes": 4955098,
+        "zero_byte_files": 0,
+        "status": "DATA_PRESENT",
+        "extraction_manifest": null,
+        "download_status": "COMPLETE",
+        "extraction_status": "NOT_APPLICABLE",
+        "data_status": "PRESENT",
+        "overall_status": "COMPLETE",
+        "path_exists_now": true
+      },
+      {
+        "dataset": "Mute-Alg",
+        "path": "data\\external_quantum_datasets\\hornbro_mute_alg",
+        "exists": true,
+        "files_excluding_git": 169,
+        "bytes": 324105511,
+        "zero_byte_files": 0,
+        "status": "DATA_PRESENT",
+        "extraction_manifest": null,
+        "download_status": "PARTIAL",
+        "extraction_status": "NOT_APPLICABLE",
+        "data_status": "PRESENT",
+        "overall_status": "PARTIAL",
+        "path_exists_now": true
+      }
+    ],
+    "reconciliation_note": "The acquisition inventory has 19 source entries. A separate broad README inventory has 16 differently named source categories; counts are not directly comparable and have not been reconciled item by item.",
+    "extraction_reconciliation": {
+      "source": "Bugs4Q official Zenodo database verified extraction",
+      "path": "data/Bugs4Q_official/extracted/Zenodo-Database-safe",
+      "manifest_files": 337,
+      "manifest_uncompressed_bytes": 29288166,
+      "archive_non_git_files": 296,
+      "archive_non_git_bytes": 177433,
+      "observed_non_git_files": 296,
+      "observed_non_git_bytes": 177433,
+      "git_metadata_files": 41,
+      "git_metadata_bytes": 29110733,
+      "status": "RESOLVED_GIT_METADATA_EXCLUDED_FROM_TREE_INVENTORY",
+      "note": "All 337 archive members and CRC validate. The extraction manifest counts 41 nested .git files (29,110,733 bytes); the inventory intentionally excludes .git and reports 296 data files / 177,433 bytes, plus its own 279-byte receipt."
+    }
+  },
+  "tasks": [
+    {
+      "dataset_source": "Bugs4Q official framework",
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "task": "source-state",
+      "training_status": "COMPLETE",
+      "records": "62",
+      "groups": "31",
+      "folds": "5",
+      "best_qnn": "amplitude_vqc",
+      "qnn_macro_f1": "0.49882659713168187",
+      "best_classical": "logistic_4d",
+      "classical_macro_f1": "0.5262187088274045",
+      "split_description": "31 issues / 62 snapshots; five issue-group folds",
+      "notes": "Additional 11 official framework issues were not included in this trained subset."
+    },
+    {
+      "dataset_source": "Bugs4Q-NA",
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "task": "source-state",
+      "training_status": "COMPLETE",
+      "records": "62",
+      "groups": "31",
+      "folds": "5",
+      "best_qnn": "angle_hybrid_readout",
+      "qnn_macro_f1": "0.5079365079365079",
+      "best_classical": "extra_trees_4d",
+      "classical_macro_f1": "0.5170561375235025",
+      "split_description": "31 issues / 62 snapshots; five issue-group folds",
+      "notes": "Nonoverlapping with the trained core subset."
+    },
+    {
+      "dataset_source": "Bugs4Q pooled",
+      "download_status": "NOT_APPLICABLE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "DERIVED_TASK_MANIFEST",
+      "task": "source-state integration",
+      "training_status": "COMPLETE",
+      "records": "124",
+      "groups": "62",
+      "folds": "5",
+      "best_qnn": "angle_hybrid_readout",
+      "qnn_macro_f1": "0.4979101358411703",
+      "best_classical": "extra_trees_4d",
+      "classical_macro_f1": "0.5239148825405089",
+      "split_description": "62 issue groups / 124 snapshots; shared folds",
+      "notes": "Matched pooled run; QNN macro F1 0.498 vs Extra Trees 0.524."
+    },
+    {
+      "dataset_source": "Bugs4Q core-only transfer",
+      "download_status": "NOT_APPLICABLE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "DERIVED_TASK_MANIFEST",
+      "task": "source-state transfer",
+      "training_status": "COMPLETE",
+      "records": "124",
+      "groups": "62",
+      "folds": "5",
+      "best_qnn": "angle_hybrid_readout",
+      "qnn_macro_f1": "0.4770068027210884",
+      "best_classical": "random_forest_4d",
+      "classical_macro_f1": "0.514993481095176",
+      "split_description": "62 issue groups / 124 held-out predictions",
+      "notes": "Training on core only; held-out NA performance is also recorded."
+    },
+    {
+      "dataset_source": "Bugs4Q-NA-only transfer",
+      "download_status": "NOT_APPLICABLE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "DERIVED_TASK_MANIFEST",
+      "task": "source-state transfer",
+      "training_status": "COMPLETE",
+      "records": "124",
+      "groups": "62",
+      "folds": "5",
+      "best_qnn": "angle_hybrid_readout",
+      "qnn_macro_f1": "0.5160031225604996",
+      "best_classical": "logistic_4d",
+      "classical_macro_f1": "0.5115546218487395",
+      "split_description": "62 issue groups / 124 held-out predictions",
+      "notes": "Training on NA only; held-out core performance is also recorded."
+    },
+    {
+      "dataset_source": "QBugs HornBro subset",
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "task": "correct/buggy circuit state",
+      "training_status": "COMPLETE",
+      "records": "1500",
+      "groups": "750",
+      "folds": "5",
+      "best_qnn": "angle_hybrid_readout",
+      "qnn_macro_f1": "0.77408672218103",
+      "best_classical": "random_forest_4d",
+      "classical_macro_f1": "0.8432379523363327",
+      "split_description": "750 correct/buggy pairs / 1,500 circuits; paired snapshots grouped",
+      "notes": "Extracted QBugs subset; not the complete upstream QBugs corpus."
+    },
+    {
+      "dataset_source": "Quantum platform annotations",
+      "download_status": "COMPLETE",
+      "extraction_status": "COMPLETE",
+      "data_status": "PRESENT",
+      "task": "issue-comment classification",
+      "training_status": "COMPLETE",
+      "records": "319",
+      "groups": "314",
+      "folds": "5",
+      "best_qnn": "angle_hybrid_readout",
+      "qnn_macro_f1": "0.8187434263815176",
+      "best_classical": "random_forest_4d",
+      "classical_macro_f1": "0.8972257025237158",
+      "split_description": "319 comments / 314 commit groups",
+      "notes": "Metadata comment task. Full metadata candidate is invalid due to label leakage."
+    },
+    {
+      "dataset_source": "Qolumbina empirical study",
+      "download_status": "COMPLETE",
+      "extraction_status": "COMPLETE",
+      "data_status": "PRESENT",
+      "task": "ideal-backend seeded-mutant detection",
+      "training_status": "COMPLETE",
+      "records": "182",
+      "groups": "26",
+      "folds": "5",
+      "best_qnn": "angle_vqc",
+      "qnn_macro_f1": "0.5017259850017854",
+      "best_classical": "extra_trees_4d",
+      "classical_macro_f1": "0.5048196517412935",
+      "split_description": "182 mutants / 26 programs; five program-group folds",
+      "notes": "Synthetic mutation task, not real-bug classification. Multi-backend 546-row run remains partial."
+    },
+    {
+      "dataset_source": "LintQ",
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "task": "manual warning triage TP vs FP",
+      "training_status": "COMPLETE",
+      "records": "290",
+      "groups": "228",
+      "folds": "5",
+      "best_qnn": "angle_hybrid_readout",
+      "qnn_macro_f1": "0.5257255594205908",
+      "best_classical": "random_forest_4d",
+      "classical_macro_f1": "0.6400151572565366",
+      "split_description": "290 warnings / 228 issue or file groups; five folds",
+      "notes": "55 ambiguous NW labels excluded; not program-state classification."
+    },
+    {
+      "dataset_source": "Bugs4Q-Robust",
+      "download_status": "PARTIAL",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "task": "test-harness pass/fail prediction",
+      "training_status": "COMPLETE_GROUPED_QNN",
+      "records": "2220",
+      "groups": "37",
+      "folds": "5",
+      "best_qnn": "amplitude_hybrid_3q_depth2",
+      "qnn_macro_f1": "0.513157894736842",
+      "best_classical": "",
+      "classical_macro_f1": "",
+      "split_description": "2,220 observations / 37 issue groups; five issue-group folds",
+      "notes": "QNN complete: grouped parameter-shift statevector OOF; best model accuracy 51.35%, macro F1 51.32%; five fold checkpoints. QNN-only 20-epoch expanded sweep stopped at RAM guard; partial checkpoints unscored."
+    },
+    {
+      "dataset_source": "QSimBench",
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "task": "Aer vs fake_kyiv backend fingerprinting",
+      "training_status": "COMPLETE_GROUPED_QNN",
+      "records": "300",
+      "groups": "150",
+      "folds": "5",
+      "best_qnn": "angle_reupload_hybrid_4q_depth2",
+      "qnn_macro_f1": "0.6599848882172541",
+      "best_classical": "",
+      "classical_macro_f1": "",
+      "split_description": "300 runs / 150 algorithm-size groups; five grouped folds",
+      "notes": "QNN complete: grouped backend fingerprint OOF; best model accuracy 66.00%, macro F1 66.00%; five fold checkpoints. QNN-only 20-epoch expanded sweep was not reached before the memory guard stopped the prior task."
+    },
+    {
+      "dataset_source": "QMutBench",
+      "download_status": "PARTIAL",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "task": "three-class mutation diagnosis",
+      "training_status": "CHECKPOINT_RETRAINED_GROUPED_QNN",
+      "records": "205",
+      "groups": "12",
+      "folds": "3",
+      "best_qnn": "equal_probability_qnn_ensemble",
+      "qnn_macro_f1": "0.4341757",
+      "best_classical": "extra_trees_4f",
+      "classical_macro_f1": "0.46688748084908643",
+      "split_description": "205 records / 12 origins; three development folds",
+      "notes": "QML-only statevector QNN sweep completed on saved origin-group folds; ensemble development OOF accuracy 46.83%, macro F1 43.42%, balanced accuracy 45.89%; member fold checkpoints saved. Frozen test not accessed."
+    },
+    {
+      "dataset_source": "Mute-Alg",
+      "download_status": "PARTIAL",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "task": "Blocked by legacy pickle deserialization",
+      "training_status": "NOT_TRAINED",
+      "records": "169 pickle files",
+      "groups": "",
+      "folds": "",
+      "best_qnn": "",
+      "qnn_macro_f1": "",
+      "best_classical": "",
+      "classical_macro_f1": "",
+      "split_description": "",
+      "notes": "Qiskit 1.4.5/2.5 compatibility errors; no trusted circuit labels loaded."
+    },
+    {
+      "dataset_source": "Bug-Pattern",
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "task": "No validated supervised manifest",
+      "training_status": "NOT_TRAINED",
+      "records": "20 git files",
+      "groups": "",
+      "folds": "",
+      "best_qnn": "",
+      "qnn_macro_f1": "",
+      "best_classical": "",
+      "classical_macro_f1": "",
+      "split_description": "",
+      "notes": "Acquired; task and label mapping not validated."
+    },
+    {
+      "dataset_source": "QChecker",
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "task": "No validated supervised manifest",
+      "training_status": "NOT_TRAINED",
+      "records": "39 git files",
+      "groups": "",
+      "folds": "",
+      "best_qnn": "",
+      "qnn_macro_f1": "",
+      "best_classical": "",
+      "classical_macro_f1": "",
+      "split_description": "",
+      "notes": "Acquired; task and label mapping not validated."
+    },
+    {
+      "dataset_source": "QML platform workbooks",
+      "download_status": "COMPLETE",
+      "extraction_status": "COMPLETE",
+      "data_status": "PRESENT",
+      "task": "Schema/license normalization incomplete",
+      "training_status": "NOT_TRAINED",
+      "records": "43 source archive members",
+      "groups": "",
+      "folds": "",
+      "best_qnn": "",
+      "qnn_macro_f1": "",
+      "best_classical": "",
+      "classical_macro_f1": "",
+      "split_description": "",
+      "notes": "No training until labels, duplicates, and task semantics are verified."
+    },
+    {
+      "dataset_source": "QMutBench",
+      "download_status": "COMPLETE",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "PRESENT",
+      "task": "binary Survivor vs WOO/OPO merged detection (existing development champion)",
+      "training_status": "EXISTING_CHAMPION_OOF",
+      "records": "578117",
+      "groups": "305",
+      "folds": "5",
+      "best_qnn": "",
+      "qnn_macro_f1": "",
+      "best_classical": "ExtraTrees_100_mutation_aware_23f",
+      "classical_macro_f1": "0.7933135654357681",
+      "split_description": "origin-grouped five-fold development OOF",
+      "notes": "Production unchanged; no frozen-test access; separate task from three-class research."
+    },
+    {
+      "dataset_source": "Nine binary source tasks",
+      "download_status": "VERIFIED_INPUTS",
+      "extraction_status": "NOT_APPLICABLE",
+      "data_status": "DERIVED_TASK_MANIFESTS",
+      "task": "Broad grouped classical models and training-fold-only imbalance methods",
+      "training_status": "BUNDLE_READY_UNEXECUTED",
+      "records": "see task manifests",
+      "groups": "see task manifests",
+      "folds": "5",
+      "best_qnn": "",
+      "qnn_macro_f1": "",
+      "best_classical": "",
+      "classical_macro_f1": "",
+      "split_description": "GroupKFold by task bug_id/algorithm-size group",
+      "notes": "The 14-model baseline suite plus random over/under-sampling and continuous-space SMOTE have not run; external notebook still requires Kaggle execution."
+    }
+  ],
+  "qml_models": {
+    "implemented_families": [
+      "Variational quantum classifiers / trainable QNNs (angle, angle re-uploading, amplitude encodings)",
+      "Hybrid quantum-classical readout models",
+      "Quantum-kernel SVC (QSVC)",
+      "Fixed quantum reservoir with classical logistic readout",
+      "Matched classical Logistic Regression, SVC, Decision Tree, Random Forest, Extra Trees, and related controls where registered"
+    ],
+    "trained_scopes": [
+      "Nine source-specific grouped binary QNN task runs with matched controls, OOF predictions, gradients and checkpoints",
+      "Bugs4Q-Robust and QSimBench grouped QNN runs with per-fold checkpoints",
+      "QMutBench three-class sampled, origin-grouped QNN sweeps with matched classical controls",
+      "Nine-origin QMutBench binary pilot with VQC, QSVC, reservoir extension, and matched classical controls"
+    ],
+    "not_trained": [
+      "Full-data QMutBench binary QNN",
+      "Full-data QMutBench three-class QNN",
+      "Qolumbina multi-backend incomplete task",
+      "Unnormalized QML-platform issue workbooks; Bug-Pattern and QChecker tasks",
+      "Real hardware-aware fault attribution QML"
+    ]
+  },
+  "task_semantics": {
+    "QMutBench": "Historical mutation detection outcome; WOO/OPO are merged only for the established binary task. This is not hardware-fault evidence.",
+    "Bugs4Q": "Buggy/fixed source-state classification grouped by issue; transfers remain source-specific.",
+    "QSimBench": "Post-execution Aer versus fake_kyiv backend fingerprinting grouped by algorithm-size setting; not bug detection.",
+    "Bugs4Q_Robust": "Published harness pass/fail outcome prediction grouped by issue; not a universal defect label.",
+    "hardware_attribution": "No independently labeled IBM execution/calibration observations verified; synthetic simulator cases remain separate."
+  },
+  "training_state": {
+    "multisource_status": "qml_development_runs_completed_with_further_sweep_blocked_by_ram",
+    "completed_claims": [
+      "Audited dataset integrity for 19 local quantum dataset sources and 19 archives; recorded download, extraction, and data status separately.",
+      "Completed grouped QNN training for Bugs4Q, Bugs4Q-NA, QBugs, quantum platform comments, Qolumbina ideal-backend detection, and LintQ warning triage.",
+      "Completed Bugs4Q pooled, core-only transfer, and NA-only transfer grouped-fold QNN comparisons.",
+      "Replayed 4,575 saved QNN out-of-fold probabilities across nine completed source runs; all checkpoints reproduce within 1.2e-16 absolute probability error.",
+      "Recalculated QMutBench three-class development OOF metrics against its grouped validation manifest; no parameter checkpoint exists.",
+      "Prepared grouped Bugs4Q-Robust pass/fail and QSimBench backend fingerprint tasks; local QNN attempts hit the RAM floor before checkpointing; packaged both for one external CPU notebook run.",
+      "Recomputed 85 candidate/ensemble rows and 327 fold rows from saved development OOF predictions; generated 24 source-specific Bugs4Q transfer rows and a dataset/task inventory.",
+      "Trained two pending binary QNN tasks with five issue/program-group folds and two architectures each; 20 fold checkpoints saved and gradients audited.",
+      "Recreated QMutBench three-class QNN checkpoints on the saved three origin folds using the fold-specific selected features; completed a six-configuration 24-epoch QNN sweep and validation-only equal-probability ensemble."
+    ],
+    "not_completed_claims": [
+      "Qolumbina multi-backend 546-row run: partial checkpoints exist, but no complete OOF result; only the separate ideal-backend task is complete.",
+      "Mute-Alg: legacy circuit pickle deserialization fails on the installed Qiskit versions.",
+      "Bug-Pattern and QChecker: no validated supervised task manifest was created.",
+      "QML platform workbooks: labels, duplicates, and licensing need normalization before training.",
+      "Broad 14-model classical and training-fold-only random over/under/SMOTE suite across nine binary tasks: bundle is hash-verified and notebook is syntax/ZIP validated, but remote execution has not occurred.",
+      "Borderline-SMOTE, boosted external libraries, and stacking were not run; no scores are claimed.",
+      "Expanded six-configuration 20-epoch sweep for Bugs4Q-Robust/QSimBench stopped when available RAM measured 473.4 MiB, below 500 MiB; partial binary-sweep checkpoints are not scored. The QML-only remote sweep bundle is prepared but unexecuted."
+    ],
+    "full_data_campaign_status": "PARTIAL",
+    "full_data_qmutbench_status": "DEVELOPMENT_FEATURE_EXTRACTION_COMPLETE; QNN/model re-evaluation and full-data training incomplete",
+    "full_data_new_runs_started": 0,
+    "blockers": "Safety guard: available RAM below 1 GiB. Existing historical QNN runs are indexed separately and are not represented as full-data v3 training.",
+    "binary_qnn": "Implemented with epoch/chunk resume and integrity tests; no full-data binary QMutBench training in the saved run directory. Current RAM is below its 2 GiB startup requirement.",
+    "binary_qnn_preflight": {
+      "status": "blocked_memory_guard",
+      "error": "Only 1113 MiB available; estimated peak requires 2048 MiB to preserve the 1024 MiB floor"
+    },
+    "qmutbench_three_class": "Exploratory 205-record, 12-origin grouped development runs exist with matching classical controls; these are rare-class sample estimates, not full-data or confirmation results.",
+    "hardware_qml": "Not a trainable labeled task with current evidence; no physical-device attribution result is claimed.",
+    "completed_candidate_sweeps": {
+      "status": "candidate_and_matched_classical_sweeps_complete",
+      "task_count": 9,
+      "new_results": [
+        {
+          "task": "bugs4q_core",
+          "records": 62,
+          "groups": 31,
+          "models": [
+            {
+              "model": "amplitude_3q_depth1_lr004",
+              "accuracy": 0.45161290322580644,
+              "macro_f1": 0.4493207941483804,
+              "balanced_accuracy": 0.45161290322580644
+            },
+            {
+              "model": "angle_reupload_4q_depth2_lr0035",
+              "accuracy": 0.5,
+              "macro_f1": 0.49882659713168187,
+              "balanced_accuracy": 0.5
+            }
+          ]
+        },
+        {
+          "task": "bugs4q_na",
+          "records": 62,
+          "groups": 31,
+          "models": [
+            {
+              "model": "amplitude_3q_depth1_lr004",
+              "accuracy": 0.46774193548387094,
+              "macro_f1": 0.4608695652173913,
+              "balanced_accuracy": 0.467741935483871
+            },
+            {
+              "model": "angle_reupload_4q_depth2_lr0035",
+              "accuracy": 0.4838709677419355,
+              "macro_f1": 0.4700854700854701,
+              "balanced_accuracy": 0.4838709677419355
+            }
+          ]
+        },
+        {
+          "task": "bugs4q_pooled",
+          "records": 124,
+          "groups": 62,
+          "models": [
+            {
+              "model": "amplitude_3q_depth1_lr004",
+              "accuracy": 0.5,
+              "macro_f1": 0.49354413702239797,
+              "balanced_accuracy": 0.5
+            },
+            {
+              "model": "angle_reupload_4q_depth2_lr0035",
+              "accuracy": 0.46774193548387094,
+              "macro_f1": 0.4587301587301587,
+              "balanced_accuracy": 0.467741935483871
+            }
+          ]
+        },
+        {
+          "task": "bugs4q_core_only_transfer",
+          "records": 124,
+          "groups": 62,
+          "models": [
+            {
+              "model": "amplitude_3q_depth1_lr004",
+              "accuracy": 0.5403225806451613,
+              "macro_f1": 0.5402926829268293,
+              "balanced_accuracy": 0.5403225806451613
+            },
+            {
+              "model": "angle_reupload_4q_depth2_lr0035",
+              "accuracy": 0.46774193548387094,
+              "macro_f1": 0.46760343481654953,
+              "balanced_accuracy": 0.467741935483871
+            }
+          ]
+        },
+        {
+          "task": "bugs4q_na_only_transfer",
+          "records": 124,
+          "groups": 62,
+          "models": [
+            {
+              "model": "amplitude_3q_depth1_lr004",
+              "accuracy": 0.49193548387096775,
+              "macro_f1": 0.49190243902439024,
+              "balanced_accuracy": 0.49193548387096775
+            },
+            {
+              "model": "angle_reupload_4q_depth2_lr0035",
+              "accuracy": 0.5161290322580645,
+              "macro_f1": 0.5098814229249012,
+              "balanced_accuracy": 0.5161290322580645
+            }
+          ]
+        },
+        {
+          "task": "lintq",
+          "records": 290,
+          "groups": 228,
+          "models": [
+            {
+              "model": "amplitude_3q_depth1_lr004",
+              "accuracy": 0.7413793103448276,
+              "macro_f1": 0.42574257425742573,
+              "balanced_accuracy": 0.4976851851851852
+            },
+            {
+              "model": "angle_reupload_4q_depth2_lr0035",
+              "accuracy": 0.7413793103448276,
+              "macro_f1": 0.42574257425742573,
+              "balanced_accuracy": 0.4976851851851852
+            }
+          ]
+        },
+        {
+          "task": "qbugs_hornbro_subset",
+          "records": 1500,
+          "groups": 750,
+          "models": [
+            {
+              "model": "amplitude_3q_depth1_lr004",
+              "accuracy": 0.7073333333333334,
+              "macro_f1": 0.7063905206719354,
+              "balanced_accuracy": 0.7073333333333334
+            },
+            {
+              "model": "angle_reupload_4q_depth2_lr0035",
+              "accuracy": 0.718,
+              "macro_f1": 0.7179848338510648,
+              "balanced_accuracy": 0.718
+            }
+          ]
+        },
+        {
+          "task": "qolumbina_ideal",
+          "records": 182,
+          "groups": 26,
+          "models": [
+            {
+              "model": "amplitude_3q_depth1_lr004",
+              "accuracy": 0.8241758241758241,
+              "macro_f1": 0.45180722891566266,
+              "balanced_accuracy": 0.5
+            },
+            {
+              "model": "angle_reupload_4q_depth2_lr0035",
+              "accuracy": 0.7857142857142857,
+              "macro_f1": 0.44,
+              "balanced_accuracy": 0.4766666666666667
+            }
+          ]
+        },
+        {
+          "task": "quantum_platform_comment_task",
+          "records": 319,
+          "groups": 314,
+          "models": [
+            {
+              "model": "amplitude_3q_depth1_lr004",
+              "accuracy": 0.7178683385579937,
+              "macro_f1": 0.483038029386344,
+              "balanced_accuracy": 0.5342161808669657
+            },
+            {
+              "model": "angle_reupload_4q_depth2_lr0035",
+              "accuracy": 0.9122257053291536,
+              "macro_f1": 0.8944208037825059,
+              "balanced_accuracy": 0.8897608370702541
+            }
+          ]
+        }
+      ],
+      "matched_classical_comparison": {
+        "status": "verified",
+        "path": "reports/experiments/qml_standalone_accuracy_optimization_20261028/remaining_task_sweeps/matched_qnn_classical_comparison.json",
+        "task_count": 9,
+        "paired_task_width_cells": 18,
+        "qnn_leads_descriptive_best_fixed_control": 1,
+        "ties": 1,
+        "qnn_trails": 16,
+        "cells": [
+          {
+            "task": "Bugs4Q core",
+            "feature_count": 4,
+            "qnn": "angle_reupload_4q_depth2_lr0035",
+            "best_fixed_control": "extra_trees_balanced",
+            "qnn_macro_f1": 0.49882659713168187,
+            "control_macro_f1": 0.5644028103044496,
+            "delta": -0.06557621317276774,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.14646733169081336,
+              0.0053100452976099066
+            ]
+          },
+          {
+            "task": "Bugs4Q core",
+            "feature_count": 8,
+            "qnn": "amplitude_3q_depth1_lr004",
+            "best_fixed_control": "decision_tree_balanced",
+            "qnn_macro_f1": 0.4493207941483804,
+            "control_macro_f1": 0.5032051282051282,
+            "delta": -0.05388433405674781,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.1371364641845674,
+              0.0269611289225796
+            ]
+          },
+          {
+            "task": "Bugs4Q-NA",
+            "feature_count": 4,
+            "qnn": "angle_reupload_4q_depth2_lr0035",
+            "best_fixed_control": "decision_tree_balanced",
+            "qnn_macro_f1": 0.4700854700854701,
+            "control_macro_f1": 0.5634941329856584,
+            "delta": -0.09340866290018834,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.17893395904784734,
+              -0.012408907381258537
+            ]
+          },
+          {
+            "task": "Bugs4Q-NA",
+            "feature_count": 8,
+            "qnn": "amplitude_3q_depth1_lr004",
+            "best_fixed_control": "extra_trees_balanced",
+            "qnn_macro_f1": 0.4608695652173913,
+            "control_macro_f1": 0.5766806722689075,
+            "delta": -0.1158111070515162,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.23311243238326768,
+              -0.01489901954497437
+            ]
+          },
+          {
+            "task": "Bugs4Q pooled",
+            "feature_count": 4,
+            "qnn": "angle_reupload_4q_depth2_lr0035",
+            "best_fixed_control": "random_forest_balanced",
+            "qnn_macro_f1": 0.4587301587301587,
+            "control_macro_f1": 0.5161290322580645,
+            "delta": -0.05739887352790579,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.1418695353708799,
+              0.02503282026487416
+            ]
+          },
+          {
+            "task": "Bugs4Q pooled",
+            "feature_count": 8,
+            "qnn": "amplitude_3q_depth1_lr004",
+            "best_fixed_control": "extra_trees_balanced",
+            "qnn_macro_f1": 0.49354413702239797,
+            "control_macro_f1": 0.5161290322580645,
+            "delta": -0.022584895235666536,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.0809549853944473,
+              0.02793992559078418
+            ]
+          },
+          {
+            "task": "Bugs4Q core-only transfer",
+            "feature_count": 4,
+            "qnn": "angle_reupload_4q_depth2_lr0035",
+            "best_fixed_control": "random_forest_balanced",
+            "qnn_macro_f1": 0.46760343481654953,
+            "control_macro_f1": 0.5054593004249754,
+            "delta": -0.03785586560842591,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.10470171556067115,
+              0.02718799068400196
+            ]
+          },
+          {
+            "task": "Bugs4Q core-only transfer",
+            "feature_count": 8,
+            "qnn": "amplitude_3q_depth1_lr004",
+            "best_fixed_control": "logistic_balanced",
+            "qnn_macro_f1": 0.5402926829268293,
+            "control_macro_f1": 0.5064918118353233,
+            "delta": 0.03380087109150598,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.02811764213473368,
+              0.09185492087878358
+            ]
+          },
+          {
+            "task": "Bugs4Q-NA-only transfer",
+            "feature_count": 4,
+            "qnn": "angle_reupload_4q_depth2_lr0035",
+            "best_fixed_control": "random_forest_balanced",
+            "qnn_macro_f1": 0.5098814229249012,
+            "control_macro_f1": 0.5402926829268293,
+            "delta": -0.030411260001928064,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.10443161718266342,
+              0.03298651295899962
+            ]
+          },
+          {
+            "task": "Bugs4Q-NA-only transfer",
+            "feature_count": 8,
+            "qnn": "amplitude_3q_depth1_lr004",
+            "best_fixed_control": "extra_trees_balanced",
+            "qnn_macro_f1": 0.49190243902439024,
+            "control_macro_f1": 0.5311603650586703,
+            "delta": -0.03925792603428002,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.10297266610938781,
+              0.025367518629284817
+            ]
+          },
+          {
+            "task": "LintQ",
+            "feature_count": 4,
+            "qnn": "angle_reupload_4q_depth2_lr0035",
+            "best_fixed_control": "random_forest_balanced",
+            "qnn_macro_f1": 0.42574257425742573,
+            "control_macro_f1": 0.6686330782312925,
+            "delta": -0.24289050397386674,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.3120924500416644,
+              -0.16247245245818995
+            ]
+          },
+          {
+            "task": "LintQ",
+            "feature_count": 8,
+            "qnn": "amplitude_3q_depth1_lr004",
+            "best_fixed_control": "random_forest_balanced",
+            "qnn_macro_f1": 0.42574257425742573,
+            "control_macro_f1": 0.6694528875379939,
+            "delta": -0.2437103132805682,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.31408445862456374,
+              -0.17299316508629395
+            ]
+          },
+          {
+            "task": "QBugs HornBro subset",
+            "feature_count": 4,
+            "qnn": "angle_reupload_4q_depth2_lr0035",
+            "best_fixed_control": "random_forest_balanced",
+            "qnn_macro_f1": 0.7179848338510648,
+            "control_macro_f1": 0.8316936075629235,
+            "delta": -0.11370877371185872,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.1317927002735445,
+              -0.09575716492506901
+            ]
+          },
+          {
+            "task": "QBugs HornBro subset",
+            "feature_count": 8,
+            "qnn": "amplitude_3q_depth1_lr004",
+            "best_fixed_control": "random_forest_balanced",
+            "qnn_macro_f1": 0.7063905206719354,
+            "control_macro_f1": 0.8483819616836059,
+            "delta": -0.1419914410116705,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.16151114543396625,
+              -0.12342058013047388
+            ]
+          },
+          {
+            "task": "Qolumbina ideal",
+            "feature_count": 4,
+            "qnn": "angle_reupload_4q_depth2_lr0035",
+            "best_fixed_control": "random_forest_balanced",
+            "qnn_macro_f1": 0.44,
+            "control_macro_f1": 0.4810410726202754,
+            "delta": -0.0410410726202754,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.10503579547320968,
+              0.01473216966764659
+            ]
+          },
+          {
+            "task": "Qolumbina ideal",
+            "feature_count": 8,
+            "qnn": "amplitude_3q_depth1_lr004",
+            "best_fixed_control": "majority_dummy",
+            "qnn_macro_f1": 0.45180722891566266,
+            "control_macro_f1": 0.45180722891566266,
+            "delta": 0.0,
+            "paired_group_bootstrap_delta_95ci": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "task": "Quantum platform comment task",
+            "feature_count": 4,
+            "qnn": "angle_reupload_4q_depth2_lr0035",
+            "best_fixed_control": "random_forest_balanced",
+            "qnn_macro_f1": 0.8944208037825059,
+            "control_macro_f1": 0.902561090225564,
+            "delta": -0.008140286443058087,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.0353815948536474,
+              0.01794252505298818
+            ]
+          },
+          {
+            "task": "Quantum platform comment task",
+            "feature_count": 8,
+            "qnn": "amplitude_3q_depth1_lr004",
+            "best_fixed_control": "extra_trees_balanced",
+            "qnn_macro_f1": 0.483038029386344,
+            "control_macro_f1": 0.9116261889371133,
+            "delta": -0.42858815955076934,
+            "paired_group_bootstrap_delta_95ci": [
+              -0.48477311970100556,
+              -0.3666292548991153
+            ]
+          }
+        ],
+        "interpretation": "Best control per cell is chosen from the same OOF scores and is descriptive, not an independent selection."
+      },
+      "initial_resource_guard": "First matched baseline attempt blocked at 507.2 MiB; after memory recovered, the complete matched comparison finished.",
+      "misrouted_auxiliary_artifact": "An extra Bugs4Q-Robust QNN run was written under a leaf named bugs4q_na; it is preserved and excluded from the nine-task audited aggregate."
+    }
+  },
+  "artifact_validation": {
+    "saved_completed_qnn_audit_status": "verified",
+    "saved_completed_qnn_audit_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/completed_qnn_artifact_audit.json",
+    "saved_multisource_training_audit_status": "completed_artifact_audit",
+    "saved_multisource_training_audit_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/training_artifact_audit.json",
+    "new_candidate_sweep_audit_status": "verified",
+    "new_candidate_sweep_audit_path": "reports/experiments/qml_standalone_accuracy_optimization_20261028/remaining_task_sweeps/candidate_sweep_artifact_audit.json",
+    "matched_comparison_status": "verified",
+    "matched_comparison_path": "reports/experiments/qml_standalone_accuracy_optimization_20261028/remaining_task_sweeps/matched_qnn_classical_comparison.json",
+    "artifact_audit_sha256": "8781276f6d97ae29bf67f7a5fbdbb3bdd389e9058b342a24200ed810fb543726",
+    "qmutbench_frozen_test_accessed_in_recorded_qml_campaigns": false,
+    "production_model_modified_in_recorded_qml_campaigns": false,
+    "checksummed_evidence_manifests": {
+      "reports/experiments/qmutbench_multisource_qml_campaign_20261028/verified_dataset_inventory.json": "3057920a0c84acc846fd6f42da7bf2a9b582343b0a9e42e7c4ec8c4ba92c9b7e",
+      "reports/experiments/qmutbench_multisource_qml_campaign_20261028/campaign_completion_matrix.csv": "227d7ab68ae483f6d5a7a1c44e9eff3830b333a958e56f3d73d32643fd93b3ca",
+      "reports/experiments/full_data_qml_optimization_v3/training_manifest.json": "29c13c7c3aa566ecd4aed920eae49473361b9f713f043fe46f5ca257764596ba",
+      "reports/experiments/qmutbench_multisource_qml_campaign_20261028/progress_manifest.json": "f5dc5428c3040521df68cf87fda5cf0eefc2c729fccd130adcf3f807d28237f0",
+      "reports/experiments/qmutbench_multisource_qml_campaign_20261028/completed_qnn_artifact_audit.json": "8781276f6d97ae29bf67f7a5fbdbb3bdd389e9058b342a24200ed810fb543726",
+      "reports/experiments/qmutbench_multisource_qml_campaign_20261028/training_artifact_audit.json": "54904c3fe50b6f9c8ec8781d20132099e62e18eb4997146443ba1170d164ded9",
+      "reports/experiments/qml_standalone_accuracy_optimization_20261028/remaining_task_sweeps/candidate_sweep_artifact_audit.json": "dcf07c2f0062f64ded325b57942334c337a86190824e5ef3a6210c21fbd892cb",
+      "reports/experiments/qml_standalone_accuracy_optimization_20261028/remaining_task_sweeps/remaining_task_sweep_status.json": "06e6278d3266e689effd50b959462e3597b8c6f58040a34670d85f293dd24557",
+      "reports/experiments/qml_standalone_accuracy_optimization_20261028/remaining_task_sweeps/matched_classical_controls/campaign_summary.json": "c7a7f1ba2310ef2e2e6041a0494b5937719be6c6cf682bd80154ab05199475be",
+      "reports/experiments/qml_standalone_accuracy_optimization_20261028/remaining_task_sweeps/matched_qnn_classical_comparison.json": "8a8fc7e687a2a53fbdea88651894dff884e60bd97741197b77fb4dc8e5ab35f9",
+      "qmutbench_qml/results/run_manifest.json": "4b24f8ad371c6984e469550105b87868b119241dfe841c788cd2356404368c3f",
+      "qmutbench_qml/results/family_extension_9origins_20261027/run_manifest.json": "a11f98df014f4d708895aad0c9c3912287cdf861d27c93aa28a966b523b7e490",
+      "reports/experiments/qmutbench_three_class_qnn_campaign_20261027/campaign_summary.json": "b6fd11c5b0ac42265abefdafa718aad6df4bd0652341351e40f57acaef36a988",
+      "reports/experiments/qmutbench_three_class_qnn_campaign_20261027/checkpoint_manifest.json": "153a1f6f7581cb3c5a8b9c9069a46d9d95456b10e2e5a714a637b264c9758e41"
+    }
+  },
+  "preexisting_simulator_acceptance_status": {
+    "latest_saved_record": {
+      "command": ".venv\\Scripts\\python.exe -m pytest tests -q --tb=short -k \"not bounded_recipe_comparison_120_templates_and_finite_shot_subset and not independent_calibration_fixture_and_permutation_comparison\" --basetemp .t-finalization-suite",
+      "collected": 797,
+      "passed": 794,
+      "failed": 1,
+      "skipped": 0,
+      "deselected": 2,
+      "duration_seconds": 259.71,
+      "known_failure": "tests/test_reference_diagnosis_generalization.py::test_heldout_generalization_outcomes_and_targets (7/45 frozen outcome mismatch)",
+      "exclusions": "Both registered finite-shot NO-GO tests remained deselected."
+    },
+    "freshly_rerun_in_this_audit": false,
+    "note": "The known frozen diagnosis acceptance failure is preserved. The focused QML test result does not validate or supersede the simulator acceptance result."
+  },
+  "tests_run_in_this_audit": [
+    {
+      "command": ".venv\\Scripts\\python.exe -m pytest --basetemp=.pytest-qml-audit-base tests\\test_qmutbench_binary_qnn.py -q",
+      "result": "27 passed, 1 skipped in 7.54s",
+      "plugins": "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1",
+      "skip_reason": "real PennyLane gradient/update/resume smoke requires the unchanged 2048 MiB startup reserve"
+    },
+    {
+      "command": ".venv\\Scripts\\python.exe -m qmutbench_qml.training.run_binary_development --validate-config",
+      "result": "configuration_validated_no_data_loaded"
+    },
+    {
+      "command": ".venv\\Scripts\\python.exe experiments\\audit_qml_candidate_sweeps.py",
+      "result": "verified; 9 tasks, 90 checkpoints, 90 fold gradient checks"
+    },
+    {
+      "command": ".venv\\Scripts\\python.exe experiments\\audit_matched_qnn_classical_comparison.py",
+      "result": "verified; 9 tasks, 18 matched representation comparisons, 1000 paired group-bootstrap resamples per QNN/control pair"
+    },
+    {
+      "command": ".venv\\Scripts\\python.exe -m pytest --basetemp=.pytest-qml-foundation-base qmutbench_qml\\tests\\test_foundations_and_multiclass.py -q",
+      "result": "5 passed in 5.06s",
+      "plugins": "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1"
+    }
+  ],
+  "remaining_feasible_work": [
+    "Run the QMutBench binary and full-data grouped comparisons only after measured RAM meets the explicit startup/in-run gates.",
+    "Execute the separate prepared 14-model/imbalance-method external suite on a supported CPU runtime; local bundle validation is not execution evidence.",
+    "Normalize and deduplicate QML-platform issue workbooks and build validated task manifests for Bug-Pattern/QChecker before modeling.",
+    "Resolve Mute-Alg legacy Qiskit pickle compatibility without relabeling or altering originals.",
+    "Obtain authorized IBM observations with calibration, mappings, timestamps, and independently adjudicated labels before hardware-attribution modeling."
+  ],
+  "limitations": [
+    "Historical OOF results are development evidence, not independent confirmation scores.",
+    "The 85% historical objective was not met by the verified QMutBench champion (macro F1 0.7933); no new universal target or hardware claim is made.",
+    "The status audit reconciles existing manifests and key artifact hashes; it does not re-train, load, or replay all model binaries.",
+    "Untracked source, data, and experiment artifacts are preserved; this audit does not establish that every local addition is backed up remotely."
+  ]
+}

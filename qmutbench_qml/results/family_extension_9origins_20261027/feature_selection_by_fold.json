@@ -1,0 +1,29 @@
+[
+  {
+    "fold":1,
+    "selected_features":[
+      "numeric__qasm_diff_removed_arity",
+      "numeric__qasm_diff_orig_span",
+      "numeric__qubits",
+      "numeric__qasm_diff_expected_gate_match"
+    ]
+  },
+  {
+    "fold":2,
+    "selected_features":[
+      "numeric__qasm_diff_is_local",
+      "numeric__gates",
+      "categorical__algorithm_qgan",
+      "categorical__dominant_state_no"
+    ]
+  },
+  {
+    "fold":3,
+    "selected_features":[
+      "numeric__qasm_diff_exact_single_edit",
+      "categorical__algorithm_qgan",
+      "numeric__qasm_diff_added_arity",
+      "numeric__gates"
+    ]
+  }
+]

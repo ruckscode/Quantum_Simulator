@@ -1,0 +1,46 @@
+{
+  "schema": "qmutbench-qml-advantage-progress-v1",
+  "status": "completed_no_advantage_established_resource_limited",
+  "created": "2026-10-27",
+  "objective": "Test whether QML improves binary QMutBench mutation-outcome prediction against matched classical controls and the established full-feature champion.",
+  "stage_status": {
+    "repository_and_task_audit": "complete",
+    "saved_pilot_integrity": "complete",
+    "family_results_and_error_overlap": "complete",
+    "fixed_blend_diagnostic": "complete_rejected",
+    "larger_development_scaling": "not_advanced_resource_and_pilot_evidence_gate",
+    "full_5fold_qml_confirmation": "not_run",
+    "frozen_test": "untouched",
+    "QML_model_training_in_this_campaign": "none; prior pilots audited and reused"
+  },
+  "champion_qml_candidate": "VQC/trainable QNN; macro F1 0.485714 on 9-origin pilot, below matched Logistic Regression 0.493750.",
+  "decision": "No QML predictive advantage established. Do not promote a QML or hybrid model. Do not use the reused frozen test.",
+  "next_conditions_for_reopening": [
+    "A resource-safe larger grouped development design with substantially more than nine origins.",
+    "A specific QML hypothesis with pilot evidence against the strongest matched classical control.",
+    "Nested or independent origin validation for any new encoding, threshold, seed, kernel, or hybrid selection."
+  ],
+  "protected_artifacts_untouched": true,
+  "reports": [
+    "research_report.md",
+    "integrity_and_metrics.json",
+    "experiment_ledger.json",
+    "candidate_leaderboard.csv",
+    "resource_log.json",
+    "matched_error_overlap.csv",
+    "exploratory_reupload_logistic_blend.csv.gz",
+    "per_origin_metrics.csv"
+  ],
+  "candidate_leaderboard": "candidate_leaderboard.csv",
+  "experiment_ledger": "experiment_ledger.json",
+  "resource_log": "resource_log.json",
+  "verification": {
+    "focused_qml_tests": "8 passed, 1 full-development data-loader test deselected in 6.61 seconds",
+    "minimum_available_ram_during_tests_mib": 653,
+    "resource_stop_floor_mib": 500,
+    "audit_script_py_compile": "passed",
+    "all_qml_result_json_validated": true,
+    "prediction_and_fold_integrity": "all model IDs, origins, labels, folds, and development-manifest alignment passed",
+    "frozen_test": "not accessed"
+  }
+}

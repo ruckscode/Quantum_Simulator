@@ -1,0 +1,2035 @@
+{
+  "batch_size": 64,
+  "config": {
+    "batch_size": 64,
+    "configs": [
+      {
+        "depth": 1,
+        "encoding": "amplitude",
+        "features": 8,
+        "learning_rate": 0.04,
+        "name": "amplitude_hybrid_3q_depth1_lr004",
+        "qubits": 3,
+        "reupload": false
+      },
+      {
+        "depth": 2,
+        "encoding": "amplitude",
+        "features": 8,
+        "learning_rate": 0.04,
+        "name": "amplitude_hybrid_3q_depth2_lr004",
+        "qubits": 3,
+        "reupload": false
+      },
+      {
+        "depth": 2,
+        "encoding": "angle",
+        "features": 4,
+        "learning_rate": 0.02,
+        "name": "angle_reupload_4q_depth2_lr002",
+        "qubits": 4,
+        "reupload": true
+      },
+      {
+        "depth": 2,
+        "encoding": "angle",
+        "features": 4,
+        "learning_rate": 0.035,
+        "name": "angle_reupload_4q_depth2_lr0035",
+        "qubits": 4,
+        "reupload": true
+      },
+      {
+        "depth": 2,
+        "encoding": "angle",
+        "features": 4,
+        "learning_rate": 0.07,
+        "name": "angle_reupload_4q_depth2_lr007",
+        "qubits": 4,
+        "reupload": true
+      },
+      {
+        "depth": 2,
+        "encoding": "angle",
+        "features": 4,
+        "learning_rate": 0.04,
+        "name": "angle_4q_depth2_lr004",
+        "qubits": 4,
+        "reupload": false
+      }
+    ],
+    "epochs": 20,
+    "feature_policy": "8 hashed-token counts of source code; fold-local minmax; model-width truncation/padding",
+    "frozen_test_accessed": false,
+    "group_split": "existing 5-fold GroupKFold verified against saved resource_light_qnn OOF",
+    "runner_sha256": "bb229712bc33a0af2ae7d42d65c694b0d30abb52c0c627c20460ab076295cb91",
+    "seed": 28102026,
+    "source_receipt": {
+      "baseline_split_reference": "bugs4q_robust_execution/resource_light_qnn/oof_predictions.csv",
+      "baseline_split_reference_sha256": "9f621408ca0b2ef79e8bd8fee1e32d4212f4ce87f0ebf959da543505ca38f4d3",
+      "group_fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+      "groups": 37,
+      "manifest_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\normalized_manifest.csv",
+      "processed_input_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205",
+      "processed_manifest": "data\\processed\\bugs4q_robust\\harness_execution_outcome_v2\\manifest.json",
+      "processed_manifest_sha256": "8bc2df4bb3761011cf6e1f7c8926271ee931ce093c1e48c3bc799775d34dd731",
+      "rows": 2220,
+      "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+    },
+    "task": "bugs4q_robust_execution"
+  },
+  "config_sha256": "2e1d36a9610bfe35f59c85f7d126ef8c2c3d91b896c5a738334556be270b6f43",
+  "epochs": 20,
+  "evaluation_scope": "development GroupKFold OOF only; no frozen test",
+  "fold_results": [
+    {
+      "available_ram_mib": 1993.1640625,
+      "checkpoint_kind": "legacy_inference_only_checkpoint_reused",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\amplitude_hybrid_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+      "checkpoint_sha256": "0cab5b40e4cee35c5909b2c606b3bb5f70ac0a9f78520d6aef84efd32803c425",
+      "fold": 1,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": {
+        "epoch": 20,
+        "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+        "kind": "legacy_inference_only_checkpoint_reused",
+        "optimizer_rng_state_present": false,
+        "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\amplitude_hybrid_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+        "sha256": "0cab5b40e4cee35c5909b2c606b3bb5f70ac0a9f78520d6aef84efd32803c425",
+        "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+      },
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.43333333333333335,
+        "confusion_matrix": [
+          [
+            180,
+            90
+          ],
+          [
+            120,
+            30
+          ]
+        ],
+        "macro_f1": 0.4269005847953216,
+        "per_class": {
+          "0": {
+            "f1": 0.631578947368421,
+            "precision": 0.6,
+            "recall": 0.6666666666666666,
+            "support": 270
+          },
+          "1": {
+            "f1": 0.22222222222222224,
+            "precision": 0.25,
+            "recall": 0.2,
+            "support": 150
+          }
+        }
+      },
+      "model": "amplitude_hybrid_3q_depth1_lr004",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 0.0
+    },
+    {
+      "available_ram_mib": 1992.50390625,
+      "checkpoint_kind": "legacy_inference_only_checkpoint_reused",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\amplitude_hybrid_3q_depth2_lr004\\fold_1\\checkpoint.npz",
+      "checkpoint_sha256": "6518688b37bbff4a058f4ec44a168b10b1961f29c4f1a892f4d51e1088b8f4b8",
+      "fold": 1,
+      "gradient_check": {
+        "absolute_error": 1.2775846353063613e-11,
+        "finite_difference": -0.0010594112587192228,
+        "parameter_shift": -0.0010594112459433765,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": {
+        "epoch": 20,
+        "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+        "kind": "legacy_inference_only_checkpoint_reused",
+        "optimizer_rng_state_present": false,
+        "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\amplitude_hybrid_3q_depth2_lr004\\fold_1\\checkpoint.npz",
+        "sha256": "6518688b37bbff4a058f4ec44a168b10b1961f29c4f1a892f4d51e1088b8f4b8",
+        "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+      },
+      "metrics": {
+        "accuracy": 0.5714285714285714,
+        "balanced_accuracy": 0.5333333333333333,
+        "confusion_matrix": [
+          [
+            180,
+            90
+          ],
+          [
+            90,
+            60
+          ]
+        ],
+        "macro_f1": 0.5333333333333333,
+        "per_class": {
+          "0": {
+            "f1": 0.6666666666666666,
+            "precision": 0.6666666666666666,
+            "recall": 0.6666666666666666,
+            "support": 270
+          },
+          "1": {
+            "f1": 0.4000000000000001,
+            "precision": 0.4,
+            "recall": 0.4,
+            "support": 150
+          }
+        }
+      },
+      "model": "amplitude_hybrid_3q_depth2_lr004",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 0.0
+    },
+    {
+      "available_ram_mib": 1990.859375,
+      "checkpoint_kind": "legacy_inference_only_checkpoint_reused",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_reupload_4q_depth2_lr002\\fold_1\\checkpoint.npz",
+      "checkpoint_sha256": "64d02ca2bff8501cafd719abcbd24aef4525bea0682bde5213300bd41d9dd62a",
+      "fold": 1,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": {
+        "epoch": 20,
+        "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+        "kind": "legacy_inference_only_checkpoint_reused",
+        "optimizer_rng_state_present": false,
+        "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_reupload_4q_depth2_lr002\\fold_1\\checkpoint.npz",
+        "sha256": "64d02ca2bff8501cafd719abcbd24aef4525bea0682bde5213300bd41d9dd62a",
+        "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+      },
+      "metrics": {
+        "accuracy": 0.42857142857142855,
+        "balanced_accuracy": 0.4222222222222222,
+        "confusion_matrix": [
+          [
+            120,
+            150
+          ],
+          [
+            90,
+            60
+          ]
+        ],
+        "macro_f1": 0.41666666666666663,
+        "per_class": {
+          "0": {
+            "f1": 0.5,
+            "precision": 0.5714285714285714,
+            "recall": 0.4444444444444444,
+            "support": 270
+          },
+          "1": {
+            "f1": 0.3333333333333333,
+            "precision": 0.2857142857142857,
+            "recall": 0.4,
+            "support": 150
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr002",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 0.0
+    },
+    {
+      "available_ram_mib": 1991.96875,
+      "checkpoint_kind": "legacy_inference_only_checkpoint_reused",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+      "checkpoint_sha256": "3c0aa7579fc74046e7d3cd2501a8961d0dcebd0726accfb47afad53ba4768f5a",
+      "fold": 1,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": {
+        "epoch": 20,
+        "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+        "kind": "legacy_inference_only_checkpoint_reused",
+        "optimizer_rng_state_present": false,
+        "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+        "sha256": "3c0aa7579fc74046e7d3cd2501a8961d0dcebd0726accfb47afad53ba4768f5a",
+        "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+      },
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5666666666666667,
+        "confusion_matrix": [
+          [
+            90,
+            180
+          ],
+          [
+            30,
+            120
+          ]
+        ],
+        "macro_f1": 0.49743589743589745,
+        "per_class": {
+          "0": {
+            "f1": 0.46153846153846156,
+            "precision": 0.75,
+            "recall": 0.3333333333333333,
+            "support": 270
+          },
+          "1": {
+            "f1": 0.5333333333333333,
+            "precision": 0.4,
+            "recall": 0.8,
+            "support": 150
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 0.0
+    },
+    {
+      "available_ram_mib": 1989.61328125,
+      "checkpoint_kind": "legacy_inference_only_checkpoint_reused",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_reupload_4q_depth2_lr007\\fold_1\\checkpoint.npz",
+      "checkpoint_sha256": "7be16029f5018399fb134ba16e4624215034d7dd2bc491e74f27440a04525ca8",
+      "fold": 1,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": {
+        "epoch": 20,
+        "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+        "kind": "legacy_inference_only_checkpoint_reused",
+        "optimizer_rng_state_present": false,
+        "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_reupload_4q_depth2_lr007\\fold_1\\checkpoint.npz",
+        "sha256": "7be16029f5018399fb134ba16e4624215034d7dd2bc491e74f27440a04525ca8",
+        "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+      },
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5666666666666667,
+        "confusion_matrix": [
+          [
+            90,
+            180
+          ],
+          [
+            30,
+            120
+          ]
+        ],
+        "macro_f1": 0.49743589743589745,
+        "per_class": {
+          "0": {
+            "f1": 0.46153846153846156,
+            "precision": 0.75,
+            "recall": 0.3333333333333333,
+            "support": 270
+          },
+          "1": {
+            "f1": 0.5333333333333333,
+            "precision": 0.4,
+            "recall": 0.8,
+            "support": 150
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr007",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 0.0
+    },
+    {
+      "available_ram_mib": 1989.7734375,
+      "checkpoint_kind": "legacy_inference_only_checkpoint_reused",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_4q_depth2_lr004\\fold_1\\checkpoint.npz",
+      "checkpoint_sha256": "6413d3ae824ff19b843712244fc9001fbc3386833d9ea7aafb9cf0569140cce0",
+      "fold": 1,
+      "gradient_check": {
+        "absolute_error": 4.055970782759072e-12,
+        "finite_difference": 0.00036653508006523333,
+        "parameter_shift": 0.00036653507600926255,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": {
+        "epoch": 20,
+        "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+        "kind": "legacy_inference_only_checkpoint_reused",
+        "optimizer_rng_state_present": false,
+        "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_4q_depth2_lr004\\fold_1\\checkpoint.npz",
+        "sha256": "6413d3ae824ff19b843712244fc9001fbc3386833d9ea7aafb9cf0569140cce0",
+        "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+      },
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.4777777777777778,
+        "confusion_matrix": [
+          [
+            150,
+            120
+          ],
+          [
+            90,
+            60
+          ]
+        ],
+        "macro_f1": 0.47593582887700536,
+        "per_class": {
+          "0": {
+            "f1": 0.5882352941176471,
+            "precision": 0.625,
+            "recall": 0.5555555555555556,
+            "support": 270
+          },
+          "1": {
+            "f1": 0.3636363636363636,
+            "precision": 0.3333333333333333,
+            "recall": 0.4,
+            "support": 150
+          }
+        }
+      },
+      "model": "angle_4q_depth2_lr004",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 0.0
+    },
+    {
+      "available_ram_mib": 1987.98828125,
+      "checkpoint_kind": "legacy_inference_only_checkpoint_reused",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\amplitude_hybrid_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+      "checkpoint_sha256": "ec56fab563bed8830f65fd49026a3edb51a110ad0aaa3f0cd2198eaf8f5fe037",
+      "fold": 2,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "groups": 8,
+      "legacy_checkpoint_receipt": {
+        "epoch": 20,
+        "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+        "kind": "legacy_inference_only_checkpoint_reused",
+        "optimizer_rng_state_present": false,
+        "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\amplitude_hybrid_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+        "sha256": "ec56fab563bed8830f65fd49026a3edb51a110ad0aaa3f0cd2198eaf8f5fe037",
+        "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+      },
+      "metrics": {
+        "accuracy": 0.375,
+        "balanced_accuracy": 0.375,
+        "confusion_matrix": [
+          [
+            30,
+            210
+          ],
+          [
+            90,
+            150
+          ]
+        ],
+        "macro_f1": 0.3333333333333333,
+        "per_class": {
+          "0": {
+            "f1": 0.16666666666666666,
+            "precision": 0.25,
+            "recall": 0.125,
+            "support": 240
+          },
+          "1": {
+            "f1": 0.5,
+            "precision": 0.4166666666666667,
+            "recall": 0.625,
+            "support": 240
+          }
+        }
+      },
+      "model": "amplitude_hybrid_3q_depth1_lr004",
+      "records": 480,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1740,
+      "training_seconds": 0.0
+    },
+    {
+      "available_ram_mib": 1988.1484375,
+      "checkpoint_kind": "legacy_inference_only_checkpoint_reused",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\amplitude_hybrid_3q_depth2_lr004\\fold_2\\checkpoint.npz",
+      "checkpoint_sha256": "51ec88f60b8a628d4450c03967f186e83cd7048d7354fe7b9fcb60c4230ce4bc",
+      "fold": 2,
+      "gradient_check": {
+        "absolute_error": 1.2775846353063613e-11,
+        "finite_difference": -0.0010594112587192228,
+        "parameter_shift": -0.0010594112459433765,
+        "passed": true
+      },
+      "groups": 8,
+      "legacy_checkpoint_receipt": {
+        "epoch": 20,
+        "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+        "kind": "legacy_inference_only_checkpoint_reused",
+        "optimizer_rng_state_present": false,
+        "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\amplitude_hybrid_3q_depth2_lr004\\fold_2\\checkpoint.npz",
+        "sha256": "51ec88f60b8a628d4450c03967f186e83cd7048d7354fe7b9fcb60c4230ce4bc",
+        "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+      },
+      "metrics": {
+        "accuracy": 0.375,
+        "balanced_accuracy": 0.375,
+        "confusion_matrix": [
+          [
+            60,
+            180
+          ],
+          [
+            120,
+            120
+          ]
+        ],
+        "macro_f1": 0.3650793650793651,
+        "per_class": {
+          "0": {
+            "f1": 0.28571428571428575,
+            "precision": 0.3333333333333333,
+            "recall": 0.25,
+            "support": 240
+          },
+          "1": {
+            "f1": 0.4444444444444445,
+            "precision": 0.4,
+            "recall": 0.5,
+            "support": 240
+          }
+        }
+      },
+      "model": "amplitude_hybrid_3q_depth2_lr004",
+      "records": 480,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1740,
+      "training_seconds": 0.0
+    },
+    {
+      "available_ram_mib": 1986.65625,
+      "checkpoint_kind": "legacy_inference_only_checkpoint_reused",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_reupload_4q_depth2_lr002\\fold_2\\checkpoint.npz",
+      "checkpoint_sha256": "abe4cbcb8e3eb10ed7c7fde9a5e38797adb2b9b291117f42f1b79afb47e9706b",
+      "fold": 2,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 8,
+      "legacy_checkpoint_receipt": {
+        "epoch": 20,
+        "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+        "kind": "legacy_inference_only_checkpoint_reused",
+        "optimizer_rng_state_present": false,
+        "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_reupload_4q_depth2_lr002\\fold_2\\checkpoint.npz",
+        "sha256": "abe4cbcb8e3eb10ed7c7fde9a5e38797adb2b9b291117f42f1b79afb47e9706b",
+        "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+      },
+      "metrics": {
+        "accuracy": 0.625,
+        "balanced_accuracy": 0.625,
+        "confusion_matrix": [
+          [
+            180,
+            60
+          ],
+          [
+            120,
+            120
+          ]
+        ],
+        "macro_f1": 0.6190476190476191,
+        "per_class": {
+          "0": {
+            "f1": 0.6666666666666665,
+            "precision": 0.6,
+            "recall": 0.75,
+            "support": 240
+          },
+          "1": {
+            "f1": 0.5714285714285715,
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr002",
+      "records": 480,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1740,
+      "training_seconds": 0.0
+    },
+    {
+      "available_ram_mib": 1985.171875,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+      "checkpoint_sha256": "4fcefea6d3a6617e78c345121d89be58313428a91fc73978fad8ba56f1c86d79",
+      "fold": 2,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 8,
+      "legacy_checkpoint_receipt": {
+        "epoch": 17,
+        "kind": "legacy_partial_checkpoint_preserved_but_not_resumed",
+        "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+        "reason": "Legacy checkpoint has no Adam moments or RNG state; exact continuation is impossible.",
+        "sha256": "5596fdfaf2c0da18b457f580d44859df77adc78f68a741014b19ea167ce1dd0b"
+      },
+      "metrics": {
+        "accuracy": 0.5625,
+        "balanced_accuracy": 0.5625,
+        "confusion_matrix": [
+          [
+            150,
+            90
+          ],
+          [
+            120,
+            120
+          ]
+        ],
+        "macro_f1": 0.5607843137254902,
+        "per_class": {
+          "0": {
+            "f1": 0.5882352941176471,
+            "precision": 0.5555555555555556,
+            "recall": 0.625,
+            "support": 240
+          },
+          "1": {
+            "f1": 0.5333333333333333,
+            "precision": 0.5714285714285714,
+            "recall": 0.5,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "records": 480,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1740,
+      "training_seconds": 2.1999949240125716e-06
+    },
+    {
+      "available_ram_mib": 1987.0078125,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_reupload_4q_depth2_lr007\\fold_2\\checkpoint.npz",
+      "checkpoint_sha256": "02751212dfe3fb788edf28bedf6f75c25c5abdb18db9bda2c620a8c58f86bf1a",
+      "fold": 2,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 8,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.5625,
+        "balanced_accuracy": 0.5625,
+        "confusion_matrix": [
+          [
+            150,
+            90
+          ],
+          [
+            120,
+            120
+          ]
+        ],
+        "macro_f1": 0.5607843137254902,
+        "per_class": {
+          "0": {
+            "f1": 0.5882352941176471,
+            "precision": 0.5555555555555556,
+            "recall": 0.625,
+            "support": 240
+          },
+          "1": {
+            "f1": 0.5333333333333333,
+            "precision": 0.5714285714285714,
+            "recall": 0.5,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr007",
+      "records": 480,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1740,
+      "training_seconds": 1.5999976312741637e-06
+    },
+    {
+      "available_ram_mib": 1986.03125,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_4q_depth2_lr004\\fold_2\\checkpoint.npz",
+      "checkpoint_sha256": "cd399339ded50d36ca1bb4e2339e267ae901656173614710df65835205f72d94",
+      "fold": 2,
+      "gradient_check": {
+        "absolute_error": 4.055970782759072e-12,
+        "finite_difference": 0.00036653508006523333,
+        "parameter_shift": 0.00036653507600926255,
+        "passed": true
+      },
+      "groups": 8,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "confusion_matrix": [
+          [
+            180,
+            60
+          ],
+          [
+            180,
+            60
+          ]
+        ],
+        "macro_f1": 0.4666666666666667,
+        "per_class": {
+          "0": {
+            "f1": 0.6,
+            "precision": 0.5,
+            "recall": 0.75,
+            "support": 240
+          },
+          "1": {
+            "f1": 0.3333333333333333,
+            "precision": 0.5,
+            "recall": 0.25,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_4q_depth2_lr004",
+      "records": 480,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1740,
+      "training_seconds": 1.2000018614344299e-06
+    },
+    {
+      "available_ram_mib": 1986.66796875,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\amplitude_hybrid_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+      "checkpoint_sha256": "f77f09bf17f7538493f853da90660de0e052467d9c85136d5234f520dd200c8d",
+      "fold": 3,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "groups": 8,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.625,
+        "balanced_accuracy": 0.625,
+        "confusion_matrix": [
+          [
+            120,
+            120
+          ],
+          [
+            60,
+            180
+          ]
+        ],
+        "macro_f1": 0.6190476190476191,
+        "per_class": {
+          "0": {
+            "f1": 0.5714285714285715,
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "support": 240
+          },
+          "1": {
+            "f1": 0.6666666666666665,
+            "precision": 0.6,
+            "recall": 0.75,
+            "support": 240
+          }
+        }
+      },
+      "model": "amplitude_hybrid_3q_depth1_lr004",
+      "records": 480,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1740,
+      "training_seconds": 1.600004907231778e-06
+    },
+    {
+      "available_ram_mib": 1986.73046875,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\amplitude_hybrid_3q_depth2_lr004\\fold_3\\checkpoint.npz",
+      "checkpoint_sha256": "f0dc011e5210e048139d73796ff88e63eca389cb354607b23cdfb30f1e7bc294",
+      "fold": 3,
+      "gradient_check": {
+        "absolute_error": 1.2775846353063613e-11,
+        "finite_difference": -0.0010594112587192228,
+        "parameter_shift": -0.0010594112459433765,
+        "passed": true
+      },
+      "groups": 8,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.4375,
+        "balanced_accuracy": 0.4375,
+        "confusion_matrix": [
+          [
+            90,
+            150
+          ],
+          [
+            120,
+            120
+          ]
+        ],
+        "macro_f1": 0.43529411764705883,
+        "per_class": {
+          "0": {
+            "f1": 0.39999999999999997,
+            "precision": 0.42857142857142855,
+            "recall": 0.375,
+            "support": 240
+          },
+          "1": {
+            "f1": 0.47058823529411764,
+            "precision": 0.4444444444444444,
+            "recall": 0.5,
+            "support": 240
+          }
+        }
+      },
+      "model": "amplitude_hybrid_3q_depth2_lr004",
+      "records": 480,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1740,
+      "training_seconds": 1.3000026228837669e-06
+    },
+    {
+      "available_ram_mib": 1986.22265625,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_reupload_4q_depth2_lr002\\fold_3\\checkpoint.npz",
+      "checkpoint_sha256": "616706d29bb6096f966dfb495033e114c45daa6edc031247056e7df4762a5978",
+      "fold": 3,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 8,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "confusion_matrix": [
+          [
+            120,
+            120
+          ],
+          [
+            120,
+            120
+          ]
+        ],
+        "macro_f1": 0.5,
+        "per_class": {
+          "0": {
+            "f1": 0.5,
+            "precision": 0.5,
+            "recall": 0.5,
+            "support": 240
+          },
+          "1": {
+            "f1": 0.5,
+            "precision": 0.5,
+            "recall": 0.5,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr002",
+      "records": 480,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1740,
+      "training_seconds": 1.1000010999850929e-06
+    },
+    {
+      "available_ram_mib": 1986.234375,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+      "checkpoint_sha256": "0102b400aa46a3429101dae4b53770a4303385bd77ca96f5cd46a6ca70a780cb",
+      "fold": 3,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 8,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.375,
+        "balanced_accuracy": 0.375,
+        "confusion_matrix": [
+          [
+            90,
+            150
+          ],
+          [
+            150,
+            90
+          ]
+        ],
+        "macro_f1": 0.375,
+        "per_class": {
+          "0": {
+            "f1": 0.375,
+            "precision": 0.375,
+            "recall": 0.375,
+            "support": 240
+          },
+          "1": {
+            "f1": 0.375,
+            "precision": 0.375,
+            "recall": 0.375,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "records": 480,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1740,
+      "training_seconds": 1.1000010999850929e-06
+    },
+    {
+      "available_ram_mib": 1985.94921875,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_reupload_4q_depth2_lr007\\fold_3\\checkpoint.npz",
+      "checkpoint_sha256": "a58c7642cce581ea88677e12146e65b4affb231dfda4bcf1f6b2dc04c8227517",
+      "fold": 3,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 8,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "confusion_matrix": [
+          [
+            120,
+            120
+          ],
+          [
+            120,
+            120
+          ]
+        ],
+        "macro_f1": 0.5,
+        "per_class": {
+          "0": {
+            "f1": 0.5,
+            "precision": 0.5,
+            "recall": 0.5,
+            "support": 240
+          },
+          "1": {
+            "f1": 0.5,
+            "precision": 0.5,
+            "recall": 0.5,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr007",
+      "records": 480,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1740,
+      "training_seconds": 3.1000017770566046e-06
+    },
+    {
+      "available_ram_mib": 1983.671875,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_4q_depth2_lr004\\fold_3\\checkpoint.npz",
+      "checkpoint_sha256": "1dbebd9f8b7a6ea4c945357281824183a9f8d3d0f2903f27d65980f97be783ee",
+      "fold": 3,
+      "gradient_check": {
+        "absolute_error": 4.055970782759072e-12,
+        "finite_difference": 0.00036653508006523333,
+        "parameter_shift": 0.00036653507600926255,
+        "passed": true
+      },
+      "groups": 8,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "confusion_matrix": [
+          [
+            60,
+            180
+          ],
+          [
+            60,
+            180
+          ]
+        ],
+        "macro_f1": 0.4666666666666667,
+        "per_class": {
+          "0": {
+            "f1": 0.3333333333333333,
+            "precision": 0.5,
+            "recall": 0.25,
+            "support": 240
+          },
+          "1": {
+            "f1": 0.6,
+            "precision": 0.5,
+            "recall": 0.75,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_4q_depth2_lr004",
+      "records": 480,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1740,
+      "training_seconds": 1.2000018614344299e-06
+    },
+    {
+      "available_ram_mib": 1983.65234375,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\amplitude_hybrid_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+      "checkpoint_sha256": "d33c0c2035f73e97f222978815ec8837f42a8e613f59efcb8115ca7bbddb8f3c",
+      "fold": 4,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.5714285714285714,
+        "balanced_accuracy": 0.5416666666666666,
+        "confusion_matrix": [
+          [
+            60,
+            120
+          ],
+          [
+            60,
+            180
+          ]
+        ],
+        "macro_f1": 0.5333333333333332,
+        "per_class": {
+          "0": {
+            "f1": 0.4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "support": 180
+          },
+          "1": {
+            "f1": 0.6666666666666665,
+            "precision": 0.6,
+            "recall": 0.75,
+            "support": 240
+          }
+        }
+      },
+      "model": "amplitude_hybrid_3q_depth1_lr004",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 1.3000026228837669e-06
+    },
+    {
+      "available_ram_mib": 1989.05859375,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\amplitude_hybrid_3q_depth2_lr004\\fold_4\\checkpoint.npz",
+      "checkpoint_sha256": "5c59fa9887b05980f97dd4fa3caf60036bb73191f4b21b5f91264a1db8734271",
+      "fold": 4,
+      "gradient_check": {
+        "absolute_error": 1.2775846353063613e-11,
+        "finite_difference": -0.0010594112587192228,
+        "parameter_shift": -0.0010594112459433765,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.5714285714285714,
+        "balanced_accuracy": 0.5625,
+        "confusion_matrix": [
+          [
+            90,
+            90
+          ],
+          [
+            90,
+            150
+          ]
+        ],
+        "macro_f1": 0.5625,
+        "per_class": {
+          "0": {
+            "f1": 0.5,
+            "precision": 0.5,
+            "recall": 0.5,
+            "support": 180
+          },
+          "1": {
+            "f1": 0.625,
+            "precision": 0.625,
+            "recall": 0.625,
+            "support": 240
+          }
+        }
+      },
+      "model": "amplitude_hybrid_3q_depth2_lr004",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 1.7325617000024067
+    },
+    {
+      "available_ram_mib": 2034.953125,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_reupload_4q_depth2_lr002\\fold_4\\checkpoint.npz",
+      "checkpoint_sha256": "56d7d7ae714444b50694d7e0dfb5dd363a3c117148794692db7ebc4c68d890a8",
+      "fold": 4,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.2857142857142857,
+        "balanced_accuracy": 0.3125,
+        "confusion_matrix": [
+          [
+            90,
+            90
+          ],
+          [
+            210,
+            30
+          ]
+        ],
+        "macro_f1": 0.2708333333333333,
+        "per_class": {
+          "0": {
+            "f1": 0.37499999999999994,
+            "precision": 0.3,
+            "recall": 0.5,
+            "support": 180
+          },
+          "1": {
+            "f1": 0.16666666666666666,
+            "precision": 0.25,
+            "recall": 0.125,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr002",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 19.621496100000513
+    },
+    {
+      "available_ram_mib": 2082.984375,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+      "checkpoint_sha256": "4437bd5ba9fb9e54520b3a0de009a9805c0a66ab5079a8168c9f560bece65fa5",
+      "fold": 4,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "confusion_matrix": [
+          [
+            90,
+            90
+          ],
+          [
+            120,
+            120
+          ]
+        ],
+        "macro_f1": 0.49743589743589745,
+        "per_class": {
+          "0": {
+            "f1": 0.4615384615384615,
+            "precision": 0.42857142857142855,
+            "recall": 0.5,
+            "support": 180
+          },
+          "1": {
+            "f1": 0.5333333333333333,
+            "precision": 0.5714285714285714,
+            "recall": 0.5,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 20.780144199998176
+    },
+    {
+      "available_ram_mib": 2072.79296875,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_reupload_4q_depth2_lr007\\fold_4\\checkpoint.npz",
+      "checkpoint_sha256": "3954b4f0aa12aa48ef9a6ca4b3910c5b3d89f02859b3e40333860b0355b37266",
+      "fold": 4,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.5714285714285714,
+        "balanced_accuracy": 0.5625,
+        "confusion_matrix": [
+          [
+            90,
+            90
+          ],
+          [
+            90,
+            150
+          ]
+        ],
+        "macro_f1": 0.5625,
+        "per_class": {
+          "0": {
+            "f1": 0.5,
+            "precision": 0.5,
+            "recall": 0.5,
+            "support": 180
+          },
+          "1": {
+            "f1": 0.625,
+            "precision": 0.625,
+            "recall": 0.625,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr007",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 20.085948100000678
+    },
+    {
+      "available_ram_mib": 2070.8828125,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_4q_depth2_lr004\\fold_4\\checkpoint.npz",
+      "checkpoint_sha256": "95786aba12763a06b9842369b836cbb1201e4c09dac85d8ff02802c92cbae2d1",
+      "fold": 4,
+      "gradient_check": {
+        "absolute_error": 4.055970782759072e-12,
+        "finite_difference": 0.00036653508006523333,
+        "parameter_shift": 0.00036653507600926255,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.5714285714285714,
+        "balanced_accuracy": 0.5625,
+        "confusion_matrix": [
+          [
+            90,
+            90
+          ],
+          [
+            90,
+            150
+          ]
+        ],
+        "macro_f1": 0.5625,
+        "per_class": {
+          "0": {
+            "f1": 0.5,
+            "precision": 0.5,
+            "recall": 0.5,
+            "support": 180
+          },
+          "1": {
+            "f1": 0.625,
+            "precision": 0.625,
+            "recall": 0.625,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_4q_depth2_lr004",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 17.072638699995878
+    },
+    {
+      "available_ram_mib": 2065.20703125,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\amplitude_hybrid_3q_depth1_lr004\\fold_5\\checkpoint.npz",
+      "checkpoint_sha256": "f50f40a61246d572b6193d4fc4b23f6e772919f7478d2f1bff0127ce409db1d3",
+      "fold": 5,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.6428571428571429,
+        "balanced_accuracy": 0.6458333333333333,
+        "confusion_matrix": [
+          [
+            120,
+            60
+          ],
+          [
+            90,
+            150
+          ]
+        ],
+        "macro_f1": 0.641025641025641,
+        "per_class": {
+          "0": {
+            "f1": 0.6153846153846153,
+            "precision": 0.5714285714285714,
+            "recall": 0.6666666666666666,
+            "support": 180
+          },
+          "1": {
+            "f1": 0.6666666666666666,
+            "precision": 0.7142857142857143,
+            "recall": 0.625,
+            "support": 240
+          }
+        }
+      },
+      "model": "amplitude_hybrid_3q_depth1_lr004",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 1.1423014999963925
+    },
+    {
+      "available_ram_mib": 2006.23828125,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\amplitude_hybrid_3q_depth2_lr004\\fold_5\\checkpoint.npz",
+      "checkpoint_sha256": "c1194586a0d2c80dcee84aae42359965f09e8e777373f9459f9fd8a11b775058",
+      "fold": 5,
+      "gradient_check": {
+        "absolute_error": 1.2775846353063613e-11,
+        "finite_difference": -0.0010594112587192228,
+        "parameter_shift": -0.0010594112459433765,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.42857142857142855,
+        "balanced_accuracy": 0.4791666666666667,
+        "confusion_matrix": [
+          [
+            150,
+            30
+          ],
+          [
+            210,
+            30
+          ]
+        ],
+        "macro_f1": 0.37777777777777777,
+        "per_class": {
+          "0": {
+            "f1": 0.5555555555555556,
+            "precision": 0.4166666666666667,
+            "recall": 0.8333333333333334,
+            "support": 180
+          },
+          "1": {
+            "f1": 0.2,
+            "precision": 0.5,
+            "recall": 0.125,
+            "support": 240
+          }
+        }
+      },
+      "model": "amplitude_hybrid_3q_depth2_lr004",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 3.2657393000044976
+    },
+    {
+      "available_ram_mib": 2056.79296875,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_reupload_4q_depth2_lr002\\fold_5\\checkpoint.npz",
+      "checkpoint_sha256": "111e62e760c337c6c562a6314460887af7ea45bfd51a6ec1f8c1961c89cbf59c",
+      "fold": 5,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.5714285714285714,
+        "balanced_accuracy": 0.6041666666666667,
+        "confusion_matrix": [
+          [
+            150,
+            30
+          ],
+          [
+            150,
+            90
+          ]
+        ],
+        "macro_f1": 0.5625,
+        "per_class": {
+          "0": {
+            "f1": 0.625,
+            "precision": 0.5,
+            "recall": 0.8333333333333334,
+            "support": 180
+          },
+          "1": {
+            "f1": 0.5,
+            "precision": 0.75,
+            "recall": 0.375,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr002",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 21.594828999994206
+    },
+    {
+      "available_ram_mib": 2089.953125,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz",
+      "checkpoint_sha256": "8781ac7af73fff3e35f8ab42ed7d668e2522477acf9f6af23367d172096ff0cc",
+      "fold": 5,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.5714285714285714,
+        "balanced_accuracy": 0.5833333333333333,
+        "confusion_matrix": [
+          [
+            120,
+            60
+          ],
+          [
+            120,
+            120
+          ]
+        ],
+        "macro_f1": 0.5714285714285715,
+        "per_class": {
+          "0": {
+            "f1": 0.5714285714285715,
+            "precision": 0.5,
+            "recall": 0.6666666666666666,
+            "support": 180
+          },
+          "1": {
+            "f1": 0.5714285714285715,
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 21.90855890000239
+    },
+    {
+      "available_ram_mib": 2104.3984375,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_reupload_4q_depth2_lr007\\fold_5\\checkpoint.npz",
+      "checkpoint_sha256": "c8fe8b87d2c9dbb21dfb37f0c280a8c1c6014f4c844761345296a6e462828674",
+      "fold": 5,
+      "gradient_check": {
+        "absolute_error": 9.81912469695122e-13,
+        "finite_difference": 1.2688028405705152e-05,
+        "parameter_shift": 1.2688029387617622e-05,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.5714285714285714,
+        "balanced_accuracy": 0.5833333333333333,
+        "confusion_matrix": [
+          [
+            120,
+            60
+          ],
+          [
+            120,
+            120
+          ]
+        ],
+        "macro_f1": 0.5714285714285715,
+        "per_class": {
+          "0": {
+            "f1": 0.5714285714285715,
+            "precision": 0.5,
+            "recall": 0.6666666666666666,
+            "support": 180
+          },
+          "1": {
+            "f1": 0.5714285714285715,
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_reupload_4q_depth2_lr007",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 20.010867199998756
+    },
+    {
+      "available_ram_mib": 2111.94140625,
+      "checkpoint_kind": "resumable_adam_rng_checkpoint",
+      "checkpoint_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\angle_4q_depth2_lr004\\fold_5\\checkpoint.npz",
+      "checkpoint_sha256": "b50fa1c0dc8e301eb966d91d4a892380bd00b432ff9c763d0e5c916a2dbdba79",
+      "fold": 5,
+      "gradient_check": {
+        "absolute_error": 4.055970782759072e-12,
+        "finite_difference": 0.00036653508006523333,
+        "parameter_shift": 0.00036653507600926255,
+        "passed": true
+      },
+      "groups": 7,
+      "legacy_checkpoint_receipt": null,
+      "metrics": {
+        "accuracy": 0.5714285714285714,
+        "balanced_accuracy": 0.5833333333333333,
+        "confusion_matrix": [
+          [
+            120,
+            60
+          ],
+          [
+            120,
+            120
+          ]
+        ],
+        "macro_f1": 0.5714285714285715,
+        "per_class": {
+          "0": {
+            "f1": 0.5714285714285715,
+            "precision": 0.5,
+            "recall": 0.6666666666666666,
+            "support": 180
+          },
+          "1": {
+            "f1": 0.5714285714285715,
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "support": 240
+          }
+        }
+      },
+      "model": "angle_4q_depth2_lr004",
+      "records": 420,
+      "task": "bugs4q_robust_execution",
+      "train_records": 1800,
+      "training_seconds": 17.204898900003172
+    }
+  ],
+  "frozen_test_accessed": false,
+  "groups": 37,
+  "legacy_checkpoint_receipts": [
+    {
+      "config": "amplitude_hybrid_3q_depth1_lr004",
+      "epoch": 20,
+      "fold": 1,
+      "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+      "kind": "legacy_inference_only_checkpoint_reused",
+      "optimizer_rng_state_present": false,
+      "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\amplitude_hybrid_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+      "sha256": "0cab5b40e4cee35c5909b2c606b3bb5f70ac0a9f78520d6aef84efd32803c425",
+      "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+    },
+    {
+      "config": "amplitude_hybrid_3q_depth2_lr004",
+      "epoch": 20,
+      "fold": 1,
+      "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+      "kind": "legacy_inference_only_checkpoint_reused",
+      "optimizer_rng_state_present": false,
+      "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\amplitude_hybrid_3q_depth2_lr004\\fold_1\\checkpoint.npz",
+      "sha256": "6518688b37bbff4a058f4ec44a168b10b1961f29c4f1a892f4d51e1088b8f4b8",
+      "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+    },
+    {
+      "config": "angle_reupload_4q_depth2_lr002",
+      "epoch": 20,
+      "fold": 1,
+      "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+      "kind": "legacy_inference_only_checkpoint_reused",
+      "optimizer_rng_state_present": false,
+      "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_reupload_4q_depth2_lr002\\fold_1\\checkpoint.npz",
+      "sha256": "64d02ca2bff8501cafd719abcbd24aef4525bea0682bde5213300bd41d9dd62a",
+      "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+    },
+    {
+      "config": "angle_reupload_4q_depth2_lr0035",
+      "epoch": 20,
+      "fold": 1,
+      "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+      "kind": "legacy_inference_only_checkpoint_reused",
+      "optimizer_rng_state_present": false,
+      "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+      "sha256": "3c0aa7579fc74046e7d3cd2501a8961d0dcebd0726accfb47afad53ba4768f5a",
+      "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+    },
+    {
+      "config": "angle_reupload_4q_depth2_lr007",
+      "epoch": 20,
+      "fold": 1,
+      "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+      "kind": "legacy_inference_only_checkpoint_reused",
+      "optimizer_rng_state_present": false,
+      "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_reupload_4q_depth2_lr007\\fold_1\\checkpoint.npz",
+      "sha256": "7be16029f5018399fb134ba16e4624215034d7dd2bc491e74f27440a04525ca8",
+      "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+    },
+    {
+      "config": "angle_4q_depth2_lr004",
+      "epoch": 20,
+      "fold": 1,
+      "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+      "kind": "legacy_inference_only_checkpoint_reused",
+      "optimizer_rng_state_present": false,
+      "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_4q_depth2_lr004\\fold_1\\checkpoint.npz",
+      "sha256": "6413d3ae824ff19b843712244fc9001fbc3386833d9ea7aafb9cf0569140cce0",
+      "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+    },
+    {
+      "config": "amplitude_hybrid_3q_depth1_lr004",
+      "epoch": 20,
+      "fold": 2,
+      "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+      "kind": "legacy_inference_only_checkpoint_reused",
+      "optimizer_rng_state_present": false,
+      "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\amplitude_hybrid_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+      "sha256": "ec56fab563bed8830f65fd49026a3edb51a110ad0aaa3f0cd2198eaf8f5fe037",
+      "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+    },
+    {
+      "config": "amplitude_hybrid_3q_depth2_lr004",
+      "epoch": 20,
+      "fold": 2,
+      "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+      "kind": "legacy_inference_only_checkpoint_reused",
+      "optimizer_rng_state_present": false,
+      "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\amplitude_hybrid_3q_depth2_lr004\\fold_2\\checkpoint.npz",
+      "sha256": "51ec88f60b8a628d4450c03967f186e83cd7048d7354fe7b9fcb60c4230ce4bc",
+      "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+    },
+    {
+      "config": "angle_reupload_4q_depth2_lr002",
+      "epoch": 20,
+      "fold": 2,
+      "fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+      "kind": "legacy_inference_only_checkpoint_reused",
+      "optimizer_rng_state_present": false,
+      "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_reupload_4q_depth2_lr002\\fold_2\\checkpoint.npz",
+      "sha256": "abe4cbcb8e3eb10ed7c7fde9a5e38797adb2b9b291117f42f1b79afb47e9706b",
+      "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+    },
+    {
+      "config": "angle_reupload_4q_depth2_lr0035",
+      "epoch": 17,
+      "fold": 2,
+      "kind": "legacy_partial_checkpoint_preserved_but_not_resumed",
+      "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+      "reason": "Legacy checkpoint has no Adam moments or RNG state; exact continuation is impossible.",
+      "sha256": "5596fdfaf2c0da18b457f580d44859df77adc78f68a741014b19ea167ce1dd0b"
+    }
+  ],
+  "memory_floor_mib": 500,
+  "oof_predictions_sha256": "1ee99166bbedbcf2c0bdc1b83c41589f610dd41d4599babbccee84dcc157231c",
+  "optimizer": "Adam",
+  "results": [
+    {
+      "accuracy": 0.5405405405405406,
+      "balanced_accuracy": 0.5405405405405406,
+      "configuration": {
+        "depth": 1,
+        "encoding": "amplitude",
+        "features": 8,
+        "learning_rate": 0.04,
+        "name": "amplitude_hybrid_3q_depth1_lr004",
+        "qubits": 3,
+        "reupload": false
+      },
+      "confusion_matrix": [
+        [
+          510,
+          600
+        ],
+        [
+          420,
+          690
+        ]
+      ],
+      "folds": 5,
+      "macro_f1": 0.5375,
+      "model": "amplitude_hybrid_3q_depth1_lr004",
+      "per_class": {
+        "0": {
+          "f1": 0.5,
+          "precision": 0.5483870967741935,
+          "recall": 0.4594594594594595,
+          "support": 1110
+        },
+        "1": {
+          "f1": 0.575,
+          "precision": 0.5348837209302325,
+          "recall": 0.6216216216216216,
+          "support": 1110
+        }
+      },
+      "records": 2220,
+      "training_seconds": 1.1423044000039226
+    },
+    {
+      "accuracy": 0.47297297297297297,
+      "balanced_accuracy": 0.47297297297297297,
+      "configuration": {
+        "depth": 2,
+        "encoding": "amplitude",
+        "features": 8,
+        "learning_rate": 0.04,
+        "name": "amplitude_hybrid_3q_depth2_lr004",
+        "qubits": 3,
+        "reupload": false
+      },
+      "confusion_matrix": [
+        [
+          570,
+          540
+        ],
+        [
+          630,
+          480
+        ]
+      ],
+      "folds": 5,
+      "macro_f1": 0.4721053594293031,
+      "model": "amplitude_hybrid_3q_depth2_lr004",
+      "per_class": {
+        "0": {
+          "f1": 0.4935064935064935,
+          "precision": 0.475,
+          "recall": 0.5135135135135135,
+          "support": 1110
+        },
+        "1": {
+          "f1": 0.4507042253521127,
+          "precision": 0.47058823529411764,
+          "recall": 0.43243243243243246,
+          "support": 1110
+        }
+      },
+      "records": 2220,
+      "training_seconds": 4.998302300009527
+    },
+    {
+      "accuracy": 0.4864864864864865,
+      "balanced_accuracy": 0.4864864864864865,
+      "configuration": {
+        "depth": 2,
+        "encoding": "angle",
+        "features": 4,
+        "learning_rate": 0.02,
+        "name": "angle_reupload_4q_depth2_lr002",
+        "qubits": 4,
+        "reupload": true
+      },
+      "confusion_matrix": [
+        [
+          660,
+          450
+        ],
+        [
+          690,
+          420
+        ]
+      ],
+      "folds": 5,
+      "macro_f1": 0.48041389504804144,
+      "model": "angle_reupload_4q_depth2_lr002",
+      "per_class": {
+        "0": {
+          "f1": 0.5365853658536586,
+          "precision": 0.4888888888888889,
+          "recall": 0.5945945945945946,
+          "support": 1110
+        },
+        "1": {
+          "f1": 0.42424242424242425,
+          "precision": 0.4827586206896552,
+          "recall": 0.3783783783783784,
+          "support": 1110
+        }
+      },
+      "records": 2220,
+      "training_seconds": 41.21632619999582
+    },
+    {
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "configuration": {
+        "depth": 2,
+        "encoding": "angle",
+        "features": 4,
+        "learning_rate": 0.035,
+        "name": "angle_reupload_4q_depth2_lr0035",
+        "qubits": 4,
+        "reupload": true
+      },
+      "confusion_matrix": [
+        [
+          540,
+          570
+        ],
+        [
+          540,
+          570
+        ]
+      ],
+      "folds": 5,
+      "macro_f1": 0.4999086757990867,
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "per_class": {
+        "0": {
+          "f1": 0.4931506849315069,
+          "precision": 0.5,
+          "recall": 0.4864864864864865,
+          "support": 1110
+        },
+        "1": {
+          "f1": 0.5066666666666666,
+          "precision": 0.5,
+          "recall": 0.5135135135135135,
+          "support": 1110
+        }
+      },
+      "records": 2220,
+      "training_seconds": 42.68870639999659
+    },
+    {
+      "accuracy": 0.5405405405405406,
+      "balanced_accuracy": 0.5405405405405406,
+      "configuration": {
+        "depth": 2,
+        "encoding": "angle",
+        "features": 4,
+        "learning_rate": 0.07,
+        "name": "angle_reupload_4q_depth2_lr007",
+        "qubits": 4,
+        "reupload": true
+      },
+      "confusion_matrix": [
+        [
+          570,
+          540
+        ],
+        [
+          480,
+          630
+        ]
+      ],
+      "folds": 5,
+      "macro_f1": 0.5402046783625731,
+      "model": "angle_reupload_4q_depth2_lr007",
+      "per_class": {
+        "0": {
+          "f1": 0.5277777777777778,
+          "precision": 0.5428571428571428,
+          "recall": 0.5135135135135135,
+          "support": 1110
+        },
+        "1": {
+          "f1": 0.5526315789473685,
+          "precision": 0.5384615384615384,
+          "recall": 0.5675675675675675,
+          "support": 1110
+        }
+      },
+      "records": 2220,
+      "training_seconds": 40.09681999999884
+    },
+    {
+      "accuracy": 0.527027027027027,
+      "balanced_accuracy": 0.527027027027027,
+      "configuration": {
+        "depth": 2,
+        "encoding": "angle",
+        "features": 4,
+        "learning_rate": 0.04,
+        "name": "angle_4q_depth2_lr004",
+        "qubits": 4,
+        "reupload": false
+      },
+      "confusion_matrix": [
+        [
+          600,
+          510
+        ],
+        [
+          540,
+          570
+        ]
+      ],
+      "folds": 5,
+      "macro_f1": 0.5269406392694064,
+      "model": "angle_4q_depth2_lr004",
+      "per_class": {
+        "0": {
+          "f1": 0.5333333333333333,
+          "precision": 0.5263157894736842,
+          "recall": 0.5405405405405406,
+          "support": 1110
+        },
+        "1": {
+          "f1": 0.5205479452054794,
+          "precision": 0.5277777777777778,
+          "recall": 0.5135135135135135,
+          "support": 1110
+        }
+      },
+      "records": 2220,
+      "training_seconds": 34.27754000000277
+    }
+  ],
+  "rows": 2220,
+  "runtime_seconds": 164.94646999999532,
+  "seed": 28102026,
+  "source_receipt": {
+    "baseline_split_reference": "bugs4q_robust_execution/resource_light_qnn/oof_predictions.csv",
+    "baseline_split_reference_sha256": "9f621408ca0b2ef79e8bd8fee1e32d4212f4ce87f0ebf959da543505ca38f4d3",
+    "group_fold_assignment_sha256": "10d0b38ed918308eaec02132bf60d8eda45abd21ec98a326ec669f0350949e33",
+    "groups": 37,
+    "manifest_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\normalized_manifest.csv",
+    "processed_input_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205",
+    "processed_manifest": "data\\processed\\bugs4q_robust\\harness_execution_outcome_v2\\manifest.json",
+    "processed_manifest_sha256": "8bc2df4bb3761011cf6e1f7c8926271ee931ce093c1e48c3bc799775d34dd731",
+    "rows": 2220,
+    "source_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205"
+  },
+  "status": "completed",
+  "task": "bugs4q_robust_execution",
+  "training_history_gaps": [
+    {
+      "checkpoint_epoch": 6,
+      "checkpoint_sha256": "d80f07ea8f10f46f821ff3141811fbc824f46f1e59f85744f2563fe1badcf10f",
+      "fold": 4,
+      "missing_loss_epochs": [
+        6
+      ],
+      "model": "amplitude_hybrid_3q_depth2_lr004",
+      "path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\qnn_hyperparameter_sweep20_resumable_v2\\amplitude_hybrid_3q_depth2_lr004\\fold_4\\training_history_gap.json",
+      "reason": "A checkpoint was durably saved, then the history replace hit a transient Windows sharing lock. Model/optimizer/RNG state remains resumable; no loss values were fabricated.",
+      "schema": "qnn-training-history-gap-v1",
+      "task": "bugs4q_robust_execution"
+    }
+  ]
+}

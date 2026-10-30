@@ -1,0 +1,398 @@
+{
+  "status": "completed_matched_classical_grouped_oof",
+  "task": "LintQ",
+  "target": "LintQ",
+  "records": 290,
+  "groups": 228,
+  "folds": 5,
+  "feature_policy": "same deterministic 8-bin BLAKE2b token counts as QNN; fold-local min-max; compare 4-feature and 8-feature controls",
+  "split_source": "saved development QNN grouped out-of-fold fold assignment",
+  "source_manifest_sha256": "8903aba9cce7d2bfc3fc7430a39f3b87fa6e1463df9b93b3dc4865212efa14ab",
+  "scikit_learn": "1.9.1",
+  "models": [
+    {
+      "task": "LintQ",
+      "model": "majority_dummy",
+      "feature_count": 4,
+      "records": 290,
+      "folds": 5,
+      "accuracy": 0.7448275862068966,
+      "macro_f1": 0.4268774703557312,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 74
+        },
+        "1": {
+          "precision": 0.7448275862068966,
+          "recall": 1.0,
+          "f1": 0.8537549407114624,
+          "support": 216
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          74
+        ],
+        [
+          0,
+          216
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "LintQ",
+      "model": "logistic_balanced",
+      "feature_count": 4,
+      "records": 290,
+      "folds": 5,
+      "accuracy": 0.4862068965517241,
+      "macro_f1": 0.47572768415049926,
+      "balanced_accuracy": 0.548485985985986,
+      "per_class": {
+        "0": {
+          "precision": 0.2857142857142857,
+          "recall": 0.6756756756756757,
+          "f1": 0.4016064257028112,
+          "support": 74
+        },
+        "1": {
+          "precision": 0.7913043478260869,
+          "recall": 0.4212962962962963,
+          "f1": 0.5498489425981874,
+          "support": 216
+        }
+      },
+      "confusion_matrix": [
+        [
+          50,
+          24
+        ],
+        [
+          125,
+          91
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "LintQ",
+      "model": "decision_tree_balanced",
+      "feature_count": 4,
+      "records": 290,
+      "folds": 5,
+      "accuracy": 0.6103448275862069,
+      "macro_f1": 0.5883734659783196,
+      "balanced_accuracy": 0.6540290290290289,
+      "per_class": {
+        "0": {
+          "precision": 0.3691275167785235,
+          "recall": 0.7432432432432432,
+          "f1": 0.4932735426008969,
+          "support": 74
+        },
+        "1": {
+          "precision": 0.8652482269503546,
+          "recall": 0.5648148148148148,
+          "f1": 0.6834733893557423,
+          "support": 216
+        }
+      },
+      "confusion_matrix": [
+        [
+          55,
+          19
+        ],
+        [
+          94,
+          122
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "LintQ",
+      "model": "random_forest_balanced",
+      "feature_count": 4,
+      "records": 290,
+      "folds": 5,
+      "accuracy": 0.7034482758620689,
+      "macro_f1": 0.6686330782312925,
+      "balanced_accuracy": 0.7165290290290289,
+      "per_class": {
+        "0": {
+          "precision": 0.45081967213114754,
+          "recall": 0.7432432432432432,
+          "f1": 0.5612244897959183,
+          "support": 74
+        },
+        "1": {
+          "precision": 0.8869047619047619,
+          "recall": 0.6898148148148148,
+          "f1": 0.7760416666666666,
+          "support": 216
+        }
+      },
+      "confusion_matrix": [
+        [
+          55,
+          19
+        ],
+        [
+          67,
+          149
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "LintQ",
+      "model": "extra_trees_balanced",
+      "feature_count": 4,
+      "records": 290,
+      "folds": 5,
+      "accuracy": 0.6862068965517242,
+      "macro_f1": 0.6551724137931034,
+      "balanced_accuracy": 0.7093968968968969,
+      "per_class": {
+        "0": {
+          "precision": 0.43410852713178294,
+          "recall": 0.7567567567567568,
+          "f1": 0.5517241379310344,
+          "support": 74
+        },
+        "1": {
+          "precision": 0.8881987577639752,
+          "recall": 0.6620370370370371,
+          "f1": 0.7586206896551725,
+          "support": 216
+        }
+      },
+      "confusion_matrix": [
+        [
+          56,
+          18
+        ],
+        [
+          73,
+          143
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "LintQ",
+      "model": "majority_dummy",
+      "feature_count": 8,
+      "records": 290,
+      "folds": 5,
+      "accuracy": 0.7448275862068966,
+      "macro_f1": 0.4268774703557312,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 74
+        },
+        "1": {
+          "precision": 0.7448275862068966,
+          "recall": 1.0,
+          "f1": 0.8537549407114624,
+          "support": 216
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          74
+        ],
+        [
+          0,
+          216
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "LintQ",
+      "model": "logistic_balanced",
+      "feature_count": 8,
+      "records": 290,
+      "folds": 5,
+      "accuracy": 0.5206896551724138,
+      "macro_f1": 0.4936629360264284,
+      "balanced_accuracy": 0.5360985985985987,
+      "per_class": {
+        "0": {
+          "precision": 0.28187919463087246,
+          "recall": 0.5675675675675675,
+          "f1": 0.3766816143497757,
+          "support": 74
+        },
+        "1": {
+          "precision": 0.7730496453900709,
+          "recall": 0.5046296296296297,
+          "f1": 0.6106442577030812,
+          "support": 216
+        }
+      },
+      "confusion_matrix": [
+        [
+          42,
+          32
+        ],
+        [
+          107,
+          109
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "LintQ",
+      "model": "decision_tree_balanced",
+      "feature_count": 8,
+      "records": 290,
+      "folds": 5,
+      "accuracy": 0.6379310344827587,
+      "macro_f1": 0.6175151675019783,
+      "balanced_accuracy": 0.6903153153153153,
+      "per_class": {
+        "0": {
+          "precision": 0.3959731543624161,
+          "recall": 0.7972972972972973,
+          "f1": 0.5291479820627802,
+          "support": 74
+        },
+        "1": {
+          "precision": 0.8936170212765957,
+          "recall": 0.5833333333333334,
+          "f1": 0.7058823529411765,
+          "support": 216
+        }
+      },
+      "confusion_matrix": [
+        [
+          59,
+          15
+        ],
+        [
+          90,
+          126
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "LintQ",
+      "model": "random_forest_balanced",
+      "feature_count": 8,
+      "records": 290,
+      "folds": 5,
+      "accuracy": 0.7103448275862069,
+      "macro_f1": 0.6694528875379939,
+      "balanced_accuracy": 0.7078328328328328,
+      "per_class": {
+        "0": {
+          "precision": 0.45614035087719296,
+          "recall": 0.7027027027027027,
+          "f1": 0.553191489361702,
+          "support": 74
+        },
+        "1": {
+          "precision": 0.875,
+          "recall": 0.7129629629629629,
+          "f1": 0.7857142857142858,
+          "support": 216
+        }
+      },
+      "confusion_matrix": [
+        [
+          52,
+          22
+        ],
+        [
+          62,
+          154
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "LintQ",
+      "model": "extra_trees_balanced",
+      "feature_count": 8,
+      "records": 290,
+      "folds": 5,
+      "accuracy": 0.6827586206896552,
+      "macro_f1": 0.6455144557823129,
+      "balanced_accuracy": 0.6893143143143143,
+      "per_class": {
+        "0": {
+          "precision": 0.4262295081967213,
+          "recall": 0.7027027027027027,
+          "f1": 0.5306122448979592,
+          "support": 74
+        },
+        "1": {
+          "precision": 0.8690476190476191,
+          "recall": 0.6759259259259259,
+          "f1": 0.7604166666666666,
+          "support": 216
+        }
+      },
+      "confusion_matrix": [
+        [
+          52,
+          22
+        ],
+        [
+          70,
+          146
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    }
+  ],
+  "fold_metrics_path": "fold_metrics.csv",
+  "oof_predictions_path": "oof_predictions.csv",
+  "tuning": "fixed published-in-this-run configurations; no hyperparameter selection on validation folds",
+  "frozen_test_accessed": false
+}

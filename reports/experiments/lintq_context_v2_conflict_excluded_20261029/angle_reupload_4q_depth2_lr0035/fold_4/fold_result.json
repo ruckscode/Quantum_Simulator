@@ -1,0 +1,44 @@
+{
+  "fold": 4,
+  "train_rows": 232,
+  "validation_rows": 55,
+  "train_groups": 175,
+  "validation_groups": 41,
+  "training_seconds": 0.5332210000051418,
+  "available_ram_mib": 1002.83984375,
+  "gradient_check": {
+    "parameter_shift": 1.2688029387617622e-05,
+    "finite_difference": 1.2688028405705152e-05,
+    "absolute_error": 9.81912469695122e-13,
+    "passed": true
+  },
+  "metrics": {
+    "accuracy": 0.7454545454545455,
+    "balanced_accuracy": 0.5,
+    "macro_f1": 0.4270833333333333,
+    "per_class": {
+      "0": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 14
+      },
+      "1": {
+        "precision": 0.7454545454545455,
+        "recall": 1.0,
+        "f1": 0.8541666666666666,
+        "support": 41
+      }
+    },
+    "confusion_matrix": [
+      [
+        0,
+        14
+      ],
+      [
+        0,
+        41
+      ]
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-28",
+  "confirmation_origin_manifest": {
+    "status": "passed",
+    "development_rows": 578117,
+    "label_counts": {"Survivor": 278413, "WOO": 294802, "OPO": 4902},
+    "OPO_bearing_origins": 48,
+    "exploration_origins": 12,
+    "reserved_confirmation_origins": 36,
+    "overlap": 0,
+    "frozen_test_target_labels_accessed": false,
+    "method": "Standard-library CSV scan; parsed IDs for all rows but accessed Killed only after membership in saved development OOF IDs was confirmed."
+  },
+  "local_backend_smoke": {
+    "status": "default_qubit_forward_and_gradient_passed",
+    "duration_seconds": 8.5,
+    "default_qubit_single_circuit_gradient_seconds": 0.01807840000037686,
+    "process_peak_rss_bytes": 139464704,
+    "lightning_qubit": "unavailable: DLL blocked by Windows Application Control",
+    "lightning_gpu": "unavailable: plugin absent",
+    "kaggle_access": "not available from this environment; no Kaggle CLI or GPU device"
+  },
+  "targeted_tests": {
+    "command": "qmutbench_qml/.venv/Scripts/python.exe -m pytest qmutbench_qml/tests/test_foundations_and_multiclass.py -k \"chunked_gradient or state_gate_measurement or basis_probabilities\" -q",
+    "duration_seconds": 3.81,
+    "passed": 2,
+    "failed": 1,
+    "deselected": 2,
+    "failure": "The chunked-gradient equivalence test hit the existing 500 MiB in-fit RAM safety floor before the first update; this is a resource guard, not an assertion mismatch.",
+    "pre_import_available_mib": 877.9,
+    "prior_import_only_available_mib": 744.1,
+    "confirmation_fit_started": false
+  },
+  "prior_direct_chunked_gradient_smoke": {
+    "status": "passed",
+    "records": 6,
+    "full_batch_loss": 0.8948835826279525,
+    "chunked_loss": 0.8948835826279523,
+    "circuit_weight_max_abs_delta": 2.392641640369675e-12,
+    "readout_max_abs_delta": 6.938893903907228e-18,
+    "source": "chunked_gradient_smoke.json"
+  },
+  "frozen_test": "untouched; no final evaluation or predictions generated",
+  "confirmation_training": "not run locally; no confirmation metrics or checkpoint generated",
+  "compact_data_export_attempt": {
+    "status": "stopped_by_preflight_before_loading_data",
+    "command": "qmutbench_qml/.venv/Scripts/python.exe qmutbench_qml/training/export_confirmation_data.py --output reports/experiments/qmutbench_three_class_qnn_campaign_20261027/confirmation/kaggle_export_20261028",
+    "available_mib_at_attempt": 667,
+    "required_pre_import_mib": 900,
+    "source_rows_loaded": 0,
+    "output_directory_created": false
+  }
+}

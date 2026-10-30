@@ -1,0 +1,13 @@
+qml_model,matched_classical_model,metric,difference_percentage_points,ci95_low_percentage_points,ci95_high_percentage_points,resamples,bootstrap_unit
+vqc,extra_trees_4f,accuracy,14.444444444444446,-9.062500000000002,41.00694444444441,500,sampled validation origin
+vqc,extra_trees_4f,balanced_accuracy,10.62781194102495,-11.14318181818182,34.22019675925923,500,sampled validation origin
+vqc,extra_trees_4f,macro_f1,12.769247220414476,-9.663933883151689,37.42023348208872,500,sampled validation origin
+vqc,rbf_svc_4f,accuracy,2.738888888888889,-20.833333333333336,23.611111111111104,500,sampled validation origin
+vqc,rbf_svc_4f,balanced_accuracy,3.1104423863823767,-14.334397163120565,21.167448936270564,500,sampled validation origin
+vqc,rbf_svc_4f,macro_f1,3.647840689923333,-16.0749426370943,22.08302777482694,500,sampled validation origin
+qsvc,extra_trees_4f,accuracy,7.386111111111111,-4.166666666666669,27.777777777777775,500,sampled validation origin
+qsvc,extra_trees_4f,balanced_accuracy,4.514719154831987,-7.565104166666667,18.61015886287625,500,sampled validation origin
+qsvc,extra_trees_4f,macro_f1,6.442066263040867,-5.695551785637292,21.50862126791161,500,sampled validation origin
+qsvc,rbf_svc_4f,accuracy,-4.15,-12.500000000000005,0.0,500,sampled validation origin
+qsvc,rbf_svc_4f,balanced_accuracy,-2.7209964827893383,-10.256277056277053,3.1471282454760026,500,sampled validation origin
+qsvc,rbf_svc_4f,macro_f1,-2.288722586904542,-10.28816524903935,5.19932374212178,500,sampled validation origin

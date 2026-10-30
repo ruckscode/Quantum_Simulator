@@ -1,0 +1,253 @@
+{
+  "frozen_test_accessed": false,
+  "invalidated_prior_run": {
+    "correction_path": "reports\\experiments\\resumable_qnn_pilot_bugs4q_core_transfer_20261029\\task_validity_correction.json",
+    "reason": "The resumable pilot runner performed mixed-source grouped cross-validation. The registered contract requires each fold to train only on Bugs4Q_core and evaluate the held-out fold with the Bugs4Q_NA_additional transfer subset reported separately. This run therefore cannot support the transfer claim.",
+    "status": "INVALID_FOR_TRANSFER_TASK"
+  },
+  "issues": [],
+  "schema": "resumable-qnn-transfer-pilot-audit-v1",
+  "status": "VERIFIED",
+  "tasks": [
+    {
+      "classical_transfer_metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "confusion_matrix": [
+          [
+            17,
+            14
+          ],
+          [
+            17,
+            14
+          ]
+        ],
+        "macro_f1": 0.49882659713168187,
+        "per_class": {
+          "0": {
+            "f1": 0.5230769230769231,
+            "precision": 0.5,
+            "recall": 0.5483870967741935,
+            "support": 31
+          },
+          "1": {
+            "f1": 0.47457627118644063,
+            "precision": 0.5,
+            "recall": 0.45161290322580644,
+            "support": 31
+          }
+        }
+      },
+      "folds": [
+        {
+          "checkpoint_sha256": "6664a25f1b8e8bc16ee042818042942037aa81810d5cf905614748af3dbed846",
+          "fold": 1,
+          "train_groups": 22,
+          "train_records": 44,
+          "train_source_only": true,
+          "validation_records": 26
+        },
+        {
+          "checkpoint_sha256": "42068fb11e17f1aaf53471360cbc5679b19463b1965e5c9223067b5730d892b1",
+          "fold": 2,
+          "train_groups": 23,
+          "train_records": 46,
+          "train_source_only": true,
+          "validation_records": 26
+        },
+        {
+          "checkpoint_sha256": "7892e7e95c2141464660ae7d64bf7cfa1ac8495acdb5c2140d0fd330fdd93a33",
+          "fold": 3,
+          "train_groups": 27,
+          "train_records": 54,
+          "train_source_only": true,
+          "validation_records": 24
+        },
+        {
+          "checkpoint_sha256": "a4f10ecc802956a666fbfa75ea5d722933569e007539f0df916adbde98cbe9e4",
+          "fold": 4,
+          "train_groups": 26,
+          "train_records": 52,
+          "train_source_only": true,
+          "validation_records": 24
+        },
+        {
+          "checkpoint_sha256": "322bcea2260f9a0deb7e4ba92d8040b27c7dad46ebad185672937d7a96614221",
+          "fold": 5,
+          "train_groups": 26,
+          "train_records": 52,
+          "train_source_only": true,
+          "validation_records": 24
+        }
+      ],
+      "frozen_test_accessed": false,
+      "groups": 62,
+      "metrics_sha256": "e515c095b340bf97e7f2f13b8282b4319f0ee049e25cb51679568cf9dd1adc27",
+      "qnn_transfer_metrics": {
+        "accuracy": 0.5483870967741935,
+        "balanced_accuracy": 0.5483870967741935,
+        "confusion_matrix": [
+          [
+            16,
+            15
+          ],
+          [
+            13,
+            18
+          ]
+        ],
+        "macro_f1": 0.5479166666666666,
+        "per_class": {
+          "0": {
+            "f1": 0.5333333333333333,
+            "precision": 0.5517241379310345,
+            "recall": 0.5161290322580645,
+            "support": 31
+          },
+          "1": {
+            "f1": 0.5625,
+            "precision": 0.5454545454545454,
+            "recall": 0.5806451612903226,
+            "support": 31
+          }
+        }
+      },
+      "resume_status": "verified",
+      "rows": 124,
+      "run_manifest_sha256": "db17a791dab5240442bd1ef1347c72587ce77ae3eb180bac67fa8ea9e6536ce2",
+      "task": "bugs4q_core_only_transfer_source_restricted_v2",
+      "training_source": "Bugs4Q_core",
+      "transfer_target_paired_group_bootstrap_95_percentile": {
+        "groups_resampled": 31,
+        "iterations": 1000,
+        "macro_f1_difference_qnn_minus_classical": 0.05122860843165,
+        "percentile_95_ci": [
+          -0.04804677335415036,
+          0.15158285865324028
+        ]
+      },
+      "transfer_target_source": "Bugs4Q_NA_additional"
+    },
+    {
+      "classical_transfer_metrics": {
+        "accuracy": 0.5161290322580645,
+        "balanced_accuracy": 0.5161290322580645,
+        "confusion_matrix": [
+          [
+            14,
+            17
+          ],
+          [
+            13,
+            18
+          ]
+        ],
+        "macro_f1": 0.5141065830721003,
+        "per_class": {
+          "0": {
+            "f1": 0.48275862068965514,
+            "precision": 0.5185185185185185,
+            "recall": 0.45161290322580644,
+            "support": 31
+          },
+          "1": {
+            "f1": 0.5454545454545455,
+            "precision": 0.5142857142857142,
+            "recall": 0.5806451612903226,
+            "support": 31
+          }
+        }
+      },
+      "folds": [
+        {
+          "checkpoint_sha256": "1258c00d9faf94b4390f3155a3e9563f9a881e5bf332dcd173e1c6f01dd9cf8f",
+          "fold": 1,
+          "train_groups": 27,
+          "train_records": 54,
+          "train_source_only": true,
+          "validation_records": 26
+        },
+        {
+          "checkpoint_sha256": "af46ae3863b12a5f6e97441d68ac3b14d51b7a8f53b00e585cb775806c18a43b",
+          "fold": 2,
+          "train_groups": 26,
+          "train_records": 52,
+          "train_source_only": true,
+          "validation_records": 26
+        },
+        {
+          "checkpoint_sha256": "acc13d5324676bd951e509ed8d15cc5e80a9de1c28be947067d14c839b511c48",
+          "fold": 3,
+          "train_groups": 23,
+          "train_records": 46,
+          "train_source_only": true,
+          "validation_records": 24
+        },
+        {
+          "checkpoint_sha256": "7e17721108c9da4934a845bf31909b7da9382b8140306fe969f5443f79befa47",
+          "fold": 4,
+          "train_groups": 24,
+          "train_records": 48,
+          "train_source_only": true,
+          "validation_records": 24
+        },
+        {
+          "checkpoint_sha256": "b84c84c3946c1c168989aad265c6b8d46964dc1cece62e8b17f7dabad08978c4",
+          "fold": 5,
+          "train_groups": 24,
+          "train_records": 48,
+          "train_source_only": true,
+          "validation_records": 24
+        }
+      ],
+      "frozen_test_accessed": false,
+      "groups": 62,
+      "metrics_sha256": "a9f384ac323a9f189357d5e5937e417be5f1c8308fb1bafb194b0084ccfdb7a5",
+      "qnn_transfer_metrics": {
+        "accuracy": 0.5161290322580645,
+        "balanced_accuracy": 0.5161290322580645,
+        "confusion_matrix": [
+          [
+            17,
+            14
+          ],
+          [
+            16,
+            15
+          ]
+        ],
+        "macro_f1": 0.515625,
+        "per_class": {
+          "0": {
+            "f1": 0.53125,
+            "precision": 0.5151515151515151,
+            "recall": 0.5483870967741935,
+            "support": 31
+          },
+          "1": {
+            "f1": 0.5000000000000001,
+            "precision": 0.5172413793103449,
+            "recall": 0.4838709677419355,
+            "support": 31
+          }
+        }
+      },
+      "resume_status": "verified",
+      "rows": 124,
+      "run_manifest_sha256": "508d8634d000986a6e23536c7b7da498517ab7ab848bb9ce6ae04b867d4df064",
+      "task": "bugs4q_na_only_transfer_source_restricted_v2",
+      "training_source": "Bugs4Q_NA_additional",
+      "transfer_target_paired_group_bootstrap_95_percentile": {
+        "groups_resampled": 31,
+        "iterations": 1000,
+        "macro_f1_difference_qnn_minus_classical": 0.0007261401558785755,
+        "percentile_95_ci": [
+          -0.06495031244913399,
+          0.0684176504255644
+        ]
+      },
+      "transfer_target_source": "Bugs4Q_core"
+    }
+  ]
+}

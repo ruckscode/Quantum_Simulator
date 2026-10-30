@@ -1436,7 +1436,7 @@
     }
   ],
   "qmutbench_three_class": {
-    "status": "OOF_TRAINING_ARTIFACTS_PRESENT_NO_MODEL_CHECKPOINT",
+    "status": "OOF_AND_VERSIONED_RESUMABLE_CHECKPOINT_RECOVERY_VERIFIED",
     "records": 205,
     "models": [
       "extra_trees_4f",
@@ -2154,9 +2154,182 @@
     "real_data_checkpoint_present": false,
     "qnn_candidate_count": 1,
     "frozen_test_opened": false,
-    "scope": "development OOF files only; confirmation and frozen-test directories were not read"
+    "scope": "development OOF files only; confirmation and frozen-test directories were not read",
+    "original_campaign_checkpoint_status": "no_real_data_qnn_parameter_checkpoint",
+    "resumable_checkpoint_recovery": {
+      "audit_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qmutbench_threeclass_resumable_recovery_20261029\\checkpoint_audit.json",
+      "status": "VERIFIED",
+      "issues": [],
+      "records": 205,
+      "origins": 12,
+      "folds": 3,
+      "models": 3,
+      "resumable_checkpoints_verified": 9,
+      "replayed_oof_probabilities": 615,
+      "matched_classical_controls": {
+        "status": "VERIFIED",
+        "rows_per_control": 205,
+        "controls": [
+          "extra_trees_4f",
+          "logistic_4f",
+          "rbf_svc_4f"
+        ],
+        "metrics_recalculated": {
+          "extra_trees_4f": {
+            "accuracy": 0.4878048780487805,
+            "macro_f1": 0.46078218177742647,
+            "balanced_accuracy": 0.47965057817999,
+            "per_class": {
+              "0": {
+                "precision": 0.4789915966386555,
+                "recall": 0.7916666666666666,
+                "f1": 0.5968586387434555,
+                "support": 72
+              },
+              "1": {
+                "precision": 0.5,
+                "recall": 0.3088235294117647,
+                "f1": 0.38181818181818183,
+                "support": 68
+              },
+              "2": {
+                "precision": 0.5,
+                "recall": 0.3384615384615385,
+                "f1": 0.4036697247706422,
+                "support": 65
+              }
+            },
+            "confusion_matrix": [
+              [
+                57,
+                10,
+                5
+              ],
+              [
+                30,
+                21,
+                17
+              ],
+              [
+                32,
+                11,
+                22
+              ]
+            ]
+          },
+          "logistic_4f": {
+            "accuracy": 0.4634146341463415,
+            "macro_f1": 0.44068553825730666,
+            "balanced_accuracy": 0.457181163063516,
+            "per_class": {
+              "0": {
+                "precision": 0.48598130841121495,
+                "recall": 0.7222222222222222,
+                "f1": 0.5810055865921788,
+                "support": 72
+              },
+              "1": {
+                "precision": 0.5454545454545454,
+                "recall": 0.2647058823529412,
+                "f1": 0.3564356435643565,
+                "support": 68
+              },
+              "2": {
+                "precision": 0.38461538461538464,
+                "recall": 0.38461538461538464,
+                "f1": 0.38461538461538464,
+                "support": 65
+              }
+            },
+            "confusion_matrix": [
+              [
+                52,
+                7,
+                13
+              ],
+              [
+                23,
+                18,
+                27
+              ],
+              [
+                32,
+                8,
+                25
+              ]
+            ]
+          },
+          "rbf_svc_4f": {
+            "accuracy": 0.43414634146341463,
+            "macro_f1": 0.42464875307341066,
+            "balanced_accuracy": 0.43117144293614884,
+            "per_class": {
+              "0": {
+                "precision": 0.4772727272727273,
+                "recall": 0.5833333333333334,
+                "f1": 0.5250000000000001,
+                "support": 72
+              },
+              "1": {
+                "precision": 0.5277777777777778,
+                "recall": 0.27941176470588236,
+                "f1": 0.36538461538461536,
+                "support": 68
+              },
+              "2": {
+                "precision": 0.345679012345679,
+                "recall": 0.4307692307692308,
+                "f1": 0.3835616438356164,
+                "support": 65
+              }
+            },
+            "confusion_matrix": [
+              [
+                42,
+                7,
+                23
+              ],
+              [
+                19,
+                19,
+                30
+              ],
+              [
+                27,
+                10,
+                28
+              ]
+            ]
+          }
+        },
+        "comparison_sha256": "d73f877523a6c81fb2e52e8c1d31c4d865bba806f41dd93dd86f5e5fb4235279",
+        "oof_sha256": "6fc708318e4ffb3cc959adcbaf598c10de09dc4fd582d017edf185dd226719ca",
+        "frozen_test_accessed": false
+      },
+      "frozen_test_accessed": false
+    }
   },
-  "runtime_seconds": 50.745801400000346,
+  "runtime_seconds": 41.83266849999927,
   "frozen_test_opened": false,
-  "production_modified": false
+  "production_modified": false,
+  "qmutbench_binary_full_development": {
+    "status": "PARTIAL_RESUMABLE_PROGRESS_VERIFIED",
+    "progress_audit_path": "reports\\experiments\\qmutbench_binary_qnn_full_development_chunk16_20261029\\progress_audit.json",
+    "campaign_status": "paused_checkpointed",
+    "active_fold": 1,
+    "committed_chunks": 51,
+    "processed_training_records": 26112,
+    "optimizer_updates": 816,
+    "minimum_available_ram_mib": 1747.95703125,
+    "maximum_checkpointed_peak_rss_mib": 468.03125,
+    "latest_resume_attempt": "blocked_memory_guard_before_training",
+    "latest_preflight_available_mib": null,
+    "full_development_required_mib": 2076,
+    "frozen_test_accessed": false,
+    "cumulative_training_seconds": 837.3080003000214,
+    "cumulative_circuit_executions": 26112,
+    "estimated_total_optimizer_updates": 578136,
+    "estimated_total_qnn_training_hours_at_observed_rate": 164.78686617015697,
+    "latest_preflight_reason": "Only 914 MiB available; estimated peak requires 2076 MiB to preserve the 1024 MiB floor"
+  }
 }

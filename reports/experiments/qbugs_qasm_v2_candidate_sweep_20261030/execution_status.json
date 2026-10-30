@@ -1,0 +1,34 @@
+{
+  "schema": "qbugs-qasm-v2-candidate-sweep-progress-v1",
+  "status": "VERIFIED",
+  "task": "duplicate-aware paired correct/buggy QBugs QASM",
+  "source_hashes": {
+    "manifest": "809a4492d02246bdb6e182ac670e803b24ec9ae563fb133663384c7e2e336120",
+    "registered_processed_split": "03ed9fa4234951abc6c1cc36e24fbde72f09c58ab7f0ae92f0cc2c14e95d63c8",
+    "pilot_oof": "94782fa2765bb4e9069df3c95028f7a85deac6d077da6af06c6716f7bd2f1ab5"
+  },
+  "completed_models": [
+    "amplitude_3q_depth1_lr004_candidate",
+    "angle_reupload_4q_depth2_lr0035_candidate"
+  ],
+  "completed_model_manifest": "amplitude_3q_depth1_lr004_candidate/run_manifest.json",
+  "completed_oof_rows": 1496,
+  "completed_model_metrics": {
+    "amplitude_3q_depth1_lr004_candidate": {
+      "accuracy": 0.6838235294117647,
+      "macro_f1": 0.6829836829836831,
+      "balanced_accuracy": 0.6838235294117647
+    },
+    "angle_reupload_4q_depth2_lr0035_candidate": {
+      "accuracy": 0.732620320855615,
+      "macro_f1": 0.7322178128854067,
+      "balanced_accuracy": 0.732620320855615
+    }
+  },
+  "pending_models": [],
+  "latest_failure": "Runner preflight measured available RAM below its 700 MiB floor before starting second model. An earlier 700+ MiB run wrote model 1 completely; OOF/checkpoint hashes verified.",
+  "resume_command": ".venv\\Scripts\\python.exe experiments\\run_qbugs_qasm_v2_qnn_candidate_sweep.py",
+  "frozen_test_accessed": false,
+  "oof_rows_per_model": 1496,
+  "checkpoint_hash_audit": "passed all ten checkpoints, labels, group fold assignments, source and split fingerprints"
+}

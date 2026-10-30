@@ -1,0 +1,565 @@
+{
+  "status": "completed_grouped_qnn_sweep",
+  "task": "QBugs HornBro subset",
+  "records": 1500,
+  "groups": 750,
+  "label_distribution": {
+    "0": 750,
+    "1": 750
+  },
+  "results": [
+    {
+      "model": "amplitude_3q_depth1_lr004",
+      "configuration": {
+        "name": "amplitude_3q_depth1_lr004",
+        "qubits": 3,
+        "features": 8,
+        "encoding": "amplitude",
+        "depth": 1,
+        "reupload": false,
+        "learning_rate": 0.04
+      },
+      "accuracy": 0.7073333333333334,
+      "balanced_accuracy": 0.7073333333333334,
+      "macro_f1": 0.7063905206719354,
+      "per_class": {
+        "0": {
+          "precision": 0.6862275449101797,
+          "recall": 0.764,
+          "f1": 0.7230283911671924,
+          "support": 750
+        },
+        "1": {
+          "precision": 0.7338345864661654,
+          "recall": 0.6506666666666666,
+          "f1": 0.6897526501766784,
+          "support": 750
+        }
+      },
+      "confusion_matrix": [
+        [
+          573,
+          177
+        ],
+        [
+          262,
+          488
+        ]
+      ],
+      "records": 1500,
+      "folds": 5,
+      "training_seconds": 0.6220479000076011,
+      "checkpoint_paths": [
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz"
+      ]
+    },
+    {
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "configuration": {
+        "name": "angle_reupload_4q_depth2_lr0035",
+        "qubits": 4,
+        "features": 4,
+        "encoding": "angle",
+        "depth": 2,
+        "reupload": true,
+        "learning_rate": 0.035
+      },
+      "accuracy": 0.718,
+      "balanced_accuracy": 0.718,
+      "macro_f1": 0.7179848338510648,
+      "per_class": {
+        "0": {
+          "precision": 0.7212449255751014,
+          "recall": 0.7106666666666667,
+          "f1": 0.7159167226326393,
+          "support": 750
+        },
+        "1": {
+          "precision": 0.7148488830486203,
+          "recall": 0.7253333333333334,
+          "f1": 0.7200529450694904,
+          "support": 750
+        }
+      },
+      "confusion_matrix": [
+        [
+          533,
+          217
+        ],
+        [
+          206,
+          544
+        ]
+      ],
+      "records": 1500,
+      "folds": 5,
+      "training_seconds": 10.023279900007765,
+      "checkpoint_paths": [
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\qbugs_hornbro_subset\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz"
+      ]
+    }
+  ],
+  "fold_results": [
+    {
+      "task": "QBugs HornBro subset",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 1,
+      "records": 300,
+      "groups": 150,
+      "train_records": 1200,
+      "training_seconds": 0.11784940000143251,
+      "available_ram_mib": 908.6953125,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7266666666666667,
+        "balanced_accuracy": 0.7266666666666667,
+        "macro_f1": 0.7239057239057238,
+        "per_class": {
+          "0": {
+            "precision": 0.6888888888888889,
+            "recall": 0.8266666666666667,
+            "f1": 0.7515151515151515,
+            "support": 150
+          },
+          "1": {
+            "precision": 0.7833333333333333,
+            "recall": 0.6266666666666667,
+            "f1": 0.6962962962962963,
+            "support": 150
+          }
+        },
+        "confusion_matrix": [
+          [
+            124,
+            26
+          ],
+          [
+            56,
+            94
+          ]
+        ]
+      }
+    },
+    {
+      "task": "QBugs HornBro subset",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 2,
+      "records": 300,
+      "groups": 150,
+      "train_records": 1200,
+      "training_seconds": 0.11458040000070469,
+      "available_ram_mib": 908.5390625,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.67,
+        "balanced_accuracy": 0.6699999999999999,
+        "macro_f1": 0.6699963332925921,
+        "per_class": {
+          "0": {
+            "precision": 0.6688741721854304,
+            "recall": 0.6733333333333333,
+            "f1": 0.6710963455149501,
+            "support": 150
+          },
+          "1": {
+            "precision": 0.6711409395973155,
+            "recall": 0.6666666666666666,
+            "f1": 0.6688963210702341,
+            "support": 150
+          }
+        },
+        "confusion_matrix": [
+          [
+            101,
+            49
+          ],
+          [
+            50,
+            100
+          ]
+        ]
+      }
+    },
+    {
+      "task": "QBugs HornBro subset",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 3,
+      "records": 300,
+      "groups": 150,
+      "train_records": 1200,
+      "training_seconds": 0.11768560000200523,
+      "available_ram_mib": 908.9765625,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7,
+        "balanced_accuracy": 0.7,
+        "macro_f1": 0.699786514855008,
+        "per_class": {
+          "0": {
+            "precision": 0.689873417721519,
+            "recall": 0.7266666666666667,
+            "f1": 0.7077922077922079,
+            "support": 150
+          },
+          "1": {
+            "precision": 0.7112676056338029,
+            "recall": 0.6733333333333333,
+            "f1": 0.6917808219178082,
+            "support": 150
+          }
+        },
+        "confusion_matrix": [
+          [
+            109,
+            41
+          ],
+          [
+            49,
+            101
+          ]
+        ]
+      }
+    },
+    {
+      "task": "QBugs HornBro subset",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 4,
+      "records": 300,
+      "groups": 150,
+      "train_records": 1200,
+      "training_seconds": 0.14459790000182693,
+      "available_ram_mib": 906.90625,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7366666666666667,
+        "balanced_accuracy": 0.7366666666666666,
+        "macro_f1": 0.7360066833751044,
+        "per_class": {
+          "0": {
+            "precision": 0.7151515151515152,
+            "recall": 0.7866666666666666,
+            "f1": 0.7492063492063492,
+            "support": 150
+          },
+          "1": {
+            "precision": 0.762962962962963,
+            "recall": 0.6866666666666666,
+            "f1": 0.7228070175438596,
+            "support": 150
+          }
+        },
+        "confusion_matrix": [
+          [
+            118,
+            32
+          ],
+          [
+            47,
+            103
+          ]
+        ]
+      }
+    },
+    {
+      "task": "QBugs HornBro subset",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 5,
+      "records": 300,
+      "groups": 150,
+      "train_records": 1200,
+      "training_seconds": 0.12733460000163177,
+      "available_ram_mib": 940.77734375,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7033333333333334,
+        "balanced_accuracy": 0.7033333333333334,
+        "macro_f1": 0.7001314030930266,
+        "per_class": {
+          "0": {
+            "precision": 0.6685082872928176,
+            "recall": 0.8066666666666666,
+            "f1": 0.7311178247734138,
+            "support": 150
+          },
+          "1": {
+            "precision": 0.7563025210084033,
+            "recall": 0.6,
+            "f1": 0.6691449814126393,
+            "support": 150
+          }
+        },
+        "confusion_matrix": [
+          [
+            121,
+            29
+          ],
+          [
+            60,
+            90
+          ]
+        ]
+      }
+    },
+    {
+      "task": "QBugs HornBro subset",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 1,
+      "records": 300,
+      "groups": 150,
+      "train_records": 1200,
+      "training_seconds": 2.0137810000014724,
+      "available_ram_mib": 941.34765625,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7466666666666667,
+        "balanced_accuracy": 0.7466666666666666,
+        "macro_f1": 0.7466216216216217,
+        "per_class": {
+          "0": {
+            "precision": 0.7534246575342466,
+            "recall": 0.7333333333333333,
+            "f1": 0.7432432432432433,
+            "support": 150
+          },
+          "1": {
+            "precision": 0.7402597402597403,
+            "recall": 0.76,
+            "f1": 0.75,
+            "support": 150
+          }
+        },
+        "confusion_matrix": [
+          [
+            110,
+            40
+          ],
+          [
+            36,
+            114
+          ]
+        ]
+      }
+    },
+    {
+      "task": "QBugs HornBro subset",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 2,
+      "records": 300,
+      "groups": 150,
+      "train_records": 1200,
+      "training_seconds": 2.001429600000847,
+      "available_ram_mib": 943.26953125,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.6833333333333333,
+        "balanced_accuracy": 0.6833333333333333,
+        "macro_f1": 0.6829070194372433,
+        "per_class": {
+          "0": {
+            "precision": 0.697841726618705,
+            "recall": 0.6466666666666666,
+            "f1": 0.671280276816609,
+            "support": 150
+          },
+          "1": {
+            "precision": 0.6708074534161491,
+            "recall": 0.72,
+            "f1": 0.6945337620578778,
+            "support": 150
+          }
+        },
+        "confusion_matrix": [
+          [
+            97,
+            53
+          ],
+          [
+            42,
+            108
+          ]
+        ]
+      }
+    },
+    {
+      "task": "QBugs HornBro subset",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 3,
+      "records": 300,
+      "groups": 150,
+      "train_records": 1200,
+      "training_seconds": 1.9982342000002973,
+      "available_ram_mib": 935.82421875,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.71,
+        "balanced_accuracy": 0.71,
+        "macro_f1": 0.709996777741975,
+        "per_class": {
+          "0": {
+            "precision": 0.7114093959731543,
+            "recall": 0.7066666666666667,
+            "f1": 0.7090301003344482,
+            "support": 150
+          },
+          "1": {
+            "precision": 0.7086092715231788,
+            "recall": 0.7133333333333334,
+            "f1": 0.7109634551495018,
+            "support": 150
+          }
+        },
+        "confusion_matrix": [
+          [
+            106,
+            44
+          ],
+          [
+            43,
+            107
+          ]
+        ]
+      }
+    },
+    {
+      "task": "QBugs HornBro subset",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 4,
+      "records": 300,
+      "groups": 150,
+      "train_records": 1200,
+      "training_seconds": 2.009858700002951,
+      "available_ram_mib": 940.26953125,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.73,
+        "balanced_accuracy": 0.73,
+        "macro_f1": 0.7297567811029926,
+        "per_class": {
+          "0": {
+            "precision": 0.7446808510638298,
+            "recall": 0.7,
+            "f1": 0.7216494845360825,
+            "support": 150
+          },
+          "1": {
+            "precision": 0.7169811320754716,
+            "recall": 0.76,
+            "f1": 0.7378640776699028,
+            "support": 150
+          }
+        },
+        "confusion_matrix": [
+          [
+            105,
+            45
+          ],
+          [
+            36,
+            114
+          ]
+        ]
+      }
+    },
+    {
+      "task": "QBugs HornBro subset",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 5,
+      "records": 300,
+      "groups": 150,
+      "train_records": 1200,
+      "training_seconds": 1.999976400002197,
+      "available_ram_mib": 937.4921875,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.72,
+        "balanced_accuracy": 0.72,
+        "macro_f1": 0.7193888913634137,
+        "per_class": {
+          "0": {
+            "precision": 0.7012195121951219,
+            "recall": 0.7666666666666667,
+            "f1": 0.7324840764331211,
+            "support": 150
+          },
+          "1": {
+            "precision": 0.7426470588235294,
+            "recall": 0.6733333333333333,
+            "f1": 0.7062937062937064,
+            "support": 150
+          }
+        },
+        "confusion_matrix": [
+          [
+            115,
+            35
+          ],
+          [
+            49,
+            101
+          ]
+        ]
+      }
+    }
+  ],
+  "runtime_seconds": 10.830727599997772,
+  "frozen_test_accessed": false,
+  "source_manifest_sha256": "2664b9bc3f009534fd9ea99b0fe1d9db5254d40070b8e30d45f0bef09b91f474"
+}

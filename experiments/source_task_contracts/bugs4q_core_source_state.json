@@ -1,0 +1,12 @@
+{
+  "source_id": "bugs4q_core",
+  "task_id": "source_state",
+  "target_semantics": "Buggy (1) versus fixed (0) Qiskit source snapshots grouped by issue; not hardware fault localization.",
+  "required": ["record_id", "bug_id", "label", "code"],
+  "record_id_column": "record_id", "group_column": "bug_id", "label_column": "label", "feature_column": "code",
+  "allowed_labels": ["0", "1"], "fold_record_column": "record_id", "fold_group_column": "bug_id", "fold_column": "fold",
+  "fold_model_column": "model", "fold_model_value": "angle_reupload_vqc",
+  "input_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/bugs4q_standalone/normalized_manifest.csv",
+  "fold_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/bugs4q_standalone/qnn_gradient_fix/oof_predictions.csv",
+  "output_path": "data/processed/bugs4q_core/source_state"
+}

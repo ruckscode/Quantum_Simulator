@@ -1,0 +1,525 @@
+{
+  "status": "completed_development_only",
+  "task": "QMutBench three-class research task: Survivor=0, WOO=1, OPO=2",
+  "protocol": "205 saved OOF records from 12 origins; identical IDs and labels for all six candidates; three grouped folds; outer fold held out for stacking; no frozen-test access",
+  "source_artifacts": {
+    "reports\\experiments\\qmutbench_three_class_qnn_campaign_20261027\\predictions.csv.gz": "795dfa5cb6615e137ef02d7639028562d77ab8564589134f63d9d89aa8b3f3d2",
+    "reports\\experiments\\qmutbench_three_class_qnn_campaign_20261027\\amplitude_encoding\\predictions.csv.gz": "8f5ea20952250cc49f1ec94bb6fdab78ffa33232e732b55c5e1b58983558069a",
+    "reports\\experiments\\qmutbench_three_class_qnn_campaign_20261027\\trainable_readout\\predictions.csv.gz": "ceb270b0c1af4e84b6ab00293bff44306d261451af0ad3478f7cd20566d3bcd3"
+  },
+  "records": 205,
+  "origins": 12,
+  "folds": 3,
+  "class_counts": {
+    "0": 72,
+    "1": 68,
+    "2": 65
+  },
+  "candidates": [
+    {
+      "candidate": "extra_trees_4f",
+      "strategy": "base_oof",
+      "macro_f1": 0.46688748084908643,
+      "accuracy": 0.4926829268292683,
+      "balanced_accuracy": 0.4845525389643037,
+      "confusion_matrix": [
+        [
+          57,
+          10,
+          5
+        ],
+        [
+          30,
+          22,
+          16
+        ],
+        [
+          32,
+          11,
+          22
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.4789915966386555,
+          "recall": 0.7916666666666666,
+          "f1": 0.5968586387434555,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.5116279069767442,
+          "recall": 0.3235294117647059,
+          "f1": 0.3963963963963964,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.5116279069767442,
+          "recall": 0.3384615384615385,
+          "f1": 0.4074074074074074,
+          "support": 65
+        }
+      }
+    },
+    {
+      "candidate": "logistic_4f",
+      "strategy": "base_oof",
+      "macro_f1": 0.44068553825730666,
+      "accuracy": 0.4634146341463415,
+      "balanced_accuracy": 0.457181163063516,
+      "confusion_matrix": [
+        [
+          52,
+          7,
+          13
+        ],
+        [
+          23,
+          18,
+          27
+        ],
+        [
+          32,
+          8,
+          25
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.48598130841121495,
+          "recall": 0.7222222222222222,
+          "f1": 0.5810055865921788,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.5454545454545454,
+          "recall": 0.2647058823529412,
+          "f1": 0.3564356435643564,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.38461538461538464,
+          "recall": 0.38461538461538464,
+          "f1": 0.38461538461538464,
+          "support": 65
+        }
+      }
+    },
+    {
+      "candidate": "rbf_svc_4f",
+      "strategy": "base_oof",
+      "macro_f1": 0.43064739582996675,
+      "accuracy": 0.43902439024390244,
+      "balanced_accuracy": 0.4348081112786995,
+      "confusion_matrix": [
+        [
+          40,
+          22,
+          10
+        ],
+        [
+          21,
+          30,
+          17
+        ],
+        [
+          26,
+          19,
+          20
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.45977011494252873,
+          "recall": 0.5555555555555556,
+          "f1": 0.5031446540880503,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.4225352112676056,
+          "recall": 0.4411764705882353,
+          "f1": 0.4316546762589928,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.425531914893617,
+          "recall": 0.3076923076923077,
+          "f1": 0.35714285714285715,
+          "support": 65
+        }
+      }
+    },
+    {
+      "candidate": "three_class_vqc",
+      "strategy": "base_oof",
+      "macro_f1": 0.2997533196871884,
+      "accuracy": 0.32195121951219513,
+      "balanced_accuracy": 0.31797804591922235,
+      "confusion_matrix": [
+        [
+          37,
+          8,
+          27
+        ],
+        [
+          25,
+          9,
+          34
+        ],
+        [
+          40,
+          5,
+          20
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.3627450980392157,
+          "recall": 0.5138888888888888,
+          "f1": 0.42528735632183906,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.4090909090909091,
+          "recall": 0.1323529411764706,
+          "f1": 0.2,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.24691358024691357,
+          "recall": 0.3076923076923077,
+          "f1": 0.273972602739726,
+          "support": 65
+        }
+      }
+    },
+    {
+      "candidate": "three_class_vqc_amplitude",
+      "strategy": "base_oof",
+      "macro_f1": 0.3085925868719243,
+      "accuracy": 0.33658536585365856,
+      "balanced_accuracy": 0.3445198592257415,
+      "confusion_matrix": [
+        [
+          6,
+          18,
+          48
+        ],
+        [
+          14,
+          28,
+          26
+        ],
+        [
+          3,
+          27,
+          35
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.2608695652173913,
+          "recall": 0.08333333333333333,
+          "f1": 0.12631578947368421,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.3835616438356164,
+          "recall": 0.4117647058823529,
+          "f1": 0.3971631205673759,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.3211009174311927,
+          "recall": 0.5384615384615384,
+          "f1": 0.40229885057471265,
+          "support": 65
+        }
+      }
+    },
+    {
+      "candidate": "three_class_vqc_angle_linear",
+      "strategy": "base_oof",
+      "macro_f1": 0.32179758891284416,
+      "accuracy": 0.35609756097560974,
+      "balanced_accuracy": 0.36493631640690466,
+      "confusion_matrix": [
+        [
+          13,
+          15,
+          44
+        ],
+        [
+          9,
+          13,
+          46
+        ],
+        [
+          11,
+          7,
+          47
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.3939393939393939,
+          "recall": 0.18055555555555555,
+          "f1": 0.24761904761904763,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.37142857142857144,
+          "recall": 0.19117647058823528,
+          "f1": 0.2524271844660194,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.34306569343065696,
+          "recall": 0.7230769230769231,
+          "f1": 0.46534653465346537,
+          "support": 65
+        }
+      }
+    },
+    {
+      "candidate": "equal_classical_probability_mean",
+      "strategy": "fixed_probability_mean",
+      "members": [
+        "extra_trees_4f",
+        "logistic_4f",
+        "rbf_svc_4f"
+      ],
+      "macro_f1": 0.47736707736707734,
+      "accuracy": 0.5024390243902439,
+      "balanced_accuracy": 0.49408412937824703,
+      "confusion_matrix": [
+        [
+          58,
+          11,
+          3
+        ],
+        [
+          30,
+          23,
+          15
+        ],
+        [
+          35,
+          8,
+          22
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.4715447154471545,
+          "recall": 0.8055555555555556,
+          "f1": 0.5948717948717949,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.5476190476190477,
+          "recall": 0.3382352941176471,
+          "f1": 0.41818181818181815,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.55,
+          "recall": 0.3384615384615385,
+          "f1": 0.41904761904761906,
+          "support": 65
+        }
+      }
+    },
+    {
+      "candidate": "equal_quantum_probability_mean",
+      "strategy": "fixed_probability_mean",
+      "members": [
+        "three_class_vqc",
+        "three_class_vqc_amplitude",
+        "three_class_vqc_angle_linear"
+      ],
+      "macro_f1": 0.2988095920668594,
+      "accuracy": 0.3073170731707317,
+      "balanced_accuracy": 0.31189039718451483,
+      "confusion_matrix": [
+        [
+          12,
+          19,
+          41
+        ],
+        [
+          16,
+          23,
+          29
+        ],
+        [
+          7,
+          30,
+          28
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.34285714285714286,
+          "recall": 0.16666666666666666,
+          "f1": 0.22429906542056074,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.3194444444444444,
+          "recall": 0.3382352941176471,
+          "f1": 0.32857142857142857,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.2857142857142857,
+          "recall": 0.4307692307692308,
+          "f1": 0.34355828220858897,
+          "support": 65
+        }
+      }
+    },
+    {
+      "candidate": "equal_all_probability_mean",
+      "strategy": "fixed_probability_mean",
+      "members": [
+        "extra_trees_4f",
+        "logistic_4f",
+        "rbf_svc_4f",
+        "three_class_vqc",
+        "three_class_vqc_amplitude",
+        "three_class_vqc_angle_linear"
+      ],
+      "macro_f1": 0.4918898285177355,
+      "accuracy": 0.5073170731707317,
+      "balanced_accuracy": 0.500666163901458,
+      "confusion_matrix": [
+        [
+          51,
+          15,
+          6
+        ],
+        [
+          23,
+          32,
+          13
+        ],
+        [
+          30,
+          14,
+          21
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.49038461538461536,
+          "recall": 0.7083333333333334,
+          "f1": 0.5795454545454546,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.5245901639344263,
+          "recall": 0.47058823529411764,
+          "f1": 0.49612403100775193,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.525,
+          "recall": 0.3230769230769231,
+          "f1": 0.4,
+          "support": 65
+        }
+      }
+    },
+    {
+      "candidate": "all_six_logistic_stacker",
+      "strategy": "outer_fold_held_out_stacking",
+      "members": [
+        "extra_trees_4f",
+        "logistic_4f",
+        "rbf_svc_4f",
+        "three_class_vqc",
+        "three_class_vqc_amplitude",
+        "three_class_vqc_angle_linear"
+      ],
+      "meta_C": 0.1,
+      "macro_f1": 0.4212158461107158,
+      "accuracy": 0.43414634146341463,
+      "balanced_accuracy": 0.42841042399865925,
+      "confusion_matrix": [
+        [
+          43,
+          12,
+          17
+        ],
+        [
+          22,
+          29,
+          17
+        ],
+        [
+          27,
+          21,
+          17
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.4673913043478261,
+          "recall": 0.5972222222222222,
+          "f1": 0.524390243902439,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.46774193548387094,
+          "recall": 0.4264705882352941,
+          "f1": 0.4461538461538462,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.3333333333333333,
+          "recall": 0.26153846153846155,
+          "f1": 0.29310344827586204,
+          "support": 65
+        }
+      }
+    }
+  ],
+  "origin_bootstrap_intervals": {
+    "extra_trees_4f": [
+      0.4041635541621228,
+      0.5264285445563763
+    ],
+    "logistic_4f": [
+      0.37254303903336533,
+      0.4859921390298928
+    ],
+    "rbf_svc_4f": [
+      0.3507287670013319,
+      0.4962620872103629
+    ],
+    "three_class_vqc": [
+      0.23074088444988522,
+      0.357770999719426
+    ],
+    "three_class_vqc_amplitude": [
+      0.23173693841927856,
+      0.3935632854385702
+    ],
+    "three_class_vqc_angle_linear": [
+      0.25460257628715766,
+      0.378822432236583
+    ],
+    "equal_all_probability_mean": [
+      0.42411042083463224,
+      0.5571495808722099
+    ],
+    "all_six_logistic_stacker": [
+      0.34039518238221067,
+      0.4763511057559047
+    ]
+  },
+  "conditional_router": "not fitted: only 12 origins/205 records; no predeclared inference-time condition and nested routing would be underpowered",
+  "source_transfer": "not run: available real-bug examples do not have compatible QMutBench mutation-outcome labels/features; no label remapping",
+  "multitask": "not run: no source-specific labeled rows and shared features were validated for a joint representation task",
+  "runtime_seconds": 23.90731450000021
+}

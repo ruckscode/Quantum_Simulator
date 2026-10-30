@@ -1,0 +1,14 @@
+{
+  "source_id": "bugs4q_joint",
+  "task_id": "na_only_transfer",
+  "target_semantics": "Train on Bugs4Q_NA_additional examples only and evaluate registered grouped folds plus Bugs4Q_core transfer target. Target remains buggy/fixed source-state; not hardware diagnosis.",
+  "required": ["record_id", "bug_id", "label", "code", "source", "source_group_id"],
+  "record_id_column": "record_id", "group_column": "bug_id", "label_column": "label", "feature_column": "code",
+  "allowed_labels": ["0", "1"], "fold_record_column": "record_id", "fold_group_column": "bug_id", "fold_column": "fold",
+  "fold_model_column": "model", "fold_model_value": "angle_hybrid_readout",
+  "training_source_column": "source", "training_source_value": "Bugs4Q_NA_additional",
+  "training_policy": "fit transformations and models on Bugs4Q_NA_additional records in non-validation groups only; score Bugs4Q_core separately as a transfer target",
+  "input_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/bugs4q_joint/normalized_manifest.csv",
+  "fold_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/bugs4q_joint/qnn_train_na_complete/oof_predictions.csv",
+  "output_path": "data/processed/bugs4q_joint/na_only_transfer"
+}

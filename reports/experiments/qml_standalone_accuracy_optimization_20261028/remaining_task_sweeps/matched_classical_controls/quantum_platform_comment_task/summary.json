@@ -1,0 +1,398 @@
+{
+  "status": "completed_matched_classical_grouped_oof",
+  "task": "Quantum platform comment task",
+  "target": "Quantum platform comment task",
+  "records": 319,
+  "groups": 314,
+  "folds": 5,
+  "feature_policy": "same deterministic 8-bin BLAKE2b token counts as QNN; fold-local min-max; compare 4-feature and 8-feature controls",
+  "split_source": "saved development QNN grouped out-of-fold fold assignment",
+  "source_manifest_sha256": "f7490974d64dacd39d28957effabdff9f71b116a05ecc6e2ae178727bf7df651",
+  "scikit_learn": "1.9.1",
+  "models": [
+    {
+      "task": "Quantum platform comment task",
+      "model": "majority_dummy",
+      "feature_count": 4,
+      "records": 319,
+      "folds": 5,
+      "accuracy": 0.6990595611285266,
+      "macro_f1": 0.4114391143911439,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 96
+        },
+        "1": {
+          "precision": 0.6990595611285266,
+          "recall": 1.0,
+          "f1": 0.8228782287822878,
+          "support": 223
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          96
+        ],
+        [
+          0,
+          223
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "logistic_balanced",
+      "feature_count": 4,
+      "records": 319,
+      "folds": 5,
+      "accuracy": 0.8369905956112853,
+      "macro_f1": 0.8245324532453245,
+      "balanced_accuracy": 0.8685771674140508,
+      "per_class": {
+        "0": {
+          "precision": 0.6594202898550725,
+          "recall": 0.9479166666666666,
+          "f1": 0.7777777777777778,
+          "support": 96
+        },
+        "1": {
+          "precision": 0.9723756906077348,
+          "recall": 0.7892376681614349,
+          "f1": 0.8712871287128713,
+          "support": 223
+        }
+      },
+      "confusion_matrix": [
+        [
+          91,
+          5
+        ],
+        [
+          47,
+          176
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "decision_tree_balanced",
+      "feature_count": 4,
+      "records": 319,
+      "folds": 5,
+      "accuracy": 0.8996865203761756,
+      "macro_f1": 0.8858676207513417,
+      "balanced_accuracy": 0.9045216741405082,
+      "per_class": {
+        "0": {
+          "precision": 0.7857142857142857,
+          "recall": 0.9166666666666666,
+          "f1": 0.8461538461538461,
+          "support": 96
+        },
+        "1": {
+          "precision": 0.961352657004831,
+          "recall": 0.8923766816143498,
+          "f1": 0.9255813953488373,
+          "support": 223
+        }
+      },
+      "confusion_matrix": [
+        [
+          88,
+          8
+        ],
+        [
+          24,
+          199
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "random_forest_balanced",
+      "feature_count": 4,
+      "records": 319,
+      "folds": 5,
+      "accuracy": 0.9184952978056427,
+      "macro_f1": 0.902561090225564,
+      "balanced_accuracy": 0.9001775037369207,
+      "per_class": {
+        "0": {
+          "precision": 0.8723404255319149,
+          "recall": 0.8541666666666666,
+          "f1": 0.8631578947368421,
+          "support": 96
+        },
+        "1": {
+          "precision": 0.9377777777777778,
+          "recall": 0.9461883408071748,
+          "f1": 0.9419642857142858,
+          "support": 223
+        }
+      },
+      "confusion_matrix": [
+        [
+          82,
+          14
+        ],
+        [
+          12,
+          211
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "extra_trees_balanced",
+      "feature_count": 4,
+      "records": 319,
+      "folds": 5,
+      "accuracy": 0.9090909090909091,
+      "macro_f1": 0.8929096486658563,
+      "balanced_accuracy": 0.8964172272047832,
+      "per_class": {
+        "0": {
+          "precision": 0.8383838383838383,
+          "recall": 0.8645833333333334,
+          "f1": 0.8512820512820513,
+          "support": 96
+        },
+        "1": {
+          "precision": 0.9409090909090909,
+          "recall": 0.9282511210762332,
+          "f1": 0.9345372460496614,
+          "support": 223
+        }
+      },
+      "confusion_matrix": [
+        [
+          83,
+          13
+        ],
+        [
+          16,
+          207
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "majority_dummy",
+      "feature_count": 8,
+      "records": 319,
+      "folds": 5,
+      "accuracy": 0.6990595611285266,
+      "macro_f1": 0.4114391143911439,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 96
+        },
+        "1": {
+          "precision": 0.6990595611285266,
+          "recall": 1.0,
+          "f1": 0.8228782287822878,
+          "support": 223
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          96
+        ],
+        [
+          0,
+          223
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "logistic_balanced",
+      "feature_count": 8,
+      "records": 319,
+      "folds": 5,
+      "accuracy": 0.8526645768025078,
+      "macro_f1": 0.839922699949819,
+      "balanced_accuracy": 0.8797879297458894,
+      "per_class": {
+        "0": {
+          "precision": 0.6842105263157895,
+          "recall": 0.9479166666666666,
+          "f1": 0.7947598253275109,
+          "support": 96
+        },
+        "1": {
+          "precision": 0.9731182795698925,
+          "recall": 0.8116591928251121,
+          "f1": 0.8850855745721272,
+          "support": 223
+        }
+      },
+      "confusion_matrix": [
+        [
+          91,
+          5
+        ],
+        [
+          42,
+          181
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "decision_tree_balanced",
+      "feature_count": 8,
+      "records": 319,
+      "folds": 5,
+      "accuracy": 0.8934169278996865,
+      "macro_f1": 0.8761872146118721,
+      "balanced_accuracy": 0.8852064648729447,
+      "per_class": {
+        "0": {
+          "precision": 0.7980769230769231,
+          "recall": 0.8645833333333334,
+          "f1": 0.8300000000000001,
+          "support": 96
+        },
+        "1": {
+          "precision": 0.9395348837209302,
+          "recall": 0.905829596412556,
+          "f1": 0.9223744292237442,
+          "support": 223
+        }
+      },
+      "confusion_matrix": [
+        [
+          83,
+          13
+        ],
+        [
+          21,
+          202
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "random_forest_balanced",
+      "feature_count": 8,
+      "records": 319,
+      "folds": 5,
+      "accuracy": 0.9247648902821317,
+      "macro_f1": 0.9105941704035874,
+      "balanced_accuracy": 0.9105941704035874,
+      "per_class": {
+        "0": {
+          "precision": 0.875,
+          "recall": 0.875,
+          "f1": 0.875,
+          "support": 96
+        },
+        "1": {
+          "precision": 0.9461883408071748,
+          "recall": 0.9461883408071748,
+          "f1": 0.9461883408071748,
+          "support": 223
+        }
+      },
+      "confusion_matrix": [
+        [
+          84,
+          12
+        ],
+        [
+          12,
+          211
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "extra_trees_balanced",
+      "feature_count": 8,
+      "records": 319,
+      "folds": 5,
+      "accuracy": 0.9247648902821317,
+      "macro_f1": 0.9116261889371133,
+      "balanced_accuracy": 0.9165265321375187,
+      "per_class": {
+        "0": {
+          "precision": 0.86,
+          "recall": 0.8958333333333334,
+          "f1": 0.8775510204081632,
+          "support": 96
+        },
+        "1": {
+          "precision": 0.954337899543379,
+          "recall": 0.9372197309417041,
+          "f1": 0.9457013574660634,
+          "support": 223
+        }
+      },
+      "confusion_matrix": [
+        [
+          86,
+          10
+        ],
+        [
+          14,
+          209
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    }
+  ],
+  "fold_metrics_path": "fold_metrics.csv",
+  "oof_predictions_path": "oof_predictions.csv",
+  "tuning": "fixed published-in-this-run configurations; no hyperparameter selection on validation folds",
+  "frozen_test_accessed": false
+}

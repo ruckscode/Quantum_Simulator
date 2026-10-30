@@ -1,0 +1,61 @@
+{
+  "schema": "qolumbina-multibackend-qnn-candidate-sweep-v1",
+  "status": "VERIFIED",
+  "task": "Qolumbina multi-backend seeded-mutant detection",
+  "task_rows": 546,
+  "groups": 26,
+  "folds": 5,
+  "label_counts": {
+    "1": 506,
+    "0": 40
+  },
+  "target_semantics": "Predict whether DOSS detects a seeded Qolumbina mutant in a majority of available report seeds across ideal, fake_algiers, and fake_brooklyn. This empirical mutation outcome is not ground-truth repair or hardware diagnosis.",
+  "source_hashes": {
+    "manifest": "b580ad932945d713ad00ade2210e58ff980bdd66a45e67ad4d9b9283ca1c6898",
+    "pilot_oof": "7dd9d7ea6b8f477bcc6d1b78c3692b053ce0b511accf7667bad63014f3ad6cfc",
+    "split": "666945a7462cc2d68ff3029579d4bf2cff3bd836c4038795d0aedfc821840450"
+  },
+  "split_cross_fold_groups": 0,
+  "models": [
+    "amplitude_3q_depth1_lr004",
+    "angle_reupload_4q_depth2_lr0035"
+  ],
+  "epochs": 4,
+  "batch_size": 64,
+  "optimizer": "Adam",
+  "seed": 28102026,
+  "feature_fields": [
+    "code",
+    "backend"
+  ],
+  "scaling": "fold-local minmax fitted on training rows only",
+  "prediction_rows": 1092,
+  "prediction_sha256": "b61662380b91193bf71f0c67f1f7ed4851d48e4b64b0ad354e3c10d72e76a144",
+  "elapsed_seconds_this_invocation": 4.450265199993737,
+  "available_ram_end_mib": 1258.9,
+  "frozen_test_accessed": false,
+  "scope_note": "QNN-only grouped development sweep; no classical models trained or compared.",
+  "limitations": [
+    "40 negative vs 506 positive rows; results are exploratory under severe class imbalance.",
+    "Empirical seeded-mutant detection is not hardware diagnosis."
+  ],
+  "checkpoint_hashes": {
+    "amplitude_3q_depth1_lr004": {
+      "fold_1": "d4302655263307281306b5a1fc6b00487b113646eb01c486b7571d35849b9e46",
+      "fold_2": "db919740868c5fc498a7bb9d019157d61b1474876540a0f4aa802c59d62adf83",
+      "fold_3": "e67cf1223f7f3d78281f36f46f6276365b0491b35420cfc30ab44d01ae934bdd",
+      "fold_4": "92620777066a87b48e1e65a48f3b80ad7f6a06ba66afceea44ab37d6df3b14ce",
+      "fold_5": "a792cf15b76dbe92f8df7cc5e56444456645bf79f27cc9fb092de01187cce62b"
+    },
+    "angle_reupload_4q_depth2_lr0035": {
+      "fold_1": "1bb09a18966828b000e023632304ceec2eb701d12d36d7bc18a8fa18a3e6cf46",
+      "fold_2": "58d38d4532e88a58b3050ee17b219e46887d346201f0c2f491a5d670f2248ba3",
+      "fold_3": "9b31994be095eb1ec46f3dfe295a0a93094c8f3ae6e286630bc909304082e075",
+      "fold_4": "e93892fea85eeeea09b61b583b1f02fe63a0b478354445fcf96441f699cc4a63",
+      "fold_5": "56fa9ace530611d73b64dbe9ffe79f694a608268ae82f4e9f7a8c477c042dc0f"
+    }
+  },
+  "fold_results_sha256": "706895b2768076bb8a97ddb3747022beb8f7833f7d2095de5b1a1673ee0fcf94",
+  "task_summary_sha256": "25c8e5705aed7a2cd2fe7aa0aca313ddef92a03e9626440f7e5d3b6eb6458eb8",
+  "integrity_audit": "passed labels, folds, groups, OOF coverage, and checkpoint existence/hashes"
+}

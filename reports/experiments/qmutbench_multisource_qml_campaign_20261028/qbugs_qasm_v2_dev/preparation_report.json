@@ -1,0 +1,66 @@
+{
+  "accepted_rows": 100,
+  "conflicting_exact_qasm_fingerprints": 0,
+  "cross_fold_exact_qasm_fingerprints": 0,
+  "exact_qasm_fingerprints": 100,
+  "feature_policy": "OpenQASM 2 serialization retains gate parameters and operation sequence; pair IDs, scenario, and labels are excluded from model text.",
+  "fold_manifest_sha256": "107513fc9cb898d3e56a650b5afb80a24047bf9820a5a8fd97d436439e91019b",
+  "folds": {
+    "1": {
+      "classes": {
+        "0": 18,
+        "1": 18
+      },
+      "groups": 18,
+      "rows": 36
+    },
+    "2": {
+      "classes": {
+        "0": 18,
+        "1": 18
+      },
+      "groups": 18,
+      "rows": 36
+    },
+    "3": {
+      "classes": {
+        "0": 14,
+        "1": 14
+      },
+      "groups": 14,
+      "rows": 28
+    },
+    "4": {
+      "classes": {},
+      "groups": 0,
+      "rows": 0
+    },
+    "5": {
+      "classes": {},
+      "groups": 0,
+      "rows": 0
+    }
+  },
+  "frozen_test_accessed": false,
+  "group_policy": "Connect paired examples and all exact-QASM repeats before stratified grouped splitting.",
+  "groups": 50,
+  "input_rows": 100,
+  "input_sha256": "4fef324a135705589508d3f0fb7046c1920e89d08bcc624127856007b63f3137",
+  "label_policy": "Correct=0 and buggy=1 follows upstream first-half/second-half source pairing. Complete source pairs are rejected only when exact QASM repeats with contradictory labels.",
+  "rejected_rows": 0,
+  "rejected_source_pairs": 0,
+  "rejection_manifest_sha256": "d1b63fa510c811cfa271e0f082bde46563ec58d868d457986a33acb9c2b1def3",
+  "source_file_count": 1,
+  "source_files": [
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/10/10/qcs.pkl",
+      "sha256": "2d988f7a8208edde16caccb83b8d36f56ebb1f3e2e0440f61b37b9e002337392"
+    }
+  ],
+  "source_files_sha256": "48628521033fcb74fb14b6c640ddfd2227b189a45ef255726bef6b30e3c3c698",
+  "split_seed": 20261029,
+  "status": "INVALID_DEVELOPMENT_SPLIT_FOLD_COVERAGE",
+  "task_id": "correct_buggy_circuit_state_qasm_v2",
+  "validation_failure": "Initial greedy group allocator left folds 4 and 5 empty. Retained as failed development evidence; corrected allocator was checked on qbugs_qasm_v2_dev2 before full preparation."
+}

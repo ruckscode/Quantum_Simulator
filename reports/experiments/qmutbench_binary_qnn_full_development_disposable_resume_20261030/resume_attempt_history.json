@@ -1,0 +1,144 @@
+{
+  "schema": "qmutbench-full-development-resume-attempts-v1",
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": "--mode full-development --output reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029 --chunk-batches 16 --max-chunks-per-invocation 50 --resume",
+      "status": "blocked_memory_guard_before_training",
+      "available_mib": 224,
+      "required_mib": 2076,
+      "evidence": "Runner returned only 262 MiB on its preflight; a separate near-simultaneous psutil sample observed 224 MiB. Existing 51 committed chunks and checkpoint audit are unchanged; frozen test not accessed."
+    },
+    {
+      "attempt": 2,
+      "command": "--mode full-development --output reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029 --chunk-batches 16 --max-chunks-per-invocation 50 --resume",
+      "status": "blocked_memory_guard_before_training",
+      "available_mib": 1287,
+      "required_mib": 2076,
+      "evidence": "Measured available RAM fell after initial probe; runner refused before training, checkpoint 51 remained intact, frozen test not accessed."
+    },
+    {
+      "attempt": 3,
+      "command": "--mode full-development --output reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029 --chunk-batches 16 --max-chunks-per-invocation 1 --resume",
+      "status": "completed_limited_resume_chunk",
+      "available_mib_before_start": 2384.7,
+      "available_mib_after_chunk": 2096,
+      "chunks_committed": 1,
+      "optimizer_updates": 16,
+      "records_processed": 512,
+      "checkpoint_after": 52,
+      "evidence": "Full-development startup estimate recalibrated from verified 468 MiB peak RSS with 172 MiB runtime reserve above observed peak, preserving 350 MiB bounded-stream estimate and 1024 MiB floor. Targeted gate tests passed; frozen test not accessed."
+    },
+    {
+      "attempt": 4,
+      "command": "--mode full-development --output reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029 --chunk-batches 16 --max-chunks-per-invocation 50 --resume",
+      "status": "completed_bounded_resume",
+      "chunks_committed": 50,
+      "optimizer_updates": 800,
+      "records_processed": 25600,
+      "checkpoint_after": 102,
+      "available_ram_mib_min_observed_console": 2072,
+      "progress_audit": "VERIFIED",
+      "evidence": "All 50 checkpoint hashes, gradient checks, parameter updates, and contiguous batch receipts passed audit; frozen test not accessed."
+    },
+    {
+      "attempt": 5,
+      "command": "--mode full-development --output reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029 --chunk-batches 16 --max-chunks-per-invocation 50 --resume",
+      "status": "interrupted_after_durable_checkpoint_due_low_memory_margin",
+      "chunks_committed": 3,
+      "optimizer_updates": 48,
+      "records_processed": 1536,
+      "checkpoint_after": 155,
+      "minimum_available_ram_mib": 1050.4,
+      "evidence": "Available RAM fell from >2.4 GiB to about 1.05 GiB while training. Invocation was interrupted after chunk 155, before chunk 156; all 155 checkpointed chunks passed integrity audit. Global manifest cursor was reconciled to chunk 155; frozen test not accessed."
+    },
+    {
+      "attempt": 6,
+      "command": "--mode full-development --output reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029 --chunk-batches 16 --max-chunks-per-invocation 50 --resume",
+      "status": "paused_checkpointed_by_memory_boundary_guard",
+      "starting_available_mib": 2635.4,
+      "chunks_committed": 16,
+      "optimizer_updates": 256,
+      "records_processed": 8192,
+      "latest_checkpoint": 171,
+      "minimum_available_mib_during_invocation": 1213,
+      "progress_audit": "VERIFIED",
+      "evidence": "Runner resumed from checkpoint 155, committed chunks 156-171, and automatically paused at a durable boundary when available RAM fell below the 1280 MiB reserve threshold. No test data accessed."
+    },
+    {
+      "attempt": 7,
+      "command": "--mode full-development --output reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029 --chunk-batches 16 --max-chunks-per-invocation 50 --resume",
+      "status": "completed_bounded_resume",
+      "chunks_committed": 50,
+      "optimizer_updates": 800,
+      "records_processed": 25600,
+      "checkpoint_after": 221,
+      "progress_audit": "VERIFIED",
+      "evidence": "Resumed from checkpoint 171; all 50 new chunks had valid gradient/update evidence; frozen test not accessed."
+    },
+    {
+      "attempt": 8,
+      "command": "--mode full-development --output reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029 --chunk-batches 16 --max-chunks-per-invocation 50 --resume",
+      "status": "completed_bounded_resume",
+      "chunks_committed": 50,
+      "optimizer_updates": 800,
+      "records_processed": 25600,
+      "checkpoint_after": 271,
+      "progress_audit": "VERIFIED",
+      "evidence": "Resumed from checkpoint 221; all 50 new chunks had valid gradient/update evidence; frozen test not accessed."
+    },
+    {
+      "attempt": 9,
+      "command": "--mode full-development --output reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029 --chunk-batches 16 --max-chunks-per-invocation 50 --resume",
+      "status": "blocked_memory_guard_before_training",
+      "available_mib": 1700,
+      "required_mib": 2016,
+      "evidence": "Runner refused before training. Checkpoint 271 remained durable and verified; frozen test not accessed."
+    },
+    {
+      "attempt": 10,
+      "command": "--mode full-development --output reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029 --chunk-batches 16 --max-chunks-per-invocation 50 --resume",
+      "status": "completed_bounded_resume",
+      "chunks_committed": 50,
+      "optimizer_updates": 800,
+      "records_processed": 25600,
+      "checkpoint_before": 271,
+      "checkpoint_after": 321,
+      "progress_audit": "VERIFIED",
+      "evidence": "Resumed from checkpoint 271; 50 chunks committed with valid gradient and parameter-update checks. Progress audit reports zero issues; frozen test not accessed."
+    },
+    {
+      "attempt": 11,
+      "command": "--mode full-development --output reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029 --chunk-batches 16 --max-chunks-per-invocation 50 --resume",
+      "status": "completed_bounded_resume",
+      "chunks_committed": 50,
+      "optimizer_updates": 800,
+      "records_processed": 25600,
+      "checkpoint_before": 321,
+      "checkpoint_after": 371,
+      "minimum_available_ram_mib": 2007.0,
+      "progress_audit": "VERIFIED",
+      "evidence": "Resumed from checkpoint 321; 50 chunks committed with valid gradient and parameter-update checks. Progress audit reports zero issues; frozen test not accessed."
+    },
+    {
+      "attempt": 12,
+      "command": "--mode full-development --output reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029 --chunk-batches 16 --max-chunks-per-invocation 50 --resume",
+      "status": "blocked_memory_guard_before_training",
+      "available_mib": 1962,
+      "required_mib": 2016,
+      "checkpoint_before": 371,
+      "evidence": "Runner stopped before training under the existing startup preflight. Follow-up audit verified checkpoint 371 and zero issues; frozen test not accessed."
+    }
+  ],
+  "frozen_test_accessed": false,
+  "latest_resource_probe": {
+    "status": "blocked_until_ram_recovers",
+    "available_mib": 1901.1,
+    "required_mib": 2016,
+    "checkpoint_boundary_pause_threshold_mib": 1280,
+    "reason": "After the focused six-file test run, a fresh psutil probe reported 1901.1 MiB. QMutBench full-development startup remains below its calibrated gate; no trainer process is running.",
+    "checkpoint": 371,
+    "progress_audit": "VERIFIED",
+    "frozen_test_accessed": false
+  }
+}

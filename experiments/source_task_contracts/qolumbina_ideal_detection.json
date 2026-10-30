@@ -1,0 +1,15 @@
+{
+  "source_id": "qolumbina_ideal",
+  "task_id": "seeded_mutant_detection_ideal",
+  "target_semantics": "Predict whether DOSS detects a seeded mutant in a majority of available ideal-backend report seeds; not a ground-truth repair label or hardware diagnosis.",
+  "required": ["record_id", "bug_id", "program", "variant_version", "backend", "label", "detection_rate", "runs", "unique_random_seeds", "test_executions", "code"],
+  "record_id_column": "record_id", "group_column": "bug_id", "label_column": "label", "feature_column": "code",
+  "allowed_labels": ["0", "1"], "fold_record_column": "record_id", "fold_group_column": "bug_id", "fold_column": "fold",
+  "fold_model_column": "model", "fold_model_value": "angle_vqc",
+  "required_values": {"backend": "ideal"}, "positive_integer_columns": ["runs", "unique_random_seeds", "test_executions"],
+  "numeric_ranges": {"detection_rate": [0, 1]},
+  "derived_label_rule": {"column": "detection_rate", "threshold": 0.5, "positive": "1", "negative": "0"},
+  "input_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/qolumbina_detection_ideal/normalized_manifest.csv",
+  "fold_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/qolumbina_detection_ideal/qnn/oof_predictions.csv",
+  "output_path": "data/processed/qolumbina_ideal/seeded_mutant_detection_ideal"
+}

@@ -1,0 +1,94 @@
+{
+  "campaign": "full_data_qml_optimization_v3",
+  "status": "PARTIAL",
+  "baseline_commit": "a2d51be22fd985bbdd10655f7e31dc77b9d19ed6",
+  "baseline_tracked_worktree_changes": [],
+  "preexisting_untracked_paths_preserved": 55,
+  "available_ram_mib": 528.1,
+  "required_floor_mib": 1024,
+  "new_training_runs_started": 0,
+  "frozen_test_accessed": false,
+  "reason": "Safety guard: available RAM below 1 GiB. Existing historical QNN runs are indexed separately and are not represented as full-data v3 training.",
+  "qmutbench_full_data_status": "DEVELOPMENT_FEATURE_EXTRACTION_COMPLETE; QNN/model re-evaluation and full-data training incomplete",
+  "task_statuses": {
+    "Bugs4Q core": "HISTORICAL_DEVELOPMENT_OOF; NOT_FULL_DATA_RETRAINED",
+    "Bugs4Q core-only transfer": "HISTORICAL_DEVELOPMENT_OOF; NOT_FULL_DATA_RETRAINED",
+    "Bugs4Q pooled": "HISTORICAL_DEVELOPMENT_OOF; NOT_FULL_DATA_RETRAINED",
+    "Bugs4Q-NA": "HISTORICAL_DEVELOPMENT_OOF; NOT_FULL_DATA_RETRAINED",
+    "Bugs4Q-NA-only transfer": "HISTORICAL_DEVELOPMENT_OOF; NOT_FULL_DATA_RETRAINED",
+    "LintQ": "HISTORICAL_DEVELOPMENT_OOF; NOT_FULL_DATA_RETRAINED",
+    "QBugs HornBro subset": "HISTORICAL_DEVELOPMENT_OOF; NOT_FULL_DATA_RETRAINED",
+    "QMutBench three-class research": "HISTORICAL_DEVELOPMENT_OOF; NOT_FULL_DATA_RETRAINED",
+    "Qolumbina ideal": "HISTORICAL_DEVELOPMENT_OOF; NOT_FULL_DATA_RETRAINED",
+    "Quantum platform comment task": "HISTORICAL_DEVELOPMENT_OOF; NOT_FULL_DATA_RETRAINED",
+    "bugs4q_robust_execution": "HISTORICAL_DEVELOPMENT_OOF; NOT_FULL_DATA_RETRAINED",
+    "qsimbench_backend_fingerprint": "HISTORICAL_DEVELOPMENT_OOF; NOT_FULL_DATA_RETRAINED"
+  },
+  "latest_observed_available_ram_mib": 218.2,
+  "available_ram_observations_mib": [
+    426.7,
+    475.4,
+    864.3,
+    528.1,
+    189.0,
+    378.9,
+    218.2
+  ],
+  "qmutbench_development_extraction": {
+    "development_extraction": "COMPLETED_AND_REHASHED",
+    "records": 578117,
+    "origins": 305,
+    "structural_feature_rows": 578117,
+    "structural_parse_errors": 0,
+    "mutation_diff_feature_rows": 578117,
+    "mutation_diff_parse_errors": null,
+    "metadata_binary_mapping": {
+      "WOO": 1,
+      "OPO": 1,
+      "Survivor": 0
+    },
+    "mapping_mismatches": 0,
+    "available_ram_mib_at_report": 487.5,
+    "new_qml_training_started": false,
+    "overall_cache_integrity": true
+  },
+  "available_ram_mib_at_report": 487.5,
+  "safe_recovery_2026_10_28": {
+    "branch": "qmutbench-master-optimization",
+    "head": "a2d51be22fd985bbdd10655f7e31dc77b9d19ed6",
+    "available_ram_mib": 698.0,
+    "startup_required_mib": 1224,
+    "in_run_floor_mib": 1024,
+    "training_started": false,
+    "git_index_write_denied": true,
+    "frozen_test_checksum": "unverified; no canonical path/hash found"
+  },
+  "binary_qnn_trainer_implementation": {
+    "status": "IMPLEMENTED_NOT_TRAINED",
+    "entry_point": "qmutbench_qml/training/run_binary_development.py",
+    "model": "qmutbench_qml/models/binary_vqc.py",
+    "tests": "tests/test_qmutbench_binary_qnn.py: 8 passed",
+    "reference_fold_audit": "binary_reference_fold_audit.json",
+    "reference_fold_counts": {
+      "1": 114961,
+      "2": 117775,
+      "3": 115280,
+      "4": 114906,
+      "5": 115195
+    },
+    "startup_ram_requirement_mib": 2048,
+    "entry_point_guard_observed_mib": 724,
+    "training_started": false,
+    "frozen_test_accessed": false,
+    "report": "binary_qnn_implementation_report.md",
+    "config": "binary_qnn_default_config.json",
+    "memory_estimate": "1 GiB floor plus 700 MiB runtime/source-join reserve, sampled arrays, and qubit/depth/batch-dependent statevector/autodiff tape",
+    "entrypoint_guard_observations_mib": [
+      724,
+      718,
+      477
+    ],
+    "latest_guard_error": "Only 477 MiB available; estimated peak requires 2048 MiB to preserve the 1024 MiB floor",
+    "latest_available_ram_snapshot_mib": 692.2
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "status": "completed",
+  "seed": 20261026,
+  "source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+  "split_source": "data\\qmutbench_ml\\master_optimization_v1\\oof_predictions.csv",
+  "rows": 578117,
+  "origins": 305,
+  "folds": {
+    "1": {
+      "rows": 194269,
+      "origins": 91
+    },
+    "2": {
+      "rows": 191737,
+      "origins": 101
+    },
+    "3": {
+      "rows": 192111,
+      "origins": 113
+    }
+  },
+  "features": [
+    "algorithm",
+    "operation",
+    "gate",
+    "dominant_state",
+    "qubits",
+    "gates",
+    "Position_int"
+  ],
+  "target_map": {
+    "WOO": 1,
+    "OPO": 1,
+    "Survivor": 0
+  },
+  "selection_metric": "mean macro F1 across fixed saved 3-fold grouped development OOF folds",
+  "grid": {
+    "C": [
+      0.001,
+      0.03162277660168379,
+      1.0,
+      31.622776601683793,
+      1000.0
+    ],
+    "solver": [
+      "liblinear",
+      "lbfgs",
+      "saga"
+    ],
+    "class_weight": [
+      "balanced",
+      null
+    ],
+    "max_iter": 500
+  },
+  "preprocessing": "fold-local median imputation; standard scaling on three numeric features; fold-local one-hot encoding of four categorical features",
+  "baseline": {
+    "name": "baseline_liblinear_C1_balanced",
+    "C": 1.0,
+    "solver": "liblinear",
+    "class_weight": "balanced"
+  },
+  "best_config": {
+    "name": "tuned_17",
+    "C": 1.0,
+    "class_weight": null,
+    "solver": "lbfgs"
+  },
+  "best_metrics": {
+    "model": "tuned_17",
+    "accuracy": 0.6938733854911722,
+    "balanced_accuracy": 0.6937677015901129,
+    "macro_f1": 0.6936259308230637,
+    "fold_macro_f1_mean": 0.6935857427209143,
+    "fold_macro_f1_sd": 0.00623212588291906,
+    "folds": 3,
+    "per_class": {
+      "0": {
+        "precision": 0.6790421994252914,
+        "recall": 0.6908980543293596,
+        "f1": 0.6849188248971402,
+        "support": 278413
+      },
+      "1": {
+        "precision": 0.7081226279748883,
+        "recall": 0.6966373488508661,
+        "f1": 0.7023330367489871,
+        "support": 299704
+      }
+    }
+  },
+  "frozen_test_read": false,
+  "elapsed_seconds": 455.78411269999924,
+  "split_manifest_sha256": "7d203ac4cd6878a1caaf19eb768bb9a1e4f322b42fc56475cdc603591cc250ce",
+  "python": "3.12.10",
+  "scikit_learn": "1.9.1",
+  "solver_max_iter": 500,
+  "solver_tolerance": 0.0001
+}

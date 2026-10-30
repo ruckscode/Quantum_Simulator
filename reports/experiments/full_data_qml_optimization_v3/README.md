@@ -45,3 +45,26 @@ The synthetic integration test includes a second row that represents a frozen-te
 - `complete`: all 578,117 development IDs were found, features were extracted for each, and no path/parser errors occurred.
 
 Feature extraction completion is not training completion. The subsequent QML stage must join labels separately by `record_id`, preserve origin-grouped splits, and keep the frozen test untouched.
+
+## Existing local run notes retained
+
+# Full-data QML optimization campaign v3
+
+The full QMutBench development QASM extraction already existed in the local repository and has now been independently verified: 578,117 development records / 305 origins, 58 structural chunks and 58 mutation-diff chunks, zero parse errors, and matching metadata values across the official checkout and ingestion snapshot. The frozen-test records were excluded. See `feature_extraction_audit.json` and `label_leakage_audit.json`.
+
+No full-data QNN training was started in this continuation because available RAM was below the 1 GiB floor. Existing three-fold feature screens did not demonstrate a consistent QASM gain, and their folds differ from the five-fold 79.33% macro-F1 historical champion. See `qasm_feature_ablation_report.md` and `blocked_tasks.json`.
+
+No frozen-test outcomes were read. The required extractor-specific test file and script named by the prompt are absent from this checkout; equivalent existing QASM and corpus tests passed. See `test_report.md`.
+
+
+## Safe recovery follow-up
+
+See `safe_recovery_report.md` and `safe_recovery_audit.json` for current HEAD, current RAM, QML entry-point scope, Git ACL diagnosis, frozen-test checksum status, and exact resume commands. The QML runner checks RAM before importing the QML/data stack and enforces a 1 GiB in-run floor with 200 MiB startup headroom. No training was launched.
+
+
+## Binary QNN implementation
+
+A dedicated sampled, five-fold, origin-grouped binary QNN trainer with matched classical controls is implemented. Its eight pure-Python checkpoint/sampling tests pass. Training was stopped by the 2 GiB startup estimate (724 MiB available); details and exact resume commands are in `binary_qnn_implementation_report.md` and the configuration is in `binary_qnn_default_config.json`.
+
+
+The dedicated sampled binary QNN trainer is implemented but has not trained: available RAM was 724 MiB against a 2 GiB startup estimate. Eight pure-Python tests passed, and the exact historical five-fold grouping was verified without loading object arrays. See `binary_qnn_implementation_report.md`, `binary_qnn_default_config.json`, and `binary_reference_fold_audit.json`.

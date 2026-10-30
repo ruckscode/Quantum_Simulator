@@ -1,0 +1,25 @@
+{
+  "status": "all_remaining_tasks_completed",
+  "completed_tasks": [
+    {
+      "task": "Qolumbina multibackend",
+      "status": "completed_grouped_qnn_sweep",
+      "results": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "accuracy_percent": 92.674,
+          "macro_f1_percent": 48.0989,
+          "balanced_accuracy_percent": 50.0
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "accuracy_percent": 92.674,
+          "macro_f1_percent": 48.0989,
+          "balanced_accuracy_percent": 50.0
+        }
+      ]
+    }
+  ],
+  "current_task": null,
+  "frozen_test_accessed": false
+}

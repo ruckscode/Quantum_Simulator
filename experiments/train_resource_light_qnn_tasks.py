@@ -6,7 +6,7 @@ gradients, and resumable per-epoch checkpoints.
 """
 from __future__ import annotations
 
-import csv, hashlib, json, math, os, re, time
+import csv, hashlib, json, math, os, re, tempfile, time
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -165,8 +165,26 @@ def metrics(y, pred):
             "confusion_matrix": [[int(np.sum((y == a) & (pred == b))) for b in (0, 1)] for a in (0, 1)]}
 
 
-def fit_model(x, y, config, seed, checkpoint, history_path):
+def replace_with_retry(source, destination, attempts=7):
+    """Retry brief Windows/OneDrive sharing locks before failing a checkpoint write."""
+    for attempt in range(attempts):
+        try:
+            os.replace(source, destination)
+            return
+        except PermissionError:
+            if attempt + 1 >= attempts:
+                raise
+            time.sleep(min(0.05 * (2 ** attempt), 1.0))
+
+
+def fit_model(x, y, config, seed, checkpoint, history_path, *, provenance=None,
+              checkpoint_callback=None, sample_weights=None):
     import numpy as np
+    y = np.asarray(y, dtype=float)
+    if sample_weights is not None:
+        sample_weights = np.asarray(sample_weights, dtype=float)
+        if sample_weights.shape != y.shape or not np.isfinite(sample_weights).all() or np.any(sample_weights <= 0):
+            raise ValueError("sample_weights must be finite positive values aligned to y")
     n_qubits = config["qubits"]
     n_params = n_qubits * config["depth"]
     rng = np.random.default_rng(seed)
@@ -183,10 +201,17 @@ def fit_model(x, y, config, seed, checkpoint, history_path):
         required={"m_t","v_t","m_h","v_h","m_b","v_b","rng_state"}
         if not required.issubset(saved.files):
             raise ValueError(f"Checkpoint {checkpoint} predates resumable optimizer state; rerun this fold with resume disabled")
+        saved_config=json.loads(str(saved["config"].item()))
+        if saved_config != config:
+            raise ValueError(f"Checkpoint {checkpoint} model configuration is incompatible")
+        if provenance is not None:
+            if "provenance" not in saved.files or json.loads(str(saved["provenance"].item())) != provenance:
+                raise ValueError(f"Checkpoint {checkpoint} source/task provenance is incompatible")
         theta=saved["theta"];head=saved["head"];bias=float(saved["bias"])
         m_t=saved["m_t"];v_t=saved["v_t"];m_h=saved["m_h"];v_h=saved["v_h"];m_b=saved["m_b"];v_b=saved["v_b"]
         start_epoch=int(saved["epoch"])+1;rng.bit_generator.state=json.loads(str(saved["rng_state"].item()))
         if history_path.exists():history=json.loads(history_path.read_text(encoding="utf-8"))
+        saved.close()
     started = time.perf_counter()
     for epoch in range(start_epoch, STEPS + 1):
         order = rng.permutation(len(y)); losses = []
@@ -196,7 +221,8 @@ def fit_model(x, y, config, seed, checkpoint, history_path):
             z = q_expectations(xb, theta, n_qubits, config["encoding"], config["depth"], config["reupload"])
             logits = z @ head + bias
             prob = sigmoid(logits)
-            dlogit = (prob - yb) / len(ix)
+            batch_weights = 1.0 if sample_weights is None else sample_weights[ix]
+            dlogit = (prob - yb) * batch_weights / len(ix)
             gh = z.T @ dlogit; gb = float(dlogit.sum())
             dz = dlogit[:, None] * head[None, :]
             gt = np.zeros_like(theta)
@@ -216,15 +242,35 @@ def fit_model(x, y, config, seed, checkpoint, history_path):
             theta -= lr * (m_t/(1-beta1**t)) / (np.sqrt(v_t/(1-beta2**t)) + 1e-8)
             head -= lr * (m_h/(1-beta1**t)) / (np.sqrt(v_h/(1-beta2**t)) + 1e-8)
             bias -= lr * (m_b/(1-beta1**t)) / (math.sqrt(v_b/(1-beta2**t)) + 1e-8)
-            losses.append(float(-np.mean(yb*np.log(prob+1e-12)+(1-yb)*np.log(1-prob+1e-12))))
+            row_loss = -(yb*np.log(prob+1e-12)+(1-yb)*np.log(1-prob+1e-12))
+            losses.append(float(np.mean(row_loss * batch_weights)))
         history.append({"epoch": epoch, "train_batch_loss": float(np.mean(losses)),
                         "elapsed_seconds": time.perf_counter()-started,
                         "available_ram_mib": check_ram()})
         checkpoint.parent.mkdir(parents=True, exist_ok=True)
-        np.savez(checkpoint, theta=theta, head=head, bias=np.asarray(bias),
-                 config=np.asarray(json.dumps(config)), epoch=np.asarray(epoch),m_t=m_t,v_t=v_t,
-                 m_h=m_h,v_h=v_h,m_b=m_b,v_b=v_b,rng_state=np.asarray(json.dumps(rng.bit_generator.state)))
-        history_path.write_text(json.dumps(history, indent=2), encoding="utf-8")
+        fd, temp_name = tempfile.mkstemp(prefix=f".{checkpoint.name}.", suffix=".tmp", dir=checkpoint.parent)
+        try:
+            with os.fdopen(fd, "wb") as target:
+                np.savez(target, theta=theta, head=head, bias=np.asarray(bias),
+                         config=np.asarray(json.dumps(config, sort_keys=True)), epoch=np.asarray(epoch),
+                         m_t=m_t,v_t=v_t,m_h=m_h,v_h=v_h,m_b=m_b,v_b=v_b,
+                         rng_state=np.asarray(json.dumps(rng.bit_generator.state)),
+                         **({"provenance": np.asarray(json.dumps(provenance, sort_keys=True))} if provenance is not None else {}))
+                target.flush(); os.fsync(target.fileno())
+            replace_with_retry(temp_name, checkpoint)
+        finally:
+            if os.path.exists(temp_name): os.unlink(temp_name)
+        history_data = json.dumps(history, indent=2).encode("utf-8")
+        fd, temp_history = tempfile.mkstemp(prefix=f".{history_path.name}.", suffix=".tmp", dir=history_path.parent)
+        try:
+            with os.fdopen(fd, "wb") as target:
+                target.write(history_data); target.flush(); os.fsync(target.fileno())
+            replace_with_retry(temp_history, history_path)
+        finally:
+            if os.path.exists(temp_history): os.unlink(temp_history)
+        if checkpoint_callback is not None:
+            checkpoint_callback({"epoch": epoch, "checkpoint_path": checkpoint,
+                                 "history_path": history_path, "history": history})
     return theta, head, bias, history, time.perf_counter()-started
 
 

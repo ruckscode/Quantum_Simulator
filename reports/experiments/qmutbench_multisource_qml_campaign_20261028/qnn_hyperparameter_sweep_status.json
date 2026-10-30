@@ -1,24 +1,81 @@
 {
-  "status": "partial_stopped_by_ram_guard",
-  "sweep": "6 configs x 20 epochs across two grouped binary tasks",
-  "completed_checkpoints_by_task": {
+  "status": "completed_resumable_reconciled_v2",
+  "sweep": "6 configs x 20 epochs across two grouped binary tasks; development OOF only",
+  "historical_ram_stopped_attempt": {
+    "status": "partial_stopped_by_ram_guard",
+    "sweep": "6 configs x 20 epochs across two grouped binary tasks",
+    "completed_checkpoints_by_task": {
+      "bugs4q_robust_execution": {
+        "checkpoint_count": 10,
+        "fold_result_count": 9,
+        "summary_exists": false,
+        "oof_exists": false
+      },
+      "qsimbench_backend_fingerprint": {
+        "checkpoint_count": 0,
+        "fold_result_count": 0,
+        "summary_exists": false,
+        "oof_exists": false
+      }
+    },
+    "stop_reason": "runner detected only 473.4 MiB available, below the mandatory 500 MiB floor, during training; no sweep summary or OOF outputs were produced and partial checkpoints are not scored.",
+    "frozen_test_accessed": false,
+    "complete_baseline_runs_preserved": [
+      "bugs4q_robust_execution/resource_light_qnn",
+      "qsimbench_backend_fingerprint/resource_light_qnn"
+    ]
+  },
+  "completed_versioned_runs": {
     "bugs4q_robust_execution": {
-      "checkpoint_count": 10,
-      "fold_result_count": 9,
-      "summary_exists": false,
-      "oof_exists": false
+      "path": "bugs4q_robust_execution/qnn_hyperparameter_sweep20_resumable_v2",
+      "rows": 2220,
+      "groups": 37,
+      "folds": 5,
+      "models": 6,
+      "runtime_seconds": 164.95,
+      "resumable_checkpoints": 21,
+      "legacy_inference_only_snapshots_reused": 9,
+      "legacy_partial_epoch17_retrained": true,
+      "training_history_gap_epochs": [
+        {
+          "fold": 4,
+          "model": "amplitude_hybrid_3q_depth2_lr004",
+          "epoch": 6,
+          "reason": "transient OneDrive replacement lock; loss entry unavailable; weights and optimizer/RNG checkpoint were saved"
+        }
+      ],
+      "matched_classical_controls": [
+        4,
+        8
+      ],
+      "frozen_test_accessed": false
     },
     "qsimbench_backend_fingerprint": {
-      "checkpoint_count": 0,
-      "fold_result_count": 0,
-      "summary_exists": false,
-      "oof_exists": false
+      "path": "qsimbench_backend_fingerprint/qnn_hyperparameter_sweep20_resumable_v2",
+      "rows": 300,
+      "groups": 150,
+      "folds": 5,
+      "models": 6,
+      "runtime_seconds": 58.39,
+      "resumable_checkpoints": 30,
+      "legacy_inference_only_snapshots_reused": 0,
+      "matched_classical_controls": [
+        4,
+        8
+      ],
+      "frozen_test_accessed": false
     }
   },
-  "stop_reason": "runner detected only 473.4 MiB available, below the mandatory 500 MiB floor, during training; no sweep summary or OOF outputs were produced and partial checkpoints are not scored.",
-  "frozen_test_accessed": false,
-  "complete_baseline_runs_preserved": [
-    "bugs4q_robust_execution/resource_light_qnn",
-    "qsimbench_backend_fingerprint/resource_light_qnn"
+  "verification": {
+    "audit": "qnn_hyperparameter_sweep_audit.json",
+    "status": "VERIFIED",
+    "issues": [],
+    "checks": "source and split hashes; OOF coverage; checkpoint hashes and optimizer/RNG state; gradient checks; matched classical folds; no frozen-test access"
+  },
+  "limitations": [
+    "Nine epoch-20 legacy weights were reused for inference only; legacy format lacked optimizer moments and RNG state.",
+    "One epoch-6 history loss is unavailable due to a transient Windows file replacement lock; the gap is explicitly recorded.",
+    "The older epoch-17 partial checkpoint was preserved and its fold retrained from scratch.",
+    "All metrics are exploratory grouped OOF; no final/frozen test metrics."
   ]
 }

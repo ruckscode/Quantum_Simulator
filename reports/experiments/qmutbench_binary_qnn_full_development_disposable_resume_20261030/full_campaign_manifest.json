@@ -1,0 +1,136 @@
+{
+  "active_chunk": 372,
+  "active_epoch": 0,
+  "active_fold": 1,
+  "checkpoint_trainer_hash_compatibility": "Pinned checkpoint trainer hash retained after the latest checkpoint was validated and all training-relevant source fingerprints matched exactly; current orchestration hash is recorded separately.",
+  "checkpoint_trainer_sha256": "e8f618d0ef93da22d8241bd519a7eb2d045644e9e24e9e38c36c1dbae4b074b3",
+  "chunks_committed_this_invocation": 1,
+  "completed_folds": [],
+  "configuration": {
+    "batch_size": 32,
+    "chunk_batches": 16,
+    "classical_estimators": 100,
+    "depth": 2,
+    "encoding": "angle_reupload",
+    "epochs": 8,
+    "fold_count": 5,
+    "learning_rate": 0.02,
+    "max_train_per_class_per_fold": 256,
+    "max_validation_per_class_per_fold": 256,
+    "optimizer": "adam",
+    "per_origin_class_cap": 32,
+    "qubits": 4,
+    "seed": 20261028
+  },
+  "expected_development_rows": 578117,
+  "fold_metrics": [],
+  "fold_stream_audits": [],
+  "frozen_test_accessed": false,
+  "genuine_quantum_gradient_update_occurred": true,
+  "gradient_check": {
+    "absolute_error": 1.1102228816459949e-11,
+    "autodiff": 1.429791614965259e-18,
+    "epsilon": 1e-05,
+    "finite_difference": 1.1102230246251564e-11,
+    "passed": true,
+    "tolerance": 0.0005
+  },
+  "last_checkpoint_validated": true,
+  "next_batch": 5952,
+  "next_chunk": 373,
+  "next_epoch": 0,
+  "optimizer_updates_this_invocation": 16,
+  "parameter_update_verified": true,
+  "qnn_records_processed_in_active_fold": 190464,
+  "records_processed_this_invocation": 512,
+  "resume_events": 11,
+  "runtime_orchestration_hashes": [
+    {
+      "sha256": "fc56564d9c6317533f948c759d48527e4bfa4fa8596a9b902a241fba8fc70a8e",
+      "validated_training_identity": "e8f618d0ef93da22d8241bd519a7eb2d045644e9e24e9e38c36c1dbae4b074b3"
+    },
+    {
+      "sha256": "fc56564d9c6317533f948c759d48527e4bfa4fa8596a9b902a241fba8fc70a8e",
+      "validated_training_identity": "e8f618d0ef93da22d8241bd519a7eb2d045644e9e24e9e38c36c1dbae4b074b3"
+    },
+    {
+      "sha256": "fc56564d9c6317533f948c759d48527e4bfa4fa8596a9b902a241fba8fc70a8e",
+      "validated_training_identity": "e8f618d0ef93da22d8241bd519a7eb2d045644e9e24e9e38c36c1dbae4b074b3"
+    },
+    {
+      "sha256": "fc56564d9c6317533f948c759d48527e4bfa4fa8596a9b902a241fba8fc70a8e",
+      "validated_training_identity": "e8f618d0ef93da22d8241bd519a7eb2d045644e9e24e9e38c36c1dbae4b074b3"
+    },
+    {
+      "sha256": "fc56564d9c6317533f948c759d48527e4bfa4fa8596a9b902a241fba8fc70a8e",
+      "validated_training_identity": "e8f618d0ef93da22d8241bd519a7eb2d045644e9e24e9e38c36c1dbae4b074b3"
+    },
+    {
+      "sha256": "fc56564d9c6317533f948c759d48527e4bfa4fa8596a9b902a241fba8fc70a8e",
+      "validated_training_identity": "e8f618d0ef93da22d8241bd519a7eb2d045644e9e24e9e38c36c1dbae4b074b3"
+    }
+  ],
+  "schema": "qmutbench-full-stream-campaign-v1",
+  "status": "paused_checkpointed",
+  "stream_audit": {
+    "class_counts": {
+      "0": 278413,
+      "1": 299704
+    },
+    "development_origins": 305,
+    "development_rows_indexed": 578117,
+    "fold_class_counts": {
+      "1": {
+        "0": 55305,
+        "1": 59656
+      },
+      "2": {
+        "0": 56857,
+        "1": 60918
+      },
+      "3": {
+        "0": 55481,
+        "1": 59799
+      },
+      "4": {
+        "0": 55310,
+        "1": 59596
+      },
+      "5": {
+        "0": 55460,
+        "1": 59735
+      }
+    },
+    "fold_origin_counts": {
+      "1": 60,
+      "2": 59,
+      "3": 58,
+      "4": 69,
+      "5": 59
+    },
+    "fold_record_counts": {
+      "1": 114961,
+      "2": 117775,
+      "3": 115280,
+      "4": 114906,
+      "5": 115195
+    },
+    "frozen_test_rows_retained": 0,
+    "qasm_manifest_sha256": "284188822b6b846a12bcf791fc5122146d3ed78be29588b97b39595534abda01",
+    "reference_archive_sha256": "bfc1affdd40ac1032b65e417548075ce066407297fc603085ba6519403f56367",
+    "reference_authority": "numeric five-fold development archive",
+    "reference_sha256": null,
+    "source_chunk_rows": 10000,
+    "source_rows_scanned": 723079,
+    "source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778"
+  },
+  "streaming_configuration": {
+    "metadata_chunk_rows": 10000,
+    "preprocessor_fit_row_limit": 5000,
+    "preprocessor_sampling": "deterministic train-only class-balanced first-in-cache-order",
+    "qasm_feature_chunk_rows": 10000
+  },
+  "total_chunks_committed": 372,
+  "total_optimizer_updates": 5952,
+  "total_qnn_records_processed": 190464
+}

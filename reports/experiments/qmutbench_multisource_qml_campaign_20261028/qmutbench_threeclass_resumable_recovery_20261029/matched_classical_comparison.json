@@ -1,0 +1,144 @@
+{
+  "schema": "qmutbench-threeclass-resumable-matched-classical-v1",
+  "status": "COMPLETED",
+  "rows": 205,
+  "origins": 12,
+  "folds": 3,
+  "feature_contract": "same saved origin folds, same reconstructed fold-selected inputs and train-only numeric scaling as the QNN recovery run; four inputs; no identifiers",
+  "resource_usage": {
+    "runtime_seconds": 0.3792329999996582,
+    "classical_fit_seconds_by_model": {
+      "logistic_4f": 0.029126100002031308,
+      "rbf_svc_4f": 0.014210500004992355,
+      "extra_trees_4f": 0.2246540999985882
+    },
+    "available_ram_start_mib": 1920.76953125,
+    "available_ram_end_mib": 1914.41015625,
+    "process_rss_start_mib": 144.34765625,
+    "process_rss_sampled_peak_mib": 147.82421875
+  },
+  "classical_metrics": {
+    "logistic_4f": {
+      "accuracy": 0.4634146341463415,
+      "macro_f1": 0.44068553825730666,
+      "balanced_accuracy": 0.457181163063516
+    },
+    "rbf_svc_4f": {
+      "accuracy": 0.43414634146341463,
+      "macro_f1": 0.4246487530734106,
+      "balanced_accuracy": 0.43117144293614884
+    },
+    "extra_trees_4f": {
+      "accuracy": 0.4878048780487805,
+      "macro_f1": 0.46078218177742647,
+      "balanced_accuracy": 0.47965057817999
+    }
+  },
+  "qnn_metrics": {
+    "amplitude_hybrid_2q_depth2": {
+      "accuracy": 0.43414634146341463,
+      "macro_f1": 0.3862985808740525,
+      "balanced_accuracy": 0.4240531255237137
+    },
+    "angle_hybrid_4q_depth2": {
+      "accuracy": 0.3463414634146341,
+      "macro_f1": 0.32901904837388707,
+      "balanced_accuracy": 0.34244176302999835
+    },
+    "angle_reupload_hybrid_4q_depth2": {
+      "accuracy": 0.4585365853658537,
+      "macro_f1": 0.44487179487179485,
+      "balanced_accuracy": 0.4540933467404056
+    }
+  },
+  "qnn_minus_classical_macro_f1": {
+    "amplitude_hybrid_2q_depth2": {
+      "logistic_4f": {
+        "macro_f1_delta": -0.054386957383254164,
+        "group_bootstrap_95_ci": [
+          -0.13003863127645124,
+          0.007648143792660874
+        ],
+        "bootstrap_draws": 2000,
+        "groups": 12
+      },
+      "rbf_svc_4f": {
+        "macro_f1_delta": -0.0383501721993581,
+        "group_bootstrap_95_ci": [
+          -0.12430378526448789,
+          0.0330271481106599
+        ],
+        "bootstrap_draws": 2000,
+        "groups": 12
+      },
+      "extra_trees_4f": {
+        "macro_f1_delta": -0.07448360090337397,
+        "group_bootstrap_95_ci": [
+          -0.17082833753177526,
+          0.003742275143081459
+        ],
+        "bootstrap_draws": 2000,
+        "groups": 12
+      }
+    },
+    "angle_hybrid_4q_depth2": {
+      "logistic_4f": {
+        "macro_f1_delta": -0.1116664898834196,
+        "group_bootstrap_95_ci": [
+          -0.18723968125272072,
+          -0.05480855071242905
+        ],
+        "bootstrap_draws": 2000,
+        "groups": 12
+      },
+      "rbf_svc_4f": {
+        "macro_f1_delta": -0.09562970469952353,
+        "group_bootstrap_95_ci": [
+          -0.18142550890101125,
+          -0.02868420969455622
+        ],
+        "bootstrap_draws": 2000,
+        "groups": 12
+      },
+      "extra_trees_4f": {
+        "macro_f1_delta": -0.1317631334035394,
+        "group_bootstrap_95_ci": [
+          -0.22840611778465994,
+          -0.05243373207154662
+        ],
+        "bootstrap_draws": 2000,
+        "groups": 12
+      }
+    },
+    "angle_reupload_hybrid_4q_depth2": {
+      "logistic_4f": {
+        "macro_f1_delta": 0.004186256614488182,
+        "group_bootstrap_95_ci": [
+          -0.0404428205292878,
+          0.06265421632224473
+        ],
+        "bootstrap_draws": 2000,
+        "groups": 12
+      },
+      "rbf_svc_4f": {
+        "macro_f1_delta": 0.020223041798384245,
+        "group_bootstrap_95_ci": [
+          -0.02973725511893785,
+          0.0780736654549811
+        ],
+        "bootstrap_draws": 2000,
+        "groups": 12
+      },
+      "extra_trees_4f": {
+        "macro_f1_delta": -0.015910386905631624,
+        "group_bootstrap_95_ci": [
+          -0.12389568284092535,
+          0.06372327687044015
+        ],
+        "bootstrap_draws": 2000,
+        "groups": 12
+      }
+    }
+  },
+  "frozen_test_accessed": false
+}

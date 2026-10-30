@@ -1,0 +1,565 @@
+{
+  "status": "completed_grouped_qnn_sweep",
+  "task": "Quantum platform comment task",
+  "records": 319,
+  "groups": 314,
+  "label_distribution": {
+    "0": 96,
+    "1": 223
+  },
+  "results": [
+    {
+      "model": "amplitude_3q_depth1_lr004",
+      "configuration": {
+        "name": "amplitude_3q_depth1_lr004",
+        "qubits": 3,
+        "features": 8,
+        "encoding": "amplitude",
+        "depth": 1,
+        "reupload": false,
+        "learning_rate": 0.04
+      },
+      "accuracy": 0.7178683385579937,
+      "balanced_accuracy": 0.5342161808669657,
+      "macro_f1": 0.483038029386344,
+      "per_class": {
+        "0": {
+          "precision": 0.875,
+          "recall": 0.07291666666666667,
+          "f1": 0.13461538461538464,
+          "support": 96
+        },
+        "1": {
+          "precision": 0.7138263665594855,
+          "recall": 0.9955156950672646,
+          "f1": 0.8314606741573033,
+          "support": 223
+        }
+      },
+      "confusion_matrix": [
+        [
+          7,
+          89
+        ],
+        [
+          1,
+          222
+        ]
+      ],
+      "records": 319,
+      "folds": 5,
+      "training_seconds": 0.1642984999998589,
+      "checkpoint_paths": [
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz"
+      ]
+    },
+    {
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "configuration": {
+        "name": "angle_reupload_4q_depth2_lr0035",
+        "qubits": 4,
+        "features": 4,
+        "encoding": "angle",
+        "depth": 2,
+        "reupload": true,
+        "learning_rate": 0.035
+      },
+      "accuracy": 0.9122257053291536,
+      "balanced_accuracy": 0.8897608370702541,
+      "macro_f1": 0.8944208037825059,
+      "per_class": {
+        "0": {
+          "precision": 0.8695652173913043,
+          "recall": 0.8333333333333334,
+          "f1": 0.851063829787234,
+          "support": 96
+        },
+        "1": {
+          "precision": 0.9295154185022027,
+          "recall": 0.9461883408071748,
+          "f1": 0.9377777777777777,
+          "support": 223
+        }
+      },
+      "confusion_matrix": [
+        [
+          80,
+          16
+        ],
+        [
+          12,
+          211
+        ]
+      ],
+      "records": 319,
+      "folds": 5,
+      "training_seconds": 2.1901396999965073,
+      "checkpoint_paths": [
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\quantum_platform_comment_task\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz"
+      ]
+    }
+  ],
+  "fold_results": [
+    {
+      "task": "Quantum platform comment task",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 1,
+      "records": 64,
+      "groups": 63,
+      "train_records": 255,
+      "training_seconds": 0.03514320000249427,
+      "available_ram_mib": 970.08984375,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.71875,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.41818181818181815,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 18
+          },
+          "1": {
+            "precision": 0.71875,
+            "recall": 1.0,
+            "f1": 0.8363636363636363,
+            "support": 46
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            18
+          ],
+          [
+            0,
+            46
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 2,
+      "records": 64,
+      "groups": 63,
+      "train_records": 255,
+      "training_seconds": 0.03262159999940195,
+      "available_ram_mib": 969.984375,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.65625,
+        "balanced_accuracy": 0.55,
+        "macro_f1": 0.49714285714285716,
+        "per_class": {
+          "0": {
+            "precision": 0.75,
+            "recall": 0.125,
+            "f1": 0.21428571428571427,
+            "support": 24
+          },
+          "1": {
+            "precision": 0.65,
+            "recall": 0.975,
+            "f1": 0.78,
+            "support": 40
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            21
+          ],
+          [
+            1,
+            39
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 3,
+      "records": 64,
+      "groups": 63,
+      "train_records": 255,
+      "training_seconds": 0.03310090000013588,
+      "available_ram_mib": 969.87109375,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.65625,
+        "balanced_accuracy": 0.5217391304347826,
+        "macro_f1": 0.43589743589743596,
+        "per_class": {
+          "0": {
+            "precision": 1.0,
+            "recall": 0.043478260869565216,
+            "f1": 0.08333333333333333,
+            "support": 23
+          },
+          "1": {
+            "precision": 0.6507936507936508,
+            "recall": 1.0,
+            "f1": 0.7884615384615385,
+            "support": 41
+          }
+        },
+        "confusion_matrix": [
+          [
+            1,
+            22
+          ],
+          [
+            0,
+            41
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 4,
+      "records": 64,
+      "groups": 63,
+      "train_records": 255,
+      "training_seconds": 0.03166679999776534,
+      "available_ram_mib": 969.89453125,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.78125,
+        "balanced_accuracy": 0.5333333333333333,
+        "macro_f1": 0.5,
+        "per_class": {
+          "0": {
+            "precision": 1.0,
+            "recall": 0.06666666666666667,
+            "f1": 0.125,
+            "support": 15
+          },
+          "1": {
+            "precision": 0.7777777777777778,
+            "recall": 1.0,
+            "f1": 0.8750000000000001,
+            "support": 49
+          }
+        },
+        "confusion_matrix": [
+          [
+            1,
+            14
+          ],
+          [
+            0,
+            49
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 5,
+      "records": 63,
+      "groups": 62,
+      "train_records": 256,
+      "training_seconds": 0.03176600000006147,
+      "available_ram_mib": 970.171875,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7777777777777778,
+        "balanced_accuracy": 0.5625,
+        "macro_f1": 0.5462962962962963,
+        "per_class": {
+          "0": {
+            "precision": 1.0,
+            "recall": 0.125,
+            "f1": 0.2222222222222222,
+            "support": 16
+          },
+          "1": {
+            "precision": 0.7704918032786885,
+            "recall": 1.0,
+            "f1": 0.8703703703703703,
+            "support": 47
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            14
+          ],
+          [
+            0,
+            47
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 1,
+      "records": 64,
+      "groups": 63,
+      "train_records": 255,
+      "training_seconds": 0.43470329999763635,
+      "available_ram_mib": 970.29296875,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.921875,
+        "balanced_accuracy": 0.894927536231884,
+        "macro_f1": 0.901689708141321,
+        "per_class": {
+          "0": {
+            "precision": 0.8823529411764706,
+            "recall": 0.8333333333333334,
+            "f1": 0.8571428571428571,
+            "support": 18
+          },
+          "1": {
+            "precision": 0.9361702127659575,
+            "recall": 0.9565217391304348,
+            "f1": 0.9462365591397849,
+            "support": 46
+          }
+        },
+        "confusion_matrix": [
+          [
+            15,
+            3
+          ],
+          [
+            2,
+            44
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 2,
+      "records": 64,
+      "groups": 63,
+      "train_records": 255,
+      "training_seconds": 0.43182700000033947,
+      "available_ram_mib": 959.29296875,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.875,
+        "balanced_accuracy": 0.8583333333333334,
+        "macro_f1": 0.8642629904559915,
+        "per_class": {
+          "0": {
+            "precision": 0.8636363636363636,
+            "recall": 0.7916666666666666,
+            "f1": 0.8260869565217391,
+            "support": 24
+          },
+          "1": {
+            "precision": 0.8809523809523809,
+            "recall": 0.925,
+            "f1": 0.9024390243902439,
+            "support": 40
+          }
+        },
+        "confusion_matrix": [
+          [
+            19,
+            5
+          ],
+          [
+            3,
+            37
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 3,
+      "records": 64,
+      "groups": 63,
+      "train_records": 255,
+      "training_seconds": 0.4245515000002342,
+      "available_ram_mib": 962.02734375,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.96875,
+        "balanced_accuracy": 0.9565217391304348,
+        "macro_f1": 0.9653679653679654,
+        "per_class": {
+          "0": {
+            "precision": 1.0,
+            "recall": 0.9130434782608695,
+            "f1": 0.9545454545454545,
+            "support": 23
+          },
+          "1": {
+            "precision": 0.9534883720930233,
+            "recall": 1.0,
+            "f1": 0.9761904761904763,
+            "support": 41
+          }
+        },
+        "confusion_matrix": [
+          [
+            21,
+            2
+          ],
+          [
+            0,
+            41
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 4,
+      "records": 64,
+      "groups": 63,
+      "train_records": 255,
+      "training_seconds": 0.45627819999936037,
+      "available_ram_mib": 965.5859375,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.84375,
+        "balanced_accuracy": 0.782312925170068,
+        "macro_f1": 0.782312925170068,
+        "per_class": {
+          "0": {
+            "precision": 0.6666666666666666,
+            "recall": 0.6666666666666666,
+            "f1": 0.6666666666666666,
+            "support": 15
+          },
+          "1": {
+            "precision": 0.8979591836734694,
+            "recall": 0.8979591836734694,
+            "f1": 0.8979591836734694,
+            "support": 49
+          }
+        },
+        "confusion_matrix": [
+          [
+            10,
+            5
+          ],
+          [
+            5,
+            44
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Quantum platform comment task",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 5,
+      "records": 63,
+      "groups": 62,
+      "train_records": 256,
+      "training_seconds": 0.44277969999893685,
+      "available_ram_mib": 970.77734375,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.9523809523809523,
+        "balanced_accuracy": 0.9474734042553192,
+        "macro_f1": 0.9384164222873901,
+        "per_class": {
+          "0": {
+            "precision": 0.8823529411764706,
+            "recall": 0.9375,
+            "f1": 0.9090909090909091,
+            "support": 16
+          },
+          "1": {
+            "precision": 0.9782608695652174,
+            "recall": 0.9574468085106383,
+            "f1": 0.967741935483871,
+            "support": 47
+          }
+        },
+        "confusion_matrix": [
+          [
+            15,
+            1
+          ],
+          [
+            2,
+            45
+          ]
+        ]
+      }
+    }
+  ],
+  "runtime_seconds": 2.457665400001133,
+  "frozen_test_accessed": false,
+  "source_manifest_sha256": "f7490974d64dacd39d28957effabdff9f71b116a05ecc6e2ae178727bf7df651"
+}

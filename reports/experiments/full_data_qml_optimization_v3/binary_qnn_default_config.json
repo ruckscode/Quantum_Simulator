@@ -1,0 +1,101 @@
+{
+  "schema": "qmutbench-binary-qnn-development-v1",
+  "dataset": "QMutBench official development-only rows",
+  "development_rows": 578117,
+  "origins": 305,
+  "target": "killed vs survived",
+  "label_map": {
+    "WOO": 1,
+    "OPO": 1,
+    "Survivor": 0
+  },
+  "fold_source": "data/qmutbench_ml/exhaustive_campaign_v1/five_fold_confirmation/mutation_diff_oof.npz numeric record_id/y/fold arrays; origin_program verified by joining development OOF CSV; object array is never unpickled",
+  "folds": 5,
+  "group": "origin_program",
+  "sampling": {
+    "method": "deterministic per-origin/per-class caps then per-class caps",
+    "max_train_per_class_per_fold": 256,
+    "max_validation_per_class_per_fold": 256,
+    "per_origin_class_cap": 32,
+    "note": "sampled development OOF only; QNN and classical controls share the exact eligible fold samples; no full-corpus training or full-heldout-fold score"
+  },
+  "preprocessing": {
+    "schema_source": "qmutbench_qml.data.loader.FEATURES (23 fields)",
+    "encoder": "ReducedFeatureEncoder; train-fold-only one-hot/min-max, mutual-information top-k then min-max [0,1]",
+    "selected_features": 4,
+    "leakage_exclusions": [
+      "record_id",
+      "origin_program",
+      "source paths",
+      "fold",
+      "Killed as predictor",
+      "source_gate_count_match"
+    ]
+  },
+  "qnn": {
+    "architecture": "angle re-uploading VQC, Rot layers, ring CNOT, trainable affine sigmoid readout",
+    "qubits": 4,
+    "depth": 2,
+    "parameters": 26,
+    "encoding": "angle_reupload",
+    "optimizer": "Adam",
+    "learning_rate": 0.02,
+    "epochs": 8,
+    "batch_size": 32,
+    "simulator": "PennyLane default.qubit analytic statevector",
+    "shots": null,
+    "gradient": "PennyLane autograd backprop; one-parameter centered finite-difference check each fold"
+  },
+  "classical_controls": [
+    {
+      "model": "LogisticRegression",
+      "C": 1.0,
+      "class_weight": "balanced"
+    },
+    {
+      "model": "ExtraTreesClassifier",
+      "n_estimators": 100,
+      "max_depth": 16,
+      "min_samples_leaf": 2,
+      "class_weight": "balanced",
+      "n_jobs": 1
+    }
+  ],
+  "metrics": [
+    "accuracy",
+    "macro_f1",
+    "balanced_accuracy",
+    "per_class precision/recall/F1/support",
+    "confusion matrix",
+    "fold mean and standard deviation",
+    "Brier score",
+    "training/inference runtime",
+    "process RSS and available RAM"
+  ],
+  "seed": 20261028,
+  "memory": {
+    "in_run_floor_mib": 1024,
+    "startup_minimum_mib": 2048,
+    "estimate": "1 GiB safety floor + 700 MiB runtime/source-join reserve + sampled dense arrays + config-dependent complex128 statevector/autodiff-tape estimate",
+    "notes": "preflight runs before scientific imports; available RAM is checked after loading, before each fit, and for every QNN minibatch"
+  },
+  "checkpointing": {
+    "atomic_completed_fold_json": true,
+    "self_checksummed_single_file": true,
+    "contains": [
+      "fold",
+      "seed/config",
+      "feature schema and selected columns",
+      "train/validation IDs",
+      "feature/data fingerprint",
+      "software versions",
+      "metrics and predictions",
+      "QNN parameters/loss history",
+      "gradient check",
+      "runtime/resource observations"
+    ],
+    "resume_flag": "--resume",
+    "stale_or_corrupt": "reject; never overwrite existing non-checkpoint outputs"
+  },
+  "frozen_test_accessed": false
+}

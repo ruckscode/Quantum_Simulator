@@ -1,0 +1,345 @@
+{
+  "schema": "qmutbench-final-classical-campaign-v1",
+  "date": "2026-10-27",
+  "status": "complete_with_resource_deferred_specialist_hypothesis",
+  "source": {
+    "sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+    "development_rows": 578117,
+    "development_origins": 305,
+    "labels": {
+      "WOO": 1,
+      "OPO": 1,
+      "Survivor": 0
+    },
+    "class_counts": {
+      "detected_1": 299704,
+      "survivor_0": 278413
+    }
+  },
+  "champion": {
+    "name": "mutation_aware_extra_trees_23_features",
+    "model_sha256": "7532be26b6959e7e62277220f0c0b78e648d723a0be35d2b693d68e1c9ebf085",
+    "features": 23,
+    "threshold": 0.5,
+    "parameters": {
+      "n_estimators": 100,
+      "max_depth": 22,
+      "min_samples_leaf": 15,
+      "max_features": "sqrt",
+      "class_weight": "balanced_subsample",
+      "n_jobs": 1
+    },
+    "grouped_oof": {
+      "folds": 5,
+      "macro_f1": 0.7933135654357681,
+      "accuracy": 0.7933290320125511,
+      "balanced_accuracy": 0.7940874828150084,
+      "confusion_matrix_true_0_1_pred_0_1": [
+        [
+          226818,
+          51595
+        ],
+        [
+          67885,
+          231819
+        ]
+      ],
+      "per_class": {
+        "survivor_0": {
+          "precision": 0.7696494436771937,
+          "recall": 0.8146817856924784,
+          "f1": 0.7915256248298773,
+          "support": 278413
+        },
+        "detected_1": {
+          "precision": 0.817951830184818,
+          "recall": 0.7734931799375384,
+          "f1": 0.7951015060416589,
+          "support": 299704
+        }
+      },
+      "paired_origin_bootstrap_95ci_vs_legacy_macro_f1_delta": [
+        0.011288686348729166,
+        0.02983195511159021
+      ],
+      "origin_accuracy_changes": {
+        "improved": 246,
+        "worsened": 57,
+        "tied": 2
+      }
+    }
+  },
+  "retrospective_test_context": {
+    "used_for_current_campaign_selection": false,
+    "pristine": false,
+    "rows": 144962,
+    "origins": 70,
+    "champion_macro_f1": 0.8183751146923499,
+    "champion_accuracy": 0.8185042,
+    "champion_balanced_accuracy": 0.8185991,
+    "legacy_macro_f1": 0.7884279744415912,
+    "paired_origin_bootstrap_95ci_macro_f1_delta": [
+      0.01552343826837368,
+      0.04519171809369917
+    ]
+  },
+  "campaign_experiments": [
+    {
+      "name": "mutation_aware_23f",
+      "status": "champion",
+      "macro_f1": 0.7933135654357681
+    },
+    {
+      "name": "logistic_regression_tune",
+      "status": "rejected_negligible_gain",
+      "macro_f1": 0.6936259308230637,
+      "matched_baseline_macro_f1": 0.692658
+    },
+    {
+      "name": "random_forest",
+      "status": "rejected_prior_grouped_screen",
+      "macro_f1": 0.75891,
+      "matched_extra_trees_macro_f1": 0.76628
+    },
+    {
+      "name": "hist_gradient_boosting",
+      "status": "not_promoted_below_champion",
+      "macro_f1": 0.7771701763216003,
+      "matched_baseline_macro_f1": 0.768470815153209
+    },
+    {
+      "name": "no_gate_alignment_context_ablation",
+      "status": "rejected",
+      "macro_f1": 0.7647485452116252,
+      "matched_baseline_macro_f1": 0.7662820863197629
+    },
+    {
+      "name": "legacy_champion_probability_blend",
+      "status": "rejected",
+      "macro_f1": 0.785275240432039
+    },
+    {
+      "name": "nested_model_threshold_calibration",
+      "status": "rejected_no_gain",
+      "macro_f1": 0.7928007061958962,
+      "fixed_reference_macro_f1": 0.793449514889658
+    },
+    {
+      "name": "add_eight_circuit_structure_features",
+      "status": "rejected_partial_clean_confirmation",
+      "screen_fold1_delta": 0.018543572729666558,
+      "confirm_folds": [
+        2,
+        3,
+        4
+      ],
+      "confirm_macro_f1_delta": -0.0013244859174141865,
+      "paired_origin_bootstrap_95ci": [
+        -0.0055467897484967384,
+        0.00271149977494124
+      ],
+      "fold5": "interrupted at 458 MiB available RAM; no prediction checkpoint"
+    },
+    {
+      "name": "replace_specialist",
+      "status": "deferred_resource_guard",
+      "reason": "Descriptive subgroup is weak (prior three-fold macro F1 0.7485); additional matched grouped fits were not safe to launch under 1,134 MiB available memory after a prior 458 MiB floor event."
+    },
+    {
+      "name": "replace_only_shallow_decision_tree_hybrid",
+      "status": "rejected_harmful_all_folds",
+      "configuration": {
+        "family": "DecisionTreeClassifier",
+        "max_depth": 8,
+        "min_samples_leaf": 50,
+        "class_weight": "balanced",
+        "threshold": 0.5,
+        "seed_rule": "20261030 + saved fold number"
+      },
+      "replace_rows": 120676,
+      "replace_origins": 305,
+      "replace_slice_macro_f1": {
+        "champion": 0.7546299737703461,
+        "specialist": 0.7088446597805846,
+        "paired_origin_bootstrap_95ci_delta": [
+          -0.06307344518903721,
+          -0.03006221487321019
+        ]
+      },
+      "overall": {
+        "champion": {
+          "rows": 578117,
+          "accuracy": 0.7933290320125511,
+          "balanced_accuracy": 0.7940874828150084,
+          "macro_f1": 0.7933135654357681,
+          "confusion_matrix_true_0_1_pred_0_1": [
+            [
+              226818,
+              51595
+            ],
+            [
+              67885,
+              231819
+            ]
+          ],
+          "per_class": {
+            "0": {
+              "precision": 0.7696494436771937,
+              "recall": 0.8146817856924784,
+              "f1": 0.7915256248298773,
+              "support": 278413
+            },
+            "1": {
+              "precision": 0.817951830184818,
+              "recall": 0.7734931799375384,
+              "f1": 0.7951015060416589,
+              "support": 299704
+            }
+          }
+        },
+        "hybrid": {
+          "rows": 578117,
+          "accuracy": 0.7825267203697521,
+          "balanced_accuracy": 0.783769658312368,
+          "macro_f1": 0.7825215310053175,
+          "confusion_matrix_true_0_1_pred_0_1": [
+            [
+              227608,
+              50805
+            ],
+            [
+              74920,
+              224784
+            ]
+          ],
+          "per_class": {
+            "0": {
+              "precision": 0.7523535011635286,
+              "recall": 0.8175192968719133,
+              "f1": 0.783583875126734,
+              "support": 278413
+            },
+            "1": {
+              "precision": 0.8156493909408575,
+              "recall": 0.7500200197528227,
+              "f1": 0.7814591868839009,
+              "support": 299704
+            }
+          }
+        },
+        "paired_origin_bootstrap_95ci_delta": {
+          "accuracy": [
+            -0.013744529527444241,
+            -0.008008400630496494
+          ],
+          "balanced_accuracy": [
+            -0.013434151811649832,
+            -0.007300732992818983
+          ],
+          "macro_f1": [
+            -0.013838072030413897,
+            -0.007941000639560599
+          ]
+        },
+        "fold_macro_f1_deltas": {
+          "1": -0.0043985085443116745,
+          "2": -0.00990564647866643,
+          "3": -0.01332089342391174,
+          "4": -0.011011334846353305,
+          "5": -0.015704070791017544
+        }
+      },
+      "runtime_seconds": 2.821957800013479,
+      "available_ram_fit_start_mib": [
+        784.1,
+        797.8
+      ],
+      "all_five_fold_checkpoints_validated": true,
+      "frozen_test_accessed": false
+    }
+  ],
+  "error_analysis": {
+    "five_fold_false_positive": 51595,
+    "five_fold_false_negative": 67885,
+    "hard_slices_prior_three_fold": {
+      "grover-noancilla": {
+        "macro_f1": 0.483130492335629,
+        "n": 10095
+      },
+      "vqe": {
+        "macro_f1": 0.6518858748702714,
+        "n": 21728
+      },
+      "ae": {
+        "macro_f1": 0.6621474276526977,
+        "n": 14289
+      },
+      "Replace": {
+        "macro_f1": 0.7485378547997796,
+        "n": 120676
+      }
+    },
+    "slice_protocol_note": "Descriptive prior three-fold OOF; unequal class mix and not directly interchangeable with champion five-fold aggregate."
+  },
+  "resource": {
+    "available_ram_mib_at_inspection": 1134,
+    "previous_stop_floor_mib": 500,
+    "prior_clean_confirmation_folds_2_to_4_six_fit_runtime_seconds": 1477.62,
+    "active_python_training_processes_listed": 0,
+    "process_command_line_inventory": "WMI denied; full inventory unavailable",
+    "replace_specialist_fit_runtime_seconds": 2.821957800013479,
+    "replace_specialist_fit_start_available_ram_mib": [
+      784.1,
+      797.8
+    ]
+  },
+  "test_integrity": {
+    "new_frozen_test_evaluation": false,
+    "new_test_selection": false,
+    "pristine_untouched_origin_holdout_available": false
+  },
+  "qml_handoff": {
+    "isolated_directory": "qmutbench_qml/",
+    "target_map": {
+      "WOO": 1,
+      "OPO": 1,
+      "Survivor": 0
+    },
+    "development_grouping": "saved Origin_program grouped folds; identical record IDs and validation records",
+    "matched_pilot_features": "four fold-selected/scaled scalars from the same QMutBench metadata and mutation-diff features; all feature selection and scaling within fold",
+    "matched_controls": [
+      "Extra Trees",
+      "Logistic Regression",
+      "RBF SVC"
+    ],
+    "full_feature_context_only": {
+      "model": "mutation-aware Extra Trees, 23 features",
+      "macro_f1": 0.7933135654357681,
+      "protocol_warning": "Different feature schema from four-scalar QML family comparison."
+    },
+    "no_new_qml_training_in_this_campaign": true
+  },
+  "verification": {
+    "focused_tests": "23 passed in 3.58 seconds (master optimization, inference, corpus pipeline)",
+    "py_compile": "both qmutbench improvement campaign scripts passed",
+    "json_validation": "passed",
+    "git_diff_check": "passed",
+    "full_repository_tests": "not run",
+    "replace_experiment_scripts_py_compile": "passed for training and checkpoint finalizer"
+  },
+  "artifacts": {
+    "report": "reports/experiments/qmutbench_final_classical_campaign_20261027.md",
+    "summary": "reports/experiments/qmutbench_final_classical_campaign_20261027.json",
+    "prior_campaign_ledger": "reports/experiments/qmutbench_improvement_campaign_20261027/leaderboard.json",
+    "prior_campaign_progress": "reports/experiments/qmutbench_improvement_campaign_20261027/progress_report.md",
+    "replace_specialist_report": "reports/experiments/qmutbench_replace_specialist_20261027/research_report.md",
+    "replace_specialist_predictions": "reports/experiments/qmutbench_replace_specialist_20261027/replace_oof_predictions.csv.gz",
+    "replace_specialist_script": "experiments/qmutbench_replace_specialist.py",
+    "replace_specialist_finalizer": "experiments/finalize_qmutbench_replace_specialist.py",
+    "replace_specialist_summary": "reports/experiments/qmutbench_replace_specialist_20261027/result_summary.json",
+    "replace_specialist_fold_manifest": "reports/experiments/qmutbench_replace_specialist_20261027/fold_manifest.csv.gz",
+    "replace_specialist_per_origin_metrics": "reports/experiments/qmutbench_replace_specialist_20261027/per_origin_metrics.csv"
+  },
+  "target_macro_f1_0_85_reached": false,
+  "decision": "Retain the mutation-aware Extra Trees champion. The final Replace-specialist hypothesis was evaluated with a lightweight grouped five-fold pilot and rejected: all folds and origin-bootstrap intervals showed worse overall performance. Proceed to the separate QML handoff; no classical candidate is promoted."
+}

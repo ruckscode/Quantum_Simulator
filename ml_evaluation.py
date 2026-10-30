@@ -154,9 +154,9 @@ def load_dataset(report_dir: Path = REPORT_DIR) -> list[dict[str, Any]]:
         duplicate_fingerprint = fingerprint in seen
         seen.add(fingerprint)
         try:
-            report_path = str(path.relative_to(ROOT))
+            report_path = path.relative_to(ROOT).as_posix()
         except ValueError:
-            report_path = str(path)
+            report_path = path.as_posix()
         records.append({
             **{field: metadata.get(field) for field in REQUIRED_METADATA},
             "experiment_name": metadata.get("experiment_name"),
@@ -190,9 +190,9 @@ def load_report_dispositions(report_dir: Path = REPORT_DIR) -> list[dict[str, An
         else:
             parse_error = None
         try:
-            report_path = str(path.relative_to(ROOT))
+            report_path = path.relative_to(ROOT).as_posix()
         except ValueError:
-            report_path = str(path.resolve())
+            report_path = path.resolve().as_posix()
         if not isinstance(report, Mapping):
             dispositions.append({
                 "run_id": path.stem,

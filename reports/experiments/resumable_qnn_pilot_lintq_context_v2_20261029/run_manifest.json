@@ -1,0 +1,677 @@
+{
+  "class_counts": {
+    "0": 74,
+    "1": 216
+  },
+  "classical": {
+    "accuracy": 0.596551724137931,
+    "balanced_accuracy": 0.5648148148148149,
+    "confusion_matrix": [
+      [
+        37,
+        37
+      ],
+      [
+        80,
+        136
+      ]
+    ],
+    "features": "same 8 hashed-text features; fold-local train-only minmax scaling",
+    "macro_f1": 0.5433316733738004,
+    "model": "balanced LogisticRegression",
+    "per_class": {
+      "0": {
+        "f1": 0.38743455497382195,
+        "precision": 0.3162393162393162,
+        "recall": 0.5,
+        "support": 74
+      },
+      "1": {
+        "f1": 0.6992287917737788,
+        "precision": 0.7861271676300579,
+        "recall": 0.6296296296296297,
+        "support": 216
+      }
+    },
+    "predictions_sha256": "807a90a246c677785cff077989cffb7a52d0e21d6fa913fd5deaeaf63c1c74ec"
+  },
+  "classical_baseline_sha256": "807a90a246c677785cff077989cffb7a52d0e21d6fa913fd5deaeaf63c1c74ec",
+  "completed_folds": [
+    {
+      "checkpoint_sha256": "52359c62d5fd453b451d42e6a4d47a85b50ed96a1ab6f80abbebf3a8aca773cb",
+      "epoch": 4,
+      "fold": 1,
+      "history_sha256": "cc51b609a1eb07fb9f998aad03cf05745c15732208a5cbdabe5cb68e627c29e1"
+    },
+    {
+      "checkpoint_sha256": "1f5fe1773c39d6d3121dff013ca4809a96b10c71e216d4d0829a524e3ca9b391",
+      "epoch": 4,
+      "fold": 2,
+      "history_sha256": "749fdb8a1927555b9c9c2649f6050c66ed7a408e19b9b21fb31c9fd7868eae4c"
+    },
+    {
+      "checkpoint_sha256": "cc3799319b9e8237e14e4c83fb507046478bd7388c1746dd87608a286a0d0efb",
+      "epoch": 4,
+      "fold": 3,
+      "history_sha256": "30acf2fb7cfdfe6e2a77ae7662c219049f705edbbd6be5d4f6742cdc5b7fec53"
+    },
+    {
+      "checkpoint_sha256": "ea68ad7326446436c5b6a04a4b2436886058b66c938ceaff9eab426c6843bb22",
+      "epoch": 4,
+      "fold": 4,
+      "history_sha256": "6b669a3ae7302fcd9d559e7ce854b1962f07e82181e3a6b9a0f92cd32e7af709"
+    },
+    {
+      "checkpoint_sha256": "6f025e42c341fe9ee7d7b723693c2345cde68650294eb0e3caed30513712913b",
+      "epoch": 4,
+      "fold": 5,
+      "history_sha256": "38f9fe756e9fa7b02dc54bfc4de0d8b53e533abdf2099e90cc95fc7fa783256e"
+    }
+  ],
+  "config": {
+    "batch_size": 64,
+    "contract_sha256": "5c29e8206861057356f51f66e25e5829e4cd689b408af47c0faf588d39b79f83",
+    "final_epochs": 4,
+    "learning_rate": 0.04,
+    "model": {
+      "depth": 1,
+      "encoding": "amplitude",
+      "features": 8,
+      "learning_rate": 0.04,
+      "name": "amplitude_3q_depth1_lr004",
+      "qubits": 3,
+      "reupload": false
+    },
+    "optimizer": "Adam",
+    "processed_manifest_sha256": "e055b59df88f14206a42c68c421833ae11b109d332307737d45624261aceab38",
+    "scaler": "minmax fitted on each fold's training rows only",
+    "seed": 28102026,
+    "source_hash": "128db62ff0e24be7a72ef8f00f857b5bd27b4ab8c39c25288e8d207db327eaaa",
+    "split": "reused saved issue-group 5-fold assignments",
+    "split_sha256": "64a2f9fe86af41545a22d8ee3ad5b85f5172458993fe71bf4defcd353b41436e",
+    "target_semantics": "Manual LintQ TP versus FP triage from rule, warning, and source code context; not hardware diagnosis.",
+    "task_id": "lintq_warning_triage_context_v2",
+    "text_features": "8-dimensional deterministic BLAKE2 hashed-token counts of code only"
+  },
+  "config_sha256": "ae4b0d9aceccfeb32fa8b1022caa79ecf6a89e1924673d0df8d506e6050cc6cb",
+  "evaluation_scope": "development grouped OOF only",
+  "fold_results": [
+    {
+      "available_ram_mib": 756.09765625,
+      "checkpoint": "reports\\experiments\\resumable_qnn_pilot_lintq_context_v2_20261029\\qnn\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+      "checkpoint_sha256": "52359c62d5fd453b451d42e6a4d47a85b50ed96a1ab6f80abbebf3a8aca773cb",
+      "completed_epoch": 4,
+      "fold": 1,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "history_epochs": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "optimizer_state_nonzero": true,
+      "train_groups": 173,
+      "train_records": 232,
+      "training_seconds_fit_reported": 0.03710940000019036,
+      "training_seconds_this_invocation": 0.05302780000056373,
+      "validation_groups": 44,
+      "validation_records": 58
+    },
+    {
+      "available_ram_mib": 784.265625,
+      "checkpoint": "reports\\experiments\\resumable_qnn_pilot_lintq_context_v2_20261029\\qnn\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+      "checkpoint_sha256": "1f5fe1773c39d6d3121dff013ca4809a96b10c71e216d4d0829a524e3ca9b391",
+      "completed_epoch": 4,
+      "fold": 2,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "history_epochs": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "optimizer_state_nonzero": true,
+      "train_groups": 173,
+      "train_records": 232,
+      "training_seconds_fit_reported": 0.04154030000063358,
+      "training_seconds_this_invocation": 0.043900300002860604,
+      "validation_groups": 44,
+      "validation_records": 58
+    },
+    {
+      "available_ram_mib": 792.94140625,
+      "checkpoint": "reports\\experiments\\resumable_qnn_pilot_lintq_context_v2_20261029\\qnn\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+      "checkpoint_sha256": "cc3799319b9e8237e14e4c83fb507046478bd7388c1746dd87608a286a0d0efb",
+      "completed_epoch": 4,
+      "fold": 3,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "history_epochs": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "optimizer_state_nonzero": true,
+      "train_groups": 174,
+      "train_records": 232,
+      "training_seconds_fit_reported": 0.02957330000208458,
+      "training_seconds_this_invocation": 0.03129550000085146,
+      "validation_groups": 43,
+      "validation_records": 58
+    },
+    {
+      "available_ram_mib": 793.25,
+      "checkpoint": "reports\\experiments\\resumable_qnn_pilot_lintq_context_v2_20261029\\qnn\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+      "checkpoint_sha256": "ea68ad7326446436c5b6a04a4b2436886058b66c938ceaff9eab426c6843bb22",
+      "completed_epoch": 4,
+      "fold": 4,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "history_epochs": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "optimizer_state_nonzero": true,
+      "train_groups": 175,
+      "train_records": 232,
+      "training_seconds_fit_reported": 0.029910400000517257,
+      "training_seconds_this_invocation": 0.03140179999900283,
+      "validation_groups": 42,
+      "validation_records": 58
+    },
+    {
+      "available_ram_mib": 795.57421875,
+      "checkpoint": "reports\\experiments\\resumable_qnn_pilot_lintq_context_v2_20261029\\qnn\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz",
+      "checkpoint_sha256": "6f025e42c341fe9ee7d7b723693c2345cde68650294eb0e3caed30513712913b",
+      "completed_epoch": 4,
+      "fold": 5,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "history_epochs": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "optimizer_state_nonzero": true,
+      "train_groups": 173,
+      "train_records": 232,
+      "training_seconds_fit_reported": 0.02991449999899487,
+      "training_seconds_this_invocation": 0.03155920000062906,
+      "validation_groups": 44,
+      "validation_records": 58
+    }
+  ],
+  "folds": 5,
+  "frozen_test_accessed": false,
+  "groups": 217,
+  "paired_group_bootstrap_95_percentile": {
+    "groups_resampled": 217,
+    "iterations": 1000,
+    "macro_f1_difference_qnn_minus_classical": -0.11496271628867365,
+    "percentile_95_ci": [
+      -0.19330908000596372,
+      -0.03782967952799562
+    ]
+  },
+  "qnn": {
+    "accuracy": 0.7448275862068966,
+    "balanced_accuracy": 0.5,
+    "checkpoints": [
+      {
+        "checkpoint_sha256": "52359c62d5fd453b451d42e6a4d47a85b50ed96a1ab6f80abbebf3a8aca773cb",
+        "epoch": 4,
+        "fold": 1,
+        "history_sha256": "cc51b609a1eb07fb9f998aad03cf05745c15732208a5cbdabe5cb68e627c29e1"
+      },
+      {
+        "checkpoint_sha256": "1f5fe1773c39d6d3121dff013ca4809a96b10c71e216d4d0829a524e3ca9b391",
+        "epoch": 4,
+        "fold": 2,
+        "history_sha256": "749fdb8a1927555b9c9c2649f6050c66ed7a408e19b9b21fb31c9fd7868eae4c"
+      },
+      {
+        "checkpoint_sha256": "cc3799319b9e8237e14e4c83fb507046478bd7388c1746dd87608a286a0d0efb",
+        "epoch": 4,
+        "fold": 3,
+        "history_sha256": "30acf2fb7cfdfe6e2a77ae7662c219049f705edbbd6be5d4f6742cdc5b7fec53"
+      },
+      {
+        "checkpoint_sha256": "ea68ad7326446436c5b6a04a4b2436886058b66c938ceaff9eab426c6843bb22",
+        "epoch": 4,
+        "fold": 4,
+        "history_sha256": "6b669a3ae7302fcd9d559e7ce854b1962f07e82181e3a6b9a0f92cd32e7af709"
+      },
+      {
+        "checkpoint_sha256": "6f025e42c341fe9ee7d7b723693c2345cde68650294eb0e3caed30513712913b",
+        "epoch": 4,
+        "fold": 5,
+        "history_sha256": "38f9fe756e9fa7b02dc54bfc4de0d8b53e533abdf2099e90cc95fc7fa783256e"
+      }
+    ],
+    "confusion_matrix": [
+      [
+        0,
+        74
+      ],
+      [
+        0,
+        216
+      ]
+    ],
+    "fold_metrics": [
+      {
+        "classical": {
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.44573643410852715,
+          "confusion_matrix": [
+            [
+              5,
+              10
+            ],
+            [
+              19,
+              24
+            ]
+          ],
+          "macro_f1": 0.4398934398934399,
+          "per_class": {
+            "0": {
+              "f1": 0.25641025641025644,
+              "precision": 0.20833333333333334,
+              "recall": 0.3333333333333333,
+              "support": 15
+            },
+            "1": {
+              "f1": 0.6233766233766234,
+              "precision": 0.7058823529411765,
+              "recall": 0.5581395348837209,
+              "support": 43
+            }
+          }
+        },
+        "fold": 1,
+        "qnn": {
+          "accuracy": 0.7413793103448276,
+          "balanced_accuracy": 0.5,
+          "confusion_matrix": [
+            [
+              0,
+              15
+            ],
+            [
+              0,
+              43
+            ]
+          ],
+          "macro_f1": 0.42574257425742573,
+          "per_class": {
+            "0": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 15
+            },
+            "1": {
+              "f1": 0.8514851485148515,
+              "precision": 0.7413793103448276,
+              "recall": 1.0,
+              "support": 43
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.603448275862069,
+          "balanced_accuracy": 0.5806201550387597,
+          "confusion_matrix": [
+            [
+              8,
+              7
+            ],
+            [
+              16,
+              27
+            ]
+          ],
+          "macro_f1": 0.5557775557775557,
+          "per_class": {
+            "0": {
+              "f1": 0.4102564102564102,
+              "precision": 0.3333333333333333,
+              "recall": 0.5333333333333333,
+              "support": 15
+            },
+            "1": {
+              "f1": 0.7012987012987012,
+              "precision": 0.7941176470588235,
+              "recall": 0.627906976744186,
+              "support": 43
+            }
+          }
+        },
+        "fold": 2,
+        "qnn": {
+          "accuracy": 0.7413793103448276,
+          "balanced_accuracy": 0.5,
+          "confusion_matrix": [
+            [
+              0,
+              15
+            ],
+            [
+              0,
+              43
+            ]
+          ],
+          "macro_f1": 0.42574257425742573,
+          "per_class": {
+            "0": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 15
+            },
+            "1": {
+              "f1": 0.8514851485148515,
+              "precision": 0.7413793103448276,
+              "recall": 1.0,
+              "support": 43
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.6379310344827587,
+          "balanced_accuracy": 0.6152597402597402,
+          "confusion_matrix": [
+            [
+              8,
+              6
+            ],
+            [
+              15,
+              29
+            ]
+          ],
+          "macro_f1": 0.5833048238111529,
+          "per_class": {
+            "0": {
+              "f1": 0.4324324324324324,
+              "precision": 0.34782608695652173,
+              "recall": 0.5714285714285714,
+              "support": 14
+            },
+            "1": {
+              "f1": 0.7341772151898734,
+              "precision": 0.8285714285714286,
+              "recall": 0.6590909090909091,
+              "support": 44
+            }
+          }
+        },
+        "fold": 3,
+        "qnn": {
+          "accuracy": 0.7586206896551724,
+          "balanced_accuracy": 0.5,
+          "confusion_matrix": [
+            [
+              0,
+              14
+            ],
+            [
+              0,
+              44
+            ]
+          ],
+          "macro_f1": 0.4313725490196078,
+          "per_class": {
+            "0": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 14
+            },
+            "1": {
+              "f1": 0.8627450980392156,
+              "precision": 0.7586206896551724,
+              "recall": 1.0,
+              "support": 44
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.6379310344827587,
+          "balanced_accuracy": 0.6255813953488372,
+          "confusion_matrix": [
+            [
+              9,
+              6
+            ],
+            [
+              15,
+              28
+            ]
+          ],
+          "macro_f1": 0.5944055944055944,
+          "per_class": {
+            "0": {
+              "f1": 0.4615384615384615,
+              "precision": 0.375,
+              "recall": 0.6,
+              "support": 15
+            },
+            "1": {
+              "f1": 0.7272727272727273,
+              "precision": 0.8235294117647058,
+              "recall": 0.6511627906976745,
+              "support": 43
+            }
+          }
+        },
+        "fold": 4,
+        "qnn": {
+          "accuracy": 0.7413793103448276,
+          "balanced_accuracy": 0.5,
+          "confusion_matrix": [
+            [
+              0,
+              15
+            ],
+            [
+              0,
+              43
+            ]
+          ],
+          "macro_f1": 0.42574257425742573,
+          "per_class": {
+            "0": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 15
+            },
+            "1": {
+              "f1": 0.8514851485148515,
+              "precision": 0.7413793103448276,
+              "recall": 1.0,
+              "support": 43
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.603448275862069,
+          "balanced_accuracy": 0.5589147286821705,
+          "confusion_matrix": [
+            [
+              7,
+              8
+            ],
+            [
+              15,
+              28
+            ]
+          ],
+          "macro_f1": 0.5436195689360246,
+          "per_class": {
+            "0": {
+              "f1": 0.3783783783783784,
+              "precision": 0.3181818181818182,
+              "recall": 0.4666666666666667,
+              "support": 15
+            },
+            "1": {
+              "f1": 0.7088607594936709,
+              "precision": 0.7777777777777778,
+              "recall": 0.6511627906976745,
+              "support": 43
+            }
+          }
+        },
+        "fold": 5,
+        "qnn": {
+          "accuracy": 0.7413793103448276,
+          "balanced_accuracy": 0.5,
+          "confusion_matrix": [
+            [
+              0,
+              15
+            ],
+            [
+              0,
+              43
+            ]
+          ],
+          "macro_f1": 0.42574257425742573,
+          "per_class": {
+            "0": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 15
+            },
+            "1": {
+              "f1": 0.8514851485148515,
+              "precision": 0.7413793103448276,
+              "recall": 1.0,
+              "support": 43
+            }
+          }
+        }
+      }
+    ],
+    "macro_f1": 0.4268774703557312,
+    "model": {
+      "depth": 1,
+      "encoding": "amplitude",
+      "features": 8,
+      "learning_rate": 0.04,
+      "name": "amplitude_3q_depth1_lr004",
+      "qubits": 3,
+      "reupload": false
+    },
+    "per_class": {
+      "0": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 74
+      },
+      "1": {
+        "f1": 0.8537549407114624,
+        "precision": 0.7448275862068966,
+        "recall": 1.0,
+        "support": 216
+      }
+    },
+    "predictions_sha256": "98571674a7b35528c7e2c03b1da7b15d69e84e139fa51d3d8503f9b2323cfe5e"
+  },
+  "qnn_oof_sha256": "98571674a7b35528c7e2c03b1da7b15d69e84e139fa51d3d8503f9b2323cfe5e",
+  "resume_events": 1,
+  "resume_verification": {
+    "all_group_folds_preserved": true,
+    "all_optimizer_states_present": true,
+    "checkpoint_epochs": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "resume_events": 1,
+    "status": "verified",
+    "uninterrupted_reference_parity": {
+      "bias": true,
+      "head": true,
+      "m_b": true,
+      "m_h": true,
+      "m_t": true,
+      "rng_state": true,
+      "theta": true,
+      "v_b": true,
+      "v_h": true,
+      "v_t": true
+    }
+  },
+  "rows": 290,
+  "runtime": {
+    "batch_size": 64,
+    "elapsed_seconds_this_invocation": 0.839,
+    "memory_available_end_mib": 795.6,
+    "memory_available_start_mib": 732.9,
+    "memory_floor_mib": 500
+  },
+  "source_audit": {
+    "contract_sha256": "5c29e8206861057356f51f66e25e5829e4cd689b408af47c0faf588d39b79f83",
+    "fold_path": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\data\\processed\\lintq\\warning_triage_context_v2\\manifests\\group_folds.csv",
+    "fold_sha256": "64a2f9fe86af41545a22d8ee3ad5b85f5172458993fe71bf4defcd353b41436e",
+    "group_count": 217,
+    "partition_sha256": [
+      "d8493709ed3fd6249d25a73ea2b498d853895ead3f308f4e5fb3bfb484331428",
+      "1ffae0faaa27284433de498533bc700cab016f1cdfdb453665440659b37d92f3",
+      "a346c68a23633a80809e38040113b3feb8b57d351413d3b67a30efce4e25ea0e",
+      "311dbe0b00056e8f4e8ae6b47293f79556f9df5a63c447a9d1af3ec136e85c48",
+      "2ed6a6dce94e370a741132e2b05b2b20dcac9027a8256016c804e442bb8e3cb9"
+    ],
+    "processed_manifest": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\data\\processed\\lintq\\warning_triage_context_v2\\manifest.json",
+    "processed_manifest_sha256": "e055b59df88f14206a42c68c421833ae11b109d332307737d45624261aceab38",
+    "raw_snapshot_hashes": 1,
+    "record_count": 290,
+    "source_path": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\lintq_context_v2\\normalized_manifest.csv",
+    "source_sha256": "128db62ff0e24be7a72ef8f00f857b5bd27b4ab8c39c25288e8d207db327eaaa"
+  },
+  "status": "completed",
+  "target_semantics": "Manual LintQ TP versus FP triage from rule, warning, and source code context; not hardware diagnosis.",
+  "task": "lintq_warning_triage_context_v2"
+}

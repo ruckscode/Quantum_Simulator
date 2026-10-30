@@ -1,24 +1,211 @@
 {
-  "status": "partial_stopped_by_ram_guard",
+  "status": "candidate_and_matched_classical_sweeps_complete",
+  "scope": "two fixed QNN candidate architectures across the nine listed source tasks; not the separate broad classical/imbalance suite",
   "completed_tasks": [
     {
-      "task": "Bugs4Q core",
-      "status": "completed_grouped_qnn_sweep",
+      "task": "bugs4q_core",
+      "records": 62,
+      "groups": 31,
       "models": [
         {
-          "accuracy_percent": 45.1613,
-          "model": "amplitude_3q_depth1_lr004"
+          "model": "amplitude_3q_depth1_lr004",
+          "accuracy": 0.45161290322580644,
+          "macro_f1": 0.4493207941483804,
+          "balanced_accuracy": 0.45161290322580644
         },
         {
-          "accuracy_percent": 50.0,
-          "model": "angle_reupload_4q_depth2_lr0035"
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "accuracy": 0.5,
+          "macro_f1": 0.49882659713168187,
+          "balanced_accuracy": 0.5
         }
-      ],
-      "baseline_accuracy_percent": 51.6129,
-      "selected_incumbent_preserved": true
+      ]
+    },
+    {
+      "task": "bugs4q_na",
+      "records": 62,
+      "groups": 31,
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "accuracy": 0.46774193548387094,
+          "macro_f1": 0.4608695652173913,
+          "balanced_accuracy": 0.467741935483871
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "accuracy": 0.4838709677419355,
+          "macro_f1": 0.4700854700854701,
+          "balanced_accuracy": 0.4838709677419355
+        }
+      ]
+    },
+    {
+      "task": "bugs4q_pooled",
+      "records": 124,
+      "groups": 62,
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "accuracy": 0.5,
+          "macro_f1": 0.49354413702239797,
+          "balanced_accuracy": 0.5
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "accuracy": 0.46774193548387094,
+          "macro_f1": 0.4587301587301587,
+          "balanced_accuracy": 0.467741935483871
+        }
+      ]
+    },
+    {
+      "task": "bugs4q_core_only_transfer",
+      "records": 124,
+      "groups": 62,
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "accuracy": 0.5403225806451613,
+          "macro_f1": 0.5402926829268293,
+          "balanced_accuracy": 0.5403225806451613
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "accuracy": 0.46774193548387094,
+          "macro_f1": 0.46760343481654953,
+          "balanced_accuracy": 0.467741935483871
+        }
+      ]
+    },
+    {
+      "task": "bugs4q_na_only_transfer",
+      "records": 124,
+      "groups": 62,
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "accuracy": 0.49193548387096775,
+          "macro_f1": 0.49190243902439024,
+          "balanced_accuracy": 0.49193548387096775
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "accuracy": 0.5161290322580645,
+          "macro_f1": 0.5098814229249012,
+          "balanced_accuracy": 0.5161290322580645
+        }
+      ]
+    },
+    {
+      "task": "lintq",
+      "records": 290,
+      "groups": 228,
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "accuracy": 0.7413793103448276,
+          "macro_f1": 0.42574257425742573,
+          "balanced_accuracy": 0.4976851851851852
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "accuracy": 0.7413793103448276,
+          "macro_f1": 0.42574257425742573,
+          "balanced_accuracy": 0.4976851851851852
+        }
+      ]
+    },
+    {
+      "task": "qbugs_hornbro_subset",
+      "records": 1500,
+      "groups": 750,
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "accuracy": 0.7073333333333334,
+          "macro_f1": 0.7063905206719354,
+          "balanced_accuracy": 0.7073333333333334
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "accuracy": 0.718,
+          "macro_f1": 0.7179848338510648,
+          "balanced_accuracy": 0.718
+        }
+      ]
+    },
+    {
+      "task": "qolumbina_ideal",
+      "records": 182,
+      "groups": 26,
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "accuracy": 0.8241758241758241,
+          "macro_f1": 0.45180722891566266,
+          "balanced_accuracy": 0.5
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "accuracy": 0.7857142857142857,
+          "macro_f1": 0.44,
+          "balanced_accuracy": 0.4766666666666667
+        }
+      ]
+    },
+    {
+      "task": "quantum_platform_comment_task",
+      "records": 319,
+      "groups": 314,
+      "models": [
+        {
+          "model": "amplitude_3q_depth1_lr004",
+          "accuracy": 0.7178683385579937,
+          "macro_f1": 0.483038029386344,
+          "balanced_accuracy": 0.5342161808669657
+        },
+        {
+          "model": "angle_reupload_4q_depth2_lr0035",
+          "accuracy": 0.9122257053291536,
+          "macro_f1": 0.8944208037825059,
+          "balanced_accuracy": 0.8897608370702541
+        }
+      ]
     }
   ],
-  "blocked_task": "Bugs4Q-NA",
-  "reason": "The runner stopped when available RAM reached 494.1 MiB, below the 500 MiB floor. Subsequent availability measured approximately 12 MiB. The Bugs4Q-NA task has partial fold checkpoints but no complete summary/OOF result and is not scored.",
-  "frozen_test_accessed": false
+  "not_completed": [
+    "registered broad 14-model classical and training-fold-only imbalance suite",
+    "QMutBench full-data binary QNN"
+  ],
+  "matched_classical_comparison": {
+    "status": "verified",
+    "path": "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\matched_qnn_classical_comparison.json",
+    "task_count": 9
+  },
+  "matched_classical_first_attempt": {
+    "status": "blocked_by_ram_preflight_then_completed_after_recovery",
+    "available_ram_mib_at_first_attempt": 507.2,
+    "required_startup_mib": 600,
+    "in_run_ram_floor_mib": 500,
+    "final_status": "verified"
+  },
+  "frozen_test_accessed": false,
+  "completed_qnn_only_extensions": [
+    {
+      "task": "Qolumbina multi-backend seeded-mutant detection",
+      "status": "VERIFIED",
+      "rows": 546,
+      "groups": 26,
+      "folds": 5,
+      "models": [
+        "amplitude_3q_depth1_lr004",
+        "angle_reupload_4q_depth2_lr0035"
+      ],
+      "oof_rows": 1092,
+      "metrics_note": "Both candidates predicted the positive class for every row: accuracy 92.674%, macro-F1 48.0989%, balanced accuracy 50.0%; exploratory under severe class imbalance.",
+      "artifact": "reports/experiments/qolumbina_multibackend_candidate_sweep_20261029/run_manifest.json",
+      "frozen_test_accessed": false
+    }
+  ]
 }

@@ -1,0 +1,40 @@
+{
+  "allowed_labels": [
+    "0",
+    "1"
+  ],
+  "feature_column": "code",
+  "feature_policy": "OpenQASM 2 circuit text only; pair, algorithm, qubit, and label metadata are excluded from model text.",
+  "fold_column": "fold",
+  "fold_group_column": "group_id",
+  "fold_model_column": "model",
+  "fold_model_value": "mute_alg_compatible_subset_qasm_v2",
+  "fold_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/mute_alg_compatible_subset_qiskit_compat_v2/group_folds.csv",
+  "fold_record_column": "record_id",
+  "group_column": "bug_id",
+  "grouping_policy": "Connect each upstream correct/buggy pair and exact QASM repeats before five-fold grouped splitting.",
+  "input_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/mute_alg_compatible_subset_qiskit_compat_v2/normalized_manifest.csv",
+  "label_column": "label",
+  "model_feature_fields": [
+    "code"
+  ],
+  "output_path": "data/processed/mute_alg/compatible_subset_qasm_v2_qiskit_compat_v2",
+  "record_id_column": "record_id",
+  "required": [
+    "record_id",
+    "bug_id",
+    "label",
+    "code",
+    "scenario",
+    "pair_index",
+    "algorithm",
+    "qubits",
+    "depth",
+    "instruction_count",
+    "qasm_sha256"
+  ],
+  "source_id": "mute_alg_hornbro",
+  "split_seed": 20261029,
+  "target_semantics": "Upstream Mute-Alg original (0) versus synthetically buggy (1) circuits represented as OpenQASM 2; compatibility-selected subset only, not hardware diagnosis.",
+  "task_id": "compatible_subset_qasm_v2"
+}

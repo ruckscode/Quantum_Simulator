@@ -7,16 +7,20 @@ name = "quantum-simulator"
 version = "0.1.0"
 description = "Reusable quantum circuit simulation and diagnosis core"
 requires-python = ">=3.10"
-dependencies = ["numpy", "pandas", "scikit-learn", "cryptography>=41"]
+dependencies = ["numpy>=1.24"]
 
 [project.optional-dependencies]
-dev = ["pytest"]
+dev = ["pytest", "pandas", "scikit-learn", "cryptography>=41"]
 oracle = ["qiskit>=2.5,<3"]
 ibm = ["qiskit>=2.5,<3", "qiskit-ibm-runtime>=0.50,<0.51"]
+research = ["pandas", "scikit-learn", "cryptography>=41"]
+
+[tool.setuptools]
+py-modules = ["ibm_validation"]
 
 [tool.setuptools.packages.find]
 where = ["src", "."]
-include = ["quantum_simulator*", "qmutbench_ml*"]
+include = ["quantum_simulator*"]
 
 [tool.setuptools.package-data]
 quantum_simulator = ["models/*.json"]

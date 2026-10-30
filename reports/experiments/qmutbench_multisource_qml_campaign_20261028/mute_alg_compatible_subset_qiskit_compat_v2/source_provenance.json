@@ -1,0 +1,20 @@
+{
+  "local_snapshot_limitations": [
+    "The imported local snapshot contains only datasets/Mute-Alg; its repository-level README.md, LICENSE, and exact git commit identifier are absent.",
+    "The exact 169 pickle content hashes are preserved in preparation_report.json and verified against the current source files."
+  ],
+  "preparation_report_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/mute_alg_compatible_subset_qiskit_compat_v2/preparation_report.json",
+  "preparation_report_sha256": "0398983a27755e826e844a1b9bff1575aa69476d2f8bfc6f2bcba7076a2e6d7e",
+  "processed_manifest_path": "data/processed/mute_alg/compatible_subset_qasm_v2_qiskit_compat_v2/manifest.json",
+  "processed_manifest_sha256": "fc4e72edb0882f7f2a1fb93bdca497432b732a8f0c2a48f1b40caba69165d325",
+  "redistribution_note": "MIT is the upstream repository license metadata; this snapshot did not include the license text locally. Preserve upstream attribution/license text if redistributing source or derived artifacts.",
+  "schema": "mute-alg-source-provenance-v1",
+  "source_input_sha256": "d7a7010bfc6421a94b5cb03b70568cfe7fd2537c2ac1f11ae433e29b4a42e853",
+  "source_repository": "https://github.com/JanusQ/HornBro",
+  "task_contract_path": "experiments/source_task_contracts/mute_alg_compatible_subset_qasm_v2_qiskit_compat_v2.json",
+  "task_contract_sha256": "2cdfed3313152c9e8601694999b1e87d804fb3436ea7dd1f178f00cf9264d500",
+  "task_scope": "All 169 source pickle files were successfully loaded; 7,220 paired records were excluded where identical OpenQASM had contradictory original/buggy labels. The resulting accepted task data is therefore a filtered source subset, not a compatibility-selected subset of algorithm directories.",
+  "upstream_license": "MIT",
+  "upstream_license_evidence": "GitHub repository page links an MIT license and exposes LICENSE in the repository root.",
+  "upstream_readme_evidence": "The README states qcs.pkl stores originals in the first half and buggy programs in the second half."
+}

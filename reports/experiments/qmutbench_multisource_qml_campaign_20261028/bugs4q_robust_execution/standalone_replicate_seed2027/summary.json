@@ -1,0 +1,286 @@
+{
+  "status": "completed_resource_light_grouped_qnn",
+  "task": "bugs4q_robust_execution",
+  "records": 2220,
+  "groups": 37,
+  "folds": 5,
+  "features": "8-bin BLAKE2b hashed token counts, train-fold min-max scaling",
+  "split": "five deterministic group-disjoint folds; all paired/source variants held by bug_id",
+  "results": {
+    "angle_reupload_4q_depth2_lr007": {
+      "accuracy": 0.5405405405405406,
+      "balanced_accuracy": 0.5405405405405406,
+      "macro_f1": 0.5402046783625731,
+      "per_class": {
+        "0": {
+          "precision": 0.5384615384615384,
+          "recall": 0.5675675675675675,
+          "f1": 0.5526315789473685,
+          "support": 1110
+        },
+        "1": {
+          "precision": 0.5428571428571428,
+          "recall": 0.5135135135135135,
+          "f1": 0.5277777777777778,
+          "support": 1110
+        }
+      },
+      "confusion_matrix": [
+        [
+          630,
+          480
+        ],
+        [
+          540,
+          570
+        ]
+      ],
+      "folds": 5,
+      "records": 2220,
+      "training_seconds": 27.81231869999465,
+      "architecture": {
+        "name": "angle_reupload_4q_depth2_lr007",
+        "qubits": 4,
+        "features": 4,
+        "encoding": "angle",
+        "depth": 2,
+        "reupload": true,
+        "learning_rate": 0.07
+      },
+      "checkpoint_paths": [
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\standalone_replicate_seed2027\\angle_reupload_4q_depth2_lr007\\fold_1\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\standalone_replicate_seed2027\\angle_reupload_4q_depth2_lr007\\fold_2\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\standalone_replicate_seed2027\\angle_reupload_4q_depth2_lr007\\fold_3\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\standalone_replicate_seed2027\\angle_reupload_4q_depth2_lr007\\fold_4\\checkpoint.npz",
+        "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\standalone_replicate_seed2027\\angle_reupload_4q_depth2_lr007\\fold_5\\checkpoint.npz"
+      ]
+    }
+  },
+  "fold_results": [
+    {
+      "task": "bugs4q_robust_execution",
+      "model": "angle_reupload_4q_depth2_lr007",
+      "fold": 1,
+      "records": 420,
+      "groups": 7,
+      "training_seconds": 4.5028164999966975,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5222222222222221,
+        "macro_f1": 0.49743589743589745,
+        "per_class": {
+          "0": {
+            "precision": 0.6666666666666666,
+            "recall": 0.4444444444444444,
+            "f1": 0.5333333333333333,
+            "support": 270
+          },
+          "1": {
+            "precision": 0.375,
+            "recall": 0.6,
+            "f1": 0.4615384615384615,
+            "support": 150
+          }
+        },
+        "confusion_matrix": [
+          [
+            120,
+            150
+          ],
+          [
+            60,
+            90
+          ]
+        ]
+      },
+      "available_ram_mib": 868.17578125
+    },
+    {
+      "task": "bugs4q_robust_execution",
+      "model": "angle_reupload_4q_depth2_lr007",
+      "fold": 2,
+      "records": 480,
+      "groups": 8,
+      "training_seconds": 5.8871271000025445,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.625,
+        "balanced_accuracy": 0.625,
+        "macro_f1": 0.6190476190476191,
+        "per_class": {
+          "0": {
+            "precision": 0.6,
+            "recall": 0.75,
+            "f1": 0.6666666666666665,
+            "support": 240
+          },
+          "1": {
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "f1": 0.5714285714285715,
+            "support": 240
+          }
+        },
+        "confusion_matrix": [
+          [
+            180,
+            60
+          ],
+          [
+            120,
+            120
+          ]
+        ]
+      },
+      "available_ram_mib": 863.51171875
+    },
+    {
+      "task": "bugs4q_robust_execution",
+      "model": "angle_reupload_4q_depth2_lr007",
+      "fold": 3,
+      "records": 480,
+      "groups": 8,
+      "training_seconds": 5.677442100000917,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.625,
+        "balanced_accuracy": 0.625,
+        "macro_f1": 0.6000000000000001,
+        "per_class": {
+          "0": {
+            "precision": 0.75,
+            "recall": 0.375,
+            "f1": 0.5,
+            "support": 240
+          },
+          "1": {
+            "precision": 0.5833333333333334,
+            "recall": 0.875,
+            "f1": 0.7000000000000001,
+            "support": 240
+          }
+        },
+        "confusion_matrix": [
+          [
+            90,
+            150
+          ],
+          [
+            30,
+            210
+          ]
+        ]
+      },
+      "available_ram_mib": 905.37890625
+    },
+    {
+      "task": "bugs4q_robust_execution",
+      "model": "angle_reupload_4q_depth2_lr007",
+      "fold": 4,
+      "records": 420,
+      "groups": 7,
+      "training_seconds": 5.909158800001023,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.35714285714285715,
+        "balanced_accuracy": 0.3958333333333333,
+        "macro_f1": 0.32620320855614976,
+        "per_class": {
+          "0": {
+            "precision": 0.36363636363636365,
+            "recall": 0.6666666666666666,
+            "f1": 0.4705882352941177,
+            "support": 180
+          },
+          "1": {
+            "precision": 0.3333333333333333,
+            "recall": 0.125,
+            "f1": 0.18181818181818182,
+            "support": 240
+          }
+        },
+        "confusion_matrix": [
+          [
+            120,
+            60
+          ],
+          [
+            210,
+            30
+          ]
+        ]
+      },
+      "available_ram_mib": 873.21484375
+    },
+    {
+      "task": "bugs4q_robust_execution",
+      "model": "angle_reupload_4q_depth2_lr007",
+      "fold": 5,
+      "records": 420,
+      "groups": 7,
+      "training_seconds": 5.835774199993466,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.5714285714285714,
+        "balanced_accuracy": 0.5833333333333333,
+        "macro_f1": 0.5714285714285715,
+        "per_class": {
+          "0": {
+            "precision": 0.5,
+            "recall": 0.6666666666666666,
+            "f1": 0.5714285714285715,
+            "support": 180
+          },
+          "1": {
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "f1": 0.5714285714285715,
+            "support": 240
+          }
+        },
+        "confusion_matrix": [
+          [
+            120,
+            60
+          ],
+          [
+            120,
+            120
+          ]
+        ]
+      },
+      "available_ram_mib": 817.98046875
+    }
+  ],
+  "optimizer_steps_per_fold": 4,
+  "batch_size": 64,
+  "runtime_seconds": 27.968032100005075,
+  "minimum_ram_floor_mib": 500,
+  "frozen_test_accessed": false
+}

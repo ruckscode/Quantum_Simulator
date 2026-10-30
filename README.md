@@ -5,7 +5,7 @@
 ## Start here
 
 - Reusable simulator and diagnosis package: `src/quantum_simulator/` (compatibility entry points remain at the repository root).
-- QMutBench feature extraction and inference: `qmutbench_ml/`; reproducible experiment entry points: `experiments/`.
+- QMutBench/QML research code is a separate repository track and is not included in the installable simulator package.
 - Automated checks: `tests/`; research reports, metrics, and manifests: `reports/` and `reports/experiments/`.
 - Small QASM examples are tracked in `data/qmutbench/`. Full datasets, the selected model bundle, and generated ML intermediates are local-only under `data/` and are excluded by `.gitignore`.
 
@@ -89,11 +89,11 @@ IBM preflight keeps its separate backend-specific freshness contract and configu
 
 ## 6. Installation
 
-The project requires Python 3.10 or newer. The package metadata declares NumPy, pandas, and scikit-learn; pytest is in the optional development extra. Core statevector execution uses NumPy, while the repository's ML and evaluation tools use the additional declared libraries.
+The project requires Python 3.10 or newer. The installable simulator core depends only on NumPy. pandas, scikit-learn, and cryptography are available through development/research extras and are not required to run circuits or diagnosis.
 
 ```powershell
 py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e ".[dev]"
+.\.venv\Scripts\python.exe -m pip install -e ".[dev,research]"
 ```
 
 To install only the declared runtime dependencies from the repository root:
@@ -101,6 +101,74 @@ To install only the declared runtime dependencies from the repository root:
 ```powershell
 python -m pip install -e .
 ```
+
+## Install in Colab, VS Code, or another Python environment
+
+The installable distribution contains the simulator package and optional IBM adapter; it does not install the separate QMutBench/QML research package. From a local clone, install the current checkout with:
+
+```powershell
+python -m pip install .
+```
+
+For Google Colab, install directly from the repository:
+
+```python
+%pip install "git+https://github.com/ruckscode/Quantum_Simulator.git@simulator-python-package"
+```
+
+In VS Code, create/select a Python environment and run the same pip command in its terminal. Core simulation does not require network access after installation.
+
+The public Python API accepts circuit objects or supported operation lists and returns measured counts with diagnosis evidence:
+
+```python
+from quantum_simulator import QuantumCircuit, diagnose_circuit
+
+intended = QuantumCircuit(1)
+intended.x(0)
+intended.measure_all()
+
+submitted = QuantumCircuit(1)
+submitted.x(0)
+submitted.measure_all()
+
+result = diagnose_circuit(
+    submitted,
+    reference_circuit=intended,
+    shots=2048,
+    seed=42,
+)
+print(result.category.value)
+print(result.observed_counts)
+print(result.evidence)
+```
+
+For live IBM Quantum execution, install the optional extra directly from Git:
+
+```python
+%pip install "quantum-simulator[ibm] @ git+https://github.com/ruckscode/Quantum_Simulator.git@simulator-python-package"
+```
+
+Pass the key explicitly to the call; it is not read from a default environment variable by this Python API:
+
+```python
+from getpass import getpass
+from ibm_validation import execute_on_ibm_backend
+
+api_key = getpass("IBM Quantum API key: ")
+live = execute_on_ibm_backend(
+    submitted.instructions,
+    reference_circuit=intended.instructions,
+    backend_name="YOUR_BACKEND_NAME",
+    token=api_key,
+    shots=2048,
+)
+del api_key
+print(live.diagnosis)
+```
+
+A live call submits a real backend job and can consume account quota. It uses the intended circuit's ideal distribution, returned backend counts, and the backend's acquired calibration snapshot. The live count comparison uses a seeded multinomial bootstrap plus a practical TVD threshold.
+
+The controlled synthetic smoke benchmark is reproducible with `python experiments/run_simulator_synthetic_fault_accuracy.py`. The current 80-case result is 80/80 (100%) across four injected categories and two small circuit templates. This is a pipeline check on generated cases with known causes, not independent hardware accuracy or deployment evidence; the detailed record and limitations are in `reports/experiments/classical_simulator_fault_accuracy_20261030.json`.
 
 Qiskit 2.5 or newer within the 2.x line is an optional test oracle, not a runtime dependency. Install it with the test extra to run the independent gate-reference suite:
 

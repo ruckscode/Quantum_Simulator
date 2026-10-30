@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import concurrent.futures
+import csv
 import hashlib
 import json
 import os
@@ -89,6 +90,69 @@ def _initialize_worker(cache_path: str) -> None:
                             for name, operations in raw.items()}
 
 
+def _read_development_metadata(ids: list[int]) -> pd.DataFrame:
+    """Scan row identifiers first; materialize mutation fields only for dev IDs."""
+    wanted_ids = set(map(int, ids))
+    selected = []
+    with SOURCE_CSV.open("r", encoding="utf-8-sig", newline="") as stream:
+        reader = csv.reader(stream)
+        header = next(reader)
+        id_name = "Unnamed: 0" if "Unnamed: 0" in header else ""
+        id_index = header.index(id_name)
+        field_indices = {name: header.index(name) for name in USECOLS
+                         if name not in {"Unnamed: 0", id_name}}
+        for row in reader:
+            rid = int(row[id_index])
+            if rid in wanted_ids:
+                selected.append({"Unnamed: 0": rid,
+                                 **{name: row[index] for name, index in field_indices.items()}})
+    if len(selected) != len(wanted_ids):
+        found = {int(row["Unnamed: 0"]) for row in selected}
+        raise ValueError(f"Development reference IDs missing in source metadata: {len(wanted_ids - found)}")
+    frame = pd.DataFrame(selected).set_index("Unnamed: 0", drop=False)
+    if frame.index.duplicated().any():
+        raise ValueError("Development source metadata contains duplicate record IDs")
+    return frame
+
+
+def _iter_development_metadata_chunks(ids: np.ndarray, chunk_rows: int):
+    """Yield only development metadata in bounded source-order chunks."""
+    wanted = np.asarray(ids, dtype=np.int64)
+    if chunk_rows < 1 or (len(wanted) > 1 and np.any(wanted[1:] <= wanted[:-1])):
+        raise ValueError("Development record IDs must be unique, increasing, and chunk size positive")
+    selected: list[dict[str, Any]] = []
+    pointer = 0
+    last_id = -1
+    with SOURCE_CSV.open("r", encoding="utf-8-sig", newline="") as stream:
+        reader = csv.reader(stream)
+        header = next(reader)
+        id_name = "Unnamed: 0" if "Unnamed: 0" in header else ""
+        id_index = header.index(id_name)
+        field_indices = {name: header.index(name) for name in USECOLS
+                         if name not in {"Unnamed: 0", id_name}}
+        for row in reader:
+            rid = int(row[id_index])
+            if rid <= last_id:
+                raise ValueError("Source metadata IDs are not strictly increasing")
+            last_id = rid
+            if pointer >= len(wanted):
+                continue
+            expected = int(wanted[pointer])
+            if rid > expected:
+                raise ValueError(f"Development source metadata is missing record ID {expected}")
+            if rid == expected:
+                selected.append({"Unnamed: 0": rid,
+                    **{name: row[index] for name, index in field_indices.items()}})
+                pointer += 1
+                if len(selected) == chunk_rows:
+                    yield pd.DataFrame(selected)
+                    selected = []
+    if pointer != len(wanted):
+        raise ValueError(f"Development source metadata is missing {len(wanted) - pointer} record IDs")
+    if selected:
+        yield pd.DataFrame(selected)
+
+
 def _worker(item: tuple[int, str, str, str, str]) -> tuple[int, dict[str, Any] | None, str | None]:
     rid, original, mutant, operation, gate = item
     try:
@@ -110,9 +174,10 @@ def extract(output: Path = OUTPUT, workers: int | None = None, chunk_rows: int =
     if rev != EXPECTED_REPO_COMMIT or dirty:
         raise ValueError("Official QMutBench checkout is not at the verified clean commit")
     oof = pd.read_csv(BASELINE_OOF, usecols=["record_id"])
-    ids = oof.record_id.astype("int64")
-    if len(ids) != 578117 or ids.duplicated().any():
+    ids = oof.record_id.astype("int64").to_numpy()
+    if len(ids) != 578117 or len(np.unique(ids)) != len(ids):
         raise ValueError("Development row IDs violate the verified OOF contract")
+    ids.sort()
     tracked_raw = subprocess.run(["git", "-C", str(OFFICIAL_CHECKOUT), "ls-files", "-z", "--",
                                   "data/Origin_programs", "data/Mutated_programs"], check=True,
                                  capture_output=True).stdout
@@ -136,23 +201,22 @@ def extract(output: Path = OUTPUT, workers: int | None = None, chunk_rows: int =
                     "cache_key": cache_key, "feature_columns": FEATURE_COLUMNS,
                     "development_rows": len(ids), "chunks": [], "status": "in_progress"}
         manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    src = pd.read_csv(SOURCE_CSV, usecols=USECOLS)[USECOLS].set_index("Unnamed: 0", drop=False)
-    missing = ids[~ids.isin(src.index)]
-    if len(missing):
-        raise ValueError(f"Development row IDs missing from metadata: {missing.head().tolist()}")
-    frame = src.loc[ids.to_numpy()].reset_index(drop=True)
-    paths = [_safe_paths(row, tracked) for row in frame.to_dict("records")]
+    original_names: set[str] = set()
+    for metadata in _iter_development_metadata_chunks(ids, chunk_rows):
+        for row in metadata.to_dict("records"):
+            _, original, _ = _safe_paths(row, tracked)
+            original_names.add(original)
     original_cache_path = output / "original_signatures.json"
     if not original_cache_path.exists():
         originals = {}
-        for relative in sorted({original for _, original, _ in paths}):
+        for relative in sorted(original_names):
             originals[relative] = [[name, list(wires)] for name, wires in _ops(QASM_ROOT / relative)]
         temp_cache = original_cache_path.with_suffix(".tmp")
         temp_cache.write_text(json.dumps(originals, separators=(",", ":")), encoding="utf-8")
         temp_cache.replace(original_cache_path)
     else:
         originals = json.loads(original_cache_path.read_text(encoding="utf-8"))
-        if set(originals) != {original for _, original, _ in paths}:
+        if set(originals) != original_names:
             raise ValueError("Original signature cache does not cover the current development origins")
     manifest["original_signatures_sha256"] = sha256_file(original_cache_path)
     manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -160,15 +224,15 @@ def extract(output: Path = OUTPUT, workers: int | None = None, chunk_rows: int =
     chunk_info = list(manifest.get("chunks", []))
     workers = workers or max(1, min(3, os.cpu_count() or 1))
     total_errors = 0
+    metadata_chunks = _iter_development_metadata_chunks(ids, chunk_rows)
     with concurrent.futures.ProcessPoolExecutor(max_workers=workers, initializer=_initialize_worker,
                                                  initargs=(str(original_cache_path),)) as pool:
-        for start in range(0, len(paths), chunk_rows):
-            index = start // chunk_rows
+        for index, start in enumerate(range(0, len(ids), chunk_rows)):
             filename, errname = f"diff_{index:05d}.csv.gz", f"errors_{index:05d}.jsonl"
+            metadata = next(metadata_chunks)
             if filename in completed:
                 continue
-            current = paths[start:start + chunk_rows]
-            metadata = frame.iloc[start:start + chunk_rows].reset_index(drop=True)
+            current = [_safe_paths(row, tracked) for row in metadata.to_dict("records")]
             task_rows = [(rid, orig, mut, str(row.operation), str(row.gate))
                          for (rid, orig, mut), row in zip(current, metadata.itertuples(index=False))]
             rows, errors = [], []
@@ -188,7 +252,7 @@ def extract(output: Path = OUTPUT, workers: int | None = None, chunk_rows: int =
             chunk_info = [x for x in chunk_info if x["file"] != filename] + [entry]
             manifest.update({"chunks": chunk_info, "status": "in_progress"})
             manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-            print(f"completed chunk {index+1}/{(len(paths)+chunk_rows-1)//chunk_rows}: {len(rows)} rows, {len(errors)} errors", flush=True)
+            print(f"completed chunk {index+1}/{(len(ids)+chunk_rows-1)//chunk_rows}: {len(rows)} rows, {len(errors)} errors", flush=True)
     row_count = sum(x["rows"] for x in chunk_info)
     errors_count = sum(x["errors"] for x in chunk_info)
     manifest.update({"status": "complete" if row_count + errors_count == len(ids) and errors_count == 0 else "complete_with_errors",

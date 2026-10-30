@@ -1,0 +1,29 @@
+incumbent_feature,type,pilot_handling,exclusion
+algorithm,categorical,fold-local one-hot encoding; candidate dummy columns compete in train-only MI selection,not always selected among four encoded scalars; full vocabularies expand beyond four input wires
+operation,categorical,fold-local one-hot encoding; candidate dummy columns compete in train-only MI selection,not always selected among four encoded scalars; full vocabularies expand beyond four input wires
+gate,categorical,fold-local one-hot encoding; candidate dummy columns compete in train-only MI selection,not always selected among four encoded scalars; full vocabularies expand beyond four input wires
+dominant_state,categorical,fold-local one-hot encoding; candidate dummy columns compete in train-only MI selection,not always selected among four encoded scalars; full vocabularies expand beyond four input wires
+qubits,numeric,"fold-local min-max encoding to [0,1], then train-only MI selection",not selected if below top four because the pilot has four input wires
+gates,numeric,"fold-local min-max encoding to [0,1], then train-only MI selection",not selected if below top four because the pilot has four input wires
+Position_int,numeric,"fold-local min-max encoding to [0,1], then train-only MI selection",not selected if below top four because the pilot has four input wires
+position_fraction,numeric,"fold-local min-max encoding to [0,1], then train-only MI selection",not selected if below top four because the pilot has four input wires
+qasm_diff_orig_span,numeric,"fold-local min-max encoding to [0,1], then train-only MI selection",not selected if below top four because the pilot has four input wires
+qasm_diff_mut_span,numeric,"fold-local min-max encoding to [0,1], then train-only MI selection",not selected if below top four because the pilot has four input wires
+qasm_diff_total_span,numeric,"fold-local min-max encoding to [0,1], then train-only MI selection",not selected if below top four because the pilot has four input wires
+qasm_diff_expected_gate_match,numeric,"fold-local min-max encoding to [0,1], then train-only MI selection",not selected if below top four because the pilot has four input wires
+qasm_diff_qubit_set_equal,numeric,"fold-local min-max encoding to [0,1], then train-only MI selection",not selected if below top four because the pilot has four input wires
+qasm_diff_qubits_touched,numeric,"fold-local min-max encoding to [0,1], then train-only MI selection",not selected if below top four because the pilot has four input wires
+qasm_diff_removed_arity,numeric,"fold-local min-max encoding to [0,1], then train-only MI selection",not selected if below top four because the pilot has four input wires
+qasm_diff_added_arity,numeric,"fold-local min-max encoding to [0,1], then train-only MI selection",not selected if below top four because the pilot has four input wires
+qasm_diff_exact_single_edit,numeric,"fold-local min-max encoding to [0,1], then train-only MI selection",not selected if below top four because the pilot has four input wires
+qasm_diff_is_local,numeric,"fold-local min-max encoding to [0,1], then train-only MI selection",not selected if below top four because the pilot has four input wires
+qasm_diff_removed_gate,categorical,fold-local one-hot encoding; candidate dummy columns compete in train-only MI selection,not always selected among four encoded scalars; full vocabularies expand beyond four input wires
+qasm_diff_added_gate,categorical,fold-local one-hot encoding; candidate dummy columns compete in train-only MI selection,not always selected among four encoded scalars; full vocabularies expand beyond four input wires
+qasm_diff_alignment_class,categorical,fold-local one-hot encoding; candidate dummy columns compete in train-only MI selection,not always selected among four encoded scalars; full vocabularies expand beyond four input wires
+qasm_diff_local_prev_gate,categorical,fold-local one-hot encoding; candidate dummy columns compete in train-only MI selection,not always selected among four encoded scalars; full vocabularies expand beyond four input wires
+qasm_diff_local_next_gate,categorical,fold-local one-hot encoding; candidate dummy columns compete in train-only MI selection,not always selected among four encoded scalars; full vocabularies expand beyond four input wires
+position,categorical source band,replaced by the same saved position_fraction midpoint mapping used by incumbent model,source band is not separately encoded in the 23-feature incumbent schema
+original_qasm / mutant_qasm,OpenQASM 2.0 source,"reuse the incumbent's cached, outcome-independent mutation-diff features",raw token/gate sequences are too long and variable-length for the initial four-wire feature map
+Killed,target,used only to verify the source target mapping and construct y,never a predictor
+Origin_program,group identifier,used only for origin-disjoint grouped evaluation,never a predictor; avoids sibling-record leakage
+Unnamed: 0 / record_id,row identifier,used only for record alignment,never a predictor; nonsemantic row identity could leak ordering

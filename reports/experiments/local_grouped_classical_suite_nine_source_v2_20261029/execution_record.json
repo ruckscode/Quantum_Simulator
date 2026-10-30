@@ -1,0 +1,32 @@
+{
+  "audit_issues": [],
+  "audit_status": "VERIFIED",
+  "available_ram_mib_at_runner_completion": 2034.375,
+  "command": "$env:QML_CLASSICAL_CONFIG_PATH='reports/experiments/qml_source_preprocessing_20261029/classical_nine_source_v2_inputs/classical_nine_source_v2_config.json'; .venv\\Scripts\\python.exe experiments\\run_grouped_classical_suite.py",
+  "evaluation_scope": "Independent grouped classical CV with training-fold-only transforms and imbalance methods; not a matched QNN comparison.",
+  "fold_model_metric_rows": 900,
+  "frozen_test_accessed": false,
+  "in_run_memory_floor_mib": 500,
+  "maximum_sampled_task_process_rss_mib": 154.97265625,
+  "model_task_summary_rows": 180,
+  "result_files": [
+    "classical_suite_results.csv",
+    "classical_suite_fold_metrics.csv",
+    "audit_manifest.json",
+    "report.md"
+  ],
+  "schema": "nine-source-classical-execution-record-v1",
+  "startup_preflight_available_mib": 1857.4,
+  "startup_requirement_mib": 1200,
+  "status": "completed_and_audited",
+  "summed_task_runtime_seconds": 748.0493595999942,
+  "task_count": 9,
+  "warning_observation": {
+    "configured_max_iter": 200,
+    "estimator": "MLPClassifier",
+    "exact_count": null,
+    "observed": "Warnings reported during multiple task/fold fits that the MLP reached max_iter without convergence. The configured estimators and results were retained; no post-hoc tuning was performed.",
+    "raw_full_stdout_saved": false,
+    "type": "sklearn.exceptions.ConvergenceWarning"
+  }
+}

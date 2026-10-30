@@ -1,0 +1,684 @@
+{
+  "schema": "qmutbench-qml-campaign-audit-v1",
+  "status": "saved_pilots_validated_no_new_training",
+  "task": {
+    "target_map": {
+      "WOO": 1,
+      "OPO": 1,
+      "Survivor": 0
+    },
+    "task_type": "documented binary mutation outcome",
+    "development_rows": 578117,
+    "development_origins": 305,
+    "pilot_rows": 72,
+    "pilot_origins": 9,
+    "pilot_labels": {
+      "0": 30,
+      "1": 42
+    }
+  },
+  "integrity": {
+    "record_ids_unique_in_development": true,
+    "all_models_same_validation_ids_origins_folds": true,
+    "group_overlap_per_fold": 0,
+    "label_alignment_verified": true,
+    "target_map_matches_classical_champion": true,
+    "frozen_test_accessed": false,
+    "model_bundle_sha256": "7532be26b6959e7e62277220f0c0b78e648d723a0be35d2b693d68e1c9ebf085",
+    "files": {
+      "qmutbench_qml\\results\\run_manifest.json": "4b24f8ad371c6984e469550105b87868b119241dfe841c788cd2356404368c3f",
+      "qmutbench_qml\\results\\predictions.csv": "8b37ffc6a828367adedff896519cf69851d79acd1b3339f202c6d5dc48fc564f",
+      "qmutbench_qml\\results\\split_manifest.csv": "79d341cf17a6e87573ec3caf3319b76cbf766fadc4c2f6002277cae6006211de",
+      "qmutbench_qml\\results\\family_extension_9origins_20261027\\run_manifest.json": "a11f98df014f4d708895aad0c9c3912287cdf861d27c93aa28a966b523b7e490",
+      "qmutbench_qml\\results\\family_extension_9origins_20261027\\predictions.csv": "eaaecb248e5ab1c0a6e89047cd4bfbadebb6826691badc884024932f68bf0e01",
+      "qmutbench_qml\\results\\family_extension_9origins_20261027\\split_manifest.csv": "79d341cf17a6e87573ec3caf3319b76cbf766fadc4c2f6002277cae6006211de",
+      "qmutbench_qml\\results\\family_extension_9origins_20261027\\paired_differences.csv": "111c70ed6be67f66b2dda078738e11ae53005525107e5d7132ef900887123d18"
+    }
+  },
+  "pilot_metrics": {
+    "vqc": {
+      "rows": 72,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.4857142857142857,
+      "macro_f1": 0.4857142857142857,
+      "confusion_matrix_labels_0_1": [
+        [
+          12,
+          18
+        ],
+        [
+          18,
+          24
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.4,
+          "recall": 0.4,
+          "f1": 0.4,
+          "support": 30
+        },
+        "1": {
+          "precision": 0.5714285714285714,
+          "recall": 0.5714285714285714,
+          "f1": 0.5714285714285714,
+          "support": 42
+        }
+      }
+    },
+    "qsvc": {
+      "rows": 72,
+      "accuracy": 0.4305555555555556,
+      "balanced_accuracy": 0.4214285714285714,
+      "macro_f1": 0.42151675485008816,
+      "confusion_matrix_labels_0_1": [
+        [
+          11,
+          19
+        ],
+        [
+          22,
+          20
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.3333333333333333,
+          "recall": 0.36666666666666664,
+          "f1": 0.3492063492063492,
+          "support": 30
+        },
+        "1": {
+          "precision": 0.5128205128205128,
+          "recall": 0.47619047619047616,
+          "f1": 0.49382716049382713,
+          "support": 42
+        }
+      }
+    },
+    "extra_trees_4f": {
+      "rows": 72,
+      "accuracy": 0.3472222222222222,
+      "balanced_accuracy": 0.3642857142857143,
+      "macro_f1": 0.34608695652173915,
+      "confusion_matrix_labels_0_1": [
+        [
+          14,
+          16
+        ],
+        [
+          31,
+          11
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.3111111111111111,
+          "recall": 0.4666666666666667,
+          "f1": 0.37333333333333335,
+          "support": 30
+        },
+        "1": {
+          "precision": 0.4074074074074074,
+          "recall": 0.2619047619047619,
+          "f1": 0.3188405797101449,
+          "support": 42
+        }
+      }
+    },
+    "logistic_4f": {
+      "rows": 72,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.49523809523809526,
+      "macro_f1": 0.49375,
+      "confusion_matrix_labels_0_1": [
+        [
+          14,
+          16
+        ],
+        [
+          20,
+          22
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.4117647058823529,
+          "recall": 0.4666666666666667,
+          "f1": 0.4375,
+          "support": 30
+        },
+        "1": {
+          "precision": 0.5789473684210527,
+          "recall": 0.5238095238095238,
+          "f1": 0.55,
+          "support": 42
+        }
+      }
+    },
+    "rbf_svc_4f": {
+      "rows": 72,
+      "accuracy": 0.4722222222222222,
+      "balanced_accuracy": 0.4476190476190476,
+      "macro_f1": 0.44480519480519487,
+      "confusion_matrix_labels_0_1": [
+        [
+          9,
+          21
+        ],
+        [
+          17,
+          25
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.34615384615384615,
+          "recall": 0.3,
+          "f1": 0.32142857142857145,
+          "support": 30
+        },
+        "1": {
+          "precision": 0.5434782608695652,
+          "recall": 0.5952380952380952,
+          "f1": 0.5681818181818182,
+          "support": 42
+        }
+      }
+    },
+    "data_reupload": {
+      "rows": 72,
+      "accuracy": 0.4861111111111111,
+      "balanced_accuracy": 0.530952380952381,
+      "macro_f1": 0.4687936191425723,
+      "confusion_matrix_labels_0_1": [
+        [
+          24,
+          6
+        ],
+        [
+          31,
+          11
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.43636363636363634,
+          "recall": 0.8,
+          "f1": 0.5647058823529412,
+          "support": 30
+        },
+        "1": {
+          "precision": 0.6470588235294118,
+          "recall": 0.2619047619047619,
+          "f1": 0.3728813559322034,
+          "support": 42
+        }
+      }
+    },
+    "quantum_reservoir": {
+      "rows": 72,
+      "accuracy": 0.375,
+      "balanced_accuracy": 0.4214285714285714,
+      "macro_f1": 0.34664246823956446,
+      "confusion_matrix_labels_0_1": [
+        [
+          21,
+          9
+        ],
+        [
+          36,
+          6
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.3684210526315789,
+          "recall": 0.7,
+          "f1": 0.4827586206896552,
+          "support": 30
+        },
+        "1": {
+          "precision": 0.4,
+          "recall": 0.14285714285714285,
+          "f1": 0.21052631578947367,
+          "support": 42
+        }
+      }
+    }
+  },
+  "per_origin_metrics_path": "per_origin_metrics.csv",
+  "configuration": {
+    "pilot": {
+      "seed": 20261026,
+      "selected_origin_count": 9,
+      "rows_per_origin_cap": 8,
+      "grouped_cv": "GroupKFold(3) on nine seeded sampled development origins",
+      "selected_model_inputs": 4,
+      "feature_selector": "fold-local mutual information; train fold only",
+      "vqc": {
+        "framework": "PennyLane",
+        "device": "default.qubit",
+        "interface": "autograd",
+        "diff_method": "backprop",
+        "n_qubits": 4,
+        "depth": 2,
+        "shots": null,
+        "optimizer": "PennyLane AdamOptimizer",
+        "steps": 20,
+        "loss": "class-balanced binary cross-entropy of analytic Pauli-Z-derived detected probability"
+      },
+      "qsvc": {
+        "framework": "PennyLane + scikit-learn SVC",
+        "device": "default.qubit",
+        "kernel": "analytic statevector fidelity overlap with entangling RY/RZ map",
+        "shots": null,
+        "C": 1.0
+      },
+      "classical_controls": [
+        "100-tree ExtraTrees",
+        "balanced LogisticRegression",
+        "balanced RBF SVC C=1"
+      ],
+      "frozen_test_labels_used": false,
+      "frozen_test_evaluation": false
+    },
+    "family_extension": {
+      "models": [
+        "data_reupload",
+        "quantum_reservoir"
+      ],
+      "n_qubits": 4,
+      "depth": 2,
+      "vqc_steps": 20,
+      "seed_rule": "20261026 + fold number",
+      "source_of_reused_predictions": "completed nine-origin pilot predictions; no retraining of VQC, QSVC, or controls"
+    },
+    "selected_fold_inputs": [
+      {
+        "fold": 1,
+        "selected_features": [
+          "numeric__qasm_diff_removed_arity",
+          "numeric__qasm_diff_orig_span",
+          "numeric__qubits",
+          "numeric__qasm_diff_expected_gate_match"
+        ]
+      },
+      {
+        "fold": 2,
+        "selected_features": [
+          "numeric__qasm_diff_is_local",
+          "numeric__gates",
+          "categorical__algorithm_qgan",
+          "categorical__dominant_state_no"
+        ]
+      },
+      {
+        "fold": 3,
+        "selected_features": [
+          "numeric__qasm_diff_exact_single_edit",
+          "categorical__algorithm_qgan",
+          "numeric__qasm_diff_added_arity",
+          "numeric__gates"
+        ]
+      }
+    ]
+  },
+  "implementation_source_sha256": {
+    "qmutbench_qml\\models\\vqc.py": "5e647bdf47543224c5060b621d6877eb8aa68194af37ff5075c7994f73209f67",
+    "qmutbench_qml\\models\\qsvc.py": "6bc7f06888e1e59288cc495e264cdb9fdba5af648ce8df78b1f8dde469bf6353",
+    "qmutbench_qml\\models\\quantum_reservoir.py": "9cdb6e8520824da32aa2d76b2155b2be694d66135d70378023c96e813da569b7",
+    "qmutbench_qml\\features\\reduction.py": "3befcf28f47e90969cba2d1a1ef78efae137fc5a208899d7c4e6353fba04c0a7",
+    "qmutbench_qml\\training\\pilot.py": "faecce90a7aa56a816b32887ccdf407f9616c92cec58ccdc62a3337a04a8d50b",
+    "qmutbench_qml\\training\\run_family_extension.py": "36b74a1cc222d19e1e17c7c7616438e94de06cfb8b3c2c02d23d7ee3f585869b",
+    "qmutbench_qml\\requirements-lock.txt": "48a34df667067a724dbb9ed7b8e4d8d0c778015f121a9cff2f3f8215bbb5e9e2"
+  },
+  "strongest_matched_classical_comparisons": {
+    "vqc": {
+      "strongest_matched_classical": "logistic_4f",
+      "strongest_classical_macro_f1": 0.49375,
+      "qml_macro_f1": 0.4857142857142857,
+      "difference_percentage_points": -0.8035714285714313,
+      "paired_origin_bootstrap_95ci_percentage_points": [
+        -23.65293500637633,
+        20.830617839454373
+      ]
+    },
+    "qsvc": {
+      "strongest_matched_classical": "logistic_4f",
+      "strongest_classical_macro_f1": 0.49375,
+      "qml_macro_f1": 0.42151675485008816,
+      "difference_percentage_points": -7.223324514991186,
+      "paired_origin_bootstrap_95ci_percentage_points": [
+        -18.531729879740983,
+        2.051940953124881
+      ]
+    },
+    "data_reupload": {
+      "strongest_matched_classical": "logistic_4f",
+      "strongest_classical_macro_f1": 0.49375,
+      "qml_macro_f1": 0.4687936191425723,
+      "difference_percentage_points": -2.4956380857427742,
+      "paired_origin_bootstrap_95ci_percentage_points": [
+        -25.565747612494416,
+        19.36722190991736
+      ]
+    },
+    "quantum_reservoir": {
+      "strongest_matched_classical": "logistic_4f",
+      "strongest_classical_macro_f1": 0.49375,
+      "qml_macro_f1": 0.34664246823956446,
+      "difference_percentage_points": -14.710753176043557,
+      "paired_origin_bootstrap_95ci_percentage_points": [
+        -29.706703968844515,
+        2.002087440283985
+      ]
+    }
+  },
+  "exploratory_fixed_blend": {
+    "hypothesis": "A fixed 50:50 mean of re-uploading and matched Logistic probabilities may exploit their comparable but nonidentical errors.",
+    "weight_selection": "fixed 0.5, not fitted or tuned; threshold fixed at 0.5",
+    "blend_metrics": {
+      "rows": 72,
+      "accuracy": 0.4583333333333333,
+      "balanced_accuracy": 0.5166666666666667,
+      "macro_f1": 0.4177897574123989,
+      "confusion_matrix_labels_0_1": [
+        [
+          26,
+          4
+        ],
+        [
+          35,
+          7
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.4262295081967213,
+          "recall": 0.8666666666666667,
+          "f1": 0.5714285714285714,
+          "support": 30
+        },
+        "1": {
+          "precision": 0.6363636363636364,
+          "recall": 0.16666666666666666,
+          "f1": 0.2641509433962264,
+          "support": 42
+        }
+      }
+    },
+    "matched_logistic_metrics": {
+      "rows": 72,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.49523809523809526,
+      "macro_f1": 0.49375,
+      "confusion_matrix_labels_0_1": [
+        [
+          14,
+          16
+        ],
+        [
+          20,
+          22
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.4117647058823529,
+          "recall": 0.4666666666666667,
+          "f1": 0.4375,
+          "support": 30
+        },
+        "1": {
+          "precision": 0.5789473684210527,
+          "recall": 0.5238095238095238,
+          "f1": 0.55,
+          "support": 42
+        }
+      }
+    },
+    "macro_f1_difference_percentage_points": -7.5960242587601146,
+    "paired_origin_bootstrap_95ci_macro_f1_delta_percentage_points": [
+      -29.84942404430982,
+      11.692668409649515
+    ],
+    "bootstrap_repetitions": 2000,
+    "bootstrap_seed": 20261027,
+    "fold_metrics": {
+      "1": {
+        "rows": 24,
+        "accuracy": 0.3333333333333333,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.25,
+        "confusion_matrix_labels_0_1": [
+          [
+            8,
+            0
+          ],
+          [
+            16,
+            0
+          ]
+        ],
+        "per_class": {
+          "0": {
+            "precision": 0.3333333333333333,
+            "recall": 1.0,
+            "f1": 0.5,
+            "support": 8
+          },
+          "1": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 16
+          }
+        }
+      },
+      "2": {
+        "rows": 24,
+        "accuracy": 0.5833333333333334,
+        "balanced_accuracy": 0.5428571428571428,
+        "macro_f1": 0.53125,
+        "confusion_matrix_labels_0_1": [
+          [
+            11,
+            3
+          ],
+          [
+            7,
+            3
+          ]
+        ],
+        "per_class": {
+          "0": {
+            "precision": 0.6111111111111112,
+            "recall": 0.7857142857142857,
+            "f1": 0.6875,
+            "support": 14
+          },
+          "1": {
+            "precision": 0.5,
+            "recall": 0.3,
+            "f1": 0.375,
+            "support": 10
+          }
+        }
+      },
+      "3": {
+        "rows": 24,
+        "accuracy": 0.4583333333333333,
+        "balanced_accuracy": 0.5625,
+        "macro_f1": 0.4497354497354497,
+        "confusion_matrix_labels_0_1": [
+          [
+            7,
+            1
+          ],
+          [
+            12,
+            4
+          ]
+        ],
+        "per_class": {
+          "0": {
+            "precision": 0.3684210526315789,
+            "recall": 0.875,
+            "f1": 0.5185185185185185,
+            "support": 8
+          },
+          "1": {
+            "precision": 0.8,
+            "recall": 0.25,
+            "f1": 0.38095238095238093,
+            "support": 16
+          }
+        }
+      }
+    },
+    "status": "exploratory_same_pilot_sample_not_independent_confirmation"
+  },
+  "full_feature_champion_same_records_context_only": {
+    "rows": 72,
+    "accuracy": 0.75,
+    "balanced_accuracy": 0.7523809523809524,
+    "macro_f1": 0.746875,
+    "confusion_matrix_labels_0_1": [
+      [
+        23,
+        7
+      ],
+      [
+        11,
+        31
+      ]
+    ],
+    "per_class": {
+      "0": {
+        "precision": 0.6764705882352942,
+        "recall": 0.7666666666666667,
+        "f1": 0.71875,
+        "support": 30
+      },
+      "1": {
+        "precision": 0.8157894736842105,
+        "recall": 0.7380952380952381,
+        "f1": 0.775,
+        "support": 42
+      }
+    },
+    "training_protocol_warning": "These predictions cover the same 72 record IDs but use the saved five-fold model trained on a much larger set and a different fold assignment; descriptive context only, not a matched training-data comparison."
+  },
+  "model_families": {
+    "vqc_trainable_qnn": "same trainable VQC family; do not count twice",
+    "qsvc": "quantum kernel classifier",
+    "data_reupload": "distinct re-encoding trainable circuit architecture",
+    "quantum_reservoir": "fixed quantum feature map plus classical Logistic Regression readout",
+    "excluded": {
+      "Torch/Keras QNN wrappers": "Torch and TensorFlow absent from isolated lock; duplicates the VQC/QNN family rather than a distinct method",
+      "hardware/finite-shot": "only local analytic simulator present; no authorized hardware or credentials",
+      "quantum convolutional/deeper statevector models": "new architectures with no evidence supporting cost under current resource limit",
+      "hybrid stacking": "not evaluated; tiny pilot, no QML win over best matched control, and no nested grouped predictions to fit a safe combiner"
+    }
+  },
+  "runtime_circuit_costs": {
+    "vqc": {
+      "training_seconds_total": 72.28622009998071,
+      "inference_seconds_total": 1.4812120999849867,
+      "circuit_executions_train_total": 2880,
+      "circuit_executions_inference_total": 72,
+      "qubits": 4,
+      "depth": 2,
+      "shots": null,
+      "vqc_loss_decreased_folds": 3
+    },
+    "qsvc": {
+      "training_seconds_total": 20.547857199941063,
+      "inference_seconds_total": 10.17386599999736,
+      "circuit_executions_train_total": 6912,
+      "circuit_executions_inference_total": 3456,
+      "qubits": 4,
+      "depth": 2,
+      "shots": null,
+      "vqc_loss_decreased_folds": null
+    },
+    "extra_trees_4f": {
+      "training_seconds_total": 0.20993630000157282,
+      "inference_seconds_total": 0.01773020002292469,
+      "circuit_executions_train_total": 0,
+      "circuit_executions_inference_total": 0,
+      "qubits": null,
+      "depth": null,
+      "shots": null,
+      "vqc_loss_decreased_folds": null
+    },
+    "logistic_4f": {
+      "training_seconds_total": 0.012214499991387129,
+      "inference_seconds_total": 0.0005514000076800585,
+      "circuit_executions_train_total": 0,
+      "circuit_executions_inference_total": 0,
+      "qubits": null,
+      "depth": null,
+      "shots": null,
+      "vqc_loss_decreased_folds": null
+    },
+    "rbf_svc_4f": {
+      "training_seconds_total": 0.003950300015276298,
+      "inference_seconds_total": 0.0009559000027365983,
+      "circuit_executions_train_total": 0,
+      "circuit_executions_inference_total": 0,
+      "qubits": null,
+      "depth": null,
+      "shots": null,
+      "vqc_loss_decreased_folds": null
+    },
+    "data_reupload": {
+      "training_seconds_total": 74.0454489000258,
+      "inference_seconds_total": 1.5007697000110056,
+      "circuit_executions_train_total": 2880,
+      "circuit_executions_inference_total": 72,
+      "qubits": 4,
+      "depth": 2,
+      "shots": null
+    },
+    "quantum_reservoir": {
+      "training_seconds_total": 0.5583904000231996,
+      "inference_seconds_total": 0.2635211999877356,
+      "circuit_executions_train_total": 144,
+      "circuit_executions_inference_total": 72,
+      "qubits": 4,
+      "depth": 2,
+      "shots": null
+    }
+  },
+  "runtime": {
+    "elapsed_seconds": 115.31675950001227,
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "pennylane": "0.45.1"
+  },
+  "memory": {
+    "rss_before_bytes": 194052096,
+    "rss_after_bytes": 600989696
+  },
+  "incomplete": {
+    "24_origin_attempt": "stopped when available system memory fell below 450 MiB; no fold results were written",
+    "new_full_five_fold_qml": "not run: poor matched pilot, previous 24-origin memory stop, and current available RAM below 1 GiB"
+  },
+  "classical_champion": {
+    "macro_f1": 0.7933135654357681,
+    "accuracy": 0.7933290320125511,
+    "balanced_accuracy": 0.7940874828150084,
+    "comparison_note": "QML pilot uses 72 records/9 origins and four fold-selected features; do not directly rank against champion's full 578,117-record/305-origin OOF."
+  },
+  "verification": {
+    "focused_qml_tests": "8 passed, 1 full-development data-loader test deselected in 6.61 seconds",
+    "minimum_available_ram_during_tests_mib": 653,
+    "resource_stop_floor_mib": 500,
+    "audit_script_py_compile": "passed",
+    "all_qml_result_json_validated": true,
+    "prediction_and_fold_integrity": "all model IDs, origins, labels, folds, and development-manifest alignment passed",
+    "frozen_test": "not accessed"
+  }
+}

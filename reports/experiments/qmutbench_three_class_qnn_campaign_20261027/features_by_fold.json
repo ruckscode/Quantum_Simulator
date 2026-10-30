@@ -1,0 +1,29 @@
+[
+  {
+    "fold":1,
+    "features":[
+      "numeric__qasm_diff_total_span",
+      "numeric__qasm_diff_mut_span",
+      "numeric__Position_int",
+      "numeric__qasm_diff_qubits_touched"
+    ]
+  },
+  {
+    "fold":2,
+    "features":[
+      "categorical__qasm_diff_removed_gate_h",
+      "numeric__qasm_diff_orig_span",
+      "numeric__qasm_diff_qubit_set_equal",
+      "categorical__operation_Add"
+    ]
+  },
+  {
+    "fold":3,
+    "features":[
+      "numeric__qasm_diff_qubit_set_equal",
+      "numeric__qasm_diff_removed_arity",
+      "numeric__qasm_diff_total_span",
+      "numeric__position_fraction"
+    ]
+  }
+]

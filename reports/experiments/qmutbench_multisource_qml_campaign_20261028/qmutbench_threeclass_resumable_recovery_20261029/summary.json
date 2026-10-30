@@ -1,0 +1,657 @@
+{
+  "status": "completed_development_oof_with_reloadable_checkpoints",
+  "task": "QMutBench Survivor/WOO/OPO three-class exploratory pilot",
+  "records": 205,
+  "origins": 12,
+  "folds": 3,
+  "features": "reconstructed original four fold-selected metadata/QASM-diff features from train-fold-only selection manifests; numeric scaling fit on training fold",
+  "split": "reused saved three-fold origin-group validation manifest",
+  "results": [
+    {
+      "model": "amplitude_hybrid_2q_depth2",
+      "accuracy": 0.43414634146341463,
+      "macro_f1": 0.3862985808740526,
+      "balanced_accuracy": 0.4240531255237137,
+      "per_class": {
+        "0": {
+          "precision": 0.4338235294117647,
+          "recall": 0.8194444444444444,
+          "f1": 0.5673076923076923,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.4642857142857143,
+          "recall": 0.19117647058823528,
+          "f1": 0.27083333333333337,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.4146341463414634,
+          "recall": 0.26153846153846155,
+          "f1": 0.32075471698113206,
+          "support": 65
+        }
+      },
+      "confusion_matrix": [
+        [
+          59,
+          9,
+          4
+        ],
+        [
+          35,
+          13,
+          20
+        ],
+        [
+          42,
+          6,
+          17
+        ]
+      ],
+      "folds": 3,
+      "records": 205,
+      "training_seconds": 0.33491990000766236,
+      "configuration": {
+        "name": "amplitude_hybrid_2q_depth2",
+        "qubits": 2,
+        "features": 4,
+        "encoding": "amplitude",
+        "depth": 2,
+        "reupload": false,
+        "learning_rate": 0.04
+      }
+    },
+    {
+      "model": "angle_hybrid_4q_depth2",
+      "accuracy": 0.3463414634146341,
+      "macro_f1": 0.3290190483738871,
+      "balanced_accuracy": 0.34244176302999835,
+      "per_class": {
+        "0": {
+          "precision": 0.336283185840708,
+          "recall": 0.5277777777777778,
+          "f1": 0.41081081081081083,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.48,
+          "recall": 0.17647058823529413,
+          "f1": 0.25806451612903225,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.31343283582089554,
+          "recall": 0.3230769230769231,
+          "f1": 0.31818181818181823,
+          "support": 65
+        }
+      },
+      "confusion_matrix": [
+        [
+          38,
+          4,
+          30
+        ],
+        [
+          40,
+          12,
+          16
+        ],
+        [
+          35,
+          9,
+          21
+        ]
+      ],
+      "folds": 3,
+      "records": 205,
+      "training_seconds": 4.1425902000046335,
+      "configuration": {
+        "name": "angle_hybrid_4q_depth2",
+        "qubits": 4,
+        "features": 4,
+        "encoding": "angle",
+        "depth": 2,
+        "reupload": false,
+        "learning_rate": 0.04
+      }
+    },
+    {
+      "model": "angle_reupload_hybrid_4q_depth2",
+      "accuracy": 0.4585365853658537,
+      "macro_f1": 0.44487179487179485,
+      "balanced_accuracy": 0.4540933467404056,
+      "per_class": {
+        "0": {
+          "precision": 0.47959183673469385,
+          "recall": 0.6527777777777778,
+          "f1": 0.5529411764705882,
+          "support": 72
+        },
+        "1": {
+          "precision": 0.5555555555555556,
+          "recall": 0.29411764705882354,
+          "f1": 0.3846153846153846,
+          "support": 68
+        },
+        "2": {
+          "precision": 0.38028169014084506,
+          "recall": 0.4153846153846154,
+          "f1": 0.39705882352941174,
+          "support": 65
+        }
+      },
+      "confusion_matrix": [
+        [
+          47,
+          7,
+          18
+        ],
+        [
+          22,
+          20,
+          26
+        ],
+        [
+          29,
+          9,
+          27
+        ]
+      ],
+      "folds": 3,
+      "records": 205,
+      "training_seconds": 4.964780100002827,
+      "configuration": {
+        "name": "angle_reupload_hybrid_4q_depth2",
+        "qubits": 4,
+        "features": 4,
+        "encoding": "angle",
+        "depth": 2,
+        "reupload": true,
+        "learning_rate": 0.035
+      }
+    }
+  ],
+  "fold_results": [
+    {
+      "fold": 1,
+      "model": "amplitude_hybrid_2q_depth2",
+      "records": 67,
+      "origins": 4,
+      "training_seconds": 0.10396469999977853,
+      "gradient_check": {
+        "parameter_shift": 0.00012980856487187587,
+        "finite_difference": 0.00011082237350024114,
+        "absolute_error": 1.8986191371634723e-05,
+        "passed": true
+      },
+      "accuracy": 0.373134328358209,
+      "macro_f1": 0.2718217327558227,
+      "balanced_accuracy": 0.35818713450292394,
+      "per_class": {
+        "0": {
+          "precision": 0.38181818181818183,
+          "recall": 0.875,
+          "f1": 0.5316455696202532,
+          "support": 24
+        },
+        "1": {
+          "precision": 0.5,
+          "recall": 0.041666666666666664,
+          "f1": 0.07692307692307693,
+          "support": 24
+        },
+        "2": {
+          "precision": 0.3,
+          "recall": 0.15789473684210525,
+          "f1": 0.20689655172413793,
+          "support": 19
+        }
+      },
+      "confusion_matrix": [
+        [
+          21,
+          1,
+          2
+        ],
+        [
+          18,
+          1,
+          5
+        ],
+        [
+          16,
+          0,
+          3
+        ]
+      ]
+    },
+    {
+      "fold": 1,
+      "model": "angle_hybrid_4q_depth2",
+      "records": 67,
+      "origins": 4,
+      "training_seconds": 1.1124722000022302,
+      "gradient_check": {
+        "parameter_shift": -0.0001429778900057316,
+        "finite_difference": -0.00014297787398476203,
+        "absolute_error": 1.602096957160036e-11,
+        "passed": true
+      },
+      "accuracy": 0.3582089552238806,
+      "macro_f1": 0.25555555555555554,
+      "balanced_accuracy": 0.34795321637426896,
+      "per_class": {
+        "0": {
+          "precision": 0.35714285714285715,
+          "recall": 0.8333333333333334,
+          "f1": 0.5,
+          "support": 24
+        },
+        "1": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 24
+        },
+        "2": {
+          "precision": 0.36363636363636365,
+          "recall": 0.21052631578947367,
+          "f1": 0.26666666666666666,
+          "support": 19
+        }
+      },
+      "confusion_matrix": [
+        [
+          20,
+          0,
+          4
+        ],
+        [
+          21,
+          0,
+          3
+        ],
+        [
+          15,
+          0,
+          4
+        ]
+      ]
+    },
+    {
+      "fold": 1,
+      "model": "angle_reupload_hybrid_4q_depth2",
+      "records": 67,
+      "origins": 4,
+      "training_seconds": 1.3252479000002495,
+      "gradient_check": {
+        "parameter_shift": 4.683024591842569e-06,
+        "finite_difference": 4.6830206379411266e-06,
+        "absolute_error": 3.953901442366181e-12,
+        "passed": true
+      },
+      "accuracy": 0.3582089552238806,
+      "macro_f1": 0.30085470085470084,
+      "balanced_accuracy": 0.37719298245614036,
+      "per_class": {
+        "0": {
+          "precision": 0.5714285714285714,
+          "recall": 0.5,
+          "f1": 0.5333333333333333,
+          "support": 24
+        },
+        "1": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 24
+        },
+        "2": {
+          "precision": 0.2608695652173913,
+          "recall": 0.631578947368421,
+          "f1": 0.3692307692307692,
+          "support": 19
+        }
+      },
+      "confusion_matrix": [
+        [
+          12,
+          0,
+          12
+        ],
+        [
+          2,
+          0,
+          22
+        ],
+        [
+          7,
+          0,
+          12
+        ]
+      ]
+    },
+    {
+      "fold": 2,
+      "model": "amplitude_hybrid_2q_depth2",
+      "records": 68,
+      "origins": 4,
+      "training_seconds": 0.10132200000225566,
+      "gradient_check": {
+        "parameter_shift": 0.00012980856487187587,
+        "finite_difference": 0.00011082237350024114,
+        "absolute_error": 1.8986191371634723e-05,
+        "passed": true
+      },
+      "accuracy": 0.5294117647058824,
+      "macro_f1": 0.4740740740740741,
+      "balanced_accuracy": 0.5111111111111112,
+      "per_class": {
+        "0": {
+          "precision": 0.4791666666666667,
+          "recall": 0.9583333333333334,
+          "f1": 0.638888888888889,
+          "support": 24
+        },
+        "1": {
+          "precision": 1.0,
+          "recall": 0.2,
+          "f1": 0.33333333333333337,
+          "support": 20
+        },
+        "2": {
+          "precision": 0.5625,
+          "recall": 0.375,
+          "f1": 0.45,
+          "support": 24
+        }
+      },
+      "confusion_matrix": [
+        [
+          23,
+          0,
+          1
+        ],
+        [
+          10,
+          4,
+          6
+        ],
+        [
+          15,
+          0,
+          9
+        ]
+      ]
+    },
+    {
+      "fold": 2,
+      "model": "angle_hybrid_4q_depth2",
+      "records": 68,
+      "origins": 4,
+      "training_seconds": 1.5494343000027584,
+      "gradient_check": {
+        "parameter_shift": -0.0001429778900057316,
+        "finite_difference": -0.00014297787398476203,
+        "absolute_error": 1.602096957160036e-11,
+        "passed": true
+      },
+      "accuracy": 0.23529411764705882,
+      "macro_f1": 0.15404040404040406,
+      "balanced_accuracy": 0.2222222222222222,
+      "per_class": {
+        "0": {
+          "precision": 0.05,
+          "recall": 0.041666666666666664,
+          "f1": 0.04545454545454545,
+          "support": 24
+        },
+        "1": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 20
+        },
+        "2": {
+          "precision": 0.3125,
+          "recall": 0.625,
+          "f1": 0.4166666666666667,
+          "support": 24
+        }
+      },
+      "confusion_matrix": [
+        [
+          1,
+          0,
+          23
+        ],
+        [
+          10,
+          0,
+          10
+        ],
+        [
+          9,
+          0,
+          15
+        ]
+      ]
+    },
+    {
+      "fold": 2,
+      "model": "angle_reupload_hybrid_4q_depth2",
+      "records": 68,
+      "origins": 4,
+      "training_seconds": 1.8041574000017135,
+      "gradient_check": {
+        "parameter_shift": 4.683024591842569e-06,
+        "finite_difference": 4.6830206379411266e-06,
+        "absolute_error": 3.953901442366181e-12,
+        "passed": true
+      },
+      "accuracy": 0.5441176470588235,
+      "macro_f1": 0.4883040935672514,
+      "balanced_accuracy": 0.525,
+      "per_class": {
+        "0": {
+          "precision": 0.46153846153846156,
+          "recall": 1.0,
+          "f1": 0.631578947368421,
+          "support": 24
+        },
+        "1": {
+          "precision": 1.0,
+          "recall": 0.2,
+          "f1": 0.33333333333333337,
+          "support": 20
+        },
+        "2": {
+          "precision": 0.75,
+          "recall": 0.375,
+          "f1": 0.5,
+          "support": 24
+        }
+      },
+      "confusion_matrix": [
+        [
+          24,
+          0,
+          0
+        ],
+        [
+          13,
+          4,
+          3
+        ],
+        [
+          15,
+          0,
+          9
+        ]
+      ]
+    },
+    {
+      "fold": 3,
+      "model": "amplitude_hybrid_2q_depth2",
+      "records": 70,
+      "origins": 4,
+      "training_seconds": 0.12963320000562817,
+      "gradient_check": {
+        "parameter_shift": 0.00012980856487187587,
+        "finite_difference": 0.00011082237350024114,
+        "absolute_error": 1.8986191371634723e-05,
+        "passed": true
+      },
+      "accuracy": 0.4,
+      "macro_f1": 0.3814707155668254,
+      "balanced_accuracy": 0.39520202020202017,
+      "per_class": {
+        "0": {
+          "precision": 0.45454545454545453,
+          "recall": 0.625,
+          "f1": 0.5263157894736842,
+          "support": 24
+        },
+        "1": {
+          "precision": 0.36363636363636365,
+          "recall": 0.3333333333333333,
+          "f1": 0.34782608695652173,
+          "support": 24
+        },
+        "2": {
+          "precision": 0.3333333333333333,
+          "recall": 0.22727272727272727,
+          "f1": 0.27027027027027023,
+          "support": 22
+        }
+      },
+      "confusion_matrix": [
+        [
+          15,
+          8,
+          1
+        ],
+        [
+          7,
+          8,
+          9
+        ],
+        [
+          11,
+          6,
+          5
+        ]
+      ]
+    },
+    {
+      "fold": 3,
+      "model": "angle_hybrid_4q_depth2",
+      "records": 70,
+      "origins": 4,
+      "training_seconds": 1.4806836999996449,
+      "gradient_check": {
+        "parameter_shift": -0.0001429778900057316,
+        "finite_difference": -0.00014297787398476203,
+        "absolute_error": 1.602096957160036e-11,
+        "passed": true
+      },
+      "accuracy": 0.44285714285714284,
+      "macro_f1": 0.3935021002936694,
+      "balanced_accuracy": 0.4330808080808081,
+      "per_class": {
+        "0": {
+          "precision": 0.4594594594594595,
+          "recall": 0.7083333333333334,
+          "f1": 0.5573770491803279,
+          "support": 24
+        },
+        "1": {
+          "precision": 0.48,
+          "recall": 0.5,
+          "f1": 0.4897959183673469,
+          "support": 24
+        },
+        "2": {
+          "precision": 0.25,
+          "recall": 0.09090909090909091,
+          "f1": 0.13333333333333333,
+          "support": 22
+        }
+      },
+      "confusion_matrix": [
+        [
+          17,
+          4,
+          3
+        ],
+        [
+          9,
+          12,
+          3
+        ],
+        [
+          11,
+          9,
+          2
+        ]
+      ]
+    },
+    {
+      "fold": 3,
+      "model": "angle_reupload_hybrid_4q_depth2",
+      "records": 70,
+      "origins": 4,
+      "training_seconds": 1.8353748000008636,
+      "gradient_check": {
+        "parameter_shift": 4.683024591842569e-06,
+        "finite_difference": 4.6830206379411266e-06,
+        "absolute_error": 3.953901442366181e-12,
+        "passed": true
+      },
+      "accuracy": 0.4714285714285714,
+      "macro_f1": 0.45442176870748296,
+      "balanced_accuracy": 0.4659090909090909,
+      "per_class": {
+        "0": {
+          "precision": 0.44,
+          "recall": 0.4583333333333333,
+          "f1": 0.4489795918367347,
+          "support": 24
+        },
+        "1": {
+          "precision": 0.5,
+          "recall": 0.6666666666666666,
+          "f1": 0.5714285714285715,
+          "support": 24
+        },
+        "2": {
+          "precision": 0.46153846153846156,
+          "recall": 0.2727272727272727,
+          "f1": 0.3428571428571428,
+          "support": 22
+        }
+      },
+      "confusion_matrix": [
+        [
+          11,
+          7,
+          6
+        ],
+        [
+          7,
+          16,
+          1
+        ],
+        [
+          7,
+          9,
+          6
+        ]
+      ]
+    }
+  ],
+  "runtime_seconds": 9.65872450000461,
+  "frozen_test_accessed": false
+}

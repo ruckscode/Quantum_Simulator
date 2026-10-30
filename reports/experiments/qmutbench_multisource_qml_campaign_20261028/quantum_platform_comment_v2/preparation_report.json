@@ -1,0 +1,59 @@
+{
+  "accepted_input_rows": 319,
+  "comment_component_groups": 304,
+  "conflicting_label_comment_fingerprints": 0,
+  "cross_fold_exact_comment_fingerprints": 0,
+  "derived_input_sha256": "f3c42e773f13b80a01f64f64df60508924a2fd6098eed9da4cee705aa2109ee8",
+  "duplicate_comment_rows": 17,
+  "exact_comment_fingerprints": 309,
+  "fold_counts": {
+    "1": {
+      "class_counts": {
+        "0": 19,
+        "1": 45
+      },
+      "groups": 60,
+      "rows": 64
+    },
+    "2": {
+      "class_counts": {
+        "0": 20,
+        "1": 44
+      },
+      "groups": 61,
+      "rows": 64
+    },
+    "3": {
+      "class_counts": {
+        "0": 19,
+        "1": 45
+      },
+      "groups": 61,
+      "rows": 64
+    },
+    "4": {
+      "class_counts": {
+        "0": 19,
+        "1": 45
+      },
+      "groups": 61,
+      "rows": 64
+    },
+    "5": {
+      "class_counts": {
+        "0": 19,
+        "1": 44
+      },
+      "groups": 61,
+      "rows": 63
+    }
+  },
+  "fold_manifest_sha256": "0d0a8f5739154b1ff535854c5b1f4966d3b71a7b0caee4769212d1a87f683f30",
+  "frozen_test_accessed": false,
+  "label_policy": "All upstream accepted annotations retained; exact duplicate comment labels were checked and agree.",
+  "original_issue_groups": 314,
+  "rejected_rows": 0,
+  "status": "PREPARED_FOR_SOURCE_ISOLATED_VALIDATION",
+  "task_id": "comment_only_classification_v2",
+  "upstream_source_sha256": "f7490974d64dacd39d28957effabdff9f71b116a05ecc6e2ae178727bf7df651"
+}

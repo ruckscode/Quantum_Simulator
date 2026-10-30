@@ -1,0 +1,17 @@
+{
+  "source_id": "qmutbench",
+  "task_id": "three_class_mutation_outcome_exploratory",
+  "target_semantics": "Historical QMutBench mutation outcome: Survivor=0, WOO=1, OPO=2. This is not hardware fault attribution and the 12-origin balanced sample is exploratory, not prevalence representative.",
+  "required": ["record_id", "origin_program", "label", "y_true"],
+  "record_id_column": "record_id", "group_column": "origin_program", "label_column": "label", "feature_column": null,
+  "allowed_labels": ["Survivor", "WOO", "OPO"], "fold_record_column": "record_id", "fold_group_column": "origin_program", "fold_column": "fold",
+  "fold_model_column": "model", "fold_model_value": "three_class_vqc", "fold_target_column": "y_true",
+  "fold_label_map": {"Survivor": 0, "WOO": 1, "OPO": 2}, "fold_gzip": true,
+  "input_path": "reports/experiments/qmutbench_three_class_qnn_campaign_20261027/sample_manifest.csv",
+  "fold_path": "reports/experiments/qmutbench_three_class_qnn_campaign_20261027/predictions.csv.gz",
+  "output_path": "data/processed/qmutbench/three_class_mutation_outcome_exploratory",
+  "feature_store_manifest": "data/qmutbench_ml/qasm_mutation_diff_v1/manifest.json",
+  "feature_rows_expected": 578117,
+  "feature_source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+  "feature_store_policy": "feature IDs restricted to existing development-only sample_manifest; QASM cache is separately validated against official source and cache hashes before eligible use"
+}

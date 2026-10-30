@@ -1,0 +1,111 @@
+{
+  "artifacts": {
+    "campaign_manifest": "reports/experiments/qmutbench_improvement_campaign_20261027/run_manifest.json",
+    "partial_confirmation": "reports/experiments/qmutbench_improvement_campaign_20261027/partial_confirmation_folds_2_to_4.json",
+    "per_origin_analysis": "reports/experiments/qmutbench_improvement_campaign_20261027/five_fold_paired_development_analysis.json"
+  },
+  "candidates": [
+    {
+      "accuracy": 0.7933290320125511,
+      "balanced_accuracy": 0.7940874828150084,
+      "features": 23,
+      "folds": 5,
+      "macro_f1": 0.7933135654357681,
+      "name": "mutation_aware_extra_trees_23f",
+      "runtime": "historical five-fold confirmation; preserved",
+      "status": "champion"
+    },
+    {
+      "accuracy": 0.7733970805217629,
+      "balanced_accuracy": 0.7746981709473926,
+      "features": 8,
+      "folds": 5,
+      "macro_f1": 0.7733866082913055,
+      "name": "legacy_extra_trees_8f",
+      "status": "matched_control"
+    },
+    {
+      "accuracy": 0.7931439483703125,
+      "balanced_accuracy": 0.7927201790331717,
+      "folds": 5,
+      "macro_f1": 0.7928007061958962,
+      "name": "nested_model_threshold_strategy",
+      "status": "rejected_no_gain"
+    },
+    {
+      "folds": 3,
+      "macro_f1": 0.77717,
+      "name": "histogram_gradient_boosting_mutation",
+      "status": "not_champion_different_prior_protocol"
+    },
+    {
+      "accuracy": 0.6938733854911722,
+      "balanced_accuracy": 0.6937677015901129,
+      "folds": 3,
+      "macro_f1": 0.6936259308230637,
+      "name": "logistic_lbfgs_C1_unweighted",
+      "status": "rejected_negligible_gain"
+    },
+    {
+      "features": 31,
+      "fold5_status": "interrupted at system available memory below stop floor; no fold5 predictions",
+      "fold_deltas": {
+        "2": -0.002306523973523822,
+        "3": 0.0005961546760869796,
+        "4": -0.002231086023779194
+      },
+      "name": "mutation_aware_plus_8_structure_features",
+      "post_screen_delta": -0.0013244859174141865,
+      "post_screen_folds_2_to_4_candidate_macro_f1": 0.7864473120219881,
+      "post_screen_folds_2_to_4_matched_macro_f1": 0.7877717979394023,
+      "post_screen_macro_f1_95ci": [
+        -0.0055467897484967384,
+        0.00271149977494124
+      ],
+      "screen_fold1_delta": 0.018543572729666558,
+      "status": "rejected_partial_confirmation_fold5_incomplete"
+    }
+  ],
+  "champion": {
+    "decision": "retain",
+    "development_accuracy": 0.7933290320125511,
+    "development_balanced_accuracy": 0.7940874828150084,
+    "development_macro_f1": 0.7933135654357681,
+    "name": "mutation_aware_extra_trees_23f",
+    "protocol": "five-fold grouped OOF; 578117 records, 305 origins",
+    "test_macro_f1_retrospective": 0.8183751146923499
+  },
+  "frozen_test": {
+    "champion_macro_f1": 0.8183751146923499,
+    "matched_baseline_macro_f1": 0.7884279744415912,
+    "paired_origin_bootstrap_macro_f1_delta_95ci": [
+      0.01552343826837368,
+      0.04519171809369917
+    ],
+    "status": "retrospective reused-test comparison; not used in current campaign selection"
+  },
+  "paired_origin_uncertainty_5fold_champion": {
+    "bootstrap_repetitions": 2000,
+    "candidate_minus_incumbent_95ci": {
+      "accuracy": [
+        0.011262217327665521,
+        0.029873574671009376
+      ],
+      "balanced_accuracy": [
+        0.010830506299678471,
+        0.02872951538600039
+      ],
+      "macro_f1": [
+        0.011288686348729166,
+        0.02983195511159021
+      ]
+    }
+  },
+  "resource_blocker": {
+    "fold5_available_ram_bytes": 480247808,
+    "resume_policy": "Do not resume the structural add-on; partial grouped folds show no material gain. Reconsider only with materially more RAM and a new justification.",
+    "stop_floor_bytes": 524288000
+  },
+  "schema": "qmutbench-persistent-leaderboard-v1",
+  "updated": "2026-10-27"
+}

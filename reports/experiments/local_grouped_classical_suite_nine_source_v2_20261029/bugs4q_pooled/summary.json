@@ -1,0 +1,31 @@
+{
+  "status": "completed_grouped_classical_suite",
+  "task": {
+    "class_counts": {
+      "0": 62,
+      "1": 62
+    },
+    "groups": 62,
+    "input": "reports/experiments/qml_source_preprocessing_20261029/classical_nine_source_v2_inputs/bugs4q_pooled.csv",
+    "name": "bugs4q_pooled",
+    "rows": 124,
+    "sha256": "d997940fc365bf909eaa122d75fbb12f25bf5a138fa64c818fd8e0673a375ffc",
+    "source_contract": "experiments/source_task_contracts/bugs4q_joint_source_state.json",
+    "source_contract_sha256": "5c99246e56de94d87c030f258adcaf9bdd2165f03100a17a8e548fed9d2b8836",
+    "source_id": "bugs4q_joint",
+    "source_input_sha256": "2f1a561ba5301b8252ad4c07b0593e87ad59d63122aecb6d9500beac3e42d453",
+    "source_processed_manifest_sha256": "1dc9bc14a8e03aafa459c3ca8a300f00fa6ee2e8793bd7a10e2d090d1cde9dfa",
+    "source_split_sha256": "6648f2130cbe08a8e79b7b8ff5f30cb70b57e6b992a4a538330b63bec30cd4f6",
+    "target_semantics": "Buggy (1) versus fixed (0) source snapshots from the paired Bugs4Q core and NA subset; issue-group split. Not hardware diagnosis.",
+    "task_id": "source_state"
+  },
+  "rows": 124,
+  "groups": 62,
+  "folds": 5,
+  "runtime_seconds": 80.82712519999768,
+  "sampling_policy": "all sampling fitted only inside each training fold, after SVD and scaling",
+  "max_observed_process_rss_mib": 146.5390625,
+  "memory_measurement_note": "RSS sampled after model fits; maximum observed, not guaranteed OS peak",
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}

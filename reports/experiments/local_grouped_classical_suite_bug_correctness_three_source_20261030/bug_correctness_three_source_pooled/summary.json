@@ -1,0 +1,24 @@
+{
+  "status": "completed_grouped_classical_suite",
+  "task": {
+    "name": "bug_correctness_three_source_pooled",
+    "input": "reports/experiments/qml_source_preprocessing_20261029/classical_nine_source_v2_inputs/bug_correctness_three_source_pooled.csv",
+    "rows": 1620,
+    "groups": 810,
+    "class_counts": {
+      "0": 810,
+      "1": 810
+    },
+    "sha256": "1f7f2f45a5d35cc9681b2ef550579a9a51a9084bff2e6378d95b123a1a9b15e0",
+    "target_semantics": "correct/fixed (0) vs buggy (1)"
+  },
+  "rows": 1620,
+  "groups": 810,
+  "folds": 5,
+  "runtime_seconds": 73.17265600000974,
+  "sampling_policy": "all sampling fitted only inside each training fold, after SVD and scaling",
+  "max_observed_process_rss_mib": 169.95703125,
+  "memory_measurement_note": "RSS sampled after model fits; maximum observed, not guaranteed OS peak",
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}

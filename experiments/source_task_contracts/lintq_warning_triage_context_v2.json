@@ -1,0 +1,43 @@
+{
+  "allowed_labels": [
+    "0",
+    "1"
+  ],
+  "feature_column": "code",
+  "feature_policy": "code column contains rule identifier, warning message, and source snippet; source path, line, resolution, and bug identifier are excluded from model inputs.",
+  "fold_column": "fold",
+  "fold_group_column": "group_id",
+  "fold_label_map": {
+    "0": 0,
+    "1": 1
+  },
+  "fold_model_column": "model",
+  "fold_model_value": "lintq_context_v2",
+  "fold_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\lintq_context_v2\\group_folds.csv",
+  "fold_record_column": "record_id",
+  "fold_target_column": "y_true",
+  "group_column": "model_group_id",
+  "grouping_policy": "Connected components of original warning issue group and exact normalized code-context fingerprint; no issue or exact model-input component crosses the five stratified folds.",
+  "input_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\lintq_context_v2\\normalized_manifest.csv",
+  "label_column": "label",
+  "model_feature_fields": [
+    "code"
+  ],
+  "output_path": "data/processed/lintq/warning_triage_context_v2",
+  "record_id_column": "record_id",
+  "required": [
+    "record_id",
+    "model_group_id",
+    "label",
+    "code",
+    "rule_id",
+    "warning_message",
+    "label_resolution"
+  ],
+  "source_id": "lintq",
+  "split_seed": 20261029,
+  "target_semantics": "Manual LintQ true-positive (1) versus false-positive (0) warning triage using the rule, warning text, and source-code context. Not hardware diagnosis.",
+  "task_id": "warning_triage_context_v2",
+  "upstream_source_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\lintq_warning_triage\\normalized_manifest.csv",
+  "upstream_source_sha256": "8903aba9cce7d2bfc3fc7430a39f3b87fa6e1463df9b93b3dc4865212efa14ab"
+}

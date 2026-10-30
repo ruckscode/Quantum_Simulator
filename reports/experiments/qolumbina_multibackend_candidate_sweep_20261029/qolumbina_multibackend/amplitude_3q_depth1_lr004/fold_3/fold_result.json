@@ -1,0 +1,45 @@
+{
+  "task": "Qolumbina multibackend",
+  "model": "amplitude_3q_depth1_lr004",
+  "fold": 3,
+  "records": 105,
+  "groups": 5,
+  "train_records": 441,
+  "training_seconds": 0.05918930000916589,
+  "available_ram_mib": 1253.125,
+  "gradient_check": {
+    "parameter_shift": -0.00013573009090970503,
+    "finite_difference": -0.00013573008827982846,
+    "absolute_error": 2.6298765682525316e-12,
+    "passed": true
+  },
+  "metrics": {
+    "accuracy": 0.9523809523809523,
+    "balanced_accuracy": 0.5,
+    "macro_f1": 0.4878048780487805,
+    "per_class": {
+      "0": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 5
+      },
+      "1": {
+        "precision": 0.9523809523809523,
+        "recall": 1.0,
+        "f1": 0.975609756097561,
+        "support": 100
+      }
+    },
+    "confusion_matrix": [
+      [
+        0,
+        5
+      ],
+      [
+        0,
+        100
+      ]
+    ]
+  }
+}

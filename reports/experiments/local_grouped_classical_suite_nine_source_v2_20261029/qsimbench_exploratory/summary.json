@@ -1,0 +1,31 @@
+{
+  "status": "completed_grouped_classical_suite",
+  "task": {
+    "class_counts": {
+      "0": 150,
+      "1": 150
+    },
+    "groups": 150,
+    "input": "reports/experiments/qml_source_preprocessing_20261029/classical_nine_source_v2_inputs/qsimbench_exploratory.csv",
+    "name": "qsimbench_exploratory",
+    "rows": 300,
+    "sha256": "6e41d73393d9937d0cff6e956d77f360df550c0eebecde7a89b6406a1459ea02",
+    "source_contract": "experiments/source_task_contracts/qsimbench_backend_fingerprint.json",
+    "source_contract_sha256": "424142b41a19413d376f0232dc4b2175cfeba6cb0295c7d7f384852940e8fe57",
+    "source_id": "qsimbench",
+    "source_input_sha256": "6b151c1145237c31bf10bb2cbe40d0ad6539b75666ea4d2f90d4278531a7e632",
+    "source_processed_manifest_sha256": "b85cee9b75554c230b3f0519bd3c2e0dd5ffb0d79e10eb4a8af98e438a974cfd",
+    "source_split_sha256": "ecf4e92bddca75a98049d0bea093e63733a4cc1c2ef3a499122fdb9268e52f90",
+    "target_semantics": "Post-execution Aer versus fake_kyiv backend identity from measurement-output descriptors; not fault prediction or hardware diagnosis.",
+    "task_id": "backend_fingerprint"
+  },
+  "rows": 300,
+  "groups": 150,
+  "folds": 5,
+  "runtime_seconds": 78.13755529999617,
+  "sampling_policy": "all sampling fitted only inside each training fold, after SVD and scaling",
+  "max_observed_process_rss_mib": 150.47265625,
+  "memory_measurement_note": "RSS sampled after model fits; maximum observed, not guaranteed OS peak",
+  "production_model_modified": false,
+  "frozen_test_accessed": false
+}

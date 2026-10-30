@@ -1,0 +1,565 @@
+{
+  "status": "completed_grouped_qnn_sweep",
+  "task": "Qolumbina multibackend",
+  "records": 546,
+  "groups": 26,
+  "label_distribution": {
+    "0": 40,
+    "1": 506
+  },
+  "results": [
+    {
+      "model": "amplitude_3q_depth1_lr004",
+      "configuration": {
+        "name": "amplitude_3q_depth1_lr004",
+        "qubits": 3,
+        "features": 8,
+        "encoding": "amplitude",
+        "depth": 1,
+        "reupload": false,
+        "learning_rate": 0.04
+      },
+      "accuracy": 0.9267399267399268,
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.48098859315589354,
+      "per_class": {
+        "0": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 40
+        },
+        "1": {
+          "precision": 0.9267399267399268,
+          "recall": 1.0,
+          "f1": 0.9619771863117871,
+          "support": 506
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          40
+        ],
+        [
+          0,
+          506
+        ]
+      ],
+      "records": 546,
+      "folds": 5,
+      "training_seconds": 0.31276480000815354,
+      "checkpoint_paths": [
+        "reports\\experiments\\qolumbina_multibackend_candidate_sweep_20261029\\qolumbina_multibackend\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+        "reports\\experiments\\qolumbina_multibackend_candidate_sweep_20261029\\qolumbina_multibackend\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+        "reports\\experiments\\qolumbina_multibackend_candidate_sweep_20261029\\qolumbina_multibackend\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+        "reports\\experiments\\qolumbina_multibackend_candidate_sweep_20261029\\qolumbina_multibackend\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+        "reports\\experiments\\qolumbina_multibackend_candidate_sweep_20261029\\qolumbina_multibackend\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz"
+      ]
+    },
+    {
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "configuration": {
+        "name": "angle_reupload_4q_depth2_lr0035",
+        "qubits": 4,
+        "features": 4,
+        "encoding": "angle",
+        "depth": 2,
+        "reupload": true,
+        "learning_rate": 0.035
+      },
+      "accuracy": 0.9267399267399268,
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.48098859315589354,
+      "per_class": {
+        "0": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 40
+        },
+        "1": {
+          "precision": 0.9267399267399268,
+          "recall": 1.0,
+          "f1": 0.9619771863117871,
+          "support": 506
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          40
+        ],
+        [
+          0,
+          506
+        ]
+      ],
+      "records": 546,
+      "folds": 5,
+      "training_seconds": 3.7868980999919586,
+      "checkpoint_paths": [
+        "reports\\experiments\\qolumbina_multibackend_candidate_sweep_20261029\\qolumbina_multibackend\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+        "reports\\experiments\\qolumbina_multibackend_candidate_sweep_20261029\\qolumbina_multibackend\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+        "reports\\experiments\\qolumbina_multibackend_candidate_sweep_20261029\\qolumbina_multibackend\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+        "reports\\experiments\\qolumbina_multibackend_candidate_sweep_20261029\\qolumbina_multibackend\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+        "reports\\experiments\\qolumbina_multibackend_candidate_sweep_20261029\\qolumbina_multibackend\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz"
+      ]
+    }
+  ],
+  "fold_results": [
+    {
+      "task": "Qolumbina multibackend",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 1,
+      "records": 126,
+      "groups": 6,
+      "train_records": 420,
+      "training_seconds": 0.07436240000242833,
+      "available_ram_mib": 1265.63671875,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.9206349206349206,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.4793388429752066,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 10
+          },
+          "1": {
+            "precision": 0.9206349206349206,
+            "recall": 1.0,
+            "f1": 0.9586776859504132,
+            "support": 116
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            10
+          ],
+          [
+            0,
+            116
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Qolumbina multibackend",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 2,
+      "records": 105,
+      "groups": 5,
+      "train_records": 441,
+      "training_seconds": 0.06073129999276716,
+      "available_ram_mib": 1264.53125,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.9047619047619048,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.47500000000000003,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 10
+          },
+          "1": {
+            "precision": 0.9047619047619048,
+            "recall": 1.0,
+            "f1": 0.9500000000000001,
+            "support": 95
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            10
+          ],
+          [
+            0,
+            95
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Qolumbina multibackend",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 3,
+      "records": 105,
+      "groups": 5,
+      "train_records": 441,
+      "training_seconds": 0.05918930000916589,
+      "available_ram_mib": 1253.125,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.9523809523809523,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.4878048780487805,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 5
+          },
+          "1": {
+            "precision": 0.9523809523809523,
+            "recall": 1.0,
+            "f1": 0.975609756097561,
+            "support": 100
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            100
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Qolumbina multibackend",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 4,
+      "records": 105,
+      "groups": 5,
+      "train_records": 441,
+      "training_seconds": 0.05985800000780728,
+      "available_ram_mib": 1253.765625,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.9238095238095239,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.48019801980198024,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 8
+          },
+          "1": {
+            "precision": 0.9238095238095239,
+            "recall": 1.0,
+            "f1": 0.9603960396039605,
+            "support": 97
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            97
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Qolumbina multibackend",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 5,
+      "records": 105,
+      "groups": 5,
+      "train_records": 441,
+      "training_seconds": 0.05862379999598488,
+      "available_ram_mib": 1253.4296875,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.9333333333333333,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.4827586206896552,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 7
+          },
+          "1": {
+            "precision": 0.9333333333333333,
+            "recall": 1.0,
+            "f1": 0.9655172413793104,
+            "support": 98
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            98
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Qolumbina multibackend",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 1,
+      "records": 126,
+      "groups": 6,
+      "train_records": 420,
+      "training_seconds": 0.7712409999949159,
+      "available_ram_mib": 1270.1484375,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.9206349206349206,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.4793388429752066,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 10
+          },
+          "1": {
+            "precision": 0.9206349206349206,
+            "recall": 1.0,
+            "f1": 0.9586776859504132,
+            "support": 116
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            10
+          ],
+          [
+            0,
+            116
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Qolumbina multibackend",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 2,
+      "records": 105,
+      "groups": 5,
+      "train_records": 441,
+      "training_seconds": 0.7511433999898145,
+      "available_ram_mib": 1261.5859375,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.9047619047619048,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.47500000000000003,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 10
+          },
+          "1": {
+            "precision": 0.9047619047619048,
+            "recall": 1.0,
+            "f1": 0.9500000000000001,
+            "support": 95
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            10
+          ],
+          [
+            0,
+            95
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Qolumbina multibackend",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 3,
+      "records": 105,
+      "groups": 5,
+      "train_records": 441,
+      "training_seconds": 0.7507037000032142,
+      "available_ram_mib": 1256.57421875,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.9523809523809523,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.4878048780487805,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 5
+          },
+          "1": {
+            "precision": 0.9523809523809523,
+            "recall": 1.0,
+            "f1": 0.975609756097561,
+            "support": 100
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            100
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Qolumbina multibackend",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 4,
+      "records": 105,
+      "groups": 5,
+      "train_records": 441,
+      "training_seconds": 0.7506934999983059,
+      "available_ram_mib": 1260.4453125,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.9238095238095239,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.48019801980198024,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 8
+          },
+          "1": {
+            "precision": 0.9238095238095239,
+            "recall": 1.0,
+            "f1": 0.9603960396039605,
+            "support": 97
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            97
+          ]
+        ]
+      }
+    },
+    {
+      "task": "Qolumbina multibackend",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 5,
+      "records": 105,
+      "groups": 5,
+      "train_records": 441,
+      "training_seconds": 0.7631165000057081,
+      "available_ram_mib": 1265.046875,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.9333333333333333,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.4827586206896552,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 7
+          },
+          "1": {
+            "precision": 0.9333333333333333,
+            "recall": 1.0,
+            "f1": 0.9655172413793104,
+            "support": 98
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            98
+          ]
+        ]
+      }
+    }
+  ],
+  "runtime_seconds": 4.243223700003,
+  "frozen_test_accessed": false,
+  "source_manifest_sha256": "b580ad932945d713ad00ade2210e58ff980bdd66a45e67ad4d9b9283ca1c6898"
+}

@@ -1,0 +1,42 @@
+{
+  "allowed_labels": [
+    "0",
+    "1"
+  ],
+  "feature_column": "code",
+  "feature_policy": "Comment text only; repo, commit hash, issue identifier, and target are excluded from model features.",
+  "fold_column": "fold",
+  "fold_group_column": "group_id",
+  "fold_label_map": {
+    "0": 0,
+    "1": 1
+  },
+  "fold_model_column": "model",
+  "fold_model_value": "quantum_platform_comment_v2",
+  "fold_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\quantum_platform_comment_v2\\group_folds.csv",
+  "fold_record_column": "record_id",
+  "fold_target_column": "y_true",
+  "group_column": "comment_component_id",
+  "grouping_policy": "Connected components of the original issue/commit group and exact normalized comment text; no issue group or repeated exact comment crosses folds.",
+  "input_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\quantum_platform_comment_v2\\normalized_manifest.csv",
+  "label_column": "label",
+  "model_feature_fields": [
+    "code"
+  ],
+  "output_path": "data/processed/quantum_platform_bugs/comment_only_classification_v2",
+  "record_id_column": "record_id",
+  "required": [
+    "record_id",
+    "comment_component_id",
+    "label",
+    "code",
+    "repo",
+    "commit_hash"
+  ],
+  "source_id": "quantum_platform_bugs",
+  "split_seed": 20261029,
+  "target_semantics": "Curated issue-comment annotation classification; labels do not denote hardware faults.",
+  "task_id": "comment_only_classification_v2",
+  "upstream_source_path": "reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\quantum_platform_223_comment_only\\normalized_manifest.csv",
+  "upstream_source_sha256": "f7490974d64dacd39d28957effabdff9f71b116a05ecc6e2ae178727bf7df651"
+}

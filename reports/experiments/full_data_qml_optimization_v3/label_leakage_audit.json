@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "binary_label_mapping_verified": {
+    "WOO": 1,
+    "OPO": 1,
+    "Survivor": 0
+  },
+  "semantics": "WOO and OPO are killed mutants (oracle-detected and not oracle-detected respectively); Survivor is not killed. This project’s binary target is killed-vs-survived, not oracle-detected-vs-undetected.",
+  "source_gate_count_match": {
+    "included_in_manifest_model_feature_columns": false,
+    "present_as_diagnostic_in_chunk_csv": true,
+    "counts_by_label_and_value": {
+      "label=1,match=1": 200891,
+      "label=0,match=1": 217275,
+      "label=1,match=0": 98813,
+      "label=0,match=0": 61138
+    },
+    "decision": "Not part of the registered feature list and excluded from comparison models. It varies by label; treat as suspicious until a same-fold with/without ablation and provenance review are complete. Association alone does not establish target leakage."
+  },
+  "identifier_exclusion": [
+    "record_id",
+    "Origin_program",
+    "source QASM paths",
+    "fold"
+  ],
+  "group_isolation": {
+    "origins": 305,
+    "cross_fold_origins": 0
+  },
+  "frozen_test_accessed": false
+}

@@ -1,0 +1,12 @@
+{
+  "source_id": "qbugs_hornbro",
+  "task_id": "correct_buggy_circuit_state",
+  "target_semantics": "Correct (0) versus buggy (1) circuit-state examples paired and grouped by Qbugs scenario; not hardware diagnosis.",
+  "required": ["record_id", "bug_id", "label", "code", "scenario", "pair_index", "circuit_qubits", "circuit_depth", "instruction_count"],
+  "record_id_column": "record_id", "group_column": "bug_id", "label_column": "label", "feature_column": "code",
+  "allowed_labels": ["0", "1"], "fold_record_column": "record_id", "fold_group_column": "bug_id", "fold_column": "fold",
+  "fold_model_column": "model", "fold_model_value": "angle_hybrid_readout",
+  "input_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/qbugs/normalized_manifest.csv",
+  "fold_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/qbugs/qnn_hybrid/oof_predictions.csv",
+  "output_path": "data/processed/qbugs_hornbro/correct_buggy_circuit_state"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "QNN-01",
+    "hypothesis": "Verify state preparation, unitary evolution, entangling gate, measurement, and gradient independently.",
+    "status": "passed",
+    "evidence": "Foundations analytic checks and focused tests."
+  },
+  {
+    "id": "QNN-02",
+    "hypothesis": "A supervised variational circuit can learn a controlled three-class nonlinear toy task.",
+    "status": "passed",
+    "evidence": "Toy loss 1.3040 -> 0.7156; 12/12 correct."
+  },
+  {
+    "id": "QNN-03",
+    "hypothesis": "Four-feature repeated angle embedding with trainable VQC learns QMutBench labels on unseen origins.",
+    "status": "completed_no_advantage",
+    "evidence": "12 origins / 205 stratified records / 3 grouped folds; macro F1 0.2998 vs Extra Trees 0.4669."
+  },
+  {
+    "id": "QNN-04",
+    "hypothesis": "Amplitude encoding may preserve four reduced inputs with fewer wires and improve QNN learning.",
+    "status": "completed_rejected",
+    "evidence": "Macro F1 0.3086; 2 qubits, decomposed depth 8, preparation included; no matched-control gain."
+  },
+  {
+    "id": "QNN-05",
+    "hypothesis": "A trainable affine measurement head may remedy low separation from bounded fixed expectation logits.",
+    "status": "completed_rejected",
+    "evidence": "Macro F1 0.3218; still below matched LR 0.4407 and ET 0.4669."
+  },
+  {
+    "id": "QNN-06",
+    "hypothesis": "Confirm the selected QNN once on the remaining OPO-bearing origin groups.",
+    "status": "stopped_resource_floor",
+    "evidence": "Training crossed below 500 MiB available RAM before fit completion; no predictions/metrics/checkpoint were written and no retry was made."
+  },
+  {
+    "id": "QNN-07",
+    "hypothesis": "Scale to all 578,117 development records or 305 origins.",
+    "status": "not_run",
+    "evidence": "All tested QNNs trail matched controls by 10.9-16.7 pp; held-out confirmation hit RAM floor; scale-up unjustified."
+  },
+  {
+    "id": "QNN-08",
+    "hypothesis": "Use the historic frozen test for final QNN evaluation.",
+    "status": "prohibited_not_run",
+    "evidence": "Historical test previously reused; frozen test remained untouched."
+  },
+  {
+    "id": "QNN-09",
+    "hypothesis": "Distinct three-class quantum-kernel or fixed-reservoir families may complement supervised QNN.",
+    "status": "not_run",
+    "evidence": "Existing kernel/reservoir implementations address the binary target and underperformed their matched controls. Three-class QNN variants also trail matched classical controls; resources are constrained. No three-class extension was justified."
+  },
+  {
+    "id": "QNN-10",
+    "hypothesis": "Accumulate exact full-batch gradients in small chunks to lower peak memory without changing optimizer updates.",
+    "status": "implemented_and_smoke_validated",
+    "evidence": "One-step, six-row comparison: chunk size 2 matched full-batch loss within 2.3e-16, circuit weights within 2.4e-12, readout within 7e-18; both used six circuit executions. On resume, raw RAM was 853 MiB before QML imports; safe 700 MiB post-import headroom could not be established, so the 36-origin confirmation was not launched."
+  }
+]

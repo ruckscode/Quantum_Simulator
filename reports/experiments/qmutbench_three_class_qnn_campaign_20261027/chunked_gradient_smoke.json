@@ -1,0 +1,21 @@
+{
+  "status": "passed_toy_exact_gradient_equivalence",
+  "records": 6,
+  "classes": 3,
+  "encoding": "four-feature angle; four qubits",
+  "depth_layers": 1,
+  "trainable_readout": true,
+  "optimizer": "PennyLane Adam",
+  "steps": 1,
+  "seed": 33,
+  "chunk_size": 2,
+  "full_batch_loss": 0.8948835826279525,
+  "chunked_loss": 0.8948835826279523,
+  "loss_abs_difference": 2.220446049250313E-16,
+  "circuit_weights_max_abs_difference": 2.392641640369675E-12,
+  "readout_weights_max_abs_difference": 6.938893903907228E-18,
+  "training_circuit_executions_full_batch": 6,
+  "training_circuit_executions_chunked": 6,
+  "qmutbench_data_used": false,
+  "real_confirmation_launched": false
+}

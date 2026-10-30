@@ -1,0 +1,21 @@
+{
+  "schema": "qmutbench-full-development-resume-attempts-v1",
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": "--mode full-development --output reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029 --chunk-batches 16 --max-chunks-per-invocation 50 --resume",
+      "status": "blocked_memory_guard_before_training",
+      "available_mib": 224,
+      "required_mib": 2076,
+      "evidence": "Runner returned only 262 MiB on its preflight; a separate near-simultaneous psutil sample observed 224 MiB. Existing 51 committed chunks and checkpoint audit are unchanged; frozen test not accessed."
+    }
+  ],
+  "frozen_test_accessed": false,
+  "latest_resource_probe": {
+    "preflight": {
+      "status": "blocked",
+      "reason": "Only 914 MiB available; estimated peak requires 2076 MiB to preserve the 1024 MiB floor"
+    },
+    "frozen_test_accessed": false
+  }
+}

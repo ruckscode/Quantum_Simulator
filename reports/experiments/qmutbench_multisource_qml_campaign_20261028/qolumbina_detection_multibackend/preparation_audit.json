@@ -1,0 +1,44 @@
+{
+  "schema": "qolumbina-multibackend-task-preparation-v1",
+  "status": "PREPARED_FOR_SOURCE_ISOLATED_VALIDATION",
+  "rows": 546,
+  "program_groups": 26,
+  "folds": 5,
+  "backends": [
+    "fake_algiers",
+    "fake_brooklyn",
+    "ideal"
+  ],
+  "class_counts": {
+    "1": 506,
+    "0": 40
+  },
+  "per_backend_class_counts": {
+    "fake_algiers": {
+      "1": 175,
+      "0": 7
+    },
+    "fake_brooklyn": {
+      "1": 181,
+      "0": 1
+    },
+    "ideal": {
+      "1": 150,
+      "0": 32
+    }
+  },
+  "source_manifest_sha256": "b580ad932945d713ad00ade2210e58ff980bdd66a45e67ad4d9b9283ca1c6898",
+  "ideal_oof_assignment_source_sha256": "ffa0828395eaf706ba133b9e0a4a70232114fca535a8fe1f3692053254f6660e",
+  "group_fold_manifest_sha256": "37aa98662da1d98351daa696a2499767286807d614e0a8555b49a628ce906229",
+  "contract_sha256": "c397410e513bdcef6829c13d7e72727fca5e3608c8b28a0d4f50d68fffb878dc",
+  "split_policy": "reused established ideal-pilot 5-fold assignment by original program; every variant/backend remains grouped",
+  "feature_policy": "mutant code plus pre-run backend token; no program identifier, report output, or detection-rate value",
+  "label_policy": "detected in at least half of report runs; each report is positive if any of its named tests has test_result=fail; retained target is empirical report outcome, not semantic bug correctness",
+  "limitations": [
+    "26 source-program groups limit interval precision",
+    "extreme class imbalance for fake_brooklyn (one negative row)",
+    "seeded synthetic mutants are not real bug reports",
+    "backend comparisons are exploratory, not hardware fault attribution"
+  ],
+  "frozen_test_accessed": false
+}

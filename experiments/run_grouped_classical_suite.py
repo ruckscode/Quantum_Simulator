@@ -6,17 +6,66 @@ compact task manifests with columns record_id, bug_id, label, and code.
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import os
+import tempfile
 import time
 from pathlib import Path
 
 import psutil
 
 ROOT = Path(__file__).resolve().parents[1]
-TASKS = json.loads(os.environ["QML_CLASSICAL_TASKS_JSON"])
-OUT = Path(os.environ["QML_CLASSICAL_OUTPUT"])
+CONFIG_PATH = Path(os.environ["QML_CLASSICAL_CONFIG_PATH"]) if os.environ.get("QML_CLASSICAL_CONFIG_PATH") else None
+if CONFIG_PATH:
+    if not CONFIG_PATH.is_absolute():
+        CONFIG_PATH = ROOT / CONFIG_PATH
+    EXECUTION_CONFIG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    TASKS = EXECUTION_CONFIG["tasks"]
+    configured_output = os.environ.get("QML_CLASSICAL_OUTPUT", EXECUTION_CONFIG["output"])
+    OUT = Path(configured_output)
+    if not OUT.is_absolute():
+        OUT = ROOT / OUT
+else:
+    EXECUTION_CONFIG = {}
+    TASKS = json.loads(os.environ["QML_CLASSICAL_TASKS_JSON"])
+    OUT = Path(os.environ["QML_CLASSICAL_OUTPUT"])
 FLOOR_MIB = 500
+
+
+def sha256_file(path):
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def atomic_json(path, value):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, temporary = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as stream:
+            json.dump(value, stream, indent=2, sort_keys=True)
+            stream.write("\n"); stream.flush(); os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary): os.unlink(temporary)
+
+
+def atomic_csv(path, rows, fieldnames):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, temporary = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="") as stream:
+            writer = csv.DictWriter(stream, fieldnames=fieldnames, lineterminator="\n")
+            writer.writeheader(); writer.writerows(rows); stream.flush(); os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary): os.unlink(temporary)
+    return sha256_file(path)
 
 
 def smote_numpy(X, y, seed, strategy="smote"):
@@ -102,12 +151,16 @@ def main():
     from sklearn.preprocessing import MinMaxScaler
     if psutil.virtual_memory().available / 2**20 < 500:
         raise MemoryError("Post-import available memory below 500 MiB")
+    if OUT.exists() and any(OUT.iterdir()):
+        raise FileExistsError(f"Classical suite output already exists at {OUT}; refusing to overwrite it")
     OUT.mkdir(parents=True, exist_ok=True)
     rows, fold_rows = [], []
     for task_i, task in enumerate(TASKS):
         if psutil.virtual_memory().available / 2**20 < FLOOR_MIB:
             raise MemoryError("Available RAM crossed the 500 MiB floor before a task")
         data_path = Path(task["input"])
+        if task.get("sha256") and sha256_file(data_path) != task["sha256"]:
+            raise ValueError(f"Task source hash changed for {task['name']}: {data_path}")
         df = pd.read_csv(data_path)
         required = {"record_id", "bug_id", "label", "code"}
         if not required.issubset(df.columns): raise ValueError(f"{data_path} missing {required-set(df.columns)}")

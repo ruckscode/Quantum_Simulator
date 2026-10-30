@@ -1,0 +1,108 @@
+{
+  "status": "BLOCKED_LICENSE_AND_REPOSITORY_GENERALIZATION",
+  "source_archive": "data\\external_quantum_datasets\\qml_platform_bugs_source.zip",
+  "source_archive_sha256": "2996616e28dcc5ce02581c520d5d5df2da8be54793f821782c03d8d0c26a7782",
+  "workbook": "data\\external_quantum_datasets\\qml_platform_bugs\\extracted_source\\Classified\\Conclusion.xlsx",
+  "workbook_sha256": "7198fc8bb9bd3769c9b0eb28133586721b2bf5462d88b128f1fe844da5fa8423",
+  "workbook_data_rows": 481,
+  "target_column": "I",
+  "target_semantics": "Manual quantum-related annotation: 0=not quantum, 1=quantum-related; not bug/fix or hardware diagnosis.",
+  "agreement_column_O_is_not_target": "Agreement 0/1 annotation is separate from quantum-related target and is not used here.",
+  "accepted_unique_labeled_issues": 339,
+  "class_counts": {
+    "0": 220,
+    "1": 119
+  },
+  "duplicate_issue_rows_removed": 2,
+  "duplicate_issue_urls": [
+    "https://github.com/PennyLaneAI/pennylane-qiskit/issues/189",
+    "https://github.com/PennyLaneAI/pennylane-qiskit/issues/218"
+  ],
+  "unresolved_label_counts": {
+    "<blank>": 137,
+    "User": 1,
+    "Algorithm": 2
+  },
+  "repository_groups": 10,
+  "repository_label_counts": {
+    "PaddlePaddle/Quantum": {
+      "0": 4
+    },
+    "PennyLaneAI/pennylane": {
+      "1": 106,
+      "0": 154
+    },
+    "PennyLaneAI/pennylane-lightning": {
+      "0": 5
+    },
+    "PennyLaneAI/pennylane-qiskit": {
+      "1": 4,
+      "0": 1
+    },
+    "PennyLaneAI/pennylane-qulacs": {
+      "1": 1
+    },
+    "PennyLaneAI/pennylane-rigetti": {
+      "0": 5,
+      "1": 4
+    },
+    "PennyLaneAI/pennylane-sf": {
+      "1": 1,
+      "0": 3
+    },
+    "Qiskit/qiskit-machine-learning": {
+      "0": 28,
+      "1": 1
+    },
+    "mit-han-lab/torchquantum": {
+      "0": 2
+    },
+    "tensorflow/quantum": {
+      "0": 18,
+      "1": 2
+    }
+  },
+  "feature_policy": "Issue title only; status, labels, taxonomy, repository, URL, issue ID, and agreement annotations excluded.",
+  "exact_normalized_title_collision_fingerprints": 1,
+  "exact_title_collisions": [
+    {
+      "title": "Device 'Shots=0' argument breaks down for the SF plugin",
+      "rows": 2,
+      "repositories": [
+        "PennyLaneAI/pennylane",
+        "PennyLaneAI/pennylane-sf"
+      ],
+      "labels": [
+        0
+      ]
+    }
+  ],
+  "repository_plus_title_component_count": 9,
+  "largest_repository_plus_title_component_rows": 264,
+  "component_label_conflicts": 5,
+  "license_evidence": "The local source inventory states no license file was located and issue text remains subject to platform/source terms.",
+  "license_inventory_source": "data\\external_quantum_datasets\\master_dataset_inventory.csv",
+  "license_inventory_excerpt": {
+    "dataset": "Quantum ML framework issue collection",
+    "source": "https://github.com/Z-928/QML-platform-bugs",
+    "status": "Downloaded and extracted; source ZIP CRC verified",
+    "version": "7533ff5b01b88895e0bb697905ff57b204888fb9",
+    "size": "1,480,120-byte source archive; 16 classified workbooks and 22 original-issue workbooks",
+    "records": "15,984 rows across classified workbooks; 14,168 rows across original workbooks (per XLSX worksheet rows, before dedup)",
+    "labels": "Manual 0/1 agreement and quantum-related annotations, plus issue status/text and some issue-type labels",
+    "formats": "XLSX and nested ZIP archives",
+    "task": "Issue-level quantum-related and annotation-agreement classification; deduplicate across workbook views",
+    "license": "No license file located in the repository; issue text remains subject to platform/source terms",
+    "limitations": "Original and classified workbooks overlap; some exports have 999 non-header rows; de-duplication and schema reconciliation pending",
+    "next_action": "Normalize workbook schemas and deduplicate by issue URL",
+    "path": "data\\external_quantum_datasets\\qml_platform_bugs",
+    "hashes": "{\"path\": \"data\\\\external_quantum_datasets\\\\qml_platform_bugs_source.zip\", \"bytes\": 1480120, \"sha256\": \"2996616e28dcc5ce02581c520d5d5df2da8be54793f821782c03d8d0c26a7782\"}"
+  },
+  "blocking_reasons": [
+    "source archive has no declared reuse license in the local repository inventory",
+    "only 339 unique issue rows have clean 0/1 targets; 140 rows are unlabeled or misaligned",
+    "repository and title grouping yields only nine connected components, including one component with 264 records; a repository-generalization claim is not supportable from this split"
+  ],
+  "frozen_test_accessed": false,
+  "output": "reports\\experiments\\qml_source_preprocessing_20261029\\qml_platform_conclusion_label_audit.json"
+}

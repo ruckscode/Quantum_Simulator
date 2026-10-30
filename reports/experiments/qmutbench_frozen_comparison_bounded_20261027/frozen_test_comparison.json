@@ -1,0 +1,131 @@
+{
+  "available_ram_bytes_at_finish": 648757248,
+  "baseline": {
+    "metrics": {
+      "accuracy": 0.78843421034478,
+      "balanced_accuracy": 0.7892515151369561,
+      "confusion_matrix_labels_0_1": [
+        [
+          56753,
+          13133
+        ],
+        [
+          17536,
+          57540
+        ]
+      ],
+      "macro_f1": 0.7884279744415912,
+      "per_class": {
+        "0": {
+          "f1": 0.7872793480145657,
+          "precision": 0.7639489022600924,
+          "recall": 0.8120796726096786,
+          "support": 69886
+        },
+        "1": {
+          "f1": 0.7895766008686166,
+          "precision": 0.8141723147453765,
+          "recall": 0.7664233576642335,
+          "support": 75076
+        }
+      }
+    },
+    "model": "full-development eight-feature Extra Trees",
+    "predictions_sha256": "2cef90fdbc13cd17e40739f05c644abd42134989afca673738099e476cd1e268",
+    "sha256": "8cd332a309e27ef09cc46c5bf8a8788da35c05aa6ed25ed5de21d26ced076175"
+  },
+  "bootstrap_repetitions": 1000,
+  "bootstrap_unit": "Origin_program, paired for differences",
+  "candidate": {
+    "metrics": {
+      "accuracy": 0.8185041597108208,
+      "balanced_accuracy": 0.818599130196838,
+      "confusion_matrix_labels_0_1": [
+        [
+          57394,
+          12492
+        ],
+        [
+          13818,
+          61258
+        ]
+      ],
+      "macro_f1": 0.8183751146923499,
+      "per_class": {
+        "0": {
+          "f1": 0.813533855901572,
+          "precision": 0.8059596697185868,
+          "recall": 0.821251752854649,
+          "support": 69886
+        },
+        "1": {
+          "f1": 0.8232163734831279,
+          "precision": 0.8306169491525424,
+          "recall": 0.8159465075390271,
+          "support": 75076
+        }
+      }
+    },
+    "model": "mutation-aware 23-feature Extra Trees",
+    "sha256": "7532be26b6959e7e62277220f0c0b78e648d723a0be35d2b693d68e1c9ebf085",
+    "threshold": 0.5
+  },
+  "elapsed_seconds": 508.71034360001795,
+  "feature_cache_manifest": "reports\\experiments\\qmutbench_frozen_comparison_bounded_20261027\\candidate_feature_cache\\manifest.json",
+  "group_bootstrap_95_percentile_intervals": {
+    "baseline": {
+      "accuracy": [
+        0.7586672533689135,
+        0.8189956197286438
+      ],
+      "balanced_accuracy": [
+        0.7587022073078761,
+        0.8181935547610073
+      ],
+      "macro_f1": [
+        0.757598875985446,
+        0.8178673123304028
+      ]
+    },
+    "candidate": {
+      "accuracy": [
+        0.7851524912036107,
+        0.8547388913714122
+      ],
+      "balanced_accuracy": [
+        0.784889030240195,
+        0.8540547544301581
+      ],
+      "macro_f1": [
+        0.7846943277692937,
+        0.8535800502501478
+      ]
+    },
+    "candidate_minus_baseline": {
+      "accuracy": [
+        0.015394864029069593,
+        0.04530579553715421
+      ],
+      "balanced_accuracy": [
+        0.014785776583777726,
+        0.044110840312194026
+      ],
+      "macro_f1": [
+        0.01552343826837368,
+        0.04519171809369917
+      ]
+    }
+  },
+  "label_counts": {
+    "0": 69886,
+    "1": 75076
+  },
+  "origins": 70,
+  "paired_predictions_path": "reports\\experiments\\qmutbench_frozen_comparison_bounded_20261027\\paired_frozen_test_predictions.csv.gz",
+  "protocol": "candidate and baseline trained on all 578117 development rows; fixed 0.5 thresholds; no test tuning",
+  "record_ids_sha256": "bc1d19af8bcd9cad69c308d68f4d1b6c0e8c0231138070d22a0cb202f3d41e87",
+  "rows": 144962,
+  "schema": "qmutbench-mutation-aware-frozen-test-comparison-v1",
+  "status": "complete_retrospective_comparison",
+  "test_reuse_caveat": "Frozen test has prior historical reuse; retrospective comparison, not pristine independent validation."
+}

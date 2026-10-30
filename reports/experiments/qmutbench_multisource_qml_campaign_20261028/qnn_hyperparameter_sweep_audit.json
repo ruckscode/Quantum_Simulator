@@ -1,0 +1,47 @@
+{
+  "schema": "resumable-qnn-hyperparameter-sweep-audit-v1",
+  "status": "VERIFIED",
+  "tasks": [
+    {
+      "task": "bugs4q_robust_execution",
+      "status": "VERIFIED",
+      "issues": [],
+      "rows": 2220,
+      "groups": 37,
+      "folds": 5,
+      "qnn_models": 6,
+      "qnn_model_fold_results": 30,
+      "resumable_checkpoints_verified": 21,
+      "legacy_inference_snapshots_reused": 9,
+      "classical_controls_verified": 2,
+      "matched_comparisons": 6,
+      "qnn_oof_sha256": "1ee99166bbedbcf2c0bdc1b83c41589f610dd41d4599babbccee84dcc157231c",
+      "run_manifest_sha256": "7ac0bfa1d7e7dc50d976bf29cec34d6f7f10ad5dc499aeaafcc938b09f8f6bc6",
+      "matched_comparison_sha256": "1af43fcb979aea485dda564a23f03ba472390b79cc63369df68126985754b148",
+      "runtime_seconds": 164.94646999999532,
+      "memory_floor_mib": 500,
+      "frozen_test_accessed": false
+    },
+    {
+      "task": "qsimbench_backend_fingerprint",
+      "status": "VERIFIED",
+      "issues": [],
+      "rows": 300,
+      "groups": 150,
+      "folds": 5,
+      "qnn_models": 6,
+      "qnn_model_fold_results": 30,
+      "resumable_checkpoints_verified": 30,
+      "legacy_inference_snapshots_reused": 0,
+      "classical_controls_verified": 2,
+      "matched_comparisons": 6,
+      "qnn_oof_sha256": "66d98a31addeb69cace5d32d070ee5aa99a1f810d9ad3af17dce5abb163c8879",
+      "run_manifest_sha256": "a13f559dd416d490b03203de46225f1530928b8cf4017e23cbf947d8b3a44db6",
+      "matched_comparison_sha256": "bfe1599df1bd607cb1598a27d1a7a1ea8dac807a90545572d86257b40204806b",
+      "runtime_seconds": 58.39231650000147,
+      "memory_floor_mib": 500,
+      "frozen_test_accessed": false
+    }
+  ],
+  "frozen_test_accessed": false
+}

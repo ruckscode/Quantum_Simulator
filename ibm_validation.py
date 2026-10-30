@@ -19,10 +19,10 @@ from typing import Any, Mapping, Sequence
 
 import numpy as np
 
-from diagnosis_engine import DiagnosisResult, diagnose_execution
-from hardware_model import HardwareModel
-from quantum_simulator import QuantumSimulator
-from statistics import compare_counts
+from quantum_simulator.diagnosis_engine import DiagnosisResult, diagnose_execution
+from quantum_simulator.hardware_model import HardwareModel
+from quantum_simulator.quantum_simulator import QuantumSimulator
+from quantum_simulator.statistics import compare_counts
 
 
 REAL_EXECUTION_STATES = {"IMPLEMENTED", "OFFLINE_TESTED", "REAL_IBM_EXECUTED", "BLOCKED", "FAILED"}
@@ -314,7 +314,10 @@ def _qiskit_circuit_from_plan(plan: CircuitPlan) -> tuple[Any | None, list[dict[
                 getattr(circuit, THREE_QUBIT_METHODS[name])(*qubits)
             elif name == "measure":
                 if not qubits:
-                    circuit.measure_all()
+                    # The circuit already has an n-bit classical register.
+                    # measure_all() adds another register by default, making
+                    # returned counts twice as wide and breaking comparison.
+                    circuit.measure(list(range(plan.num_qubits)), list(range(plan.num_qubits)))
                 elif operation.classical_bits:
                     if len(qubits) != len(operation.classical_bits):
                         raise ValueError("measurement qubits and classical bits must have equal lengths")
@@ -923,9 +926,22 @@ def ideal_distribution(circuit: Sequence[Any], num_qubits: int, *, seed: int = 1
         reasons = [*plan.errors, *(item["reason"] for item in plan.unsupported_operations)]
         raise ValueError("Cannot simulate circuit: " + "; ".join(reasons))
     simulator_ops = []
+    classical_to_qubit: dict[int, int] = {}
+    measurement_seen = False
     for operation in plan.operations:
         if operation.name == "measure":
+            measurement_seen = True
+            measured_qubits = operation.qubits or tuple(range(num_qubits))
+            destinations = operation.classical_bits or measured_qubits
+            if len(destinations) != len(measured_qubits):
+                raise ValueError("measurement qubits and classical bits must have equal lengths")
+            for qubit, classical_bit in zip(measured_qubits, destinations):
+                if classical_bit < 0 or classical_bit >= num_qubits:
+                    raise ValueError("classical-bit destinations must be below num_qubits")
+                classical_to_qubit[classical_bit] = qubit
             continue
+        if measurement_seen:
+            raise ValueError("ideal reference execution supports terminal measurements only")
         if operation.name == "reset":
             simulator_ops.extend(("reset", qubit) for qubit in operation.qubits)
         else:
@@ -933,7 +949,17 @@ def ideal_distribution(circuit: Sequence[Any], num_qubits: int, *, seed: int = 1
     simulator = QuantumSimulator(num_qubits, seed=seed)
     simulator.run_circuit(simulator_ops)
     probabilities = simulator.get_probabilities()
-    return {f"{index:0{num_qubits}b}": float(probability) for index, probability in enumerate(probabilities)}
+    if not classical_to_qubit:
+        classical_to_qubit = {index: index for index in range(num_qubits)}
+    outcomes = {f"{index:0{num_qubits}b}": 0.0 for index in range(1 << num_qubits)}
+    for basis_index, probability in enumerate(probabilities):
+        basis_bits = f"{basis_index:0{num_qubits}b}"
+        classical_bits = ["0"] * num_qubits
+        for classical_bit, qubit in classical_to_qubit.items():
+            classical_bits[classical_bit] = basis_bits[qubit]
+        outcome = "".join(reversed(classical_bits))
+        outcomes[outcome] += float(probability)
+    return outcomes
 
 
 def _deterministic_localization_circuit(plan: CircuitPlan) -> list[tuple[Any, ...]]:
@@ -1036,8 +1062,14 @@ class IBMValidationResult:
 
 
 def _diagnosis_payload(result: DiagnosisResult) -> dict[str, Any]:
+    supported_causes = []
+    if result.program_behavioral_candidates:
+        supported_causes.append("PROGRAM_FAULT")
+    if result.hardware_evidence_candidates:
+        supported_causes.append("HARDWARE_ANOMALY")
     return {
         "category": result.category.value,
+        "supported_causes": supported_causes,
         "anomaly_detected": result.anomaly_detected,
         "summary": result.summary,
         "evidence": list(result.evidence),
@@ -1076,6 +1108,8 @@ def _make_result(
         "total_variation_distance": stats.total_variation_distance,
         "threshold": stats.threshold,
         "finite_shot_guard": stats.finite_shot_guard,
+        "p_value": getattr(stats, "p_value", None),
+        "test": getattr(stats, "method", "distribution_distance"),
         "reason": stats.reason,
         "message": stats.message,
     }
@@ -1318,8 +1352,12 @@ def _job_identifier(job: Any) -> str | None:
     return str(value) if value is not None else None
 
 
-def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: str, instance: str | None = None, shots: int = 1024, channel: str = "ibm_quantum_platform", optimization_level: int = 1, max_calibration_age_seconds: float = DEFAULT_MAX_CALIBRATION_AGE_SECONDS) -> IBMValidationResult:
-    """Transpile and submit a circuit only when runtime dependencies and credentials exist."""
+def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: str, reference_circuit: Sequence[Any] | None = None, instance: str | None = None, shots: int = 1024, channel: str = "ibm_quantum_platform", optimization_level: int = 1, max_calibration_age_seconds: float = DEFAULT_MAX_CALIBRATION_AGE_SECONDS) -> IBMValidationResult:
+    """Submit the observed circuit and compare it with an ideal reference.
+
+    ``reference_circuit`` defaults to ``circuit``. Supplying it separately lets
+    diagnosis retain both program-operation changes and live backend evidence.
+    """
 
     access = _explicit_credential_access_status(token)
     if isinstance(max_calibration_age_seconds, bool) or not isinstance(max_calibration_age_seconds, (int, float)) or not math.isfinite(float(max_calibration_age_seconds)) or max_calibration_age_seconds <= 0:
@@ -1333,13 +1371,25 @@ def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: 
             error="; ".join([*plan.errors, *(item["reason"] for item in plan.unsupported_operations)]),
         )
         return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, conversion=conversion, errors=[conversion.error or "Circuit is unsupported"])
+    reference_plan = plan if reference_circuit is None else build_circuit_plan(reference_circuit)
+    if not reference_plan.supported:
+        reasons = [*reference_plan.errors, *(item["reason"] for item in reference_plan.unsupported_operations)]
+        conversion = CircuitConversionResult(
+            "UNSUPPORTED" if reference_plan.unsupported_operations else "FAILED",
+            None,
+            reference_plan,
+            error="Reference circuit is unsupported: " + "; ".join(reasons),
+        )
+        return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, conversion=conversion, errors=[conversion.error or "Reference circuit is unsupported"])
+    if reference_plan.num_qubits != plan.num_qubits:
+        return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, errors=["Reference and submitted circuits must use the same number of logical qubits."])
     if not isinstance(token, str) or not token.strip() or access.status != "ACCESS_CONFIGURED":
         return _make_result(status="BLOCKED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, errors=[access.reason or "IBM access is not configured"])
     if not isinstance(shots, int) or isinstance(shots, bool) or shots <= 0:
         return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=0, access=access, errors=["shots must be a positive integer"])
 
     try:
-        ideal = ideal_distribution(circuit, plan.num_qubits)
+        ideal = ideal_distribution(reference_circuit if reference_circuit is not None else circuit, plan.num_qubits)
     except Exception as exc:
         return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, errors=[f"Ideal prediction failed before submission: {type(exc).__name__}: {exc}"])
 
@@ -1379,6 +1429,7 @@ def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: 
         return _make_result(status="BLOCKED", origin="REAL_IBM_REQUEST", backend_name=capture.backend_name, shots=shots, access=access, calibration=capture, conversion=conversion, transpilation_info=transpilation_info, errors=[transpilation.get("layout_error") or "Physical qubit layout is unavailable; no circuit was submitted."], calibration_assessment={**calibration_assessment, "layout_status": transpilation.get("layout_status")})
     try:
         localization_plan = _map_plan_to_physical(plan, transpilation["logical_to_physical"], int(capture.n_qubits or 0))
+        reference_localization_plan = _map_plan_to_physical(reference_plan, transpilation["logical_to_physical"], int(capture.n_qubits or 0))
     except (KeyError, TypeError, ValueError) as exc:
         return _make_result(status="BLOCKED", origin="REAL_IBM_REQUEST", backend_name=capture.backend_name, shots=shots, access=access, calibration=capture, conversion=conversion, transpilation_info=transpilation_info, errors=[f"Physical qubit layout is inconsistent; no circuit was submitted: {exc}"], calibration_assessment={**calibration_assessment, "layout_status": "INVALID_LAYOUT"})
 
@@ -1415,10 +1466,12 @@ def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: 
         diagnosis = diagnose_execution(
             expected_distribution=ideal,
             observed_distribution=observed,
-            expected_circuit=localization_circuit,
+            expected_circuit=_deterministic_localization_circuit(reference_localization_plan),
             observed_circuit=localization_circuit,
             hardware_model=model,
             shots=shots,
+            observed_counts=counts,
+            max_calibration_age_seconds=max_calibration_age_seconds,
         )
     except Exception as exc:
         info = {key: value for key, value in transpilation.items() if key != "circuit"}

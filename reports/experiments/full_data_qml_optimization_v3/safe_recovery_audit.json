@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-28",
+  "branch": "qmutbench-master-optimization",
+  "head": "a2d51be22fd985bbdd10655f7e31dc77b9d19ed6",
+  "tracked_diff": "empty",
+  "working_tree": "pre-existing untracked artifacts preserved; no reset/clean performed",
+  "development_integrity": {
+    "metadata_rows": 723079,
+    "development_rows": 578117,
+    "origins": 305,
+    "fold_counts": {
+      "3": 192111,
+      "1": 194269,
+      "2": 191737
+    },
+    "origins_crossing_folds": 0,
+    "structural_chunks": 58,
+    "structural_rows": 578117,
+    "structural_parse_errors": 0,
+    "mutation_diff_chunks": 58,
+    "mutation_diff_rows": 578117,
+    "mutation_diff_parse_errors": null,
+    "overall_integrity": true,
+    "label_map": {
+      "WOO": 1,
+      "OPO": 1,
+      "Survivor": 0
+    },
+    "label_mapping_mismatches": 0,
+    "metadata_values_match_official_checkout": "VALUE_IDENTICAL"
+  },
+  "frozen_test": {
+    "outcomes_accessed": false,
+    "checksum": "not verified; no canonical artifact path/hash found in checked manifests/configuration"
+  },
+  "feature_leakage": {
+    "identifiers_excluded": [
+      "record_id",
+      "Origin_program",
+      "source QASM paths",
+      "fold"
+    ],
+    "source_gate_count_match_excluded": true,
+    "source_gate_count_match_review": "still requires provenance and matched-fold ablation; do not include pending review",
+    "other_metadata": "the 23 input feature list excludes target, row ID, origin, paths, and fold; semantic/generation leakage is not ruled out by the current audit"
+  },
+  "qml_pipeline": {
+    "existing_entrypoint": "qmutbench_qml/training/run_three_class_campaign.py",
+    "task_scope": "exploratory three-class task on a 12-origin sampled development subset; not full-development binary QMutBench",
+    "input": "23 metadata/QASM-difference fields; fold-local ReducedFeatureEncoder selects/scales four inputs",
+    "target": "Survivor=0, WOO=1, OPO=2 (kept separate; not binary incumbent mapping)",
+    "split": "3-fold StratifiedGroupKFold grouped by origin; fixed seed 20261027",
+    "quantum_model": "PennyLane ThreeClassVQC; analytic default.qubit statevector, no shots; angle data re-uploading (4 qubits, depth 2, 24 params) or amplitude (2 qubits, 12 params) or angle plus trainable readout (36 params)",
+    "optimizer": "PennyLane Adam, full batch, 10 steps, learning rate 0.04; weighted cross entropy",
+    "controls": "LogisticRegression, RBF SVC, ExtraTrees on same fold-reduced four features",
+    "metrics": "accuracy, balanced accuracy, macro F1, per-class precision/recall/F1, confusion matrices, fold/runtime and circuit execution counts",
+    "gradient": "PennyLane autograd backprop through analytic simulator; foundations tests include analytic-gradient checks",
+    "checkpointing": "implemented: atomic per-fold prediction/metric/split JSON plus trained QNN state NPZ; validates data/fold/config fingerprint and checkpoint SHA-256; checkpoint resume not exercised with a completed QNN fold this turn",
+    "startup_guard": "preflight runs before importing pandas, sklearn, PennyLane, or loading data; needs 1,224 MiB available",
+    "startup_guard_validation": "MemoryError at 767 MiB before NumPy/pandas/PennyLane/scikit-learn imports; runner py_compile passed"
+  },
+  "resource": {
+    "available_ram_mib_at_audit": 698.0,
+    "required_in_run_floor_mib": 1024,
+    "required_start_mib": 1224,
+    "training_launched": false,
+    "reason": "available RAM below start threshold and prior to 1 GiB in-run floor"
+  },
+  "git": {
+    "index_lock_present": false,
+    "git_process_present": false,
+    "cause": "explicit inherited DENY write ACEs on .git and .git/index; workspace policy denies .git writes",
+    "staging_or_commit_attempted_this_turn": false
+  },
+  "tests": {
+    "prior_focused_tests": 40,
+    "rerun_this_turn": false,
+    "reason": "not needed to validate documentation-only recovery; QML tests can import simulator frameworks and training is below RAM floor",
+    "runner_bytecode_compile": "passed",
+    "guard_probe": "passed: stopped below 1,224 MiB with no heavy ML imports"
+  },
+  "extractor_path_check": {
+    "requested_script": "experiments/qmutbench_full_corpus_streaming.py",
+    "present": false,
+    "equivalent": "experiments/qmutbench_qasm_features.py; completed caches exist; no duplicate created"
+  },
+  "resume_commands": [
+    ".\\.venv\\Scripts\\python.exe -m pytest qmutbench_qml\\tests\\test_foundations_and_multiclass.py -q",
+    ".\\.venv\\Scripts\\python.exe qmutbench_qml\\training\\run_three_class_campaign.py --encoding angle_reupload --output reports/experiments/qmutbench_three_class_safe_recovery",
+    "For full-development binary QML, first add a dedicated binary trainer; the existing three-class runner is not a valid substitute."
+  ],
+  "binary_qnn_trainer": {
+    "status": "IMPLEMENTED_NOT_TRAINED",
+    "entry_point": "qmutbench_qml/training/run_binary_development.py",
+    "reference_fold_audit": "binary_reference_fold_audit.json",
+    "reference_fold_counts": {
+      "1": 114961,
+      "2": 117775,
+      "3": 115280,
+      "4": 114906,
+      "5": 115195
+    },
+    "mocked_checkpoint_tests_passed": 8,
+    "startup_required_mib": 2048,
+    "last_entrypoint_guard_error": "Only 477 MiB available; estimated peak requires 2048 MiB to preserve the 1024 MiB floor",
+    "frozen_test_accessed": false,
+    "memory_estimate": "1 GiB floor + 700 MiB runtime/source-join reserve + sampled arrays + qubit/depth/batch-dependent statevector/autodiff tape",
+    "guard_observations_mib": [
+      724,
+      718,
+      477
+    ],
+    "latest_available_ram_snapshot_mib": 692.2
+  }
+}

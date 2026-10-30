@@ -1,0 +1,71 @@
+{
+  "qmutbench": {
+    "metadata": "present_and_stream_counted",
+    "source_qasm": "present_and_file_counted",
+    "metadata_rows": 723079,
+    "mutant_qasm_files": 723079,
+    "origin_qasm_files": 375,
+    "row_file_count_match": true,
+    "full_syntax_parse_coverage": "COMPLETE for all 578,117 development IDs; frozen-test IDs intentionally excluded",
+    "development_qasm_extraction_status": "COMPLETE_VERIFIED",
+    "development_qasm_feature_rows": 578117,
+    "development_origin_count": 305,
+    "development_parse_errors": 0,
+    "structural_manifest": "data/qmutbench_ml/qasm_structural_v4/manifest.json",
+    "mutation_diff_manifest": "data/qmutbench_ml/qasm_mutation_diff_v1/manifest.json",
+    "independent_cache_audit": "feature_extraction_audit.json",
+    "full_metadata_source_row_value_comparison": "VALUE_IDENTICAL; line ending/size difference only"
+  },
+  "other_sources": "Local presence/extracted-file counts are in dataset_inventory.csv; source-specific semantic normalization is not implied by extraction.",
+  "archives": [
+    {
+      "source": "LintQ Figshare TAR",
+      "path": "data/external_quantum_datasets/lintq/raw/artifact_lintq_dataset.tar",
+      "bytes": 2484695040,
+      "sha256": "aae0912764481140ed8156f8425992b7c82c2c99a4d059a3f9a9aedbb6ee0807",
+      "status": "present; extracted per existing extraction audit; re-counted local tree in inventory",
+      "exists_now": true,
+      "actual_bytes_now": 2484695040
+    },
+    {
+      "source": "QBugs/HornBro RAR",
+      "path": "data/external_quantum_datasets/qbugs_hornbro.rar",
+      "bytes": 49259382,
+      "sha256": null,
+      "status": "present; derivative subset extracted; native full RAR listing/extraction blocked by missing RAR tool",
+      "exists_now": true,
+      "actual_bytes_now": 33723792
+    },
+    {
+      "source": "Qolumbina empirical study ZIP",
+      "path": "data/external_quantum_datasets/qolumbina/qolumbina-empirical-study-main.zip",
+      "bytes": 29870691,
+      "sha256": "4d93a1acdbc2dafec1db40fa376e292736280745d66b868145ae3d41546a78cc",
+      "status": "archive verified and extracted; infrastructure archive remains unavailable",
+      "exists_now": true,
+      "actual_bytes_now": 29870691
+    },
+    {
+      "source": "Quantum platform bugs source ZIP",
+      "path": "data/external_quantum_datasets/quantum_platform_bugs_223_source.zip",
+      "bytes": 157031819,
+      "sha256": "52e781afaa91cf6536372f03843b670d02bd4d5d4c1a8aa937317ebd746b1c8d",
+      "status": "archive verified and extracted; see source extraction mapping for Windows path rewrites",
+      "exists_now": true,
+      "actual_bytes_now": 157031819
+    },
+    {
+      "source": "QML platform issues source ZIP",
+      "path": "data/external_quantum_datasets/qml_platform_bugs_source.zip",
+      "bytes": 1480120,
+      "sha256": "2996616e28dcc5ce02581c520d5d5df2da8be54793f821782c03d8d0c26a7782",
+      "status": "archive CRC verified and extracted; schemas and duplicates remain unresolved",
+      "exists_now": true,
+      "actual_bytes_now": 1480120
+    }
+  ],
+  "limitations": [
+    "RAR archives cannot be safely enumerated with the installed Windows tar.exe; no UnRAR/7z tool was found in the prior audit."
+  ],
+  "qolumbina_infrastructure_status": "Cited infrastructure artifact is not verified in the local filesystem; the existing parent directory contains other dataset material."
+}

@@ -1,0 +1,12 @@
+{
+  "checkpoint_epoch": 6,
+  "checkpoint_sha256": "d80f07ea8f10f46f821ff3141811fbc824f46f1e59f85744f2563fe1badcf10f",
+  "fold": 4,
+  "missing_loss_epochs": [
+    6
+  ],
+  "model": "amplitude_hybrid_3q_depth2_lr004",
+  "reason": "A checkpoint was durably saved, then the history replace hit a transient Windows sharing lock. Model/optimizer/RNG state remains resumable; no loss values were fabricated.",
+  "schema": "qnn-training-history-gap-v1",
+  "task": "bugs4q_robust_execution"
+}

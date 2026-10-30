@@ -1,0 +1,256 @@
+{
+  "schema": "qmutbench-three-class-confirmation-origin-manifest-v1",
+  "source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+  "development_oof_manifest_sha256": "7d203ac4cd6878a1caaf19eb768bb9a1e4f322b42fc56475cdc603591cc250ce",
+  "prior_campaign_sample_manifest_sha256": "c1bae25ef239d92d980372107351bd5c7c592f6d3547b90401f213914b7fdb47",
+  "target_labels_read_only_for_saved_development_ids": true,
+  "frozen_test_target_labels_accessed": false,
+  "target_map": {
+    "Survivor": 0,
+    "WOO": 1,
+    "OPO": 2
+  },
+  "development_rows": 578117,
+  "development_label_counts": {
+    "Survivor": 278413,
+    "WOO": 294802,
+    "OPO": 4902
+  },
+  "development_origins_with_OPO": 48,
+  "selected_exploration_origins": [
+    "graphstate_indep_qiskit_10",
+    "graphstate_indep_qiskit_11",
+    "graphstate_indep_qiskit_8",
+    "groundstate_small_indep_qiskit_4",
+    "qftentangled_indep_qiskit_11",
+    "qftentangled_indep_qiskit_13",
+    "qgan_indep_qiskit_2",
+    "qgan_indep_qiskit_5",
+    "wstate_indep_qiskit_2",
+    "wstate_indep_qiskit_20",
+    "wstate_indep_qiskit_25",
+    "wstate_indep_qiskit_6"
+  ],
+  "reserved_confirmation_origins": [
+    "graphstate_indep_qiskit_13",
+    "graphstate_indep_qiskit_5",
+    "graphstate_indep_qiskit_6",
+    "graphstate_indep_qiskit_7",
+    "graphstate_indep_qiskit_9",
+    "qft_indep_qiskit_10",
+    "qft_indep_qiskit_11",
+    "qft_indep_qiskit_13",
+    "qft_indep_qiskit_5",
+    "qft_indep_qiskit_6",
+    "qft_indep_qiskit_7",
+    "qft_indep_qiskit_9",
+    "qftentangled_indep_qiskit_10",
+    "qftentangled_indep_qiskit_12",
+    "qftentangled_indep_qiskit_4",
+    "qftentangled_indep_qiskit_5",
+    "qftentangled_indep_qiskit_7",
+    "qftentangled_indep_qiskit_9",
+    "qgan_indep_qiskit_3",
+    "qgan_indep_qiskit_6",
+    "qgan_indep_qiskit_8",
+    "wstate_indep_qiskit_10",
+    "wstate_indep_qiskit_11",
+    "wstate_indep_qiskit_12",
+    "wstate_indep_qiskit_13",
+    "wstate_indep_qiskit_14",
+    "wstate_indep_qiskit_16",
+    "wstate_indep_qiskit_18",
+    "wstate_indep_qiskit_19",
+    "wstate_indep_qiskit_22",
+    "wstate_indep_qiskit_24",
+    "wstate_indep_qiskit_26",
+    "wstate_indep_qiskit_27",
+    "wstate_indep_qiskit_4",
+    "wstate_indep_qiskit_5",
+    "wstate_indep_qiskit_7"
+  ],
+  "reserved_origin_count": 36,
+  "selected_reserved_overlap": [],
+  "per_reserved_origin_class_counts": {
+    "graphstate_indep_qiskit_13": {
+      "OPO": 500,
+      "WOO": 198,
+      "Survivor": 264
+    },
+    "graphstate_indep_qiskit_5": {
+      "OPO": 186,
+      "WOO": 78,
+      "Survivor": 106
+    },
+    "graphstate_indep_qiskit_6": {
+      "OPO": 231,
+      "WOO": 87,
+      "Survivor": 126
+    },
+    "graphstate_indep_qiskit_7": {
+      "OPO": 261,
+      "WOO": 113,
+      "Survivor": 144
+    },
+    "graphstate_indep_qiskit_9": {
+      "OPO": 349,
+      "WOO": 134,
+      "Survivor": 183
+    },
+    "qft_indep_qiskit_10": {
+      "Survivor": 459,
+      "WOO": 156,
+      "OPO": 5
+    },
+    "qft_indep_qiskit_11": {
+      "Survivor": 496,
+      "WOO": 169,
+      "OPO": 5
+    },
+    "qft_indep_qiskit_13": {
+      "Survivor": 589,
+      "WOO": 199,
+      "OPO": 6
+    },
+    "qft_indep_qiskit_5": {
+      "Survivor": 223,
+      "WOO": 73,
+      "OPO": 2
+    },
+    "qft_indep_qiskit_6": {
+      "Survivor": 275,
+      "WOO": 94,
+      "OPO": 3
+    },
+    "qft_indep_qiskit_7": {
+      "Survivor": 313,
+      "WOO": 106,
+      "OPO": 3
+    },
+    "qft_indep_qiskit_9": {
+      "Survivor": 402,
+      "WOO": 140,
+      "OPO": 4
+    },
+    "qftentangled_indep_qiskit_10": {
+      "WOO": 570,
+      "Survivor": 289,
+      "OPO": 8
+    },
+    "qftentangled_indep_qiskit_12": {
+      "WOO": 709,
+      "Survivor": 326,
+      "OPO": 4
+    },
+    "qftentangled_indep_qiskit_4": {
+      "OPO": 47,
+      "Survivor": 115,
+      "WOO": 189
+    },
+    "qftentangled_indep_qiskit_5": {
+      "Survivor": 134,
+      "OPO": 60,
+      "WOO": 231
+    },
+    "qftentangled_indep_qiskit_7": {
+      "Survivor": 186,
+      "WOO": 361,
+      "OPO": 50
+    },
+    "qftentangled_indep_qiskit_9": {
+      "WOO": 511,
+      "Survivor": 251,
+      "OPO": 7
+    },
+    "qgan_indep_qiskit_3": {
+      "Survivor": 32,
+      "OPO": 181,
+      "WOO": 9
+    },
+    "qgan_indep_qiskit_6": {
+      "Survivor": 91,
+      "WOO": 554,
+      "OPO": 15
+    },
+    "qgan_indep_qiskit_8": {
+      "Survivor": 145,
+      "WOO": 926,
+      "OPO": 1
+    },
+    "wstate_indep_qiskit_10": {
+      "WOO": 821,
+      "Survivor": 333,
+      "OPO": 57
+    },
+    "wstate_indep_qiskit_11": {
+      "Survivor": 369,
+      "WOO": 912,
+      "OPO": 59
+    },
+    "wstate_indep_qiskit_12": {
+      "Survivor": 406,
+      "WOO": 1003,
+      "OPO": 60
+    },
+    "wstate_indep_qiskit_13": {
+      "Survivor": 439,
+      "WOO": 1096,
+      "OPO": 63
+    },
+    "wstate_indep_qiskit_14": {
+      "Survivor": 476,
+      "WOO": 1191,
+      "OPO": 60
+    },
+    "wstate_indep_qiskit_16": {
+      "Survivor": 546,
+      "WOO": 1375,
+      "OPO": 64
+    },
+    "wstate_indep_qiskit_18": {
+      "Survivor": 616,
+      "WOO": 1561,
+      "OPO": 66
+    },
+    "wstate_indep_qiskit_19": {
+      "Survivor": 651,
+      "WOO": 1655,
+      "OPO": 66
+    },
+    "wstate_indep_qiskit_22": {
+      "Survivor": 758,
+      "WOO": 1931,
+      "OPO": 70
+    },
+    "wstate_indep_qiskit_24": {
+      "Survivor": 825,
+      "WOO": 2123,
+      "OPO": 69
+    },
+    "wstate_indep_qiskit_26": {
+      "Survivor": 899,
+      "WOO": 2302,
+      "OPO": 74
+    },
+    "wstate_indep_qiskit_27": {
+      "Survivor": 932,
+      "WOO": 2398,
+      "OPO": 74
+    },
+    "wstate_indep_qiskit_4": {
+      "WOO": 261,
+      "Survivor": 128,
+      "OPO": 48
+    },
+    "wstate_indep_qiskit_5": {
+      "WOO": 356,
+      "Survivor": 158,
+      "OPO": 52
+    },
+    "wstate_indep_qiskit_7": {
+      "WOO": 543,
+      "Survivor": 228,
+      "OPO": 53
+    }
+  }
+}

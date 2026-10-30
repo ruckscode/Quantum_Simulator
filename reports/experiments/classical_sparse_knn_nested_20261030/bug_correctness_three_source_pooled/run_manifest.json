@@ -1,0 +1,203 @@
+{
+  "status": "complete",
+  "task": "bug_correctness_three_source_pooled",
+  "records": 1620,
+  "fit_rows": 1620,
+  "groups": 810,
+  "input": "reports\\experiments\\qml_source_preprocessing_20261029\\classical_nine_source_v2_inputs\\bug_correctness_three_source_pooled.csv",
+  "input_sha256": "1f7f2f45a5d35cc9681b2ef550579a9a51a9084bff2e6378d95b123a1a9b15e0",
+  "exact_duplicate_compression": false,
+  "search_candidates": 32,
+  "outer_split": "GroupKFold(5)",
+  "inner_split": "GroupKFold(3) within outer training groups",
+  "selection_metric": "inner-CV accuracy",
+  "feature_families": [
+    "word TF-IDF",
+    "character TF-IDF",
+    "character-boundary TF-IDF",
+    "combined word+character TF-IDF"
+  ],
+  "classifier": "cosine KNN; k=3,5,9,15; uniform or distance weights",
+  "frozen_test_accessed": false,
+  "folds": [
+    {
+      "fold": 1,
+      "train_groups": 648,
+      "validation_groups": 162,
+      "fit_rows": 1296,
+      "validation_records": 324,
+      "selected_params": {
+        "features": "TfidfVectorizer(analyzer='char_wb', dtype=<class 'numpy.float32'>,\n                max_features=50000, ngram_range=(3, 5), strip_accents='unicode',\n                sublinear_tf=True)",
+        "knn": "KNeighborsClassifier(algorithm='brute', metric='cosine', n_jobs=1)",
+        "knn__n_neighbors": 3,
+        "knn__weights": "uniform"
+      },
+      "best_inner_accuracy": 0.5540123456790124,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.5370370370370371,
+        "macro_f1": 0.4380203515263645,
+        "balanced_accuracy": 0.5370370370370371,
+        "confusion_matrix_labels_0_1": [
+          [
+            155,
+            7
+          ],
+          [
+            143,
+            19
+          ]
+        ]
+      },
+      "fit_seconds": 91.079,
+      "prediction_file": "fold_1_oof.csv"
+    },
+    {
+      "fold": 2,
+      "train_groups": 648,
+      "validation_groups": 162,
+      "fit_rows": 1296,
+      "validation_records": 324,
+      "selected_params": {
+        "features": "TfidfVectorizer(analyzer='char', dtype=<class 'numpy.float32'>,\n                max_features=50000, ngram_range=(2, 5), strip_accents='unicode',\n                sublinear_tf=True)",
+        "knn": "KNeighborsClassifier(algorithm='brute', metric='cosine', n_jobs=1)",
+        "knn__n_neighbors": 3,
+        "knn__weights": "uniform"
+      },
+      "best_inner_accuracy": 0.5509259259259259,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.5432098765432098,
+        "macro_f1": 0.43834332833583206,
+        "balanced_accuracy": 0.5432098765432098,
+        "confusion_matrix_labels_0_1": [
+          [
+            158,
+            4
+          ],
+          [
+            144,
+            18
+          ]
+        ]
+      },
+      "fit_seconds": 78.735,
+      "prediction_file": "fold_2_oof.csv"
+    },
+    {
+      "fold": 3,
+      "train_groups": 648,
+      "validation_groups": 162,
+      "fit_rows": 1296,
+      "validation_records": 324,
+      "selected_params": {
+        "features": "TfidfVectorizer(dtype=<class 'numpy.float32'>, max_features=30000,\n                ngram_range=(1, 3), strip_accents='unicode', sublinear_tf=True,\n                token_pattern='(?u)\\\\b\\\\w+\\\\b')",
+        "knn": "KNeighborsClassifier(algorithm='brute', metric='cosine', n_jobs=1)",
+        "knn__n_neighbors": 3,
+        "knn__weights": "uniform"
+      },
+      "best_inner_accuracy": 0.5401234567901235,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.5308641975308642,
+        "macro_f1": 0.4193274536622176,
+        "balanced_accuracy": 0.5308641975308642,
+        "confusion_matrix_labels_0_1": [
+          [
+            157,
+            5
+          ],
+          [
+            147,
+            15
+          ]
+        ]
+      },
+      "fit_seconds": 78.558,
+      "prediction_file": "fold_3_oof.csv"
+    },
+    {
+      "fold": 4,
+      "train_groups": 648,
+      "validation_groups": 162,
+      "fit_rows": 1296,
+      "validation_records": 324,
+      "selected_params": {
+        "features": "TfidfVectorizer(analyzer='char', dtype=<class 'numpy.float32'>,\n                max_features=50000, ngram_range=(2, 5), strip_accents='unicode',\n                sublinear_tf=True)",
+        "knn": "KNeighborsClassifier(algorithm='brute', metric='cosine', n_jobs=1)",
+        "knn__n_neighbors": 3,
+        "knn__weights": "uniform"
+      },
+      "best_inner_accuracy": 0.5516975308641975,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.5648148148148148,
+        "macro_f1": 0.47976997096168084,
+        "balanced_accuracy": 0.5648148148148148,
+        "confusion_matrix_labels_0_1": [
+          [
+            157,
+            5
+          ],
+          [
+            136,
+            26
+          ]
+        ]
+      },
+      "fit_seconds": 80.212,
+      "prediction_file": "fold_4_oof.csv"
+    },
+    {
+      "fold": 5,
+      "train_groups": 648,
+      "validation_groups": 162,
+      "fit_rows": 1296,
+      "validation_records": 324,
+      "selected_params": {
+        "features": "TfidfVectorizer(analyzer='char_wb', dtype=<class 'numpy.float32'>,\n                max_features=50000, ngram_range=(3, 5), strip_accents='unicode',\n                sublinear_tf=True)",
+        "knn": "KNeighborsClassifier(algorithm='brute', metric='cosine', n_jobs=1)",
+        "knn__n_neighbors": 3,
+        "knn__weights": "uniform"
+      },
+      "best_inner_accuracy": 0.5524691358024691,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.5555555555555556,
+        "macro_f1": 0.4604995374653099,
+        "balanced_accuracy": 0.5555555555555556,
+        "confusion_matrix_labels_0_1": [
+          [
+            158,
+            4
+          ],
+          [
+            140,
+            22
+          ]
+        ]
+      },
+      "fit_seconds": 78.758,
+      "prediction_file": "fold_5_oof.csv"
+    }
+  ],
+  "completed_folds": 5,
+  "pooled_metrics": {
+    "records": 1620,
+    "accuracy": 0.5462962962962963,
+    "macro_f1": 0.4475158629809644,
+    "balanced_accuracy": 0.5462962962962963,
+    "confusion_matrix_labels_0_1": [
+      [
+        785,
+        25
+      ],
+      [
+        710,
+        100
+      ]
+    ],
+    "outer_fold_macro_f1_sd": 0.023330590508187636
+  },
+  "runtime_seconds": 407.342
+}

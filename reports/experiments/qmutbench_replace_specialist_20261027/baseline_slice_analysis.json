@@ -1,0 +1,309 @@
+{
+  "schema": "qmutbench-replace-specialist-v1",
+  "status": "complete_checkpoints_validated",
+  "oof_sha256": "bfc1affdd40ac1032b65e417548075ce066407297fc603085ba6519403f56367",
+  "record_ids_unique": true,
+  "origin_fold_isolation_verified": true,
+  "replace_operation_token": 2049070632,
+  "replace_rows": 120676,
+  "replace_class_counts": {
+    "0": 44854,
+    "1": 75822
+  },
+  "replace_origin_count": 305,
+  "replace_per_origin_distribution": {
+    "rows_min": 12,
+    "rows_median": 260.0,
+    "rows_max": 2524,
+    "origins_with_both_classes": 293
+  },
+  "baseline_slices": {
+    "all": {
+      "rows": 578117,
+      "accuracy": 0.7933290320125511,
+      "balanced_accuracy": 0.7940874828150084,
+      "macro_f1": 0.7933135654357681,
+      "confusion_matrix_true_0_1_pred_0_1": [
+        [
+          226818,
+          51595
+        ],
+        [
+          67885,
+          231819
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.7696494436771937,
+          "recall": 0.8146817856924784,
+          "f1": 0.7915256248298773,
+          "support": 278413
+        },
+        "1": {
+          "precision": 0.817951830184818,
+          "recall": 0.7734931799375384,
+          "f1": 0.7951015060416589,
+          "support": 299704
+        }
+      }
+    },
+    "replace": {
+      "rows": 120676,
+      "accuracy": 0.7764592793927542,
+      "balanced_accuracy": 0.7492589537510754,
+      "macro_f1": 0.7546299737703461,
+      "confusion_matrix_true_0_1_pred_0_1": [
+        [
+          28853,
+          16001
+        ],
+        [
+          10975,
+          64847
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.7244400923973084,
+          "recall": 0.6432648147322424,
+          "f1": 0.6814435181030207,
+          "support": 44854
+        },
+        "1": {
+          "precision": 0.8020853948149614,
+          "recall": 0.8552530927699085,
+          "f1": 0.8278164294376715,
+          "support": 75822
+        }
+      }
+    },
+    "non_replace": {
+      "rows": 457441,
+      "accuracy": 0.7977793857568517,
+      "balanced_accuracy": 0.7967026348141457,
+      "macro_f1": 0.7968468173723127,
+      "confusion_matrix_true_0_1_pred_0_1": [
+        [
+          197965,
+          35594
+        ],
+        [
+          56910,
+          166972
+        ]
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.7767140755272193,
+          "recall": 0.8476016766641405,
+          "f1": 0.8106110549224665,
+          "support": 233559
+        },
+        "1": {
+          "precision": 0.8242844307534335,
+          "recall": 0.7458035929641508,
+          "f1": 0.7830825798221589,
+          "support": 223882
+        }
+      }
+    }
+  },
+  "folds": {
+    "1": {
+      "replace_rows": 24013,
+      "replace_origins": 60,
+      "class_0": 8883,
+      "class_1": 15130,
+      "baseline_replace_metrics": {
+        "rows": 24013,
+        "accuracy": 0.7652937991921043,
+        "balanced_accuracy": 0.7239235158031125,
+        "macro_f1": 0.7330899042032558,
+        "confusion_matrix_true_0_1_pred_0_1": [
+          [
+            5018,
+            3865
+          ],
+          [
+            1771,
+            13359
+          ]
+        ],
+        "per_class": {
+          "0": {
+            "precision": 0.7391368390042716,
+            "recall": 0.5648992457503096,
+            "f1": 0.6403777437468096,
+            "support": 8883
+          },
+          "1": {
+            "precision": 0.7756038086391083,
+            "recall": 0.8829477858559154,
+            "f1": 0.8258020646597021,
+            "support": 15130
+          }
+        }
+      }
+    },
+    "2": {
+      "replace_rows": 24565,
+      "replace_origins": 59,
+      "class_0": 9000,
+      "class_1": 15565,
+      "baseline_replace_metrics": {
+        "rows": 24565,
+        "accuracy": 0.7502951353551801,
+        "balanced_accuracy": 0.7273162008780383,
+        "macro_f1": 0.7289938518489006,
+        "confusion_matrix_true_0_1_pred_0_1": [
+          [
+            5772,
+            3228
+          ],
+          [
+            2906,
+            12659
+          ]
+        ],
+        "per_class": {
+          "0": {
+            "precision": 0.6651302143351002,
+            "recall": 0.6413333333333333,
+            "f1": 0.6530150469510125,
+            "support": 9000
+          },
+          "1": {
+            "precision": 0.7968150059797319,
+            "recall": 0.8132990684227434,
+            "f1": 0.8049726567467888,
+            "support": 15565
+          }
+        }
+      }
+    },
+    "3": {
+      "replace_rows": 23990,
+      "replace_origins": 58,
+      "class_0": 8722,
+      "class_1": 15268,
+      "baseline_replace_metrics": {
+        "rows": 23990,
+        "accuracy": 0.7772405168820342,
+        "balanced_accuracy": 0.7599844559666422,
+        "macro_f1": 0.7596385437854347,
+        "confusion_matrix_true_0_1_pred_0_1": [
+          [
+            6077,
+            2645
+          ],
+          [
+            2699,
+            12569
+          ]
+        ],
+        "per_class": {
+          "0": {
+            "precision": 0.6924567000911577,
+            "recall": 0.6967438660857601,
+            "f1": 0.694593667847754,
+            "support": 8722
+          },
+          "1": {
+            "precision": 0.8261469698961483,
+            "recall": 0.8232250458475242,
+            "f1": 0.8246834197231153,
+            "support": 15268
+          }
+        }
+      }
+    },
+    "4": {
+      "replace_rows": 23979,
+      "replace_origins": 69,
+      "class_0": 8836,
+      "class_1": 15143,
+      "baseline_replace_metrics": {
+        "rows": 23979,
+        "accuracy": 0.7951540931648525,
+        "balanced_accuracy": 0.7618763218446195,
+        "macro_f1": 0.770642462088631,
+        "confusion_matrix_true_0_1_pred_0_1": [
+          [
+            5614,
+            3222
+          ],
+          [
+            1690,
+            13453
+          ]
+        ],
+        "per_class": {
+          "0": {
+            "precision": 0.7686199342825849,
+            "recall": 0.6353553644182888,
+            "f1": 0.6956629491945477,
+            "support": 8836
+          },
+          "1": {
+            "precision": 0.8067766116941529,
+            "recall": 0.8883972792709502,
+            "f1": 0.8456219749827142,
+            "support": 15143
+          }
+        }
+      }
+    },
+    "5": {
+      "replace_rows": 24129,
+      "replace_origins": 59,
+      "class_0": 9413,
+      "class_1": 14716,
+      "baseline_replace_metrics": {
+        "rows": 24129,
+        "accuracy": 0.7948526669153301,
+        "balanced_accuracy": 0.7736067006912736,
+        "macro_f1": 0.779144454549485,
+        "confusion_matrix_true_0_1_pred_0_1": [
+          [
+            6372,
+            3041
+          ],
+          [
+            1909,
+            12807
+          ]
+        ],
+        "per_class": {
+          "0": {
+            "precision": 0.7694722859558024,
+            "recall": 0.6769361521300329,
+            "f1": 0.7202441505595117,
+            "support": 9413
+          },
+          "1": {
+            "precision": 0.8081145885916204,
+            "recall": 0.8702772492525143,
+            "f1": 0.8380447585394581,
+            "support": 14716
+          }
+        }
+      }
+    }
+  },
+  "routing_availability": "operation is a required raw model input in best_model_metadata.json; this pilot routes only from operation==Replace, never from labels",
+  "feature_sources": {
+    "numeric_cache": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\reports\\experiments\\qmutbench_improvement_campaign_20261027\\numeric_features.npy",
+    "categorical_cache": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\reports\\experiments\\qmutbench_improvement_campaign_20261027\\categorical_tokens.npy"
+  },
+  "fit_skip_reason": "Before fold 5: 679 MiB available",
+  "completed_folds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "resumed_from_saved_fold5_checkpoint": true,
+  "verification_rerun_note": "A later rerun completed folds 1-4 but stopped before fold 5 at the 700 MiB fit-start guard. The already completed fold-5 checkpoint was preserved and validated with the other four outputs. No partial rerun result was substituted for the five-fold aggregate."
+}

@@ -1,0 +1,13 @@
+{
+  "source_id": "bugs4q_robust",
+  "task_id": "harness_execution_outcome",
+  "target_semantics": "Predict observed test-harness Pass (0) or Fail (1) for a program snapshot; repeated execution records are grouped by issue. Not a universal bug label or hardware diagnosis.",
+  "required": ["record_id", "bug_id", "label", "code", "source_path", "test_path", "source_state", "run_index_excluded_from_features"],
+  "record_id_column": "record_id", "group_column": "bug_id", "label_column": "label", "feature_column": "code",
+  "allowed_labels": ["0", "1"], "fold_record_column": "record_id", "fold_group_column": "group_id", "fold_column": "fold",
+  "fold_model_column": "model", "fold_model_value": "amplitude_hybrid_3q_depth2",
+  "numeric_ranges": {"run_index_excluded_from_features": [1, 30]},
+  "input_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/bugs4q_robust_execution/normalized_manifest.csv",
+  "fold_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/bugs4q_robust_execution/resource_light_qnn/oof_predictions.csv",
+  "output_path": "data/processed/bugs4q_robust/harness_execution_outcome_v2"
+}

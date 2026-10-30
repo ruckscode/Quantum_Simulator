@@ -1,0 +1,12 @@
+{
+  "source_id": "quantum_platform_bugs",
+  "task_id": "comment_only_classification",
+  "target_semantics": "Issue-comment annotation classification; labels reflect the curated comment-task annotation and do not represent hardware fault labels.",
+  "required": ["record_id", "bug_id", "label", "code", "repo", "commit_hash"],
+  "record_id_column": "record_id", "group_column": "bug_id", "label_column": "label", "feature_column": "code",
+  "allowed_labels": ["0", "1"], "fold_record_column": "record_id", "fold_group_column": "bug_id", "fold_column": "fold",
+  "fold_model_column": "model", "fold_model_value": "angle_hybrid_readout",
+  "input_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/quantum_platform_223_comment_only/normalized_manifest.csv",
+  "fold_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/quantum_platform_223_comment_only/qnn_hybrid/oof_predictions.csv",
+  "output_path": "data/processed/quantum_platform_bugs/comment_only_classification"
+}

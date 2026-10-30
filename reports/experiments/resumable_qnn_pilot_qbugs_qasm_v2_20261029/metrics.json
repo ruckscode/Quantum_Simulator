@@ -1,0 +1,519 @@
+{
+  "class_counts": {
+    "0": 748,
+    "1": 748
+  },
+  "classical": {
+    "accuracy": 0.7466577540106952,
+    "balanced_accuracy": 0.7466577540106951,
+    "confusion_matrix": [
+      [
+        584,
+        164
+      ],
+      [
+        215,
+        533
+      ]
+    ],
+    "features": "same 8 hashed-text features; fold-local train-only minmax scaling",
+    "macro_f1": 0.7463629795809726,
+    "model": "balanced LogisticRegression",
+    "per_class": {
+      "0": {
+        "f1": 0.7550096961861668,
+        "precision": 0.7309136420525657,
+        "recall": 0.7807486631016043,
+        "support": 748
+      },
+      "1": {
+        "f1": 0.7377162629757785,
+        "precision": 0.7647058823529411,
+        "recall": 0.7125668449197861,
+        "support": 748
+      }
+    },
+    "predictions_sha256": "8baf4e5e2794b0b3d616b346d66febcff26c698c3431baa80a26e4613e81e825"
+  },
+  "config": {
+    "batch_size": 64,
+    "contract_sha256": "2e51045dc2c3ac815d797bcadac2a907b449f010390c5d83b28d8edd99c9c497",
+    "final_epochs": 4,
+    "learning_rate": 0.04,
+    "model": {
+      "depth": 1,
+      "encoding": "amplitude",
+      "features": 8,
+      "learning_rate": 0.04,
+      "loss": "training-fold class-balanced binary cross entropy",
+      "name": "amplitude_3q_depth1_lr004",
+      "qubits": 3,
+      "reupload": false
+    },
+    "optimizer": "Adam",
+    "processed_manifest_sha256": "8dc9d618a7fdd3962299e99273827cb6498577468eefd8421c48e42b96918a2e",
+    "scaler": "minmax fitted on each fold's training rows only",
+    "seed": 28102026,
+    "source_hash": "809a4492d02246bdb6e182ac670e803b24ec9ae563fb133663384c7e2e336120",
+    "split": "reused saved issue-group 5-fold assignments",
+    "split_sha256": "03ed9fa4234951abc6c1cc36e24fbde72f09c58ab7f0ae92f0cc2c14e95d63c8",
+    "target_semantics": "Upstream paired correct versus buggy QBugs circuit outcome from full OpenQASM 2 text; two contradictory exact-QASM source pairs are rejected. Not hardware diagnosis.",
+    "task_id": "qbugs_qasm_v2_source_state",
+    "text_features": "8-dimensional deterministic BLAKE2 hashed-token counts of code only"
+  },
+  "config_sha256": "72843515af1f8ca35d6608644da5d8b5db1e6d1bfd0e734238b17cff8d601cd8",
+  "evaluation_scope": "development grouped OOF only",
+  "folds": 5,
+  "frozen_test_accessed": false,
+  "groups": 748,
+  "paired_group_bootstrap_95_percentile": {
+    "groups_resampled": 748,
+    "iterations": 1000,
+    "macro_f1_difference_qnn_minus_classical": -0.062226946568773554,
+    "percentile_95_ci": [
+      -0.08432654880289464,
+      -0.03941996479722542
+    ]
+  },
+  "qnn": {
+    "accuracy": 0.6844919786096256,
+    "balanced_accuracy": 0.6844919786096256,
+    "checkpoints": [
+      {
+        "checkpoint_sha256": "7d6505f7f8ad66fc53d95553818b13ecfd2dfbea7620720d59e8bc8fb007a241",
+        "epoch": 4,
+        "fold": 1,
+        "history_sha256": "4e0e877b2b5c92314b64f3faee83d7ce584ed44e39dcba86900dcb1839b2c2d5"
+      },
+      {
+        "checkpoint_sha256": "28768e447a73b0d6995279c22c8f56cce96bacbadb5cbd1bc5ee3c5e890c2548",
+        "epoch": 4,
+        "fold": 2,
+        "history_sha256": "d061ceaf00074ab75de78badea1e5c1e00363dc94b2a6199c3ff3e2c3426ee98"
+      },
+      {
+        "checkpoint_sha256": "b8691bf0ee740c063065b1e5d35f32dd8c6e73ed3df93603f8b94b6d1f7ba277",
+        "epoch": 4,
+        "fold": 3,
+        "history_sha256": "fcd12701ac4b1612843430f365984a18b5f95033a0a59cb86722521e41fe32ef"
+      },
+      {
+        "checkpoint_sha256": "5691ee9c77a277a16cd28b75cf3939bcff56d1e0655cc12a5c059fbfcb3a5a7b",
+        "epoch": 4,
+        "fold": 4,
+        "history_sha256": "651a7c8871942c344dbbf8390924ceb219964c67044854c0f7225b179c7361e3"
+      },
+      {
+        "checkpoint_sha256": "9e158264f25c54ea4991509d6987ba73517a443cb487bda0cdedf509297b1e13",
+        "epoch": 4,
+        "fold": 5,
+        "history_sha256": "e1af7562f6f8996c9ce8284507a9bd9d56b1a1a2a340436691f6b20677a25fbe"
+      }
+    ],
+    "confusion_matrix": [
+      [
+        512,
+        236
+      ],
+      [
+        236,
+        512
+      ]
+    ],
+    "fold_metrics": [
+      {
+        "classical": {
+          "accuracy": 0.75,
+          "balanced_accuracy": 0.75,
+          "confusion_matrix": [
+            [
+              124,
+              26
+            ],
+            [
+              49,
+              101
+            ]
+          ],
+          "macro_f1": 0.7485218674207286,
+          "per_class": {
+            "0": {
+              "f1": 0.7678018575851393,
+              "precision": 0.7167630057803468,
+              "recall": 0.8266666666666667,
+              "support": 150
+            },
+            "1": {
+              "f1": 0.7292418772563177,
+              "precision": 0.7952755905511811,
+              "recall": 0.6733333333333333,
+              "support": 150
+            }
+          }
+        },
+        "fold": 1,
+        "qnn": {
+          "accuracy": 0.7033333333333334,
+          "balanced_accuracy": 0.7033333333333334,
+          "confusion_matrix": [
+            [
+              125,
+              25
+            ],
+            [
+              64,
+              86
+            ]
+          ],
+          "macro_f1": 0.6982334791306412,
+          "per_class": {
+            "0": {
+              "f1": 0.7374631268436578,
+              "precision": 0.6613756613756614,
+              "recall": 0.8333333333333334,
+              "support": 150
+            },
+            "1": {
+              "f1": 0.6590038314176245,
+              "precision": 0.7747747747747747,
+              "recall": 0.5733333333333334,
+              "support": 150
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.75,
+          "balanced_accuracy": 0.75,
+          "confusion_matrix": [
+            [
+              119,
+              31
+            ],
+            [
+              44,
+              106
+            ]
+          ],
+          "macro_f1": 0.7495296723848115,
+          "per_class": {
+            "0": {
+              "f1": 0.7603833865814698,
+              "precision": 0.7300613496932515,
+              "recall": 0.7933333333333333,
+              "support": 150
+            },
+            "1": {
+              "f1": 0.7386759581881532,
+              "precision": 0.7737226277372263,
+              "recall": 0.7066666666666667,
+              "support": 150
+            }
+          }
+        },
+        "fold": 2,
+        "qnn": {
+          "accuracy": 0.6833333333333333,
+          "balanced_accuracy": 0.6833333333333333,
+          "confusion_matrix": [
+            [
+              98,
+              52
+            ],
+            [
+              43,
+              107
+            ]
+          ],
+          "macro_f1": 0.6830480766022754,
+          "per_class": {
+            "0": {
+              "f1": 0.6735395189003437,
+              "precision": 0.6950354609929078,
+              "recall": 0.6533333333333333,
+              "support": 150
+            },
+            "1": {
+              "f1": 0.6925566343042071,
+              "precision": 0.6729559748427673,
+              "recall": 0.7133333333333334,
+              "support": 150
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.7433333333333333,
+          "balanced_accuracy": 0.7433333333333333,
+          "confusion_matrix": [
+            [
+              123,
+              27
+            ],
+            [
+              50,
+              100
+            ]
+          ],
+          "macro_f1": 0.7418157838852812,
+          "per_class": {
+            "0": {
+              "f1": 0.7616099071207432,
+              "precision": 0.7109826589595376,
+              "recall": 0.82,
+              "support": 150
+            },
+            "1": {
+              "f1": 0.7220216606498194,
+              "precision": 0.7874015748031497,
+              "recall": 0.6666666666666666,
+              "support": 150
+            }
+          }
+        },
+        "fold": 3,
+        "qnn": {
+          "accuracy": 0.67,
+          "balanced_accuracy": 0.6699999999999999,
+          "confusion_matrix": [
+            [
+              98,
+              52
+            ],
+            [
+              47,
+              103
+            ]
+          ],
+          "macro_f1": 0.6699083078632954,
+          "per_class": {
+            "0": {
+              "f1": 0.6644067796610169,
+              "precision": 0.6758620689655173,
+              "recall": 0.6533333333333333,
+              "support": 150
+            },
+            "1": {
+              "f1": 0.6754098360655738,
+              "precision": 0.6645161290322581,
+              "recall": 0.6866666666666666,
+              "support": 150
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.7449664429530202,
+          "balanced_accuracy": 0.7449664429530202,
+          "confusion_matrix": [
+            [
+              109,
+              40
+            ],
+            [
+              36,
+              113
+            ]
+          ],
+          "macro_f1": 0.7449204847501916,
+          "per_class": {
+            "0": {
+              "f1": 0.7414965986394558,
+              "precision": 0.7517241379310344,
+              "recall": 0.7315436241610739,
+              "support": 149
+            },
+            "1": {
+              "f1": 0.7483443708609272,
+              "precision": 0.738562091503268,
+              "recall": 0.7583892617449665,
+              "support": 149
+            }
+          }
+        },
+        "fold": 4,
+        "qnn": {
+          "accuracy": 0.6644295302013423,
+          "balanced_accuracy": 0.6644295302013423,
+          "confusion_matrix": [
+            [
+              76,
+              73
+            ],
+            [
+              27,
+              122
+            ]
+          ],
+          "macro_f1": 0.6562384643779993,
+          "per_class": {
+            "0": {
+              "f1": 0.6031746031746033,
+              "precision": 0.7378640776699029,
+              "recall": 0.5100671140939598,
+              "support": 149
+            },
+            "1": {
+              "f1": 0.7093023255813954,
+              "precision": 0.6256410256410256,
+              "recall": 0.8187919463087249,
+              "support": 149
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.7449664429530202,
+          "balanced_accuracy": 0.7449664429530202,
+          "confusion_matrix": [
+            [
+              109,
+              40
+            ],
+            [
+              36,
+              113
+            ]
+          ],
+          "macro_f1": 0.7449204847501916,
+          "per_class": {
+            "0": {
+              "f1": 0.7414965986394558,
+              "precision": 0.7517241379310344,
+              "recall": 0.7315436241610739,
+              "support": 149
+            },
+            "1": {
+              "f1": 0.7483443708609272,
+              "precision": 0.738562091503268,
+              "recall": 0.7583892617449665,
+              "support": 149
+            }
+          }
+        },
+        "fold": 5,
+        "qnn": {
+          "accuracy": 0.7013422818791947,
+          "balanced_accuracy": 0.7013422818791946,
+          "confusion_matrix": [
+            [
+              115,
+              34
+            ],
+            [
+              55,
+              94
+            ]
+          ],
+          "macro_f1": 0.6998517479035343,
+          "per_class": {
+            "0": {
+              "f1": 0.7210031347962383,
+              "precision": 0.6764705882352942,
+              "recall": 0.7718120805369127,
+              "support": 149
+            },
+            "1": {
+              "f1": 0.6787003610108303,
+              "precision": 0.734375,
+              "recall": 0.6308724832214765,
+              "support": 149
+            }
+          }
+        }
+      }
+    ],
+    "macro_f1": 0.6844919786096256,
+    "model": {
+      "depth": 1,
+      "encoding": "amplitude",
+      "features": 8,
+      "learning_rate": 0.04,
+      "loss": "training-fold class-balanced binary cross entropy",
+      "name": "amplitude_3q_depth1_lr004",
+      "qubits": 3,
+      "reupload": false
+    },
+    "per_class": {
+      "0": {
+        "f1": 0.6844919786096256,
+        "precision": 0.6844919786096256,
+        "recall": 0.6844919786096256,
+        "support": 748
+      },
+      "1": {
+        "f1": 0.6844919786096256,
+        "precision": 0.6844919786096256,
+        "recall": 0.6844919786096256,
+        "support": 748
+      }
+    },
+    "predictions_sha256": "94782fa2765bb4e9069df3c95028f7a85deac6d077da6af06c6716f7bd2f1ab5"
+  },
+  "resume_verification": {
+    "all_group_folds_preserved": true,
+    "all_optimizer_states_present": true,
+    "checkpoint_epochs": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "resume_events": 1,
+    "status": "verified",
+    "uninterrupted_reference_parity": {
+      "bias": true,
+      "head": true,
+      "m_b": true,
+      "m_h": true,
+      "m_t": true,
+      "rng_state": true,
+      "theta": true,
+      "v_b": true,
+      "v_h": true,
+      "v_t": true
+    }
+  },
+  "rows": 1496,
+  "runtime": {
+    "batch_size": 64,
+    "elapsed_seconds_this_invocation": 2.25,
+    "memory_available_end_mib": 1281.4,
+    "memory_available_start_mib": 1295.9,
+    "memory_floor_mib": 500
+  },
+  "source_audit": {
+    "contract_sha256": "2e51045dc2c3ac815d797bcadac2a907b449f010390c5d83b28d8edd99c9c497",
+    "fold_path": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\data\\processed\\qbugs_hornbro\\correct_buggy_circuit_state_qasm_v2\\manifests\\group_folds.csv",
+    "fold_sha256": "03ed9fa4234951abc6c1cc36e24fbde72f09c58ab7f0ae92f0cc2c14e95d63c8",
+    "group_count": 748,
+    "partition_sha256": [
+      "9858658079d565620b578bc1470a40d282dc64df4d92bcffcd488c725aaf546d",
+      "b8409562850a4eee5c6372c50768bc26170b75054a7ada5f09f46fc4a6d27031",
+      "328adc392c16b495abe0ff56fc55ccd13bb84f0e04f01540805808c36a240d18",
+      "53f392d0d1f93000d9448002e1d10f68701f77f3a729b169f9444a1dd47069dd",
+      "5205bca6859752a417b3760160877008d90a4a48d56a63c4afda44dfeb526ea6",
+      "46e32f40baed103e0c967d02ed617340c2d783e67cc818fc57b2dfae5511713f",
+      "d193f62a8172a2ccad17a20d2019a8a566cdbd9a66703ad121926b8c242d401a",
+      "bb02de925c9524002554ea8199a3fb1adf0d36993f9e040b609e36943f7ccf47",
+      "62471f7f0e7a1c2803e605927726996d4038f5e3d7289fe325ddc8c4cadd3404",
+      "a37234ad94576b1e13d5eb73332a19681272b02f5edb7029e82e7864213cfc9a",
+      "c68c8c840e26d4741d96344eba7afba0d9db8238179b984378ac9d4d5db02eac",
+      "e1f484676b3ee47dc951b07d7a849c1bd4038c7dedf486249cbe79e652690f13"
+    ],
+    "processed_manifest": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\data\\processed\\qbugs_hornbro\\correct_buggy_circuit_state_qasm_v2\\manifest.json",
+    "processed_manifest_sha256": "8dc9d618a7fdd3962299e99273827cb6498577468eefd8421c48e42b96918a2e",
+    "raw_snapshot_hashes": 1,
+    "record_count": 1496,
+    "source_path": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qbugs_qasm_v2\\normalized_manifest.csv",
+    "source_sha256": "809a4492d02246bdb6e182ac670e803b24ec9ae563fb133663384c7e2e336120"
+  },
+  "status": "completed",
+  "target_semantics": "Upstream paired correct versus buggy QBugs circuit outcome from full OpenQASM 2 text; two contradictory exact-QASM source pairs are rejected. Not hardware diagnosis.",
+  "task": "qbugs_qasm_v2_source_state"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "passed_for_saved_oof_alignment",
+  "group_unit": "origin_program",
+  "outer_folds": 3,
+  "origins": 12,
+  "record_count": 205,
+  "candidate_alignment": "All six classical/QNN candidates align on record_id, origin_program, y_true, and fold.",
+  "stacking_protocol": "Each outer fold was scored by a logistic meta-model fitted on base OOF probabilities from the other two folds only.",
+  "limitation": "The base prediction OOF folds belong to a previously inspected exploratory campaign. This is not independent confirmation and cannot support promotion.",
+  "frozen_test_used": false
+}

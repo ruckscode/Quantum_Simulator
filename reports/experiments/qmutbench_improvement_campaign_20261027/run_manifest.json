@@ -1,0 +1,750 @@
+{
+  "cache_coverage": {
+    "mutation_diff": 578117,
+    "source": 578117,
+    "structure": 578117
+  },
+  "cache_key": "19e1d62d24539ddf4b24808ba26b21f9b64057b8df12517d55047307ad2bf6bd",
+  "cache_status": "complete",
+  "champion": "mutation-aware 23-feature Extra Trees, five-fold OOF",
+  "confirmation_folds": {
+    "2": {
+      "available_ram_after_fold": 1433837568,
+      "candidate_metrics": {
+        "accuracy": 0.7815920186796859,
+        "balanced_accuracy": 0.7821337151515506,
+        "confusion_matrix_labels_0_1": [
+          [
+            45363,
+            11494
+          ],
+          [
+            14229,
+            46689
+          ]
+        ],
+        "macro_f1": 0.7815643298639205,
+        "per_class": {
+          "0": {
+            "f1": 0.7791050159297203,
+            "precision": 0.7612263391059203,
+            "recall": 0.7978437131751588,
+            "support": 56857
+          },
+          "1": {
+            "f1": 0.784023643798121,
+            "precision": 0.8024508877163432,
+            "recall": 0.7664237171279424,
+            "support": 60918
+          }
+        }
+      },
+      "category_vocabulary_sizes": [
+        26,
+        3,
+        19,
+        2,
+        12,
+        21,
+        5,
+        16,
+        16
+      ],
+      "macro_f1_delta": -0.002306523973523822,
+      "matched_champion_metrics": {
+        "accuracy": 0.7839099978773084,
+        "balanced_accuracy": 0.7843785358418065,
+        "confusion_matrix_labels_0_1": [
+          [
+            45370,
+            11487
+          ],
+          [
+            13963,
+            46955
+          ]
+        ],
+        "macro_f1": 0.7838708538374444,
+        "per_class": {
+          "0": {
+            "f1": 0.7809622170582666,
+            "precision": 0.7646672172315575,
+            "recall": 0.7979668290623846,
+            "support": 56857
+          },
+          "1": {
+            "f1": 0.786779490616622,
+            "precision": 0.8034461517401869,
+            "recall": 0.7707902426212285,
+            "support": 60918
+          }
+        }
+      },
+      "origins": 59,
+      "prediction_sha256": "b72696ab2594dc2899ae08b169fa68f55eb4d48521d386c226c66e8ed6d603c0",
+      "rows": 117775,
+      "train_origins": 186,
+      "train_rows": 345381,
+      "wall_seconds_two_fits": 479.3551983833313
+    },
+    "3": {
+      "available_ram_after_fold": 848740352,
+      "candidate_metrics": {
+        "accuracy": 0.7728660652324775,
+        "balanced_accuracy": 0.7733577838371752,
+        "confusion_matrix_labels_0_1": [
+          [
+            43635,
+            11846
+          ],
+          [
+            14338,
+            45461
+          ]
+        ],
+        "macro_f1": 0.7728090639520147,
+        "per_class": {
+          "0": {
+            "f1": 0.7692104288962928,
+            "precision": 0.7526779707795008,
+            "recall": 0.7864854634920063,
+            "support": 55481
+          },
+          "1": {
+            "f1": 0.7764076990077365,
+            "precision": 0.7932887779852374,
+            "recall": 0.7602301041823442,
+            "support": 59799
+          }
+        }
+      },
+      "category_vocabulary_sizes": [
+        27,
+        3,
+        19,
+        2,
+        12,
+        21,
+        5,
+        16,
+        16
+      ],
+      "macro_f1_delta": 0.0005961546760869796,
+      "matched_champion_metrics": {
+        "accuracy": 0.7723282442748092,
+        "balanced_accuracy": 0.7725693191053544,
+        "confusion_matrix_labels_0_1": [
+          [
+            43220,
+            12261
+          ],
+          [
+            13985,
+            45814
+          ]
+        ],
+        "macro_f1": 0.7722129092759277,
+        "per_class": {
+          "0": {
+            "f1": 0.7670873045453739,
+            "precision": 0.7555283629053404,
+            "recall": 0.7790054252807267,
+            "support": 55481
+          },
+          "1": {
+            "f1": 0.7773385140064815,
+            "precision": 0.7888764528626776,
+            "recall": 0.7661332129299822,
+            "support": 59799
+          }
+        }
+      },
+      "origins": 58,
+      "prediction_sha256": "00bea4e3f3c207011086a70b96f9033f35b092e228487aee68366aa2c7401811",
+      "rows": 115280,
+      "train_origins": 187,
+      "train_rows": 347876,
+      "wall_seconds_two_fits": 524.7792248725891
+    },
+    "4": {
+      "available_ram_after_fold": 1504903168,
+      "candidate_metrics": {
+        "accuracy": 0.805188588933563,
+        "balanced_accuracy": 0.8056748999582788,
+        "confusion_matrix_labels_0_1": [
+          [
+            45283,
+            10027
+          ],
+          [
+            12358,
+            47238
+          ]
+        ],
+        "macro_f1": 0.8051321799548411,
+        "per_class": {
+          "0": {
+            "f1": 0.8018167169834707,
+            "precision": 0.785603997154803,
+            "recall": 0.8187127101789912,
+            "support": 55310
+          },
+          "1": {
+            "f1": 0.8084476429262115,
+            "precision": 0.8249017724613639,
+            "recall": 0.7926370897375663,
+            "support": 59596
+          }
+        }
+      },
+      "category_vocabulary_sizes": [
+        25,
+        3,
+        19,
+        2,
+        12,
+        21,
+        5,
+        16,
+        16
+      ],
+      "macro_f1_delta": -0.002231086023779194,
+      "matched_champion_metrics": {
+        "accuracy": 0.8073990914312569,
+        "balanced_accuracy": 0.8080146077665429,
+        "confusion_matrix_labels_0_1": [
+          [
+            45604,
+            9706
+          ],
+          [
+            12425,
+            47171
+          ]
+        ],
+        "macro_f1": 0.8073632659786203,
+        "per_class": {
+          "0": {
+            "f1": 0.8047362337765465,
+            "precision": 0.7858829206086612,
+            "recall": 0.8245163623214609,
+            "support": 55310
+          },
+          "1": {
+            "f1": 0.8099902981806942,
+            "precision": 0.8293510557870493,
+            "recall": 0.7915128532116249,
+            "support": 59596
+          }
+        }
+      },
+      "origins": 69,
+      "prediction_sha256": "4b7a72ca9ac837950688558a6c2ace0bbcd145307b2f929ca5dedb4f1cb11947",
+      "rows": 114906,
+      "train_origins": 176,
+      "train_rows": 348250,
+      "wall_seconds_two_fits": 473.4856929779053
+    }
+  },
+  "experiments": [
+    {
+      "available_ram_bytes_after_fit": 1359425536,
+      "candidate_config": {
+        "categorical_hashing": "MurmurHash3 32-bit fixed tokenization; fold-specific one-hot vocabulary",
+        "class_weight": "balanced_subsample",
+        "feature_schema": [
+          "algorithm",
+          "operation",
+          "gate",
+          "dominant_state",
+          "qasm_diff_removed_gate",
+          "qasm_diff_added_gate",
+          "qasm_diff_alignment_class",
+          "qasm_diff_local_prev_gate",
+          "qasm_diff_local_next_gate",
+          "qubits",
+          "gates",
+          "Position_int",
+          "position_fraction",
+          "qasm_diff_orig_span",
+          "qasm_diff_mut_span",
+          "qasm_diff_total_span",
+          "qasm_diff_expected_gate_match",
+          "qasm_diff_qubit_set_equal",
+          "qasm_diff_qubits_touched",
+          "qasm_diff_removed_arity",
+          "qasm_diff_added_arity",
+          "qasm_diff_exact_single_edit",
+          "qasm_diff_is_local",
+          "qasm_orig_depth",
+          "qasm_mut_depth",
+          "qasm_delta_depth",
+          "qasm_orig_depth_per_qubit",
+          "qasm_mut_depth_per_qubit",
+          "qasm_mut_two_plus_fraction",
+          "qasm_delta_two_qubit_fraction",
+          "qasm_delta_gate_count"
+        ],
+        "max_depth": 22,
+        "max_features": "sqrt",
+        "min_samples_leaf": 15,
+        "model": "ExtraTreesClassifier",
+        "n_estimators": 100,
+        "n_jobs": 1,
+        "random_state": 20261026,
+        "threshold": 0.5
+      },
+      "candidate_metrics_fold1": {
+        "accuracy": 0.7970703108010543,
+        "balanced_accuracy": 0.7960700377550817,
+        "confusion_matrix_labels_0_1": [
+          [
+            42565,
+            12740
+          ],
+          [
+            10589,
+            49067
+          ]
+        ],
+        "macro_f1": 0.7964190875153918,
+        "per_class": {
+          "0": {
+            "f1": 0.7849048949372573,
+            "precision": 0.8007863942506679,
+            "recall": 0.7696410812765573,
+            "support": 55305
+          },
+          "1": {
+            "f1": 0.8079332800935264,
+            "precision": 0.7938744802368664,
+            "recall": 0.8224989942336061,
+            "support": 59656
+          }
+        }
+      },
+      "category_vocabulary_sizes_fold1": [
+        27,
+        3,
+        19,
+        2,
+        12,
+        21,
+        5,
+        16,
+        16
+      ],
+      "champion_metrics_fold1": {
+        "accuracy": 0.7780899609432764,
+        "balanced_accuracy": 0.778028462997999,
+        "confusion_matrix_labels_0_1": [
+          [
+            42939,
+            12366
+          ],
+          [
+            13145,
+            46511
+          ]
+        ],
+        "macro_f1": 0.7778755147857253,
+        "per_class": {
+          "0": {
+            "f1": 0.7709737945398558,
+            "precision": 0.7656194280008558,
+            "recall": 0.7764035801464605,
+            "support": 55305
+          },
+          "1": {
+            "f1": 0.7847772350315946,
+            "precision": 0.7899689182533077,
+            "recall": 0.7796533458495374,
+            "support": 59656
+          }
+        }
+      },
+      "fit_and_predict_seconds": 29701.48730410001,
+      "fold": 1,
+      "macro_f1_delta": 0.018543572729666558,
+      "materiality_bar": 0.005,
+      "name": "mutation-aware plus eight predeclared circuit complexity features",
+      "predictions_path": "fold1_screen_predictions.csv.gz",
+      "screen_decision": "advance_to_full_five_fold_confirmation",
+      "train_origins": 245,
+      "train_rows": 463156,
+      "validation_origins": 60,
+      "validation_rows": 114961
+    }
+  ],
+  "fold_protocol": "reuse saved five-fold grouped development assignments; fold 1 screen only",
+  "hypothesis": "circuit depth and global two-qubit complexity add signal beyond local mutation alignment",
+  "interrupt_reason": "Available physical memory fell below 500 MiB during fold 5; sent Ctrl-C to own experiment process; folds 2-4 checkpoints preserved.",
+  "interrupted_fold": 5,
+  "last_available_bytes_before_interrupt": 480247808,
+  "next_step": "resume_fold_5_only_if_available_ram_is_at_least_700_MiB",
+  "partial_confirmation": {
+    "bootstrap_repetitions": 2000,
+    "bootstrap_seed": 20261027,
+    "candidate": {
+      "accuracy": 0.7864933139058687,
+      "balanced_accuracy": 0.7870017238021698,
+      "confusion_matrix": [
+        [
+          134281,
+          33367
+        ],
+        [
+          40925,
+          139388
+        ]
+      ],
+      "macro_f1": 0.7864473120219881,
+      "per_class": {
+        "0": {
+          "f1": 0.7833130137026256,
+          "precision": 0.7664178167414358,
+          "recall": 0.8009698892918495,
+          "support": 167648
+        },
+        "1": {
+          "f1": 0.7895816103413507,
+          "precision": 0.8068536366530635,
+          "recall": 0.77303355831249,
+          "support": 180313
+        }
+      }
+    },
+    "candidate_minus_champion_origin_bootstrap_95ci": {
+      "accuracy": [
+        -0.005550444488534931,
+        0.0027156384529233957
+      ],
+      "balanced_accuracy": [
+        -0.005500329117767991,
+        0.002706925500483932
+      ],
+      "macro_f1": [
+        -0.0055467897484967384,
+        0.00271149977494124
+      ]
+    },
+    "excluded_screen_fold_1_from_training_and_validation": true,
+    "folds": [
+      2,
+      3,
+      4
+    ],
+    "macro_f1_delta": -0.0013244859174141865,
+    "matched_champion": {
+      "accuracy": 0.787829670566529,
+      "balanced_accuracy": 0.7882729232400273,
+      "confusion_matrix": [
+        [
+          134194,
+          33454
+        ],
+        [
+          40373,
+          139940
+        ]
+      ],
+      "macro_f1": 0.7877717979394023,
+      "per_class": {
+        "0": {
+          "f1": 0.7842672004441652,
+          "precision": 0.768724902186553,
+          "recall": 0.8004509448368009,
+          "support": 167648
+        },
+        "1": {
+          "f1": 0.7912763954346395,
+          "precision": 0.8070636815576087,
+          "recall": 0.7760949016432537,
+          "support": 180313
+        }
+      }
+    },
+    "origins": 186,
+    "per_fold": {
+      "2": {
+        "available_ram_after_fold": 1433837568,
+        "candidate_metrics": {
+          "accuracy": 0.7815920186796859,
+          "balanced_accuracy": 0.7821337151515506,
+          "confusion_matrix_labels_0_1": [
+            [
+              45363,
+              11494
+            ],
+            [
+              14229,
+              46689
+            ]
+          ],
+          "macro_f1": 0.7815643298639205,
+          "per_class": {
+            "0": {
+              "f1": 0.7791050159297203,
+              "precision": 0.7612263391059203,
+              "recall": 0.7978437131751588,
+              "support": 56857
+            },
+            "1": {
+              "f1": 0.784023643798121,
+              "precision": 0.8024508877163432,
+              "recall": 0.7664237171279424,
+              "support": 60918
+            }
+          }
+        },
+        "category_vocabulary_sizes": [
+          26,
+          3,
+          19,
+          2,
+          12,
+          21,
+          5,
+          16,
+          16
+        ],
+        "macro_f1_delta": -0.002306523973523822,
+        "matched_champion_metrics": {
+          "accuracy": 0.7839099978773084,
+          "balanced_accuracy": 0.7843785358418065,
+          "confusion_matrix_labels_0_1": [
+            [
+              45370,
+              11487
+            ],
+            [
+              13963,
+              46955
+            ]
+          ],
+          "macro_f1": 0.7838708538374444,
+          "per_class": {
+            "0": {
+              "f1": 0.7809622170582666,
+              "precision": 0.7646672172315575,
+              "recall": 0.7979668290623846,
+              "support": 56857
+            },
+            "1": {
+              "f1": 0.786779490616622,
+              "precision": 0.8034461517401869,
+              "recall": 0.7707902426212285,
+              "support": 60918
+            }
+          }
+        },
+        "origins": 59,
+        "prediction_sha256": "b72696ab2594dc2899ae08b169fa68f55eb4d48521d386c226c66e8ed6d603c0",
+        "rows": 117775,
+        "train_origins": 186,
+        "train_rows": 345381,
+        "wall_seconds_two_fits": 479.3551983833313
+      },
+      "3": {
+        "available_ram_after_fold": 848740352,
+        "candidate_metrics": {
+          "accuracy": 0.7728660652324775,
+          "balanced_accuracy": 0.7733577838371752,
+          "confusion_matrix_labels_0_1": [
+            [
+              43635,
+              11846
+            ],
+            [
+              14338,
+              45461
+            ]
+          ],
+          "macro_f1": 0.7728090639520147,
+          "per_class": {
+            "0": {
+              "f1": 0.7692104288962928,
+              "precision": 0.7526779707795008,
+              "recall": 0.7864854634920063,
+              "support": 55481
+            },
+            "1": {
+              "f1": 0.7764076990077365,
+              "precision": 0.7932887779852374,
+              "recall": 0.7602301041823442,
+              "support": 59799
+            }
+          }
+        },
+        "category_vocabulary_sizes": [
+          27,
+          3,
+          19,
+          2,
+          12,
+          21,
+          5,
+          16,
+          16
+        ],
+        "macro_f1_delta": 0.0005961546760869796,
+        "matched_champion_metrics": {
+          "accuracy": 0.7723282442748092,
+          "balanced_accuracy": 0.7725693191053544,
+          "confusion_matrix_labels_0_1": [
+            [
+              43220,
+              12261
+            ],
+            [
+              13985,
+              45814
+            ]
+          ],
+          "macro_f1": 0.7722129092759277,
+          "per_class": {
+            "0": {
+              "f1": 0.7670873045453739,
+              "precision": 0.7555283629053404,
+              "recall": 0.7790054252807267,
+              "support": 55481
+            },
+            "1": {
+              "f1": 0.7773385140064815,
+              "precision": 0.7888764528626776,
+              "recall": 0.7661332129299822,
+              "support": 59799
+            }
+          }
+        },
+        "origins": 58,
+        "prediction_sha256": "00bea4e3f3c207011086a70b96f9033f35b092e228487aee68366aa2c7401811",
+        "rows": 115280,
+        "train_origins": 187,
+        "train_rows": 347876,
+        "wall_seconds_two_fits": 524.7792248725891
+      },
+      "4": {
+        "available_ram_after_fold": 1504903168,
+        "candidate_metrics": {
+          "accuracy": 0.805188588933563,
+          "balanced_accuracy": 0.8056748999582788,
+          "confusion_matrix_labels_0_1": [
+            [
+              45283,
+              10027
+            ],
+            [
+              12358,
+              47238
+            ]
+          ],
+          "macro_f1": 0.8051321799548411,
+          "per_class": {
+            "0": {
+              "f1": 0.8018167169834707,
+              "precision": 0.785603997154803,
+              "recall": 0.8187127101789912,
+              "support": 55310
+            },
+            "1": {
+              "f1": 0.8084476429262115,
+              "precision": 0.8249017724613639,
+              "recall": 0.7926370897375663,
+              "support": 59596
+            }
+          }
+        },
+        "category_vocabulary_sizes": [
+          25,
+          3,
+          19,
+          2,
+          12,
+          21,
+          5,
+          16,
+          16
+        ],
+        "macro_f1_delta": -0.002231086023779194,
+        "matched_champion_metrics": {
+          "accuracy": 0.8073990914312569,
+          "balanced_accuracy": 0.8080146077665429,
+          "confusion_matrix_labels_0_1": [
+            [
+              45604,
+              9706
+            ],
+            [
+              12425,
+              47171
+            ]
+          ],
+          "macro_f1": 0.8073632659786203,
+          "per_class": {
+            "0": {
+              "f1": 0.8047362337765465,
+              "precision": 0.7858829206086612,
+              "recall": 0.8245163623214609,
+              "support": 55310
+            },
+            "1": {
+              "f1": 0.8099902981806942,
+              "precision": 0.8293510557870493,
+              "recall": 0.7915128532116249,
+              "support": 59596
+            }
+          }
+        },
+        "origins": 69,
+        "prediction_sha256": "4b7a72ca9ac837950688558a6c2ace0bbcd145307b2f929ca5dedb4f1cb11947",
+        "rows": 114906,
+        "train_origins": 176,
+        "train_rows": 348250,
+        "wall_seconds_two_fits": 473.4856929779053
+      }
+    },
+    "rows": 347961,
+    "status": "partial_folds_2_to_4_only_fold5_pending"
+  },
+  "provenance": {
+    "five_fold_oof_sha256": "bfc1affdd40ac1032b65e417548075ce066407297fc603085ba6519403f56367",
+    "initial_screen_fold": 1,
+    "materiality_bar_macro_f1": 0.005,
+    "model": "ExtraTrees 100 trees depth22 minleaf15 sqrt balanced_subsample",
+    "mutation_cache_manifest_sha256": "284188822b6b846a12bcf791fc5122146d3ed78be29588b97b39595534abda01",
+    "source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+    "structure_cache_manifest_sha256": "7d562057485d66155fe4f1aa23b1d00f172051954d880b5f291d50ce1d6baa6d",
+    "structure_features": [
+      "qasm_orig_depth",
+      "qasm_mut_depth",
+      "qasm_delta_depth",
+      "qasm_orig_depth_per_qubit",
+      "qasm_mut_depth_per_qubit",
+      "qasm_mut_two_plus_fraction",
+      "qasm_delta_two_qubit_fraction",
+      "qasm_delta_gate_count"
+    ]
+  },
+  "resource_guard_mib": 500,
+  "schema": "qmutbench-improvement-campaign-v1",
+  "seed": 20261026,
+  "selected_structure_add_on": [
+    "qasm_orig_depth",
+    "qasm_mut_depth",
+    "qasm_delta_depth",
+    "qasm_orig_depth_per_qubit",
+    "qasm_mut_depth_per_qubit",
+    "qasm_mut_two_plus_fraction",
+    "qasm_delta_two_qubit_fraction",
+    "qasm_delta_gate_count"
+  ],
+  "status": "campaign_complete_structural_candidate_rejected_partial_confirmation",
+  "threshold": 0.5,
+  "decision": "Existing mutation-aware Extra Trees remains champion. Structural add-on not promoted; three clean confirmation folds show no credible gain. Fifth fit intentionally not resumed after the resource stop and negative partial evidence.",
+  "verification": {
+    "py_compile": "passed for both campaign scripts",
+    "focused_pytest": "23 passed in 3.66 seconds",
+    "git_diff_check": "passed"
+  }
+}

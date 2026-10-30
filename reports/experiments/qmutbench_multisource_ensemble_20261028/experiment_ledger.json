@@ -1,0 +1,15 @@
+{
+  "schema": "qmutbench-multisource-ensemble-ledger-v1",
+  "date": "2026-10-28",
+  "entries": [
+    {"name": "fixed classical probability mean", "status": "completed", "decision": "macro F1 0.4774; exploratory only", "artifact": "candidate_metrics.json"},
+    {"name": "fixed quantum probability mean", "status": "completed", "decision": "macro F1 0.2988; rejected", "artifact": "candidate_metrics.json"},
+    {"name": "fixed all-six probability mean", "status": "completed", "decision": "macro F1 0.4919; candidate lead, not promoted", "artifact": "candidate_metrics.json"},
+    {"name": "outer-fold logistic stacking", "status": "completed", "decision": "macro F1 0.4212; rejected", "artifact": "stacking_oof_predictions.csv"},
+    {"name": "source transfer and source contribution", "status": "not_run_incompatible_data", "decision": "no verified shared labels/features for QMutBench task", "artifact": "source_inventory.csv"},
+    {"name": "multitask learning", "status": "not_run_incompatible_data", "decision": "no compatible source-specific task rows", "artifact": "research_report.md"},
+    {"name": "conditional router", "status": "not_run_underpowered", "decision": "12 origins; no predeclared inference-time route", "artifact": "research_report.md"}
+  ],
+  "frozen_test_touched": false,
+  "production_model_modified": false
+}

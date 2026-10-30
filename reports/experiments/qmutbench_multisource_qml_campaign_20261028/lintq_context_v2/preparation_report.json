@@ -1,0 +1,59 @@
+{
+  "accepted_input_rows": 290,
+  "component_groups": 217,
+  "cross_fold_exact_context_fingerprints": 0,
+  "derived_input_sha256": "128db62ff0e24be7a72ef8f00f857b5bd27b4ab8c39c25288e8d207db327eaaa",
+  "exact_context_fingerprints": 277,
+  "fold_counts": {
+    "1": {
+      "class_counts": {
+        "0": 15,
+        "1": 43
+      },
+      "groups": 44,
+      "rows": 58
+    },
+    "2": {
+      "class_counts": {
+        "0": 15,
+        "1": 43
+      },
+      "groups": 44,
+      "rows": 58
+    },
+    "3": {
+      "class_counts": {
+        "0": 14,
+        "1": 44
+      },
+      "groups": 43,
+      "rows": 58
+    },
+    "4": {
+      "class_counts": {
+        "0": 15,
+        "1": 43
+      },
+      "groups": 42,
+      "rows": 58
+    },
+    "5": {
+      "class_counts": {
+        "0": 15,
+        "1": 43
+      },
+      "groups": 44,
+      "rows": 58
+    }
+  },
+  "fold_manifest_sha256": "f91d6b4ce93ab55acfb81526625fcf19240b9e3f1026a84594019c7481898be4",
+  "frozen_test_accessed": false,
+  "label_policy": "All 290 upstream accepted labels retained; the three contradictory rows sharing identical full context remain grouped in one fold and are documented as irreducible feature-label ambiguity.",
+  "original_issue_groups": 228,
+  "rejected_rows": 0,
+  "same_context_conflicting_label_components": 1,
+  "same_context_conflicting_label_rows": 3,
+  "status": "PREPARED_FOR_SOURCE_ISOLATED_VALIDATION",
+  "task_id": "warning_triage_context_v2",
+  "upstream_source_sha256": "8903aba9cce7d2bfc3fc7430a39f3b87fa6e1463df9b93b3dc4865212efa14ab"
+}

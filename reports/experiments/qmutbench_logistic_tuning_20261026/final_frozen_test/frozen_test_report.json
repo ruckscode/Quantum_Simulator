@@ -1,0 +1,125 @@
+{
+  "status": "completed",
+  "protocol": "one-time final evaluation after development selection; train on all 578,117 development records, frozen test on 70 disjoint origins",
+  "development_selection_metric": "mean macro F1 across fixed saved 3-fold grouped development OOF folds",
+  "development_selected_config": {
+    "name": "tuned_17",
+    "C": 1.0,
+    "class_weight": null,
+    "solver": "lbfgs"
+  },
+  "baseline_config": {
+    "name": "baseline_liblinear_C1_balanced",
+    "C": 1.0,
+    "solver": "liblinear",
+    "class_weight": "balanced"
+  },
+  "test_rows": 144962,
+  "test_origins": 70,
+  "target_map": {
+    "WOO": 1,
+    "OPO": 1,
+    "Survivor": 0
+  },
+  "source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+  "development_split_sha256": "7d203ac4cd6878a1caaf19eb768bb9a1e4f322b42fc56475cdc603591cc250ce",
+  "features": [
+    "algorithm",
+    "operation",
+    "gate",
+    "dominant_state",
+    "qubits",
+    "gates",
+    "Position_int"
+  ],
+  "preprocessing": "fit on full development records only; numeric standard scaling and categorical one-hot encoding; unknown test categories ignored",
+  "threshold": 0.5,
+  "metrics": {
+    "baseline_liblinear_C1_balanced": {
+      "accuracy": 0.7189953229122115,
+      "balanced_accuracy": 0.7188856685971432,
+      "macro_f1": 0.7187620423514285,
+      "per_class": {
+        "0": {
+          "precision": 0.7055753797548695,
+          "recall": 0.7158229115988897,
+          "f1": 0.7106622060275452,
+          "support": 69886
+        },
+        "1": {
+          "precision": 0.7318426702312958,
+          "recall": 0.7219484255953966,
+          "f1": 0.7268618786753119,
+          "support": 75076
+        }
+      }
+    },
+    "tuned_development_selected": {
+      "accuracy": 0.7201266538817069,
+      "balanced_accuracy": 0.7195451281719973,
+      "macro_f1": 0.7196319878758316,
+      "per_class": {
+        "0": {
+          "precision": 0.7124675663530811,
+          "recall": 0.703302521248891,
+          "f1": 0.7078553786553182,
+          "support": 69886
+        },
+        "1": {
+          "precision": 0.7270812767357684,
+          "recall": 0.7357877350951036,
+          "f1": 0.731408597096345,
+          "support": 75076
+        }
+      }
+    }
+  },
+  "origin_bootstrap_95pct_intervals": {
+    "baseline_liblinear_C1_balanced": {
+      "accuracy": [
+        0.6941994488495716,
+        0.7438427373327664
+      ],
+      "balanced_accuracy": [
+        0.6915926804336743,
+        0.7427777196718882
+      ],
+      "macro_f1": [
+        0.691125449810988,
+        0.7428742208325606
+      ]
+    },
+    "tuned_development_selected": {
+      "accuracy": [
+        0.6958786621987549,
+        0.744587047335317
+      ],
+      "balanced_accuracy": [
+        0.691351548340218,
+        0.7422180477826361
+      ],
+      "macro_f1": [
+        0.6918138371496267,
+        0.7423745526565374
+      ]
+    }
+  },
+  "paired_tuned_minus_baseline_95pct_intervals": {
+    "accuracy": [
+      -0.0006248923943259488,
+      0.002958892715264926
+    ],
+    "balanced_accuracy": [
+      -0.0019529792930023048,
+      0.0027967264739439278
+    ],
+    "macro_f1": [
+      -0.001469843800694648,
+      0.0029077008532757873
+    ]
+  },
+  "bootstrap_repetitions": 1000,
+  "bootstrap_unit": "frozen-test Origin_program",
+  "test_used_for_selection": false,
+  "elapsed_seconds": 87.80971880001016
+}

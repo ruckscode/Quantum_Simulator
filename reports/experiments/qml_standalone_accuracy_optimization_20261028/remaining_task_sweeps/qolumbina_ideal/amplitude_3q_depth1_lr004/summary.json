@@ -1,0 +1,55 @@
+{
+  "model": "amplitude_3q_depth1_lr004",
+  "configuration": {
+    "name": "amplitude_3q_depth1_lr004",
+    "qubits": 3,
+    "features": 8,
+    "encoding": "amplitude",
+    "depth": 1,
+    "reupload": false,
+    "learning_rate": 0.04
+  },
+  "accuracy": 0.8241758241758241,
+  "balanced_accuracy": 0.5,
+  "macro_f1": 0.45180722891566266,
+  "per_class": {
+    "0": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 32
+    },
+    "1": {
+      "precision": 0.8241758241758241,
+      "recall": 1.0,
+      "f1": 0.9036144578313253,
+      "support": 150
+    }
+  },
+  "confusion_matrix": [
+    [
+      0,
+      32
+    ],
+    [
+      0,
+      150
+    ]
+  ],
+  "folds": 5,
+  "records": 182,
+  "training_seconds": 0.13445669999782695,
+  "split": "reused existing selected-model grouped OOF fold assignments",
+  "group_unit": "bug_id",
+  "epochs": 4,
+  "batch_size": 64,
+  "optimizer": "Adam",
+  "text_fields": [
+    "program",
+    "variant_version",
+    "backend",
+    "code"
+  ],
+  "train_source_restriction": null,
+  "frozen_test_accessed": false
+}

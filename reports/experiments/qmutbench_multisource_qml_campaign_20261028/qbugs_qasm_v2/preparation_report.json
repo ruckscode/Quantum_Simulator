@@ -1,0 +1,141 @@
+{
+  "accepted_rows": 1496,
+  "conflicting_exact_qasm_fingerprints": 2,
+  "cross_fold_exact_qasm_fingerprints": 0,
+  "exact_qasm_fingerprints": 1496,
+  "feature_policy": "OpenQASM 2 serialization retains gate parameters and operation sequence; pair IDs, scenario, and labels are excluded from model text.",
+  "fold_manifest_sha256": "1682f20e7fc6913699306eea2bf858f89d28e3def626e2ec2a4d7fd41d7c6ccb",
+  "folds": {
+    "1": {
+      "classes": {
+        "0": 150,
+        "1": 150
+      },
+      "groups": 150,
+      "rows": 300
+    },
+    "2": {
+      "classes": {
+        "0": 150,
+        "1": 150
+      },
+      "groups": 150,
+      "rows": 300
+    },
+    "3": {
+      "classes": {
+        "0": 150,
+        "1": 150
+      },
+      "groups": 150,
+      "rows": 300
+    },
+    "4": {
+      "classes": {
+        "0": 149,
+        "1": 149
+      },
+      "groups": 149,
+      "rows": 298
+    },
+    "5": {
+      "classes": {
+        "0": 149,
+        "1": 149
+      },
+      "groups": 149,
+      "rows": 298
+    }
+  },
+  "frozen_test_accessed": false,
+  "group_policy": "Connect paired examples and all exact-QASM repeats before stratified grouped splitting.",
+  "groups": 748,
+  "input_rows": 1500,
+  "input_sha256": "809a4492d02246bdb6e182ac670e803b24ec9ae563fb133663384c7e2e336120",
+  "label_policy": "Correct=0 and buggy=1 follows upstream first-half/second-half source pairing. Complete source pairs are rejected only when exact QASM repeats with contradictory labels.",
+  "rejected_rows": 4,
+  "rejected_source_pairs": 2,
+  "rejection_manifest_sha256": "4081ff505c8fd3fe23504ffd1d25323108d81bfe90686ee895ae618f898aef5c",
+  "source_file_count": 15,
+  "source_files": [
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/10/10/qcs.pkl",
+      "sha256": "2d988f7a8208edde16caccb83b8d36f56ebb1f3e2e0440f61b37b9e002337392"
+    },
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/10/2/qcs.pkl",
+      "sha256": "d180c6eaa15481bfbf70e7a7f26422021ff0524fda90ba3096b4619a88cc9a20"
+    },
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/10/4/qcs.pkl",
+      "sha256": "f09651beb0ae7c8e88bc6f86ff51b8f58f77ebdce4893add58a82dc4260f11c0"
+    },
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/10/6/qcs.pkl",
+      "sha256": "38d8d9b5e8919ab18d581fb495ddb9618061cd214e2a58dc9bdd0de482bb1715"
+    },
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/10/8/qcs.pkl",
+      "sha256": "c0f36b44b606dcf2eac082535b5238af6b3c754f2f4d69af3ae650f4c614c99e"
+    },
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/15/10/qcs.pkl",
+      "sha256": "36c79821d8a7016bcc37310931a6a025f0d66d9869bfecd7ac5b83213b042101"
+    },
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/15/2/qcs.pkl",
+      "sha256": "fc33539fc69f4f8b0e2e132d9b9b19102556ecec0c6e652b7c01a6e9386e133b"
+    },
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/15/4/qcs.pkl",
+      "sha256": "59752e3c3e664daa794019b152e86ff12bcc26a3b9ce08b4946fee2c0f3de98f"
+    },
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/15/6/qcs.pkl",
+      "sha256": "4ab66afaf53db20ab34f0191973f55a744734daba9bd079ae573fff6677b44e5"
+    },
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/15/8/qcs.pkl",
+      "sha256": "5e166aaa6cea809d972966850f07bf4c73afe51f4e773a60380905c2d77795d9"
+    },
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/20/10/qcs.pkl",
+      "sha256": "63810a4d6749f3ab7733abdd11e373f79f21dbe192637a154f6533b09214851f"
+    },
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/20/2/qcs.pkl",
+      "sha256": "258da17e99b380edfb7ec9abcd9bc474d9e3a281cc8c7252e51e23c39d93f4f0"
+    },
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/20/4/qcs.pkl",
+      "sha256": "abcd227bae2cc65aa1d2dde5bcbfda0768a56d840e128eeda94eb040d0d8e30d"
+    },
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/20/6/qcs.pkl",
+      "sha256": "b0e1d145bfafea332f8821393a5e1ef8e956fb93b45dd24aca812dd5d505f938"
+    },
+    {
+      "pairs": 50,
+      "path": "data/external_quantum_datasets/qbugs_hornbro/hornbro/datasets/Qbugs/20/8/qcs.pkl",
+      "sha256": "acb5de1ac15b8f6abbd1d5fee4c0d35d945bcc3f5a669bbf8ad105634520754a"
+    }
+  ],
+  "source_files_sha256": "6d19b538be6d672f6143052920aab362948b833b73415280e81bea9fd88c6446",
+  "split_seed": 20261029,
+  "status": "PREPARED_FOR_SOURCE_ISOLATED_VALIDATION",
+  "task_id": "correct_buggy_circuit_state_qasm_v2"
+}

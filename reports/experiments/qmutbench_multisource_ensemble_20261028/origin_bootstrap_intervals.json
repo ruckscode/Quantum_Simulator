@@ -1,0 +1,41 @@
+{
+  "unit": "origin_program",
+  "origins": 12,
+  "repetitions": 2000,
+  "seed": 20261028,
+  "intervals_macro_f1_95pct": {
+    "extra_trees_4f": [
+      0.4041635541621228,
+      0.5264285445563763
+    ],
+    "logistic_4f": [
+      0.37254303903336533,
+      0.4859921390298928
+    ],
+    "rbf_svc_4f": [
+      0.3507287670013319,
+      0.4962620872103629
+    ],
+    "three_class_vqc": [
+      0.23074088444988522,
+      0.357770999719426
+    ],
+    "three_class_vqc_amplitude": [
+      0.23173693841927856,
+      0.3935632854385702
+    ],
+    "three_class_vqc_angle_linear": [
+      0.25460257628715766,
+      0.378822432236583
+    ],
+    "equal_all_probability_mean": [
+      0.42411042083463224,
+      0.5571495808722099
+    ],
+    "all_six_logistic_stacker": [
+      0.34039518238221067,
+      0.4763511057559047
+    ]
+  },
+  "warning": "descriptive exploratory uncertainty; candidate/blend inspection used the same 12 development origins"
+}

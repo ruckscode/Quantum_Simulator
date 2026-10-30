@@ -1,0 +1,87 @@
+[
+  {
+    "id": "QML-01",
+    "experiment": "Existing VQC/trainable QNN pilot",
+    "status": "completed_and_reused",
+    "protocol": "9 development origins, 72 records, GroupKFold(3), 4 fold-selected features; 3 validation origins per fold",
+    "result_macro_f1": 0.4857142857142857,
+    "decision": "No; below matched Logistic Regression; QNN is same family as VQC."
+  },
+  {
+    "id": "QML-02",
+    "experiment": "Existing quantum-kernel QSVC pilot",
+    "status": "completed_and_reused",
+    "protocol": "same 72 IDs/folds/features; analytic 4-qubit fidelity kernel",
+    "result_macro_f1": 0.42151675485008816,
+    "decision": "No; below matched Logistic Regression and RBF SVC; intervals broad."
+  },
+  {
+    "id": "QML-03",
+    "experiment": "Existing data re-uploading extension",
+    "status": "completed_and_reused",
+    "protocol": "same 72 IDs/folds/features; 4 qubits, depth 2, 20 updates",
+    "result_macro_f1": 0.4687936191425723,
+    "decision": "No; beats weak reduced Extra Trees, but loses to best matched Logistic Regression."
+  },
+  {
+    "id": "QML-04",
+    "experiment": "Existing quantum reservoir extension",
+    "status": "completed_and_reused",
+    "protocol": "same 72 IDs/folds/features; fixed 4-qubit depth-2 circuit plus balanced Logistic readout",
+    "result_macro_f1": 0.34664246823956446,
+    "decision": "No; below matched controls."
+  },
+  {
+    "id": "QML-05",
+    "experiment": "24-origin development expansion",
+    "status": "interrupted_no_metrics",
+    "protocol": "existing attempted expansion; stop below 450 MiB available memory",
+    "result_macro_f1": null,
+    "decision": "Do not rerun: no candidate beat strongest matched control and current memory is limited."
+  },
+  {
+    "id": "QML-06",
+    "experiment": "Fixed 50:50 re-uploading + Logistic probability blend",
+    "status": "completed_exploratory_no_training",
+    "protocol": "same saved OOF records/folds, fixed weights and 0.5 threshold; no fitting or tuning",
+    "result_macro_f1": 0.4177897574123989,
+    "decision": "Rejected; lower macro F1 than Logistic; 9-origin interval crosses zero; exploratory only."
+  },
+  {
+    "id": "QML-07",
+    "experiment": "Five-fold 305-origin QML comparison",
+    "status": "not_run_resource_and_evidence_gate",
+    "protocol": "would require larger training set and repeated analytic circuit evaluation",
+    "result_macro_f1": null,
+    "decision": "Not justified: poor matched pilot, no candidate advanced, previous 24-origin stop, 752 MiB available at campaign start."
+  },
+  {
+    "id": "QML-08",
+    "experiment": "Alternative kernel/ansatz/reducer tuning and learned stacking",
+    "status": "not_run",
+    "protocol": "would reuse the same 9-origin validation outcomes for additional selection without independent confirmation",
+    "result_macro_f1": null,
+    "decision": "Not justified; no favorable candidate and no nested grouped data/compute budget for selection."
+  },
+  {
+    "id": "QML-09",
+    "experiment": "Alternative fold-local dimension reduction / quantum encoding",
+    "status": "not_run",
+    "result_macro_f1": null,
+    "decision": "No pilot candidate beats matched Logistic; any new encoding would be another selection on the same nine origins. No independent validation set or safe scaling budget is available."
+  },
+  {
+    "id": "QML-10",
+    "experiment": "Multiple seeds / ansatz and optimizer tuning",
+    "status": "not_run",
+    "result_macro_f1": null,
+    "decision": "Single-seed pilots are consistently below the best matched control; 24-origin expansion already hit the 450 MiB stop. Repeated tuning on the same nine origins is not credible confirmation."
+  },
+  {
+    "id": "QML-11",
+    "experiment": "Classical random-feature / reservoir control",
+    "status": "not_run",
+    "result_macro_f1": null,
+    "decision": "Quantum reservoir is far below the matched Logistic baseline; a classical random-feature readout does not have a credible path to change the decision under current resources."
+  }
+]

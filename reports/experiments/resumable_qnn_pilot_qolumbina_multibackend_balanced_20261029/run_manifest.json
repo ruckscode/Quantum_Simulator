@@ -1,0 +1,747 @@
+{
+  "class_counts": {
+    "0": 40,
+    "1": 506
+  },
+  "classical": {
+    "accuracy": 0.4230769230769231,
+    "balanced_accuracy": 0.4700098814229249,
+    "confusion_matrix": [
+      [
+        21,
+        19
+      ],
+      [
+        296,
+        210
+      ]
+    ],
+    "features": "same 8 hashed-text features; fold-local train-only minmax scaling",
+    "macro_f1": 0.3445378151260504,
+    "model": "balanced LogisticRegression",
+    "per_class": {
+      "0": {
+        "f1": 0.11764705882352941,
+        "precision": 0.06624605678233439,
+        "recall": 0.525,
+        "support": 40
+      },
+      "1": {
+        "f1": 0.5714285714285714,
+        "precision": 0.9170305676855895,
+        "recall": 0.4150197628458498,
+        "support": 506
+      }
+    },
+    "predictions_sha256": "385a3270651eac7f6fc9a5fe0ffec1e358dc79ae9bc7472b98e1eec4cb7ca0ee"
+  },
+  "classical_baseline_sha256": "385a3270651eac7f6fc9a5fe0ffec1e358dc79ae9bc7472b98e1eec4cb7ca0ee",
+  "classical_metrics_by_source": {
+    "dataset": {
+      "accuracy": 0.4230769230769231,
+      "balanced_accuracy": 0.4700098814229249,
+      "confusion_matrix": [
+        [
+          21,
+          19
+        ],
+        [
+          296,
+          210
+        ]
+      ],
+      "macro_f1": 0.3445378151260504,
+      "per_class": {
+        "0": {
+          "f1": 0.11764705882352941,
+          "precision": 0.06624605678233439,
+          "recall": 0.525,
+          "support": 40
+        },
+        "1": {
+          "f1": 0.5714285714285714,
+          "precision": 0.9170305676855895,
+          "recall": 0.4150197628458498,
+          "support": 506
+        }
+      }
+    }
+  },
+  "completed_folds": [
+    {
+      "checkpoint_sha256": "47e69e33f218145387720693cf8d949e34e49cd6e5475dff277d80c802a28930",
+      "epoch": 4,
+      "fold": 1,
+      "history_sha256": "a8fdad2ad493807c668e85217f504b9ef5da516c69426ab8948fcdd1aaf55913"
+    },
+    {
+      "checkpoint_sha256": "ce71449dcd64254811d49c23e2c0fd3a8aadf0d1b390574c2c42726841a2c009",
+      "epoch": 4,
+      "fold": 2,
+      "history_sha256": "e67a0604a80be28932850ececf8bdb7ceb2fc5e673ddeb25f68f2e67ec362f0d"
+    },
+    {
+      "checkpoint_sha256": "d5a670f806bb41543f5d89cc5217eebf69b504a8590a6c9c9edca6a555e62cb1",
+      "epoch": 4,
+      "fold": 3,
+      "history_sha256": "fa7b5a39386534f4946e48076b64a2ed3134f01f6fd97d2dd54c84d3b809d5ea"
+    },
+    {
+      "checkpoint_sha256": "f6056209db5f91f616a9f6a5be3d6abf40e5f60a18408cc5dad285a6351606cf",
+      "epoch": 4,
+      "fold": 4,
+      "history_sha256": "21cf81d56cb4be0fcd73cda180a0df3e081a39da16c33733b101e7bf58fd37a2"
+    },
+    {
+      "checkpoint_sha256": "5a7e99cd4ddc3f4a8b021d53a778095a9099322e298896f6670d04be7d552b05",
+      "epoch": 4,
+      "fold": 5,
+      "history_sha256": "306d236e743d6b54ef071f3f95ac16827c2fb566c01349619dc3b7a594cbdb8d"
+    }
+  ],
+  "config": {
+    "batch_size": 64,
+    "contract_sha256": "c397410e513bdcef6829c13d7e72727fca5e3608c8b28a0d4f50d68fffb878dc",
+    "final_epochs": 4,
+    "learning_rate": 0.04,
+    "model": {
+      "depth": 1,
+      "encoding": "amplitude",
+      "features": 8,
+      "learning_rate": 0.04,
+      "loss": "training-fold class-balanced binary cross entropy",
+      "name": "amplitude_3q_depth1_lr004",
+      "qubits": 3,
+      "reupload": false
+    },
+    "optimizer": "Adam",
+    "processed_manifest_sha256": "5868788c96537f45aed6bf22ad89dbd36c751c282d4a2f2d72672ab292cea780",
+    "scaler": "minmax fitted on each fold's training rows only",
+    "seed": 28102026,
+    "source_hash": "b580ad932945d713ad00ade2210e58ff980bdd66a45e67ad4d9b9283ca1c6898",
+    "split": "reused saved 5-fold assignments grouped by original Qolumbina program across all variants and backends",
+    "split_sha256": "666945a7462cc2d68ff3029579d4bf2cff3bd836c4038795d0aedfc821840450",
+    "target_semantics": "Exploratory fold-local class-balanced loss variant for empirical Qolumbina seeded-mutant detection across ideal, fake_algiers, and fake_brooklyn; not ground-truth repair or hardware diagnosis.",
+    "task_id": "qolumbina_multibackend_seeded_mutant_detection_balanced",
+    "text_features": "8-dimensional deterministic BLAKE2 hashed-token counts of code, backend"
+  },
+  "config_sha256": "88d244ec97bfcd3f6ce6f41776ed81cb55fffb9e8edbd492d5e2f81fb6fc543b",
+  "evaluation_scope": "development grouped OOF only",
+  "fold_results": [
+    {
+      "available_ram_mib": 635.49609375,
+      "checkpoint": "reports\\experiments\\resumable_qnn_pilot_qolumbina_multibackend_balanced_20261029\\qnn\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+      "checkpoint_sha256": "47e69e33f218145387720693cf8d949e34e49cd6e5475dff277d80c802a28930",
+      "completed_epoch": 4,
+      "fold": 1,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "history_epochs": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "optimizer_state_nonzero": true,
+      "train_groups": 20,
+      "train_records": 420,
+      "training_seconds_fit_reported": 0.03932219999842346,
+      "training_seconds_this_invocation": 0.05400259999441914,
+      "validation_groups": 6,
+      "validation_records": 126
+    },
+    {
+      "available_ram_mib": 637.08203125,
+      "checkpoint": "reports\\experiments\\resumable_qnn_pilot_qolumbina_multibackend_balanced_20261029\\qnn\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+      "checkpoint_sha256": "ce71449dcd64254811d49c23e2c0fd3a8aadf0d1b390574c2c42726841a2c009",
+      "completed_epoch": 4,
+      "fold": 2,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "history_epochs": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "optimizer_state_nonzero": true,
+      "train_groups": 21,
+      "train_records": 441,
+      "training_seconds_fit_reported": 0.036772599996766075,
+      "training_seconds_this_invocation": 0.0382949999984703,
+      "validation_groups": 5,
+      "validation_records": 105
+    },
+    {
+      "available_ram_mib": 632.3203125,
+      "checkpoint": "reports\\experiments\\resumable_qnn_pilot_qolumbina_multibackend_balanced_20261029\\qnn\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+      "checkpoint_sha256": "d5a670f806bb41543f5d89cc5217eebf69b504a8590a6c9c9edca6a555e62cb1",
+      "completed_epoch": 4,
+      "fold": 3,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "history_epochs": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "optimizer_state_nonzero": true,
+      "train_groups": 21,
+      "train_records": 441,
+      "training_seconds_fit_reported": 0.04020289999607485,
+      "training_seconds_this_invocation": 0.041695899999467656,
+      "validation_groups": 5,
+      "validation_records": 105
+    },
+    {
+      "available_ram_mib": 632.83984375,
+      "checkpoint": "reports\\experiments\\resumable_qnn_pilot_qolumbina_multibackend_balanced_20261029\\qnn\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+      "checkpoint_sha256": "f6056209db5f91f616a9f6a5be3d6abf40e5f60a18408cc5dad285a6351606cf",
+      "completed_epoch": 4,
+      "fold": 4,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "history_epochs": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "optimizer_state_nonzero": true,
+      "train_groups": 21,
+      "train_records": 441,
+      "training_seconds_fit_reported": 0.03706329999840818,
+      "training_seconds_this_invocation": 0.03864650000468828,
+      "validation_groups": 5,
+      "validation_records": 105
+    },
+    {
+      "available_ram_mib": 632.68359375,
+      "checkpoint": "reports\\experiments\\resumable_qnn_pilot_qolumbina_multibackend_balanced_20261029\\qnn\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz",
+      "checkpoint_sha256": "5a7e99cd4ddc3f4a8b021d53a778095a9099322e298896f6670d04be7d552b05",
+      "completed_epoch": 4,
+      "fold": 5,
+      "gradient_check": {
+        "absolute_error": 2.6298765682525316e-12,
+        "finite_difference": -0.00013573008827982846,
+        "parameter_shift": -0.00013573009090970503,
+        "passed": true
+      },
+      "history_epochs": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "optimizer_state_nonzero": true,
+      "train_groups": 21,
+      "train_records": 441,
+      "training_seconds_fit_reported": 0.036702699995657895,
+      "training_seconds_this_invocation": 0.03818889999820385,
+      "validation_groups": 5,
+      "validation_records": 105
+    }
+  ],
+  "folds": 5,
+  "frozen_test_accessed": false,
+  "groups": 26,
+  "paired_group_bootstrap_95_percentile": {
+    "groups_resampled": 26,
+    "iterations": 1000,
+    "macro_f1_difference_qnn_minus_classical": 0.07408027549057634,
+    "percentile_95_ci": [
+      -0.04737290379413395,
+      0.18929875740865296
+    ]
+  },
+  "qnn": {
+    "accuracy": 0.5567765567765568,
+    "balanced_accuracy": 0.5076086956521739,
+    "checkpoints": [
+      {
+        "checkpoint_sha256": "47e69e33f218145387720693cf8d949e34e49cd6e5475dff277d80c802a28930",
+        "epoch": 4,
+        "fold": 1,
+        "history_sha256": "a8fdad2ad493807c668e85217f504b9ef5da516c69426ab8948fcdd1aaf55913"
+      },
+      {
+        "checkpoint_sha256": "ce71449dcd64254811d49c23e2c0fd3a8aadf0d1b390574c2c42726841a2c009",
+        "epoch": 4,
+        "fold": 2,
+        "history_sha256": "e67a0604a80be28932850ececf8bdb7ceb2fc5e673ddeb25f68f2e67ec362f0d"
+      },
+      {
+        "checkpoint_sha256": "d5a670f806bb41543f5d89cc5217eebf69b504a8590a6c9c9edca6a555e62cb1",
+        "epoch": 4,
+        "fold": 3,
+        "history_sha256": "fa7b5a39386534f4946e48076b64a2ed3134f01f6fd97d2dd54c84d3b809d5ea"
+      },
+      {
+        "checkpoint_sha256": "f6056209db5f91f616a9f6a5be3d6abf40e5f60a18408cc5dad285a6351606cf",
+        "epoch": 4,
+        "fold": 4,
+        "history_sha256": "21cf81d56cb4be0fcd73cda180a0df3e081a39da16c33733b101e7bf58fd37a2"
+      },
+      {
+        "checkpoint_sha256": "5a7e99cd4ddc3f4a8b021d53a778095a9099322e298896f6670d04be7d552b05",
+        "epoch": 4,
+        "fold": 5,
+        "history_sha256": "306d236e743d6b54ef071f3f95ac16827c2fb566c01349619dc3b7a594cbdb8d"
+      }
+    ],
+    "confusion_matrix": [
+      [
+        18,
+        22
+      ],
+      [
+        220,
+        286
+      ]
+    ],
+    "fold_metrics": [
+      {
+        "classical": {
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.4086206896551724,
+          "confusion_matrix": [
+            [
+              3,
+              7
+            ],
+            [
+              56,
+              60
+            ]
+          ],
+          "macro_f1": 0.3713471133285816,
+          "per_class": {
+            "0": {
+              "f1": 0.08695652173913043,
+              "precision": 0.05084745762711865,
+              "recall": 0.3,
+              "support": 10
+            },
+            "1": {
+              "f1": 0.6557377049180328,
+              "precision": 0.8955223880597015,
+              "recall": 0.5172413793103449,
+              "support": 116
+            }
+          }
+        },
+        "fold": 1,
+        "qnn": {
+          "accuracy": 0.7698412698412699,
+          "balanced_accuracy": 0.6008620689655173,
+          "confusion_matrix": [
+            [
+              4,
+              6
+            ],
+            [
+              23,
+              93
+            ]
+          ],
+          "macro_f1": 0.5406662476429918,
+          "per_class": {
+            "0": {
+              "f1": 0.21621621621621623,
+              "precision": 0.14814814814814814,
+              "recall": 0.4,
+              "support": 10
+            },
+            "1": {
+              "f1": 0.8651162790697674,
+              "precision": 0.9393939393939394,
+              "recall": 0.8017241379310345,
+              "support": 116
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.09523809523809523,
+          "balanced_accuracy": 0.5,
+          "confusion_matrix": [
+            [
+              10,
+              0
+            ],
+            [
+              95,
+              0
+            ]
+          ],
+          "macro_f1": 0.08695652173913042,
+          "per_class": {
+            "0": {
+              "f1": 0.17391304347826084,
+              "precision": 0.09523809523809523,
+              "recall": 1.0,
+              "support": 10
+            },
+            "1": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 95
+            }
+          }
+        },
+        "fold": 2,
+        "qnn": {
+          "accuracy": 0.18095238095238095,
+          "balanced_accuracy": 0.2789473684210526,
+          "confusion_matrix": [
+            [
+              4,
+              6
+            ],
+            [
+              80,
+              15
+            ]
+          ],
+          "macro_f1": 0.17186353631694792,
+          "per_class": {
+            "0": {
+              "f1": 0.0851063829787234,
+              "precision": 0.047619047619047616,
+              "recall": 0.4,
+              "support": 10
+            },
+            "1": {
+              "f1": 0.25862068965517243,
+              "precision": 0.7142857142857143,
+              "recall": 0.15789473684210525,
+              "support": 95
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.3904761904761905,
+          "balanced_accuracy": 0.395,
+          "confusion_matrix": [
+            [
+              2,
+              3
+            ],
+            [
+              61,
+              39
+            ]
+          ],
+          "macro_f1": 0.30405965202982604,
+          "per_class": {
+            "0": {
+              "f1": 0.058823529411764705,
+              "precision": 0.031746031746031744,
+              "recall": 0.4,
+              "support": 5
+            },
+            "1": {
+              "f1": 0.5492957746478874,
+              "precision": 0.9285714285714286,
+              "recall": 0.39,
+              "support": 100
+            }
+          }
+        },
+        "fold": 3,
+        "qnn": {
+          "accuracy": 0.9523809523809523,
+          "balanced_accuracy": 0.5,
+          "confusion_matrix": [
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              100
+            ]
+          ],
+          "macro_f1": 0.4878048780487805,
+          "per_class": {
+            "0": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 5
+            },
+            "1": {
+              "f1": 0.975609756097561,
+              "precision": 0.9523809523809523,
+              "recall": 1.0,
+              "support": 100
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.4857142857142857,
+          "balanced_accuracy": 0.5496134020618557,
+          "confusion_matrix": [
+            [
+              5,
+              3
+            ],
+            [
+              51,
+              46
+            ]
+          ],
+          "macro_f1": 0.3931934931506849,
+          "per_class": {
+            "0": {
+              "f1": 0.15625,
+              "precision": 0.08928571428571429,
+              "recall": 0.625,
+              "support": 8
+            },
+            "1": {
+              "f1": 0.6301369863013698,
+              "precision": 0.9387755102040817,
+              "recall": 0.4742268041237113,
+              "support": 97
+            }
+          }
+        },
+        "fold": 4,
+        "qnn": {
+          "accuracy": 0.3238095238095238,
+          "balanced_accuracy": 0.5766752577319587,
+          "confusion_matrix": [
+            [
+              7,
+              1
+            ],
+            [
+              70,
+              27
+            ]
+          ],
+          "macro_f1": 0.2983529411764706,
+          "per_class": {
+            "0": {
+              "f1": 0.16470588235294117,
+              "precision": 0.09090909090909091,
+              "recall": 0.875,
+              "support": 8
+            },
+            "1": {
+              "f1": 0.432,
+              "precision": 0.9642857142857143,
+              "recall": 0.27835051546391754,
+              "support": 97
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.6285714285714286,
+          "balanced_accuracy": 0.40306122448979587,
+          "confusion_matrix": [
+            [
+              1,
+              6
+            ],
+            [
+              33,
+              65
+            ]
+          ],
+          "macro_f1": 0.4090056285178236,
+          "per_class": {
+            "0": {
+              "f1": 0.04878048780487805,
+              "precision": 0.029411764705882353,
+              "recall": 0.14285714285714285,
+              "support": 7
+            },
+            "1": {
+              "f1": 0.7692307692307692,
+              "precision": 0.9154929577464789,
+              "recall": 0.6632653061224489,
+              "support": 98
+            }
+          }
+        },
+        "fold": 5,
+        "qnn": {
+          "accuracy": 0.5142857142857142,
+          "balanced_accuracy": 0.4744897959183674,
+          "confusion_matrix": [
+            [
+              3,
+              4
+            ],
+            [
+              47,
+              51
+            ]
+          ],
+          "macro_f1": 0.3859649122807018,
+          "per_class": {
+            "0": {
+              "f1": 0.10526315789473684,
+              "precision": 0.06,
+              "recall": 0.42857142857142855,
+              "support": 7
+            },
+            "1": {
+              "f1": 0.6666666666666667,
+              "precision": 0.9272727272727272,
+              "recall": 0.5204081632653061,
+              "support": 98
+            }
+          }
+        }
+      }
+    ],
+    "macro_f1": 0.41609955279020017,
+    "model": {
+      "depth": 1,
+      "encoding": "amplitude",
+      "features": 8,
+      "learning_rate": 0.04,
+      "loss": "training-fold class-balanced binary cross entropy",
+      "name": "amplitude_3q_depth1_lr004",
+      "qubits": 3,
+      "reupload": false
+    },
+    "per_class": {
+      "0": {
+        "f1": 0.1294964028776978,
+        "precision": 0.07563025210084033,
+        "recall": 0.45,
+        "support": 40
+      },
+      "1": {
+        "f1": 0.7027027027027025,
+        "precision": 0.9285714285714286,
+        "recall": 0.5652173913043478,
+        "support": 506
+      }
+    },
+    "predictions_sha256": "16f7177407c2972c67381e8d8efb278a1dd358fc19666a75bc0755572f445e78"
+  },
+  "qnn_metrics_by_source": {
+    "dataset": {
+      "accuracy": 0.5567765567765568,
+      "balanced_accuracy": 0.5076086956521739,
+      "confusion_matrix": [
+        [
+          18,
+          22
+        ],
+        [
+          220,
+          286
+        ]
+      ],
+      "macro_f1": 0.41609955279020017,
+      "per_class": {
+        "0": {
+          "f1": 0.1294964028776978,
+          "precision": 0.07563025210084033,
+          "recall": 0.45,
+          "support": 40
+        },
+        "1": {
+          "f1": 0.7027027027027025,
+          "precision": 0.9285714285714286,
+          "recall": 0.5652173913043478,
+          "support": 506
+        }
+      }
+    }
+  },
+  "qnn_oof_sha256": "16f7177407c2972c67381e8d8efb278a1dd358fc19666a75bc0755572f445e78",
+  "resume_events": 1,
+  "resume_verification": {
+    "all_group_folds_preserved": true,
+    "all_optimizer_states_present": true,
+    "checkpoint_epochs": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "resume_events": 1,
+    "status": "verified",
+    "uninterrupted_reference_parity": {
+      "bias": true,
+      "head": true,
+      "m_b": true,
+      "m_h": true,
+      "m_t": true,
+      "rng_state": true,
+      "theta": true,
+      "v_b": true,
+      "v_h": true,
+      "v_t": true
+    }
+  },
+  "rows": 546,
+  "runtime": {
+    "batch_size": 64,
+    "elapsed_seconds_this_invocation": 0.784,
+    "memory_available_end_mib": 629.3,
+    "memory_available_start_mib": 643.2,
+    "memory_floor_mib": 500
+  },
+  "source_audit": {
+    "contract_sha256": "c397410e513bdcef6829c13d7e72727fca5e3608c8b28a0d4f50d68fffb878dc",
+    "fold_path": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\data\\processed\\qolumbina\\seeded_mutant_detection_multibackend\\manifests\\group_folds.csv",
+    "fold_sha256": "666945a7462cc2d68ff3029579d4bf2cff3bd836c4038795d0aedfc821840450",
+    "group_count": 26,
+    "partition_sha256": [
+      "9488719e85381a9516b89c85876ecd812b3b6c6dd75d1c283ae88c695ec1969c",
+      "d742fa452a5f07ef79ae8b24a31ba28b9398edea73a93472b677f5f4ceba7c7f",
+      "2694ba2aa2bea3b1a8d27d259e29284e18028203c44338db83be8a79d3d552b5",
+      "5ae61c67839e4d067bd3c34a97e79893ce57c95e1b8f55f791010387d72a3a33",
+      "6adb39299177351f22cf9b42a763d3b6b6842846209b3eff4e71ac7a4c70a58e",
+      "33d25a51cb698412cf57fc247c8c2a77c09cfef15865a9ad6bb90022aa87062f",
+      "6a203491f760217928a5d696c1393ec845d7e55800d489a9a69dd4af5f6488fd",
+      "64d5812ca4e9e2ed388fb9a72c3d6b3fa7c9cfa428ed69047bf493ac28637a84",
+      "bba7c21b09871882e9f847eb907bbc14e0fc6335224ac69ec878d9b42366f4d7"
+    ],
+    "processed_manifest": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\data\\processed\\qolumbina\\seeded_mutant_detection_multibackend\\manifest.json",
+    "processed_manifest_sha256": "5868788c96537f45aed6bf22ad89dbd36c751c282d4a2f2d72672ab292cea780",
+    "raw_snapshot_hashes": 1,
+    "record_count": 546,
+    "source_path": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qolumbina_detection\\normalized_manifest.csv",
+    "source_sha256": "b580ad932945d713ad00ade2210e58ff980bdd66a45e67ad4d9b9283ca1c6898"
+  },
+  "status": "completed",
+  "target_semantics": "Exploratory fold-local class-balanced loss variant for empirical Qolumbina seeded-mutant detection across ideal, fake_algiers, and fake_brooklyn; not ground-truth repair or hardware diagnosis.",
+  "task": "qolumbina_multibackend_seeded_mutant_detection_balanced",
+  "training_source_filter": null,
+  "transfer_target_source": null
+}

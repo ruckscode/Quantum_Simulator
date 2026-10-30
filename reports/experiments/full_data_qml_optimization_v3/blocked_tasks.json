@@ -1,0 +1,42 @@
+{
+  "blocked": [
+    {
+      "task": "full-data QNN on QMutBench binary and multiclass inputs",
+      "status": "BLOCKED",
+      "reason": "Available RAM was 487.5 MiB at report generation, below the 1,024 MiB safety floor; CPU utilization was previously observed at 84.9% and no CUDA GPU is available.",
+      "evidence": "resource_usage.csv and environment audit",
+      "required_to_resume": "Wait for at least 1 GiB available RAM, remeasure, then run bounded CPU PennyLane jobs one at a time."
+    },
+    {
+      "task": "five-fold QASM-feature QNN and exact champion comparison",
+      "status": "NOT_RUN",
+      "reason": "Existing QASM feature candidate screens use three grouped folds, while the verified historical champion uses five; no new QML fit was run in this turn.",
+      "required_to_resume": "Run the QASM-feature QNN and matched classical controls on the incumbent five-fold contract after the RAM guard is met."
+    },
+    {
+      "task": "source_gate_count_match feature ablation",
+      "status": "NOT_RUN",
+      "reason": "The diagnostic column varies by label and is excluded from the registered feature list; no same-fold with/without model ablation was run.",
+      "required_to_resume": "Evaluate with and without the field on the same grouped development folds; do not add it to the production schema beforehand."
+    },
+    {
+      "task": "frozen-test checksum verification",
+      "status": "PARTIAL",
+      "reason": "No frozen-test artifact path/checksum is recorded in the available test manifest; no test outcomes or test file were opened.",
+      "required_to_resume": "Locate the already-pinned frozen-test artifact and verify its hash without reading labels, if checksum proof is required."
+    },
+    {
+      "task": "commit required campaign updates",
+      "status": "BLOCKED",
+      "reason": "The workspace policy exposes .git as read-only; git add failed with `fatal: Unable to create '.git/index.lock': Permission denied`.",
+      "required_to_resume": "Run Git staging/commit in an environment with write access to .git."
+    }
+  ],
+  "incomplete": [
+    "full-data QMutBench QNN training and optimization",
+    "QASM all_features three-fold comparison (only fold 1 exists)",
+    "same-five-fold QASM feature and QNN comparisons against the 79.33% champion",
+    "same-fold source_gate_count_match ablation",
+    "expanded-source QNN retraining and full-data integration"
+  ]
+}

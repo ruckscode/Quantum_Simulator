@@ -1,0 +1,92 @@
+{
+  "schema": "qml-campaign-integrity-v1",
+  "created_utc": "2026-10-30T09:34:44.609647+00:00",
+  "algorithm": "SHA-256",
+  "artifacts": [
+    {
+      "path": "reports/experiments/qml_source_preprocessing_20261029/source_preprocessing_matrix.json",
+      "sha256": "87dec39b8675059f1ab99ef5cdb13a49e102ea6e04e70b7a46345b07e61235b3",
+      "bytes": 212076
+    },
+    {
+      "path": "experiments/run_qml_chunked_execution_controller.py",
+      "sha256": "f9c296a81187c5e1e956b6b52476c0428b2abe95bb3b4728c6f0d516385d0b32",
+      "bytes": 12717
+    },
+    {
+      "path": "reports/experiments/qml_chunked_execution_campaign_20261030/progress_registry.json",
+      "sha256": "2f6c99a00f3a73aa57a8d7a18be86ca91e9ea151ff8651a400910ee05ed09c88",
+      "bytes": 20312
+    },
+    {
+      "path": "reports/experiments/qml_chunked_execution_campaign_20261030/task_status_matrix.csv",
+      "sha256": "3e67adb25370a245d846ebdbc000b2fc3c8ab6347b658110e5fead4ae28842d4",
+      "bytes": 6262
+    },
+    {
+      "path": "reports/experiments/qml_chunked_execution_campaign_20261030/campaign_report.md",
+      "sha256": "a70e0c0653be4ecf6be905d959db2329e395331a5de2832f2702aaee745b887c",
+      "bytes": 3905
+    },
+    {
+      "path": "reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029/progress_audit.json",
+      "sha256": "e169cdd1f9fe872466ea2fa63fa281761b7f649a4f0434611fae357e25f8d923",
+      "bytes": 2789
+    },
+    {
+      "path": "reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029/full_campaign_manifest.json",
+      "sha256": "427e00bfec3c6936c7eed6b2f7b60464a554f2e175767625fcbc4dbee20da57e",
+      "bytes": 4772
+    },
+    {
+      "path": "reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029/fold_checkpoints/fold_01_qnn_chunk_00000405.json",
+      "sha256": "f4a27a04a7a7942131440e82d2e0845fec2718dfcf34914523acb470cf0c87e2",
+      "bytes": 9478
+    },
+    {
+      "path": "experiments/run_qml_campaign_loop.ps1",
+      "sha256": "a14ae6772289bbabd46c5b6760b56a8d12b8aa72d7b0317ed6e5dff026b3ead8",
+      "bytes": 4313
+    },
+    {
+      "path": "reports/experiments/qml_chunked_execution_campaign_20261030/integrity_manifest.json",
+      "sha256": "8079508aa2911c246b1d3be04a31e2be17e33fe3079873bde952c6f1d9b7c4ce",
+      "bytes": 2148
+    },
+    {
+      "path": "reports/experiments/qml_chunked_execution_campaign_20261030/runtime/continuous_resume_status.json",
+      "sha256": "73e693d35359e7b0f7c7928737cceab23242c86f813ddf3519bb08839d34b694",
+      "bytes": 432
+    },
+    {
+      "path": "reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029/fold_checkpoints/fold_01_qnn_chunk_00000443.json",
+      "sha256": "4873a6c44cc3bd7c33655d36910d41bd023f6ee49b4fd76ddfc5367586c0ada9",
+      "bytes": 9480
+    },
+    {
+      "path": "reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029/fold_checkpoints/fold_01_qnn_chunk_00000450.json",
+      "sha256": "03f72d2c0d5c675622a598aa51e26562faf126b7f1a0ffa837ab89ddf5bfff36",
+      "bytes": 9474
+    },
+    {
+      "path": "experiments/qmutbench_full_corpus_streaming.py",
+      "sha256": "1a1f38d3ee22484675f4439b2f0fbcbac3615d1e8eb6553d22d22a08d2b3f414",
+      "bytes": 17036
+    },
+    {
+      "path": "tests/test_qmutbench_full_corpus_streaming.py",
+      "sha256": "8d7beb59deeb9286e9e27be673f556196cd1b8593c26986a81f4e0fdecb41711",
+      "bytes": 4253
+    },
+    {
+      "path": "reports/experiments/full_data_qml_optimization_v3/README.md",
+      "sha256": "056379a24c170651cbaf807157d8a13b1ad85157a855fd5f83b48cb4c58357e6",
+      "bytes": 5074
+    },
+    {
+      "path": "reports/experiments/qmutbench_binary_qnn_full_development_chunk16_20261029/fold_checkpoints/fold_01_qnn_chunk_00000486.json",
+      "sha256": "2e0ae7a8cc585a71de8965108f26d6262f98a2cc2afe7718806c8ee117e2d5f6",
+      "bytes": 9483
+    }
+  ]
+}

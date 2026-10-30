@@ -1,0 +1,565 @@
+{
+  "status": "completed_grouped_qnn_sweep",
+  "task": "LintQ",
+  "records": 290,
+  "groups": 228,
+  "label_distribution": {
+    "0": 74,
+    "1": 216
+  },
+  "results": [
+    {
+      "model": "amplitude_3q_depth1_lr004",
+      "configuration": {
+        "name": "amplitude_3q_depth1_lr004",
+        "qubits": 3,
+        "features": 8,
+        "encoding": "amplitude",
+        "depth": 1,
+        "reupload": false,
+        "learning_rate": 0.04
+      },
+      "accuracy": 0.7413793103448276,
+      "balanced_accuracy": 0.4976851851851852,
+      "macro_f1": 0.42574257425742573,
+      "per_class": {
+        "0": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 74
+        },
+        "1": {
+          "precision": 0.7439446366782007,
+          "recall": 0.9953703703703703,
+          "f1": 0.8514851485148515,
+          "support": 216
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          74
+        ],
+        [
+          1,
+          215
+        ]
+      ],
+      "records": 290,
+      "folds": 5,
+      "training_seconds": 0.1677590000035707,
+      "checkpoint_paths": [
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\amplitude_3q_depth1_lr004\\fold_1\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\amplitude_3q_depth1_lr004\\fold_2\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\amplitude_3q_depth1_lr004\\fold_3\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\amplitude_3q_depth1_lr004\\fold_4\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\amplitude_3q_depth1_lr004\\fold_5\\checkpoint.npz"
+      ]
+    },
+    {
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "configuration": {
+        "name": "angle_reupload_4q_depth2_lr0035",
+        "qubits": 4,
+        "features": 4,
+        "encoding": "angle",
+        "depth": 2,
+        "reupload": true,
+        "learning_rate": 0.035
+      },
+      "accuracy": 0.7413793103448276,
+      "balanced_accuracy": 0.4976851851851852,
+      "macro_f1": 0.42574257425742573,
+      "per_class": {
+        "0": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 74
+        },
+        "1": {
+          "precision": 0.7439446366782007,
+          "recall": 0.9953703703703703,
+          "f1": 0.8514851485148515,
+          "support": 216
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          74
+        ],
+        [
+          1,
+          215
+        ]
+      ],
+      "records": 290,
+      "folds": 5,
+      "training_seconds": 2.091796599997906,
+      "checkpoint_paths": [
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\angle_reupload_4q_depth2_lr0035\\fold_1\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\angle_reupload_4q_depth2_lr0035\\fold_2\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\angle_reupload_4q_depth2_lr0035\\fold_3\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\angle_reupload_4q_depth2_lr0035\\fold_4\\checkpoint.npz",
+        "reports\\experiments\\qml_standalone_accuracy_optimization_20261028\\remaining_task_sweeps\\lintq\\angle_reupload_4q_depth2_lr0035\\fold_5\\checkpoint.npz"
+      ]
+    }
+  ],
+  "fold_results": [
+    {
+      "task": "LintQ",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 1,
+      "records": 58,
+      "groups": 45,
+      "train_records": 232,
+      "training_seconds": 0.03590740000072401,
+      "available_ram_mib": 880.7109375,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7241379310344828,
+        "balanced_accuracy": 0.4883720930232558,
+        "macro_f1": 0.41999999999999993,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 15
+          },
+          "1": {
+            "precision": 0.7368421052631579,
+            "recall": 0.9767441860465116,
+            "f1": 0.8399999999999999,
+            "support": 43
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            15
+          ],
+          [
+            1,
+            42
+          ]
+        ]
+      }
+    },
+    {
+      "task": "LintQ",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 2,
+      "records": 58,
+      "groups": 45,
+      "train_records": 232,
+      "training_seconds": 0.03251069999896572,
+      "available_ram_mib": 880.734375,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.8103448275862069,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.4476190476190476,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 11
+          },
+          "1": {
+            "precision": 0.8103448275862069,
+            "recall": 1.0,
+            "f1": 0.8952380952380952,
+            "support": 47
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            11
+          ],
+          [
+            0,
+            47
+          ]
+        ]
+      }
+    },
+    {
+      "task": "LintQ",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 3,
+      "records": 58,
+      "groups": 45,
+      "train_records": 232,
+      "training_seconds": 0.03348860000187415,
+      "available_ram_mib": 880.78125,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7586206896551724,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.4313725490196078,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 14
+          },
+          "1": {
+            "precision": 0.7586206896551724,
+            "recall": 1.0,
+            "f1": 0.8627450980392156,
+            "support": 44
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            14
+          ],
+          [
+            0,
+            44
+          ]
+        ]
+      }
+    },
+    {
+      "task": "LintQ",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 4,
+      "records": 58,
+      "groups": 46,
+      "train_records": 232,
+      "training_seconds": 0.0331255000019155,
+      "available_ram_mib": 880.77734375,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7068965517241379,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.41414141414141414,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 17
+          },
+          "1": {
+            "precision": 0.7068965517241379,
+            "recall": 1.0,
+            "f1": 0.8282828282828283,
+            "support": 41
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            17
+          ],
+          [
+            0,
+            41
+          ]
+        ]
+      }
+    },
+    {
+      "task": "LintQ",
+      "model": "amplitude_3q_depth1_lr004",
+      "fold": 5,
+      "records": 58,
+      "groups": 47,
+      "train_records": 232,
+      "training_seconds": 0.032726800000091316,
+      "available_ram_mib": 882.05859375,
+      "gradient_check": {
+        "parameter_shift": -0.00013573009090970503,
+        "finite_difference": -0.00013573008827982846,
+        "absolute_error": 2.6298765682525316e-12,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7068965517241379,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.41414141414141414,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 17
+          },
+          "1": {
+            "precision": 0.7068965517241379,
+            "recall": 1.0,
+            "f1": 0.8282828282828283,
+            "support": 41
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            17
+          ],
+          [
+            0,
+            41
+          ]
+        ]
+      }
+    },
+    {
+      "task": "LintQ",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 1,
+      "records": 58,
+      "groups": 45,
+      "train_records": 232,
+      "training_seconds": 0.4212029000009352,
+      "available_ram_mib": 877.99609375,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7413793103448276,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.42574257425742573,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 15
+          },
+          "1": {
+            "precision": 0.7413793103448276,
+            "recall": 1.0,
+            "f1": 0.8514851485148515,
+            "support": 43
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            15
+          ],
+          [
+            0,
+            43
+          ]
+        ]
+      }
+    },
+    {
+      "task": "LintQ",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 2,
+      "records": 58,
+      "groups": 45,
+      "train_records": 232,
+      "training_seconds": 0.4143893999971624,
+      "available_ram_mib": 865.734375,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.8103448275862069,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.4476190476190476,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 11
+          },
+          "1": {
+            "precision": 0.8103448275862069,
+            "recall": 1.0,
+            "f1": 0.8952380952380952,
+            "support": 47
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            11
+          ],
+          [
+            0,
+            47
+          ]
+        ]
+      }
+    },
+    {
+      "task": "LintQ",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 3,
+      "records": 58,
+      "groups": 45,
+      "train_records": 232,
+      "training_seconds": 0.4143729000024905,
+      "available_ram_mib": 866.9375,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7586206896551724,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.4313725490196078,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 14
+          },
+          "1": {
+            "precision": 0.7586206896551724,
+            "recall": 1.0,
+            "f1": 0.8627450980392156,
+            "support": 44
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            14
+          ],
+          [
+            0,
+            44
+          ]
+        ]
+      }
+    },
+    {
+      "task": "LintQ",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 4,
+      "records": 58,
+      "groups": 46,
+      "train_records": 232,
+      "training_seconds": 0.41098779999811086,
+      "available_ram_mib": 867.6328125,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.7068965517241379,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.41414141414141414,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 17
+          },
+          "1": {
+            "precision": 0.7068965517241379,
+            "recall": 1.0,
+            "f1": 0.8282828282828283,
+            "support": 41
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            17
+          ],
+          [
+            0,
+            41
+          ]
+        ]
+      }
+    },
+    {
+      "task": "LintQ",
+      "model": "angle_reupload_4q_depth2_lr0035",
+      "fold": 5,
+      "records": 58,
+      "groups": 47,
+      "train_records": 232,
+      "training_seconds": 0.43084359999920707,
+      "available_ram_mib": 858.55078125,
+      "gradient_check": {
+        "parameter_shift": 1.2688029387617622e-05,
+        "finite_difference": 1.2688028405705152e-05,
+        "absolute_error": 9.81912469695122e-13,
+        "passed": true
+      },
+      "metrics": {
+        "accuracy": 0.6896551724137931,
+        "balanced_accuracy": 0.4878048780487805,
+        "macro_f1": 0.4081632653061224,
+        "per_class": {
+          "0": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 17
+          },
+          "1": {
+            "precision": 0.7017543859649122,
+            "recall": 0.975609756097561,
+            "f1": 0.8163265306122448,
+            "support": 41
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            17
+          ],
+          [
+            1,
+            40
+          ]
+        ]
+      }
+    }
+  ],
+  "runtime_seconds": 2.3646722000012232,
+  "frozen_test_accessed": false,
+  "source_manifest_sha256": "8903aba9cce7d2bfc3fc7430a39f3b87fa6e1463df9b93b3dc4865212efa14ab"
+}

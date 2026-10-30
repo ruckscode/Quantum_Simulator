@@ -1,0 +1,78 @@
+{
+  "schema": "local-grouped-classical-suite-config-v1",
+  "output": "reports/experiments/local_grouped_classical_suite_eligible_20261029",
+  "tasks": [
+    {
+      "name": "bugs4q_core",
+      "input": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_standalone\\normalized_manifest.csv",
+      "sha256": "cef4b2378b97610b498917f6412f18e716c2ab91369ea709fc98541952008cdb",
+      "rows": 62,
+      "groups": 31,
+      "source_id": "bugs4q_core",
+      "task_id": "source_state",
+      "target_semantics": "Buggy (1) versus fixed (0) Qiskit source snapshots grouped by issue; not hardware fault localization.",
+      "group_column": "bug_id",
+      "label_column": "label",
+      "feature_column": "code"
+    },
+    {
+      "name": "bugs4q_na",
+      "input": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_na\\normalized_manifest.csv",
+      "sha256": "00eb36aaea95733650b60866c6d09dad5d11b978370b16901570375f2dbc3711",
+      "rows": 62,
+      "groups": 31,
+      "source_id": "bugs4q_na",
+      "task_id": "source_state",
+      "target_semantics": "Buggy (1) versus fixed (0) source snapshot classification, grouped by issue. This predicts source-state labels and is not hardware fault localization.",
+      "group_column": "bug_id",
+      "label_column": "label",
+      "feature_column": "code"
+    },
+    {
+      "name": "bugs4q_pooled",
+      "input": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_joint\\normalized_manifest.csv",
+      "sha256": "2f1a561ba5301b8252ad4c07b0593e87ad59d63122aecb6d9500beac3e42d453",
+      "rows": 124,
+      "groups": 62,
+      "source_id": "bugs4q_joint",
+      "task_id": "source_state",
+      "target_semantics": "Buggy (1) versus fixed (0) source snapshots from the paired Bugs4Q core and NA subset; issue-group split. Not hardware diagnosis.",
+      "group_column": "bug_id",
+      "label_column": "label",
+      "feature_column": "code"
+    },
+    {
+      "name": "qolumbina_ideal",
+      "input": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\qolumbina_detection_ideal\\normalized_manifest.csv",
+      "sha256": "9b607e93eaf3912cc20610b30341573ff709abaf59086febc8f570eb12b0104e",
+      "rows": 182,
+      "groups": 26,
+      "source_id": "qolumbina_ideal",
+      "task_id": "seeded_mutant_detection_ideal",
+      "target_semantics": "Predict whether DOSS detects a seeded mutant in a majority of available ideal-backend report seeds; not a ground-truth repair label or hardware diagnosis.",
+      "group_column": "bug_id",
+      "label_column": "label",
+      "feature_column": "code"
+    },
+    {
+      "name": "bugs4q_robust_execution",
+      "input": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\bugs4q_robust_execution\\normalized_manifest.csv",
+      "sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205",
+      "rows": 2220,
+      "groups": 37,
+      "source_id": "bugs4q_robust",
+      "task_id": "harness_execution_outcome",
+      "target_semantics": "Predict observed test-harness Pass (0) or Fail (1) for a program snapshot; repeated execution records are grouped by issue. Not a universal bug label or hardware diagnosis.",
+      "group_column": "bug_id",
+      "label_column": "label",
+      "feature_column": "code"
+    }
+  ],
+  "folds": 5,
+  "split": "GroupKFold by contract source group",
+  "seed": 20261028,
+  "transform": "train-fold TF-IDF(1,2; max_features=512), TruncatedSVD(4), MinMaxScaler",
+  "estimators_per_task": 20,
+  "preprocessing_sampling_scope": "training fold only",
+  "note": "QNN comparison is not matched in feature representation. Blocked/exploratory duplicate-feature sources were excluded."
+}

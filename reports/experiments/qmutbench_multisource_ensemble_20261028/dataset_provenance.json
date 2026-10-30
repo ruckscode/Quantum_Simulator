@@ -1,0 +1,14 @@
+{
+  "campaign": "qmutbench_multisource_ensemble_20261028",
+  "primary_source": "QMutBench development-only OOF prediction artifacts",
+  "raw_data_loaded": false,
+  "prediction_artifacts": [
+    "reports/experiments/qmutbench_three_class_qnn_campaign_20261027/predictions.csv.gz",
+    "reports/experiments/qmutbench_three_class_qnn_campaign_20261027/amplitude_encoding/predictions.csv.gz",
+    "reports/experiments/qmutbench_three_class_qnn_campaign_20261027/trainable_readout/predictions.csv.gz"
+  ],
+  "primary_source_csv_sha256": "795dfa5cb6615e137ef02d7639028562d77ab8564589134f63d9d89aa8b3f3d2",
+  "task": "three-class mutation outcome; Survivor=0, WOO=1, OPO=2",
+  "development_split_artifact": "reports/experiments/qmutbench_three_class_qnn_campaign_20261027/grouped_split_manifest.csv",
+  "source_screening": "See source_inventory.csv. No incompatible labels were remapped or merged."
+}

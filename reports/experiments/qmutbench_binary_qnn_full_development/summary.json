@@ -1,0 +1,12 @@
+{
+  "schema": "qmutbench-binary-qnn-full-development-v1",
+  "status": "stopped_memory_guard",
+  "mode": "full-development",
+  "development_only": true,
+  "memory_guard_error": "Available RAM fell below 1024 MiB in epoch 1; no chunk checkpoint committed. TemporaryDirectory cleanup then encountered a Windows memmap lock.",
+  "active_fold": 1,
+  "active_chunk": 1,
+  "total_chunks_committed": 0,
+  "last_committed_checkpoint": null,
+  "frozen_test_accessed": false
+}

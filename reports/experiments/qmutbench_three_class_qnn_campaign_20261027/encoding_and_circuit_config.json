@@ -1,0 +1,56 @@
+[
+  {
+    "variant":"angle_reupload",
+    "ansatz_layers":2,
+    "logical_qubits":4,
+    "trainable_parameters":24,
+    "encoding_description":"RY(pi*x) per qubit and repeated before each trainable layer",
+    "readout_description":"three Pauli-Z expectations as softmax logits; weighted multiclass cross-entropy",
+    "compiled_circuit_depth":12,
+    "compiled_gate_count":18,
+    "compiled_gate_types":{
+      "AngleEmbedding":2,
+      "Rot":8,
+      "CNOT":8
+    },
+    "state_preparation_decomposed":false,
+    "shots":null,
+    "simulator":"PennyLane default.qubit; analytic statevector"
+  },
+  {
+    "variant":"amplitude",
+    "ansatz_layers":2,
+    "logical_qubits":2,
+    "trainable_parameters":12,
+    "encoding_description":"normalized four-value amplitude state; global input norm discarded; state-preparation gates costed separately as an explicit limitation",
+    "readout_description":"Z on each wire plus ZZ expectation as three softmax logits",
+    "compiled_circuit_depth":8,
+    "compiled_gate_count":11,
+    "compiled_gate_types":{
+      "RY":3,
+      "CNOT":4,
+      "Rot":4
+    },
+    "state_preparation_decomposed":true,
+    "shots":null,
+    "simulator":"PennyLane default.qubit; analytic statevector"
+  },
+  {
+    "variant":"angle_linear",
+    "ansatz_layers":2,
+    "logical_qubits":4,
+    "trainable_parameters":36,
+    "encoding_description":"RY(pi*x) per qubit and repeated before each trainable layer",
+    "readout_description":"three Pauli-Z expectations; trainable affine 3x3 readout and bias then softmax",
+    "compiled_circuit_depth":12,
+    "compiled_gate_count":18,
+    "compiled_gate_types":{
+      "AngleEmbedding":2,
+      "Rot":8,
+      "CNOT":8
+    },
+    "state_preparation_decomposed":false,
+    "shots":null,
+    "simulator":"PennyLane default.qubit; analytic statevector"
+  }
+]

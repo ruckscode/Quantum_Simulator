@@ -119,6 +119,72 @@ def main():
         'checkpoint_status':'member fold checkpoints listed','oof_prediction_path':str((folder/'equal_probability_ensemble_oof.csv').relative_to(ROOT)),
         'validation_protocol':'saved origin-group 3-fold OOF; fixed equal probability mean','group_unit':'origin_program',
         'gradient_checks':'all member checks passed','status':'completed_development_oof_diagnostic','source':'validation-only QNN ensemble'})
+    # Recovered, versioned 20-epoch binary architecture sweeps with newly
+    # matched fold-local classical controls. Historical partial outputs stay intact.
+    sweep_configs = {
+        'amplitude_hybrid_3q_depth1_lr004': 8,
+        'amplitude_hybrid_3q_depth2_lr004': 8,
+        'angle_reupload_4q_depth2_lr002': 4,
+        'angle_reupload_4q_depth2_lr0035': 4,
+        'angle_reupload_4q_depth2_lr007': 4,
+        'angle_4q_depth2_lr004': 4,
+    }
+    for task in ('bugs4q_robust_execution','qsimbench_backend_fingerprint'):
+        folder=C/task/'qnn_hyperparameter_sweep20_resumable_v2'
+        run=json.loads((folder/'run_manifest.json').read_text(encoding='utf-8'))
+        matched=json.loads((folder/'matched_classical_comparison.json').read_text(encoding='utf-8'))
+        for result in run['results']:
+            name=result['model']; width=sweep_configs[name]
+            control=matched['classical_metrics_by_feature_width'][str(width)]
+            fold_rows=[r for r in run['fold_results'] if r['model']==name]
+            checkpoint_paths=';'.join(r['checkpoint_path'] for r in fold_rows)
+            resumable=sum(r['checkpoint_kind']=='resumable_adam_rng_checkpoint' for r in fold_rows)
+            legacy=sum(r['checkpoint_kind']=='legacy_inference_only_checkpoint_reused' for r in fold_rows)
+            rows.append({'dataset_task':task,'target':run['source_receipt']['manifest_path'],'model':name,
+                'configuration':json.dumps(result['configuration'],sort_keys=True),'records':result['records'],
+                'groups':run['groups'],'folds':result['folds'],'epochs':20,'batch_size':64,'optimizer':'Adam',
+                'validation_accuracy_percent':round(float(result['accuracy'])*100,4),'final_test_accuracy_percent':'',
+                'macro_f1_percent':round(float(result['macro_f1'])*100,4),
+                'balanced_accuracy_percent':round(float(result['balanced_accuracy'])*100,4),
+                'baseline_model':f"balanced_logistic_{width}f_same_hashed_features",
+                'baseline_accuracy_percent':round(float(control['accuracy'])*100,4),
+                'baseline_macro_f1_percent':round(float(control['macro_f1'])*100,4),
+                'baseline_balanced_accuracy_percent':round(float(control['balanced_accuracy'])*100,4),
+                'training_seconds':round(sum(float(r['training_seconds']) for r in fold_rows),4),
+                'checkpoint_path':checkpoint_paths,
+                'checkpoint_status':f'{resumable} resumable; {legacy} legacy inference-only reused',
+                'oof_prediction_path':str((folder/'oof_predictions.csv').relative_to(ROOT)),
+                'validation_protocol':'5-fold GroupKFold; exact assignments verified against saved baseline OOF; train-only scaling',
+                'group_unit':'bug_id source group','lowest_observed_available_ram_mib':min(float(r['available_ram_mib']) for r in fold_rows),
+                'gradient_checks':f"{sum(bool(r['gradient_check']['passed']) for r in fold_rows)}/{len(fold_rows)} passed",
+                'status':'completed_development_oof_exploratory_sweep','source':'resumed 20-epoch QNN sweep with matched classical controls'})
+    # Separate 12-epoch QMutBench three-class rerun closes the prior
+    # parameter-checkpoint gap without replacing the historical 24-epoch run.
+    folder=C/'qmutbench_threeclass_resumable_recovery_20261029'
+    if (folder/'summary.json').exists() and (folder/'matched_classical_comparison.json').exists():
+        run=json.loads((folder/'summary.json').read_text(encoding='utf-8'))
+        matched=json.loads((folder/'matched_classical_comparison.json').read_text(encoding='utf-8'))
+        for result in run['results']:
+            name=result['model']; fold_rows=[r for r in run['fold_results'] if r['model']==name]
+            histories=[json.loads((folder/name/f"fold_{f}"/'training_history.json').read_text(encoding='utf-8')) for f in (1,2,3)]
+            rows.append({'dataset_task':'QMutBench three-class research','target':'Survivor=0 / WOO=1 / OPO=2',
+                'model':name,'configuration':json.dumps(result['configuration'],sort_keys=True),
+                'records':result['records'],'groups':run['origins'],'folds':result['folds'],'epochs':12,
+                'batch_size':32,'optimizer':'Adam','validation_accuracy_percent':round(float(result['accuracy'])*100,4),
+                'final_test_accuracy_percent':'','macro_f1_percent':round(float(result['macro_f1'])*100,4),
+                'balanced_accuracy_percent':round(float(result['balanced_accuracy'])*100,4),
+                'baseline_model':'extra_trees_4f_same_fold_same_features',
+                'baseline_accuracy_percent':round(float(matched['classical_metrics']['extra_trees_4f']['accuracy'])*100,4),
+                'baseline_macro_f1_percent':round(float(matched['classical_metrics']['extra_trees_4f']['macro_f1'])*100,4),
+                'baseline_balanced_accuracy_percent':round(float(matched['classical_metrics']['extra_trees_4f']['balanced_accuracy'])*100,4),
+                'training_seconds':round(float(result['training_seconds']),4),
+                'checkpoint_path':';'.join(str((folder/name/f'fold_{f}'/'checkpoint.npz').relative_to(ROOT)) for f in (1,2,3)),
+                'checkpoint_status':'3 resumable Adam/RNG checkpoints; replay audit verified',
+                'oof_prediction_path':str((folder/'oof_predictions.csv').relative_to(ROOT)),
+                'validation_protocol':'saved three-fold origin-group split; train-only feature transforms; exact OOF replay verified',
+                'group_unit':'origin_program','lowest_observed_available_ram_mib':min(float(h['available_ram_mib']) for group in histories for h in group),
+                'gradient_checks':f"{sum(bool(r['gradient_check']['passed']) for r in fold_rows)}/{len(fold_rows)} passed",
+                'status':'completed_development_oof_resumable_recovery','source':'versioned QMutBench three-class checkpoint recovery with matched classical controls'})
     dump(C/'qml_model_accuracy_benchmark.csv',sorted(rows,key=lambda r:(r['dataset_task'],-float(r['validation_accuracy_percent']))))
     winners={}
     for r in rows:

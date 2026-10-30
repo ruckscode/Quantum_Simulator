@@ -1,0 +1,53 @@
+{
+  "active_fold": 1,
+  "checkpoint_dir": "fold_checkpoints",
+  "chunks_committed_this_invocation": 1,
+  "completed_folds": [],
+  "configuration": {
+    "batch_size": 32,
+    "chunk_batches": 16,
+    "classical_estimators": 100,
+    "depth": 2,
+    "encoding": "angle_reupload",
+    "epochs": 8,
+    "fold_count": 5,
+    "learning_rate": 0.02,
+    "max_train_per_class_per_fold": 256,
+    "max_validation_per_class_per_fold": 256,
+    "optimizer": "adam",
+    "per_origin_class_cap": 32,
+    "qubits": 4,
+    "seed": 20261028
+  },
+  "development_only": true,
+  "expected_development_records": 578117,
+  "frozen_test_accessed": false,
+  "genuine_quantum_gradient_update_occurred": true,
+  "gradient_check": {
+    "absolute_error": 1.1102228816459949e-11,
+    "autodiff": 1.429791614965259e-18,
+    "epsilon": 1e-05,
+    "finite_difference": 1.1102230246251564e-11,
+    "passed": true,
+    "tolerance": 0.0005
+  },
+  "mode": "full-development",
+  "next_batch": 5952,
+  "next_chunk": 373,
+  "next_epoch": 0,
+  "optimizer_updates_this_invocation": 16,
+  "parameter_update_verified": true,
+  "records_processed_this_invocation": 512,
+  "resume_events": 11,
+  "schema": "qmutbench-binary-qnn-full-development-v1",
+  "status": "paused_checkpointed",
+  "streaming_configuration": {
+    "metadata_chunk_rows": 10000,
+    "preprocessor_fit_row_limit": 5000,
+    "preprocessor_sampling": "deterministic train-only class-balanced first-in-cache-order",
+    "qasm_feature_chunk_rows": 10000
+  },
+  "total_chunks_committed": 372,
+  "total_optimizer_updates": 5952,
+  "total_qnn_records_processed": 190464
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "qmutbench-qml-backend-smoke-v1",
+  "environment": "local Windows QMutBench virtualenv",
+  "devices": [
+    {
+      "device": "default.qubit",
+      "status": "gradient_passed",
+      "forward_values": [0.13145297624024344, 0.7036954397067187, 0.1291631560908404],
+      "gradient_norm": 1.09549839456183,
+      "gradient_finite": true,
+      "elapsed_seconds": 0.01807840000037686,
+      "rss_before_bytes": 138981376,
+      "rss_after_bytes": 139464704,
+      "peak_rss_bytes": 139464704,
+      "usable": true
+    },
+    {
+      "device": "lightning.qubit",
+      "status": "unavailable",
+      "reason": "ImportError: Pre-compiled binaries for lightning.qubit are not available; Windows Application Control blocked the DLL."
+    },
+    {
+      "device": "lightning.gpu",
+      "status": "unavailable",
+      "reason": "Device plugin is not installed."
+    }
+  ],
+  "gpu_available": false,
+  "selected_device": "default.qubit",
+  "selected_device_usable": true,
+  "scope": "Forward and autograd gradient smoke test only; no QMutBench records trained; no quantum advantage claim."
+}

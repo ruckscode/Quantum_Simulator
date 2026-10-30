@@ -1,0 +1,398 @@
+{
+  "status": "completed_matched_classical_grouped_oof",
+  "task": "Bugs4Q core",
+  "target": "Bugs4Q core",
+  "records": 62,
+  "groups": 31,
+  "folds": 5,
+  "feature_policy": "same deterministic 8-bin BLAKE2b token counts as QNN; fold-local min-max; compare 4-feature and 8-feature controls",
+  "split_source": "saved development QNN grouped out-of-fold fold assignment",
+  "source_manifest_sha256": "cef4b2378b97610b498917f6412f18e716c2ab91369ea709fc98541952008cdb",
+  "scikit_learn": "1.9.1",
+  "models": [
+    {
+      "task": "Bugs4Q core",
+      "model": "majority_dummy",
+      "feature_count": 4,
+      "records": 62,
+      "folds": 5,
+      "accuracy": 0.5,
+      "macro_f1": 0.3333333333333333,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 31
+        }
+      },
+      "confusion_matrix": [
+        [
+          31,
+          0
+        ],
+        [
+          31,
+          0
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "logistic_balanced",
+      "feature_count": 4,
+      "records": 62,
+      "folds": 5,
+      "accuracy": 0.5,
+      "macro_f1": 0.49354413702239797,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.5,
+          "recall": 0.3870967741935484,
+          "f1": 0.43636363636363634,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.5,
+          "recall": 0.6129032258064516,
+          "f1": 0.5507246376811595,
+          "support": 31
+        }
+      },
+      "confusion_matrix": [
+        [
+          12,
+          19
+        ],
+        [
+          12,
+          19
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "decision_tree_balanced",
+      "feature_count": 4,
+      "records": 62,
+      "folds": 5,
+      "accuracy": 0.532258064516129,
+      "macro_f1": 0.5221897422269466,
+      "balanced_accuracy": 0.532258064516129,
+      "per_class": {
+        "0": {
+          "precision": 0.525,
+          "recall": 0.6774193548387096,
+          "f1": 0.5915492957746479,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.5454545454545454,
+          "recall": 0.3870967741935484,
+          "f1": 0.45283018867924524,
+          "support": 31
+        }
+      },
+      "confusion_matrix": [
+        [
+          21,
+          10
+        ],
+        [
+          19,
+          12
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "random_forest_balanced",
+      "feature_count": 4,
+      "records": 62,
+      "folds": 5,
+      "accuracy": 0.532258064516129,
+      "macro_f1": 0.532136351808483,
+      "balanced_accuracy": 0.532258064516129,
+      "per_class": {
+        "0": {
+          "precision": 0.53125,
+          "recall": 0.5483870967741935,
+          "f1": 0.5396825396825397,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.5333333333333333,
+          "recall": 0.5161290322580645,
+          "f1": 0.5245901639344263,
+          "support": 31
+        }
+      },
+      "confusion_matrix": [
+        [
+          17,
+          14
+        ],
+        [
+          15,
+          16
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "extra_trees_balanced",
+      "feature_count": 4,
+      "records": 62,
+      "folds": 5,
+      "accuracy": 0.5645161290322581,
+      "macro_f1": 0.5644028103044496,
+      "balanced_accuracy": 0.564516129032258,
+      "per_class": {
+        "0": {
+          "precision": 0.5625,
+          "recall": 0.5806451612903226,
+          "f1": 0.5714285714285715,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.5666666666666667,
+          "recall": 0.5483870967741935,
+          "f1": 0.5573770491803278,
+          "support": 31
+        }
+      },
+      "confusion_matrix": [
+        [
+          18,
+          13
+        ],
+        [
+          14,
+          17
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "majority_dummy",
+      "feature_count": 8,
+      "records": 62,
+      "folds": 5,
+      "accuracy": 0.5,
+      "macro_f1": 0.3333333333333333,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 31
+        }
+      },
+      "confusion_matrix": [
+        [
+          31,
+          0
+        ],
+        [
+          31,
+          0
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "logistic_balanced",
+      "feature_count": 8,
+      "records": 62,
+      "folds": 5,
+      "accuracy": 0.46774193548387094,
+      "macro_f1": 0.4608695652173913,
+      "balanced_accuracy": 0.467741935483871,
+      "per_class": {
+        "0": {
+          "precision": 0.4583333333333333,
+          "recall": 0.3548387096774194,
+          "f1": 0.39999999999999997,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.47368421052631576,
+          "recall": 0.5806451612903226,
+          "f1": 0.5217391304347826,
+          "support": 31
+        }
+      },
+      "confusion_matrix": [
+        [
+          11,
+          20
+        ],
+        [
+          13,
+          18
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "decision_tree_balanced",
+      "feature_count": 8,
+      "records": 62,
+      "folds": 5,
+      "accuracy": 0.5161290322580645,
+      "macro_f1": 0.5032051282051282,
+      "balanced_accuracy": 0.5161290322580645,
+      "per_class": {
+        "0": {
+          "precision": 0.5121951219512195,
+          "recall": 0.6774193548387096,
+          "f1": 0.5833333333333334,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.5238095238095238,
+          "recall": 0.3548387096774194,
+          "f1": 0.4230769230769231,
+          "support": 31
+        }
+      },
+      "confusion_matrix": [
+        [
+          21,
+          10
+        ],
+        [
+          20,
+          11
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "random_forest_balanced",
+      "feature_count": 8,
+      "records": 62,
+      "folds": 5,
+      "accuracy": 0.5,
+      "macro_f1": 0.496726891856507,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.5,
+          "recall": 0.5806451612903226,
+          "f1": 0.537313432835821,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.5,
+          "recall": 0.41935483870967744,
+          "f1": 0.45614035087719296,
+          "support": 31
+        }
+      },
+      "confusion_matrix": [
+        [
+          18,
+          13
+        ],
+        [
+          18,
+          13
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Bugs4Q core",
+      "model": "extra_trees_balanced",
+      "feature_count": 8,
+      "records": 62,
+      "folds": 5,
+      "accuracy": 0.5,
+      "macro_f1": 0.496726891856507,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.5,
+          "recall": 0.5806451612903226,
+          "f1": 0.537313432835821,
+          "support": 31
+        },
+        "1": {
+          "precision": 0.5,
+          "recall": 0.41935483870967744,
+          "f1": 0.45614035087719296,
+          "support": 31
+        }
+      },
+      "confusion_matrix": [
+        [
+          18,
+          13
+        ],
+        [
+          18,
+          13
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    }
+  ],
+  "fold_metrics_path": "fold_metrics.csv",
+  "oof_predictions_path": "oof_predictions.csv",
+  "tuning": "fixed published-in-this-run configurations; no hyperparameter selection on validation folds",
+  "frozen_test_accessed": false
+}

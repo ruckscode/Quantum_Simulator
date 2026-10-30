@@ -1,0 +1,577 @@
+{
+  "class_counts": {
+    "0": 4570,
+    "1": 4570
+  },
+  "classical": {
+    "accuracy": 0.500218818380744,
+    "balanced_accuracy": 0.500218818380744,
+    "confusion_matrix": [
+      [
+        2428,
+        2142
+      ],
+      [
+        2426,
+        2144
+      ]
+    ],
+    "features": "same 8 hashed-text features; fold-local train-only minmax scaling",
+    "macro_f1": 0.49973582220259105,
+    "model": "balanced LogisticRegression",
+    "per_class": {
+      "0": {
+        "f1": 0.5152801358234296,
+        "precision": 0.5002060156571899,
+        "recall": 0.5312910284463895,
+        "support": 4570
+      },
+      "1": {
+        "f1": 0.48419150858175247,
+        "precision": 0.5002333177788147,
+        "recall": 0.46914660831509847,
+        "support": 4570
+      }
+    },
+    "predictions_sha256": "8a372abe17fb23f6f8884e87009a0422d7f4fe25822488a2681ad39fb19a8832"
+  },
+  "config": {
+    "batch_size": 64,
+    "contract_sha256": "2cdfed3313152c9e8601694999b1e87d804fb3436ea7dd1f178f00cf9264d500",
+    "final_epochs": 4,
+    "learning_rate": 0.04,
+    "model": {
+      "depth": 1,
+      "encoding": "amplitude",
+      "features": 8,
+      "learning_rate": 0.04,
+      "name": "amplitude_3q_depth1_lr004",
+      "qubits": 3,
+      "reupload": false
+    },
+    "optimizer": "Adam",
+    "processed_manifest_sha256": "fc4e72edb0882f7f2a1fb93bdca497432b732a8f0c2a48f1b40caba69165d325",
+    "scaler": "minmax fitted on each fold's training rows only",
+    "seed": 28102026,
+    "source_hash": "d7a7010bfc6421a94b5cb03b70568cfe7fd2537c2ac1f11ae433e29b4a42e853",
+    "split": "reused saved 5-fold assignments grouped by source pair connected by exact OpenQASM recurrence",
+    "split_sha256": "4d9634f7cfcce4a54a4fe54527c874867de327522e35d9aaec3addc3123444cc",
+    "target_semantics": "Upstream Mute-Alg original (0) versus synthetically buggy (1) circuits from HornBro; paired records and exact OpenQASM repeats are grouped. Historical source repair outcome, not hardware diagnosis.",
+    "task_id": "mute_alg_hornbro_qasm_v2",
+    "text_features": "8-dimensional deterministic BLAKE2 hashed-token counts of code only"
+  },
+  "config_sha256": "f58cf57f6d7d1e6fe408202f47c00e0433b565129ead317ff5354ea5015b8d4b",
+  "evaluation_scope": "development grouped OOF only",
+  "folds": 5,
+  "frozen_test_accessed": false,
+  "groups": 812,
+  "paired_group_bootstrap_95_percentile": {
+    "groups_resampled": 812,
+    "iterations": 1000,
+    "macro_f1_difference_qnn_minus_classical": -0.011535118090296025,
+    "percentile_95_ci": [
+      -0.06941827567005465,
+      0.05159172454407958
+    ]
+  },
+  "qnn": {
+    "accuracy": 0.5071115973741794,
+    "balanced_accuracy": 0.5071115973741794,
+    "checkpoints": [
+      {
+        "checkpoint_sha256": "55768d1071a5f854fa6bca2eef40b79ca87009ae75d8abc8b63a69e230061a63",
+        "epoch": 4,
+        "fold": 1,
+        "history_sha256": "13ff015522f2b4db8473b32649dbfd9333ca1c242843614319f054233e08b824"
+      },
+      {
+        "checkpoint_sha256": "60e29114af38851a578f8be03a6797b1cf8f2d45660ce5754d9e925b82831764",
+        "epoch": 4,
+        "fold": 2,
+        "history_sha256": "9e8c2b86ce79cc27d34315dbf34a0041845cf716e874acac1b86472691735d23"
+      },
+      {
+        "checkpoint_sha256": "1031b16114ea9e0d656aab67eaf28c15b95c3da05f6ed2623db92f13f3963480",
+        "epoch": 4,
+        "fold": 3,
+        "history_sha256": "3afe35246299e095e05513a4446177f64a4437332ee487dc7fc06c4de9b8d407"
+      },
+      {
+        "checkpoint_sha256": "9678349910f95a36ec6055d02dfd0bb472d68673dc3dd083839636c6504b0612",
+        "epoch": 4,
+        "fold": 4,
+        "history_sha256": "e4460bbe85c794ac9f9ed3c6e76eb3b818919dc1c709c4a1230bab928440d981"
+      },
+      {
+        "checkpoint_sha256": "c319f71cff4f62ccc7a2784205eb77be27a5b3fd648e7053061c9c717609d574",
+        "epoch": 4,
+        "fold": 5,
+        "history_sha256": "d667242b433f7f353525771c78fc23cd2aa2428cec4353807068550b7ac03315"
+      }
+    ],
+    "confusion_matrix": [
+      [
+        3168,
+        1402
+      ],
+      [
+        3103,
+        1467
+      ]
+    ],
+    "fold_metrics": [
+      {
+        "classical": {
+          "accuracy": 0.5032822757111597,
+          "balanced_accuracy": 0.5032822757111597,
+          "confusion_matrix": [
+            [
+              390,
+              524
+            ],
+            [
+              384,
+              530
+            ]
+          ],
+          "macro_f1": 0.5003515971178669,
+          "per_class": {
+            "0": {
+              "f1": 0.46208530805687204,
+              "precision": 0.5038759689922481,
+              "recall": 0.42669584245076586,
+              "support": 914
+            },
+            "1": {
+              "f1": 0.5386178861788617,
+              "precision": 0.5028462998102466,
+              "recall": 0.5798687089715536,
+              "support": 914
+            }
+          }
+        },
+        "fold": 1,
+        "qnn": {
+          "accuracy": 0.5043763676148797,
+          "balanced_accuracy": 0.5043763676148797,
+          "confusion_matrix": [
+            [
+              474,
+              440
+            ],
+            [
+              466,
+              448
+            ]
+          ],
+          "macro_f1": 0.504276083028925,
+          "per_class": {
+            "0": {
+              "f1": 0.511326860841424,
+              "precision": 0.5042553191489362,
+              "recall": 0.5185995623632386,
+              "support": 914
+            },
+            "1": {
+              "f1": 0.49722530521642616,
+              "precision": 0.5045045045045045,
+              "recall": 0.49015317286652077,
+              "support": 914
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.5010940919037199,
+          "balanced_accuracy": 0.5010940919037199,
+          "confusion_matrix": [
+            [
+              360,
+              554
+            ],
+            [
+              358,
+              556
+            ]
+          ],
+          "macro_f1": 0.49529179260637063,
+          "per_class": {
+            "0": {
+              "f1": 0.4411764705882353,
+              "precision": 0.5013927576601671,
+              "recall": 0.3938730853391685,
+              "support": 914
+            },
+            "1": {
+              "f1": 0.549407114624506,
+              "precision": 0.5009009009009009,
+              "recall": 0.6083150984682714,
+              "support": 914
+            }
+          }
+        },
+        "fold": 2,
+        "qnn": {
+          "accuracy": 0.5021881838074398,
+          "balanced_accuracy": 0.5021881838074398,
+          "confusion_matrix": [
+            [
+              888,
+              26
+            ],
+            [
+              884,
+              30
+            ]
+          ],
+          "macro_f1": 0.36153096237842647,
+          "per_class": {
+            "0": {
+              "f1": 0.6612062546537602,
+              "precision": 0.5011286681715575,
+              "recall": 0.9715536105032823,
+              "support": 914
+            },
+            "1": {
+              "f1": 0.06185567010309278,
+              "precision": 0.5357142857142857,
+              "recall": 0.03282275711159737,
+              "support": 914
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.49562363238512036,
+          "balanced_accuracy": 0.4956236323851203,
+          "confusion_matrix": [
+            [
+              592,
+              322
+            ],
+            [
+              600,
+              314
+            ]
+          ],
+          "macro_f1": 0.4836822595962381,
+          "per_class": {
+            "0": {
+              "f1": 0.5622032288698956,
+              "precision": 0.4966442953020134,
+              "recall": 0.6477024070021882,
+              "support": 914
+            },
+            "1": {
+              "f1": 0.4051612903225807,
+              "precision": 0.4937106918238994,
+              "recall": 0.3435448577680525,
+              "support": 914
+            }
+          }
+        },
+        "fold": 3,
+        "qnn": {
+          "accuracy": 0.4989059080962801,
+          "balanced_accuracy": 0.4989059080962801,
+          "confusion_matrix": [
+            [
+              908,
+              6
+            ],
+            [
+              910,
+              4
+            ]
+          ],
+          "macro_f1": 0.3366862517667789,
+          "per_class": {
+            "0": {
+              "f1": 0.6647144948755491,
+              "precision": 0.49944994499449946,
+              "recall": 0.9934354485776805,
+              "support": 914
+            },
+            "1": {
+              "f1": 0.008658008658008658,
+              "precision": 0.4,
+              "recall": 0.00437636761487965,
+              "support": 914
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.5032822757111597,
+          "balanced_accuracy": 0.5032822757111598,
+          "confusion_matrix": [
+            [
+              412,
+              502
+            ],
+            [
+              406,
+              508
+            ]
+          ],
+          "macro_f1": 0.5019085527168667,
+          "per_class": {
+            "0": {
+              "f1": 0.4757505773672055,
+              "precision": 0.5036674816625917,
+              "recall": 0.45076586433260396,
+              "support": 914
+            },
+            "1": {
+              "f1": 0.5280665280665281,
+              "precision": 0.502970297029703,
+              "recall": 0.5557986870897156,
+              "support": 914
+            }
+          }
+        },
+        "fold": 4,
+        "qnn": {
+          "accuracy": 0.6105032822757112,
+          "balanced_accuracy": 0.6105032822757112,
+          "confusion_matrix": [
+            [
+              852,
+              62
+            ],
+            [
+              650,
+              264
+            ]
+          ],
+          "macro_f1": 0.5655522324289682,
+          "per_class": {
+            "0": {
+              "f1": 0.7052980132450333,
+              "precision": 0.5672436750998668,
+              "recall": 0.9321663019693655,
+              "support": 914
+            },
+            "1": {
+              "f1": 0.4258064516129032,
+              "precision": 0.8098159509202454,
+              "recall": 0.2888402625820569,
+              "support": 914
+            }
+          }
+        }
+      },
+      {
+        "classical": {
+          "accuracy": 0.49781181619256015,
+          "balanced_accuracy": 0.49781181619256015,
+          "confusion_matrix": [
+            [
+              674,
+              240
+            ],
+            [
+              678,
+              236
+            ]
+          ],
+          "macro_f1": 0.4672245963158864,
+          "per_class": {
+            "0": {
+              "f1": 0.5948808473080318,
+              "precision": 0.4985207100591716,
+              "recall": 0.737417943107221,
+              "support": 914
+            },
+            "1": {
+              "f1": 0.339568345323741,
+              "precision": 0.4957983193277311,
+              "recall": 0.25820568927789933,
+              "support": 914
+            }
+          }
+        },
+        "fold": 5,
+        "qnn": {
+          "accuracy": 0.4195842450765864,
+          "balanced_accuracy": 0.4195842450765864,
+          "confusion_matrix": [
+            [
+              46,
+              868
+            ],
+            [
+              193,
+              721
+            ]
+          ],
+          "macro_f1": 0.3279502584756055,
+          "per_class": {
+            "0": {
+              "f1": 0.0797918473547268,
+              "precision": 0.19246861924686193,
+              "recall": 0.05032822757111598,
+              "support": 914
+            },
+            "1": {
+              "f1": 0.5761086695964842,
+              "precision": 0.45374449339207046,
+              "recall": 0.7888402625820569,
+              "support": 914
+            }
+          }
+        }
+      }
+    ],
+    "macro_f1": 0.4894278898376848,
+    "model": {
+      "depth": 1,
+      "encoding": "amplitude",
+      "features": 8,
+      "learning_rate": 0.04,
+      "name": "amplitude_3q_depth1_lr004",
+      "qubits": 3,
+      "reupload": false
+    },
+    "per_class": {
+      "0": {
+        "f1": 0.5844479291578268,
+        "precision": 0.5051825865093287,
+        "recall": 0.6932166301969366,
+        "support": 4570
+      },
+      "1": {
+        "f1": 0.39440785051754274,
+        "precision": 0.5113279888462879,
+        "recall": 0.32100656455142235,
+        "support": 4570
+      }
+    },
+    "predictions_sha256": "4fd579b52959dcdff3428d40ff10a3f1e3c284be9b07afe7b891994840d9b457"
+  },
+  "resume_verification": {
+    "all_group_folds_preserved": true,
+    "all_optimizer_states_present": true,
+    "checkpoint_epochs": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "resume_events": 1,
+    "status": "verified",
+    "uninterrupted_reference_parity": {
+      "bias": true,
+      "head": true,
+      "m_b": true,
+      "m_h": true,
+      "m_t": true,
+      "rng_state": true,
+      "theta": true,
+      "v_b": true,
+      "v_h": true,
+      "v_t": true
+    }
+  },
+  "rows": 9140,
+  "runtime": {
+    "batch_size": 64,
+    "elapsed_seconds_this_invocation": 9.085,
+    "memory_available_end_mib": 926.9,
+    "memory_available_start_mib": 988.0,
+    "memory_floor_mib": 500
+  },
+  "source_audit": {
+    "contract_sha256": "2cdfed3313152c9e8601694999b1e87d804fb3436ea7dd1f178f00cf9264d500",
+    "fold_path": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\data\\processed\\mute_alg\\compatible_subset_qasm_v2_qiskit_compat_v2\\manifests\\group_folds.csv",
+    "fold_sha256": "4d9634f7cfcce4a54a4fe54527c874867de327522e35d9aaec3addc3123444cc",
+    "group_count": 812,
+    "partition_sha256": [
+      "b1fb630522652cceb7e20db872f73bec4924b81ccf2518d6b8617a55a67553a7",
+      "773b00f69848e817061929552180dd90774afb13b65ea4c530a79842255f370c",
+      "9af2f8933c7218a628fd9d5be8badb0f5ad2cb6bd51cb8fbd551bd542ebb0790",
+      "c94a365a860a82c4e8b7afd0b801b13c2f9bbb347ebb09424cc0be283575d88c",
+      "97a5da391e6519db537f5eac00cf4f5b3d165ff0cb46466dfeaf7c57fa0fdfbc",
+      "fa54e40ea578872bd518132d8a3d0d49c853d945f3748be60d1cef5d3a379acf",
+      "d0bc89b141deeb7efef79a221e98aed020815f40cf8884be31b0501b1e883008",
+      "2520b95c060373ecf0b907d851a5dd8777ef33fd4db7b682db601058a36c1db5",
+      "fb272dd481af36eaa9985851793e62bdd9c7ce517c3cb83cecd6cc5deb689c3e",
+      "0d5113c3651664148c6a60722293714cba3ae2e691b7e7d7de2d3d18ee35f739",
+      "33d3111e079082159130def24dd07562f36e35f762ee6096debe7e0c545af24c",
+      "bbf59fcd8ca405f405de7bb953c13abc7495f00f962ae2716450f686c855a511",
+      "00519d944eefe6116c1305def1e1499e17f1b404f38ee4df199af7a08ee1b980",
+      "998e62f52ddd53f487b4acca12f4f0ad9623b66373cf4a5b4099c3d6ca9ddc1a",
+      "ca761d011ce9bcaaad17389e0b66f27a1c9485f34ae68958cc8cfaf67d13c2f2",
+      "6bd5f67dc86d50f49e2595f844489448752d2da9abc6dae4cf9f882d22196322",
+      "bd87aec5a05a01cdbe48409a66c2ed7a8b432e97b93fd76a987e0a64e0af66cc",
+      "b66bcad44e4bef5a2677d02f18541cff482e10845f005c8abe7ccc76f698d797",
+      "f7e1b44b6aeb26fe633444c65d53ff7e3fe314372507a46d12a167a24c6b2c78",
+      "1ca4d5fdf6b83b5f2b3ad6209ce448c40750685ae84e5295783a81b425fdf826",
+      "d1162b7beb5cb37cd614aff792bc3f368724fbefdcf1d087a3899c4b2616d55d",
+      "b3b22151cecc374db23800ecd38976ce63469703a1e3433be9d9d584eea4bb94",
+      "fae2ac80c172f88be1ca4686898bcf612d44332a1043375f4e68b13da692d26d",
+      "fcbcb4fe67d0dcd4581c94680788f1d208d885f24daff3c75385b82cda779167",
+      "448d15a882b9fd68a02053704451093eff5b7c22251e35a7c02f75de1c1acbf4",
+      "a6884b046cfa6f6686d47433f4a4977581fde7f1c82b7b3aa71292a41b758e5a",
+      "0c88e7888b07d83b92cc16fd0dcc830c71e1ddebbfbac79092f0d03dea10f872",
+      "67cd65d6bcdf6b39d2bc8b75552e3a1578d7d9c0a21cdcef9db5dfb53c5af644",
+      "8c1f649a220c6eb396767f6b9fd852d64c9c3f145c44bea52c22ef5bc614cac4",
+      "613228b0ae016f17b7928d698b8e66123aac13c165e122268eaf374e482b537d",
+      "006a24ff41410358cfb8fdc1a9d5132410fd147a23f7a9d594790e85a7b558cc",
+      "c9024db54f738b77af95f22526483731601d4b1643eb4d2139ff5ba8413ffb7e",
+      "c7efc956ad4d2ac5def002f77b7756d529f7dd37d7b5bbb34d7cf40d5614cfe5",
+      "8ad5528543ba6ac34e4e62ddd2cac69c3bd76b620ca9c1b60a12b057957620ba",
+      "ef97c8a918a7cc3472b0248fc1f91de5fe30849c86d4977006265e004d5bb2ca",
+      "90f4ffe1ff7493968829662d37fb062e2997b81ed013b9b8c521d595b75cea30",
+      "a8d0fd4602e96d331df39de94aa127dd46d5dd69b891a714aedb4fec96fa44e0",
+      "f802ca29d052c86254d0f127402341a03894f4ced15c25b9f5e5f477115eed5c",
+      "940c172606bbdfcfba79bb347fb8f07d3a46b5e759fb4e82951930ac66311fce",
+      "6f58f6f35b4f58d4afd7a694524d81349f9f5355f57b1313e273cdcd6eb1b733",
+      "411f4d190eaddac18e64020d74b3fbc8e79bd51a07b82ace579eec414d05dabd",
+      "d6b3d429acfcb8f8c243e1132c4fc867e76b6891b4de76f3b364dd3e93f87432",
+      "b86d1a66b71e1cb4b7c4575503f4d2482380f2b69f0b8e03ea890af2a5ea8ae2",
+      "4516bc2a055e94e71d1aeff8c1f8b1da077d2a01d598ec59d89d277a7e1173ed",
+      "f04e7a67a7d68cc86268faeb39e88cd478efe6508be3aeccd2d5a1ea63d77177",
+      "a50ea63af3e347d17d025c30d9bdfcca2abca0b318357e097660127dc37f26bb",
+      "d38fb269c799a911dd3e53cf6e7a4c8bf60a89381447f3bf3a9f5586ae2fa742",
+      "fd97832d3af81ecf58a350b357b8d3d20222bd6470c877cf6b270212328e3b2e",
+      "9dae925a1fa7f4df48232935fa5ad50bb313146de5cfa8cc0aa57fa8d3c517f7",
+      "9d020381729262e380abc95e293d49a89c5462f6fc913a45445824d51c9c5830",
+      "e1a361f705a7eddadf76d52dc3a3cce7de3f4b093eec382c1562cec9f6294cc7",
+      "64097c166d5caf30ad4b3b12e3565cef5384be7102e0235c19e51e5b59736886",
+      "00a0f34a8e881040236b6ea6bc29986ab19f51c88eb360f7ea7d62b8d8dd515d",
+      "6fb4fd20312a4a79552a1fa6bf55b3c927d2fceeaa9ee8e45a64a2c672238f2a",
+      "a9a64d4e3f853f6a25774b3f36e6b018d215b0fef0c95f3649ea1c5e1ffb9a94",
+      "99692d1820891a10dcee794bbb5d2ae8de40f7ad5e445701748117237d706c07",
+      "9a188dee93cc8c04dc824c81d73634da062e22a8b8bae0f52dd12800edc46ebc",
+      "9350017bf76bdaa7d1c1360fc8bbfa49c74bca00d37dea88cc05c97a0f341ffa",
+      "edeaacac97b03fa58b1c14e1f68716b8ab79b0cec690fad6650b9e959fa100df",
+      "fb81edf7455dc4d25e4ef000883bf5820093cbd93d05b7d43bc00ff3f2ef9bea",
+      "69dfad574f93afb00752d8714ccbdbc0256118cd501810bf323797a4f9b73c17",
+      "a2854807eff70beff342d607491caf213c989adf2790a969c837f10d1acbf78a",
+      "da01325c652c6f78f14e013d26ddb4eecc6683eac8c5bb4693d12023856d256c",
+      "1e12ebb56e5c8d01aebc3d964f9596a4174c59912a4b9ff2c6c74a936a41a4b4",
+      "272059e927c25fcdde63132dedca15da46e25a7885153ca772612d52548a774a",
+      "c5917b8710e980b11a68be217e386dbbeadb86a52e96e45dd6356406cd904382",
+      "29c672630e79ca40f0cc3f1b35fb559bf3610e847b74eb9092cedc450522f9cf",
+      "35407d8fd2f979a9d72652bdd8dc7ee07c68ed53d316de9a45372357f2644700",
+      "279f98cd5b6537d08e1567eab84906dcbef11817f8223e7bd0f7ea04e1283f70",
+      "4aa13d832923ec52442dc826daced19e9d4718ec2ec267f2923e4f6211f2626b",
+      "989fe3485e679ef8f49b84d91356b8f45b59a30b3fc1a49290c70c10fa010d92",
+      "538771fa8cb02d8f63af255d4acf8bf6fa10199343128c5f6a686db0badb2b96"
+    ],
+    "processed_manifest": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\data\\processed\\mute_alg\\compatible_subset_qasm_v2_qiskit_compat_v2\\manifest.json",
+    "processed_manifest_sha256": "fc4e72edb0882f7f2a1fb93bdca497432b732a8f0c2a48f1b40caba69165d325",
+    "raw_snapshot_hashes": 1,
+    "record_count": 9140,
+    "source_path": "C:\\Users\\pcm\\OneDrive\\Desktop\\Quantum_Simulator\\reports\\experiments\\qmutbench_multisource_qml_campaign_20261028\\mute_alg_compatible_subset_qiskit_compat_v2\\normalized_manifest.csv",
+    "source_sha256": "d7a7010bfc6421a94b5cb03b70568cfe7fd2537c2ac1f11ae433e29b4a42e853"
+  },
+  "status": "completed",
+  "target_semantics": "Upstream Mute-Alg original (0) versus synthetically buggy (1) circuits from HornBro; paired records and exact OpenQASM repeats are grouped. Historical source repair outcome, not hardware diagnosis.",
+  "task": "mute_alg_hornbro_qasm_v2"
+}

@@ -1,0 +1,7 @@
+{
+  "status": "bounded_campaign_complete",
+  "completed": ["source screen", "six-model OOF diversity audit", "fixed probability blends", "outer-fold stacking", "pairwise and per-origin errors", "origin bootstrap"],
+  "not_run": ["cross-source transfer", "source-combination training", "multitask", "conditional routing", "new-model fitting"],
+  "reason_not_run": "Incompatible or unavailable verified data for transfer/multitask; routing underpowered on 12 origins; no remaining independent target validation in these artifacts.",
+  "next_action": "If using the existing reserved-origin protocol, compare the predeclared equal-all-model blend once against matched Extra Trees on the reserved 36 development origins. Do not tune on that confirmation."
+}

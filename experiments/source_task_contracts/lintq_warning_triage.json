@@ -1,0 +1,12 @@
+{
+  "source_id": "lintq",
+  "task_id": "warning_triage",
+  "target_semantics": "Manual true-positive (1) versus false-positive (0) warning triage; warning-bearing source groups. Not diagnosis of hardware faults.",
+  "required": ["record_id", "bug_id", "label", "code", "rule_id", "warning_message", "label_resolution"],
+  "record_id_column": "record_id", "group_column": "bug_id", "label_column": "label", "feature_column": "code",
+  "allowed_labels": ["0", "1"], "fold_record_column": "record_id", "fold_group_column": "bug_id", "fold_column": "fold",
+  "fold_model_column": "model", "fold_model_value": "angle_vqc",
+  "input_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/lintq_warning_triage/normalized_manifest.csv",
+  "fold_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/lintq_warning_triage/qnn/oof_predictions.csv",
+  "output_path": "data/processed/lintq/warning_triage"
+}

@@ -37,7 +37,7 @@
       ],
       "folds": 5,
       "records": 300,
-      "training_seconds": 1.8386824000190245,
+      "training_seconds": 1.2861942000017734,
       "architecture": {
         "name": "amplitude_hybrid_3q_depth2",
         "qubits": 3,
@@ -85,7 +85,7 @@
       ],
       "folds": 5,
       "records": 300,
-      "training_seconds": 10.838154900004156,
+      "training_seconds": 6.469917400012491,
       "architecture": {
         "name": "angle_reupload_hybrid_4q_depth2",
         "qubits": 4,
@@ -111,7 +111,7 @@
       "fold": 1,
       "records": 60,
       "groups": 30,
-      "training_seconds": 0.3682336000056239,
+      "training_seconds": 0.27015579999715555,
       "gradient_check": {
         "parameter_shift": -0.0010594112459433765,
         "finite_difference": -0.0010594112587192228,
@@ -147,7 +147,7 @@
           ]
         ]
       },
-      "available_ram_mib": 1077.3359375
+      "available_ram_mib": 1133.38671875
     },
     {
       "task": "qsimbench_backend_fingerprint",
@@ -155,7 +155,7 @@
       "fold": 1,
       "records": 60,
       "groups": 30,
-      "training_seconds": 2.111665800002811,
+      "training_seconds": 1.3156758000113769,
       "gradient_check": {
         "parameter_shift": 1.2688029387617622e-05,
         "finite_difference": 1.2688028405705152e-05,
@@ -191,7 +191,7 @@
           ]
         ]
       },
-      "available_ram_mib": 1067.73046875
+      "available_ram_mib": 1142.73046875
     },
     {
       "task": "qsimbench_backend_fingerprint",
@@ -199,7 +199,7 @@
       "fold": 2,
       "records": 60,
       "groups": 30,
-      "training_seconds": 0.3671775000038906,
+      "training_seconds": 0.2570513000100618,
       "gradient_check": {
         "parameter_shift": -0.0010594112459433765,
         "finite_difference": -0.0010594112587192228,
@@ -235,7 +235,7 @@
           ]
         ]
       },
-      "available_ram_mib": 1071.7109375
+      "available_ram_mib": 1131.41796875
     },
     {
       "task": "qsimbench_backend_fingerprint",
@@ -243,7 +243,7 @@
       "fold": 2,
       "records": 60,
       "groups": 30,
-      "training_seconds": 2.134933799999999,
+      "training_seconds": 1.277354000005289,
       "gradient_check": {
         "parameter_shift": 1.2688029387617622e-05,
         "finite_difference": 1.2688028405705152e-05,
@@ -279,7 +279,7 @@
           ]
         ]
       },
-      "available_ram_mib": 1046.28125
+      "available_ram_mib": 1134.84765625
     },
     {
       "task": "qsimbench_backend_fingerprint",
@@ -287,7 +287,7 @@
       "fold": 3,
       "records": 60,
       "groups": 30,
-      "training_seconds": 0.37093470000399975,
+      "training_seconds": 0.2475570999959018,
       "gradient_check": {
         "parameter_shift": -0.0010594112459433765,
         "finite_difference": -0.0010594112587192228,
@@ -323,7 +323,7 @@
           ]
         ]
       },
-      "available_ram_mib": 1047.58984375
+      "available_ram_mib": 1135.6875
     },
     {
       "task": "qsimbench_backend_fingerprint",
@@ -331,7 +331,7 @@
       "fold": 3,
       "records": 60,
       "groups": 30,
-      "training_seconds": 2.1710329999987152,
+      "training_seconds": 1.293396400011261,
       "gradient_check": {
         "parameter_shift": 1.2688029387617622e-05,
         "finite_difference": 1.2688028405705152e-05,
@@ -367,7 +367,7 @@
           ]
         ]
       },
-      "available_ram_mib": 1056.40625
+      "available_ram_mib": 1137.30859375
     },
     {
       "task": "qsimbench_backend_fingerprint",
@@ -375,7 +375,7 @@
       "fold": 4,
       "records": 60,
       "groups": 30,
-      "training_seconds": 0.38116399999853456,
+      "training_seconds": 0.2611463999928674,
       "gradient_check": {
         "parameter_shift": -0.0010594112459433765,
         "finite_difference": -0.0010594112587192228,
@@ -411,7 +411,7 @@
           ]
         ]
       },
-      "available_ram_mib": 1062.11328125
+      "available_ram_mib": 1169.27734375
     },
     {
       "task": "qsimbench_backend_fingerprint",
@@ -419,7 +419,7 @@
       "fold": 4,
       "records": 60,
       "groups": 30,
-      "training_seconds": 2.214049000001978,
+      "training_seconds": 1.2957619999942835,
       "gradient_check": {
         "parameter_shift": 1.2688029387617622e-05,
         "finite_difference": 1.2688028405705152e-05,
@@ -455,7 +455,7 @@
           ]
         ]
       },
-      "available_ram_mib": 1057.86328125
+      "available_ram_mib": 1179.30078125
     },
     {
       "task": "qsimbench_backend_fingerprint",
@@ -463,7 +463,7 @@
       "fold": 5,
       "records": 60,
       "groups": 30,
-      "training_seconds": 0.3511726000069757,
+      "training_seconds": 0.25028360000578687,
       "gradient_check": {
         "parameter_shift": -0.0010594112459433765,
         "finite_difference": -0.0010594112587192228,
@@ -499,7 +499,7 @@
           ]
         ]
       },
-      "available_ram_mib": 1050.02734375
+      "available_ram_mib": 1180.109375
     },
     {
       "task": "qsimbench_backend_fingerprint",
@@ -507,7 +507,7 @@
       "fold": 5,
       "records": 60,
       "groups": 30,
-      "training_seconds": 2.2064733000006527,
+      "training_seconds": 1.287729199990281,
       "gradient_check": {
         "parameter_shift": 1.2688029387617622e-05,
         "finite_difference": 1.2688028405705152e-05,
@@ -543,10 +543,12 @@
           ]
         ]
       },
-      "available_ram_mib": 1044.58984375
+      "available_ram_mib": 1169.6171875
     }
   ],
-  "runtime_seconds": 12.796987499998068,
+  "optimizer_steps_per_fold": 12,
+  "batch_size": 64,
+  "runtime_seconds": 7.826166300001205,
   "minimum_ram_floor_mib": 500,
   "frozen_test_accessed": false
 }

@@ -1,0 +1,10 @@
+{
+  "artifact_policy": "Preserve run artifacts unchanged as failed/misconfigured evidence; exclude this output from valid pilot summaries. A corrected source-restricted run uses a separate v2 output directory.",
+  "frozen_test_accessed": false,
+  "metrics_sha256": "2b796203c98b0226d42ddea4d7e8ba04e3401e3f4fdfd06e0cd7f9f6dacd0b52",
+  "reason": "The resumable pilot runner performed mixed-source grouped cross-validation. The registered contract requires each fold to train only on Bugs4Q_core and evaluate the held-out fold with the Bugs4Q_NA_additional transfer subset reported separately. This run therefore cannot support the transfer claim.",
+  "run_manifest_sha256": "71e769aaa554dd47028d3d51c821d6cf6b85c1383725b269656586d823af1dbb",
+  "schema": "qnn-pilot-task-validity-correction-v1",
+  "status": "INVALID_FOR_TRANSFER_TASK",
+  "task": "bugs4q_core_only_transfer"
+}

@@ -1,0 +1,158 @@
+{
+  "schema": "qmutbench-threeclass-resumable-checkpoint-audit-v1",
+  "status": "VERIFIED",
+  "issues": [],
+  "records": 205,
+  "origins": 12,
+  "folds": 3,
+  "models": 3,
+  "resumable_checkpoints_verified": 9,
+  "replayed_oof_probabilities": 615,
+  "max_probability_tolerance": 2e-07,
+  "matched_classical_controls": {
+    "status": "VERIFIED",
+    "rows_per_control": 205,
+    "controls": [
+      "extra_trees_4f",
+      "logistic_4f",
+      "rbf_svc_4f"
+    ],
+    "metrics_recalculated": {
+      "extra_trees_4f": {
+        "accuracy": 0.4878048780487805,
+        "macro_f1": 0.46078218177742647,
+        "balanced_accuracy": 0.47965057817999,
+        "per_class": {
+          "0": {
+            "precision": 0.4789915966386555,
+            "recall": 0.7916666666666666,
+            "f1": 0.5968586387434555,
+            "support": 72
+          },
+          "1": {
+            "precision": 0.5,
+            "recall": 0.3088235294117647,
+            "f1": 0.38181818181818183,
+            "support": 68
+          },
+          "2": {
+            "precision": 0.5,
+            "recall": 0.3384615384615385,
+            "f1": 0.4036697247706422,
+            "support": 65
+          }
+        },
+        "confusion_matrix": [
+          [
+            57,
+            10,
+            5
+          ],
+          [
+            30,
+            21,
+            17
+          ],
+          [
+            32,
+            11,
+            22
+          ]
+        ]
+      },
+      "logistic_4f": {
+        "accuracy": 0.4634146341463415,
+        "macro_f1": 0.44068553825730666,
+        "balanced_accuracy": 0.457181163063516,
+        "per_class": {
+          "0": {
+            "precision": 0.48598130841121495,
+            "recall": 0.7222222222222222,
+            "f1": 0.5810055865921788,
+            "support": 72
+          },
+          "1": {
+            "precision": 0.5454545454545454,
+            "recall": 0.2647058823529412,
+            "f1": 0.3564356435643565,
+            "support": 68
+          },
+          "2": {
+            "precision": 0.38461538461538464,
+            "recall": 0.38461538461538464,
+            "f1": 0.38461538461538464,
+            "support": 65
+          }
+        },
+        "confusion_matrix": [
+          [
+            52,
+            7,
+            13
+          ],
+          [
+            23,
+            18,
+            27
+          ],
+          [
+            32,
+            8,
+            25
+          ]
+        ]
+      },
+      "rbf_svc_4f": {
+        "accuracy": 0.43414634146341463,
+        "macro_f1": 0.42464875307341066,
+        "balanced_accuracy": 0.43117144293614884,
+        "per_class": {
+          "0": {
+            "precision": 0.4772727272727273,
+            "recall": 0.5833333333333334,
+            "f1": 0.5250000000000001,
+            "support": 72
+          },
+          "1": {
+            "precision": 0.5277777777777778,
+            "recall": 0.27941176470588236,
+            "f1": 0.36538461538461536,
+            "support": 68
+          },
+          "2": {
+            "precision": 0.345679012345679,
+            "recall": 0.4307692307692308,
+            "f1": 0.3835616438356164,
+            "support": 65
+          }
+        },
+        "confusion_matrix": [
+          [
+            42,
+            7,
+            23
+          ],
+          [
+            19,
+            19,
+            30
+          ],
+          [
+            27,
+            10,
+            28
+          ]
+        ]
+      }
+    },
+    "comparison_sha256": "d73f877523a6c81fb2e52e8c1d31c4d865bba806f41dd93dd86f5e5fb4235279",
+    "oof_sha256": "6fc708318e4ffb3cc959adcbaf598c10de09dc4fd582d017edf185dd226719ca",
+    "frozen_test_accessed": false
+  },
+  "source_sha256": "e12edf7fa275ac5c4962f5e83d05512dd16a1286147ce49024f6f4e91376852d",
+  "split_sha256": "89f11217af842b52b91229b4cd289bd53906fd0bb9596b60526ee66dc3715ac2",
+  "feature_manifest_sha256": "f00b2737115bb5e9ed00c9a4a5cf9d955e5468974ed9ace702308bf1a12172cb",
+  "run_summary_sha256": "5304b1c6e674f20a0c5b6cdfec708a8b7de4894b19e6f324b2cd04d0dd55d2a5",
+  "oof_sha256": "c35b465b35032ac6d62968056588da07dde6f6b6ab14e2b86ce649d2ce242ad0",
+  "frozen_test_accessed": false
+}

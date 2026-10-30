@@ -1,0 +1,52 @@
+{
+  "model": "angle_reupload_4q_depth2_lr0035",
+  "configuration": {
+    "name": "angle_reupload_4q_depth2_lr0035",
+    "qubits": 4,
+    "features": 4,
+    "encoding": "angle",
+    "depth": 2,
+    "reupload": true,
+    "learning_rate": 0.035
+  },
+  "accuracy": 0.5161290322580645,
+  "balanced_accuracy": 0.5161290322580645,
+  "macro_f1": 0.5098814229249012,
+  "per_class": {
+    "0": {
+      "precision": 0.5131578947368421,
+      "recall": 0.6290322580645161,
+      "f1": 0.5652173913043479,
+      "support": 62
+    },
+    "1": {
+      "precision": 0.5208333333333334,
+      "recall": 0.4032258064516129,
+      "f1": 0.45454545454545453,
+      "support": 62
+    }
+  },
+  "confusion_matrix": [
+    [
+      39,
+      23
+    ],
+    [
+      37,
+      25
+    ]
+  ],
+  "folds": 5,
+  "records": 124,
+  "training_seconds": 0.5511919000018679,
+  "split": "reused existing selected-model grouped OOF fold assignments",
+  "group_unit": "bug_id",
+  "epochs": 4,
+  "batch_size": 64,
+  "optimizer": "Adam",
+  "text_fields": [
+    "code"
+  ],
+  "train_source_restriction": "Bugs4Q_NA_additional",
+  "frozen_test_accessed": false
+}

@@ -1,0 +1,398 @@
+{
+  "status": "completed_matched_classical_grouped_oof",
+  "task": "Qolumbina ideal",
+  "target": "Qolumbina ideal",
+  "records": 182,
+  "groups": 26,
+  "folds": 5,
+  "feature_policy": "same deterministic 8-bin BLAKE2b token counts as QNN; fold-local min-max; compare 4-feature and 8-feature controls",
+  "split_source": "saved development QNN grouped out-of-fold fold assignment",
+  "source_manifest_sha256": "9b607e93eaf3912cc20610b30341573ff709abaf59086febc8f570eb12b0104e",
+  "scikit_learn": "1.9.1",
+  "models": [
+    {
+      "task": "Qolumbina ideal",
+      "model": "majority_dummy",
+      "feature_count": 4,
+      "records": 182,
+      "folds": 5,
+      "accuracy": 0.8241758241758241,
+      "macro_f1": 0.45180722891566266,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8241758241758241,
+          "recall": 1.0,
+          "f1": 0.9036144578313253,
+          "support": 150
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          32
+        ],
+        [
+          0,
+          150
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Qolumbina ideal",
+      "model": "logistic_balanced",
+      "feature_count": 4,
+      "records": 182,
+      "folds": 5,
+      "accuracy": 0.532967032967033,
+      "macro_f1": 0.4646873594242015,
+      "balanced_accuracy": 0.52,
+      "per_class": {
+        "0": {
+          "precision": 0.18823529411764706,
+          "recall": 0.5,
+          "f1": 0.2735042735042735,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8350515463917526,
+          "recall": 0.54,
+          "f1": 0.6558704453441295,
+          "support": 150
+        }
+      },
+      "confusion_matrix": [
+        [
+          16,
+          16
+        ],
+        [
+          69,
+          81
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Qolumbina ideal",
+      "model": "decision_tree_balanced",
+      "feature_count": 4,
+      "records": 182,
+      "folds": 5,
+      "accuracy": 0.5,
+      "macro_f1": 0.4041374347904299,
+      "balanced_accuracy": 0.4139583333333333,
+      "per_class": {
+        "0": {
+          "precision": 0.11688311688311688,
+          "recall": 0.28125,
+          "f1": 0.1651376146788991,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.780952380952381,
+          "recall": 0.5466666666666666,
+          "f1": 0.6431372549019607,
+          "support": 150
+        }
+      },
+      "confusion_matrix": [
+        [
+          9,
+          23
+        ],
+        [
+          68,
+          82
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Qolumbina ideal",
+      "model": "random_forest_balanced",
+      "feature_count": 4,
+      "records": 182,
+      "folds": 5,
+      "accuracy": 0.7417582417582418,
+      "macro_f1": 0.4810410726202754,
+      "balanced_accuracy": 0.486875,
+      "per_class": {
+        "0": {
+          "precision": 0.14285714285714285,
+          "recall": 0.09375,
+          "f1": 0.11320754716981132,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8198757763975155,
+          "recall": 0.88,
+          "f1": 0.8488745980707395,
+          "support": 150
+        }
+      },
+      "confusion_matrix": [
+        [
+          3,
+          29
+        ],
+        [
+          18,
+          132
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Qolumbina ideal",
+      "model": "extra_trees_balanced",
+      "feature_count": 4,
+      "records": 182,
+      "folds": 5,
+      "accuracy": 0.7087912087912088,
+      "macro_f1": 0.4639622117254793,
+      "balanced_accuracy": 0.466875,
+      "per_class": {
+        "0": {
+          "precision": 0.1111111111111111,
+          "recall": 0.09375,
+          "f1": 0.10169491525423728,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8129032258064516,
+          "recall": 0.84,
+          "f1": 0.8262295081967214,
+          "support": 150
+        }
+      },
+      "confusion_matrix": [
+        [
+          3,
+          29
+        ],
+        [
+          24,
+          126
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Qolumbina ideal",
+      "model": "majority_dummy",
+      "feature_count": 8,
+      "records": 182,
+      "folds": 5,
+      "accuracy": 0.8241758241758241,
+      "macro_f1": 0.45180722891566266,
+      "balanced_accuracy": 0.5,
+      "per_class": {
+        "0": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8241758241758241,
+          "recall": 1.0,
+          "f1": 0.9036144578313253,
+          "support": 150
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          32
+        ],
+        [
+          0,
+          150
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Qolumbina ideal",
+      "model": "logistic_balanced",
+      "feature_count": 8,
+      "records": 182,
+      "folds": 5,
+      "accuracy": 0.5,
+      "macro_f1": 0.4216169023921774,
+      "balanced_accuracy": 0.4508333333333333,
+      "per_class": {
+        "0": {
+          "precision": 0.14457831325301204,
+          "recall": 0.375,
+          "f1": 0.208695652173913,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.797979797979798,
+          "recall": 0.5266666666666666,
+          "f1": 0.6345381526104418,
+          "support": 150
+        }
+      },
+      "confusion_matrix": [
+        [
+          12,
+          20
+        ],
+        [
+          71,
+          79
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Qolumbina ideal",
+      "model": "decision_tree_balanced",
+      "feature_count": 8,
+      "records": 182,
+      "folds": 5,
+      "accuracy": 0.6318681318681318,
+      "macro_f1": 0.4009334315892901,
+      "balanced_accuracy": 0.395625,
+      "per_class": {
+        "0": {
+          "precision": 0.02702702702702703,
+          "recall": 0.03125,
+          "f1": 0.028985507246376812,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.7862068965517242,
+          "recall": 0.76,
+          "f1": 0.7728813559322034,
+          "support": 150
+        }
+      },
+      "confusion_matrix": [
+        [
+          1,
+          31
+        ],
+        [
+          36,
+          114
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Qolumbina ideal",
+      "model": "random_forest_balanced",
+      "feature_count": 8,
+      "records": 182,
+      "folds": 5,
+      "accuracy": 0.8131868131868132,
+      "macro_f1": 0.4484848484848485,
+      "balanced_accuracy": 0.49333333333333335,
+      "per_class": {
+        "0": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8222222222222222,
+          "recall": 0.9866666666666667,
+          "f1": 0.896969696969697,
+          "support": 150
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          32
+        ],
+        [
+          2,
+          148
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    },
+    {
+      "task": "Qolumbina ideal",
+      "model": "extra_trees_balanced",
+      "feature_count": 8,
+      "records": 182,
+      "folds": 5,
+      "accuracy": 0.7802197802197802,
+      "macro_f1": 0.43827160493827166,
+      "balanced_accuracy": 0.47333333333333333,
+      "per_class": {
+        "0": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 32
+        },
+        "1": {
+          "precision": 0.8160919540229885,
+          "recall": 0.9466666666666667,
+          "f1": 0.8765432098765433,
+          "support": 150
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          32
+        ],
+        [
+          8,
+          142
+        ]
+      ],
+      "confusion_matrix_labels": [
+        0,
+        1
+      ]
+    }
+  ],
+  "fold_metrics_path": "fold_metrics.csv",
+  "oof_predictions_path": "oof_predictions.csv",
+  "tuning": "fixed published-in-this-run configurations; no hyperparameter selection on validation folds",
+  "frozen_test_accessed": false
+}

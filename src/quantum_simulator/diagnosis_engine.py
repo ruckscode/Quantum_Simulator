@@ -28,7 +28,7 @@ from .hardware_fault_localizer import (
     localize_hardware_fault,
 )
 from .hardware_model import HardwareModel, assess_calibration_freshness
-from .count_statistics import compare_count_samples
+from .count_statistics import compare_count_samples, compare_counts_to_distribution
 from .statistics import DistributionComparisonResult, compare_distributions
 from .quantum_simulator import QuantumSimulator
 from .gates import get_gate_qubit_count
@@ -57,6 +57,8 @@ class DiagnosisResult:
     trace_deviation_candidates: list[Any] = field(default_factory=list)
     program_behavioral_candidates: list[Any] = field(default_factory=list)
     calibration_freshness: dict[str, Any] | None = None
+    expected_counts: dict[str, int] | None = None
+    observed_counts: dict[str, int] | None = None
 
 
 def _operation_details(operation: Any) -> tuple[str, tuple[int, ...]]:
@@ -347,8 +349,8 @@ def diagnose_execution(
 
     if (expected_distribution is None) != (observed_distribution is None):
         raise ValueError("expected_distribution and observed_distribution must be provided together")
-    if (expected_counts is None) != (observed_counts is None):
-        raise ValueError("expected_counts and observed_counts must be provided together")
+    if expected_counts is not None and observed_counts is None:
+        raise ValueError("observed_counts must be provided when expected_counts are supplied")
     if expected_circuit is not None and not isinstance(expected_circuit, Sequence):
         raise TypeError("expected_circuit must be a sequence of operations")
     if observed_circuit is not None and not isinstance(observed_circuit, Sequence):
@@ -371,14 +373,19 @@ def diagnose_execution(
     statistics_result = None
     anomaly_detected: bool | None = None
     if expected_distribution is not None and observed_distribution is not None:
-        statistics_result = (
-            compare_count_samples(expected_counts, observed_counts, threshold=threshold)
-            if expected_counts is not None else
-            compare_distributions(
+        if expected_counts is not None:
+            statistics_result = compare_count_samples(
+                expected_counts, observed_counts, threshold=threshold,
+            )
+        elif observed_counts is not None:
+            statistics_result = compare_counts_to_distribution(
+                expected_distribution, observed_counts, threshold=threshold,
+            )
+        else:
+            statistics_result = compare_distributions(
                 expected_distribution, observed_distribution,
                 threshold=threshold, shots=shots,
             )
-        )
         anomaly_detected = statistics_result.anomaly_detected
 
     program_result = None
@@ -725,6 +732,8 @@ def diagnose_circuit(
         observed_counts=observed_counts,
         max_calibration_age_seconds=max_calibration_age_seconds,
     )
+    result.expected_counts = dict(expected_counts)
+    result.observed_counts = dict(observed_counts)
     if (
         reference_circuit is not None
         and result.statistics_result is not None

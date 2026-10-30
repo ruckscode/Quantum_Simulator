@@ -1,0 +1,213 @@
+{
+  "status": "complete",
+  "task": "qolumbina_ideal",
+  "input": "reports\\experiments\\qml_source_preprocessing_20261029\\classical_nine_source_v2_inputs\\qolumbina_ideal.csv",
+  "input_sha256": "8b1e15729f56f08138b12aea76db17276af449a0cea5d1c57685842bc4b02bed",
+  "records": 182,
+  "groups": 26,
+  "class_counts": {
+    "1": 150,
+    "0": 32
+  },
+  "outer_split": "GroupKFold(5)",
+  "inner_split": "GroupKFold(3) within each outer training partition",
+  "selection_metric": "inner-CV accuracy (fold-level macro-F1 and balanced accuracy reported on outer held-out groups)",
+  "search_candidates": 104,
+  "representations": [
+    "word TF-IDF (1-3 grams)",
+    "character TF-IDF (2-5 grams)",
+    "character-boundary TF-IDF (3-5 grams)",
+    "combined word + character TF-IDF"
+  ],
+  "classifiers": [
+    "LinearSVC",
+    "LogisticRegression",
+    "SGD modified-huber",
+    "ComplementNB"
+  ],
+  "frozen_test_accessed": false,
+  "folds": [
+    {
+      "fold": 1,
+      "train_records": 140,
+      "validation_records": 42,
+      "train_groups": 20,
+      "validation_groups": 6,
+      "selected_params": {
+        "clf": "SGDClassifier(loss='modified_huber', max_iter=1500, random_state=20261030,\n              tol=0.0001)",
+        "clf__alpha": 0.001,
+        "clf__class_weight": null,
+        "features": "TfidfVectorizer(analyzer='char_wb', dtype=<class 'numpy.float32'>,\n                max_features=50000, ngram_range=(3, 5), strip_accents='unicode',\n                sublinear_tf=True)"
+      },
+      "outer_metrics": {
+        "records": 42,
+        "accuracy": 0.8571428571428571,
+        "macro_f1": 0.5855263157894737,
+        "balanced_accuracy": 0.5714285714285714,
+        "confusion_matrix_labels_0_1": [
+          [
+            1,
+            6
+          ],
+          [
+            0,
+            35
+          ]
+        ]
+      },
+      "fit_seconds": 89.836,
+      "prediction_file": "fold_1_oof.csv",
+      "best_inner_accuracy": 0.8503401360544217
+    },
+    {
+      "fold": 2,
+      "train_records": 147,
+      "validation_records": 35,
+      "train_groups": 21,
+      "validation_groups": 5,
+      "selected_params": {
+        "clf": "LogisticRegression(max_iter=1500, random_state=20261030, solver='liblinear')",
+        "clf__C": 30,
+        "clf__class_weight": "balanced",
+        "features": "TfidfVectorizer(analyzer='char', dtype=<class 'numpy.float32'>,\n                max_features=50000, ngram_range=(2, 5), strip_accents='unicode',\n                sublinear_tf=True)"
+      },
+      "outer_metrics": {
+        "records": 35,
+        "accuracy": 0.8571428571428571,
+        "macro_f1": 0.6812386156648451,
+        "balanced_accuracy": 0.6428571428571428,
+        "confusion_matrix_labels_0_1": [
+          [
+            2,
+            5
+          ],
+          [
+            0,
+            28
+          ]
+        ]
+      },
+      "fit_seconds": 102.656,
+      "prediction_file": "fold_2_oof.csv",
+      "best_inner_accuracy": 0.8435374149659864
+    },
+    {
+      "fold": 3,
+      "train_records": 147,
+      "validation_records": 35,
+      "train_groups": 21,
+      "validation_groups": 5,
+      "selected_params": {
+        "clf": "LogisticRegression(max_iter=1500, random_state=20261030, solver='liblinear')",
+        "clf__C": 30,
+        "clf__class_weight": "balanced",
+        "features": "TfidfVectorizer(analyzer='char', dtype=<class 'numpy.float32'>,\n                max_features=50000, ngram_range=(2, 5), strip_accents='unicode',\n                sublinear_tf=True)"
+      },
+      "outer_metrics": {
+        "records": 35,
+        "accuracy": 0.7714285714285715,
+        "macro_f1": 0.43548387096774194,
+        "balanced_accuracy": 0.5,
+        "confusion_matrix_labels_0_1": [
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            27
+          ]
+        ]
+      },
+      "fit_seconds": 77.01,
+      "prediction_file": "fold_3_oof.csv",
+      "best_inner_accuracy": 0.8571428571428571
+    },
+    {
+      "fold": 4,
+      "train_records": 147,
+      "validation_records": 35,
+      "train_groups": 21,
+      "validation_groups": 5,
+      "selected_params": {
+        "clf": "ComplementNB()",
+        "clf__alpha": 0.05,
+        "features": "TfidfVectorizer(analyzer='char', dtype=<class 'numpy.float32'>,\n                max_features=50000, ngram_range=(2, 5), strip_accents='unicode',\n                sublinear_tf=True)"
+      },
+      "outer_metrics": {
+        "records": 35,
+        "accuracy": 0.9142857142857143,
+        "macro_f1": 0.47761194029850745,
+        "balanced_accuracy": 0.5,
+        "confusion_matrix_labels_0_1": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            32
+          ]
+        ]
+      },
+      "fit_seconds": 94.013,
+      "prediction_file": "fold_4_oof.csv",
+      "best_inner_accuracy": 0.8231292517006802
+    },
+    {
+      "fold": 5,
+      "train_records": 147,
+      "validation_records": 35,
+      "train_groups": 21,
+      "validation_groups": 5,
+      "selected_params": {
+        "clf": "LinearSVC(max_iter=10000, random_state=20261030)",
+        "clf__C": 3,
+        "clf__class_weight": null,
+        "features": "TfidfVectorizer(analyzer='char_wb', dtype=<class 'numpy.float32'>,\n                max_features=50000, ngram_range=(3, 5), strip_accents='unicode',\n                sublinear_tf=True)"
+      },
+      "outer_metrics": {
+        "records": 35,
+        "accuracy": 0.8,
+        "macro_f1": 0.4444444444444444,
+        "balanced_accuracy": 0.5,
+        "confusion_matrix_labels_0_1": [
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            28
+          ]
+        ]
+      },
+      "fit_seconds": 96.672,
+      "prediction_file": "fold_5_oof.csv",
+      "best_inner_accuracy": 0.836734693877551
+    }
+  ],
+  "completed_folds": 5,
+  "runtime_seconds": 460.187,
+  "pooled_metrics": {
+    "records": 182,
+    "accuracy": 0.8406593406593407,
+    "macro_f1": 0.5416413373860183,
+    "balanced_accuracy": 0.546875,
+    "confusion_matrix_labels_0_1": [
+      [
+        3,
+        29
+      ],
+      [
+        0,
+        150
+      ]
+    ],
+    "outer_fold_accuracy_mean": 0.8400000000000001,
+    "outer_fold_macro_f1_mean": 0.5248610374330026,
+    "outer_fold_macro_f1_sd": 0.10585580577487878,
+    "majority_accuracy_baseline": 0.8241758241758241,
+    "majority_macro_f1_baseline": 0.45180722891566266
+  }
+}

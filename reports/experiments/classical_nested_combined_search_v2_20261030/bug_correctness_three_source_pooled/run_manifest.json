@@ -1,0 +1,135 @@
+{
+  "status": "complete",
+  "task": "bug_correctness_three_source_pooled",
+  "records": 1620,
+  "unique_groups": 810,
+  "outer_split": "GroupKFold(5) held-out groups",
+  "selection": "Per fold, compared 104 word/character SVM, logistic, SGD and ComplementNB candidates with 32 sparse cosine KNN settings using only inner-CV accuracy; selected candidate then evaluated on outer held-out groups.",
+  "frozen_test_accessed": false,
+  "folds": [
+    {
+      "fold": 1,
+      "selected_family": "word_char_linear_logistic_sgd_nb",
+      "inner_accuracy_winner": 0.8966049382716049,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.8888888888888888,
+        "macro_f1": 0.8883742296060942,
+        "balanced_accuracy": 0.8888888888888888,
+        "confusion_matrix_labels_0_1": [
+          [
+            155,
+            7
+          ],
+          [
+            29,
+            133
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 2,
+      "selected_family": "word_char_linear_logistic_sgd_nb",
+      "inner_accuracy_winner": 0.8950617283950617,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.9104938271604939,
+        "macro_f1": 0.9103494995563274,
+        "balanced_accuracy": 0.9104938271604939,
+        "confusion_matrix_labels_0_1": [
+          [
+            154,
+            8
+          ],
+          [
+            21,
+            141
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 3,
+      "selected_family": "word_char_linear_logistic_sgd_nb",
+      "inner_accuracy_winner": 0.8912037037037037,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.904320987654321,
+        "macro_f1": 0.9039908234956746,
+        "balanced_accuracy": 0.904320987654321,
+        "confusion_matrix_labels_0_1": [
+          [
+            156,
+            6
+          ],
+          [
+            25,
+            137
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 4,
+      "selected_family": "word_char_linear_logistic_sgd_nb",
+      "inner_accuracy_winner": 0.888888888888889,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.904320987654321,
+        "macro_f1": 0.9042471042471043,
+        "balanced_accuracy": 0.904320987654321,
+        "confusion_matrix_labels_0_1": [
+          [
+            151,
+            11
+          ],
+          [
+            20,
+            142
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 5,
+      "selected_family": "word_char_linear_logistic_sgd_nb",
+      "inner_accuracy_winner": 0.8919753086419754,
+      "outer_metrics": {
+        "records": 324,
+        "accuracy": 0.8734567901234568,
+        "macro_f1": 0.8724348201853362,
+        "balanced_accuracy": 0.8734567901234568,
+        "confusion_matrix_labels_0_1": [
+          [
+            156,
+            6
+          ],
+          [
+            35,
+            127
+          ]
+        ]
+      }
+    }
+  ],
+  "pooled_metrics": {
+    "records": 1620,
+    "accuracy": 0.8962962962962963,
+    "macro_f1": 0.8959607574497236,
+    "balanced_accuracy": 0.8962962962962963,
+    "confusion_matrix_labels_0_1": [
+      [
+        772,
+        38
+      ],
+      [
+        130,
+        680
+      ]
+    ],
+    "outer_fold_accuracy_mean": 0.8962962962962961,
+    "outer_fold_macro_f1_mean": 0.8958792954181074,
+    "outer_fold_macro_f1_sd": 0.015420549211492331
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "task": "QBugs HornBro subset",
+  "model": "amplitude_3q_depth1_lr004",
+  "fold": 5,
+  "records": 300,
+  "groups": 150,
+  "train_records": 1200,
+  "training_seconds": 0.12733460000163177,
+  "available_ram_mib": 940.77734375,
+  "gradient_check": {
+    "parameter_shift": -0.00013573009090970503,
+    "finite_difference": -0.00013573008827982846,
+    "absolute_error": 2.6298765682525316e-12,
+    "passed": true
+  },
+  "metrics": {
+    "accuracy": 0.7033333333333334,
+    "balanced_accuracy": 0.7033333333333334,
+    "macro_f1": 0.7001314030930266,
+    "per_class": {
+      "0": {
+        "precision": 0.6685082872928176,
+        "recall": 0.8066666666666666,
+        "f1": 0.7311178247734138,
+        "support": 150
+      },
+      "1": {
+        "precision": 0.7563025210084033,
+        "recall": 0.6,
+        "f1": 0.6691449814126393,
+        "support": 150
+      }
+    },
+    "confusion_matrix": [
+      [
+        121,
+        29
+      ],
+      [
+        60,
+        90
+      ]
+    ]
+  }
+}

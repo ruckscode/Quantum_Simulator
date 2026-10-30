@@ -1,0 +1,33 @@
+{
+  "allowed_labels": [
+    "0",
+    "1"
+  ],
+  "feature_column": "code",
+  "fold_column": "fold",
+  "fold_group_column": "group_id",
+  "fold_model_column": "model",
+  "fold_model_value": "qbugs_qasm_v2_grouped",
+  "fold_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/qbugs_qasm_v2_dev2/group_folds.csv",
+  "fold_record_column": "record_id",
+  "group_column": "bug_id",
+  "input_path": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/qbugs_qasm_v2_dev2/normalized_manifest.csv",
+  "label_column": "label",
+  "output_path": "data/processed/qbugs_hornbro/correct_buggy_circuit_state_qasm_v2_dev2",
+  "record_id_column": "record_id",
+  "required": [
+    "record_id",
+    "bug_id",
+    "label",
+    "code",
+    "scenario",
+    "pair_index",
+    "circuit_qubits",
+    "circuit_depth",
+    "instruction_count",
+    "qasm_sha256"
+  ],
+  "source_id": "qbugs_hornbro",
+  "target_semantics": "Upstream paired correct (0) versus buggy (1) QBugs circuits represented as OpenQASM 2; not hardware diagnosis.",
+  "task_id": "correct_buggy_circuit_state_qasm_v2"
+}
