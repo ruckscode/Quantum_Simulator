@@ -155,6 +155,7 @@ class CircuitPlan:
 def _parse_operation(item: Any) -> NormalizedOperation:
     if isinstance(item, Mapping):
         name = str(item.get("name", item.get("op", item.get("gate", "")))).strip().lower()
+        name = {"hadamard": "h", "identity": "i", "id": "i", "cnot": "cx", "toffoli": "ccx", "fredkin": "cswap"}.get(name, name)
         qubits = item.get("qubits", [])
         parameters = item.get("parameters", item.get("params", []))
         classical_bits = item.get("classical_bits", item.get("clbits", []))
@@ -176,6 +177,7 @@ def _parse_operation(item: Any) -> NormalizedOperation:
     if not isinstance(item, (tuple, list)) or not item:
         raise ValueError(f"operation must be a non-empty tuple/list or mapping, got {item!r}")
     name = str(item[0]).strip().lower()
+    name = {"hadamard": "h", "identity": "i", "id": "i", "cnot": "cx", "toffoli": "ccx", "fredkin": "cswap"}.get(name, name)
     operands = list(item[1:])
     if name == "measure":
         if not operands:

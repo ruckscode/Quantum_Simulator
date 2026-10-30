@@ -95,10 +95,12 @@ def _canonicalize_circuit(circuit: Sequence[Any] | None) -> list[tuple[Any, ...]
 
     parameterized = {"rx", "ry", "rz", "p", "u1", "u2", "u3"}
     two_qubit_parameterized = {"cp", "crx", "cry", "crz", "rxx", "rzz"}
+    aliases = {"hadamard": "h", "cnot": "cx", "id": "i", "identity": "i", "toffoli": "ccx", "fredkin": "cswap"}
     normalized: list[tuple[Any, ...]] = []
     for operation in circuit:
         if isinstance(operation, Mapping):
             name = str(operation.get("name") or operation.get("op") or operation.get("gate") or "unknown").lower()
+            name = aliases.get(name, name)
             qubits = operation.get("qubits", [])
             parameters = operation.get("parameters", [])
             if isinstance(qubits, int):
@@ -117,6 +119,7 @@ def _canonicalize_circuit(circuit: Sequence[Any] | None) -> list[tuple[Any, ...]
             continue
 
         name = str(operation[0]).lower()
+        name = aliases.get(name, name)
         operands = list(operation[1:])
         if name == "measure":
             if not operands:
