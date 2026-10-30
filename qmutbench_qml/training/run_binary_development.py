@@ -1023,6 +1023,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--max-validation-per-class", type=int, default=DEFAULT_CONFIG["max_validation_per_class_per_fold"])
     parser.add_argument("--per-origin-cap", type=int, default=DEFAULT_CONFIG["per_origin_class_cap"])
     parser.add_argument("--validate-config", action="store_true", help="validate configuration without ML imports or training")
+    parser.add_argument("--validate-resume", action="store_true",
+                        help="reconstruct and verify a full-development checkpoint read-only")
     args = parser.parse_args(argv)
     chunk_batches = args.chunk_batches if args.chunk_batches is not None else (
         FULL_DEFAULT_CHUNK_BATCHES if args.mode == "full-development" else DEFAULT_CONFIG["chunk_batches"])
@@ -1044,10 +1046,17 @@ def main(argv: list[str] | None = None) -> int:
         else "qmutbench_binary_qnn_development"))
     try:
         if args.mode == "full-development":
+            if args.validate_resume:
+                from qmutbench_qml.training.run_full_streaming import validate_full_streaming_resume
+                result = validate_full_streaming_resume(root, output, config)
+                print(json.dumps(result, indent=2))
+                return 0
             from qmutbench_qml.training.run_full_streaming import run_full_streaming_campaign
             report = run_full_streaming_campaign(root, output, config, resume=args.resume,
                 max_chunks_per_invocation=args.max_chunks_per_invocation)
         else:
+            if args.validate_resume:
+                raise ValueError("--validate-resume is supported only in full-development mode")
             if args.max_chunks_per_invocation is not None:
                 raise ValueError("--max-chunks-per-invocation is supported only in full-development mode")
             report = run_campaign(root, output, config, resume=args.resume)

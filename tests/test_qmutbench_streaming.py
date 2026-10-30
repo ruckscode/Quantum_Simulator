@@ -93,6 +93,23 @@ def test_stream_joins_all_development_rows_and_never_retains_frozen_row(tmp_path
     assert stream.last_stream_audit["skipped_rows"] == 0
 
 
+def test_archive_authoritative_mode_uses_five_fold_development_reference_without_csv_labels(tmp_path):
+    root = _fixture(tmp_path / "project")
+    # The older CSV is intentionally changed; archive-authoritative mode uses
+    # only IDs/targets/folds in the registered development NPZ and source groups.
+    ref = root / "data/qmutbench_ml/master_optimization_v1/oof_predictions.csv"
+    rows = list(csv.reader(ref.open(encoding="utf-8")))
+    rows[1][2] = "1" if rows[1][2] == "0" else "0"
+    with ref.open("w", newline="", encoding="utf-8") as stream:
+        csv.writer(stream).writerows(rows)
+    stream = _stream(root, tmp_path, archive_authoritative=True)
+    audit = stream.build_index()
+    assert audit["development_rows_indexed"] == 6
+    assert audit["reference_authority"] == "numeric five-fold development archive"
+    assert audit["frozen_test_rows_retained"] == 0
+    assert audit["fold_origin_counts"] == {"1": 1, "2": 1, "3": 1, "4": 0, "5": 0}
+
+
 def test_streamed_feature_values_do_not_depend_on_chunk_boundaries(tmp_path):
     root = _fixture(tmp_path / "project")
     stream = _stream(root, tmp_path)

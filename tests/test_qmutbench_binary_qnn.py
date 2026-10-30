@@ -253,6 +253,20 @@ def test_memory_preflight_enforces_startup_gate_and_reports_estimate(monkeypatch
     assert preflight["estimated_peak_mib"] >= binary.RAM_FLOOR_MIB
 
 
+def test_full_development_preflight_uses_empirically_bounded_stream_estimate(monkeypatch):
+    import psutil
+
+    monkeypatch.setattr(psutil, "virtual_memory",
+                        lambda: SimpleNamespace(available=2076 * 1024 * 1024))
+    preflight = binary.memory_preflight(dict(binary.DEFAULT_CONFIG), mode="full-development")
+    assert preflight["estimated_peak_mib"] == 2076
+    assert preflight["required_start_mib"] == 2076
+    monkeypatch.setattr(psutil, "virtual_memory",
+                        lambda: SimpleNamespace(available=2075 * 1024 * 1024))
+    with pytest.raises(MemoryError, match="Only 2075 MiB available.*requires 2076 MiB"):
+        binary.memory_preflight(dict(binary.DEFAULT_CONFIG), mode="full-development")
+
+
 def test_in_run_memory_floor_stops_at_1024_mib(monkeypatch):
     import psutil
 
@@ -390,6 +404,30 @@ def test_chunk_receipts_cover_disjoint_deterministic_record_ranges():
     assert first["processed_range"]["record_id_sha256"] != second["processed_range"]["record_id_sha256"]
     assert first["processed_range"]["first_batch"] == 0
     assert second["processed_range"]["first_batch"] == 1
+
+
+def test_epoch_tail_chunk_receipt_covers_only_remaining_partial_batch():
+    import hashlib
+    import numpy as np
+    from qmutbench_qml.models.binary_vqc import BinaryVQC
+
+    ids = np.array([11, 22, 33, 44, 55], dtype=np.int64)
+    rng = np.random.default_rng(81)
+    shuffle_state = BinaryVQC._plain(rng.bit_generator.state)
+    order = rng.permutation(len(ids))
+    order_ref = {"algorithm": "numpy-pcg64-permutation-v1", "length": len(order),
+        "sha256": hashlib.sha256(order.astype(np.int64).tobytes()).hexdigest()}
+    previous = {"epoch": 0, "next_batch": 2, "batch_order": order_ref,
+        "shuffle_rng_state": shuffle_state, "chunk_records": 4}
+    final = {"epoch": 1, "next_batch": 0, "batch_order": None,
+        "shuffle_rng_state": shuffle_state, "chunk_records": 1}
+
+    binary.attach_chunk_record_receipt(final, previous, ids, 2)
+
+    assert final["processed_range"]["epoch"] == 0
+    assert final["processed_range"]["first_batch"] == 2
+    assert final["processed_range"]["next_batch"] == 3
+    assert final["processed_range"]["records"] == 1
 
 
 def test_real_pennylane_chunk_resume_gradient_and_update_when_ram_allows():

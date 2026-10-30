@@ -33,7 +33,8 @@ class DevelopmentStream:
                  expected_source_sha256: str | None = EXPECTED_SOURCE_SHA256,
                  metadata_chunk_rows: int = 10_000, feature_chunk_rows: int = 10_000,
                  reference_csv_path: Path | None = None,
-                 reference_archive_path: Path | None = None):
+                 reference_archive_path: Path | None = None,
+                 archive_authoritative: bool = False):
         if metadata_chunk_rows < 1 or feature_chunk_rows < 1:
             raise ValueError("stream chunk sizes must be positive")
         self.root, self.index_path = Path(root), Path(index_path)
@@ -44,11 +45,14 @@ class DevelopmentStream:
         self.raw_path = self.root / "data/qmutbench_ingestion/raw/official_all_data_20261015.csv"
         self.reference_path = Path(reference_csv_path) if reference_csv_path else self.root / "data/qmutbench_ml/master_optimization_v1/oof_predictions.csv"
         self.archive_path = Path(reference_archive_path) if reference_archive_path else self.root / "data/qmutbench_ml/exhaustive_campaign_v1/five_fold_confirmation/mutation_diff_oof.npz"
+        self.archive_authoritative = bool(archive_authoritative)
         self.cache_path = self.root / "data/qmutbench_ml/qasm_mutation_diff_v1"
         self.audit: dict = {}
         self.last_stream_audit: dict = {}
-        for path in (self.raw_path, self.reference_path, self.archive_path,
-                     self.cache_path / "manifest.json"):
+        required_paths = [self.raw_path, self.archive_path, self.cache_path / "manifest.json"]
+        if not self.archive_authoritative:
+            required_paths.append(self.reference_path)
+        for path in required_paths:
             if not path.is_file():
                 raise FileNotFoundError(f"Required QMutBench streaming input is missing: {path}")
 
@@ -76,36 +80,52 @@ class DevelopmentStream:
             connection.execute("PRAGMA journal_mode=OFF")
             connection.execute("PRAGMA synchronous=FULL")
             connection.execute("CREATE TABLE reference (record_id INTEGER PRIMARY KEY, origin TEXT NOT NULL, y INTEGER NOT NULL, fold INTEGER NOT NULL)")
-            with self.reference_path.open("r", encoding="utf-8-sig", newline="") as stream:
-                reader = csv.DictReader(stream)
-                required_reference_fields = {"record_id", "origin_program", "y_true", "fold"}
-                if (not reader.fieldnames or not required_reference_fields <= set(reader.fieldnames) or
-                        len(reader.fieldnames) != len(set(reader.fieldnames))):
-                    raise ValueError("Development reference CSV lacks unique required fields")
-                batch = []
-                for row in reader:
-                    rid, y, fold = int(row["record_id"]), int(row["y_true"]), int(row["fold"])
-                    origin = row["origin_program"]
-                    if rid < 0 or rid >= size or y not in (0, 1) or fold not in range(1, 6) or not origin:
-                        raise ValueError(f"Invalid development reference row: {rid}")
-                    if seen_reference[rid]:
-                        raise ValueError(f"Duplicate development reference record ID: {rid}")
-                    seen_reference[rid] = True
-                    code = origin_to_code.setdefault(origin, len(origin_names))
-                    if code == len(origin_names):
-                        origin_names.append(origin)
-                    if fold_origin.setdefault(origin, fold) != fold:
-                        raise ValueError(f"Origin {origin!r} crosses reference folds")
-                    y_by_id[rid], fold_by_id[rid], origin_by_id[rid] = y, fold, code
-                    batch.append((rid, origin, y, fold))
-                    if len(batch) >= self.metadata_chunk_rows:
+            if self.archive_authoritative:
+                with np.load(self.archive_path, allow_pickle=False) as archive:
+                    required = {"record_id", "y", "fold"}
+                    if not required <= set(archive.files):
+                        raise ValueError("Numeric reference archive lacks record_id/y/fold arrays")
+                    ids = np.asarray(archive["record_id"], dtype=np.int64)
+                    ay = np.asarray(archive["y"], dtype=np.int8)
+                    af = np.asarray(archive["fold"], dtype=np.int8)
+                if (ids.ndim != 1 or ay.shape != ids.shape or af.shape != ids.shape or
+                        len(ids) != self.expected_rows or np.any(ids < 0) or np.any(ids >= size) or
+                        len(np.unique(ids)) != len(ids) or not np.isin(ay, [0, 1]).all() or
+                        not np.isin(af, [1, 2, 3, 4, 5]).all()):
+                    raise ValueError("Authoritative development archive has invalid IDs, targets, or folds")
+                y_by_id[ids], fold_by_id[ids], seen_reference[ids] = ay, af, True
+                reference_count = len(ids)
+            else:
+                with self.reference_path.open("r", encoding="utf-8-sig", newline="") as stream:
+                    reader = csv.DictReader(stream)
+                    required_reference_fields = {"record_id", "origin_program", "y_true", "fold"}
+                    if (not reader.fieldnames or not required_reference_fields <= set(reader.fieldnames) or
+                            len(reader.fieldnames) != len(set(reader.fieldnames))):
+                        raise ValueError("Development reference CSV lacks unique required fields")
+                    batch = []
+                    for row in reader:
+                        rid, y, fold = int(row["record_id"]), int(row["y_true"]), int(row["fold"])
+                        origin = row["origin_program"]
+                        if rid < 0 or rid >= size or y not in (0, 1) or fold not in range(1, 6) or not origin:
+                            raise ValueError(f"Invalid development reference row: {rid}")
+                        if seen_reference[rid]:
+                            raise ValueError(f"Duplicate development reference record ID: {rid}")
+                        seen_reference[rid] = True
+                        code = origin_to_code.setdefault(origin, len(origin_names))
+                        if code == len(origin_names):
+                            origin_names.append(origin)
+                        if fold_origin.setdefault(origin, fold) != fold:
+                            raise ValueError(f"Origin {origin!r} crosses reference folds")
+                        y_by_id[rid], fold_by_id[rid], origin_by_id[rid] = y, fold, code
+                        batch.append((rid, origin, y, fold))
+                        if len(batch) >= self.metadata_chunk_rows:
+                            connection.executemany("INSERT INTO reference VALUES (?, ?, ?, ?)", batch)
+                            batch.clear()
+                        reference_count += 1
+                    if batch:
                         connection.executemany("INSERT INTO reference VALUES (?, ?, ?, ?)", batch)
-                        batch.clear()
-                    reference_count += 1
-                if batch:
-                    connection.executemany("INSERT INTO reference VALUES (?, ?, ?, ?)", batch)
-            if reference_count != self.expected_rows or len(fold_origin) != self.expected_origins:
-                raise ValueError("Saved development reference row/origin counts differ from contract")
+                if reference_count != self.expected_rows or len(fold_origin) != self.expected_origins:
+                    raise ValueError("Saved development reference row/origin counts differ from contract")
 
             with np.load(self.archive_path, allow_pickle=False) as archive:
                 required = {"record_id", "y", "fold"}
@@ -119,7 +139,7 @@ class DevelopmentStream:
                     len(np.unique(ids)) != len(ids) or not np.isin(ay, [0, 1]).all() or
                     not np.isin(af, [1, 2, 3, 4, 5]).all() or
                     not np.array_equal(y_by_id[ids], ay) or not np.array_equal(fold_by_id[ids], af)):
-                raise ValueError("Development CSV assignments disagree with numeric reference archive")
+                raise ValueError("Development split assignments disagree with numeric reference archive")
 
             columns = ", ".join(f'"{name}" TEXT' for name in METADATA_FIELDS)
             connection.execute(f"CREATE TABLE metadata (record_id INTEGER PRIMARY KEY, origin TEXT NOT NULL, y INTEGER NOT NULL, fold INTEGER NOT NULL, {columns})")
@@ -132,6 +152,7 @@ class DevelopmentStream:
                 selected = ["Origin_program", "Killed", *METADATA_FIELDS]
                 insert_sql = "INSERT INTO metadata VALUES (" + ",".join("?" for _ in range(4 + len(METADATA_FIELDS))) + ")"
                 batch = []
+                reference_batch = []
                 source_rows = development_rows = 0
                 seen_source = np.zeros(size, dtype=np.bool_)
                 for row in reader:
@@ -146,12 +167,25 @@ class DevelopmentStream:
                         raise ValueError(f"Truncated metadata row for development record {rid}")
                     vals = {name: row[indexes[name]] for name in selected}
                     origin, label = vals["Origin_program"], vals["Killed"]
-                    expected_origin = origin_names[int(origin_by_id[rid])]
-                    if origin != expected_origin:
-                        raise ValueError(f"Reference origin mismatch for development record {rid}")
                     y = {"Survivor": 0, "WOO": 1, "OPO": 1}.get(label)
                     if y is None or y != int(y_by_id[rid]):
                         raise ValueError(f"Source/reference target mismatch for development record {rid}")
+                    if self.archive_authoritative:
+                        code = origin_to_code.setdefault(origin, len(origin_names))
+                        if code == len(origin_names):
+                            origin_names.append(origin)
+                        fold = int(fold_by_id[rid])
+                        if fold_origin.setdefault(origin, fold) != fold:
+                            raise ValueError(f"Origin {origin!r} crosses reference folds")
+                        origin_by_id[rid] = code
+                        reference_batch.append((rid, origin, y, fold))
+                        if len(reference_batch) >= self.metadata_chunk_rows:
+                            connection.executemany("INSERT INTO reference VALUES (?, ?, ?, ?)", reference_batch)
+                            reference_batch.clear()
+                    else:
+                        expected_origin = origin_names[int(origin_by_id[rid])]
+                        if origin != expected_origin:
+                            raise ValueError(f"Reference origin mismatch for development record {rid}")
                     batch.append((rid, origin, y, int(fold_by_id[rid]),
                                   *(vals[name] for name in METADATA_FIELDS)))
                     if len(batch) >= self.metadata_chunk_rows:
@@ -160,6 +194,10 @@ class DevelopmentStream:
                     development_rows += 1
                 if batch:
                     connection.executemany(insert_sql, batch)
+                if reference_batch:
+                    connection.executemany("INSERT INTO reference VALUES (?, ?, ?, ?)", reference_batch)
+            if self.archive_authoritative and (reference_count != self.expected_rows or len(origin_names) != self.expected_origins):
+                raise ValueError("Archive-authoritative development rows/origins differ from contract")
             if source_rows != self.expected_source_rows:
                 raise ValueError(f"Source metadata row count {source_rows} differs from expected {self.expected_source_rows}")
             indexed = int(connection.execute("SELECT COUNT(*) FROM metadata").fetchone()[0])
@@ -192,7 +230,9 @@ class DevelopmentStream:
                 raise ValueError(f"QASM cache manifest covers {cached_rows}, expected {self.expected_rows} rows")
             self._origin_by_id, self._origin_names = origin_by_id, origin_names
             self._y_by_id, self._fold_by_id, self._seen_reference = y_by_id, fold_by_id, seen_reference
-            self.audit = {"source_sha256": raw_sha, "reference_sha256": sha256(self.reference_path),
+            self.audit = {"source_sha256": raw_sha,
+                "reference_sha256": None if self.archive_authoritative else sha256(self.reference_path),
+                "reference_authority": "numeric five-fold development archive" if self.archive_authoritative else "saved development CSV reconciled to numeric archive",
                 "reference_archive_sha256": sha256(self.archive_path),
                 "qasm_manifest_sha256": sha256(self.cache_path / "manifest.json"),
                 "source_rows_scanned": source_rows, "development_rows_indexed": indexed,

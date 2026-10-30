@@ -15,6 +15,43 @@ from typing import Any
 from qmutbench_qml.data.streaming import DevelopmentStream
 from qmutbench_qml.training import run_binary_development as checkpointing
 
+MEMORY_PAUSE_RESERVE_MIB = 256
+
+
+def should_pause_for_memory(available_mib: int) -> bool:
+    """Pause at a durable chunk boundary before the hard RAM floor is at risk."""
+    return available_mib < checkpointing.RAM_FLOOR_MIB + MEMORY_PAUSE_RESERVE_MIB
+
+
+def bounded_chunk_batches(next_batch: int, batches_per_epoch: int,
+                          configured_chunk_batches: int) -> int:
+    """Stop each durable QNN chunk at or before an epoch boundary.
+
+    A chunk crossing epochs cannot be represented by the legacy single-epoch
+    record receipt. Shortening only the final chunk of an epoch preserves the
+    ordered updates and configured upper bound while keeping receipts exact.
+    """
+    if (batches_per_epoch < 1 or configured_chunk_batches < 1 or
+            next_batch < 0 or next_batch >= batches_per_epoch):
+        raise ValueError("Invalid epoch cursor or chunk bound")
+    return min(configured_chunk_batches, batches_per_epoch - next_batch)
+
+
+def _resume_source_fingerprints(current: dict[str, str], stored: dict[str, str]) -> dict[str, str]:
+    """Keep durable training identity across control-only trainer edits.
+
+    The QNN, feature, split, and source implementations must remain byte-for-byte
+    identical. The stored full-trainer hash remains in the checkpoint identity;
+    the current orchestration hash is recorded separately in the campaign manifest.
+    """
+    current_training = {key: value for key, value in current.items() if key != "full_trainer_sha256"}
+    stored_training = {key: value for key, value in stored.items() if key != "full_trainer_sha256"}
+    if current_training != stored_training or "full_trainer_sha256" not in stored:
+        raise ValueError("Resume rejected: training-relevant source fingerprints changed")
+    compatible = dict(current)
+    compatible["full_trainer_sha256"] = stored["full_trainer_sha256"]
+    return compatible
+
 
 def _atomic_json(path: Path, value: dict) -> None:
     temp = path.with_suffix(path.suffix + ".tmp")
@@ -22,6 +59,223 @@ def _atomic_json(path: Path, value: dict) -> None:
         json.dump(value, stream, ensure_ascii=False, sort_keys=True, indent=2)
         stream.write("\n"); stream.flush(); os.fsync(stream.fileno())
     os.replace(temp, path)
+
+
+def _checkpointed_pause_fields(progress: dict, active_fold: int,
+                               state: dict | None) -> dict:
+    """Set the resume cursor from the last durable chunk, never the next running chunk."""
+    progress.update({"status": "paused_checkpointed", "active_fold": active_fold,
+        "active_chunk": int(state["chunk_index"]) if state else 0,
+        "next_chunk": int(state["chunk_index"]) + 1 if state else 1,
+        "next_epoch": int(state["epoch"]) if state else 0,
+        "next_batch": int(state["next_batch"]) if state else 0,
+        "last_checkpoint_validated": state is not None})
+    return progress
+
+
+def _close_memmaps(*arrays) -> None:
+    """Release NumPy memmap handles explicitly before Windows temp cleanup."""
+    for array in arrays:
+        mmap = getattr(array, "_mmap", None)
+        if mmap is not None and not mmap.closed:
+            mmap.close()
+
+
+def validate_full_streaming_resume(root: Path, output: Path, config: dict[str, Any],
+                                   feature_fit_rows: int = 5000,
+                                   source_chunk_rows: int = 10000,
+                                   feature_chunk_rows: int = 10000) -> dict[str, Any]:
+    """Reconstruct and verify a resume point without changing its artifacts.
+
+    This intentionally does not call ``load_latest_qnn_chunk_checkpoint`` because
+    that helper repairs the chunk manifest while loading. Here the source inputs,
+    fold-local features, exact checkpoint configuration, every chunk receipt,
+    optimizer state, and both RNG states are checked read-only.
+    """
+    root, output = Path(root).resolve(), Path(output).resolve()
+    checkpointing.validate_config(config)
+    preflight = checkpointing.memory_preflight(config, mode="full-development")
+    if feature_fit_rows < 100 or source_chunk_rows < 1 or feature_chunk_rows < 1:
+        raise ValueError("Full-streaming preprocessing and chunk settings are invalid")
+    stream_config = {"metadata_chunk_rows": source_chunk_rows,
+        "qasm_feature_chunk_rows": feature_chunk_rows,
+        "preprocessor_fit_row_limit": feature_fit_rows,
+        "preprocessor_sampling": "deterministic train-only class-balanced first-in-cache-order"}
+    progress_path = output / "full_campaign_manifest.json"
+    if not progress_path.is_file():
+        raise FileNotFoundError(f"Resume progress manifest is missing: {progress_path}")
+    progress = json.loads(progress_path.read_text(encoding="utf-8"))
+    if (progress.get("status") != "paused_checkpointed" or
+            progress.get("frozen_test_accessed") is not False or
+            progress.get("expected_development_rows") != checkpointing.DEVELOPMENT_ROWS or
+            progress.get("configuration") != config or
+            progress.get("streaming_configuration") != stream_config):
+        raise ValueError("Seed progress manifest is incomplete, non-development, or configuration-incompatible")
+
+    import numpy as np
+    from qmutbench_qml.data.loader import FEATURES
+    checkpoint_dir = output / "fold_checkpoints"
+    fold = int(progress["active_fold"])
+    chunk_manifest_path = checkpoint_dir / f"fold_{fold:02d}_campaign_manifest.json"
+    if not chunk_manifest_path.is_file():
+        raise FileNotFoundError(f"Fold checkpoint manifest is missing: {chunk_manifest_path}")
+    chunk_manifest = json.loads(chunk_manifest_path.read_text(encoding="utf-8"))
+    checkpoint_paths = sorted(checkpoint_dir.glob(f"fold_{fold:02d}_qnn_chunk_*.json"))
+    if not checkpoint_paths:
+        raise ValueError("No committed chunk checkpoints found for the active fold")
+    chunk_numbers = [int(path.stem.rsplit("_", 1)[1]) for path in checkpoint_paths]
+    if chunk_numbers != list(range(1, len(chunk_numbers) + 1)):
+        raise ValueError("Active fold checkpoint history has a gap or duplicate chunk")
+    if chunk_manifest.get("fold") != fold:
+        raise ValueError("Active fold checkpoint manifest identifies a different fold")
+
+    versions = {key: value for key, value in checkpointing._software_versions().items()
+                if key != "platform"}
+    package_root = Path(__file__).resolve().parents[1]
+    current_fingerprints: dict[str, str] = {}
+    with tempfile.TemporaryDirectory(prefix="qmutbench-resume-validate-",
+                                     ignore_cleanup_errors=True) as temp_name:
+        temp = Path(temp_name)
+        stream = DevelopmentStream(root, temp / "development.sqlite",
+            metadata_chunk_rows=source_chunk_rows, feature_chunk_rows=feature_chunk_rows,
+            archive_authoritative=True)
+        data_audit = stream.build_index()
+        if data_audit != progress.get("stream_audit"):
+            raise ValueError("Current source, split, QASM cache, or group audit differs from the checkpoint")
+        if (data_audit.get("development_rows_indexed") != checkpointing.DEVELOPMENT_ROWS or
+                data_audit.get("development_origins") != 305 or
+                data_audit.get("frozen_test_rows_retained") != 0 or
+                data_audit.get("source_rows_scanned") != 723079):
+            raise ValueError("Development coverage, origin count, or test-exclusion audit is invalid")
+        current_fingerprints = {
+            "streaming_loader_sha256": checkpointing.file_sha256(package_root / "data" / "streaming.py"),
+            "feature_loader_sha256": checkpointing.file_sha256(package_root / "data" / "loader.py"),
+            "feature_encoder_sha256": checkpointing.file_sha256(package_root / "features" / "reduction.py"),
+            "qnn_model_sha256": checkpointing.file_sha256(package_root / "models" / "binary_vqc.py"),
+            "full_trainer_sha256": checkpointing.file_sha256(Path(__file__).resolve()),
+            "source_metadata_sha256": data_audit["source_sha256"],
+            "reference_csv_sha256": data_audit["reference_sha256"],
+            "reference_archive_sha256": data_audit["reference_archive_sha256"],
+            "qasm_manifest_sha256": data_audit["qasm_manifest_sha256"]}
+        fold_rows = data_audit["fold_record_counts"]
+        train_rows = checkpointing.DEVELOPMENT_ROWS - int(fold_rows[str(fold)])
+        valid_rows = int(fold_rows[str(fold)])
+        encoder, fit_sample_count = _fit_encoder(stream, fold, config["qubits"],
+                                                  config["seed"] + fold, feature_fit_rows)
+        work = temp / f"fold_{fold:02d}"
+        work.mkdir()
+        train_paths = _write_memmaps(stream, fold, "training", encoder, work, "train",
+                                     train_rows, config["qubits"])
+        valid_paths = _write_memmaps(stream, fold, "validation", encoder, work, "valid",
+                                     valid_rows, config["qubits"])
+        train_xp, train_yp, train_idp, _, train_audit = train_paths
+        valid_xp, valid_yp, valid_idp, _, valid_audit = valid_paths
+        if (train_audit.get("records_seen") != train_rows or
+                valid_audit.get("records_seen") != valid_rows or
+                train_audit.get("fold") != fold or valid_audit.get("fold") != fold or
+                train_audit.get("skipped_rows") != 0 or valid_audit.get("skipped_rows") != 0 or
+                train_audit.get("feature_errors") != 0 or valid_audit.get("feature_errors") != 0):
+            raise ValueError("Reconstructed train/validation partitions fail row or group isolation checks")
+        train_id_map = np.memmap(train_idp, mode="r", dtype=np.int64, shape=(train_rows,))
+        valid_id_map = np.memmap(valid_idp, mode="r", dtype=np.int64, shape=(valid_rows,))
+        train_groups = np.unique(stream._origin_by_id[train_id_map])
+        valid_groups = np.unique(stream._origin_by_id[valid_id_map])
+        group_overlap = np.intersect1d(train_groups, valid_groups, assume_unique=True)
+        del train_id_map, valid_id_map
+        if group_overlap.size:
+            raise ValueError("Reconstructed train/validation groups overlap")
+        latest_body = json.loads(checkpoint_paths[-1].read_text(encoding="utf-8"))
+        stored_fingerprints = latest_body.get("configuration", {}).get("source_fingerprints", {})
+        compatible_fingerprints = _resume_source_fingerprints(current_fingerprints, stored_fingerprints)
+        feature_hash = hashlib.sha256()
+        feature_hash.update(_fingerprint_arrays(train_xp, train_yp, train_idp,
+                                                train_rows, config["qubits"]).encode())
+        feature_hash.update(_fingerprint_arrays(valid_xp, valid_yp, valid_idp,
+                                                valid_rows, config["qubits"]).encode())
+        fingerprint = checkpointing.canonical_hash({
+            "feature_hash": feature_hash.hexdigest(), "configuration": config,
+            "fold": fold, "feature_schema": FEATURES,
+            "selected_features": encoder.selected_names,
+            "preprocessor_fit_rows": fit_sample_count,
+            "streaming_configuration": stream_config,
+            "source_sha256": data_audit["source_sha256"],
+            "qasm_manifest_sha256": data_audit["qasm_manifest_sha256"],
+            "reference_sha256": data_audit["reference_sha256"],
+            "reference_archive_sha256": data_audit["reference_archive_sha256"],
+            "source_code_fingerprints": compatible_fingerprints})
+        expected_fold_config = {**config, "mode": "full-development", "fold": fold,
+            "feature_schema": FEATURES, "selected_features": encoder.selected_names,
+            "preprocessor_fit_rows": fit_sample_count, "software_versions": versions,
+            "streaming_configuration": stream_config,
+            "source_fingerprints": compatible_fingerprints,
+            "checkpoint_schema": checkpointing.CHUNK_CHECKPOINT_SCHEMA}
+        if chunk_manifest.get("fingerprint") != fingerprint:
+            raise ValueError("Reconstructed active-fold fingerprint differs from its manifest")
+        planned_items = chunk_manifest.get("chunks", [])
+        planned_numbers = [int(item.get("chunk", -1)) for item in planned_items]
+        items = {int(item["chunk"]): item for item in planned_items
+                 if item.get("status") == "completed"}
+        if (planned_numbers != list(range(1, len(planned_items) + 1)) or
+                set(items) != set(chunk_numbers) or
+                any(item.get("status") != "pending" for item in planned_items[len(chunk_numbers):])):
+            raise ValueError("Fold checkpoint manifest and durable checkpoint files have different chunk coverage")
+        previous_batch = previous_records = optimizer_updates = 0
+        latest_state: dict[str, Any] | None = None
+        for path, chunk in zip(checkpoint_paths, chunk_numbers):
+            body = checkpointing.load_qnn_chunk_checkpoint(path, fold, chunk,
+                fingerprint, expected_fold_config)
+            item = items[chunk]
+            state = body["state"]
+            receipt = state.get("processed_range") or {}
+            digest = checkpointing.file_sha256(path)
+            chunk_updates = math.ceil(int(state["chunk_records"]) / config["batch_size"])
+            if (item.get("status") != "completed" or item.get("sha256") != digest or
+                    item.get("checkpoint") != path.name or
+                    int(receipt.get("first_batch", -1)) != previous_batch or
+                    not 0 < int(receipt.get("next_batch", -1)) - int(receipt.get("first_batch", -1)) <= config["chunk_batches"] or
+                    int(receipt.get("records", -1)) != int(state["chunk_records"]) or
+                    int(state.get("processed_records", -1)) - previous_records != int(state["chunk_records"]) or
+                    state.get("gradient_check_result", {}).get("passed") is not True or
+                    state.get("parameter_update_verified") is not True):
+                raise ValueError(f"Checkpoint receipt, hash, gradient, or update check failed at chunk {chunk}")
+            previous_batch = int(receipt["next_batch"])
+            previous_records = int(state["processed_records"])
+            optimizer_updates += chunk_updates
+            latest_state = state
+        if latest_state is None:
+            raise ValueError("No valid active-fold checkpoint state was reconstructed")
+        if (int(progress.get("active_chunk", -1)) != int(latest_state["chunk_index"]) or
+                int(progress.get("next_chunk", -1)) != int(latest_state["chunk_index"]) + 1 or
+                int(progress.get("next_epoch", -1)) != int(latest_state["epoch"]) or
+                int(progress.get("next_batch", -1)) != int(latest_state["next_batch"]) or
+                int(progress.get("total_chunks_committed", -1)) != len(chunk_numbers) or
+                int(progress.get("total_optimizer_updates", -1)) < optimizer_updates or
+                int(latest_state.get("optimizer_accumulation", {}).get("t", -1)) != optimizer_updates):
+            raise ValueError("Global progress cursor or Adam step count differs from the latest durable checkpoint")
+        for key in ("weights", "initial_weights"):
+            arr = np.asarray(latest_state[key], dtype=float)
+            if not np.isfinite(arr).all():
+                raise ValueError(f"Checkpoint contains non-finite {key}")
+        moments = latest_state["optimizer_accumulation"]
+        first, second = np.asarray(moments["fm"], dtype=float), np.asarray(moments["sm"], dtype=float)
+        if first.shape != second.shape or not np.isfinite(first).all() or not np.isfinite(second).all():
+            raise ValueError("Adam first/second moments are invalid")
+        for key in ("rng_state", "shuffle_rng_state"):
+            generator = np.random.default_rng()
+            generator.bit_generator.state = latest_state[key]
+        return {"status": "resume_validated_read_only", "checkpoint": chunk_numbers[-1],
+            "checkpoint_sha256": checkpointing.file_sha256(checkpoint_paths[-1]),
+            "checkpoint_fingerprint": fingerprint, "chunks_verified": len(chunk_numbers),
+            "optimizer_updates_in_active_fold": optimizer_updates,
+            "total_optimizer_updates": int(progress["total_optimizer_updates"]),
+            "processed_records_in_active_fold": previous_records,
+            "next_epoch": int(latest_state["epoch"]), "next_batch": int(latest_state["next_batch"]),
+            "development_rows": int(data_audit["development_rows_indexed"]),
+            "development_origins": int(data_audit["development_origins"]),
+            "frozen_test_rows": int(data_audit["frozen_test_rows_retained"]),
+            "source_audit": data_audit, "source_fingerprints": compatible_fingerprints,
+            "software_versions": versions, "preflight": preflight,
+            "frozen_test_accessed": False, "checkpoint_directory_unchanged": True}
 
 
 def _fingerprint_arrays(x_path: Path, y_path: Path, id_path: Path, rows: int,
@@ -214,7 +468,8 @@ def run_full_streaming_campaign(root: Path, output: Path, config: dict[str, Any]
         "total_chunks_committed": 0,
         "total_qnn_records_processed": 0,
         "total_optimizer_updates": 0,
-        "resume_events": 0}
+        "resume_events": 0,
+        "runtime_orchestration_hashes": []}
     prior_progress = None
     if global_manifest_path.exists() and resume:
         prior = json.loads(global_manifest_path.read_text(encoding="utf-8"))
@@ -232,15 +487,12 @@ def run_full_streaming_campaign(root: Path, output: Path, config: dict[str, Any]
         progress["total_qnn_records_processed"] = int(prior.get("total_qnn_records_processed", 0))
         progress["total_optimizer_updates"] = int(prior.get("total_optimizer_updates", 0))
         progress["resume_events"] = int(prior.get("resume_events", 0)) + 1
+        progress["runtime_orchestration_hashes"] = list(
+            prior.get("runtime_orchestration_hashes", []))
     _atomic_json(global_manifest_path, progress)
 
     def pause_report(active_fold: int, state: dict[str, Any] | None = None) -> dict:
-        progress.update({"status": "paused_checkpointed", "active_fold": active_fold,
-            "active_chunk": int(state["chunk_index"]) if state else 0,
-            "next_chunk": int(state["chunk_index"]) + 1 if state else 1,
-            "next_epoch": int(state["epoch"]) if state else 0,
-            "next_batch": int(state["next_batch"]) if state else 0,
-            "last_checkpoint_validated": True})
+        _checkpointed_pause_fields(progress, active_fold, state)
         report = {"schema": "qmutbench-binary-qnn-full-development-v1",
             "status": "paused_checkpointed", "mode": "full-development",
             "development_only": True, "frozen_test_accessed": False,
@@ -268,10 +520,12 @@ def run_full_streaming_campaign(root: Path, output: Path, config: dict[str, Any]
         print(json.dumps(report, sort_keys=True), flush=True)
         return report
 
-    with tempfile.TemporaryDirectory(prefix="qmutbench-full-stream-") as temp_dir:
+    with tempfile.TemporaryDirectory(prefix="qmutbench-full-stream-",
+                                     ignore_cleanup_errors=True) as temp_dir:
         temp = Path(temp_dir)
         stream = DevelopmentStream(root, temp / "development.sqlite",
-            metadata_chunk_rows=source_chunk_rows, feature_chunk_rows=feature_chunk_rows)
+            metadata_chunk_rows=source_chunk_rows, feature_chunk_rows=feature_chunk_rows,
+            archive_authoritative=True)
         data_audit = stream.build_index()
         if prior_progress and prior_progress.get("stream_audit") not in (None, data_audit):
             raise ValueError("Full-streaming dataset/split/cache fingerprints changed during resume")
@@ -287,6 +541,31 @@ def run_full_streaming_campaign(root: Path, output: Path, config: dict[str, Any]
             "reference_csv_sha256": data_audit["reference_sha256"],
             "reference_archive_sha256": data_audit["reference_archive_sha256"],
             "qasm_manifest_sha256": data_audit["qasm_manifest_sha256"]}
+        current_trainer_hash = source_fingerprints["full_trainer_sha256"]
+        if resume and prior_progress:
+            resume_fold = int(prior_progress.get("active_fold", 1))
+            resume_checkpoints = sorted(checkpoint_dir.glob(
+                f"fold_{resume_fold:02d}_qnn_chunk_*.json"))
+            if resume_checkpoints:
+                checkpoint_path = resume_checkpoints[-1]
+                checkpoint_body = json.loads(checkpoint_path.read_text(encoding="utf-8"))
+                stored_configuration = checkpoint_body.get("configuration", {})
+                checkpointing.load_qnn_chunk_checkpoint(
+                    checkpoint_path, resume_fold, int(checkpoint_body.get("chunk", -1)),
+                    checkpoint_body.get("fingerprint", ""), stored_configuration)
+                stored_fingerprints = stored_configuration.get("source_fingerprints", {})
+                source_fingerprints = _resume_source_fingerprints(
+                    source_fingerprints, stored_fingerprints)
+                if current_trainer_hash != source_fingerprints["full_trainer_sha256"]:
+                    progress["checkpoint_trainer_sha256"] = source_fingerprints["full_trainer_sha256"]
+                    progress["checkpoint_trainer_hash_compatibility"] = (
+                        "Pinned checkpoint trainer hash retained after the latest checkpoint was "
+                        "validated and all training-relevant source fingerprints matched exactly; "
+                        "current orchestration hash is recorded separately.")
+        progress["runtime_orchestration_hashes"].append({
+            "sha256": current_trainer_hash,
+            "validated_training_identity": source_fingerprints["full_trainer_sha256"]})
+        _atomic_json(global_manifest_path, progress)
         fold_metrics = list(prior_progress.get("fold_metrics", [])) if prior_progress else []
         fold_audits = list(prior_progress.get("fold_stream_audits", [])) if prior_progress else []
         fold_rows = data_audit["fold_record_counts"]
@@ -414,13 +693,52 @@ def run_full_streaming_campaign(root: Path, output: Path, config: dict[str, Any]
                     progress.update({"status": "running", "active_fold": fold,
                                      "active_chunk": next_chunk})
                     _atomic_json(global_manifest_path, progress)
-                qnn.fit(x_train, y_train, resume_state=state, checkpoint_callback=persist_chunk,
-                        max_batches_per_chunk=config["chunk_batches"], compact_batch_order=True)
+                try:
+                    next_batch = int(state.get("next_batch", 0)) if state else 0
+                    chunk_batch_limit = bounded_chunk_batches(next_batch, batches_per_epoch,
+                                                               config["chunk_batches"])
+                    qnn.fit(x_train, y_train, resume_state=state, checkpoint_callback=persist_chunk,
+                            max_batches_per_chunk=chunk_batch_limit, compact_batch_order=True)
+                except KeyboardInterrupt:
+                    _close_memmaps(x_train, y_train, train_ids, x_valid, y_valid, ids_valid, origins_valid)
+                    # The fit may have interrupted during a chunk after its callback
+                    # persisted it. Re-scan the durable checkpoints to recover the
+                    # actual latest boundary and repair the chunk manifest if needed.
+                    interrupted_state = checkpointing.load_latest_qnn_chunk_checkpoint(
+                        checkpoint_dir, fold, fingerprint, fold_config)
+                    return pause_report(fold, interrupted_state)
+                except BaseException as exc:
+                    _close_memmaps(x_train, y_train, train_ids, x_valid, y_valid, ids_valid, origins_valid)
+                    if isinstance(exc, MemoryError):
+                        progress.update({"status": "stopped_memory_guard", "active_fold": fold,
+                            "active_chunk": int(progress.get("active_chunk", 1)),
+                            "memory_guard_error": str(exc),
+                            "last_committed_checkpoint": None if latest is None else int(latest["chunk_index"]),
+                            "frozen_test_accessed": False})
+                        _atomic_json(global_manifest_path, progress)
+                        _atomic_json(output / "summary.json", {"schema": "qmutbench-binary-qnn-full-development-v1",
+                            "status": "stopped_memory_guard", "mode": "full-development",
+                            "development_only": True, "memory_guard_error": str(exc),
+                            "active_fold": fold, "active_chunk": int(progress.get("active_chunk", 1)),
+                            "total_chunks_committed": int(progress["total_chunks_committed"]),
+                            "last_committed_checkpoint": None if latest is None else int(latest["chunk_index"]),
+                            "frozen_test_accessed": False})
+                    raise
                 if qnn.training_complete:
                     break
                 state = qnn.resume_state
+                available_after_chunk = int(psutil.virtual_memory().available // 2**20)
+                if should_pause_for_memory(available_after_chunk):
+                    progress["memory_pause_reason"] = (
+                        f"Available RAM {available_after_chunk} MiB fell below the "
+                        f"{checkpointing.RAM_FLOOR_MIB + MEMORY_PAUSE_RESERVE_MIB} MiB "
+                        "checkpoint-boundary pause threshold")
+                    _close_memmaps(x_train, y_train, train_ids, x_valid, y_valid,
+                                   ids_valid, origins_valid)
+                    return pause_report(fold, state)
                 if (max_chunks_per_invocation is not None and
                         int(progress["chunks_committed_this_invocation"]) >= max_chunks_per_invocation):
+                    _close_memmaps(x_train, y_train, train_ids, x_valid, y_valid, ids_valid, origins_valid)
                     return pause_report(fold, state)
             qnn_seconds = time.perf_counter() - qnn_start
             parameter_update_verified = not np.allclose(np.asarray(qnn.weights), initial_weights)
