@@ -45,8 +45,20 @@ class QuantumCircuit:
         self._validate_qubit(qubit)
         self.instructions.append((gate, qubit))
 
+    def i(self, qubit: int) -> None:
+        self._append_single_qubit("i", qubit)
+
+    def id(self, qubit: int) -> None:
+        self._append_single_qubit("id", qubit)
+
+    def identity(self, qubit: int) -> None:
+        self._append_single_qubit("identity", qubit)
+
     def h(self, qubit: int) -> None:
         self._append_single_qubit("h", qubit)
+
+    def hadamard(self, qubit: int) -> None:
+        self._append_single_qubit("hadamard", qubit)
 
     def x(self, qubit: int) -> None:
         self._append_single_qubit("x", qubit)
@@ -88,6 +100,20 @@ class QuantumCircuit:
     def rz(self, theta: float, qubit: int) -> None:
         self._append_rotation("rz", theta, qubit)
 
+    def p(self, theta: float, qubit: int) -> None:
+        self._append_rotation("p", theta, qubit)
+
+    def u1(self, theta: float, qubit: int) -> None:
+        self._append_rotation("u1", theta, qubit)
+
+    def u2(self, phi: float, lam: float, qubit: int) -> None:
+        self._validate_qubit(qubit)
+        self.instructions.append(("u2", qubit, phi, lam))
+
+    def u3(self, theta: float, phi: float, lam: float, qubit: int) -> None:
+        self._validate_qubit(qubit)
+        self.instructions.append(("u3", qubit, theta, phi, lam))
+
     def u(self, theta: float, phi: float, lam: float, qubit: int) -> None:
         self._validate_qubit(qubit)
         self.instructions.append(("u", qubit, theta, phi, lam))
@@ -120,9 +146,33 @@ class QuantumCircuit:
         self._validate_distinct_qubits(control, target)
         self.instructions.append(("cx", control, target))
 
+    def cnot(self, control: int, target: int) -> None:
+        self._validate_distinct_qubits(control, target)
+        self.instructions.append(("cnot", control, target))
+
     def cz(self, control: int, target: int) -> None:
         self._validate_distinct_qubits(control, target)
         self.instructions.append(("cz", control, target))
+
+    def ch(self, control: int, target: int) -> None:
+        self._validate_distinct_qubits(control, target)
+        self.instructions.append(("ch", control, target))
+
+    def cp(self, theta: float, control: int, target: int) -> None:
+        self._append_controlled_rotation("cp", theta, control, target)
+
+    def crx(self, theta: float, control: int, target: int) -> None:
+        self._append_controlled_rotation("crx", theta, control, target)
+
+    def cry(self, theta: float, control: int, target: int) -> None:
+        self._append_controlled_rotation("cry", theta, control, target)
+
+    def crz(self, theta: float, control: int, target: int) -> None:
+        self._append_controlled_rotation("crz", theta, control, target)
+
+    def _append_controlled_rotation(self, gate: str, theta: float, control: int, target: int) -> None:
+        self._validate_distinct_qubits(control, target)
+        self.instructions.append((gate, control, target, theta))
 
     def swap(self, qubit1: int, qubit2: int) -> None:
         self._validate_distinct_qubits(qubit1, qubit2)
@@ -132,9 +182,21 @@ class QuantumCircuit:
         self._validate_distinct_qubits(control1, control2, target)
         self.instructions.append(("ccx", control1, control2, target))
 
+    def toffoli(self, control1: int, control2: int, target: int) -> None:
+        self._validate_distinct_qubits(control1, control2, target)
+        self.instructions.append(("toffoli", control1, control2, target))
+
     def rccx(self, control1: int, control2: int, target: int) -> None:
         self._validate_distinct_qubits(control1, control2, target)
         self.instructions.append(("rccx", control1, control2, target))
+
+    def cswap(self, control: int, target1: int, target2: int) -> None:
+        self._validate_distinct_qubits(control, target1, target2)
+        self.instructions.append(("cswap", control, target1, target2))
+
+    def fredkin(self, control: int, target1: int, target2: int) -> None:
+        self._validate_distinct_qubits(control, target1, target2)
+        self.instructions.append(("fredkin", control, target1, target2))
 
     def reset(self, qubit: int) -> None:
         self._validate_qubit(qubit)
@@ -167,3 +229,4 @@ class QuantumCircuit:
         simulator = QuantumSimulator(self.n_qubits, memory_budget_bytes=memory_budget_bytes)
         counts = simulator.run_shots(self.instructions, shots=shots, seed=seed)
         return SimulationResult(counts)
+
