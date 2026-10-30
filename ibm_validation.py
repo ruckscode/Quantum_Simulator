@@ -749,12 +749,18 @@ def preflight_ibm_backend(
         return {"status": "BLOCKED", "blocker": "DEPENDENCIES_MISSING", "backend": backend_name, "access": access.to_dict(), "checks": checks, "calibration": None, "calibration_assessment": None, "job_submitted": False, "transpilation_performed": False, "error": access.reason}
     if not fixture_service and (not isinstance(token, str) or not token.strip()):
         return {"status": "BLOCKED", "blocker": "CREDENTIALS_MISSING", "backend": backend_name, "access": access.to_dict(), "checks": checks, "calibration": None, "calibration_assessment": None, "job_submitted": False, "transpilation_performed": False, "error": access.reason}
+    if not fixture_service:
+        credential_error = _credential_input_error(token, channel)
+        if credential_error:
+            checks.append({"name": "api_key_format", "status": "FAIL", "detail": credential_error})
+            return {"status": "BLOCKED", "blocker": "CREDENTIAL_FORMAT_INVALID", "backend": backend_name, "access": access.to_dict(), "checks": checks, "calibration": None, "calibration_assessment": None, "job_submitted": False, "transpilation_performed": False, "error": credential_error}
     try:
         runtime_service = service if fixture_service else _runtime_service(token, instance, channel)
         backend = runtime_service.backend(backend_name)
     except Exception as exc:
-        checks.append({"name": "backend_access", "status": "FAIL", "detail": f"{type(exc).__name__}: {exc}"})
-        return {"status": "BLOCKED", "blocker": "BACKEND_ACCESS_FAILED", "backend": backend_name, "access": access.to_dict(), "checks": checks, "calibration": None, "calibration_assessment": None, "job_submitted": False, "transpilation_performed": False, "error": f"{type(exc).__name__}: {exc}"}
+        safe_error = _redact_secret(f"{type(exc).__name__}: {exc}", token)
+        checks.append({"name": "backend_access", "status": "FAIL", "detail": safe_error})
+        return {"status": "BLOCKED", "blocker": "BACKEND_ACCESS_FAILED", "backend": backend_name, "access": access.to_dict(), "checks": checks, "calibration": None, "calibration_assessment": None, "job_submitted": False, "transpilation_performed": False, "error": safe_error}
 
     capture = capture_backend_calibration(backend, capture_source="INJECTED_SERVICE_FIXTURE" if fixture_service else "IBM_BACKEND_API")
     freshness = calibration_freshness(capture, max_age_seconds=max_calibration_age_seconds, now=now)
@@ -869,10 +875,37 @@ def hardware_model_from_ibm_calibration(capture: IBMCalibrationCapture) -> Hardw
 def _runtime_service(token: str, instance: str | None = None, channel: str = "ibm_quantum_platform") -> Any:
     from qiskit_ibm_runtime import QiskitRuntimeService
 
-    kwargs: dict[str, Any] = {"channel": channel, "token": token}
+    credential_error = _credential_input_error(token, channel)
+    if credential_error:
+        raise ValueError(credential_error)
+    kwargs: dict[str, Any] = {"channel": channel, "token": token.strip()}
     if instance:
         kwargs["instance"] = instance
     return QiskitRuntimeService(**kwargs)
+
+
+def _credential_input_error(token: str | None, channel: str) -> str | None:
+    """Validate the current IBM Quantum Platform key shape without exposing it."""
+    if not isinstance(token, str) or not token.strip():
+        return "An explicit IBM API key is required. The key is never written to simulator reports or files."
+    if channel == "ibm_quantum_platform" and len(token.strip()) != 44:
+        return (
+            "The supplied key has "
+            f"{len(token.strip())} characters; the IBM Quantum Platform channel expects a 44-character API key. "
+            "Only the length was checked; the key value was not logged or saved. "
+            "A legacy IBM Quantum token may not work with this channel."
+        )
+    return None
+
+
+def _redact_secret(message: str, secret: str | None) -> str:
+    """Remove an explicitly supplied secret if an upstream exception echoes it."""
+    if isinstance(secret, str) and secret:
+        message = message.replace(secret, "[REDACTED]")
+        stripped = secret.strip()
+        if stripped and stripped != secret:
+            message = message.replace(stripped, "[REDACTED]")
+    return message
 
 
 def _explicit_credential_access_status(token: str | None) -> IBMAccessStatus:
@@ -901,6 +934,10 @@ def discover_ibm_backends(service: Any | None = None, *, token: str | None = Non
         access = _explicit_credential_access_status(token)
     else:
         access = IBMAccessStatus("SERVICE_PROVIDED", True, True, False, "provided Runtime service")
+    if service is None:
+        credential_error = _credential_input_error(token, channel)
+        if credential_error:
+            return {"status": "BLOCKED", "discovery_source": "IBM_RUNTIME", "backends": [], "access": access.to_dict(), "error": credential_error}
     if service is None and (not isinstance(token, str) or not token.strip()):
         return {"status": "BLOCKED", "discovery_source": "IBM_RUNTIME", "backends": [], "access": access.to_dict(), "error": access.reason}
     if service is None and access.status != "ACCESS_CONFIGURED":
@@ -919,7 +956,7 @@ def discover_ibm_backends(service: Any | None = None, *, token: str | None = Non
             })
         return {"status": "PARSED_INJECTED_SERVICE" if service is not None else "DISCOVERED", "discovery_source": "INJECTED_SERVICE_FIXTURE" if service is not None else "IBM_RUNTIME", "backends": found, "access": access.to_dict(), "error": None}
     except Exception as exc:
-        return {"status": "FAILED", "discovery_source": "INJECTED_SERVICE_FIXTURE" if service is not None else "IBM_RUNTIME", "backends": [], "access": access.to_dict(), "error": f"{type(exc).__name__}: {exc}"}
+        return {"status": "FAILED", "discovery_source": "INJECTED_SERVICE_FIXTURE" if service is not None else "IBM_RUNTIME", "backends": [], "access": access.to_dict(), "error": _redact_secret(f"{type(exc).__name__}: {exc}", token)}
 
 
 def ideal_distribution(circuit: Sequence[Any], num_qubits: int, *, seed: int = 1234) -> dict[str, float]:
@@ -1364,6 +1401,7 @@ def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: 
     access = _explicit_credential_access_status(token)
     if isinstance(max_calibration_age_seconds, bool) or not isinstance(max_calibration_age_seconds, (int, float)) or not math.isfinite(float(max_calibration_age_seconds)) or max_calibration_age_seconds <= 0:
         raise ValueError("max_calibration_age_seconds must be a positive number")
+    credential_error = _credential_input_error(token, channel)
     plan = build_circuit_plan(circuit)
     if not plan.supported:
         conversion = CircuitConversionResult(
@@ -1385,6 +1423,8 @@ def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: 
         return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, conversion=conversion, errors=[conversion.error or "Reference circuit is unsupported"])
     if reference_plan.num_qubits != plan.num_qubits:
         return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, errors=["Reference and submitted circuits must use the same number of logical qubits."])
+    if credential_error:
+        return _make_result(status="BLOCKED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, errors=[credential_error])
     if not isinstance(token, str) or not token.strip() or access.status != "ACCESS_CONFIGURED":
         return _make_result(status="BLOCKED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, errors=[access.reason or "IBM access is not configured"])
     if not isinstance(shots, int) or isinstance(shots, bool) or shots <= 0:
@@ -1404,7 +1444,7 @@ def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: 
         service = _runtime_service(token, instance, channel)
         backend = service.backend(backend_name)
     except Exception as exc:
-        return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, conversion=conversion, errors=[f"Backend selection failed: {type(exc).__name__}: {exc}"])
+        return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=backend_name, shots=shots, access=access, conversion=conversion, errors=[_redact_secret(f"Backend selection failed: {type(exc).__name__}: {exc}", token)])
 
     capture = capture_backend_calibration(backend)
     calibration_assessment = calibration_freshness(capture, max_age_seconds=max_calibration_age_seconds)
@@ -1458,7 +1498,7 @@ def execute_on_ibm_backend(circuit: Sequence[Any], *, backend_name: str, token: 
         if execution_start_timestamp is not None:
             execution_end_timestamp = utc_timestamp()
         info = {key: value for key, value in transpilation.items() if key != "circuit"}
-        return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=capture.backend_name, shots=shots, access=access, calibration=capture, conversion=conversion, transpilation_info=info, errors=[f"Hardware execution/result retrieval failed: {type(exc).__name__}: {exc}"], execution_start_timestamp=locals().get("execution_start_timestamp"), execution_end_timestamp=execution_end_timestamp, calibration_assessment={**calibration_assessment, "layout_status": "MAPPED"})
+        return _make_result(status="FAILED", origin="REAL_IBM_REQUEST", backend_name=capture.backend_name, shots=shots, access=access, calibration=capture, conversion=conversion, transpilation_info=info, errors=[_redact_secret(f"Hardware execution/result retrieval failed: {type(exc).__name__}: {exc}", token)], execution_start_timestamp=locals().get("execution_start_timestamp"), execution_end_timestamp=execution_end_timestamp, calibration_assessment={**calibration_assessment, "layout_status": "MAPPED"})
 
     model = capture.hardware_model
     if model is None:
