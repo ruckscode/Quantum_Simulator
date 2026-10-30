@@ -400,7 +400,7 @@ class QuantumSimulator:
                     gate_qubits = tuple(int(q) for q in operands[:3])
                 else:
                     gate_qubits = tuple(int(q) for q in operands[:1])
-                calibration_name = {"cnot": "cx", "id": "i", "identity": "i"}.get(op_name, op_name)
+                calibration_name = {"cnot": "cx", "hadamard": "h", "id": "i", "identity": "i"}.get(op_name, op_name)
                 gate_error = hardware_model.gate_error(calibration_name, gate_qubits)
                 gate_duration = hardware_model.gate_duration(calibration_name, gate_qubits)
                 # A calibrated gate error represents a chance this operation fails
@@ -443,7 +443,7 @@ class QuantumSimulator:
                 self.barrier(*operands)
                 continue
 
-            if op_name in {"i", "id", "identity", "h", "x", "y", "z", "s", "sdg", "t", "tdg", "sx", "sxdg"}:
+            if op_name in {"i", "id", "identity", "h", "hadamard", "x", "y", "z", "s", "sdg", "t", "tdg", "sx", "sxdg"}:
                 if len(operands) != 1:
                     raise ValueError(f"Gate {op_name!r} expects exactly one qubit operand")
                 self.apply_gate(op_name, operands[0])
