@@ -13,7 +13,7 @@ The selected historical QMutBench model is **`qmutbench-mutation-aware-v1`** (10
 
 ## Classical ML benchmark update (2026-10-30)
 
-The latest completed grouped classical ML benchmarks, source-by-source OOF scores, QMutBench controls, run manifests, and limitations are in the [classical ML results report](reports/experiments/classical_ml_benchmarks_20261030/report.md). Different datasets have different prediction targets, so their scores are reported separately rather than as one aggregate accuracy.
+The latest completed grouped classical ML benchmarks, source-by-source OOF scores, QMutBench controls, run manifests, and limitations are in the root-level [CLASSICAL_ML_RESULTS.md](CLASSICAL_ML_RESULTS.md). Different datasets have different prediction targets, so their scores are reported separately rather than as one aggregate accuracy.
 
 ## Setup and common checks
 

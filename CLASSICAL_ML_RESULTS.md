@@ -44,7 +44,7 @@ The 57.00% matched-feature result is not directly interchangeable with the 79.33
 
 ## Files and reproducibility
 
-- This report: `reports/experiments/classical_ml_benchmarks_20261030/report.md`
+- This report: `CLASSICAL_ML_RESULTS.md` (linked from the repository README)
 - Per-task pooled OOF metrics and fold-selection manifests: `reports/experiments/classical_ml_benchmarks_20261030/source_tasks/`
 - Fold-level OOF predictions for the nested source/classifier searches: `reports/experiments/classical_nested_combined_search_v2_20261030/` and `reports/experiments/classical_sparse_knn_nested_20261030/`
 - Historical grouped classical suite fold predictions and summaries: `reports/experiments/local_grouped_classical_suite_*/`
