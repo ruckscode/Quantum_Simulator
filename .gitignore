@@ -101,3 +101,16 @@ data/Bugs4Q_official/
 
 # Accidental terminal output saved under a command-shaped filename
 s -ExecutionPolicy RemoteSigned)*
+
+# Downloaded/raw research data and generated preprocessing caches stay local.
+# Commit small, reviewed summaries and manifests under data/curated_* instead.
+/data/external_quantum_datasets/
+/data/processed/
+/data/qmutbench_training_inputs.zip
+/qmutbench_training_inputs.zip
+
+# Per-run experiments, checkpoints, and prediction dumps are local artifacts.
+# Reviewed benchmark summaries belong in data/curated_qml_training_v1/ or
+# reports/benchmarks/; already tracked historical files remain tracked.
+/reports/experiments/
+/reports/recovery/

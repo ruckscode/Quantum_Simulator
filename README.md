@@ -4,9 +4,10 @@
 
 ## Start here
 
+- Repository map, data policy, and contribution layout: [`docs/repository_structure.md`](docs/repository_structure.md).
 - Reusable simulator and diagnosis package: `src/quantum_simulator/` (compatibility entry points remain at the repository root).
 - QMutBench/QML research code is a separate repository track and is not included in the installable simulator package.
-- Automated checks: `tests/`; research reports, metrics, and manifests: `reports/` and `reports/experiments/`.
+- Automated checks: `tests/`; reviewed reports and summaries: `reports/` and `data/curated_qml_training_v1/`. Per-run experiment outputs under `reports/experiments/` stay local by default.
 - Small QASM examples are tracked in `data/qmutbench/`. Full datasets, the selected model bundle, and generated ML intermediates are local-only under `data/` and are excluded by `.gitignore`.
 
 The selected historical QMutBench model is **`qmutbench-mutation-aware-v1`** (100-tree Extra Trees, 23 features, inference threshold 0.5). Its fixed-model grouped development macro F1 is **79.34%**; five-fold nested grouped-selected development macro F1 is **79.28%**. The 85% target remains unmet. These are development results, not independent external validation; no compatible independent external dataset has been verified. See the [final QMutBench research report](reports/experiments/qmutbench_final_research_report_20261026.json) and [inference guide](qmutbench_ml/README.md). The local model bundle must be supplied to run inference; this repository does not retrain it during inference.

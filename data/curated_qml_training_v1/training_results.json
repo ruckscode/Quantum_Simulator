@@ -1,0 +1,528 @@
+{
+  "qmutbench_binary_sampled": {
+    "status": "completed_development_sampled_oof",
+    "validation_records": 2560,
+    "folds": 5,
+    "binary_vqc": {
+      "accuracy": 0.5765625,
+      "macro_f1": 0.5692298903888269,
+      "balanced_accuracy": 0.5765625,
+      "fold_accuracy_mean": 0.5765625,
+      "fold_accuracy_sd": 0.01150521599611183,
+      "runtime_seconds_total": 730.4194721270032
+    },
+    "extra_trees_4f": {
+      "accuracy": 0.57109375,
+      "macro_f1": 0.5676034888550463,
+      "balanced_accuracy": 0.57109375
+    },
+    "logistic_4f": {
+      "accuracy": 0.55703125,
+      "macro_f1": 0.5548792716741522,
+      "balanced_accuracy": 0.55703125
+    },
+    "confusion_matrix_labels_0_1": [
+      [
+        905,
+        375
+      ],
+      [
+        709,
+        571
+      ]
+    ],
+    "source_result": "Kaggle sampled run qmutbench_binary_qnn_budgeted_sampled_20261031_122506",
+    "caveat": "sampled pilot; not full-corpus or frozen-test performance"
+  },
+  "qolumbina_ideal": {
+    "source_result": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/qolumbina_detection_ideal/qnn/summary.json",
+    "task": "ideal-backend seeded-mutant detection by majority DOSS outcome; separate target",
+    "status": "completed_grouped_supervised_qnn_benchmark",
+    "recomputed_oof_metrics": {
+      "amplitude_vqc": {
+        "accuracy": 0.33516483516483514,
+        "macro_f1": 0.32437490412639974,
+        "balanced_accuracy": 0.436875,
+        "records": 182
+      },
+      "angle_hybrid_readout": {
+        "accuracy": 0.5494505494505495,
+        "macro_f1": 0.4812291434927697,
+        "balanced_accuracy": 0.5422916666666666,
+        "records": 182
+      },
+      "angle_reupload_vqc": {
+        "accuracy": 0.5054945054945055,
+        "macro_f1": 0.387067804220925,
+        "balanced_accuracy": 0.3804166666666667,
+        "records": 182
+      },
+      "angle_vqc": {
+        "accuracy": 0.6208791208791209,
+        "macro_f1": 0.5017259850017854,
+        "balanced_accuracy": 0.5241666666666667,
+        "records": 182
+      },
+      "extra_trees_4d": {
+        "accuracy": 0.6153846153846154,
+        "macro_f1": 0.5048196517412935,
+        "balanced_accuracy": 0.5331250000000001,
+        "records": 182
+      },
+      "logistic_4d": {
+        "accuracy": 0.5769230769230769,
+        "macro_f1": 0.47242404848849906,
+        "balanced_accuracy": 0.4975,
+        "records": 182
+      },
+      "mlp_4d": {
+        "accuracy": 0.8241758241758241,
+        "macro_f1": 0.45180722891566266,
+        "balanced_accuracy": 0.5,
+        "records": 182
+      },
+      "random_forest_4d": {
+        "accuracy": 0.5,
+        "macro_f1": 0.45739278576810927,
+        "balanced_accuracy": 0.5491666666666667,
+        "records": 182
+      }
+    }
+  },
+  "qbugs_correct_vs_buggy": {
+    "source_result": "reports/experiments/qmutbench_multisource_qml_campaign_20261028/qbugs/qnn_hybrid/summary.json",
+    "task": "paired correct-vs-buggy circuit snapshots; separate target",
+    "status": "completed_grouped_supervised_qnn_benchmark",
+    "recomputed_oof_metrics": {
+      "angle_hybrid_readout": {
+        "accuracy": 0.7746666666666666,
+        "macro_f1": 0.77408672218103,
+        "balanced_accuracy": 0.7746666666666666,
+        "records": 1500
+      },
+      "extra_trees_4d": {
+        "accuracy": 0.836,
+        "macro_f1": 0.8359857125331807,
+        "balanced_accuracy": 0.8360000000000001,
+        "records": 1500
+      },
+      "logistic_4d": {
+        "accuracy": 0.81,
+        "macro_f1": 0.8099931597537511,
+        "balanced_accuracy": 0.81,
+        "records": 1500
+      },
+      "random_forest_4d": {
+        "accuracy": 0.8433333333333334,
+        "macro_f1": 0.8432379523363327,
+        "balanced_accuracy": 0.8433333333333333,
+        "records": 1500
+      }
+    }
+  },
+  "full_qmutbench_campaign": {
+    "status": "checkpointed_incomplete",
+    "chunks_committed": 1264,
+    "planned_chunks": 36200,
+    "completion_fraction": 0.034917127071823206,
+    "remaining_chunks": 34936,
+    "note": "Original all-data campaign not run to completion because measured throughput exceeds the available Kaggle quota/time cap."
+  },
+  "qmutbench_binary_matched_1024_sampled": {
+    "status": "completed_development_sampled_oof",
+    "task": "QMutBench Survivor=0 vs WOO/OPO=1",
+    "folds": 5,
+    "training_per_class_per_fold": 1024,
+    "validation_per_class_per_fold": 1024,
+    "validation_records": 10240,
+    "balanced_validation_support_per_class": 5120,
+    "epochs": 8,
+    "feature_schema": "same 4-feature reduced schema for VQC, Logistic Regression, and Extra Trees; fold-local encoder fit on training only",
+    "split": "origin-grouped QMutBench reference five-fold split; development rows only; frozen test untouched",
+    "binary_vqc": {
+      "accuracy": 0.59248046875,
+      "macro_f1": 0.5707297961742265,
+      "balanced_accuracy": 0.59248046875,
+      "fold_accuracy_mean": 0.59248046875,
+      "fold_accuracy_sd": 0.015786669716405143,
+      "fold_macro_f1_mean": 0.5668375490125477,
+      "fold_macro_f1_sd": 0.026800801311726186,
+      "mean_brier_score": 0.23823149679787287,
+      "runtime_seconds_total": 2861.61387902105,
+      "confusion_matrix_labels_0_1": [
+        [
+          4186,
+          934
+        ],
+        [
+          3239,
+          1881
+        ]
+      ]
+    },
+    "extra_trees_4f": {
+      "accuracy": 0.59345703125,
+      "macro_f1": 0.576362259225717,
+      "balanced_accuracy": 0.59345703125,
+      "fold_accuracy_mean": 0.59345703125,
+      "fold_accuracy_sd": 0.01654617944971963,
+      "fold_macro_f1_mean": 0.5665534111629912,
+      "fold_macro_f1_sd": 0.027602896357293103,
+      "mean_brier_score": 0.2362876003657756,
+      "runtime_seconds_total": 0.8131237180023163,
+      "confusion_matrix_labels_0_1": [
+        [
+          4067,
+          1053
+        ],
+        [
+          3110,
+          2010
+        ]
+      ]
+    },
+    "logistic_4f": {
+      "accuracy": 0.58896484375,
+      "macro_f1": 0.5551041927145228,
+      "balanced_accuracy": 0.58896484375,
+      "fold_accuracy_mean": 0.58896484375,
+      "fold_accuracy_sd": 0.011353982813101966,
+      "fold_macro_f1_mean": 0.5550001480127352,
+      "fold_macro_f1_sd": 0.012991449043484668,
+      "mean_brier_score": 0.23709299757196067,
+      "runtime_seconds_total": 0.09489886999654118,
+      "confusion_matrix_labels_0_1": [
+        [
+          4428,
+          692
+        ],
+        [
+          3517,
+          1603
+        ]
+      ]
+    },
+    "execution": {
+      "kaggle_session": "GPU T4 x2 enabled; this trainer instantiates BinaryVQC with its default device_name=default.qubit, so actual QNN training used CPU, not GPU",
+      "qnn_training_runtime_seconds": 2861.61387902105,
+      "sampled_output_dir": "/kaggle/working/Quantum_Simulator/reports/experiments/qmutbench_binary_qnn_matched_5fold_1024_20261031_130140",
+      "source": "Completed Kaggle notebook output; metrics transcribed from pooled_oof_metrics"
+    },
+    "comparison_to_full_data_classical": {
+      "classical_reference_accuracy": 0.7933,
+      "classical_reference_macro_f1": 0.7933,
+      "classical_reference_balanced_accuracy": 0.7941,
+      "classical_reference_records": 578117,
+      "directly_comparable": false,
+      "reason": "Full-data classical champion uses mutation-aware full feature schema, while this QNN comparison is a 10,240-record balanced sample with a reduced four-feature schema. Use the matched sampled Extra Trees control for the fair direct comparison."
+    },
+    "interpretation": "On this matched sampled OOF benchmark, Extra Trees is slightly ahead of Binary VQC: +0.10 percentage points accuracy and +0.56 percentage points macro-F1. The QNN does not show a performance advantage here.",
+    "caveats": [
+      "Sampled development-only OOF, not full-fold OOF or frozen-test performance.",
+      "Balanced cap changes class prevalence; accuracy is sample-specific.",
+      "Model selection and larger sample are not an independent untouched test.",
+      "Do not compare directly to full-data 79.33% classical result because data scope and feature schema differ.",
+      "Actual BinaryVQC backend defaults to PennyLane default.qubit CPU; Kaggle GPU availability did not accelerate this run."
+    ]
+  },
+  "qmutbench_binary_matched_1024train_1536validation_sampled": {
+    "status": "completed_development_sampled_oof",
+    "task": "QMutBench Survivor=0 vs WOO/OPO=1",
+    "folds": 5,
+    "seed": 20261028,
+    "training_per_class_per_fold": 1024,
+    "validation_per_class_per_fold": 1536,
+    "validation_records": 15360,
+    "balanced_validation_support_per_class": 7680,
+    "epochs": 8,
+    "per_origin_class_cap": 64,
+    "feature_schema": "same 4-feature reduced schema for VQC, Logistic Regression, and Extra Trees; fold-local encoder fit on training only",
+    "split": "origin-grouped QMutBench reference five-fold split; development rows only; frozen test untouched",
+    "binary_vqc": {
+      "accuracy": 0.5829427083333333,
+      "macro_f1": 0.5646567014230477,
+      "balanced_accuracy": 0.5829427083333333,
+      "fold_accuracy_mean": 0.5829427083333333,
+      "fold_accuracy_sd": 0.016435417607454435,
+      "fold_macro_f1_mean": 0.5592926937744866,
+      "fold_macro_f1_sd": 0.028041885820044646,
+      "mean_brier_score": 0.2407425298001167,
+      "runtime_seconds_total": 2866.1865405939825,
+      "confusion_matrix_labels_0_1": [
+        [
+          6051,
+          1629
+        ],
+        [
+          4777,
+          2903
+        ]
+      ]
+    },
+    "extra_trees_4f": {
+      "accuracy": 0.5873697916666667,
+      "macro_f1": 0.5636388593907573,
+      "balanced_accuracy": 0.5873697916666667,
+      "fold_accuracy_mean": 0.5873697916666667,
+      "fold_accuracy_sd": 0.014429057476244875,
+      "fold_macro_f1_mean": 0.5605138269994608,
+      "fold_macro_f1_sd": 0.027863809048420837,
+      "mean_brier_score": 0.23918715903865395,
+      "runtime_seconds_total": 0.827492174001236,
+      "confusion_matrix_labels_0_1": [
+        [
+          6302,
+          1378
+        ],
+        [
+          4960,
+          2720
+        ]
+      ]
+    },
+    "logistic_4f": {
+      "accuracy": 0.5817708333333333,
+      "macro_f1": 0.5520574246018461,
+      "balanced_accuracy": 0.5817708333333333,
+      "fold_accuracy_mean": 0.5817708333333333,
+      "fold_accuracy_sd": 0.018361510384829357,
+      "fold_macro_f1_mean": 0.5516461667827015,
+      "fold_macro_f1_sd": 0.020626090010111113,
+      "mean_brier_score": 0.2396011350453326,
+      "runtime_seconds_total": 0.09596702699855086,
+      "confusion_matrix_labels_0_1": [
+        [
+          6446,
+          1234
+        ],
+        [
+          5190,
+          2490
+        ]
+      ]
+    },
+    "execution": {
+      "actual_qnn_device": "PennyLane default.qubit CPU",
+      "qnn_training_runtime_seconds": 2866.1865405939825,
+      "sampled_output_dir": "/kaggle/working/Quantum_Simulator/reports/experiments/qmutbench_binary_qnn_matched_5fold_validation1536_20261031_141332",
+      "source": "Completed Kaggle notebook output; metrics transcribed from pooled_oof_metrics"
+    },
+    "interpretation": "On the 15,360-record matched sample, VQC macro-F1 is 0.10 percentage points above Extra Trees, but Extra Trees accuracy and balanced accuracy are 0.44 percentage points higher. This is a near tie and does not establish a QNN advantage.",
+    "caveats": [
+      "Sampled development-only OOF, not full-fold OOF or frozen-test performance.",
+      "Balanced cap changes class prevalence; accuracy is sample-specific.",
+      "This is one sampled seed; an independent-seed repeat is being run.",
+      "Do not compare directly to full-data 79.33% classical result because data scope and feature schema differ.",
+      "The Kaggle GPU runtime was enabled, but this trainer uses default.qubit CPU."
+    ]
+  },
+  "qmutbench_binary_independent_seed_20261029": {
+    "status": "completed_development_sampled_oof",
+    "task": "QMutBench Survivor=0 vs WOO/OPO=1",
+    "seed": 20261029,
+    "folds": 5,
+    "training_per_class_per_fold": 1024,
+    "validation_per_class_per_fold": 1536,
+    "validation_records": 15360,
+    "balanced_validation_support_per_class": 7680,
+    "per_origin_class_cap": 64,
+    "epochs": 8,
+    "feature_schema": "same reduced four-feature schema for VQC, Logistic Regression, and Extra Trees; fold-local encoder fitted on training only",
+    "split": "origin-grouped QMutBench reference five-fold split; development rows only; frozen test untouched",
+    "pooled_oof_metrics": {
+      "binary_vqc": {
+        "accuracy": 0.584375,
+        "macro_f1": 0.5561092022468321,
+        "balanced_accuracy": 0.584375,
+        "fold_accuracy_mean": 0.584375,
+        "fold_accuracy_sd": 0.02040343186510338,
+        "fold_macro_f1_mean": 0.5557352372188448,
+        "fold_macro_f1_sd": 0.02098627307175451,
+        "fold_balanced_accuracy_mean": 0.5843750000000001,
+        "fold_balanced_accuracy_sd": 0.02040343186510334,
+        "mean_brier_score": 0.23995016018242174,
+        "runtime_seconds_total": 2825.821046503981,
+        "runtime_seconds_mean_per_fold": 565.1642093007962,
+        "max_observed_process_rss_bytes": 1528397824,
+        "confusion_matrix_labels_0_1": [
+          [
+            6426,
+            1254
+          ],
+          [
+            5130,
+            2550
+          ]
+        ]
+      },
+      "logistic_4f": {
+        "accuracy": 0.5864583333333333,
+        "macro_f1": 0.548605024659014,
+        "balanced_accuracy": 0.5864583333333333,
+        "fold_accuracy_mean": 0.5864583333333333,
+        "fold_accuracy_sd": 0.01092945590230958,
+        "fold_macro_f1_mean": 0.5484522830681038,
+        "fold_macro_f1_sd": 0.013428680346105002,
+        "fold_balanced_accuracy_mean": 0.5864583333333333,
+        "fold_balanced_accuracy_sd": 0.01092945590230958,
+        "mean_brier_score": 0.23787485289425875,
+        "runtime_seconds_total": 0.09408258999610553,
+        "confusion_matrix_labels_0_1": [
+          [
+            6728,
+            952
+          ],
+          [
+            5400,
+            2280
+          ]
+        ]
+      },
+      "extra_trees_4f": {
+        "accuracy": 0.5854817708333333,
+        "macro_f1": 0.5653077239238193,
+        "balanced_accuracy": 0.5854817708333333,
+        "fold_accuracy_mean": 0.5854817708333333,
+        "fold_accuracy_sd": 0.018928693580747398,
+        "fold_macro_f1_mean": 0.5593034713855861,
+        "fold_macro_f1_sd": 0.017836183442643032,
+        "fold_balanced_accuracy_mean": 0.5854817708333333,
+        "fold_balanced_accuracy_sd": 0.018928693580747398,
+        "mean_brier_score": 0.24150057693674706,
+        "runtime_seconds_total": 0.8136927250016015,
+        "confusion_matrix_labels_0_1": [
+          [
+            6151,
+            1529
+          ],
+          [
+            4838,
+            2842
+          ]
+        ]
+      }
+    },
+    "execution": {
+      "actual_qnn_device": "PennyLane default.qubit CPU; Kaggle T4 x2 was not used by this QNN run",
+      "qnn_training_runtime_seconds": 2825.821046503981,
+      "output_dir": "/kaggle/working/Quantum_Simulator/reports/experiments/qmutbench_binary_qnn_repeat_seed20261029_20261031_150436",
+      "source": "Completed Kaggle cell output; metrics transcribed from pooled_oof_metrics"
+    },
+    "interpretation": "On this matched sampled development OOF repeat, Extra Trees exceeds VQC macro-F1 by 0.92 percentage points; Logistic Regression accuracy is 0.21 percentage points above VQC. This repeat does not show a QNN performance advantage.",
+    "caveats": [
+      "Sampled development-only OOF, not full-fold OOF or frozen-test performance.",
+      "The balanced validation cap changes class prevalence; accuracy applies to this sampled benchmark.",
+      "This seed repeat changes sampling seed while keeping the grouped-fold design; it is not an untouched independent test set.",
+      "Do not compare directly to the full-data 79.33% classical reference because data scope and feature schema differ.",
+      "The actual QNN device was default.qubit CPU, despite GPU availability in Kaggle."
+    ]
+  },
+  "qmutbench_binary_gpu_matched_2048_seed20261030": {
+    "status": "completed_development_sampled_oof_summary_requires_prediction_audit",
+    "task": "QMutBench Survivor=0 vs WOO/OPO=1",
+    "seed": 20261030,
+    "folds": 5,
+    "training_per_class_per_fold": 2048,
+    "validation_per_class_per_fold": 1536,
+    "validation_records": 15360,
+    "balanced_validation_support_per_class": 7680,
+    "epochs": 8,
+    "qubits": 4,
+    "circuit": "angle reupload, depth 2",
+    "feature_schema": "same reduced four-feature schema for Binary VQC, Logistic Regression, and Extra Trees; fold-local preprocessing",
+    "split": "origin-stratified reference five-fold split; development-only capped samples; frozen test untouched",
+    "qnn_backend": {
+      "device": "PennyLane lightning.gpu",
+      "diff_method": "adjoint",
+      "gradient_smoke_passed": true,
+      "genuine_quantum_gradient_update_occurred": true,
+      "activation": "Kaggle runtime monkeypatch; not yet a repository CLI/device-selection implementation"
+    },
+    "pooled_oof_metrics": {
+      "binary_vqc": {
+        "accuracy": 0.5848958333333333,
+        "macro_f1": 0.5825064845007077,
+        "balanced_accuracy": 0.5848958333333334,
+        "fold_accuracy_mean": 0.5848958333333333,
+        "fold_accuracy_sd": 0.019641345517782502,
+        "fold_macro_f1_mean": 0.5455752662085681,
+        "fold_macro_f1_sd": 0.057744665422825095,
+        "mean_brier_score": 0.23686587594292816,
+        "runtime_seconds_total": 2940.018440644024,
+        "runtime_seconds_mean_per_fold": 588.0036881288048,
+        "confusion_matrix_labels_0_1": [
+          [
+            5073,
+            2607
+          ],
+          [
+            3769,
+            3911
+          ]
+        ]
+      },
+      "logistic_4f": {
+        "accuracy": 0.5888020833333333,
+        "macro_f1": 0.5580458110835647,
+        "balanced_accuracy": 0.5888020833333334,
+        "fold_accuracy_mean": 0.5888020833333333,
+        "fold_accuracy_sd": 0.017791433387912475,
+        "fold_macro_f1_mean": 0.5577686042422563,
+        "fold_macro_f1_sd": 0.02265374562454835,
+        "mean_brier_score": 0.2370979727494999,
+        "runtime_seconds_total": 0.10524753700883593,
+        "confusion_matrix_labels_0_1": [
+          [
+            6548,
+            1132
+          ],
+          [
+            5184,
+            2496
+          ]
+        ]
+      },
+      "extra_trees_4f": {
+        "accuracy": 0.5985026041666667,
+        "macro_f1": 0.5810734528403252,
+        "balanced_accuracy": 0.5985026041666667,
+        "fold_accuracy_mean": 0.5985026041666667,
+        "fold_accuracy_sd": 0.010609682298722122,
+        "fold_macro_f1_mean": 0.576564310346282,
+        "fold_macro_f1_sd": 0.02210389802691724,
+        "mean_brier_score": 0.2358920465739308,
+        "runtime_seconds_total": 0.9092498030149727,
+        "confusion_matrix_labels_0_1": [
+          [
+            6163,
+            1517
+          ],
+          [
+            4650,
+            3030
+          ]
+        ]
+      }
+    },
+    "execution": {
+      "sampled_output_dir": "/kaggle/working/Quantum_Simulator/reports/experiments/qmutbench_binary_gpu_matched_2048_20261031_161415",
+      "reported_cell_elapsed_seconds": 2509.18,
+      "summary_elapsed_seconds": 2497.8450694079947,
+      "qnn_reported_fit_runtime_seconds": 2940.018440644024,
+      "reported_gpu": "one Tesla T4 via lightning.gpu",
+      "system_ram_observed_mib": 29261,
+      "source": "Completed Kaggle notebook cell output; summary transcribed from GPU_MATCHED_BENCHMARK_SUMMARY"
+    },
+    "integrity_flags": [
+      "Fold 2 summary reports identical accuracy, macro-F1, and confusion matrix for Binary VQC, Logistic Regression, and Extra Trees; verify fold-2 rows in oof_predictions.csv before treating fold metrics as validated.",
+      "Summed VQC fit runtime (2940.02 s) exceeds both notebook cell elapsed time (2509.18 s) and summary elapsed time (2497.85 s); reconcile timer semantics from per-fold artifacts.",
+      "Fold-5 VQC macro-F1 was reported as 0.4482, substantially lower than the mean of other folds; review fold-specific behavior during the audit."
+    ],
+    "interpretation_pending_audit": "Reported pooled scores suggest Extra Trees leads VQC by 1.36 percentage points in accuracy; VQC macro-F1 is 0.14 percentage points above Extra Trees. These small differences are descriptive only; result-integrity flags must be resolved before a firm comparative claim.",
+    "comparability": {
+      "directly_comparable_to_matched_controls": true,
+      "directly_comparable_to_full_data_classical_champion": false,
+      "reason": "The sampled benchmark uses balanced capped validation, 15,360 OOF predictions, and a reduced four-feature schema; the full-data champion uses a larger data scope and richer mutation-aware schema."
+    }
+  }
+}

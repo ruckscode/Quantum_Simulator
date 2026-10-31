@@ -1,0 +1,4 @@
+task_id,source,rows_in_bundle,groups,label_semantics,use,pool_with_other_tasks
+qmutbench_binary_sampled,QMutBench,4976,305 sampled origins; 305 in parent development split,Survivor=0; WOO/OPO=1,primary sampled training pilot,no
+qolumbina_ideal,Qolumbina,182,26 original programs,majority DOSS detection of seeded mutants,separate source task,no; source-specific features and provenance
+qbugs_correct_vs_buggy,QBugs/HornBro,1500,750 paired circuit cases,correct=0; buggy=1,separate program-fault task,no; distinct target

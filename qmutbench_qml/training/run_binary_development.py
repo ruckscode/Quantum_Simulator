@@ -143,40 +143,74 @@ def attach_chunk_record_receipt(state: dict[str, Any], previous_state: dict[str,
     next_batch = int(state["next_batch"])
     ids_count = len(record_ids)
     batch_count = math.ceil(ids_count / batch_size)
-    order_epoch = epoch if next_batch else max(0, epoch - 1)
-    start_batch = (int(previous_state.get("next_batch", 0))
-                   if previous_state and int(previous_state.get("epoch", -1)) == order_epoch else 0)
+    # A chunk can include the tail of one epoch and the head of the next.
+    # Reconstruct each endpoint permutation from the RNG boundary saved with
+    # that checkpoint, then bind each segment separately.
+    def checkpoint_order(checkpoint: dict[str, Any]) -> np.ndarray:
+        order_state = checkpoint.get("batch_order")
+        if isinstance(order_state, dict):
+            if order_state.get("algorithm") != "numpy-pcg64-permutation-v1":
+                raise ValueError("Compact batch order receipt uses an unknown algorithm")
+            shuffle_state = checkpoint.get("shuffle_rng_state")
+            if not shuffle_state:
+                raise ValueError("Compact permutation receipt is missing its RNG boundary")
+            order_rng = np.random.default_rng()
+            order_rng.bit_generator.state = shuffle_state
+            order = order_rng.permutation(ids_count)
+            digest = hashlib.sha256(order.astype(np.int64, copy=False).tobytes()).hexdigest()
+            if digest != order_state.get("sha256") or len(order) != int(order_state.get("length", -1)):
+                raise ValueError("Chunk receipt permutation does not match the saved digest")
+            return order
+        if order_state is None:
+            shuffle_state = checkpoint.get("shuffle_rng_state")
+            if not shuffle_state:
+                raise ValueError("Epoch-end chunk lacks the shuffle RNG boundary")
+            order_rng = np.random.default_rng()
+            order_rng.bit_generator.state = shuffle_state
+            return order_rng.permutation(ids_count)
+        return np.asarray(order_state, dtype=np.int64)
+
+    end_epoch = epoch if next_batch else max(0, epoch - 1)
     end_batch = next_batch if next_batch else batch_count
-    if end_batch <= start_batch:
-        raise ValueError("Chunk receipt has an empty or reversed batch interval")
-    order_state = state.get("batch_order")
-    if isinstance(order_state, dict):
-        shuffle_state = state.get("shuffle_rng_state")
-        if not shuffle_state:
-            raise ValueError("Compact permutation receipt is missing its RNG boundary")
-        order_rng = np.random.default_rng()
-        order_rng.bit_generator.state = shuffle_state
-        order = order_rng.permutation(ids_count)
-        digest = hashlib.sha256(order.astype(np.int64, copy=False).tobytes()).hexdigest()
-        if digest != order_state.get("sha256") or len(order) != int(order_state.get("length", -1)):
-            raise ValueError("Chunk receipt permutation does not match the saved digest")
-    elif order_state is None:
-        shuffle_state = state.get("shuffle_rng_state")
-        if not shuffle_state:
-            raise ValueError("Epoch-end chunk lacks the shuffle RNG boundary")
-        order_rng = np.random.default_rng()
-        order_rng.bit_generator.state = shuffle_state
-        order = order_rng.permutation(ids_count)
+    if previous_state is None:
+        start_epoch, start_batch = end_epoch, 0
     else:
-        order = np.asarray(order_state, dtype=np.int64)
-    first = start_batch * batch_size
-    last = min(ids_count, end_batch * batch_size)
-    positions = order[first:last]
-    consumed_ids = np.asarray(record_ids[positions], dtype=np.int64)
+        start_epoch = int(previous_state.get("epoch", 0))
+        start_batch = int(previous_state.get("next_batch", 0))
+
+    if end_epoch < start_epoch or (end_epoch == start_epoch and end_batch <= start_batch):
+        raise ValueError("Chunk receipt has an empty or reversed batch interval")
+    if end_epoch - start_epoch > 1:
+        raise ValueError("Chunk receipt crossed more than one epoch boundary")
+
+    segments = []
+    consumed_parts = []
+    if start_epoch == end_epoch:
+        order = checkpoint_order(state)
+        first = start_batch * batch_size
+        last = min(ids_count, end_batch * batch_size)
+        consumed_parts.append(np.asarray(record_ids[order[first:last]], dtype=np.int64))
+        segments.append({"epoch": start_epoch, "first_batch": start_batch,
+                         "next_batch": end_batch})
+    else:
+        old_order = checkpoint_order(previous_state)
+        first = start_batch * batch_size
+        consumed_parts.append(np.asarray(record_ids[old_order[first:]], dtype=np.int64))
+        segments.append({"epoch": start_epoch, "first_batch": start_batch,
+                         "next_batch": batch_count})
+        if end_batch:
+            new_order = checkpoint_order(state)
+            last = min(ids_count, end_batch * batch_size)
+            consumed_parts.append(np.asarray(record_ids[new_order[:last]], dtype=np.int64))
+            segments.append({"epoch": end_epoch, "first_batch": 0,
+                             "next_batch": end_batch})
+    consumed_ids = np.concatenate(consumed_parts) if consumed_parts else np.asarray([], dtype=np.int64)
     if len(consumed_ids) != int(state["chunk_records"]):
         raise ValueError("Chunk record receipt count differs from the training progress counter")
-    state["processed_range"] = {"epoch": order_epoch, "first_batch": start_batch,
-        "next_batch": end_batch, "records": int(len(consumed_ids)),
+    cursor_start = start_epoch * batch_count + start_batch
+    cursor_end = end_epoch * batch_count + end_batch
+    state["processed_range"] = {"epoch": start_epoch, "first_batch": cursor_start,
+        "next_batch": cursor_end, "segments": segments, "records": int(len(consumed_ids)),
         "record_id_min": int(consumed_ids.min()), "record_id_max": int(consumed_ids.max()),
         "record_id_sha256": hashlib.sha256(consumed_ids.tobytes()).hexdigest()}
     return state

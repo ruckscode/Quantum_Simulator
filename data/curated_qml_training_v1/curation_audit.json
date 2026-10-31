@@ -1,0 +1,38 @@
+{
+  "qmutbench": {
+    "source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+    "unique_sampled_records": 4976,
+    "train_validation_role_rows": 5120,
+    "validation_records": 2560,
+    "frozen_test_rows_included": 0,
+    "feature_rows_match_selected_records": true
+  },
+  "qolumbina_ideal": {
+    "normalized_records": 182,
+    "oof_models": [
+      "amplitude_vqc",
+      "angle_hybrid_readout",
+      "angle_reupload_vqc",
+      "angle_vqc",
+      "extra_trees_4d",
+      "logistic_4d",
+      "mlp_4d",
+      "random_forest_4d"
+    ],
+    "aligned_oof_rows": 1456,
+    "group_leakage": false,
+    "labels_aligned": true
+  },
+  "qbugs_correct_vs_buggy": {
+    "normalized_records": 1500,
+    "oof_models": [
+      "angle_hybrid_readout",
+      "extra_trees_4d",
+      "logistic_4d",
+      "random_forest_4d"
+    ],
+    "aligned_oof_rows": 6000,
+    "group_leakage": false,
+    "labels_aligned": true
+  }
+}

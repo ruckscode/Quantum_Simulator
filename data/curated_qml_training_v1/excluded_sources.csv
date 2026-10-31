@@ -1,0 +1,4 @@
+source,available_rows,decision,reason
+Mute-Alg QASM v2 compatible subset,9140,not included in this short trained bundle,"separate correct-vs-synthetic-buggy target; a QML model for this prepared subset was not part of the completed, audited results packaged here"
+Bugs4Q source-state corpus,source-specific task in existing campaign,not included,source-code bug/fixed task rather than circuit-level input; keep its trained model as a separate task
+QSimBench execution traces,execution observations,not included,"no program-fault labels; useful for backend/noise modeling, not this supervised mutation/fault classifier"
