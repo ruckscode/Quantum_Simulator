@@ -156,6 +156,7 @@ def _candidate_records(result: DiagnosisResult) -> list[dict[str, Any]]:
             "source": "hardware",
             "component_type": candidate.component_type,
             "component": component,
+            "gate_name": candidate.gate_name,
             "score": candidate.score,
             "reason": candidate.reason,
             "evidence": list(candidate.evidence),

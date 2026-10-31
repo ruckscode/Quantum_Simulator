@@ -190,6 +190,25 @@ def test_mock_hardware_anomaly_uses_existing_hardware_localizer():
     assert result.localization_result.hardware_evidence_candidates
 
 
+def test_public_diagnose_circuit_routes_optional_classical_classifier():
+    from quantum_simulator.diagnosis_engine import diagnose_circuit
+
+    circuit = [("h", 0), ("measure", 0)]
+    result = diagnose_circuit(
+        circuit,
+        shots=256,
+        seed=19,
+        classifier=MockClassifier("NORMAL"),
+    )
+
+    assert result.ml_predicted_class == "NORMAL"
+    assert result.ml_confidence == pytest.approx(0.95)
+    assert set(result.ml_class_probabilities) == set(CLASSES)
+    assert tuple(result.ml_features) == FEATURE_NAMES
+    assert result.category is DiagnosisCategory.NO_ANOMALY
+    assert any("Classical ML predicted NORMAL" in item for item in result.evidence)
+
+
 def test_low_confidence_abstains_without_localization():
     result = diagnose_with_ml(
         {"0": 1.0, "1": 0.0}, {"0": 0.0, "1": 1.0},

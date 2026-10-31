@@ -1,0 +1,720 @@
+{
+  "anomaly": {
+    "anomaly_detected": true,
+    "expected_distribution": {
+      "0000": 0.0,
+      "0001": 0.0,
+      "0010": 0.0,
+      "0011": 0.0,
+      "0100": 0.0,
+      "0101": 0.0,
+      "0110": 0.0,
+      "0111": 0.0,
+      "1000": 0.25,
+      "1001": 0.0,
+      "1010": 0.0,
+      "1011": 0.25,
+      "1100": 0.25,
+      "1101": 0.0,
+      "1110": 0.0,
+      "1111": 0.25
+    },
+    "finite_shot_guard": 0.05,
+    "hellinger_distance": 0.5939432636716302,
+    "js_divergence": 0.26882860641922823,
+    "message": "Observed distribution differs from expected distribution by TVD=0.501465, which exceeds threshold=0.050000.",
+    "observed_distribution": {
+      "0000": 0.0,
+      "0001": 0.0,
+      "0010": 0.0,
+      "0011": 0.0,
+      "0100": 0.0,
+      "0101": 0.0,
+      "0110": 0.0,
+      "0111": 0.0,
+      "1000": 0.21484374999999997,
+      "1001": 0.0361328125,
+      "1010": 0.219970703125,
+      "1011": 0.032470703125,
+      "1100": 0.217041015625,
+      "1101": 0.04150390625,
+      "1110": 0.203857421875,
+      "1111": 0.0341796875
+    },
+    "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+    "shots": 4096,
+    "threshold": 0.05,
+    "total_variation_distance": 0.50146484375
+  },
+  "circuit": {
+    "ideal": [
+      [
+        "x",
+        0
+      ],
+      [
+        "h",
+        1
+      ],
+      [
+        "cx",
+        0,
+        1
+      ],
+      [
+        "cx",
+        1,
+        2
+      ],
+      [
+        "cx",
+        1,
+        3
+      ],
+      [
+        "h",
+        1
+      ]
+    ],
+    "observed": [
+      [
+        "x",
+        0
+      ],
+      [
+        "h",
+        1
+      ],
+      [
+        "cx",
+        0,
+        1
+      ],
+      [
+        "cx",
+        1,
+        2
+      ],
+      [
+        "h",
+        1
+      ]
+    ]
+  },
+  "configuration": {
+    "anomaly_threshold": 0.05,
+    "backend_name": null,
+    "circuit": [
+      [
+        "x",
+        0
+      ],
+      [
+        "h",
+        1
+      ],
+      [
+        "cx",
+        0,
+        1
+      ],
+      [
+        "cx",
+        1,
+        2
+      ],
+      [
+        "cx",
+        1,
+        3
+      ],
+      [
+        "h",
+        1
+      ]
+    ],
+    "circuit_family_id": "F4_PARITY_TREE",
+    "circuit_id": "circuit-d2bf47ac541ea1c0",
+    "circuit_lineage_id": null,
+    "description": "",
+    "experiment_name": "phase5_F4_PARITY_TREE-C15_seed20263004_shots4096",
+    "experimental_group_id": null,
+    "ground_truth_label": null,
+    "hardware_affected_component": null,
+    "hardware_condition_id": null,
+    "hardware_parameters": {
+      "coupling_map": [],
+      "edges": [],
+      "gates": [
+        {
+          "duration": 0.0,
+          "error": 0.0,
+          "gate": "cx",
+          "qubits": [
+            0,
+            1
+          ],
+          "supported": true
+        },
+        {
+          "duration": 0.0,
+          "error": 0.0,
+          "gate": "cx",
+          "qubits": [
+            1,
+            2
+          ],
+          "supported": true
+        },
+        {
+          "duration": 0.0,
+          "error": 0.0,
+          "gate": "cx",
+          "qubits": [
+            1,
+            3
+          ],
+          "supported": true
+        },
+        {
+          "duration": 0.0,
+          "error": 0.0,
+          "gate": "h",
+          "qubits": [
+            1
+          ],
+          "supported": true
+        },
+        {
+          "duration": 0.0,
+          "error": 0.0,
+          "gate": "x",
+          "qubits": [
+            0
+          ],
+          "supported": true
+        }
+      ],
+      "qubits": {
+        "0": {
+          "available": true,
+          "readout_error": 0.0,
+          "status": "available",
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        },
+        "1": {
+          "available": true,
+          "readout_error": 0.0,
+          "status": "available",
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        },
+        "2": {
+          "available": true,
+          "readout_error": 0.0,
+          "status": "available",
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        },
+        "3": {
+          "available": true,
+          "readout_error": 0.15,
+          "status": "available",
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        }
+      }
+    },
+    "noise_parameters": null,
+    "num_qubits": 4,
+    "observed_circuit": [
+      [
+        "x",
+        0
+      ],
+      [
+        "h",
+        1
+      ],
+      [
+        "cx",
+        0,
+        1
+      ],
+      [
+        "cx",
+        1,
+        2
+      ],
+      [
+        "h",
+        1
+      ]
+    ],
+    "observed_counts": null,
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "random_seed": 20263004,
+    "repetition_index": null,
+    "run_id": null,
+    "shots": 4096,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "diagnosis": {
+    "anomaly_detected": true,
+    "calibration_freshness": {
+      "age_seconds": null,
+      "max_age_seconds": null,
+      "provenance": "synthetic",
+      "status": "SYNTHETIC"
+    },
+    "category": "PROGRAM_FAULT",
+    "evidence": [
+      "Observed distribution differs from expected distribution by TVD=0.501465, which exceeds threshold=0.050000.",
+      "Step 4: expected cx on qubits (1, 3) but it was not executed.",
+      "A direct circuit-operation mismatch was localized.",
+      "Counterfactual circuit execution changes computational-basis outcomes on measured outputs.",
+      "Qubit 1 appears in 4 relevant circuit operations.",
+      "Observed deviation at operation index 4: Expected operation missing in observed circuit",
+      "Qubit 3 readout error is elevated at 0.1500.",
+      "Observed deviation at operation index 4: Expected operation missing in observed circuit",
+      "Observed deviation at operation index 4: Expected operation missing in observed circuit",
+      "Observed anomaly associated with operation cx at index 4.",
+      "No coupling-edge calibration is available for edge (0, 1).",
+      "No coupling-edge calibration is available for edge (1, 2)."
+    ],
+    "expected_counts": null,
+    "hardware_evidence_candidates": [],
+    "hardware_result": {
+      "anomaly_metric": 0.5,
+      "candidates": [
+        {
+          "component": 1,
+          "component_type": "qubit",
+          "evidence": [
+            "Qubit 1 appears in 4 relevant circuit operations.",
+            "Observed deviation at operation index 4: Expected operation missing in observed circuit"
+          ],
+          "reason": "Program trace implicated qubit 1: No notable qubit degradation was detected.",
+          "score": 2.0
+        },
+        {
+          "component": 3,
+          "component_type": "qubit",
+          "evidence": [
+            "Qubit 3 readout error is elevated at 0.1500.",
+            "Observed deviation at operation index 4: Expected operation missing in observed circuit"
+          ],
+          "reason": "Program trace implicated qubit 3: readout_error=0.1500",
+          "score": 1.1
+        },
+        {
+          "component": [
+            1,
+            3
+          ],
+          "component_type": "edge",
+          "evidence": [
+            "Observed deviation at operation index 4: Expected operation missing in observed circuit"
+          ],
+          "reason": "Program trace implicated coupling edge (1, 3): No calibrated coupling edge was found.",
+          "score": 0.5
+        },
+        {
+          "component": [
+            1,
+            3
+          ],
+          "component_type": "gate",
+          "evidence": [
+            "Observed anomaly associated with operation cx at index 4."
+          ],
+          "reason": "Gate calibration for cx on qubits (1, 3): No notable gate calibration issue detected.",
+          "score": 0.35
+        }
+      ],
+      "evidence": [
+        "Qubit 1 appears in 4 relevant circuit operations.",
+        "Observed deviation at operation index 4: Expected operation missing in observed circuit",
+        "Qubit 3 readout error is elevated at 0.1500.",
+        "Observed deviation at operation index 4: Expected operation missing in observed circuit",
+        "Observed deviation at operation index 4: Expected operation missing in observed circuit",
+        "Observed anomaly associated with operation cx at index 4."
+      ],
+      "summary": "Calibration-backed hardware fault candidate(s): qubit 3; trace-associated hardware locations: qubit 1, edge (1, 3), gate (1, 3)",
+      "threshold": 0.05
+    },
+    "missing_evidence": [
+      "No coupling-edge calibration is available for edge (0, 1).",
+      "No coupling-edge calibration is available for edge (1, 2)."
+    ],
+    "ml_class_probabilities": null,
+    "ml_confidence": null,
+    "ml_features": null,
+    "ml_predicted_class": null,
+    "observed_counts": null,
+    "program_behavioral_candidates": [
+      {
+        "actual_signature": null,
+        "evidence": [
+          "Step 4: expected cx on qubits (1, 3) but it was not executed."
+        ],
+        "expected_signature": [
+          "cx",
+          [
+            1,
+            3
+          ],
+          []
+        ],
+        "index": 4,
+        "operation": "cx",
+        "qubits": [
+          1,
+          3
+        ],
+        "reason": "Expected operation missing in observed circuit",
+        "score": 1.0
+      }
+    ],
+    "program_evidence_candidates": [
+      {
+        "actual_signature": null,
+        "evidence": [
+          "Step 4: expected cx on qubits (1, 3) but it was not executed."
+        ],
+        "expected_signature": [
+          "cx",
+          [
+            1,
+            3
+          ],
+          []
+        ],
+        "index": 4,
+        "operation": "cx",
+        "qubits": [
+          1,
+          3
+        ],
+        "reason": "Expected operation missing in observed circuit",
+        "score": 1.0
+      }
+    ],
+    "program_result": {
+      "anomaly_metric": 0.5,
+      "candidates": [
+        {
+          "actual_signature": null,
+          "evidence": [
+            "Step 4: expected cx on qubits (1, 3) but it was not executed."
+          ],
+          "expected_signature": [
+            "cx",
+            [
+              1,
+              3
+            ],
+            []
+          ],
+          "index": 4,
+          "operation": "cx",
+          "qubits": [
+            1,
+            3
+          ],
+          "reason": "Expected operation missing in observed circuit",
+          "score": 1.0
+        }
+      ],
+      "evidence": [
+        "Step 4: expected cx on qubits (1, 3) but it was not executed."
+      ],
+      "summary": "Program fault localization identified the following likely offending operation(s): step 4 (cx)",
+      "threshold": 0.05
+    },
+    "statistics_result": {
+      "anomaly_detected": true,
+      "expected_distribution": {
+        "0000": 0.0,
+        "0001": 0.0,
+        "0010": 0.0,
+        "0011": 0.0,
+        "0100": 0.0,
+        "0101": 0.0,
+        "0110": 0.0,
+        "0111": 0.0,
+        "1000": 0.25,
+        "1001": 0.0,
+        "1010": 0.0,
+        "1011": 0.25,
+        "1100": 0.25,
+        "1101": 0.0,
+        "1110": 0.0,
+        "1111": 0.25
+      },
+      "finite_shot_guard": 0.05,
+      "hellinger_distance": 0.5939432636716302,
+      "js_divergence": 0.26882860641922823,
+      "message": "Observed distribution differs from expected distribution by TVD=0.501465, which exceeds threshold=0.050000.",
+      "observed_distribution": {
+        "0000": 0.0,
+        "0001": 0.0,
+        "0010": 0.0,
+        "0011": 0.0,
+        "0100": 0.0,
+        "0101": 0.0,
+        "0110": 0.0,
+        "0111": 0.0,
+        "1000": 0.21484374999999997,
+        "1001": 0.0361328125,
+        "1010": 0.219970703125,
+        "1011": 0.032470703125,
+        "1100": 0.217041015625,
+        "1101": 0.04150390625,
+        "1110": 0.203857421875,
+        "1111": 0.0341796875
+      },
+      "reason": "Distance exceeds configured threshold and finite-shot tolerance",
+      "shots": 4096,
+      "threshold": 0.05,
+      "total_variation_distance": 0.50146484375
+    },
+    "summary": "An execution anomaly is accompanied by a source mismatch that changes modeled measured outputs.",
+    "trace_deviation_candidates": []
+  },
+  "errors": [],
+  "execution_metadata": {
+    "backend_api_used": false,
+    "execution_kind": "SYNTHETIC_VALIDATION",
+    "execution_target": "LOCAL_SIMULATOR",
+    "generated_at": "2026-10-31T08:42:18+00:00",
+    "hardware_model_applied": true,
+    "noise_parameters_applied": false,
+    "numpy_version": "2.5.3",
+    "observation_source": "SEEDED_LOCAL_SIMULATOR_SHOTS_WITH_HARDWARE_MODEL",
+    "python_version": "3.12.10",
+    "random_seed": 20263004,
+    "shots": 4096
+  },
+  "experiment_metadata": {
+    "backend_name": null,
+    "circuit_family_id": "F4_PARITY_TREE",
+    "circuit_id": "circuit-d2bf47ac541ea1c0",
+    "circuit_lineage_id": null,
+    "created_at": "2026-10-31T08:42:18+00:00",
+    "experiment_name": "phase5_F4_PARITY_TREE-C15_seed20263004_shots4096",
+    "experimental_group_id": null,
+    "ground_truth_label": null,
+    "hardware_affected_component": null,
+    "hardware_condition_id": null,
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "repetition_index": null,
+    "run_id": null,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "hardware_evidence": {
+    "anomaly_metric": 0.5,
+    "candidates": [
+      {
+        "component": 1,
+        "component_type": "qubit",
+        "evidence": [
+          "Qubit 1 appears in 4 relevant circuit operations.",
+          "Observed deviation at operation index 4: Expected operation missing in observed circuit"
+        ],
+        "reason": "Program trace implicated qubit 1: No notable qubit degradation was detected.",
+        "score": 2.0
+      },
+      {
+        "component": 3,
+        "component_type": "qubit",
+        "evidence": [
+          "Qubit 3 readout error is elevated at 0.1500.",
+          "Observed deviation at operation index 4: Expected operation missing in observed circuit"
+        ],
+        "reason": "Program trace implicated qubit 3: readout_error=0.1500",
+        "score": 1.1
+      },
+      {
+        "component": [
+          1,
+          3
+        ],
+        "component_type": "edge",
+        "evidence": [
+          "Observed deviation at operation index 4: Expected operation missing in observed circuit"
+        ],
+        "reason": "Program trace implicated coupling edge (1, 3): No calibrated coupling edge was found.",
+        "score": 0.5
+      },
+      {
+        "component": [
+          1,
+          3
+        ],
+        "component_type": "gate",
+        "evidence": [
+          "Observed anomaly associated with operation cx at index 4."
+        ],
+        "reason": "Gate calibration for cx on qubits (1, 3): No notable gate calibration issue detected.",
+        "score": 0.35
+      }
+    ],
+    "evidence": [
+      "Qubit 1 appears in 4 relevant circuit operations.",
+      "Observed deviation at operation index 4: Expected operation missing in observed circuit",
+      "Qubit 3 readout error is elevated at 0.1500.",
+      "Observed deviation at operation index 4: Expected operation missing in observed circuit",
+      "Observed deviation at operation index 4: Expected operation missing in observed circuit",
+      "Observed anomaly associated with operation cx at index 4."
+    ],
+    "summary": "Calibration-backed hardware fault candidate(s): qubit 3; trace-associated hardware locations: qubit 1, edge (1, 3), gate (1, 3)",
+    "threshold": 0.05
+  },
+  "ideal_distribution": {
+    "0000": 0.0,
+    "0001": 0.0,
+    "0010": 0.0,
+    "0011": 0.0,
+    "0100": 0.0,
+    "0101": 0.0,
+    "0110": 0.0,
+    "0111": 0.0,
+    "1000": 0.25,
+    "1001": 0.0,
+    "1010": 0.0,
+    "1011": 0.25,
+    "1100": 0.25,
+    "1101": 0.0,
+    "1110": 0.0,
+    "1111": 0.25
+  },
+  "ideal_statevector_distribution": {
+    "0000": 0.0,
+    "0001": 0.0,
+    "0010": 0.0,
+    "0011": 0.0,
+    "0100": 0.0,
+    "0101": 0.0,
+    "0110": 0.0,
+    "0111": 0.0,
+    "1000": 0.25,
+    "1001": 0.0,
+    "1010": 0.0,
+    "1011": 0.25,
+    "1100": 0.25,
+    "1101": 0.0,
+    "1110": 0.0,
+    "1111": 0.25
+  },
+  "observed_counts": {
+    "1000": 880,
+    "1001": 148,
+    "1010": 901,
+    "1011": 133,
+    "1100": 889,
+    "1101": 170,
+    "1110": 835,
+    "1111": 140
+  },
+  "observed_distribution": {
+    "0000": 0.0,
+    "0001": 0.0,
+    "0010": 0.0,
+    "0011": 0.0,
+    "0100": 0.0,
+    "0101": 0.0,
+    "0110": 0.0,
+    "0111": 0.0,
+    "1000": 0.21484375,
+    "1001": 0.0361328125,
+    "1010": 0.219970703125,
+    "1011": 0.032470703125,
+    "1100": 0.217041015625,
+    "1101": 0.04150390625,
+    "1110": 0.203857421875,
+    "1111": 0.0341796875
+  },
+  "program_evidence": {
+    "anomaly_metric": 0.5,
+    "candidates": [
+      {
+        "actual_signature": null,
+        "evidence": [
+          "Step 4: expected cx on qubits (1, 3) but it was not executed."
+        ],
+        "expected_signature": [
+          "cx",
+          [
+            1,
+            3
+          ],
+          []
+        ],
+        "index": 4,
+        "operation": "cx",
+        "qubits": [
+          1,
+          3
+        ],
+        "reason": "Expected operation missing in observed circuit",
+        "score": 1.0
+      }
+    ],
+    "evidence": [
+      "Step 4: expected cx on qubits (1, 3) but it was not executed."
+    ],
+    "summary": "Program fault localization identified the following likely offending operation(s): step 4 (cx)",
+    "threshold": 0.05
+  },
+  "reproducibility": {
+    "deterministic_localizer_measurements": "measurement operations mapped to barriers for localization only",
+    "fingerprint": "19bec7055531aacae68919abbde6dc55a5d6684b0948f1804a40fffe27037660",
+    "fingerprint_excludes": [
+      "execution_metadata.generated_at",
+      "reproducibility.fingerprint"
+    ],
+    "random_seed": 20263004,
+    "simulator_version": "project-statevector-current",
+    "source_sha256": {
+      "diagnosis_engine.py": "cac81fc98348014581f78163d5a73622565649ab6426e7af7f3fabdfdde24240",
+      "experiment_config.py": "f1a0f721d8bdf1175bfcdbd84d6d829099efb7155f1568ad703e9f6cc76d33b3",
+      "experiments/full_dataset.py": "2272d934648628ed8f7bf756ee1a6a0f988be8b8d28bd9972227ceeeed8cb0ac",
+      "experiments/run_experiment.py": "fef2985d782c92756af81e84232c7b0c286dc930963063dc9c2b44348e30c034",
+      "fault_localizer.py": "87de10cde2991a7fb1ab0e4e7563cf81e5cb043bae44fc8c1c5051755d6194ba",
+      "gates.py": "5799e62fa582e8651344d257ad396e3415dd4f7db29d310962fec29ce5a8baad",
+      "hardware_fault_localizer.py": "e4c92314bbca1775d348d64d8f3ef5382be684520a3ffc66cefce81514f5a1bb",
+      "hardware_model.py": "d788c7f98dc1932159473e8256b45550f1430bd9b4da2f776099b152ba72aaaa",
+      "pyproject.toml": "7ffbc8d76c18eea63a4497aa671c4408c4227081b617b6b5b00117a5b62aada5",
+      "quantum_simulator.py": "1641ad14c4b932a1739527f73c732276c7029cc192695cfd5e82cf7ea91a50fa",
+      "src/quantum_simulator/__init__.py": "d402fc5dcf064f1f5bea31f5df42a0b0f474245a4ec567f419bf02bd573f842d",
+      "src/quantum_simulator/diagnosis_engine.py": "496fa5e5b8cdc9ba9792334be166a3367c07e4d81f8a7bc7b2dec2623c804bb4",
+      "src/quantum_simulator/fault_localizer.py": "46fb76982a579e209d7f0caa252a7c4f27f665f9836e93698fd4766fe9d9da28",
+      "src/quantum_simulator/gates.py": "d0153f8609b8a375aadf1541322928aa65acb212b533f8154e424809afd658d8",
+      "src/quantum_simulator/hardware_fault_localizer.py": "ca0fec8d243282ca2ad1b1d1f0cb7e24f909fbcbecd537d116da722081e98686",
+      "src/quantum_simulator/hardware_model.py": "89cceaf7d2eb0e1ace5a59766ad33a7cd55b8d0910d1f9d799f6f4ebf3ff3276",
+      "src/quantum_simulator/quantum_circuit.py": "5ebe9f05c7a72057929e339d5c1633b1b50c98621c068849d4fa1b4e9df2a6c1",
+      "src/quantum_simulator/quantum_simulator.py": "a07be9c304153a389454f699ffaaace8d12d99d430396bcfc1b5c383845406ef",
+      "src/quantum_simulator/statistics.py": "2d90d01a024aa527a4dd7805a09ba0216e35afceb3e718d979e9ed5399212d82",
+      "statistics.py": "e47a7fbf3d74ebf700fa722e74ac57b9ce6b3d0bd3a4a36b5b06cc25aa6f0a9d"
+    }
+  },
+  "simulator_observed_counts": {
+    "1000": 880,
+    "1001": 148,
+    "1010": 901,
+    "1011": 133,
+    "1100": 889,
+    "1101": 170,
+    "1110": 835,
+    "1111": 140
+  },
+  "status": "COMPLETED"
+}

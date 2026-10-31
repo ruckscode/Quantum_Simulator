@@ -29,6 +29,17 @@ class HardwareCandidate:
     score: float
     reason: str
     evidence: List[str] = field(default_factory=list)
+    gate_name: str | None = None
+
+
+def _candidate_identity(candidate: HardwareCandidate) -> tuple[Any, ...]:
+    if candidate.component_type == "gate":
+        gate_name = candidate.gate_name
+        if gate_name is None and candidate.reason.startswith("Gate calibration for "):
+            gate_name = candidate.reason.partition("Gate calibration for ")[2].split(" ", 1)[0]
+        return "gate", gate_name, tuple(candidate.component)
+    component = tuple(candidate.component) if isinstance(candidate.component, (tuple, list)) else candidate.component
+    return candidate.component_type, component
 
 
 @dataclass
@@ -182,7 +193,8 @@ def _relevant_gate_candidates(model: HardwareModel, qubits: Sequence[int]) -> li
         return []
     targets = tuple(qubits[:2])
     results: list[tuple[str, tuple[int, ...], float, str, List[str]]] = []
-    for gate_name, entries in model._gates.items():
+    for gate_name in sorted(model._gates):
+        entries = model._gates[gate_name]
         for entry in entries:
             if tuple(entry.qubits) == targets:
                 score, reason, evidence = _score_gate(model, gate_name, entry.qubits)
@@ -204,7 +216,7 @@ def _impact_from_program_result(model: HardwareModel, expected_circuit: Sequence
         return [], anomaly_metric
 
     candidates: List[HardwareCandidate] = []
-    seen: dict[tuple[str, Any], HardwareCandidate] = {}
+    seen: dict[tuple[Any, ...], HardwareCandidate] = {}
 
     for candidate in program_result.candidates:
         qubits = candidate.qubits or ()
@@ -251,8 +263,9 @@ def _impact_from_program_result(model: HardwareModel, expected_circuit: Sequence
                         score=score,
                         reason=f"Gate calibration for {gate_name} on qubits {tuple(gate_qubits)}: {reason}",
                         evidence=[*evidence, f"Observed anomaly associated with operation {candidate.operation} at index {candidate.index}."],
+                        gate_name=gate_name,
                     )
-                    key = ("gate", tuple(gate_qubits))
+                    key = ("gate", gate_name, tuple(gate_qubits))
                     existing = seen.get(key)
                     if existing is None or score > existing.score:
                         seen[key] = hardware_candidate
@@ -267,8 +280,9 @@ def _impact_from_program_result(model: HardwareModel, expected_circuit: Sequence
                     score=score,
                     reason=f"Gate calibration for {gate_name} on qubits {gate_targets}: {reason}",
                     evidence=[*evidence, f"Observed anomaly associated with operation {candidate.operation} at index {candidate.index}."],
+                    gate_name=gate_name,
                 )
-                key = ("gate", gate_targets)
+                key = ("gate", gate_name, gate_targets)
                 existing = seen.get(key)
                 if existing is None or score > existing.score:
                     seen[key] = hardware_candidate
@@ -279,7 +293,7 @@ def _impact_from_program_result(model: HardwareModel, expected_circuit: Sequence
 
 def _hardware_model_base_candidates(model: HardwareModel) -> List[HardwareCandidate]:
     candidates: List[HardwareCandidate] = []
-    seen: dict[tuple[str, Any], HardwareCandidate] = {}
+    seen: dict[tuple[Any, ...], HardwareCandidate] = {}
 
     for qubit in range(model.n_qubits):
         score, reason, evidence = _score_qubit(model, qubit)
@@ -307,10 +321,7 @@ def _hardware_model_base_candidates(model: HardwareModel) -> List[HardwareCandid
         )
         seen[("edge", (left, right))] = candidate
 
-    for gate_name, entries in {}.items():
-        _ = gate_name, entries
-
-    for gate_name in set(model._gates.keys()):
+    for gate_name in sorted(model._gates):
         for entry in model.get_gate_calibration(gate_name):
             gate_qubits = tuple(entry.qubits)
             score, reason, evidence = _score_gate(model, gate_name, gate_qubits)
@@ -322,8 +333,9 @@ def _hardware_model_base_candidates(model: HardwareModel) -> List[HardwareCandid
                 score=score,
                 reason=f"Gate calibration for {gate_name} on qubits {gate_qubits} is degraded: {reason}",
                 evidence=evidence,
+                gate_name=gate_name,
             )
-            seen[("gate", gate_qubits)] = candidate
+            seen[("gate", gate_name, gate_qubits)] = candidate
 
     candidates.extend(seen.values())
     return sorted(candidates, key=lambda item: item.score, reverse=True)
@@ -373,11 +385,11 @@ def localize_hardware_fault(
     else:
         circuit_candidates, anomaly_metric = [], 0.0
 
-    merged: dict[tuple[str, Any], HardwareCandidate] = {}
+    merged: dict[tuple[Any, ...], HardwareCandidate] = {}
     for candidate in base_candidates:
-        merged[(candidate.component_type, candidate.component)] = candidate
+        merged[_candidate_identity(candidate)] = candidate
     for candidate in circuit_candidates:
-        key = (candidate.component_type, candidate.component)
+        key = _candidate_identity(candidate)
         existing = merged.get(key)
         if existing is None or candidate.score > existing.score:
             merged[key] = candidate
@@ -404,15 +416,19 @@ def localize_hardware_fault(
         evidence.extend(candidate.evidence)
 
     base_candidate_keys = {
-        (candidate.component_type, candidate.component)
+        _candidate_identity(candidate)
         for candidate in base_candidates
     }
-    calibration_candidates = [candidate for candidate in candidates if (candidate.component_type, candidate.component) in base_candidate_keys]
-    trace_only_candidates = [candidate for candidate in candidates if (candidate.component_type, candidate.component) not in base_candidate_keys]
+    calibration_candidates = [candidate for candidate in candidates if _candidate_identity(candidate) in base_candidate_keys]
+    trace_only_candidates = [candidate for candidate in candidates if _candidate_identity(candidate) not in base_candidate_keys]
 
     def _candidate_names(items: List[HardwareCandidate]) -> str:
         return ", ".join(
-            f"{candidate.component_type} {candidate.component}"
+            (
+                f"gate {candidate.gate_name} {candidate.component}"
+                if candidate.component_type == "gate" and candidate.gate_name
+                else f"{candidate.component_type} {candidate.component}"
+            )
             for candidate in items[:3]
         )
 

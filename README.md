@@ -254,6 +254,32 @@ print(diagnosis.category)
 
 The finite-shot tolerance is applied by the statistical comparison. An anomaly can be detected without enough evidence to attribute it to a specific cause.
 
+### Statistical diagnosis and classical ML scope
+
+The default diagnosis is evidence/statistics based, not a trained-model prediction. It compares sampled outcome counts from the expected/reference and observed executions using a seeded conditional permutation test plus a predeclared practical TVD threshold. This answers whether the sampled output changed beyond the configured tolerance; it is not a classifier accuracy score and does not identify a cause by itself. Program-fault attribution additionally needs a reference/source difference whose counterfactual changes measured outputs. Hardware attribution needs relevant calibration evidence. If causes remain indistinguishable, the result should abstain.
+
+When callers provide only probability distributions through `diagnose_execution()` or `compare_distributions()`, raw counts are unavailable and the fallback guard is the heuristic `max(threshold, 1/sqrt(shots))`. That guard is not a p-value, confidence interval, or universal statistical guarantee; only raw count samples use the conditional permutation test.
+
+`diagnose_circuit(..., classifier=...)` optionally accepts a classical `ObservableClassifier`. Its output and the five observable features are returned in `DiagnosisResult.ml_*`; the existing evidence/localization checks gate any ML-supported category, and disagreement with a definitive evidence category becomes ambiguous. The simulator does not silently load or train a classifier. The bundled five-feature Logistic Regression artifact is marked **development candidate**, trained on only two synthetic circuit families, and has no completed deployment validation. It must not be described as reliable for arbitrary circuits. The historical QMutBench mutation-outcome model predicts a different target and is not used for simulator diagnosis.
+
+For reproducing the current development model only, the adapter is available without writing a feature extractor:
+
+```python
+from quantum_simulator import PortableLogisticRegressionAdapter, diagnose_circuit
+
+classifier = PortableLogisticRegressionAdapter()  # development candidate; not deployment-validated
+result = diagnose_circuit(
+    submitted_circuit,
+    reference_circuit=expected_circuit,
+    classifier=classifier,
+    shots=4096,
+    seed=42,
+)
+print(result.category, result.ml_predicted_class, result.ml_confidence)
+```
+
+There is no finite benchmark that proves correctness on every possible circuit. Generalization claims require an independent test split by circuit family/topology (and preferably gate, fault type/strength, shot count, seed, and hardware source), with predeclared labels and reportable per-stratum metrics. Synthetic tests establish behavior only for their modeled scenarios; real-device validity requires separate hardware evidence.
+
 ## 10. Program Fault Localization
 
 The program localizer compares expected and observed instruction sequences and can report operation-level candidates, such as changed, inserted, or removed operations. The integrated `diagnose_execution()` workflow accepts expected and observed distributions and optional expected and observed circuits:

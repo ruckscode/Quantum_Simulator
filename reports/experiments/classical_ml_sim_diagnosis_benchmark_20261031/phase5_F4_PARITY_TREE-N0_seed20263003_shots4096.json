@@ -1,0 +1,525 @@
+{
+  "anomaly": {
+    "anomaly_detected": false,
+    "expected_distribution": {
+      "0000": 0.0,
+      "0001": 0.0,
+      "0010": 0.0,
+      "0011": 0.0,
+      "0100": 0.0,
+      "0101": 0.0,
+      "0110": 0.0,
+      "0111": 0.0,
+      "1000": 0.25,
+      "1001": 0.0,
+      "1010": 0.0,
+      "1011": 0.25,
+      "1100": 0.25,
+      "1101": 0.0,
+      "1110": 0.0,
+      "1111": 0.25
+    },
+    "finite_shot_guard": 0.05,
+    "hellinger_distance": 0.009808452497411316,
+    "js_divergence": 9.620252537769717e-05,
+    "message": "Observed distribution differs by TVD=0.010742, which is within the configured threshold=0.050000.",
+    "observed_distribution": {
+      "0000": 0.0,
+      "0001": 0.0,
+      "0010": 0.0,
+      "0011": 0.0,
+      "0100": 0.0,
+      "0101": 0.0,
+      "0110": 0.0,
+      "0111": 0.0,
+      "1000": 0.2392578125,
+      "1001": 0.0,
+      "1010": 0.0,
+      "1011": 0.25146484375,
+      "1100": 0.250732421875,
+      "1101": 0.0,
+      "1110": 0.0,
+      "1111": 0.258544921875
+    },
+    "reason": "No statistically meaningful anomaly detected",
+    "shots": 4096,
+    "threshold": 0.05,
+    "total_variation_distance": 0.0107421875
+  },
+  "circuit": {
+    "ideal": [
+      [
+        "x",
+        0
+      ],
+      [
+        "h",
+        1
+      ],
+      [
+        "cx",
+        0,
+        1
+      ],
+      [
+        "cx",
+        1,
+        2
+      ],
+      [
+        "cx",
+        1,
+        3
+      ],
+      [
+        "h",
+        1
+      ]
+    ],
+    "observed": [
+      [
+        "x",
+        0
+      ],
+      [
+        "h",
+        1
+      ],
+      [
+        "cx",
+        0,
+        1
+      ],
+      [
+        "cx",
+        1,
+        2
+      ],
+      [
+        "cx",
+        1,
+        3
+      ],
+      [
+        "h",
+        1
+      ]
+    ]
+  },
+  "configuration": {
+    "anomaly_threshold": 0.05,
+    "backend_name": null,
+    "circuit": [
+      [
+        "x",
+        0
+      ],
+      [
+        "h",
+        1
+      ],
+      [
+        "cx",
+        0,
+        1
+      ],
+      [
+        "cx",
+        1,
+        2
+      ],
+      [
+        "cx",
+        1,
+        3
+      ],
+      [
+        "h",
+        1
+      ]
+    ],
+    "circuit_family_id": "F4_PARITY_TREE",
+    "circuit_id": "circuit-d2bf47ac541ea1c0",
+    "circuit_lineage_id": null,
+    "description": "",
+    "experiment_name": "phase5_F4_PARITY_TREE-N0_seed20263003_shots4096",
+    "experimental_group_id": "group-3e946d00b62fda96",
+    "ground_truth_label": "NORMAL",
+    "hardware_affected_component": null,
+    "hardware_condition_id": null,
+    "hardware_parameters": {
+      "coupling_map": [],
+      "edges": [],
+      "gates": [
+        {
+          "duration": 0.0,
+          "error": 0.0,
+          "gate": "cx",
+          "qubits": [
+            0,
+            1
+          ],
+          "supported": true
+        },
+        {
+          "duration": 0.0,
+          "error": 0.0,
+          "gate": "cx",
+          "qubits": [
+            1,
+            2
+          ],
+          "supported": true
+        },
+        {
+          "duration": 0.0,
+          "error": 0.0,
+          "gate": "cx",
+          "qubits": [
+            1,
+            3
+          ],
+          "supported": true
+        },
+        {
+          "duration": 0.0,
+          "error": 0.0,
+          "gate": "h",
+          "qubits": [
+            1
+          ],
+          "supported": true
+        },
+        {
+          "duration": 0.0,
+          "error": 0.0,
+          "gate": "x",
+          "qubits": [
+            0
+          ],
+          "supported": true
+        }
+      ],
+      "qubits": {
+        "0": {
+          "available": true,
+          "readout_error": 0.0,
+          "status": "available",
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        },
+        "1": {
+          "available": true,
+          "readout_error": 0.0,
+          "status": "available",
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        },
+        "2": {
+          "available": true,
+          "readout_error": 0.0,
+          "status": "available",
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        },
+        "3": {
+          "available": true,
+          "readout_error": 0.0,
+          "status": "available",
+          "t1": 1000000.0,
+          "t2": 1000000.0
+        }
+      }
+    },
+    "noise_parameters": null,
+    "num_qubits": 4,
+    "observed_circuit": [
+      [
+        "x",
+        0
+      ],
+      [
+        "h",
+        1
+      ],
+      [
+        "cx",
+        0,
+        1
+      ],
+      [
+        "cx",
+        1,
+        2
+      ],
+      [
+        "cx",
+        1,
+        3
+      ],
+      [
+        "h",
+        1
+      ]
+    ],
+    "observed_counts": null,
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "random_seed": 20263003,
+    "repetition_index": null,
+    "run_id": null,
+    "shots": 4096,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "diagnosis": {
+    "anomaly_detected": false,
+    "calibration_freshness": {
+      "age_seconds": null,
+      "max_age_seconds": null,
+      "provenance": "synthetic",
+      "status": "SYNTHETIC"
+    },
+    "category": "NO_ANOMALY",
+    "evidence": [
+      "Observed distribution differs by TVD=0.010742, which is within the configured threshold=0.050000.",
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000.",
+      "No qubit, edge, or gate calibration metric crossed the threshold=0.0500.",
+      "No coupling-edge calibration is available for edge (0, 1).",
+      "No coupling-edge calibration is available for edge (1, 2).",
+      "No coupling-edge calibration is available for edge (1, 3)."
+    ],
+    "expected_counts": null,
+    "hardware_evidence_candidates": [],
+    "hardware_result": {
+      "anomaly_metric": 0.0,
+      "candidates": [],
+      "evidence": [
+        "No qubit, edge, or gate calibration metric crossed the threshold=0.0500."
+      ],
+      "summary": "No hardware fault candidates exceeded the configured threshold.",
+      "threshold": 0.05
+    },
+    "missing_evidence": [
+      "No coupling-edge calibration is available for edge (0, 1).",
+      "No coupling-edge calibration is available for edge (1, 2).",
+      "No coupling-edge calibration is available for edge (1, 3)."
+    ],
+    "ml_class_probabilities": null,
+    "ml_confidence": null,
+    "ml_features": null,
+    "ml_predicted_class": null,
+    "observed_counts": null,
+    "program_behavioral_candidates": [],
+    "program_evidence_candidates": [],
+    "program_result": {
+      "anomaly_metric": 0.0,
+      "candidates": [],
+      "evidence": [
+        "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+      ],
+      "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+      "threshold": 0.05
+    },
+    "statistics_result": {
+      "anomaly_detected": false,
+      "expected_distribution": {
+        "0000": 0.0,
+        "0001": 0.0,
+        "0010": 0.0,
+        "0011": 0.0,
+        "0100": 0.0,
+        "0101": 0.0,
+        "0110": 0.0,
+        "0111": 0.0,
+        "1000": 0.25,
+        "1001": 0.0,
+        "1010": 0.0,
+        "1011": 0.25,
+        "1100": 0.25,
+        "1101": 0.0,
+        "1110": 0.0,
+        "1111": 0.25
+      },
+      "finite_shot_guard": 0.05,
+      "hellinger_distance": 0.009808452497411316,
+      "js_divergence": 9.620252537769717e-05,
+      "message": "Observed distribution differs by TVD=0.010742, which is within the configured threshold=0.050000.",
+      "observed_distribution": {
+        "0000": 0.0,
+        "0001": 0.0,
+        "0010": 0.0,
+        "0011": 0.0,
+        "0100": 0.0,
+        "0101": 0.0,
+        "0110": 0.0,
+        "0111": 0.0,
+        "1000": 0.2392578125,
+        "1001": 0.0,
+        "1010": 0.0,
+        "1011": 0.25146484375,
+        "1100": 0.250732421875,
+        "1101": 0.0,
+        "1110": 0.0,
+        "1111": 0.258544921875
+      },
+      "reason": "No statistically meaningful anomaly detected",
+      "shots": 4096,
+      "threshold": 0.05,
+      "total_variation_distance": 0.0107421875
+    },
+    "summary": "No statistically meaningful execution anomaly or direct fault evidence was detected.",
+    "trace_deviation_candidates": []
+  },
+  "errors": [],
+  "execution_metadata": {
+    "backend_api_used": false,
+    "execution_kind": "SYNTHETIC_VALIDATION",
+    "execution_target": "LOCAL_SIMULATOR",
+    "generated_at": "2026-10-31T08:32:55+00:00",
+    "hardware_model_applied": true,
+    "noise_parameters_applied": false,
+    "numpy_version": "2.5.3",
+    "observation_source": "SEEDED_LOCAL_SIMULATOR_SHOTS_WITH_HARDWARE_MODEL",
+    "python_version": "3.12.10",
+    "random_seed": 20263003,
+    "shots": 4096
+  },
+  "experiment_metadata": {
+    "backend_name": null,
+    "circuit_family_id": "F4_PARITY_TREE",
+    "circuit_id": "circuit-d2bf47ac541ea1c0",
+    "circuit_lineage_id": null,
+    "created_at": "2026-10-31T08:32:55+00:00",
+    "experiment_name": "phase5_F4_PARITY_TREE-N0_seed20263003_shots4096",
+    "experimental_group_id": "group-3e946d00b62fda96",
+    "ground_truth_label": "NORMAL",
+    "hardware_affected_component": null,
+    "hardware_condition_id": null,
+    "program_fault_description": null,
+    "program_fault_id": null,
+    "program_fault_operation_index": null,
+    "program_fault_qubits": null,
+    "repetition_index": null,
+    "run_id": null,
+    "validation_label": "SYNTHETIC_VALIDATION"
+  },
+  "hardware_evidence": {
+    "anomaly_metric": 0.0,
+    "candidates": [],
+    "evidence": [
+      "No qubit, edge, or gate calibration metric crossed the threshold=0.0500."
+    ],
+    "summary": "No hardware fault candidates exceeded the configured threshold.",
+    "threshold": 0.05
+  },
+  "ideal_distribution": {
+    "0000": 0.0,
+    "0001": 0.0,
+    "0010": 0.0,
+    "0011": 0.0,
+    "0100": 0.0,
+    "0101": 0.0,
+    "0110": 0.0,
+    "0111": 0.0,
+    "1000": 0.25,
+    "1001": 0.0,
+    "1010": 0.0,
+    "1011": 0.25,
+    "1100": 0.25,
+    "1101": 0.0,
+    "1110": 0.0,
+    "1111": 0.25
+  },
+  "ideal_statevector_distribution": {
+    "0000": 0.0,
+    "0001": 0.0,
+    "0010": 0.0,
+    "0011": 0.0,
+    "0100": 0.0,
+    "0101": 0.0,
+    "0110": 0.0,
+    "0111": 0.0,
+    "1000": 0.25,
+    "1001": 0.0,
+    "1010": 0.0,
+    "1011": 0.25,
+    "1100": 0.25,
+    "1101": 0.0,
+    "1110": 0.0,
+    "1111": 0.25
+  },
+  "observed_counts": {
+    "1000": 980,
+    "1011": 1030,
+    "1100": 1027,
+    "1111": 1059
+  },
+  "observed_distribution": {
+    "0000": 0.0,
+    "0001": 0.0,
+    "0010": 0.0,
+    "0011": 0.0,
+    "0100": 0.0,
+    "0101": 0.0,
+    "0110": 0.0,
+    "0111": 0.0,
+    "1000": 0.2392578125,
+    "1001": 0.0,
+    "1010": 0.0,
+    "1011": 0.25146484375,
+    "1100": 0.250732421875,
+    "1101": 0.0,
+    "1110": 0.0,
+    "1111": 0.258544921875
+  },
+  "program_evidence": {
+    "anomaly_metric": 0.0,
+    "candidates": [],
+    "evidence": [
+      "Final distribution difference TVD=0.000000 is within threshold=0.050000."
+    ],
+    "summary": "No program-level fault was localized; the circuit behavior remains within threshold.",
+    "threshold": 0.05
+  },
+  "reproducibility": {
+    "deterministic_localizer_measurements": "measurement operations mapped to barriers for localization only",
+    "fingerprint": "b02f7f5dafe55097f139dfdf859b9098520b808c8dcc54fe50414522fd28ff88",
+    "fingerprint_excludes": [
+      "execution_metadata.generated_at",
+      "reproducibility.fingerprint"
+    ],
+    "random_seed": 20263003,
+    "simulator_version": "project-statevector-current",
+    "source_sha256": {
+      "diagnosis_engine.py": "cac81fc98348014581f78163d5a73622565649ab6426e7af7f3fabdfdde24240",
+      "experiment_config.py": "f1a0f721d8bdf1175bfcdbd84d6d829099efb7155f1568ad703e9f6cc76d33b3",
+      "experiments/full_dataset.py": "2272d934648628ed8f7bf756ee1a6a0f988be8b8d28bd9972227ceeeed8cb0ac",
+      "experiments/run_experiment.py": "fef2985d782c92756af81e84232c7b0c286dc930963063dc9c2b44348e30c034",
+      "fault_localizer.py": "87de10cde2991a7fb1ab0e4e7563cf81e5cb043bae44fc8c1c5051755d6194ba",
+      "gates.py": "5799e62fa582e8651344d257ad396e3415dd4f7db29d310962fec29ce5a8baad",
+      "hardware_fault_localizer.py": "e4c92314bbca1775d348d64d8f3ef5382be684520a3ffc66cefce81514f5a1bb",
+      "hardware_model.py": "d788c7f98dc1932159473e8256b45550f1430bd9b4da2f776099b152ba72aaaa",
+      "pyproject.toml": "7ffbc8d76c18eea63a4497aa671c4408c4227081b617b6b5b00117a5b62aada5",
+      "quantum_simulator.py": "1641ad14c4b932a1739527f73c732276c7029cc192695cfd5e82cf7ea91a50fa",
+      "src/quantum_simulator/__init__.py": "d402fc5dcf064f1f5bea31f5df42a0b0f474245a4ec567f419bf02bd573f842d",
+      "src/quantum_simulator/diagnosis_engine.py": "496fa5e5b8cdc9ba9792334be166a3367c07e4d81f8a7bc7b2dec2623c804bb4",
+      "src/quantum_simulator/fault_localizer.py": "46fb76982a579e209d7f0caa252a7c4f27f665f9836e93698fd4766fe9d9da28",
+      "src/quantum_simulator/gates.py": "d0153f8609b8a375aadf1541322928aa65acb212b533f8154e424809afd658d8",
+      "src/quantum_simulator/hardware_fault_localizer.py": "ca0fec8d243282ca2ad1b1d1f0cb7e24f909fbcbecd537d116da722081e98686",
+      "src/quantum_simulator/hardware_model.py": "89cceaf7d2eb0e1ace5a59766ad33a7cd55b8d0910d1f9d799f6f4ebf3ff3276",
+      "src/quantum_simulator/quantum_circuit.py": "5ebe9f05c7a72057929e339d5c1633b1b50c98621c068849d4fa1b4e9df2a6c1",
+      "src/quantum_simulator/quantum_simulator.py": "a07be9c304153a389454f699ffaaace8d12d99d430396bcfc1b5c383845406ef",
+      "src/quantum_simulator/statistics.py": "2d90d01a024aa527a4dd7805a09ba0216e35afceb3e718d979e9ed5399212d82",
+      "statistics.py": "e47a7fbf3d74ebf700fa722e74ac57b9ce6b3d0bd3a4a36b5b06cc25aa6f0a9d"
+    }
+  },
+  "simulator_observed_counts": {
+    "1000": 980,
+    "1011": 1030,
+    "1100": 1027,
+    "1111": 1059
+  },
+  "status": "COMPLETED"
+}

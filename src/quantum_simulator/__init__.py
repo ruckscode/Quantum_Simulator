@@ -9,11 +9,16 @@ from .diagnosis_engine import (
     diagnose_execution,
 )
 from .hardware_model import HardwareModel
+from .ml_diagnosis import ClassifierPrediction, ObservableClassifier
+from .observable_model_adapter import PortableLogisticRegressionAdapter
 
 __all__ = [
     "DiagnosisCategory",
     "DiagnosisResult",
     "HardwareModel",
+    "ClassifierPrediction",
+    "ObservableClassifier",
+    "PortableLogisticRegressionAdapter",
     "QuantumCircuit",
     "QuantumSimulator",
     "SimulationResult",
