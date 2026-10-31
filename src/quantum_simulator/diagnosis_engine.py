@@ -57,6 +57,10 @@ class DiagnosisResult:
     trace_deviation_candidates: list[Any] = field(default_factory=list)
     program_behavioral_candidates: list[Any] = field(default_factory=list)
     calibration_freshness: dict[str, Any] | None = None
+    ml_predicted_class: str | None = None
+    ml_confidence: float | None = None
+    ml_class_probabilities: dict[str, float] | None = None
+    ml_features: dict[str, float] | None = None
 
 
 def _operation_details(operation: Any) -> tuple[str, tuple[int, ...]]:
@@ -250,7 +254,15 @@ def _is_relevant_to_circuit(candidate: HardwareCandidate, circuit: Sequence[Any]
 
     if candidate.component_type == "gate":
         target_qubits = tuple(candidate.component) if isinstance(candidate.component, (tuple, list)) else ()
-        return any(len(qubits) >= len(target_qubits) and tuple(qubits[:len(target_qubits)]) == target_qubits for _, qubits in operations)
+        gate_name = candidate.gate_name
+        if gate_name is None and candidate.reason.startswith("Gate calibration for "):
+            gate_name = candidate.reason.partition("Gate calibration for ")[2].split(" ", 1)[0]
+        aliases = {"cnot": "cx", "id": "i", "identity": "i"}
+        target_name = aliases.get(gate_name, gate_name) if gate_name else None
+        return any(
+            aliases.get(name, name) == target_name and qubits == target_qubits
+            for name, qubits in operations
+        )
 
     return False
 
@@ -324,6 +336,115 @@ def has_relevant_calibration_fault_evidence(
     )
 
 
+def _apply_optional_classifier(
+    result: DiagnosisResult,
+    expected_distribution,
+    observed_distribution,
+    *,
+    expected_circuit,
+    observed_circuit,
+    hardware_model,
+    threshold: float,
+    shots: int | None,
+    classifier: Any | None,
+    ml_min_confidence: float,
+) -> DiagnosisResult:
+    if classifier is None:
+        return result
+    if expected_distribution is None or observed_distribution is None:
+        result.evidence.append(
+            "Classical ML was not run because complete expected and observed distributions are required."
+        )
+        return result
+    # Local import avoids a cycle because ML diagnosis reuses this module's
+    # statistics and evidence-based localizers.
+    from .ml_diagnosis import diagnose_with_ml
+
+    ml_result = diagnose_with_ml(
+        expected_distribution,
+        observed_distribution,
+        expected_circuit=expected_circuit,
+        observed_circuit=observed_circuit,
+        hardware_model=hardware_model,
+        threshold=threshold,
+        shots=shots,
+        classifier=classifier,
+        min_confidence=ml_min_confidence,
+    )
+    result.ml_predicted_class = ml_result.predicted_class
+    result.ml_confidence = ml_result.confidence
+    result.ml_class_probabilities = dict(ml_result.class_probabilities)
+    result.ml_features = dict(ml_result.ml_features)
+    result.evidence.append(
+        f"Classical ML predicted {ml_result.predicted_class} "
+        f"(uncalibrated confidence={ml_result.confidence:.3f}); "
+        "this confidence is not an accuracy guarantee."
+    )
+
+    definitive = {
+        DiagnosisCategory.NO_ANOMALY,
+        DiagnosisCategory.PROGRAM_FAULT,
+        DiagnosisCategory.HARDWARE_ANOMALY,
+    }
+    ml_supported_by_independent_evidence = (
+        (
+            ml_result.final_diagnosis is DiagnosisCategory.PROGRAM_FAULT
+            and result.anomaly_detected is True
+            and bool(result.program_behavioral_candidates)
+            and not result.hardware_evidence_candidates
+        )
+        or (
+            ml_result.final_diagnosis is DiagnosisCategory.HARDWARE_ANOMALY
+            and result.anomaly_detected is True
+            and bool(result.hardware_evidence_candidates)
+            and not result.program_behavioral_candidates
+        )
+        or (
+            ml_result.final_diagnosis is DiagnosisCategory.NO_ANOMALY
+            and result.anomaly_detected is False
+            and not result.program_evidence_candidates
+            and not result.hardware_evidence_candidates
+        )
+    )
+    if ml_result.final_diagnosis in definitive:
+        if result.category in definitive and result.category is not ml_result.final_diagnosis:
+            rule_category = result.category
+            result.category = DiagnosisCategory.AMBIGUOUS
+            result.summary = (
+                "The classical ML prediction conflicts with the independent "
+                "statistical/localization diagnosis; attribution is withheld."
+            )
+            result.evidence.append(
+                f"Rule/evidence category={rule_category.value}; "
+                f"ML-supported category={ml_result.final_diagnosis.value}."
+            )
+        elif result.category not in definitive and ml_supported_by_independent_evidence:
+            result.category = ml_result.final_diagnosis
+            result.summary = ml_result.summary
+        elif result.category not in definitive and not ml_supported_by_independent_evidence:
+            result.evidence.append(
+                "The ML class did not have unique, independent statistical and localization "
+                "support; the diagnosis remains ambiguous."
+            )
+    if result.category in definitive:
+        raw_category = {
+            "NORMAL": DiagnosisCategory.NO_ANOMALY,
+            "PROGRAM_FAULT": DiagnosisCategory.PROGRAM_FAULT,
+            "HARDWARE_ANOMALY": DiagnosisCategory.HARDWARE_ANOMALY,
+        }[ml_result.predicted_class]
+        if ml_result.final_diagnosis not in definitive:
+            result.evidence.append(
+                f"Evidence-led diagnosis remains {result.category.value}; the ML output "
+                "did not independently support a definitive cause."
+            )
+        elif raw_category is not result.category:
+            result.evidence.append(
+                f"Final category {result.category.value} follows the independent evidence; "
+                f"the raw ML class {ml_result.predicted_class} was not adopted."
+            )
+    return result
+
+
 def diagnose_execution(
     expected_distribution: Mapping[str, float] | Sequence[float] | None = None,
     observed_distribution: Mapping[str, float] | Sequence[float] | None = None,
@@ -337,12 +458,16 @@ def diagnose_execution(
     max_calibration_age_seconds: float | None = None,
     expected_counts: Mapping[str, int] | Sequence[int] | None = None,
     observed_counts: Mapping[str, int] | Sequence[int] | None = None,
+    classifier: Any | None = None,
+    ml_min_confidence: float = 0.60,
 ) -> DiagnosisResult:
     """Combine execution anomaly evidence with program and hardware candidates.
 
     Distributions are optional as a pair. Without both, anomaly status is
     unknown and the final category remains insufficient evidence. Circuits and
     hardware calibration can still be analyzed and are returned independently.
+    An optional observable-only classifier is available when both distributions
+    are supplied; its class is gated by the same independent evidence.
     """
 
     if (expected_distribution is None) != (observed_distribution is None):
@@ -422,7 +547,13 @@ def diagnose_execution(
                 candidate
                 for candidate in hardware_result.candidates
                 if _has_calibration_fault_evidence(candidate)
-                and _is_relevant_to_circuit(candidate, circuit_for_calibration)
+                and _is_relevant_to_circuit(
+                    candidate,
+                    [
+                        *(expected_localizer_circuit or ()),
+                        *(observed_localizer_circuit or ()),
+                    ],
+                )
             ]
             # Synthetic calibration describes the simulator fixture itself and
             # has no physical age claim. Real/reported calibration contributes
@@ -559,7 +690,7 @@ def diagnose_execution(
             "An execution anomaly was detected, but the source mismatch is not linked to the measured outputs and hardware evidence is insufficient."
         )
 
-    return DiagnosisResult(
+    result = DiagnosisResult(
         anomaly_detected=anomaly_detected,
         category=category,
         statistics_result=statistics_result,
@@ -574,6 +705,18 @@ def diagnose_execution(
         program_behavioral_candidates=list(program_behavioral_candidates),
         calibration_freshness=calibration_freshness,
     )
+    return _apply_optional_classifier(
+        result,
+        expected_distribution,
+        observed_distribution,
+        expected_circuit=expected_circuit,
+        observed_circuit=observed_circuit,
+        hardware_model=hardware_model,
+        threshold=threshold,
+        shots=shots,
+        classifier=classifier,
+        ml_min_confidence=ml_min_confidence,
+    )
 
 
 def diagnose_circuit(
@@ -585,6 +728,8 @@ def diagnose_circuit(
     seed: int | None = None,
     threshold: float = 0.05,
     max_calibration_age_seconds: float | None = None,
+    classifier: Any | None = None,
+    ml_min_confidence: float = 0.60,
 ) -> DiagnosisResult:
     """Run and diagnose a submitted circuit, optionally against a reference.
 
@@ -603,6 +748,11 @@ def diagnose_circuit(
     changed. If observable and evidence channels are insufficient or
     conflicting, diagnosis remains ambiguous/insufficient; observationally
     indistinguishable faults cannot be discovered from these inputs alone.
+    An optional ``classifier`` adds an observable-feature prediction and can
+    refine an ambiguous result only when the existing localization evidence
+    supports that class. No classifier is loaded implicitly. The bundled
+    logistic-regression artifact is a development candidate and is not
+    validated for arbitrary circuits.
     """
     if isinstance(shots, bool) or not isinstance(shots, int) or shots <= 0:
         raise ValueError("shots must be a positive integer")
@@ -724,6 +874,8 @@ def diagnose_circuit(
         expected_counts=expected_counts,
         observed_counts=observed_counts,
         max_calibration_age_seconds=max_calibration_age_seconds,
+        classifier=classifier,
+        ml_min_confidence=ml_min_confidence,
     )
     if (
         reference_circuit is not None

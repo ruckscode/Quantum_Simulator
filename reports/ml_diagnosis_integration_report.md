@@ -1,57 +1,52 @@
-# ML Diagnosis Integration Report
+# Classical ML diagnosis integration report
 
-## Files changed
+**Updated:** 2026-10-31
+**Status:** Integrated as an explicit, opt-in development candidate; not validated for deployment.
 
-- `src/quantum_simulator/ml_diagnosis.py`
-- `tests/test_ml_diagnosis_integration.py`
-- `reports/ml_diagnosis_integration_report.md`
+## Current workflow
 
-## Architecture implemented
+The public integration point is `diagnose_circuit(..., classifier=...)` in `src/quantum_simulator/diagnosis_engine.py`. The optional classifier is passed through `diagnose_execution()` to `diagnose_with_ml()` in `src/quantum_simulator/ml_diagnosis.py`. `PortableLogisticRegressionAdapter` loads the bundled portable JSON model when the caller explicitly constructs it. No model is loaded by default.
 
-- Observable feature extraction is separate from inference and localization.
-- `ObservableClassifier` defines an injectable classifier adapter contract. It accepts the exact five approved observable feature names and returns a class plus probabilities.
-- Diagnosis routes the classifier class into the existing `diagnose_execution` localization/evidence pipeline. ML identifies the broad class; existing evidence must support a fault location before the final diagnosis is definitive.
-- NORMAL skips fault localization. Low confidence abstains as `INSUFFICIENT_EVIDENCE`. Trace deviation alone does not support PROGRAM_FAULT.
-- The default backend explicitly raises `ModelBackendUnavailable`; inference does not train or load a fabricated artifact.
+The classifier receives five observable-only features: total variation distance, Jensen–Shannon divergence, Hellinger distance, observed entropy, and maximum observed outcome probability. Its broad class prediction is added to `DiagnosisResult` as `ml_predicted_class`, `ml_confidence`, `ml_class_probabilities`, and `ml_features`.
 
-## ML model/features used
+The model does not locate faulty gates. The existing independent diagnosis path checks sampled-output statistics, expected-versus-observed operation differences and their measured-output counterfactual, plus relevant hardware calibration evidence. ML can refine an otherwise ambiguous result only when the corresponding independent evidence uniquely supports it. A conflict with a definitive evidence-led category becomes `AMBIGUOUS`; combined program and hardware evidence is not collapsed into a single-cause ML label. Low-confidence or unsupported evidence remains abstained/ambiguous. The 0.60 confidence cutoff is an operational threshold; probabilities are not calibrated correctness estimates.
 
-- No trained model backend or persisted model artifact is present or integrated.
-- Feature schema: `total_variation_distance`, `js_divergence`, `hellinger_distance`, `observed_entropy_bits`, `observed_max_probability`.
-- Existing validated evaluation results are not used as a model artifact or re-evaluated here.
+## Current model and evidence limits
 
-## Integration behavior
+The bundled logistic-regression artifact is labeled **DEVELOPMENT CANDIDATE; NOT VALIDATED FOR DEPLOYMENT**. Its coefficients were fit on 330 synthetic rows from development families F1 and F2. The evaluation grid contains 900 synthetic configurations across five circuit families, five seeds and three shot counts. It is not physical-hardware evidence, and the families used in the evaluation are no longer a fresh locked holdout for further tuning.
 
-- A genuine trained estimator can be connected through an `ObservableClassifier` adapter without coupling diagnosis/localization to sklearn.
-- The tested deterministic mock classifiers exercise the architecture only; they are not trained models or evidence of ML performance.
-- Confidence abstention uses the explicit 0.60 operational threshold; this was not tuned on the evaluation data.
+Rescoring the saved Phase 5 outputs through the shared diagnosis evidence gate produced:
 
-## Tests run
+- Overall predeclared acceptance: **FAIL** (6 of 7 criteria passed).
+- Raw ML accuracy: **80.0% (540/675)** on single-cause rows; class-imbalanced.
+- Evidence-adjudicated macro-F1: **0.9363** on the same 675 single-cause rows.
+- Program-fault recall: **70.0% (105/150)**, below the predeclared 80% minimum.
+- Hardware-anomaly recall: **99.78% (449/450)**; normal recall: **97.33% (73/75)**.
+- Exact target localization: **99.83% (599/600)** for the benchmark's labeled program/qubit/gate targets.
+- Combined program-plus-hardware ambiguity recall: **94.67% (71/75)**.
 
-- Integration plus Stage 1/2/3 diagnosis/localization targets: **87 passed**.
-- Maintained full suite (`pytest tests -q`, workspace-local pytest basetemp): **346 passed**.
-- An initial full-suite attempt using the system temp directory yielded **324 passed, 22 setup errors** because Windows denied access to the pytest temp root. The rerun with a workspace-local temp root completed successfully.
+These results are specific to the synthetic benchmark grid. They do not imply reliable diagnosis for arbitrary circuits, topologies, fault strengths, shot counts, or live hardware. The detailed scorecard is in the separately maintained run report `reports/experiments/classical_ml_sim_diagnosis_benchmark_20261031/REPORT.md` in the main simulator checkout; its 900 saved case outputs were re-scored without resampling or overwriting them.
 
-## Limitations
+## Fixes included in this update
 
-- Scikit-learn's native `_predictor` DLL is blocked by Windows Application Control in both the system interpreter and project `.venv`; training/import did not complete.
-- No real persisted sklearn model artifact exists, and the real trained model is not connected.
-- The adapter still needs to wrap the genuine validated observable-only model when that model artifact is available in an environment where it can be loaded. No real-hardware validation or generalization claim is made.
+- Added the public optional-classifier route to both `diagnose_circuit()` and `diagnose_execution()` and exposed its prediction details in `DiagnosisResult`.
+- Routed the Phase 5 benchmark through the same evidence-fusion implementation used by the public diagnosis API.
+- Kept exact gate identity in hardware candidates so calibration for one gate on a qubit tuple is not merged with another gate's calibration on that tuple.
+- Made hardware calibration relevance consider both expected and observed circuits, so an omitted program operation cannot hide relevant hardware evidence on the reference circuit.
+- Corrected documentation distinguishing raw-count permutation testing from the probability-only finite-shot heuristic. The latter is not a p-value or confidence interval.
+- Relabeled the bundled model as a development candidate and documented its non-calibrated probabilities and limited synthetic training/evaluation.
 
+## Verification performed for this update
 
-## Current contract verification - 2026-10-15
+Focused regression command:
 
-The classifier boundary now rejects Boolean, nonnumeric, non-finite, and out-of-range confidence cutoffs and malformed probability values; a missing feature schema raises an explicit ValueError. Focused ML/end-to-end/artifact/statistics/simulator/trace suite: 129 passed in 24.10s. Bounded repository suite: 778 passed, one unchanged frozen 7/45 diagnosis failure, zero skipped, two NO-GO finite-shot tests deselected (781 collected; 223.55s). These are deterministic software tests; no model was trained, and no predictive accuracy or calibration claim is made.
+```text
+python -m pytest tests/test_ml_diagnosis_integration.py tests/test_hardware_fault_localizer.py -q
+41 passed in 0.49s
+```
 
+`git diff --check` reported no whitespace errors in this checkout. No QML training, Kaggle runtime, credential, or checkpoint was accessed or modified in this update. Focused tests establish software behavior for their covered fixtures only; they do not establish model accuracy beyond the benchmark summarized above.
 
-## Missing execution evidence gate - 2026-10-15
+## Next release gate
 
-The rule-based diagnosis boundary no longer converts direct circuit mismatch into anomaly evidence when measured distributions are unavailable. It preserves the source localization candidate, reports anomaly status as unknown, and abstains. Focused diagnosis/pipeline suite: 85 passed in 33.18s. Bounded suite: 778 passed, one unchanged frozen 7/45 failure, zero skipped, two NO-GO tests deselected (781 collected; 224.61s).
-
-
-## Causal routing update - 2026-10-15
-
-Injected PROGRAM_FAULT predictions now require rule-based candidates whose source-only counterfactual changes modeled measured outputs; a classifier cannot turn an unrelated anomaly/source mismatch into a fault diagnosis. Source and relevant hardware evidence together remain ambiguous. Candidate formatting no longer presents localization as confirmed fault attribution. Focused suite: 90 passed; bounded suite: 783 passed, one unchanged frozen 7/45 failure, zero skipped, two NO-GO deselections (786 collected; 225.90s). No model fit or evaluation occurred.
-
-
-Final causal-routing verification: focused suite 90 passed in 28.50s; bounded suite 783 passed, one unchanged frozen 7/45 failure, zero skipped, two NO-GO deselections (786 collected; 226.82s). The classifier cannot promote an unrelated source mismatch into program-fault attribution. Generic model freshness is not asserted; no default timestamp cutoff exists for the simulator's software calibration model.
+Keep the model opt-in. Before enabling it by default, train and select on development circuit families, calibrate probabilities on a separate calibration split, and evaluate once on a new family-disjoint locked holdout containing broader circuit structures and independently labeled fault cases. Predeclare per-class recall, selective risk, localization and abstention requirements. Physical-device claims require separate real-hardware evaluation.

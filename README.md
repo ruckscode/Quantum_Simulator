@@ -188,7 +188,31 @@ diagnosis = diagnose_circuit(
 print(diagnosis.category)
 ```
 
-The finite-shot tolerance is applied by the statistical comparison. An anomaly can be detected without enough evidence to attribute it to a specific cause.
+With raw expected and observed count samples, `diagnose_circuit()` uses a conditional TVD permutation test plus a practical effect-size threshold. For probability-only input to `diagnose_execution()` or `compare_distributions()`, the finite-shot guard is the heuristic `max(threshold, 1/sqrt(shots))`; it is not a p-value, confidence interval, or universal statistical guarantee. An anomaly can be detected without enough evidence to attribute it to a specific cause.
+
+### Classical ML in the diagnosis pipeline
+
+`diagnose_circuit()` remains evidence-led. Its statistical test compares sampled outcomes with the reference distribution and answers whether the observed difference exceeds finite-shot variation and the configured effect threshold. It does not establish universal correctness or identify a fault cause by itself. Program-fault attribution also needs a source mismatch linked to changed measured behavior; hardware attribution needs relevant calibration evidence. Unclear or conflicting cases remain ambiguous.
+
+An optional `classifier` connects an observable-only classical classifier to the diagnosis API through either `diagnose_circuit()` or `diagnose_execution()`. The latter is for callers that already have expected and observed distributions; both use the same evidence gate. The model predicts a broad class from five output-distribution features; the existing localizers still supply fault-location evidence. ML predictions, probabilities, and input features are returned in `DiagnosisResult.ml_*`. Probabilities from the bundled logistic-regression artifact are uncalibrated, and its 0.60 cutoff is an operational abstention rule, not a claim of 60% accuracy. This artifact was fit on 330 synthetic rows from development families F1/F2 only; it has no independent deployment validation and is explicitly marked as a development candidate. It is not automatically loaded and must not be presented as reliable for arbitrary circuits.
+
+To opt in for a controlled experiment:
+
+```python
+from quantum_simulator import PortableLogisticRegressionAdapter, diagnose_circuit
+
+candidate = PortableLogisticRegressionAdapter()  # development candidate only
+result = diagnose_circuit(
+    submitted_circuit,
+    reference_circuit=expected_circuit,
+    classifier=candidate,
+    shots=4096,
+    seed=42,
+)
+print(result.category, result.ml_predicted_class, result.ml_confidence)
+```
+
+There is no finite evaluation that proves performance on every possible circuit. Generalization must be measured on held-out circuit families/topologies, fault types and strengths, shot counts, and hardware sources, with predeclared thresholds and per-stratum results. Synthetic scenarios validate only the modeled conditions; physical-device performance needs separate real-hardware evaluation. The historical QMutBench mutation-outcome model has a different prediction target and is not called by this diagnosis workflow.
 
 ## 10. Program Fault Localization
 

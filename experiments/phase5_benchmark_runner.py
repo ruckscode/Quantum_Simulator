@@ -10,7 +10,8 @@ from statistics import pstdev
 from typing import Any, Mapping, Sequence
 
 from experiment_config import ExperimentConfig
-from quantum_simulator.ml_diagnosis import CLASSES, MIN_CONFIDENCE, diagnose_with_ml
+from quantum_simulator.diagnosis_engine import diagnose_execution
+from quantum_simulator.ml_diagnosis import CLASSES, MIN_CONFIDENCE
 from quantum_simulator.observable_model_adapter import PortableLogisticRegressionAdapter
 
 from . import phase5_benchmark_infrastructure as p5
@@ -247,25 +248,27 @@ def run_phase5_benchmark(
         output_path = output_dir / f"{item.config.experiment_name}.json"
         if output_path.exists():
             raise FileExistsError(f"refusing existing Phase 5 result: {output_path}")
-        result = run_experiment(item.config, output_path=output_path)
-        if result.status != "COMPLETED" or result.errors:
-            raise RuntimeError(f"Phase 5 case failed at {item.key}: {result.errors}")
-        prediction = diagnose_with_ml(
-            result.ideal_distribution,
-            result.observed_distribution,
+        experiment_result = run_experiment(item.config, output_path=output_path)
+        if experiment_result.status != "COMPLETED" or experiment_result.errors:
+            raise RuntimeError(f"Phase 5 case failed at {item.key}: {experiment_result.errors}")
+        diagnosis = diagnose_execution(
+            experiment_result.ideal_distribution,
+            experiment_result.observed_distribution,
             expected_circuit=item.config.circuit,
             observed_circuit=item.config.observed_circuit,
             hardware_model=_build_hardware_model(item.config),
             threshold=.05,
             shots=item.shots,
             classifier=model,
-            min_confidence=MIN_CONFIDENCE,
+            ml_min_confidence=MIN_CONFIDENCE,
         )
-        confidence = prediction.confidence
-        disposition = "INSUFFICIENT_EVIDENCE" if confidence < MIN_CONFIDENCE else prediction.final_diagnosis.value
+        confidence = diagnosis.ml_confidence
+        if confidence is None:
+            raise RuntimeError(f"Phase 5 classifier did not run at {item.key}")
+        disposition = "INSUFFICIENT_EVIDENCE" if confidence < MIN_CONFIDENCE else diagnosis.category.value
         predicted_causes = []
         predicted_targets = []
-        localized = prediction.localization_result
+        localized = diagnosis if confidence >= MIN_CONFIDENCE else None
         if localized is not None:
             if localized.program_evidence_candidates:
                 predicted_causes.append("PROGRAM_FAULT")
@@ -278,13 +281,13 @@ def run_phase5_benchmark(
                 if candidate.component_type == "qubit":
                     predicted_targets.append(f"qubit:{candidate.component}")
                 elif candidate.component_type == "gate":
-                    gate = candidate.reason.partition("Gate calibration for ")[2].split(" ", 1)[0]
+                    gate = candidate.gate_name or candidate.reason.partition("Gate calibration for ")[2].split(" ", 1)[0]
                     if gate:
                         predicted_targets.append(f"gate:{gate}:{','.join(map(str, candidate.component))}")
         if item.case.suffix == "C15" and confidence >= MIN_CONFIDENCE:
             from quantum_simulator.diagnosis_engine import diagnose_execution
             combined = diagnose_execution(
-                result.ideal_distribution, result.observed_distribution,
+                experiment_result.ideal_distribution, experiment_result.observed_distribution,
                 expected_circuit=item.config.circuit,
                 observed_circuit=item.config.observed_circuit,
                 hardware_model=_build_hardware_model(item.config), threshold=.05, shots=item.shots,
@@ -305,24 +308,24 @@ def run_phase5_benchmark(
                     predicted_targets = [t for t in predicted_targets if not t.startswith("qubit:")]
                     predicted_targets.append(f"qubit:{candidate.component}")
                 elif candidate.component_type == "gate":
-                    gate = candidate.reason.partition("Gate calibration for ")[2].split(" ", 1)[0]
+                    gate = candidate.gate_name or candidate.reason.partition("Gate calibration for ")[2].split(" ", 1)[0]
                     if gate:
                         predicted_targets = [t for t in predicted_targets if not t.startswith("gate:")]
                         predicted_targets.append(f"gate:{gate}:{','.join(map(str, candidate.component))}")
             disposition = "AMBIGUOUS" if combined.category.value == "AMBIGUOUS / INSUFFICIENT_EVIDENCE" and len(predicted_causes) == 2 else combined.category.value
         anomaly = p5.anomaly_observation(
-            prediction.ml_features["total_variation_distance"], item.shots,
+            diagnosis.ml_features["total_variation_distance"], item.shots,
         )
         reproducibility_row = reproducibility_by_key[item.key]
         input_fingerprint = _hash_json({
             "configuration": reproducibility_row["configuration_fingerprint"],
             "reference": reproducibility_row["reference_fingerprint"],
         })
-        artifact_fingerprint = _hash_json({"result_fingerprint": result.deterministic_fingerprint(), "prediction": prediction.predicted_class, "probabilities": dict(prediction.class_probabilities), "disposition": disposition})
+        artifact_fingerprint = _hash_json({"result_fingerprint": experiment_result.deterministic_fingerprint(), "prediction": diagnosis.ml_predicted_class, "probabilities": diagnosis.ml_class_probabilities, "disposition": disposition})
         observations.append({
             "case_id": item.case.case_id, "seed": item.seed, "shots": item.shots,
             "anomaly_detected": anomaly["detected"],
-            "raw_model_prediction": prediction.predicted_class,
+            "raw_model_prediction": diagnosis.ml_predicted_class,
             "raw_model_confidence": confidence,
             "disposition": disposition,
             "adjudicated_class": adjudicated_class_from_disposition(disposition),

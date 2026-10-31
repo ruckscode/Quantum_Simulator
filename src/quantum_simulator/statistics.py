@@ -1,9 +1,10 @@
 """Statistical anomaly detection for finite-shot quantum measurements.
 
 This module uses Total Variation Distance as the primary comparison metric and
-adds a finite-shot guard that prevents small sampling noise from being treated
-as a physical anomaly. The guard is configurable and can be interpreted as a
-statistical tolerance for finite measurement data.
+adds a heuristic finite-shot guard for probability-only inputs. The guard is
+not a p-value, confidence interval, or universal statistical guarantee. When
+raw independent count samples are available, callers can use
+``count_statistics.compare_count_samples`` for a conditional permutation test.
 """
 
 from __future__ import annotations
@@ -118,10 +119,10 @@ def compare_distributions(
 
     We use Total Variation Distance as the primary metric because it is a clear,
     interpretable distance in probability space and is natural for finite-shot
-    quantum measurements. To avoid treating small sampling noise as a real
-    anomaly, a finite-shot guard is applied as a lower-bound tolerance derived
-    from the sampling scale: the observed distance must exceed max(threshold,
-    1/sqrt(shots)).
+    quantum measurements. For probability-only inputs, this helper applies the
+    heuristic guard ``max(threshold, 1/sqrt(shots))``. This is not a significance
+    test or calibrated confidence bound. For independent raw count samples, use
+    ``count_statistics.compare_count_samples`` instead.
     """
 
     if isinstance(threshold, bool) or not isinstance(threshold, (int, float, np.integer, np.floating)):

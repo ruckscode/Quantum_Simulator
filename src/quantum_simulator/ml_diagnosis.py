@@ -164,7 +164,10 @@ def diagnose_with_ml(
             and observed_normalized is not None
             and expected_normalized != observed_normalized
         )
-        circuit_for_calibration = observed_circuit or expected_circuit
+        circuit_for_calibration = [
+            *(expected_normalized or ()),
+            *(observed_normalized or ()),
+        ]
         calibration_fault = has_relevant_calibration_fault_evidence(
             hardware_model, circuit_for_calibration,
         )
