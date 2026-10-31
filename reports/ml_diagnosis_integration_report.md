@@ -25,7 +25,7 @@ Rescoring the saved Phase 5 outputs through the shared diagnosis evidence gate p
 - Exact target localization: **99.83% (599/600)** for the benchmark's labeled program/qubit/gate targets.
 - Combined program-plus-hardware ambiguity recall: **94.67% (71/75)**.
 
-These results are specific to the synthetic benchmark grid. They do not imply reliable diagnosis for arbitrary circuits, topologies, fault strengths, shot counts, or live hardware. The detailed scorecard is in the separately maintained run report `reports/experiments/classical_ml_sim_diagnosis_benchmark_20261031/REPORT.md` in the main simulator checkout; its 900 saved case outputs were re-scored without resampling or overwriting them.
+These results are specific to the synthetic benchmark grid. They do not imply reliable diagnosis for arbitrary circuits, topologies, fault strengths, shot counts, or live hardware. See the standalone [benchmark scorecard](classical_ml_sim_diagnosis_benchmark_20261031.md). The 900 saved case outputs were re-scored without resampling or overwriting them; the raw per-case records are not included in this branch.
 
 ## Fixes included in this update
 
