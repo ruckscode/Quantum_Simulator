@@ -5,12 +5,15 @@
 ## Start here
 
 - Repository map, data policy, and contribution layout: [`docs/repository_structure.md`](docs/repository_structure.md).
+- End-to-end architecture and exact model-use boundaries: [`docs/project_architecture.md`](docs/project_architecture.md).
+- Mathematical algorithm reference and result-specific explanations: [`docs/algorithm_reference.md`](docs/algorithm_reference.md).
+- Classical multi-source task provenance and grouped OOF scores: [`data/classical_ml_v1/`](data/classical_ml_v1/).
 - Reusable simulator and diagnosis package: `src/quantum_simulator/` (compatibility entry points remain at the repository root).
 - QMutBench/QML research code is a separate repository track and is not included in the installable simulator package.
 - Automated checks: `tests/`; reviewed reports and summaries: `reports/` and `data/curated_qml_training_v1/`. Per-run experiment outputs under `reports/experiments/` stay local by default.
 - Small QASM examples are tracked in `data/qmutbench/`. Full datasets, the selected model bundle, and generated ML intermediates are local-only under `data/` and are excluded by `.gitignore`.
 
-The selected historical QMutBench model is **`qmutbench-mutation-aware-v1`** (100-tree Extra Trees, 23 features, inference threshold 0.5). Its fixed-model grouped development macro F1 is **79.34%**; five-fold nested grouped-selected development macro F1 is **79.28%**. The 85% target remains unmet. These are development results, not independent external validation; no compatible independent external dataset has been verified. See the [final QMutBench research report](reports/experiments/qmutbench_final_research_report_20261026.json) and [inference guide](qmutbench_ml/README.md). The local model bundle must be supplied to run inference; this repository does not retrain it during inference.
+The selected historical QMutBench model is **`qmutbench-mutation-aware-v1`** (100-tree Extra Trees, 23 features, inference threshold 0.5). Its fixed-model grouped development macro F1 is **79.34%**; five-fold nested grouped-selected development macro F1 is **79.28%**. The 85% target remains unmet. These are development results, not independent external validation; no compatible independent external dataset has been verified. See the [inference guide](qmutbench_ml/README.md). The model bundle is not included in this checkout; no QMutBench inference can run until it is supplied. The bundle is not used by simulator diagnosis.
 
 ## Setup and common checks
 
@@ -79,6 +82,7 @@ Diagnosis
 - `diagnosis_engine.py`: integrated diagnosis through `diagnose_circuit()` and `diagnose_execution()`.
 - `validation_framework.py`, `demo.py`, and benchmark adapters: controlled local validation, demonstration, and dataset reporting.
 - `ibm_validation.py`: optional IBM backend discovery, execution, calibration inspection, and calibration conversion.
+- `ui/simulator_app.py`: optional Streamlit interface for normal, program-fault, synthetic, mixed, and explicit IBM modes.
 
 ### Calibration provenance and freshness
 
@@ -118,6 +122,21 @@ For Google Colab, install directly from the repository:
 ```
 
 In VS Code, create/select a Python environment and run the same pip command in its terminal. Core simulation does not require network access after installation.
+
+### Optional local interface
+
+Install and run the interface from the repository root:
+
+```powershell
+python -m pip install -e ".[ui]"
+streamlit run ui/simulator_app.py
+```
+
+For real IBM execution install `.[ui,ibm]`. The masked key remains only in the
+active Streamlit session so ordinary reruns do not erase it; the page has a
+clear-key button. App code does not write it to a file, environment variable,
+URL, result, or app-owned log. Use a trusted local app: a remote host necessarily
+receives the key on its server. See [`ui/README.md`](ui/README.md) for details.
 
 The public Python API accepts circuit objects or supported operation lists and returns measured counts with diagnosis evidence:
 
@@ -255,6 +274,20 @@ print(diagnosis.category)
 
 The finite-shot tolerance is applied by the statistical comparison. An anomaly can be detected without enough evidence to attribute it to a specific cause.
 
+To inspect the mathematical steps and concrete values from any result:
+
+```python
+from quantum_simulator import explain_diagnosis
+
+for step in explain_diagnosis(diagnosis, n_qubits=2, shots=1000):
+    print(step["stage"], step["algorithm"])
+    print(step["equation"], step["values"])
+```
+
+This is a read-only explanation of the computations already performed. Full
+formulas and assumptions are in
+[`docs/algorithm_reference.md`](docs/algorithm_reference.md).
+
 ### Statistical diagnosis and classical ML scope
 
 The default diagnosis is evidence/statistics based, not a trained-model prediction. It compares sampled outcome counts from the expected/reference and observed executions using a seeded conditional permutation test plus a predeclared practical TVD threshold. This answers whether the sampled output changed beyond the configured tolerance; it is not a classifier accuracy score and does not identify a cause by itself. Program-fault attribution additionally needs a reference/source difference whose counterfactual changes measured outputs. Hardware attribution needs relevant calibration evidence. If causes remain indistinguishable, the result should abstain.
@@ -262,6 +295,15 @@ The default diagnosis is evidence/statistics based, not a trained-model predicti
 When callers provide only probability distributions through `diagnose_execution()` or `compare_distributions()`, raw counts are unavailable and the fallback guard is the heuristic `max(threshold, 1/sqrt(shots))`. That guard is not a p-value, confidence interval, or universal statistical guarantee; only raw count samples use the conditional permutation test.
 
 `diagnose_circuit(..., classifier=...)` optionally accepts a classical `ObservableClassifier`. Its output and the five observable features are returned in `DiagnosisResult.ml_*`; the existing evidence/localization checks gate any ML-supported category, and disagreement with a definitive evidence category becomes ambiguous. The simulator does not silently load or train a classifier. The bundled five-feature Logistic Regression artifact is marked **development candidate**, trained on only two synthetic circuit families, and has no completed deployment validation. It must not be described as reliable for arbitrary circuits. The historical QMutBench mutation-outcome model predicts a different target and is not used for simulator diagnosis.
+
+The multi-source classical scores and task definitions are preserved in
+[`data/classical_ml_v1/`](data/classical_ml_v1/); raw source rows and per-row
+predictions remain local due to size and source terms. The QML track has
+task-specific grouped/sample OOF comparisons in
+[`data/curated_qml_training_v1/README.md`](data/curated_qml_training_v1/README.md).
+Neither track currently provides a validated classifier for arbitrary
+simulator diagnosis, so they remain separate. The module and data map is in
+[`docs/project_architecture.md`](docs/project_architecture.md).
 
 For reproducing the current development model only, the adapter is available without writing a feature extractor:
 

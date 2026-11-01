@@ -13,6 +13,7 @@ dependencies = ["numpy>=1.24"]
 dev = ["pytest", "pandas", "scikit-learn", "cryptography>=41"]
 oracle = ["qiskit>=2.5,<3"]
 ibm = ["qiskit>=2.5,<3", "qiskit-ibm-runtime>=0.50,<0.51"]
+ui = ["streamlit>=1.35"]
 research = ["pandas", "scikit-learn", "cryptography>=41"]
 
 [tool.setuptools]

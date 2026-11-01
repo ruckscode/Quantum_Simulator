@@ -640,6 +640,13 @@ def capture_backend_calibration(backend: Any, *, capture_source: str = "IBM_BACK
                 unavailable.append(f"gates[{gate_name},{entry['qubits']}].{metric}")
         if model is not None:
             supplied = {key: entry[key] for key in ("error", "duration") if entry[key] is not None}
+            # HardwareModel's T1/T2 values are normalized to microseconds;
+            # normalize gate duration to the same time unit before the
+            # simulator combines duration with relaxation/dephasing rates.
+            if "duration" in supplied:
+                supplied["duration"] = _t_value_in_microseconds(
+                    supplied["duration"], entry.get("duration_unit"),
+                )
             try:
                 model.add_gate_calibration(str(gate_name), qubits=normalized_gate_qubits, **supplied)
             except (TypeError, ValueError) as exc:
@@ -848,11 +855,14 @@ def hardware_model_from_ibm_calibration(capture: IBMCalibrationCapture) -> Hardw
         properties.readout_error = calibration["readout_error"]
 
     for calibration in capture.gates:
+        duration = calibration["duration"]
+        if duration is not None:
+            duration = _t_value_in_microseconds(duration, calibration.get("duration_unit"))
         model.add_gate_calibration(
             calibration["gate"],
             qubits=calibration["qubits"],
             error=calibration["error"],
-            duration=calibration["duration"],
+            duration=duration,
             supported=calibration["supported"],
             error_unit=calibration.get("error_unit"),
             duration_unit=calibration.get("duration_unit"),
