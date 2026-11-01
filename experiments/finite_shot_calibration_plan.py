@@ -631,7 +631,9 @@ def _atomic_create_json(path: Path, payload: dict[str, Any]) -> None:
         if os.name == "nt":
             def _extended_windows_path(value: Path) -> str:
                 resolved = str(value.resolve())
-                return resolved if resolved.startswith("\\\\?\\") else f"\\\\?\\{resolved}"
+                if resolved.startswith("\\\\?\\") or len(resolved) < 240:
+                    return resolved
+                return f"\\\\?\\{resolved}"
 
             os.rename(_extended_windows_path(temp_path), _extended_windows_path(path))
         else:

@@ -120,9 +120,9 @@ def train_phase5_artifact(rows: Sequence[Mapping], output_path: str | Path) -> d
         if os.name == "nt":
             temp_absolute = str(temp_path.resolve())
             destination_absolute = str(destination.resolve())
-            if not temp_absolute.startswith("\\\\?\\"):
+            if not temp_absolute.startswith("\\\\?\\") and len(temp_absolute) >= 240:
                 temp_absolute = f"\\\\?\\{temp_absolute}"
-            if not destination_absolute.startswith("\\\\?\\"):
+            if not destination_absolute.startswith("\\\\?\\") and len(destination_absolute) >= 240:
                 destination_absolute = f"\\\\?\\{destination_absolute}"
             os.rename(temp_absolute, destination_absolute)
         else:

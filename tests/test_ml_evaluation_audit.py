@@ -62,12 +62,12 @@ def test_full_dataset_has_balanced_groups_repetitions_and_family_coverage():
         assert {row["ground_truth_label"] for row in records if row["circuit_family_id"] == family} == set(LABELS)
 
 
-def test_historical_full_dataset_lacks_lineage_for_safe_split():
+def test_generated_full_dataset_has_lineage_for_safe_split():
     records = _load_local_full_dataset_or_skip()
     feasible, explanation = _split_feasibility(records)
 
-    assert not feasible
-    assert "lack circuit_lineage_id" in explanation
+    assert feasible
+    assert "GroupShuffleSplit feasible" in explanation
 
 
 def test_load_dataset_accepts_relative_report_directory(tmp_path, monkeypatch):
