@@ -118,7 +118,7 @@ python -m pip install .
 For Google Colab, install directly from the repository:
 
 ```python
-%pip install "git+https://github.com/ruckscode/Quantum_Simulator.git@simulator-python-package"
+%pip install --force-reinstall "git+https://github.com/ruckscode/Quantum_Simulator.git@34a4bde66897e90f38e0d1d13245ea002316adcf"
 ```
 
 In VS Code, create/select a Python environment and run the same pip command in its terminal. Core simulation does not require network access after installation.
@@ -165,7 +165,7 @@ print(result.evidence)
 For live IBM Quantum execution, install the optional extra directly from Git:
 
 ```python
-%pip install "quantum-simulator[ibm] @ git+https://github.com/ruckscode/Quantum_Simulator.git@simulator-python-package"
+%pip install --force-reinstall "quantum-simulator[ibm] @ git+https://github.com/ruckscode/Quantum_Simulator.git@34a4bde66897e90f38e0d1d13245ea002316adcf"
 ```
 
 Pass the key explicitly to the call; it is not read from a default environment variable by this Python API:
