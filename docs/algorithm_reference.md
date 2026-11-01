@@ -90,7 +90,7 @@ The engine also reports Hellinger distance
 \[
 H(p,q)=\sqrt{\tfrac12\sum_x(\sqrt{p(x)}-\sqrt{q(x)})^2}
 \]
-and Jensen–Shannon divergence using base-2 KL divergence
+and Jensen–Shannon divergence using natural-log KL divergence (nats)
 \[
 \operatorname{JSD}(p,q)=\tfrac12D_{KL}(p\|m)+\tfrac12D_{KL}(q\|m),
 \quad m=(p+q)/2.
