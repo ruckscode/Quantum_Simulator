@@ -1,0 +1,180 @@
+{
+  "folds": 5,
+  "models": "20 estimators per task, including training-fold-only over/undersampling and continuous-space SMOTE",
+  "output": "reports/experiments/local_grouped_classical_suite_nine_source_v2_20261029",
+  "schema": "nine-source-classical-suite-v2",
+  "split": "GroupKFold by validated source group; independent of the QNN-matched OOF split",
+  "tasks": [
+    {
+      "class_counts": {
+        "0": 31,
+        "1": 31
+      },
+      "groups": 31,
+      "input": "reports/experiments/classical_ml_benchmarks_20261030/inputs/bugs4q_core.csv",
+      "name": "bugs4q_core",
+      "rows": 62,
+      "sha256": "56818ae8623718c9dfd3040b6f235026c5afdeae3251171fca4d85e5f1363982",
+      "source_contract": "experiments/source_task_contracts/bugs4q_core_source_state.json",
+      "source_contract_sha256": "8a91e79e80f183de9bf9673f4ff575ddf99fcdbc499cc3d09a0557985b5ba99b",
+      "source_id": "bugs4q_core",
+      "source_input_sha256": "cef4b2378b97610b498917f6412f18e716c2ab91369ea709fc98541952008cdb",
+      "source_processed_manifest_sha256": "949b13d965deebe8d1c860e918671c73e3d644b8a8a7f15387667a441acd5841",
+      "source_split_sha256": "d7915240b10f912e7d7d5622f87f8c5080b47a0214e5ed1943f1963286ddf260",
+      "target_semantics": "Buggy (1) versus fixed (0) Qiskit source snapshots grouped by issue; not hardware fault localization.",
+      "task_id": "source_state"
+    },
+    {
+      "class_counts": {
+        "0": 31,
+        "1": 31
+      },
+      "groups": 31,
+      "input": "reports/experiments/classical_ml_benchmarks_20261030/inputs/bugs4q_na.csv",
+      "name": "bugs4q_na",
+      "rows": 62,
+      "sha256": "d6660221b685a37097d18eaeaddef558d8101490d535d0bac8cc26a9524e5402",
+      "source_contract": "experiments/source_task_contracts/bugs4q_na_source_state.json",
+      "source_contract_sha256": "9e57b5f2daefd927373e51454c8d2f766c96b0da6d92607276f1133b26c05e7c",
+      "source_id": "bugs4q_na",
+      "source_input_sha256": "00eb36aaea95733650b60866c6d09dad5d11b978370b16901570375f2dbc3711",
+      "source_processed_manifest_sha256": "ca174eeaa8d61891d5ed903c120aaaf145cf7be36d6adc599d1181767041c139",
+      "source_split_sha256": "17135b5063d06434bcf0821ab3d2b666a44d792935108026edcb84da45f1f2f4",
+      "target_semantics": "Buggy (1) versus fixed (0) source snapshot classification, grouped by issue. This predicts source-state labels and is not hardware fault localization.",
+      "task_id": "source_state"
+    },
+    {
+      "class_counts": {
+        "0": 62,
+        "1": 62
+      },
+      "groups": 62,
+      "input": "reports/experiments/classical_ml_benchmarks_20261030/inputs/bugs4q_pooled.csv",
+      "name": "bugs4q_pooled",
+      "rows": 124,
+      "sha256": "d997940fc365bf909eaa122d75fbb12f25bf5a138fa64c818fd8e0673a375ffc",
+      "source_contract": "experiments/source_task_contracts/bugs4q_joint_source_state.json",
+      "source_contract_sha256": "5c99246e56de94d87c030f258adcaf9bdd2165f03100a17a8e548fed9d2b8836",
+      "source_id": "bugs4q_joint",
+      "source_input_sha256": "2f1a561ba5301b8252ad4c07b0593e87ad59d63122aecb6d9500beac3e42d453",
+      "source_processed_manifest_sha256": "1dc9bc14a8e03aafa459c3ca8a300f00fa6ee2e8793bd7a10e2d090d1cde9dfa",
+      "source_split_sha256": "6648f2130cbe08a8e79b7b8ff5f30cb70b57e6b992a4a538330b63bec30cd4f6",
+      "target_semantics": "Buggy (1) versus fixed (0) source snapshots from the paired Bugs4Q core and NA subset; issue-group split. Not hardware diagnosis.",
+      "task_id": "source_state"
+    },
+    {
+      "class_counts": {
+        "0": 748,
+        "1": 748
+      },
+      "groups": 748,
+      "input": "reports/experiments/classical_ml_benchmarks_20261030/inputs/qbugs_qasm_v2.csv",
+      "name": "qbugs_qasm_v2",
+      "rows": 1496,
+      "sha256": "b89030898ad97be2862961ab724f9714cd5c58bde607f671e951a260e47535d8",
+      "source_contract": "experiments/source_task_contracts/qbugs_correct_buggy_circuit_state_qasm_v2.json",
+      "source_contract_sha256": "2e51045dc2c3ac815d797bcadac2a907b449f010390c5d83b28d8edd99c9c497",
+      "source_id": "qbugs_hornbro",
+      "source_input_sha256": "809a4492d02246bdb6e182ac670e803b24ec9ae563fb133663384c7e2e336120",
+      "source_processed_manifest_sha256": "8dc9d618a7fdd3962299e99273827cb6498577468eefd8421c48e42b96918a2e",
+      "source_split_sha256": "03ed9fa4234951abc6c1cc36e24fbde72f09c58ab7f0ae92f0cc2c14e95d63c8",
+      "target_semantics": "Upstream paired correct (0) versus buggy (1) QBugs circuits represented as OpenQASM 2; not hardware diagnosis.",
+      "task_id": "correct_buggy_circuit_state_qasm_v2"
+    },
+    {
+      "class_counts": {
+        "0": 96,
+        "1": 223
+      },
+      "groups": 304,
+      "input": "reports/experiments/classical_ml_benchmarks_20261030/inputs/quantum_platform_comment_v2.csv",
+      "name": "quantum_platform_comment_v2",
+      "rows": 319,
+      "sha256": "921c79b9078670e7201cf48444d1efc27e54f5f418d985412ffadcedb776db93",
+      "source_contract": "experiments/source_task_contracts/quantum_platform_comment_v2.json",
+      "source_contract_sha256": "8bab8a38d8a290dfcfde6850e67d0c26274837777fdddf67d399a56722aeff9f",
+      "source_id": "quantum_platform_bugs",
+      "source_input_sha256": "f3c42e773f13b80a01f64f64df60508924a2fd6098eed9da4cee705aa2109ee8",
+      "source_processed_manifest_sha256": "aefbf26084e3901d0239a00700493373a9bbbbdeb4f08f60940ff9b0c8037110",
+      "source_split_sha256": "04996f4ea8a0207d60a557689cb015ccfb492ee6d450c38c0e1365cdeb57b3ac",
+      "target_semantics": "Curated issue-comment annotation classification; labels do not denote hardware faults.",
+      "task_id": "comment_only_classification_v2"
+    },
+    {
+      "class_counts": {
+        "0": 32,
+        "1": 150
+      },
+      "groups": 26,
+      "input": "reports/experiments/classical_ml_benchmarks_20261030/inputs/qolumbina_ideal.csv",
+      "name": "qolumbina_ideal",
+      "rows": 182,
+      "sha256": "8b1e15729f56f08138b12aea76db17276af449a0cea5d1c57685842bc4b02bed",
+      "source_contract": "experiments/source_task_contracts/qolumbina_ideal_detection.json",
+      "source_contract_sha256": "7c412f025d15d013aef52295ec23ca1e83e1dec4a1ba390c52fbc6cb82408090",
+      "source_id": "qolumbina_ideal",
+      "source_input_sha256": "9b607e93eaf3912cc20610b30341573ff709abaf59086febc8f570eb12b0104e",
+      "source_processed_manifest_sha256": "770da183948f87e4ea948b48c909f81f5d98f56a9cc83a2f76220828bbfa9599",
+      "source_split_sha256": "ade374599c0ac8b3fcc24b15e3ebdc0dafa7271af25017c12a79385a0b1d5359",
+      "target_semantics": "Predict whether DOSS detects a seeded mutant in a majority of available ideal-backend report seeds; not a ground-truth repair label or hardware diagnosis.",
+      "task_id": "seeded_mutant_detection_ideal"
+    },
+    {
+      "class_counts": {
+        "0": 74,
+        "1": 216
+      },
+      "groups": 217,
+      "input": "reports/experiments/classical_ml_benchmarks_20261030/inputs/lintq_context_v2_exploratory.csv",
+      "name": "lintq_context_v2_exploratory",
+      "rows": 290,
+      "sha256": "23044ffbce98daa68f00eb47cb96de87a9c566e8680207f8c907b12ad1404b57",
+      "source_contract": "experiments/source_task_contracts/lintq_warning_triage_context_v2.json",
+      "source_contract_sha256": "5c29e8206861057356f51f66e25e5829e4cd689b408af47c0faf588d39b79f83",
+      "source_id": "lintq",
+      "source_input_sha256": "128db62ff0e24be7a72ef8f00f857b5bd27b4ab8c39c25288e8d207db327eaaa",
+      "source_processed_manifest_sha256": "e055b59df88f14206a42c68c421833ae11b109d332307737d45624261aceab38",
+      "source_split_sha256": "64a2f9fe86af41545a22d8ee3ad5b85f5172458993fe71bf4defcd353b41436e",
+      "target_semantics": "Manual LintQ true-positive (1) versus false-positive (0) warning triage using the rule, warning text, and source-code context. Not hardware diagnosis.",
+      "task_id": "warning_triage_context_v2"
+    },
+    {
+      "class_counts": {
+        "0": 1110,
+        "1": 1110
+      },
+      "groups": 37,
+      "input": "reports/experiments/classical_ml_benchmarks_20261030/inputs/bugs4q_robust_execution.csv",
+      "name": "bugs4q_robust_execution",
+      "rows": 2220,
+      "sha256": "9058d88726f42169098ce1c59edd2bb7a02ffbb5f5ba29e860fcda6998ae57d1",
+      "source_contract": "experiments/source_task_contracts/bugs4q_robust_execution.json",
+      "source_contract_sha256": "299562fd39bd020e3c35eed98dbd1f5469875f0b509d7b3b7bc68bab7d7f7ead",
+      "source_id": "bugs4q_robust",
+      "source_input_sha256": "3e2b1085b6a7435ee19fe4f15c4bf346a0e85939158e5caddb5a6b54a2c8a205",
+      "source_processed_manifest_sha256": "8bc2df4bb3761011cf6e1f7c8926271ee931ce093c1e48c3bc799775d34dd731",
+      "source_split_sha256": "ed3f6d58324654d3d8a7ffd0dc1db48e3f8f25ce7b0945e72e335c0cbad4b12e",
+      "target_semantics": "Predict observed test-harness Pass (0) or Fail (1) for a program snapshot; repeated execution records are grouped by issue. Not a universal bug label or hardware diagnosis.",
+      "task_id": "harness_execution_outcome"
+    },
+    {
+      "class_counts": {
+        "0": 150,
+        "1": 150
+      },
+      "groups": 150,
+      "input": "reports/experiments/classical_ml_benchmarks_20261030/inputs/qsimbench_exploratory.csv",
+      "name": "qsimbench_exploratory",
+      "rows": 300,
+      "sha256": "6e41d73393d9937d0cff6e956d77f360df550c0eebecde7a89b6406a1459ea02",
+      "source_contract": "experiments/source_task_contracts/qsimbench_backend_fingerprint.json",
+      "source_contract_sha256": "424142b41a19413d376f0232dc4b2175cfeba6cb0295c7d7f384852940e8fe57",
+      "source_id": "qsimbench",
+      "source_input_sha256": "6b151c1145237c31bf10bb2cbe40d0ad6539b75666ea4d2f90d4278531a7e632",
+      "source_processed_manifest_sha256": "b85cee9b75554c230b3f0519bd3c2e0dd5ffb0d79e10eb4a8af98e438a974cfd",
+      "source_split_sha256": "ecf4e92bddca75a98049d0bea093e63733a4cc1c2ef3a499122fdb9268e52f90",
+      "target_semantics": "Post-execution Aer versus fake_kyiv backend identity from measurement-output descriptors; not fault prediction or hardware diagnosis.",
+      "task_id": "backend_fingerprint"
+    }
+  ]
+}

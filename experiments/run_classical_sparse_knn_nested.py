@@ -10,7 +10,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import FeatureUnion,Pipeline
 
 ROOT=Path(__file__).resolve().parents[1]
-BASE=ROOT/'reports/experiments/qml_source_preprocessing_20261029/classical_nine_source_v2_inputs'
+BASE=ROOT/'reports/experiments/classical_ml_benchmarks_20261030/inputs'
 CFG=BASE/'classical_nine_source_v2_config.json'
 def sha(p):
  h=hashlib.sha256()

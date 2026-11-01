@@ -625,8 +625,17 @@ def _atomic_create_json(path: Path, payload: dict[str, Any]) -> None:
             stream.write(encoded)
             stream.flush()
             os.fsync(stream.fileno())
-        # Hard-link creation is atomic and fails if ``path`` already exists.
-        os.link(temp_path, path)
+        # Both operations are atomic and create-only on their respective
+        # platforms: POSIX hard-link refuses an existing destination; Windows
+        # rename refuses to replace one. The staging file shares the directory.
+        if os.name == "nt":
+            def _extended_windows_path(value: Path) -> str:
+                resolved = str(value.resolve())
+                return resolved if resolved.startswith("\\\\?\\") else f"\\\\?\\{resolved}"
+
+            os.rename(_extended_windows_path(temp_path), _extended_windows_path(path))
+        else:
+            os.link(temp_path, path)
     finally:
         try:
             temp_path.unlink()

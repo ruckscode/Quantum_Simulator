@@ -1,0 +1,135 @@
+{
+  "status": "complete",
+  "task": "qolumbina_ideal",
+  "records": 182,
+  "unique_groups": 26,
+  "outer_split": "GroupKFold(5) held-out groups",
+  "selection": "Per fold, compared 104 word/character SVM, logistic, SGD and ComplementNB candidates with 32 sparse cosine KNN settings using only inner-CV accuracy; selected candidate then evaluated on outer held-out groups.",
+  "frozen_test_accessed": false,
+  "folds": [
+    {
+      "fold": 1,
+      "selected_family": "word_char_linear_logistic_sgd_nb",
+      "inner_accuracy_winner": 0.8503401360544217,
+      "outer_metrics": {
+        "records": 42,
+        "accuracy": 0.8571428571428571,
+        "macro_f1": 0.5855263157894737,
+        "balanced_accuracy": 0.5714285714285714,
+        "confusion_matrix_labels_0_1": [
+          [
+            1,
+            6
+          ],
+          [
+            0,
+            35
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 2,
+      "selected_family": "word_char_linear_logistic_sgd_nb",
+      "inner_accuracy_winner": 0.8435374149659864,
+      "outer_metrics": {
+        "records": 35,
+        "accuracy": 0.8571428571428571,
+        "macro_f1": 0.6812386156648451,
+        "balanced_accuracy": 0.6428571428571428,
+        "confusion_matrix_labels_0_1": [
+          [
+            2,
+            5
+          ],
+          [
+            0,
+            28
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 3,
+      "selected_family": "word_char_linear_logistic_sgd_nb",
+      "inner_accuracy_winner": 0.8571428571428571,
+      "outer_metrics": {
+        "records": 35,
+        "accuracy": 0.7714285714285715,
+        "macro_f1": 0.43548387096774194,
+        "balanced_accuracy": 0.5,
+        "confusion_matrix_labels_0_1": [
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            27
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 4,
+      "selected_family": "word_char_linear_logistic_sgd_nb",
+      "inner_accuracy_winner": 0.8231292517006802,
+      "outer_metrics": {
+        "records": 35,
+        "accuracy": 0.9142857142857143,
+        "macro_f1": 0.47761194029850745,
+        "balanced_accuracy": 0.5,
+        "confusion_matrix_labels_0_1": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            32
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 5,
+      "selected_family": "word_char_linear_logistic_sgd_nb",
+      "inner_accuracy_winner": 0.836734693877551,
+      "outer_metrics": {
+        "records": 35,
+        "accuracy": 0.8,
+        "macro_f1": 0.4444444444444444,
+        "balanced_accuracy": 0.5,
+        "confusion_matrix_labels_0_1": [
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            28
+          ]
+        ]
+      }
+    }
+  ],
+  "pooled_metrics": {
+    "records": 182,
+    "accuracy": 0.8406593406593407,
+    "macro_f1": 0.5416413373860183,
+    "balanced_accuracy": 0.546875,
+    "confusion_matrix_labels_0_1": [
+      [
+        3,
+        29
+      ],
+      [
+        0,
+        150
+      ]
+    ],
+    "outer_fold_accuracy_mean": 0.8400000000000001,
+    "outer_fold_macro_f1_mean": 0.5248610374330026,
+    "outer_fold_macro_f1_sd": 0.10585580577487878
+  }
+}

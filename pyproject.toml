@@ -10,18 +10,20 @@ requires-python = ">=3.10"
 dependencies = ["numpy>=1.24"]
 
 [project.optional-dependencies]
-dev = ["pytest", "pandas", "scikit-learn", "cryptography>=41"]
+dev = ["pytest", "pandas", "scikit-learn", "cryptography>=41", "psutil>=5.9"]
 oracle = ["qiskit>=2.5,<3"]
 ibm = ["qiskit>=2.5,<3", "qiskit-ibm-runtime>=0.50,<0.51"]
 ui = ["streamlit>=1.35"]
-research = ["pandas", "scikit-learn", "cryptography>=41"]
+research = ["pandas", "scikit-learn", "cryptography>=41", "psutil>=5.9"]
+qmutbench = ["pandas", "scikit-learn", "joblib"]
+qml = ["pennylane==0.45.1", "psutil>=5.9"]
 
 [tool.setuptools]
 py-modules = ["ibm_validation"]
 
 [tool.setuptools.packages.find]
 where = ["src", "."]
-include = ["quantum_simulator*"]
+include = ["quantum_simulator*", "qmutbench_ml*"]
 
 [tool.setuptools.package-data]
 quantum_simulator = ["models/*.json"]

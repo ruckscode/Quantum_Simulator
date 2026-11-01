@@ -1,0 +1,52 @@
+{
+  "source_sha256": "3f4547868673c583f047cee19d27c7bc97c64f15bb0586098ada778a3a0ff778",
+  "reference_sha256": null,
+  "reference_authority": "numeric five-fold development archive",
+  "reference_archive_sha256": "bfc1affdd40ac1032b65e417548075ce066407297fc603085ba6519403f56367",
+  "qasm_manifest_sha256": "284188822b6b846a12bcf791fc5122146d3ed78be29588b97b39595534abda01",
+  "source_rows_scanned": 723079,
+  "development_rows_indexed": 578117,
+  "development_origins": 305,
+  "frozen_test_rows_retained": 0,
+  "source_chunk_rows": 10000,
+  "fold_record_counts": {
+    "1": 114961,
+    "2": 117775,
+    "3": 115280,
+    "4": 114906,
+    "5": 115195
+  },
+  "fold_origin_counts": {
+    "1": 60,
+    "2": 59,
+    "3": 58,
+    "4": 69,
+    "5": 59
+  },
+  "fold_class_counts": {
+    "1": {
+      "0": 55305,
+      "1": 59656
+    },
+    "2": {
+      "0": 56857,
+      "1": 60918
+    },
+    "3": {
+      "0": 55481,
+      "1": 59799
+    },
+    "4": {
+      "0": 55310,
+      "1": 59596
+    },
+    "5": {
+      "0": 55460,
+      "1": 59735
+    }
+  },
+  "class_counts": {
+    "0": 278413,
+    "1": 299704
+  }
+}

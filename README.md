@@ -9,6 +9,7 @@
 - Mathematical algorithm reference and result-specific explanations: [`docs/algorithm_reference.md`](docs/algorithm_reference.md).
 - Full mathematical reference for gates, noise, diagnosis, classical ML, QML, benchmark metrics, and limitations: [`docs/project_mathematical_reference.md`](docs/project_mathematical_reference.md).
 - Classical multi-source task provenance and grouped OOF scores: [`data/classical_ml_v1/`](data/classical_ml_v1/).
+- Published classical ML benchmark results and reproducibility artifacts: [`CLASSICAL_ML_RESULTS.md`](CLASSICAL_ML_RESULTS.md) and [`reports/experiments/classical_ml_benchmarks_20261030/`](reports/experiments/classical_ml_benchmarks_20261030/).
 - Separate QMutBench/QML research methods, runs, and validity limits: [`qmutbench_qml/README.md`](qmutbench_qml/README.md).
 - Reusable simulator and diagnosis package: `src/quantum_simulator/` (compatibility entry points remain at the repository root).
 - QMutBench/QML research code is a separate repository track and is not included in the installable simulator package.
@@ -17,6 +18,8 @@
 
 The selected historical QMutBench model is **`qmutbench-mutation-aware-v1`** (100-tree Extra Trees, 23 features, inference threshold 0.5). Its fixed-model grouped development macro F1 is **79.34%**; five-fold nested grouped-selected development macro F1 is **79.28%**. The 85% target remains unmet. These are development results, not independent external validation; no compatible independent external dataset has been verified. See the [inference guide](qmutbench_ml/README.md). The model bundle is not included in this checkout; no QMutBench inference can run until it is supplied. The bundle is not used by simulator diagnosis.
 
+The separate classical diagnosis candidate is opt-in and evidence-gated. Its synthetic benchmark fails the predeclared acceptance gate (six of seven criteria pass; program-fault recall is 70%, below the 80% minimum). It is not suitable for default diagnosis or for claiming arbitrary-circuit accuracy; see [`reports/ml_diagnosis_integration_report.md`](reports/ml_diagnosis_integration_report.md).
+
 The QML track is also research-only. Its current target is the historical QMutBench mutation outcome (`Survivor` versus `WOO`/`OPO`), which is not the runtime diagnosis target of program fault versus hardware anomaly. Do not treat QML benchmark metrics as diagnosis accuracy or describe the QML models as being called from `diagnose_circuit()`.
 
 ## Setup and common checks
@@ -24,7 +27,7 @@ The QML track is also research-only. Its current target is the historical QMutBe
 From the repository root, install the declared dependencies and run tests:
 
 ```powershell
-python -m pip install -e ".[dev]"
+python -m pip install -e ".[dev,qml]"
 python -m pytest tests -q
 ```
 

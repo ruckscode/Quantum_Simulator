@@ -229,7 +229,9 @@ def _diagnosis_class(result: Any) -> str:
 
 def _json_plain(value: Any) -> Any:
     if is_dataclass(value):
-        return _json_plain(asdict(value))
+        # Omit newly-added optional fields when unset so prior result JSON
+        # retains its stable schema and remains readable by older tooling.
+        return _json_plain({key: item for key, item in asdict(value).items() if item is not None})
     if hasattr(value, "value"):
         return value.value
     if isinstance(value, tuple):

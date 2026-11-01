@@ -226,13 +226,17 @@ def _statevector_probabilities(circuit: Sequence[Any], num_qubits: int, seed: in
     simulator = QuantumSimulator(num_qubits, seed=seed)
     simulator.run_circuit(_without_measurements(circuit))
     return {
-        f"{index:0{num_qubits}b}": float(probability)
+        # The simulator's statevector indexes q0 as the leftmost bit, while
+        # Qiskit count strings put classical bit 0 at the right. Match the
+        # count-string convention before comparing against sampled outcomes.
+        f"{index:0{num_qubits}b}"[::-1]: float(probability)
         for index, probability in enumerate(simulator.get_probabilities())
     }
 
 
-def _measurement_targets(circuit: Sequence[Any], num_qubits: int) -> tuple[int, ...] | None:
-    measurements: list[tuple[int, tuple[int, ...]]] = []
+def _measurement_targets(circuit: Sequence[Any], num_qubits: int) -> tuple[tuple[int, int], ...] | None:
+    """Return (qubit, classical-bit) pairs for a single final measurement."""
+    measurements: list[tuple[int, tuple[int, ...], tuple[int, ...]]] = []
     for index, operation in enumerate(circuit):
         if isinstance(operation, Mapping):
             name = str(operation.get("name", operation.get("op", operation.get("gate", "")))).lower()
@@ -240,6 +244,10 @@ def _measurement_targets(circuit: Sequence[Any], num_qubits: int) -> tuple[int, 
             if isinstance(raw_qubits, int):
                 raw_qubits = [raw_qubits]
             qubits = tuple(int(value) for value in raw_qubits)
+            raw_bits = operation.get("classical_bits", operation.get("clbits"))
+            if isinstance(raw_bits, int):
+                raw_bits = [raw_bits]
+            classical_bits = tuple(int(value) for value in raw_bits) if raw_bits is not None else ()
         elif isinstance(operation, (list, tuple)) and operation:
             name = str(operation[0]).lower()
             operands = list(operation[1:])
@@ -249,15 +257,19 @@ def _measurement_targets(circuit: Sequence[Any], num_qubits: int) -> tuple[int, 
                 qubits = (int(operands[0]),)
             else:
                 qubits = ()
+            classical_bits = ()
+            if len(operands) > 1 and operands[1] is not None:
+                raw_bits = operands[1]
+                classical_bits = tuple(int(value) for value in raw_bits) if isinstance(raw_bits, (list, tuple)) else (int(raw_bits),)
         else:
             continue
         if name == "measure":
-            measurements.append((index, qubits or tuple(range(num_qubits))))
+            measurements.append((index, qubits or tuple(range(num_qubits)), classical_bits))
     if not measurements:
-        return tuple(range(num_qubits))
+        return tuple((qubit, qubit) for qubit in range(num_qubits))
     if len(measurements) != 1:
         return None
-    index, qubits = measurements[0]
+    index, qubits, classical_bits = measurements[0]
     trailing = circuit[index + 1:]
     if any(
         not (isinstance(operation, (tuple, list)) and operation and str(operation[0]).lower() == "barrier")
@@ -266,26 +278,36 @@ def _measurement_targets(circuit: Sequence[Any], num_qubits: int) -> tuple[int, 
         return None
     if any(qubit < 0 or qubit >= num_qubits for qubit in qubits):
         raise ValueError("measurement references a qubit outside the configured circuit width")
-    return qubits
+    if not classical_bits:
+        classical_bits = qubits
+    if len(classical_bits) != len(qubits):
+        raise ValueError("measurement classical-bit count must match measured-qubit count")
+    if any(bit < 0 for bit in classical_bits):
+        raise ValueError("measurement references a negative classical bit")
+    return tuple(zip(qubits, classical_bits))
 
 
 def _marginal_ideal_distribution(
     statevector_distribution: Mapping[str, float],
-    measured_qubits: tuple[int, ...] | None,
+    measurement_map: tuple[tuple[int, int], ...] | None,
     fallback_counts: Mapping[str, int],
 ) -> dict[str, float]:
-    if measured_qubits is None:
+    if measurement_map is None:
         total = sum(fallback_counts.values())
         if total <= 0:
             raise ValueError("seeded ideal simulator counts must have a positive total")
         return {key: value / total for key, value in sorted(fallback_counts.items())}
 
-    width = len(measured_qubits)
-    if width == 0:
+    if not measurement_map:
         raise ValueError("measurement must target at least one qubit")
+    width = max(classical_bit for _, classical_bit in measurement_map) + 1
     result = {f"{index:0{width}b}": 0.0 for index in range(2**width)}
     for state, probability in statevector_distribution.items():
-        output = "".join(state[qubit] for qubit in measured_qubits)
+        classical = ["0"] * width
+        for qubit, classical_bit in measurement_map:
+            classical[classical_bit] = state[-1 - qubit]
+        # Qiskit count strings display the highest classical bit at left.
+        output = "".join(reversed(classical))
         result[output] += probability
     return result
 

@@ -58,7 +58,7 @@ def _build_circuits():
     circuit.x(0)
     circuit.swap(0, 1)
     circuit.measure_all()
-    cases.append(("SWAP circuit", circuit, {"01": 1.0}, True))
+    cases.append(("SWAP circuit", circuit, {"10": 1.0}, True))
 
     circuit = QuantumCircuit(2)
     circuit.h(0)

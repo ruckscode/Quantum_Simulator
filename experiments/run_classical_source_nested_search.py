@@ -12,7 +12,7 @@ from sklearn.pipeline import FeatureUnion,Pipeline
 from sklearn.svm import LinearSVC
 
 ROOT=Path(__file__).resolve().parents[1]
-BASE=ROOT/'reports/experiments/qml_source_preprocessing_20261029/classical_nine_source_v2_inputs'
+BASE=ROOT/'reports/experiments/classical_ml_benchmarks_20261030/inputs'
 CONFIG=BASE/'classical_nine_source_v2_config.json';SEED=20261030
 def sha256(p):
  h=hashlib.sha256()

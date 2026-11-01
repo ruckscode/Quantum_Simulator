@@ -1,0 +1,130 @@
+{
+  "status": "complete",
+  "dataset": "QMutBench binary development split",
+  "target": {
+    "0": "survived",
+    "1": "killed"
+  },
+  "rows": 578117,
+  "origins": 305,
+  "folds": 5,
+  "frozen_test_accessed": false,
+  "feature_protocol": "Same fold-local ReducedFeatureEncoder as QNN; fit on up to 5,000 balanced training-fold rows only; four MI-selected features; same saved origin-disjoint folds.",
+  "feature_names_by_fold": {
+    "1": [
+      "numeric__qasm_diff_total_span",
+      "numeric__qasm_diff_added_arity",
+      "numeric__qasm_diff_is_local",
+      "numeric__Position_int"
+    ],
+    "2": [
+      "numeric__gates",
+      "numeric__position_fraction",
+      "numeric__qubits",
+      "categorical__gate_id"
+    ],
+    "3": [
+      "numeric__qubits",
+      "numeric__position_fraction",
+      "numeric__gates",
+      "numeric__qasm_diff_total_span"
+    ],
+    "4": [
+      "numeric__qasm_diff_total_span",
+      "numeric__Position_int",
+      "numeric__gates",
+      "numeric__qasm_diff_added_arity"
+    ],
+    "5": [
+      "numeric__qasm_diff_added_arity",
+      "numeric__Position_int",
+      "numeric__qasm_diff_total_span",
+      "categorical__gate_id"
+    ]
+  },
+  "models": [
+    "dummy_prior",
+    "logistic",
+    "logistic_balanced",
+    "linear_svc",
+    "sgd_logistic",
+    "extra_trees",
+    "random_forest",
+    "hist_gradient_boosting"
+  ],
+  "seed": 20261028,
+  "fold_results": {
+    "1": {
+      "status": "complete",
+      "records": 114961,
+      "training_records": 463156,
+      "encoder_fit_records": 5000,
+      "feature_names": [
+        "numeric__qasm_diff_total_span",
+        "numeric__qasm_diff_added_arity",
+        "numeric__qasm_diff_is_local",
+        "numeric__Position_int"
+      ],
+      "prediction_file": "fold_1_predictions.csv",
+      "elapsed_seconds": 23.11
+    },
+    "2": {
+      "status": "complete",
+      "records": 117775,
+      "training_records": 460342,
+      "encoder_fit_records": 5000,
+      "feature_names": [
+        "numeric__gates",
+        "numeric__position_fraction",
+        "numeric__qubits",
+        "categorical__gate_id"
+      ],
+      "prediction_file": "fold_2_predictions.csv",
+      "elapsed_seconds": 22.96
+    },
+    "3": {
+      "status": "complete",
+      "records": 115280,
+      "training_records": 462837,
+      "encoder_fit_records": 5000,
+      "feature_names": [
+        "numeric__qubits",
+        "numeric__position_fraction",
+        "numeric__gates",
+        "numeric__qasm_diff_total_span"
+      ],
+      "prediction_file": "fold_3_predictions.csv",
+      "elapsed_seconds": 23.14
+    },
+    "4": {
+      "status": "complete",
+      "records": 114906,
+      "training_records": 463211,
+      "encoder_fit_records": 5000,
+      "feature_names": [
+        "numeric__qasm_diff_total_span",
+        "numeric__Position_int",
+        "numeric__gates",
+        "numeric__qasm_diff_added_arity"
+      ],
+      "prediction_file": "fold_4_predictions.csv",
+      "elapsed_seconds": 22.78
+    },
+    "5": {
+      "status": "complete",
+      "records": 115195,
+      "training_records": 462922,
+      "encoder_fit_records": 5000,
+      "feature_names": [
+        "numeric__qasm_diff_added_arity",
+        "numeric__Position_int",
+        "numeric__qasm_diff_total_span",
+        "categorical__gate_id"
+      ],
+      "prediction_file": "fold_5_predictions.csv",
+      "elapsed_seconds": 22.93
+    }
+  },
+  "completed_folds": 5,
+  "pooled_oof_metrics": "pooled_oof_metrics.json"
+}

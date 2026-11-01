@@ -1,0 +1,135 @@
+{
+  "status": "complete",
+  "task": "bugs4q_pooled",
+  "records": 124,
+  "unique_groups": 62,
+  "outer_split": "GroupKFold(5) held-out groups",
+  "selection": "Per fold, compared 104 word/character SVM, logistic, SGD and ComplementNB candidates with 32 sparse cosine KNN settings using only inner-CV accuracy; selected candidate then evaluated on outer held-out groups.",
+  "frozen_test_accessed": false,
+  "folds": [
+    {
+      "fold": 1,
+      "selected_family": "sparse_cosine_knn",
+      "inner_accuracy_winner": 0.5710784313725491,
+      "outer_metrics": {
+        "records": 26,
+        "accuracy": 0.46153846153846156,
+        "macro_f1": 0.43125,
+        "balanced_accuracy": 0.46153846153846156,
+        "confusion_matrix_labels_0_1": [
+          [
+            9,
+            4
+          ],
+          [
+            10,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 2,
+      "selected_family": "sparse_cosine_knn",
+      "inner_accuracy_winner": 0.5428921568627451,
+      "outer_metrics": {
+        "records": 26,
+        "accuracy": 0.5384615384615384,
+        "macro_f1": 0.5272727272727272,
+        "balanced_accuracy": 0.5384615384615384,
+        "confusion_matrix_labels_0_1": [
+          [
+            9,
+            4
+          ],
+          [
+            8,
+            5
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 3,
+      "selected_family": "sparse_cosine_knn",
+      "inner_accuracy_winner": 0.5698529411764706,
+      "outer_metrics": {
+        "records": 24,
+        "accuracy": 0.5416666666666666,
+        "macro_f1": 0.4990512333965844,
+        "balanced_accuracy": 0.5416666666666667,
+        "confusion_matrix_labels_0_1": [
+          [
+            10,
+            2
+          ],
+          [
+            9,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 4,
+      "selected_family": "sparse_cosine_knn",
+      "inner_accuracy_winner": 0.5802696078431372,
+      "outer_metrics": {
+        "records": 24,
+        "accuracy": 0.4166666666666667,
+        "macro_f1": 0.4125874125874126,
+        "balanced_accuracy": 0.41666666666666663,
+        "confusion_matrix_labels_0_1": [
+          [
+            4,
+            8
+          ],
+          [
+            6,
+            6
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 5,
+      "selected_family": "sparse_cosine_knn",
+      "inner_accuracy_winner": 0.5894607843137255,
+      "outer_metrics": {
+        "records": 24,
+        "accuracy": 0.5,
+        "macro_f1": 0.4857142857142857,
+        "balanced_accuracy": 0.5,
+        "confusion_matrix_labels_0_1": [
+          [
+            8,
+            4
+          ],
+          [
+            8,
+            4
+          ]
+        ]
+      }
+    }
+  ],
+  "pooled_metrics": {
+    "records": 124,
+    "accuracy": 0.49193548387096775,
+    "macro_f1": 0.47972027972027975,
+    "balanced_accuracy": 0.49193548387096775,
+    "confusion_matrix_labels_0_1": [
+      [
+        40,
+        22
+      ],
+      [
+        41,
+        21
+      ]
+    ],
+    "outer_fold_accuracy_mean": 0.4916666666666666,
+    "outer_fold_macro_f1_mean": 0.471175131794202,
+    "outer_fold_macro_f1_sd": 0.04785901494590252
+  }
+}

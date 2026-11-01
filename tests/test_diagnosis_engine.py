@@ -126,7 +126,7 @@ def test_error_candidate_ranks_without_promoting_duration_only_qubit():
     assert result.hardware_evidence_candidates[0].component_type == "gate"
     assert result.hardware_evidence_candidates[0].component == (0,)
     assert all(candidate.component != (1,) for candidate in result.hardware_result.candidates)
-    assert "calibration-backed hardware fault candidate(s): gate (0,)" in result.hardware_result.summary.lower()
+    assert "calibration-backed hardware fault candidate(s): gate x (0,)" in result.hardware_result.summary.lower()
 
 
 def test_missing_gate_calibration_is_not_fault_evidence():

@@ -115,9 +115,19 @@ def train_phase5_artifact(rows: Sequence[Mapping], output_path: str | Path) -> d
             stream.write("\n")
             stream.flush()
             os.fsync(stream.fileno())
-        # Hard-link creation is atomic and fails if another artifact appeared.
-        os.link(temp_path, destination)
-        temp_path.unlink()
+        # Atomic create-only publication. Windows os.rename does not replace an
+        # existing destination; POSIX link provides the same no-clobber rule.
+        if os.name == "nt":
+            temp_absolute = str(temp_path.resolve())
+            destination_absolute = str(destination.resolve())
+            if not temp_absolute.startswith("\\\\?\\"):
+                temp_absolute = f"\\\\?\\{temp_absolute}"
+            if not destination_absolute.startswith("\\\\?\\"):
+                destination_absolute = f"\\\\?\\{destination_absolute}"
+            os.rename(temp_absolute, destination_absolute)
+        else:
+            os.link(temp_path, destination)
+            temp_path.unlink()
     except BaseException:
         try:
             temp_path.unlink()
