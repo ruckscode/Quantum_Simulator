@@ -29,6 +29,35 @@ This is a statevector simulator: memory and runtime grow exponentially with
 qubit count. It is not a stabilizer simulator and does not claim hardware
 equivalence.
 
+### Qiskit ordering and the compatibility boundary
+
+The internal tensor uses qubit 0 as its leftmost tensor axis. The public shot
+counts and `get_qiskit_statevector()` use Qiskit's convention: qubit 0 is the
+least-significant statevector bit, and displayed count strings place the
+highest classical-bit index on the left. An implicit measurement maps `q[i]`
+to `c[i]`; explicit qubit-to-classical-bit mappings are preserved. Multiple
+measurement instructions accumulate into the same classical register, as in
+a Qiskit circuit. This makes ideal gate amplitudes and finite-shot output
+semantics comparable without reversing user circuits.
+
+The Qiskit oracle suite checks ideal statevectors for the supported gate set,
+composed circuits, measurement/count conventions, and selected IBM adapter
+conversions. Passing it establishes parity only for those tested semantics.
+For a seeded ideal run, the probability law must match; finite-shot count
+tables can still differ because the two simulators draw independent samples.
+No simulator can guarantee identical finite-shot samples without sharing the
+same RNG and sampling implementation.
+
+Matching Aer noise requires an explicitly matched noise model, basis-gate
+decomposition, coupling map, and seed/sampling protocol. This project's
+`HardwareModel` is intentionally smaller than Aer: it models gate skip
+probability, T1/T2 relaxation/dephasing, and independent readout flips. It
+does not model Aer depolarizing/Kraus channels, coherent error, crosstalk,
+leakage, drift, or backend scheduling. Therefore no-discrepancy claims apply
+to the tested ideal semantics, not to arbitrary noisy Aer configurations or
+physical IBM devices. Real hardware also varies with calibration and produces
+stochastic counts.
+
 ## 2. Optional hardware-noise simulation
 
 `HardwareModel` supplies synthetic or captured calibration values. During a

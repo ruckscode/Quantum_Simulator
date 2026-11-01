@@ -96,3 +96,22 @@ def test_seeded_random_small_circuits_match_qiskit():
             sim.run_circuit(simulator_instructions)
             expected = np.asarray(Statevector.from_instruction(reference).data)
             np.testing.assert_allclose(sim.state, expected, rtol=0.0, atol=2e-12)
+
+
+def test_qiskit_ordered_statevector_accessor_matches_same_logical_circuit():
+    instructions = [("h", 0), ("rx", 1, 0.37), ("cx", 0, 1), ("ry", 0, -0.61)]
+    reference = QuantumCircuit(2)
+    reference.h(0)
+    reference.rx(0.37, 1)
+    reference.cx(0, 1)
+    reference.ry(-0.61, 0)
+
+    simulator = QuantumSimulator(2)
+    simulator.run_circuit(instructions)
+
+    np.testing.assert_allclose(
+        simulator.get_qiskit_statevector(),
+        np.asarray(Statevector.from_instruction(reference).data),
+        rtol=0.0,
+        atol=2e-12,
+    )

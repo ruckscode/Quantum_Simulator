@@ -39,3 +39,14 @@ def test_diagnose_circuit_accepts_quantum_circuit_measure_all():
     result = diagnose_circuit(circuit, shots=1000, seed=42)
 
     assert result.category is DiagnosisCategory.NO_ANOMALY
+
+
+def test_diagnosis_counts_use_qiskit_classical_bit_order():
+    circuit = QuantumCircuit(2)
+    circuit.x(0)
+    circuit.measure_all()
+
+    result = diagnose_circuit(circuit, shots=32, seed=42)
+
+    assert result.expected_counts == {"01": 32}
+    assert result.observed_counts == {"01": 32}

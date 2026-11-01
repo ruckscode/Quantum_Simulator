@@ -114,6 +114,36 @@ def test_run_x_circuit_returns_only_one():
     assert circuit.run(shots=100, seed=42).get_counts() == {"1": 100}
 
 
+def test_two_qubit_counts_follow_qiskit_classical_bit_order():
+    q0 = QuantumCircuit(2)
+    q0.x(0)
+    q0.measure_all()
+    q1 = QuantumCircuit(2)
+    q1.x(1)
+    q1.measure_all()
+
+    assert q0.run(shots=16, seed=42).get_counts() == {"01": 16}
+    assert q1.run(shots=16, seed=42).get_counts() == {"10": 16}
+
+
+def test_separate_measurements_accumulate_into_classical_register_order():
+    circuit = QuantumCircuit(2)
+    circuit.x(0)
+    circuit.measure(0)
+    circuit.measure(1)
+
+    assert circuit.run(shots=16, seed=42).get_counts() == {"01": 16}
+
+
+def test_explicit_qubit_to_classical_bit_mapping_matches_qiskit_display_order():
+    circuit = QuantumCircuit(2)
+    circuit.x(0)
+    circuit.measure(0, 1)
+    circuit.measure(1, 0)
+
+    assert circuit.run(shots=16, seed=42).get_counts() == {"10": 16}
+
+
 def test_run_h_circuit_produces_both_outcomes():
     circuit = QuantumCircuit(1)
     circuit.h(0)

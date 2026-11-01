@@ -211,6 +211,18 @@ def test_run_shots_x_returns_only_one():
     assert counts == {"1": 1000}
 
 
+def test_run_shots_without_measurement_uses_qiskit_bitstring_order():
+    counts = QuantumSimulator(2).run_shots([("x", 0)], shots=16, seed=7)
+    assert counts == {"01": 16}
+
+
+def test_run_shots_accumulates_separate_measurements_in_classical_bit_order():
+    counts = QuantumSimulator(2).run_shots(
+        [("x", 0), ("measure", 0), ("measure", 1)], shots=16, seed=7,
+    )
+    assert counts == {"01": 16}
+
+
 def test_run_shots_bell_state_samples_only_correlated_outcomes():
     counts = QuantumSimulator(2).run_shots(
         [("h", 0), ("cx", 0, 1)], shots=1000, seed=7

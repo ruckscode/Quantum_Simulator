@@ -197,6 +197,8 @@ python -m pip install -e ".[dev,oracle]"
 python -m pytest tests/test_gate_reference_qiskit.py -q
 ```
 
+The current compatibility contract and its limits are described in the [algorithm reference](docs/algorithm_reference.md#qiskit-ordering-and-the-compatibility-boundary). It covers ideal gate semantics and Qiskit bit/count ordering; it does not claim exact noisy-Aer or physical-IBM behavior.
+
 The ordinary test extra remains `python -m pip install -e ".[dev]"`. Without Qiskit, `tests/test_gate_reference_qiskit.py` is skipped by `pytest.importorskip`; the rest of the routine suite remains available. The core simulator does not require Qiskit, `qiskit-ibm-runtime`, IBM credentials, network access, or an IBM account.
 
 ## 7. Basic QuantumCircuit Usage
@@ -401,7 +403,7 @@ The checked-in QMutBench data contains a small set of QASM source/mutant example
 
 ### QMutBench outcome ML experiment
 
-The selected model is `qmutbench-mutation-aware-v1` (100-tree Extra Trees, 23 features, threshold 0.5), documented in the [inference guide](qmutbench_ml/README.md). Current results are 79.34% fixed-model grouped development macro F1 and 79.28% five-fold nested grouped-selected development macro F1. The 85% target remains unmet, and no compatible independent external dataset has been verified. These metrics are development evidence for predicting the historical QMutBench mutation outcome only; they do not establish hardware diagnosis, source fault localization, or independent external generalization. The model bundle and full training data are local-only under `data/qmutbench_ml/mutation_aware_v1/` and are not included in Git. Older model comparisons and results remain in the linked historical reports and experiment records.
+The selected model is `qmutbench-mutation-aware-v1` (100-tree Extra Trees, 23 features, threshold 0.5), documented in the [inference guide](qmutbench_ml/README.md). The completed full-feature development benchmark reports 79.33% accuracy, 79.33% macro-F1, and 79.41% balanced accuracy under five-fold origin-grouped OOF evaluation; the matched four-feature control used for QML comparison scored 57.00% accuracy. The 85% target remains unmet, and no compatible independent external dataset has been verified. These metrics are development evidence for predicting historical QMutBench mutation outcomes only; they do not establish hardware diagnosis, source fault localization, or independent external generalization. The model bundle and full training data are not present in this checkout, so the inference guide describes a local bundle contract but does not imply that a fresh clone contains that bundle. See the [classical ML benchmark report](reports/experiments/classical_ml_final_results_20261030.md) for per-source tasks, grouped validation protocol, and caveats.
 
 Run benchmark reporting from the repository root with:
 

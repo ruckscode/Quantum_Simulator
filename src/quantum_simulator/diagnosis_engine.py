@@ -810,7 +810,9 @@ def diagnose_circuit(
             if classical_bits is None or (
                 isinstance(classical_bits, (list, tuple)) and not classical_bits
             ):
-                schema.append(("unmapped", len(qubits)))
+                # Shot counts use Qiskit's standard implicit q[i] -> c[i]
+                # convention for measure-all and convenience measurements.
+                schema.append(("mapped", tuple(qubits)))
             else:
                 destinations = tuple(classical_bits) if isinstance(classical_bits, (list, tuple)) else (classical_bits,)
                 if len(destinations) != len(qubits):
@@ -824,11 +826,14 @@ def diagnose_circuit(
         if expected_measurements != observed_measurements:
             raise ValueError("reference_circuit and circuit must have compatible measurement schemas")
 
+    expected_sampling_instructions = probe._map_measurements_to_classical_bits(list(expected_instructions))
+    observed_sampling_instructions = probe._map_measurements_to_classical_bits(list(instructions))
+
     classical_width = 0
     has_classical_mapping = False
-    for instruction in instructions:
+    for instruction in observed_sampling_instructions:
         name, operands = probe._normalize_operation(instruction)
-        if name == "measure" and len(operands) > 1 and operands[1] is not None:
+        if name == "measure" and len(operands) > 1:
             bits = operands[1]
             bits = list(bits) if isinstance(bits, (list, tuple)) else [bits]
             if bits:
@@ -854,16 +859,16 @@ def diagnose_circuit(
                 outcome = str(simulator.measurement_results[-1])
             else:
                 index = int(simulator.rng.choice(simulator.dim, p=simulator.get_probabilities()))
-                outcome = f"{index:0{n_qubits}b}"
+                outcome = f"{index:0{n_qubits}b}"[::-1]
             counts[outcome] = counts.get(outcome, 0) + 1
         return {key: value / shots for key, value in counts.items()}, counts
 
-    expected, expected_counts = sample(expected_instructions, None, seed)
+    expected, expected_counts = sample(expected_sampling_instructions, None, seed)
     if reference_circuit is None and hardware_model is None:
         observed, observed_counts = expected, expected_counts
     else:
         observed, observed_counts = sample(
-            instructions, hardware_model, None if seed is None else seed + 1,
+            observed_sampling_instructions, hardware_model, None if seed is None else seed + 1,
         )
     all_outcomes = set(expected) | set(observed)
     expected = {key: expected.get(key, 0.0) for key in all_outcomes}

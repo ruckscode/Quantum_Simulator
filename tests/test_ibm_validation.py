@@ -237,10 +237,12 @@ def test_ibm_calibration_maps_to_hardware_model_without_filling_missing_values()
     assert model.get_qubit_properties(1).readout_error == 0.03
     cx = model.get_gate_calibration("cx", (0, 1))[0]
     assert cx.error == 0.01
-    assert cx.duration == 2e-7
+    # IBM backend properties report gate durations in seconds; the internal
+    # hardware model stores durations in microseconds, matching T1/T2.
+    assert cx.duration == pytest.approx(0.2)
     reset = model.get_gate_calibration("reset", (1,))[0]
     assert reset.error is None
-    assert reset.duration == 0.25
+    assert reset.duration == pytest.approx(250_000.0)
     snapshot = model.to_calibration_snapshot()
     assert snapshot.qubits[1]["t1"] is None
     assert snapshot.qubits[1]["t2"] is None
@@ -320,10 +322,10 @@ def test_supported_qiskit_conversion_is_blocked_when_dependency_is_absent():
         assert "not installed" in result.error.lower()
 
 
-def test_counts_convert_to_project_bit_order_probabilities():
+def test_counts_preserve_qiskit_classical_bit_display_order():
     probabilities = counts_to_probabilities({"01": 3, "10": 1}, shots=4)
 
-    assert probabilities == {"10": 0.75, "01": 0.25}
+    assert probabilities == {"01": 0.75, "10": 0.25}
 
 
 def test_invalid_counts_are_rejected():

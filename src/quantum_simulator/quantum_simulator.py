@@ -146,6 +146,11 @@ class QuantumSimulator:
         if isinstance(instruction, dict):
             name = str(instruction.get("name") or instruction.get("op") or instruction.get("gate"))
             qubits = instruction.get("qubits", [])
+            if name.lower() == "measure":
+                classical_bits = instruction.get("classical_bits", instruction.get("clbits"))
+                if classical_bits is None:
+                    return name.lower(), (qubits,)
+                return name.lower(), (qubits, classical_bits)
             params = instruction.get("parameters", [])
             if isinstance(qubits, int):
                 qubits = [qubits]
@@ -157,6 +162,41 @@ class QuantumSimulator:
             return op, operands
 
         raise ValueError(f"Unsupported instruction format: {instruction!r}")
+
+    def get_qiskit_statevector(self) -> np.ndarray:
+        """Return amplitudes in Qiskit's little-endian basis-index order.
+
+        The simulator's internal state uses qubit 0 as the most-significant
+        tensor axis. This accessor reorders those axes so amplitude index x
+        represents Qiskit's computational basis state ``|x>``.
+        """
+        return self.state.reshape((2,) * self.n).transpose(tuple(reversed(range(self.n)))).reshape(-1).copy()
+
+    def _map_measurements_to_classical_bits(self, instructions: Sequence[Any]) -> list[Any]:
+        """Apply Qiskit-style default q[i] -> c[i] mapping for shot counts."""
+        mapped: list[Any] = []
+        for instruction in instructions:
+            name, raw_operands = self._normalize_operation(instruction)
+            if name != "measure":
+                mapped.append(instruction)
+                continue
+            operands = list(raw_operands)
+            if not operands:
+                qubits = list(range(self.n))
+                classical_bits = qubits.copy()
+            else:
+                qubits = operands[0] if isinstance(operands[0], (list, tuple)) else [operands[0]]
+                qubits = [int(qubit) for qubit in qubits]
+                supplied = operands[1] if len(operands) > 1 else None
+                if supplied is None or supplied == [] or supplied == ():
+                    classical_bits = qubits.copy()
+                else:
+                    classical_bits = list(supplied) if isinstance(supplied, (list, tuple)) else [supplied]
+                    classical_bits = [int(bit) for bit in classical_bits]
+            if len(qubits) != len(classical_bits):
+                raise ValueError("measurement qubits and classical bits must have equal lengths")
+            mapped.append(("measure", qubits, classical_bits))
+        return mapped
 
     def _resolve_gate_matrix(self, name: str, params: Sequence[float] | None = None) -> np.ndarray:
         if name in {"measure", "reset", "barrier"}:
@@ -544,7 +584,18 @@ class QuantumSimulator:
             raise ValueError("shots must be a positive integer")
         shots = int(shots)
         # Materialize once so a generator describes the same circuit on every shot.
-        instructions = list(instructions)
+        instructions = self._map_measurements_to_classical_bits(list(instructions))
+
+        classical_width = 0
+        has_measurement = False
+        for instruction in instructions:
+            name, operands = self._normalize_operation(instruction)
+            if name == "measure":
+                has_measurement = True
+                bits = operands[1]
+                bits = list(bits) if isinstance(bits, (list, tuple)) else [bits]
+                if bits:
+                    classical_width = max(classical_width, max(map(int, bits)) + 1)
 
         counts: dict[str, int] = {}
         rng = np.random.default_rng(seed)
@@ -555,13 +606,18 @@ class QuantumSimulator:
                 seed=int(rng.integers(0, 2 ** 31 - 1)),
                 memory_budget_bytes=self.memory_budget_bytes,
             )
-            sim.run_circuit(instructions, hardware_model=hardware_model)
-            if sim.measurement_results:
-                last = sim.measurement_results[-1]
+            results = sim.run_circuit(instructions, hardware_model=hardware_model)
+            if has_measurement:
+                classical = [0] * classical_width
+                for result in results:
+                    if isinstance(result, dict):
+                        for bit, value in result.items():
+                            classical[int(bit)] = int(value)
+                last = "".join(str(bit) for bit in reversed(classical))
             else:
                 probabilities = sim.get_probabilities()
                 outcome = int(sim.rng.choice(self.dim, p=probabilities))
-                last = f"{outcome:0{self.n}b}"
+                last = f"{outcome:0{self.n}b}"[::-1]
             counts[last] = counts.get(last, 0) + 1
 
         return counts

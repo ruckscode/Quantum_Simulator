@@ -366,7 +366,9 @@ def counts_to_probabilities(counts: Mapping[str, int], *, shots: int | None = No
         compact_outcome = "".join(outcome.split())
         if not compact_outcome or any(bit not in "01" for bit in compact_outcome):
             raise ValueError(f"count outcome {outcome!r} must contain only binary measurement bits")
-        key = compact_outcome[::-1]
+        # Preserve Qiskit's displayed classical-bit order (c[n-1] ... c[0]) so
+        # this distribution aligns with ideal_distribution and simulator counts.
+        key = compact_outcome
         normalized[key] = normalized.get(key, 0) + int(count)
     widths = {len(outcome) for outcome in normalized}
     if len(widths) != 1:
