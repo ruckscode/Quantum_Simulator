@@ -358,6 +358,8 @@ def _apply_optional_classifier(
             "Classical ML was not run because complete expected and observed distributions are required."
         )
         return result
+    # Local import avoids a cycle because ML diagnosis reuses this module's
+    # statistics and evidence-based localizers.
     from .ml_diagnosis import diagnose_with_ml
 
     ml_result = diagnose_with_ml(
@@ -386,7 +388,7 @@ def _apply_optional_classifier(
         DiagnosisCategory.PROGRAM_FAULT,
         DiagnosisCategory.HARDWARE_ANOMALY,
     }
-    ml_supported = (
+    ml_supported_by_independent_evidence = (
         (
             ml_result.final_diagnosis is DiagnosisCategory.PROGRAM_FAULT
             and result.anomaly_detected is True
@@ -418,10 +420,10 @@ def _apply_optional_classifier(
                 f"Rule/evidence category={rule_category.value}; "
                 f"ML-supported category={ml_result.final_diagnosis.value}."
             )
-        elif result.category not in definitive and ml_supported:
+        elif result.category not in definitive and ml_supported_by_independent_evidence:
             result.category = ml_result.final_diagnosis
             result.summary = ml_result.summary
-        elif result.category not in definitive and not ml_supported:
+        elif result.category not in definitive and not ml_supported_by_independent_evidence:
             result.evidence.append(
                 "The ML class did not have unique, independent statistical and localization "
                 "support; the diagnosis remains ambiguous."
@@ -753,11 +755,11 @@ def diagnose_circuit(
     changed. If observable and evidence channels are insufficient or
     conflicting, diagnosis remains ambiguous/insufficient; observationally
     indistinguishable faults cannot be discovered from these inputs alone.
-    An optional classical ``classifier`` adds an observable-feature prediction.
-    Statistical and localization evidence remain available in the result, and
-    ML predictions are fused only when existing evidence supports them. No
-    classifier is loaded implicitly; the bundled Phase 5 artifact is a
-    development candidate, not a model validated for arbitrary circuits.
+    An optional ``classifier`` adds an observable-feature prediction and can
+    refine an ambiguous result only when the existing localization evidence
+    supports that class. Statistical/localization evidence remains available,
+    no classifier is loaded implicitly, and the bundled logistic-regression
+    model is a development candidate, not validated for arbitrary circuits.
     """
     if isinstance(shots, bool) or not isinstance(shots, int) or shots <= 0:
         raise ValueError("shots must be a positive integer")
