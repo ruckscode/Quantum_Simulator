@@ -7,13 +7,17 @@
 - Repository map, data policy, and contribution layout: [`docs/repository_structure.md`](docs/repository_structure.md).
 - End-to-end architecture and exact model-use boundaries: [`docs/project_architecture.md`](docs/project_architecture.md).
 - Mathematical algorithm reference and result-specific explanations: [`docs/algorithm_reference.md`](docs/algorithm_reference.md).
+- Full mathematical reference for gates, noise, diagnosis, classical ML, QML, benchmark metrics, and limitations: [`docs/project_mathematical_reference.md`](docs/project_mathematical_reference.md).
 - Classical multi-source task provenance and grouped OOF scores: [`data/classical_ml_v1/`](data/classical_ml_v1/).
+- Separate QMutBench/QML research methods, runs, and validity limits: [`qmutbench_qml/README.md`](qmutbench_qml/README.md).
 - Reusable simulator and diagnosis package: `src/quantum_simulator/` (compatibility entry points remain at the repository root).
 - QMutBench/QML research code is a separate repository track and is not included in the installable simulator package.
 - Automated checks: `tests/`; reviewed reports and summaries: `reports/` and `data/curated_qml_training_v1/`. Per-run experiment outputs under `reports/experiments/` stay local by default.
 - Small QASM examples are tracked in `data/qmutbench/`. Full datasets, the selected model bundle, and generated ML intermediates are local-only under `data/` and are excluded by `.gitignore`.
 
 The selected historical QMutBench model is **`qmutbench-mutation-aware-v1`** (100-tree Extra Trees, 23 features, inference threshold 0.5). Its fixed-model grouped development macro F1 is **79.34%**; five-fold nested grouped-selected development macro F1 is **79.28%**. The 85% target remains unmet. These are development results, not independent external validation; no compatible independent external dataset has been verified. See the [inference guide](qmutbench_ml/README.md). The model bundle is not included in this checkout; no QMutBench inference can run until it is supplied. The bundle is not used by simulator diagnosis.
+
+The QML track is also research-only. Its current target is the historical QMutBench mutation outcome (`Survivor` versus `WOO`/`OPO`), which is not the runtime diagnosis target of program fault versus hardware anomaly. Do not treat QML benchmark metrics as diagnosis accuracy or describe the QML models as being called from `diagnose_circuit()`.
 
 ## Setup and common checks
 
