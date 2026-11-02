@@ -10,6 +10,7 @@
 - Full mathematical reference for gates, noise, diagnosis, classical ML, QML, benchmark metrics, and limitations: [`docs/project_mathematical_reference.md`](docs/project_mathematical_reference.md).
 - Classical multi-source task provenance and grouped OOF scores: [`data/classical_ml_v1/`](data/classical_ml_v1/).
 - Direct dataset acquisition links, pinned revisions, local destinations, and reproduction steps: [CLASSICAL_DATA_SOURCES.md](CLASSICAL_DATA_SOURCES.md).
+- End-to-end classical ML role, mathematics, integration boundary, benchmark results, and limitations: [`reports/classical_ml_end_to_end_profile.md`](reports/classical_ml_end_to_end_profile.md).
 - Published classical ML benchmark results and reproducibility artifacts: [`CLASSICAL_ML_RESULTS.md`](CLASSICAL_ML_RESULTS.md) and [`reports/experiments/classical_ml_benchmarks_20261030/`](reports/experiments/classical_ml_benchmarks_20261030/).
 - Separate QMutBench/QML research methods, runs, and validity limits: [`qmutbench_qml/README.md`](qmutbench_qml/README.md).
 - Reusable simulator and diagnosis package: `src/quantum_simulator/` (compatibility entry points remain at the repository root).
