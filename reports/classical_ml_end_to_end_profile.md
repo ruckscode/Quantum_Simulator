@@ -1,8 +1,11 @@
 # Classical Machine Learning in the Quantum Simulator Project
 
-**Report draft**  
-**Evidence cut-off:** 2 November 2026  
-**Scope:** Classical machine learning only. QML methods and results are outside this report.  
+**Report draft**
+
+**Evidence cut-off:** 2 November 2026
+
+**Scope:** Classical machine learning only. QML methods and results are outside this report.
+
 **Purpose:** Explain what was trained, what it predicts, where it is used, what its numbers mean, and what it does not establish.
 
 ## Abstract
